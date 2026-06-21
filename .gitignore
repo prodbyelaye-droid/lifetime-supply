@@ -1,0 +1,15 @@
+# Dev/tool folders — not part of the website
+.claude/
+frames/
+
+# Skill definition files
+SKILL.md
+SKILL (1).md
+
+# Original source files replaced by optimised versions
+elaye banner.PNG
+pic 2.HEIC
+untitled.jpg
+
+# macOS noise
+.DS_Store
