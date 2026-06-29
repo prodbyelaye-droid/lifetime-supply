@@ -3,7 +3,7 @@
    Set endDate to a past date to end the sale.
 ───────────────────────────────────────── */
 const SALE = {
-  originalPrice: 400,
+  originalPrice: 500,
   salePrice:     200,
   discount:      '50% OFF',
   endsLabel:     'June 25',
