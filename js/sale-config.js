@@ -3,8 +3,8 @@
    Set endDate to a past date to end the sale.
 ───────────────────────────────────────── */
 const SALE = {
-  originalPrice: 599,
-  salePrice:     199,
+  originalPrice: 500,
+  salePrice:     250,
   discount:      '50% OFF',
   endsLabel:     'June 25',
   /* 24 hr flash sale — ends June 25 10pm AEST */
