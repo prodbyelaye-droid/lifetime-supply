@@ -87,6 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.footer-sale-urgency').forEach(el => {
       el.textContent = 'Sale has ended.';
     });
+    /* Revert value-breakdown reveal card */
+    document.querySelectorAll('.val-was').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.querySelectorAll('.val-now').forEach(el => {
+      el.textContent = '$' + SALE.originalPrice;
+      el.style.color = 'var(--white)';
+      el.style.textShadow = 'none';
+    });
     return;
   }
 
