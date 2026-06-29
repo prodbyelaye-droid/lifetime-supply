@@ -6,9 +6,9 @@ const SALE = {
   originalPrice: 500,
   salePrice:     250,
   discount:      '50% OFF',
-  endsLabel:     'June 25',
-  /* 24 hr flash sale — ends June 25 10pm AEST */
-  endDate: new Date('2026-06-25T22:00:00+10:00'),
+  endsLabel:     'July 6',
+  /* Extended sale — ends July 6 midnight AEST */
+  endDate: new Date('2026-07-06T23:59:59+10:00'),
 };
 
 /* ─── Sync: runs before app.js ─────────────
