@@ -305,6 +305,8 @@ ul { list-style: none; }
 }
 
 /* ══ PROBLEM ════════════════════════════ */
+.problem-split .body-copy + .body-copy,
+.feature-content .body-copy + .body-copy { margin-top: 14px; }
 .problem-split {
   display: grid;
   grid-template-columns: 1fr 340px;
@@ -597,6 +599,10 @@ ul { list-style: none; }
   color: var(--w55);
 }
 .dm-handle { color: var(--white); }
+
+/* ══ FAQ ════════════════════════════════ */
+.faq-list { max-width: 760px; margin-top: clamp(8px, 1.5vw, 20px); }
+.faq-list .expander:last-child { border-bottom: 1px solid var(--ink-rule); }
 
 /* ══ FOOTER ═════════════════════════════ */
 .site-footer {
@@ -1081,3 +1087,19 @@ ul { list-style: none; }
 }
 .footer-sale-urgency .sale-countdown { color: var(--gold); font-weight: 800; }
 .sale-sep { opacity: 0.4; }
+.footer-dm {
+  font-family: var(--f-body);
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--w80);
+  max-width: 52ch;
+  margin: 6px auto 0;
+}
+.footer-signoff {
+  font-family: var(--f-head);
+  font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+  letter-spacing: 0.05em;
+  color: var(--w80);
+  margin-top: 10px;
+}

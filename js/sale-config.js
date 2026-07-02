@@ -99,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  /* Sale is live — start all countdowns */
+  /* Sale is live — sync date labels from config, start all countdowns */
+  document.querySelectorAll('[data-sale-ends-label]').forEach(el => {
+    el.textContent = SALE.endsLabel;
+  });
   document.querySelectorAll('.sale-countdown').forEach(el => startCountdown(el));
 });
