@@ -498,14 +498,14 @@ ul { list-style: none; }
 .fit-list { display: flex; flex-direction: column; gap: 12px; }
 .fit-list li {
   font-family: var(--f-body);
-  font-size: clamp(0.78rem,1.1vw,0.9rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--ink-mid);
   padding-left: 20px;
   position: relative;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .fit-yes li::before { content: '+'; position: absolute; left: 0; color: #28a745; font-weight: 900; }
 .fit-no  li::before { content: '✕'; position: absolute; left: 0; color: #e02020; font-weight: 900; }
