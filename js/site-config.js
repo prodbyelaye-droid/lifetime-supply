@@ -4,9 +4,9 @@
 ───────────────────────────────────────── */
 const SITE = {
   price: 499,
-  /* TODO(elaye): paste the Stripe Payment Link for the $499 Lifetime here.
-     Until then, every button falls back to the Instagram DM so nothing breaks. */
-  checkoutUrl: 'https://instagram.com/elxyee',
+    /* Stripe Payment Link for the $499 Lifetime — wired live 2026-07-05.
+         HTML keeps the Instagram link as a no-JS fallback only. */
+  checkoutUrl: 'https://buy.stripe.com/14A14o7sM404biv3XI9AA00',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
