@@ -4,14 +4,14 @@
 ───────────────────────────────────────── */
 const SITE = {
   price: 499,
-  /* TODO(elaye): paste the Stripe Payment Link for the $499 Lifetime here.
-     Until then, every button falls back to the Instagram DM so nothing breaks. */
-  checkoutUrl: 'https://instagram.com/elxyee',
+  /* Live Stripe Payment Link for the $499 one-time Lifetime. */
+  checkoutUrl: 'https://buy.stripe.com/14A14o7sM404biv3XI9AA00',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  /* Point every checkout button at the configured URL.
-     HTML keeps the Instagram link as a no-JS fallback. */
+  /* Point every checkout button at the configured URL. The HTML href on
+     each [data-checkout] element already matches this, so no-JS visitors
+     land on the same Stripe checkout. */
   document.querySelectorAll('[data-checkout]').forEach(a => {
     a.href = SITE.checkoutUrl;
   });
