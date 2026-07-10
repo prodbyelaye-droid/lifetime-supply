@@ -881,6 +881,74 @@ ul { list-style: none; }
   line-height: 1.05;
 }
 
+/* ══ RECEIPTS ═══════════════════════════ */
+.receipts-section { background: var(--ink); }
+.receipts-section .heading { color: var(--white); margin-bottom: 10px; }
+.receipts-sub {
+  font-family: var(--f-body);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--w55);
+  max-width: 54ch;
+  margin-bottom: clamp(36px, 5vw, 60px);
+}
+.receipts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: dense;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+.receipt-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: clamp(22px, 2.8vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+.receipt-card.lead {
+  grid-column: span 2;
+  background: rgba(245,194,66,0.05);
+  border-color: rgba(245,194,66,0.25);
+  padding: clamp(28px, 3.6vw, 44px);
+}
+.receipt-quote {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--w80);
+}
+.receipt-quote::before {
+  content: '\201C';
+  display: block;
+  font-family: var(--f-head);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.receipt-card.lead .receipt-quote {
+  font-size: clamp(1.15rem, 1.8vw, 1.6rem);
+  line-height: 1.45;
+  color: var(--white);
+}
+.receipt-card.lead .receipt-quote::before { font-size: 3rem; }
+.receipt-attribution {
+  font-family: var(--f-body);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--w55);
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.receipt-card.lead .receipt-attribution { color: var(--gold); }
+
 /* ══ MOBILE ═════════════════════════════ */
 @media (max-width: 768px) {
   :root { --gutter: 18px; }
@@ -936,6 +1004,10 @@ ul { list-style: none; }
   .val-was          { font-size: clamp(1.6rem, 7vw, 2.8rem); }
   .stat-num.vb-total { font-size: clamp(2.5rem, 10vw, 4rem); }
   .vb-total-unit    { font-size: clamp(1rem, 4vw, 1.6rem); }
+  /* Receipts */
+  .receipts-grid    { grid-template-columns: 1fr; }
+  .receipt-card.lead { grid-column: span 1; }
+  .receipt-card.lead .receipt-quote { font-size: clamp(1.05rem, 4.6vw, 1.3rem); }
 }
 
 /* ══ SCROLL ANCHORS ═════════════════════ */
