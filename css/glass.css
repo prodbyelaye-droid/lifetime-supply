@@ -76,29 +76,7 @@ body {
   z-index: 0;
 }
 
-/* ══ SECTION TEXTURE ════════════════════════════════════
-   The 16:9 Higgsfield backgrounds. CSS background-image, not
-   <img>, so they can never become an LCP candidate: the hero
-   poster already owns LCP at ~2.4s and there is no headroom.
-   The URL is attached on approach by glass.js, because a CSS
-   background on an in-tree element is fetched eagerly.
-
-   Every texture carries a scrim. These sit under body copy, and
-   the page's contrast budget was already tight enough to produce
-   real pale-on-pale bugs; the scrim is what keeps the ratio. */
-.sec-bg[data-tex] {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.sec-bg[data-tex]::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--scrim, rgba(240,248,252,0.62));
-  pointer-events: none;
-}
-/* The rendered subject floats above texture and scrim. */
+/* The rendered subject floats above any texture and scrim. */
 .sec-bg-media { z-index: 1; }
 /* The render is the subject floating in the room, not a wallpaper.
    Height-driven with width:auto keeps its own aspect and, crucially,
@@ -699,6 +677,97 @@ body {
 .footer-capture, .footer-capture-link { color: var(--ink); }
 .footer-capture-link { text-decoration: underline; text-underline-offset: 3px; }
 .footer-capture-link:hover { text-decoration-thickness: 2px; }
+
+/* ══ THE MEMBERS TALK: DARK ════════════════════════════
+   The proof section drops into navy so the page darkens toward the
+   close (proof -> offer -> footer) instead of the money block being
+   the only heavy thing. The scrim is what carries the contrast:
+   the artwork's own bokeh is far too bright at the edges for white
+   text on its own. */
+.sec-bg-tex {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sec-bg-tex::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(9,38,55,0.78);
+  pointer-events: none;
+}
+.receipts-dark .heading,
+.receipts-dark .receipts-sub { color: var(--white); }
+.receipts-dark .receipts-sub { text-shadow: 0 1px 14px rgba(3,18,28,0.6); }
+.receipts-dark .receipt-card {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 22px 60px rgba(4,22,34,0.30);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .receipts-dark .receipt-card {
+    background: rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            backdrop-filter: blur(16px) saturate(1.2);
+  }
+}
+.receipts-dark .receipt-card.lead {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.30);
+}
+/* .receipt-card.lead .receipt-quote is three classes and sets ink, so
+   these have to match it or the lead cards stay dark-on-dark. Same
+   specificity trap that produced the earlier pale-on-pale bugs. */
+.receipts-dark .receipt-card .receipt-quote,
+.receipts-dark .receipt-card.lead .receipt-quote { color: var(--white); }
+.receipts-dark .receipt-card .receipt-attribution,
+.receipts-dark .receipt-card.lead .receipt-attribution { color: rgba(255,255,255,0.74); }
+.receipts-dark .receipt-quote::before { color: var(--gold); }
+@media (max-width: 768px) {
+  .receipts-dark .receipt-card,
+  .receipts-dark .receipt-card.lead {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: rgba(255,255,255,0.12);
+  }
+}
+
+/* The archive visual is now a 16:9 atmospheric, not a portrait phone
+   screenshot, so the 340px cap that existed to stop the phone towering
+   just shrank it into illegibility. */
+.archive-app-img img { max-width: 100%; }
+
+/* ══ QUOTE CARDS IN PLACE OF SCREENSHOTS ════════════════
+   The raw DM collages are gone; their words live on in the same
+   card the receipts section already uses, so proof reads the same
+   wherever it appears. .receipt-card brings its own glass and colour. */
+.kit-reviews-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+.kit-reviews-col .receipt-card { width: 100%; }
+
+.reviews-quotes {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  max-width: 900px;
+  margin: 34px auto 0;
+  align-items: start;
+}
+/* A second bubble from the same conversation: same speaker, so it
+   sits inside the first card rather than posing as a second person. */
+.receipt-quote-follow {
+  margin-top: 10px;
+  opacity: 0.85;
+}
+.receipt-quote-follow::before { content: none !important; }
+
+@media (max-width: 768px) {
+  .reviews-quotes { grid-template-columns: 1fr; }
+}
 
 /* ══ FOCUS ══════════════════════════════════════════════ */
 a:focus-visible, summary:focus-visible, button:focus-visible {

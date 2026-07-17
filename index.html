@@ -217,7 +217,7 @@
     <div class="container">
       <div class="archive-layout reveal">
         <div class="archive-app-img">
-          <img src="images.webp" alt="Phone screen showing the Untitled app with a hip hop sample project open" loading="lazy" decoding="async">
+          <img src="img/sections/portal-vault.webp" alt="Layered translucent panels holding audio files, waveforms and folders" loading="lazy" decoding="async" width="1600" height="893">
         </div>
         <div class="feature-content">
           <h2 class="heading">70GB+ SAMPLE<br>ARCHIVE</h2>
@@ -236,7 +236,18 @@
           <p class="body-copy">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy, 2,100+ files all analog-recorded and royalty free, plus vaulted kits pulled from sale and every kit I make from here on. Then a members-only kit every month, 30 to 50 curated files, never public.</p>
         </div>
         <div class="kit-reviews-col">
-          <img src="kit-reviews.webp" alt="Screenshots of DM messages from producers praising the sample kits" loading="lazy" decoding="async" class="kit-reviews-img">
+          <!-- Was a screenshot collage on an orange splatter. Same words,
+               verbatim, in the same card the receipts section uses.
+               Attributions match the store's labels: these are kit and
+               Octaves customers, not Lifetime members. -->
+          <div class="receipt-card reveal">
+            <p class="receipt-quote">more than industry standard - octaves audio put my production on a whole other level 🔥</p>
+            <p class="receipt-attribution">Octaves member</p>
+          </div>
+          <div class="receipt-card reveal" style="--d:.08s">
+            <p class="receipt-quote">There are too many recycled kits nowadays, very refreshing to come across your kit</p>
+            <p class="receipt-attribution">kit buyer</p>
+          </div>
         </div>
       </div>
     </div>
@@ -244,6 +255,9 @@
 
   <!-- MENTORSHIP -->
   <section class="section section-b feature-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.12" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="feature-content reveal" style="max-width:640px">
         <h2 class="heading">MENTORSHIP:<br>THE ACCELERATOR</h2>
@@ -253,12 +267,20 @@
           <p class="expander-body">Building a portfolio that works for itself, outreach that doesn't read as spam, collaborating so your sends multiply through other networks, targeting emerging artists in the 1K to 100K range, going global, and the business side: contracts, publishing, royalties, PROs, negotiating. Plus 40GB+ of accelerator and mentorship videos.</p>
         </details>
       </div>
-      <div class="mentorship-reviews reveal">
-        <img src="lifetime-review-pic-mentorship.webp"   alt="Screenshot of a DM crediting the accelerator with changing their mindset" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-2.webp" alt="Screenshot of a DM thanking ELAYE for the mentorship content" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-3.webp" alt="Screenshot of a DM saying the accelerator changed how they think about music" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-4.webp" alt="Screenshot of a DM celebrating a win after the mentorship" loading="lazy" decoding="async">
-      </div>
+      <!-- The four mentorship screenshots are gone and no card replaces
+           them, because no proof is lost by dropping them:
+           - two of them ARE the two lead cards in THE MEMBERS TALK, word
+             for word (the accelerator quote and "I do not regret getting
+             the lifetime bundle"), so the accelerator's proof is already
+             on the page in a more prominent slot.
+           - one carried no product proof at all: it read "Success is
+             guaranteed God walks with us", which is a personal hype
+             message, and "guaranteed" has no business sitting next to
+             sales copy on a page that deliberately removed that word.
+           - the last is about free videos ("first video I watched"), not
+             the paid accelerator, and there is no honest label for that
+             person here. Publishing it under any membership label would
+             overclaim. -->
     </div>
   </section>
 
@@ -348,9 +370,22 @@
       <div class="reveal reviews-header">
         <h2 class="heading" style="color:var(--white)">THE PORTAL IS ACTUALLY FIRE.</h2>
       </div>
-      <img src="reviews.webp" alt="Screenshots of member reviews of the Lifetime Supply portal"
-           class="reviews-img reveal" loading="lazy" decoding="async"
-           data-missing-hides=".reviews-section">
+      <!-- Was a screenshot collage pasted over a photo of a pavement.
+           Kept the section rather than dropping it: three of the collage's
+           quotes are already in THE MEMBERS TALK, but these two are not,
+           and the heading is a real quote from the first one. Both are
+           lifetime-vault messages, so "Lifetime member" is accurate. -->
+      <div class="reviews-quotes">
+        <div class="receipt-card reveal">
+          <p class="receipt-quote">bro the portal is actually fire</p>
+          <p class="receipt-quote receipt-quote-follow">I like that new beat submission feature you added</p>
+          <p class="receipt-attribution">Lifetime member</p>
+        </div>
+        <div class="receipt-card reveal" style="--d:.08s">
+          <p class="receipt-quote">Bro that dashboard is crazy</p>
+          <p class="receipt-attribution">Lifetime member</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -581,10 +616,8 @@
   </section>
 
   <!-- RECEIPTS -->
-  <section class="section receipts-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
+  <section class="section receipts-section receipts-dark">
+    <div class="sec-bg sec-bg-tex" data-tex="img/sections/testimonial-bg.webp" aria-hidden="true"></div>
     <div class="container">
       <div class="reveal">
         <h2 class="heading">THE MEMBERS TALK.</h2>
