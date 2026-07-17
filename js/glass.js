@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   glass.js — depth for the sky-blue room
+   glass.js: depth for the sky-blue room
    Parallax on the rendered layers, poster-first lazy
    video, and a scroll-tracked floor glow.
    Runs after app.js. Every effect here is additive:

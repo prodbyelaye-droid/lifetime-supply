@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   glass.css — the sky-blue glass world
+   glass.css: the sky-blue glass world
    Loads after style.css and re-skins it. style.css keeps
    owning layout/structure; this file owns the surface:
    sky backdrop, rendered depth layers, frosted panels,
