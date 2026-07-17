@@ -35,24 +35,36 @@
     }
   }
 
-  /* ─── Lazy money texture ──────────────────────────
+  /* ─── Lazy background artwork ─────────────────────
      A CSS background on an in-tree element is fetched eagerly, so
-     the offer panels only get the class (and therefore the URL) once
-     they are near the viewport. All three are below the fold, so this
-     keeps the artwork out of the first-view budget entirely. */
+     nothing here carries its URL until it is near the viewport. All
+     of it is below the fold, which keeps it out of the first-view
+     budget entirely.
+     Two shapes: the money panels take a class, and section backdrops
+     take their URL from data-tex. */
   var moneyPanels = Array.prototype.slice.call(
     document.querySelectorAll('.value-reveal, .pricing-inner, .footer-sale'));
+  var texBgs = Array.prototype.slice.call(document.querySelectorAll('[data-tex]'));
+
+  function attachTex(el) {
+    if (el.dataset.texLoaded) return;
+    el.dataset.texLoaded = '1';
+    el.style.backgroundImage = 'url("' + el.dataset.tex + '")';
+  }
+
   if ('IntersectionObserver' in window) {
     var tio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('money-tex-on');
+        if (e.target.dataset.tex) attachTex(e.target);
+        else e.target.classList.add('money-tex-on');
         tio.unobserve(e.target);
       });
     }, { rootMargin: '300px 0px' });
-    moneyPanels.forEach(function (el) { tio.observe(el); });
+    moneyPanels.concat(texBgs).forEach(function (el) { tio.observe(el); });
   } else {
     moneyPanels.forEach(function (el) { el.classList.add('money-tex-on'); });
+    texBgs.forEach(attachTex);
   }
 
   var lazyVideos = Array.prototype.slice.call(document.querySelectorAll('video[data-lazy-video]'));
