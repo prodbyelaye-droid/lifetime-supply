@@ -1,0 +1,758 @@
+/* ══════════════════════════════════════════════════════════
+   glass.css: the sky-blue glass world
+   Loads after style.css and re-skins it. style.css keeps
+   owning layout/structure; this file owns the surface:
+   sky backdrop, rendered depth layers, frosted panels,
+   type colour, and the gold discipline (price + CTA only).
+   Copy is never touched here.
+══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Sampled straight from the renders so CSS sky and rendered
+     sky are the same colour and the layers melt together. */
+  --sky-hi:    #8fc7dd;
+  --sky-mid:   #74b6d2;
+  --sky-lo:    #5da7c8;
+  --sky-deep:  #4a93b8;
+  --sky-pool:  #b3e1ee;
+
+  /* Frosted glass. Light and airy like the renders, but opaque
+     enough that ink body copy clears WCAG AA on top of it. */
+  --glass:      rgba(255,255,255,0.72);
+  --glass-soft: rgba(255,255,255,0.52);
+  --glass-line: rgba(255,255,255,0.85);
+  --glass-edge: rgba(255,255,255,0.34);
+  --glass-cast: 0 24px 70px rgba(9,42,62,0.18), 0 2px 8px rgba(9,42,62,0.06);
+
+  --ink:      #0b2d40;
+  --ink-mid:  #245b74;
+  --ink-soft: rgba(11,45,64,0.72);
+
+  --blur:     18px;
+  --radius:   22px;
+  --ease-g:   cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ══ THE ROOM ═══════════════════════════════════════════
+   One continuous sky behind the whole page. Every render
+   is a layer floating in this, which is why they blend. */
+body {
+  background: var(--sky-mid);
+  color: var(--ink);
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 8%,  rgba(255,255,255,0.42) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, var(--sky-pool) 0%, transparent 62%),
+    linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-lo) 22%, var(--sky-mid) 52%, var(--sky-hi) 78%, var(--sky-lo) 100%);
+}
+
+/* Soft studio floor-glow that tracks scroll: cheap depth, no repaint cost. */
+.sky::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 42% at 50% var(--glow-y, 60%), rgba(255,255,255,0.30) 0%, transparent 70%);
+  transition: none;
+}
+
+/* ══ SECTION DEPTH LAYERS ═══════════════════════════════
+   A render sits behind the content, edges masked so it
+   dissolves into the CSS sky instead of ending on a seam.
+   Portrait 9:16 renders over landscape viewports is exactly
+   why the mask exists. */
+.section, .hero, .receipts-section, .value-section { position: relative; }
+
+.sec-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══ SECTION TEXTURE ════════════════════════════════════
+   The 16:9 Higgsfield backgrounds. CSS background-image, not
+   <img>, so they can never become an LCP candidate: the hero
+   poster already owns LCP at ~2.4s and there is no headroom.
+   The URL is attached on approach by glass.js, because a CSS
+   background on an in-tree element is fetched eagerly.
+
+   Every texture carries a scrim. These sit under body copy, and
+   the page's contrast budget was already tight enough to produce
+   real pale-on-pale bugs; the scrim is what keeps the ratio. */
+.sec-bg[data-tex] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sec-bg[data-tex]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--scrim, rgba(240,248,252,0.62));
+  pointer-events: none;
+}
+/* The rendered subject floats above texture and scrim. */
+.sec-bg-media { z-index: 1; }
+/* The render is the subject floating in the room, not a wallpaper.
+   Height-driven with width:auto keeps its own aspect and, crucially,
+   keeps it at or below native resolution so the glass stays crisp.
+   Upscaling a 640px render to fill 1440px is what made it read cheap.
+   The CSS sky fills whatever the render does not, and the mask
+   dissolves the render's own sky into it so there is no seam. */
+.sec-bg-media {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  max-width: none;
+  height: max(100%, 560px);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  -webkit-mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 26%, rgba(0,0,0,0.5) 56%, transparent 78%);
+          mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 26%, rgba(0,0,0,0.5) 56%, transparent 78%);
+}
+.section > .container,
+.hero > *:not(.sec-bg) { position: relative; z-index: 1; }
+
+/* ══ SECTIONS GO TRANSPARENT ════════════════════════════
+   The room shows through everything now. */
+.section-a,
+.section-b,
+.section-blue,
+.value-section,
+.receipts-section,
+.archive-section,
+.hero { background: transparent; }
+
+.section { padding: clamp(88px, 12vw, 168px) 0; }
+
+/* ══ FROSTED GLASS ══════════════════════════════════════ */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-cast);
+  padding: clamp(24px, 3.4vw, 44px);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .glass {
+    background: var(--glass-soft);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.35);
+            backdrop-filter: blur(var(--blur)) saturate(1.35);
+  }
+}
+
+/* Cards that already existed become glass, keeping their layout. */
+.vcard,
+.receipt-card,
+.step,
+.fit-col,
+.expander,
+.hero-quote,
+.stat,
+.value-total-block,
+.problem-photo-wrap,
+.deliverables-img,
+.pipeline-hero-frame,
+.archive-app-img,
+.feature-aside,
+.press-inner {
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-cast);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .vcard,
+  .receipt-card,
+  .step,
+  .fit-col,
+  .expander,
+  .hero-quote,
+  .stat,
+  .value-total-block {
+    background: var(--glass-soft);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.35);
+            backdrop-filter: blur(var(--blur)) saturate(1.35);
+  }
+}
+
+/* ══ THE MONEY BLOCKS ═══════════════════════════════════
+   Deep glass, not light. Two reasons: the brand gold only
+   clears contrast on a dark surface, and the offer should be
+   the one heavy thing in an airy room. */
+.value-reveal,
+.pricing-inner,
+.footer-sale {
+  background: rgba(9,38,55,0.80);
+  border: 1px solid rgba(255,255,255,0.26);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(6,30,45,0.34);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .value-reveal,
+  .pricing-inner,
+  .footer-sale {
+    background: rgba(9,38,55,0.62);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+            backdrop-filter: blur(22px) saturate(1.4);
+  }
+}
+/* The money texture (gold caustics on navy) lives on the offer panels
+   themselves, not on their sections. The value section also holds ink
+   body copy and the eight light value cards, and washing all of that
+   navy destroyed them. Scoped here, the artwork sits exactly where the
+   surface is already dark and the gold already lives.
+   The 0.60 navy scrim over it is what keeps the gold price above 4.5:1;
+   the artwork alone has bright gold streaks that would eat it. */
+.value-reveal,
+.pricing-inner,
+.footer-sale {
+  background-image:
+    linear-gradient(rgba(13,51,71,0.60), rgba(13,51,71,0.60)),
+    var(--money-tex, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.money-tex-on {
+  --money-tex: url('../img/sections/money.webp');
+}
+
+.value-reveal .value-reveal-copy,
+.pricing-inner .body-copy,
+.pricing-inner .price-tag,
+.pricing-inner .pricing-list li,
+.pricing-inner .pricing-reassure,
+.pricing-inner .heading,
+.footer-sale .footer-sale-tag,
+.footer-sale .footer-sale-urgency,
+.footer-sale .footer-dm,
+.footer-sale .footer-signoff { color: var(--white); }
+.pricing-inner .pricing-reassure,
+.footer-sale .footer-dm { color: rgba(255,255,255,0.80); }
+.pricing-inner .pricing-list li::before { color: var(--gold); }
+.pricing-inner .forever { color: var(--gold); }
+.pricing-inner .sale-badge,
+.footer-sale .footer-sale-urgency {
+  color: var(--white);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.vcard, .receipt-card, .step, .fit-col { padding: clamp(20px, 2.4vw, 32px); }
+.value-total-block, .value-reveal, .pricing-inner { padding: clamp(24px, 3.4vw, 44px); }
+
+/* Glass edge highlight: the top-lit rim the renders have. */
+.vcard, .receipt-card, .step, .fit-col, .hero-quote, .stat,
+.value-total-block, .value-reveal, .pricing-inner, .footer-sale { position: relative; overflow: hidden; }
+.vcard::before, .receipt-card::before, .step::before, .fit-col::before,
+.hero-quote::before, .stat::before, .value-total-block::before,
+.value-reveal::before, .pricing-inner::before, .footer-sale::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+  pointer-events: none;
+}
+
+/* ══ TYPE ═══════════════════════════════════════════════
+   Lowercase-leaning display in white, like the renders.
+   Only the rendering case changes: the words are untouched.
+   The shadow is doing contrast work, not decoration: white on
+   this sky is only ~2.2:1, so the scrim is what carries the
+   headline over the 3:1 large-text bar. Measured, not eyeballed. */
+.hero-heading,
+.heading,
+.heading-xl {
+  text-transform: lowercase;
+  color: var(--white);
+  letter-spacing: -0.022em;
+  text-shadow:
+    0 1px 2px rgba(3,18,28,0.62),
+    0 2px 10px rgba(3,18,28,0.55),
+    0 6px 30px rgba(3,18,28,0.40);
+}
+.section-blue .heading,
+.section-blue .heading-xl,
+.value-section .heading,
+.receipts-section .heading,
+.deliverables-text .heading { color: var(--white); }
+
+/* The accent line goes ink rather than pale: a light accent on a
+   light sky was 2.05:1. Ink against the white headline above it
+   reads as more deliberate anyway. */
+.heading-xl .text-accent {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+/* Body copy lives on glass, so it stays ink and stays legible. */
+.body-copy,
+.vcard-body,
+.step-copy,
+.receipt-quote,
+.expander-body,
+.fit-list li,
+.pricing-list li,
+.value-nofake,
+.value-intro-line {
+  color: var(--ink);
+}
+.section-blue .body-copy { color: var(--ink); }
+
+/* Anything sitting on a light frosted panel is ink. White text
+   inherited from the old dark-section design would vanish here,
+   so these override it explicitly. */
+.receipt-card .receipt-quote,
+.receipt-card.lead .receipt-quote,
+.receipt-card .receipt-attribution,
+.receipt-card.lead .receipt-attribution,
+.hero-quote .hero-quote-text,
+.hero-quote .hero-quote-attr,
+.stat .stat-num,
+.stat .stat-label,
+.vcard .vcard-title,
+.vcard .vcard-body,
+.fit-col .label,
+.fit-col .fit-list li,
+.step .step-title,
+.step .step-copy,
+.expander summary,
+.expander .expander-body,
+.value-total-block .value-nofake,
+.value-total-block .value-add-label,
+.hero-stat { color: var(--ink); }
+/* Attributions are 9.9px bold, so they need the full 4.5:1 and
+   ink-mid only got to 3.3:1. Full ink it is. */
+.receipt-card .receipt-attribution,
+.receipt-card.lead .receipt-attribution,
+.hero-quote .hero-quote-attr,
+.stat .stat-label,
+.value-total-block .value-add-label { color: var(--ink); }
+
+/* .receipt-card.lead carries a gold tint at higher specificity than
+   the .receipt-card glass rule, so it has to be overridden here or
+   the sky shows straight through the lead cards. */
+.receipt-card.lead {
+  background: var(--glass);
+  border-color: var(--glass-line);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .receipt-card.lead {
+    background: var(--glass-soft);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.35);
+            backdrop-filter: blur(var(--blur)) saturate(1.35);
+  }
+}
+@media (max-width: 768px) {
+  .receipt-card.lead {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: rgba(255,255,255,0.80);
+  }
+}
+
+/* Copy that sits directly on the sky with no glass behind it.
+   .hero-sub is large and sits over the darker hero, so white holds
+   there. The other two are small on light sky, where no shadow can
+   buy 4.5:1, so they go ink. */
+.hero-sub {
+  color: var(--white);
+  text-shadow: 0 1px 3px rgba(3,18,28,0.7), 0 2px 16px rgba(3,18,28,0.5);
+}
+.receipts-sub,
+.value-intro-line { color: var(--ink); text-shadow: none; }
+
+/* Micro-labels are small, so white on the sky cannot reach 4.5:1
+   no matter the shadow. Ink does, and reads as editorial.
+   The two-class forms below exist because style.css sets these to
+   translucent white at that specificity and would otherwise win. */
+.label, .eyebrow, .deliverables-label {
+  color: var(--ink);
+  text-shadow: none;
+}
+.section-blue .label,
+.value-section .label,
+.deliverables-text .label { color: var(--ink); }
+
+.vcard-title, .step-title, .fit-col .label, .heading + .body-copy { color: var(--ink); }
+.vcard-title, .step-title { color: var(--ink); }
+.vcard-num, .step-n { color: var(--ink-mid); opacity: 0.5; }
+
+.badge {
+  background: var(--glass-soft);
+  border: 1px solid var(--glass-line);
+  color: var(--ink);
+  box-shadow: 0 6px 18px rgba(9,42,62,0.10);
+}
+
+/* ══ GOLD DISCIPLINE ════════════════════════════════════
+   Gold is reserved for price and CTA. Everywhere it used to
+   decorate, it steps back to ink or glass. */
+.credits-sep,
+.receipt-card.lead .receipt-attribution,
+.hero-quote-attr,
+.pricing-list li::before,
+.forever { color: var(--ink-mid); }
+.forever { font-weight: 900; }
+.pricing-list li::before { color: var(--sky-deep); }
+
+.receipt-attribution, .hero-quote-attr { color: var(--ink-mid); }
+
+/* Price + CTA keep the gold. */
+.val-now,
+.price-amount-now,
+.footer-price-now,
+.founding-price,
+.sale-bar-price strong { color: var(--gold); }
+
+.btn-gold {
+  background: var(--gold);
+  color: #23180a;
+  box-shadow: 0 14px 38px rgba(245,194,66,0.42), 0 2px 6px rgba(9,42,62,0.16);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.btn-gold:hover { box-shadow: 0 18px 48px rgba(245,194,66,0.55); }
+
+/* ══ HERO ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100svh;
+  overflow: hidden;
+}
+/* The old bordered video card is gone: the folder clip is the room now. */
+.hero .video-frame { display: none; }
+
+/* The folder is the hero's subject, so it runs near its native size
+   (1148px tall) rather than shrinking to the viewport. The glass
+   panels then frost over it, which is the whole effect. Kept at or
+   under 1.0 scale on common viewports so it never softens. */
+.hero .sec-bg-media { height: max(126%, 700px); }
+.hero .sec-bg-media {
+  -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 34%, rgba(0,0,0,0.62) 62%, transparent 82%);
+          mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 34%, rgba(0,0,0,0.62) 62%, transparent 82%);
+}
+
+.hero-bottom { gap: 22px; }
+.hero-heading { line-height: 0.92; }
+.hero-sub { max-width: 34ch; }
+
+.hero-stat {
+  background: var(--glass-soft);
+  border: 1px solid var(--glass-line);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(9,42,62,0.12);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .hero-stat {
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+            backdrop-filter: blur(12px) saturate(1.3);
+  }
+}
+
+.hero-quote { padding: clamp(16px, 2vw, 22px) clamp(18px, 2.2vw, 26px); }
+.hero-quote-text { color: var(--ink); }
+
+/* Scarcity, not price, so it does not take the gold. Ink on a glass
+   chip clears AA at this size; white on the sky would not.
+
+   The box is reserved even while empty. The hero is flex-centred, so
+   letting the counter appear after the endpoint answers re-centred the
+   whole hero and was the page's only layout shift. Reserving it costs
+   one small gap if the endpoint is down, which beats the hero jumping. */
+.founding-seats {
+  margin: 2px 0 0;
+  font-family: var(--f-body);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--ink);
+  background: rgba(255,255,255,0.62);
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  padding: 7px 16px;
+  box-shadow: 0 6px 18px rgba(9,42,62,0.10);
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.founding-seats[hidden] {
+  display: inline-flex !important;
+  visibility: hidden;
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .founding-seats {
+    background: rgba(255,255,255,0.46);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+            backdrop-filter: blur(12px) saturate(1.3);
+  }
+}
+
+/* ══ CREDITS STRIP ══════════════════════════════════════ */
+.credits-strip {
+  background: rgba(11,45,64,0.30);
+  border-top: 1px solid var(--glass-edge);
+  border-bottom: 1px solid var(--glass-edge);
+  position: relative;
+  z-index: 1;
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .credits-strip {
+    background: rgba(11,45,64,0.22);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+            backdrop-filter: blur(14px) saturate(1.2);
+  }
+}
+.credits-strip-text { color: var(--white); }
+
+/* ══ SALE BAR ═══════════════════════════════════════════ */
+#saleBar {
+  background: rgba(11,45,64,0.62);
+  border-bottom: 1px solid var(--glass-edge);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  #saleBar {
+    background: rgba(11,45,64,0.48);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+            backdrop-filter: blur(16px) saturate(1.3);
+  }
+}
+
+/* ══ MARQUEE ════════════════════════════════════════════
+   Pale-on-pale measured 1.29:1. Ink at low alpha keeps it a
+   background texture while still clearing the large-text bar. */
+.marquee-text { color: rgba(8,34,50,0.62); }
+
+/* ══ DELIVERABLES ═══════════════════════════════════════
+   The 260px text column was sized for the old condensed display
+   face. Montserrat 800 sets "everything." at 557px, so the
+   heading has been overflowing into the image on production
+   since the type swap. Give the column real room.
+   .deliverables-label carries !important in style.css, so the
+   ink override has to match it. */
+.deliverables-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+.deliverables-label { color: var(--ink) !important; }
+@media (max-width: 768px) {
+  .deliverables-layout { grid-template-columns: 1fr; }
+}
+
+/* ══ STATS ══════════════════════════════════════════════ */
+.stat { padding: clamp(18px, 2.2vw, 28px) clamp(14px, 1.8vw, 20px); text-align: center; }
+.stat-num { color: var(--ink); }
+.stat-label { color: var(--ink-mid); }
+
+/* ══ MEDIA INSIDE GLASS ═════════════════════════════════ */
+.problem-photo-wrap,
+.pipeline-hero-frame,
+.archive-app-img,
+.feature-aside,
+.press-inner,
+.deliverables-img { overflow: hidden; padding: 0; }
+.problem-photo-wrap img,
+.pipeline-hero-frame video,
+.archive-app-img img,
+.feature-aside img,
+.press-inner img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pipeline-shots img,
+.kit-reviews-img,
+.mentorship-reviews img,
+.reviews-img,
+.deliverables-img {
+  border-radius: 16px;
+  box-shadow: var(--glass-cast);
+  border: 1px solid var(--glass-edge);
+}
+
+/* ══ EXPANDERS ══════════════════════════════════════════ */
+.expander { padding: 4px 18px; }
+.expander summary { color: var(--ink); }
+.expander-body { color: var(--ink-soft); }
+
+/* ══ PAYMENT PLAN (subordinate to the one payment) ══════
+   Deliberately quieter than the $499 block above it:
+   no gold, smaller type, glass-soft, secondary button. */
+.plan-block {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  max-width: 620px;
+  margin: clamp(20px, 3vw, 34px) auto 0;
+  padding: clamp(20px, 2.6vw, 30px);
+  text-align: center;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--glass-line);
+  box-shadow: 0 16px 44px rgba(9,42,62,0.14);
+}
+.plan-block > :not(.sec-bg) { position: relative; z-index: 1; }
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .plan-block {
+    background: rgba(255,255,255,0.60);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+            backdrop-filter: blur(16px) saturate(1.3);
+  }
+}
+.plan-or {
+  font-family: var(--f-body);
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+}
+.plan-headline {
+  font-family: var(--f-head);
+  font-weight: 800;
+  text-transform: lowercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--ink);
+  line-height: 1.05;
+}
+.plan-copy {
+  font-family: var(--f-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-top: 10px;
+}
+.plan-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  transition: background 0.25s var(--ease-g), transform 0.25s var(--ease-g);
+  min-height: 44px;
+}
+.plan-link:hover { background: rgba(11,45,64,0.10); transform: translateY(-1px); }
+.plan-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* ══ FOOTER ═════════════════════════════════════════════ */
+.site-footer { position: relative; overflow: hidden; background: transparent; }
+.footer-sale { padding: clamp(30px, 4vw, 52px); }
+.footer-sale-tag, .footer-sale-urgency { color: var(--ink-mid); }
+.footer-dm { color: var(--ink-soft); }
+.footer-signoff { color: var(--white); }
+.footer-credit { color: var(--ink-mid); }
+
+/* The envelope render backs this line, so it reads as a card
+   in the world but stays visually under the buy button. */
+/* The envelope gets a band of its own to float in. Slicing a
+   1376px render through an 90px card only ever showed a smear. */
+.footer-capture-band {
+  position: relative;
+  overflow: hidden;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 var(--gutter) clamp(28px, 4vw, 44px);
+}
+.footer-capture-band .sec-bg-media {
+  height: max(100%, 440px);
+  top: 42%;
+}
+
+.footer-capture-wrap {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: 560px;
+  padding: 18px 26px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--glass-line);
+  box-shadow: 0 14px 40px rgba(9,42,62,0.14);
+  text-align: center;
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .footer-capture-wrap {
+    background: rgba(255,255,255,0.54);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+            backdrop-filter: blur(14px) saturate(1.3);
+  }
+}
+.footer-capture {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+.footer-capture, .footer-capture-link { color: var(--ink); }
+.footer-capture-link { text-decoration: underline; text-underline-offset: 3px; }
+.footer-capture-link:hover { text-decoration-thickness: 2px; }
+
+/* ══ FOCUS ══════════════════════════════════════════════ */
+a:focus-visible, summary:focus-visible, button:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ══ MOBILE ═════════════════════════════════════════════
+   backdrop-filter is the expensive part. Mid-range phones
+   get a smaller blur radius and fewer stacked blur layers. */
+@media (max-width: 768px) {
+  :root { --blur: 10px; --radius: 18px; }
+  .sec-bg-media {
+    -webkit-mask-image: radial-gradient(ellipse 92% 66% at 50% 50%, #000 32%, rgba(0,0,0,0.5) 62%, transparent 84%);
+            mask-image: radial-gradient(ellipse 92% 66% at 50% 50%, #000 32%, rgba(0,0,0,0.5) 62%, transparent 84%);
+  }
+  .vcard, .receipt-card, .step, .fit-col {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: rgba(255,255,255,0.80);
+  }
+  .plan-block, .footer-capture { background: rgba(255,255,255,0.24); }
+}
+
+/* Coarse pointers with no hover: same story, protect FPS. */
+@media (hover: none) and (max-width: 1024px) {
+  .stat { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(255,255,255,0.80); }
+}
+
+/* ══ FINAL COLOUR RESOLUTION ════════════════════════════
+   Last word on text colour. The generic rules above (e.g.
+   .section-blue .body-copy -> ink) tie on specificity with the
+   money-block rules and were winning by source order, which put
+   ink copy on the dark $499 panel. Resolving it here, at the end,
+   keeps one place to reason about what sits on what. */
+.pricing-inner .body-copy,
+.pricing-inner .price-tag,
+.pricing-inner .pricing-list li,
+.pricing-inner .heading,
+.value-reveal .value-reveal-copy,
+.footer-sale .footer-sale-tag,
+.footer-sale .footer-signoff { color: var(--white); }
+.pricing-inner .pricing-reassure,
+.footer-sale .footer-dm { color: rgba(255,255,255,0.82); }
+.pricing-inner .forever,
+.pricing-inner .pricing-list li::before { color: var(--gold); }
+.footer-sale .footer-sale-urgency { color: var(--white); }
+
+/* ══ REDUCED MOTION ═════════════════════════════════════
+   Everything parallax/scroll-driven resolves to a static frame. */
+@media (prefers-reduced-motion: reduce) {
+  .sec-bg-media { transform: translate(-50%, -50%) !important; }
+  .sky::after { display: none; }
+  .marquee-track { transform: none !important; }
+  * { scroll-behavior: auto !important; }
+}
