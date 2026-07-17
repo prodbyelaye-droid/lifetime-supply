@@ -26,9 +26,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/glass.css">
+  <!-- The hero poster is the LCP element: the clip attaches after load. -->
+  <link rel="preload" as="image" href="media/clip-folder-pushin-poster.webp" fetchpriority="high">
   <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body>
+
+  <!-- The room. One continuous sky behind every section. -->
+  <div class="sky" aria-hidden="true"></div>
 
   <!-- FOUNDING WINDOW BANNER -->
   <div id="saleBar" role="complementary" aria-label="Founding window">
@@ -41,13 +47,15 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="sec-bg" aria-hidden="true">
+      <video class="sec-bg-media" data-lazy-video data-depth="0.10"
+             muted loop playsinline preload="none" poster="media/clip-folder-pushin-poster.webp">
+        <source data-src="media/clip-folder-pushin.webm" type="video/webm">
+        <source data-src="media/clip-folder-pushin.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-top reveal">
       <span class="eyebrow">@ELXYEE &nbsp;·&nbsp; THE LIFETIME SUPPLY</span>
-    </div>
-    <div class="video-frame reveal">
-      <video autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg">
-        <source src="generative_fill_the_background-ezremove.mp4" type="video/mp4">
-      </video>
     </div>
     <div class="hero-bottom">
       <h1 class="hero-heading reveal">WE WANT HITS<br>NOT BEATS</h1>
@@ -58,6 +66,11 @@
         <p class="hero-quote-attr">Lifetime member</p>
       </div>
       <a href="https://buy.stripe.com/14A14o7sM404biv3XI9AA00" data-checkout target="_blank" rel="noopener" class="btn btn-gold reveal">GET LIFETIME ACCESS</a>
+      <!-- Founding-seats counter: a true fact or nothing. Reads the same
+           live count as the store (elaye.store/api/founding-seats). Stays
+           hidden unless the endpoint returns a real number, so it never
+           shows "/50" with a blank numerator. -->
+      <p class="founding-seats reveal" id="founding-seats" hidden></p>
     </div>
     <div class="scroll-hint reveal"><div class="scroll-line"></div></div>
   </section>
@@ -100,6 +113,9 @@
 
   <!-- CREDIBILITY -->
   <section class="section section-a" id="cred">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.12" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="cred-layout-2">
         <div class="col-text reveal">
@@ -120,6 +136,9 @@
 
   <!-- PROBLEM -->
   <section class="section section-b problem-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.16" src="media/still-folder-single.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="problem-split">
         <div class="reveal">
@@ -136,6 +155,13 @@
 
   <!-- DELIVERABLES -->
   <section class="section section-blue deliverables-section">
+    <div class="sec-bg" aria-hidden="true">
+      <video class="sec-bg-media" data-lazy-video data-depth="0.14"
+             muted loop playsinline preload="none" poster="media/clip-archive-poster.webp">
+        <source data-src="media/clip-archive.webm" type="video/webm">
+        <source data-src="media/clip-archive.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="container">
       <div class="deliverables-layout">
         <div class="deliverables-text reveal">
@@ -150,6 +176,13 @@
 
   <!-- PIPELINE -->
   <section class="section section-a feature-section">
+    <div class="sec-bg" aria-hidden="true">
+      <video class="sec-bg-media" data-lazy-video data-depth="0.16"
+             muted loop playsinline preload="none" poster="media/clip-panels-poster.webp">
+        <source data-src="media/clip-panels.webm" type="video/webm">
+        <source data-src="media/clip-panels.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="container">
       <div class="pipeline-top reveal">
         <div class="pipeline-text">
@@ -176,6 +209,9 @@
 
   <!-- ARCHIVE -->
   <section class="section archive-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.18" src="media/still-archive.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="archive-layout reveal">
         <div class="archive-app-img">
@@ -303,6 +339,9 @@
 
   <!-- REVIEWS -->
   <section class="section section-blue reviews-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.14" src="media/still-panels.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="reveal reviews-header">
         <h2 class="heading" style="color:var(--white)">THE PORTAL IS ACTUALLY FIRE.</h2>
@@ -353,6 +392,9 @@
 
   <!-- VALUE BREAKDOWN -->
   <section class="section value-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
 
       <div class="value-intro reveal">
@@ -433,6 +475,9 @@
 
   <!-- PRICING -->
   <section class="section section-blue pricing-section" id="pricing">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="pricing-split">
         <div class="pricing-inner">
@@ -467,6 +512,25 @@
         <div class="pricing-photo reveal">
           <img src="channels4_profile.jpg" alt="ELAYE" loading="lazy" decoding="async" class="pricing-profile-img">
         </div>
+      </div>
+
+      <!-- PAYMENT PLAN. Sits under the one payment on purpose and stays
+           quieter than it: no gold, smaller type, secondary button. The
+           $499 above is the offer; this is the alternative for people who
+           need terms. Copy is verbatim from elaye.store/lifetime-plan. -->
+      <div class="plan-block reveal">
+        <div class="sec-bg" aria-hidden="true">
+          <video class="sec-bg-media" data-lazy-video data-depth="0.08"
+                 muted loop playsinline preload="none" poster="media/clip-folders-four-poster.webp">
+            <source data-src="media/clip-folders-four.webm" type="video/webm">
+            <source data-src="media/clip-folders-four.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="plan-or">Or start for $135</p>
+        <p class="plan-headline">The Lifetime, on terms.</p>
+        <p class="plan-copy">Four payments of $135. Same everything, spread out. Total $540, the extra $41 is the cost of terms.</p>
+        <p class="plan-copy">Access starts today, the two vault exclusives unlock with your final payment.</p>
+        <a href="https://elaye.store/lifetime-plan" class="plan-link">Start the plan</a>
       </div>
     </div>
   </section>
@@ -516,6 +580,9 @@
 
   <!-- RECEIPTS -->
   <section class="section receipts-section">
+    <div class="sec-bg" aria-hidden="true">
+      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+    </div>
     <div class="container">
       <div class="reveal">
         <h2 class="heading">THE MEMBERS TALK.</h2>
@@ -574,6 +641,13 @@
   </section>
 
   <footer class="site-footer">
+    <div class="sec-bg" aria-hidden="true">
+      <video class="sec-bg-media" data-lazy-video data-depth="0.08"
+             muted loop playsinline preload="none" poster="media/clip-wordmark-poster.webp">
+        <source data-src="media/clip-wordmark.webm" type="video/webm">
+        <source data-src="media/clip-wordmark.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="footer-sale">
       <div class="footer-sale-price">
         <span class="footer-price-now" aria-label="Price 499 dollars, one payment">$499</span>
@@ -586,7 +660,16 @@
       <p class="footer-dm">Want to see inside first? DM me "IN" on Instagram @elxyee.</p>
       <p class="footer-signoff">WE WANT HITS NOT BEATS. ALL IT TAKES IS ONE LISTEN.</p>
     </div>
-    <p class="footer-capture">Not ready? <a href="https://elaye.store/newsletter" class="footer-capture-link">Locked In is free. One placement lesson every Sunday.</a></p>
+    <!-- Envelope render backs this, but it stays under the buy button
+         in the visual order. Never competes with checkout. -->
+    <div class="footer-capture-band reveal">
+      <div class="sec-bg" aria-hidden="true">
+        <img class="sec-bg-media" data-depth="0.06" src="media/still-envelope.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
+      </div>
+      <div class="footer-capture-wrap">
+        <p class="footer-capture">Not ready? <a href="https://elaye.store/newsletter" class="footer-capture-link">Locked In is free. Real lessons from a platinum producer, and first access to every drop.</a></p>
+      </div>
+    </div>
     <span class="footer-credit">ELAYE &nbsp;·&nbsp; THE LIFETIME SUPPLY &nbsp;·&nbsp; @ELXYEE</span>
   </footer>
 
@@ -595,6 +678,23 @@
   <script src="lib/ScrollTrigger.min.js"></script>
   <script src="js/site-config.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/glass.js"></script>
+  <script>
+    /* Founding-seats counter: renders a real number or stays hidden.
+       Never invents a count. */
+    (function () {
+      fetch("https://elaye.store/api/founding-seats")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || typeof d.taken !== "number" || !isFinite(d.taken)) return;
+          var el = document.getElementById("founding-seats");
+          if (!el) return;
+          el.textContent = "Founding seats: " + d.taken + "/" + (d.total || 50);
+          el.hidden = false;
+        })
+        .catch(function () {});
+    })();
+  </script>
   <script>
     /* Failsafe: if the animation libs failed to load, app.js may throw
        before the reveal observer runs. Never leave copy stuck hidden. */
