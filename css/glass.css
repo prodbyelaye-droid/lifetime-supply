@@ -315,22 +315,28 @@ body {
   }
 }
 
-/* Copy that sits directly on the sky (no glass behind it) is
-   large enough to carry white, with a scrim for separation. */
-.hero-sub,
-.receipts-sub,
-.value-intro-line {
+/* Copy that sits directly on the sky with no glass behind it.
+   .hero-sub is large and sits over the darker hero, so white holds
+   there. The other two are small on light sky, where no shadow can
+   buy 4.5:1, so they go ink. */
+.hero-sub {
   color: var(--white);
-  text-shadow: 0 1px 18px rgba(9,42,62,0.42);
+  text-shadow: 0 1px 3px rgba(3,18,28,0.7), 0 2px 16px rgba(3,18,28,0.5);
 }
+.receipts-sub,
+.value-intro-line { color: var(--ink); text-shadow: none; }
 
 /* Micro-labels are small, so white on the sky cannot reach 4.5:1
-   no matter the shadow. Ink does, and reads as editorial. */
+   no matter the shadow. Ink does, and reads as editorial.
+   The two-class forms below exist because style.css sets these to
+   translucent white at that specificity and would otherwise win. */
 .label, .eyebrow, .deliverables-label {
   color: var(--ink);
   text-shadow: none;
 }
-.section-blue .label, .deliverables-text .label { color: var(--ink); }
+.section-blue .label,
+.value-section .label,
+.deliverables-text .label { color: var(--ink); }
 
 .vcard-title, .step-title, .fit-col .label, .heading + .body-copy { color: var(--ink); }
 .vcard-title, .step-title { color: var(--ink); }
