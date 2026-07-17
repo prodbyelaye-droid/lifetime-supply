@@ -75,6 +75,31 @@ body {
   pointer-events: none;
   z-index: 0;
 }
+
+/* ══ SECTION TEXTURE ════════════════════════════════════
+   The 16:9 Higgsfield backgrounds. CSS background-image, not
+   <img>, so they can never become an LCP candidate: the hero
+   poster already owns LCP at ~2.4s and there is no headroom.
+   The URL is attached on approach by glass.js, because a CSS
+   background on an in-tree element is fetched eagerly.
+
+   Every texture carries a scrim. These sit under body copy, and
+   the page's contrast budget was already tight enough to produce
+   real pale-on-pale bugs; the scrim is what keeps the ratio. */
+.sec-bg[data-tex] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sec-bg[data-tex]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--scrim, rgba(240,248,252,0.62));
+  pointer-events: none;
+}
+/* The rendered subject floats above texture and scrim. */
+.sec-bg-media { z-index: 1; }
 /* The render is the subject floating in the room, not a wallpaper.
    Height-driven with width:auto keeps its own aspect and, crucially,
    keeps it at or below native resolution so the glass stays crisp.
@@ -180,6 +205,27 @@ body {
             backdrop-filter: blur(22px) saturate(1.4);
   }
 }
+/* The money texture (gold caustics on navy) lives on the offer panels
+   themselves, not on their sections. The value section also holds ink
+   body copy and the eight light value cards, and washing all of that
+   navy destroyed them. Scoped here, the artwork sits exactly where the
+   surface is already dark and the gold already lives.
+   The 0.60 navy scrim over it is what keeps the gold price above 4.5:1;
+   the artwork alone has bright gold streaks that would eat it. */
+.value-reveal,
+.pricing-inner,
+.footer-sale {
+  background-image:
+    linear-gradient(rgba(13,51,71,0.60), rgba(13,51,71,0.60)),
+    var(--money-tex, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.money-tex-on {
+  --money-tex: url('../img/sections/money.webp');
+}
+
 .value-reveal .value-reveal-copy,
 .pricing-inner .body-copy,
 .pricing-inner .price-tag,

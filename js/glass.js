@@ -35,6 +35,26 @@
     }
   }
 
+  /* ─── Lazy money texture ──────────────────────────
+     A CSS background on an in-tree element is fetched eagerly, so
+     the offer panels only get the class (and therefore the URL) once
+     they are near the viewport. All three are below the fold, so this
+     keeps the artwork out of the first-view budget entirely. */
+  var moneyPanels = Array.prototype.slice.call(
+    document.querySelectorAll('.value-reveal, .pricing-inner, .footer-sale'));
+  if ('IntersectionObserver' in window) {
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('money-tex-on');
+        tio.unobserve(e.target);
+      });
+    }, { rootMargin: '300px 0px' });
+    moneyPanels.forEach(function (el) { tio.observe(el); });
+  } else {
+    moneyPanels.forEach(function (el) { el.classList.add('money-tex-on'); });
+  }
+
   var lazyVideos = Array.prototype.slice.call(document.querySelectorAll('video[data-lazy-video]'));
 
   if (reduce) {
