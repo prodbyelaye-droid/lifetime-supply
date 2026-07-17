@@ -410,7 +410,12 @@ body {
 .hero-quote-text { color: var(--ink); }
 
 /* Scarcity, not price, so it does not take the gold. Ink on a glass
-   chip clears AA at this size; white on the sky would not. */
+   chip clears AA at this size; white on the sky would not.
+
+   The box is reserved even while empty. The hero is flex-centred, so
+   letting the counter appear after the endpoint answers re-centred the
+   whole hero and was the page's only layout shift. Reserving it costs
+   one small gap if the endpoint is down, which beats the hero jumping. */
 .founding-seats {
   margin: 2px 0 0;
   font-family: var(--f-body);
@@ -424,6 +429,14 @@ body {
   border-radius: 999px;
   padding: 7px 16px;
   box-shadow: 0 6px 18px rgba(9,42,62,0.10);
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.founding-seats[hidden] {
+  display: inline-flex !important;
+  visibility: hidden;
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .founding-seats {
