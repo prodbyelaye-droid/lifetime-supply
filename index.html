@@ -22,9 +22,11 @@
   <!-- Favicon (self-contained, no asset needed) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d3347'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23f5c242' font-family='Arial,sans-serif' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted: the Google Fonts CDN put two extra origin
+       handshakes on the critical path and was holding first paint. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/montserrat-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/barlow-400-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/glass.css">
   <!-- The hero poster is the LCP element: the clip attaches after load. -->
@@ -157,7 +159,7 @@
   <section class="section section-blue deliverables-section">
     <div class="sec-bg" aria-hidden="true">
       <video class="sec-bg-media" data-lazy-video data-depth="0.14"
-             muted loop playsinline preload="none" poster="media/clip-archive-poster.webp">
+             muted loop playsinline preload="none" data-poster="media/clip-archive-poster.webp">
         <source data-src="media/clip-archive.webm" type="video/webm">
         <source data-src="media/clip-archive.mp4" type="video/mp4">
       </video>
@@ -178,7 +180,7 @@
   <section class="section section-a feature-section">
     <div class="sec-bg" aria-hidden="true">
       <video class="sec-bg-media" data-lazy-video data-depth="0.16"
-             muted loop playsinline preload="none" poster="media/clip-panels-poster.webp">
+             muted loop playsinline preload="none" data-poster="media/clip-panels-poster.webp">
         <source data-src="media/clip-panels.webm" type="video/webm">
         <source data-src="media/clip-panels.mp4" type="video/mp4">
       </video>
@@ -194,7 +196,7 @@
           </details>
         </div>
         <div class="pipeline-hero-frame">
-          <video autoplay muted loop playsinline preload="none" poster="pipeline-poster.jpg">
+          <video data-lazy-video muted loop playsinline preload="none" data-poster="pipeline-poster.jpg">
             <source src="outreach-pipeline.mp4" type="video/mp4">
           </video>
         </div>
@@ -521,7 +523,7 @@
       <div class="plan-block reveal">
         <div class="sec-bg" aria-hidden="true">
           <video class="sec-bg-media" data-lazy-video data-depth="0.08"
-                 muted loop playsinline preload="none" poster="media/clip-folders-four-poster.webp">
+                 muted loop playsinline preload="none" data-poster="media/clip-folders-four-poster.webp">
             <source data-src="media/clip-folders-four.webm" type="video/webm">
             <source data-src="media/clip-folders-four.mp4" type="video/mp4">
           </video>
@@ -643,7 +645,7 @@
   <footer class="site-footer">
     <div class="sec-bg" aria-hidden="true">
       <video class="sec-bg-media" data-lazy-video data-depth="0.08"
-             muted loop playsinline preload="none" poster="media/clip-wordmark-poster.webp">
+             muted loop playsinline preload="none" data-poster="media/clip-wordmark-poster.webp">
         <source data-src="media/clip-wordmark.webm" type="video/webm">
         <source data-src="media/clip-wordmark.mp4" type="video/mp4">
       </video>
@@ -673,12 +675,12 @@
     <span class="footer-credit">ELAYE &nbsp;·&nbsp; THE LIFETIME SUPPLY &nbsp;·&nbsp; @ELXYEE</span>
   </footer>
 
-  <script src="lib/lenis.min.js"></script>
-  <script src="lib/gsap.min.js"></script>
-  <script src="lib/ScrollTrigger.min.js"></script>
-  <script src="js/site-config.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/glass.js"></script>
+  <script defer src="lib/lenis.min.js"></script>
+  <script defer src="lib/gsap.min.js"></script>
+  <script defer src="lib/ScrollTrigger.min.js"></script>
+  <script defer src="js/site-config.js"></script>
+  <script defer src="js/app.js"></script>
+  <script defer src="js/glass.js"></script>
   <script>
     /* Founding-seats counter: renders a real number or stays hidden.
        Never invents a count. */

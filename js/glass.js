@@ -11,10 +11,18 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ─── Poster-first lazy video ─────────────────────
-     Sources live in data-src so nothing downloads until
-     the clip is near the viewport. The poster is already
-     painted, so attaching the source causes no reflow. */
+     A <video poster> is fetched eagerly even with preload="none",
+     so below-fold posters were competing with the hero for
+     bandwidth. They live in data-poster and get attached on
+     approach. Sources live in data-src for the same reason. */
+  function showPoster(v) {
+    if (v.dataset.poster && !v.getAttribute('poster')) {
+      v.setAttribute('poster', v.dataset.poster);
+    }
+  }
+
   function loadVideo(v) {
+    showPoster(v);
     if (v.dataset.loaded) return;
     v.dataset.loaded = '1';
     v.querySelectorAll('source[data-src]').forEach(function (s) {
@@ -30,9 +38,20 @@
   var lazyVideos = Array.prototype.slice.call(document.querySelectorAll('video[data-lazy-video]'));
 
   if (reduce) {
-    /* Reduced motion: never fetch the clips at all. The poster
-       frame is the final state, which is the whole point. */
-    lazyVideos.forEach(function (v) { v.removeAttribute('autoplay'); });
+    /* Reduced motion: never fetch the clips, but the poster still
+       has to arrive, because the poster IS the final state here. */
+    if ('IntersectionObserver' in window) {
+      var pio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          showPoster(e.target);
+          pio.unobserve(e.target);
+        });
+      }, { rootMargin: '300px 0px' });
+      lazyVideos.forEach(function (v) { v.removeAttribute('autoplay'); pio.observe(v); });
+    } else {
+      lazyVideos.forEach(showPoster);
+    }
   } else if ('IntersectionObserver' in window) {
     var vio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
