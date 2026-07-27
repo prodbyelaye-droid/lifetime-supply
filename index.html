@@ -68,11 +68,6 @@
         <p class="hero-quote-attr">Lifetime member</p>
       </div>
       <a href="https://buy.stripe.com/14A14o7sM404biv3XI9AA00" data-checkout target="_blank" rel="noopener" class="btn btn-gold reveal">GET LIFETIME ACCESS</a>
-      <!-- Founding-seats counter: a true fact or nothing. Reads the same
-           live count as the store (elaye.store/api/founding-seats). Stays
-           hidden unless the endpoint returns a real number, so it never
-           shows "/50" with a blank numerator. -->
-      <p class="founding-seats reveal" id="founding-seats" hidden></p>
     </div>
     <div class="scroll-hint reveal"><div class="scroll-line"></div></div>
   </section>
@@ -681,22 +676,6 @@
   <script defer src="js/site-config.js"></script>
   <script defer src="js/app.js"></script>
   <script defer src="js/glass.js"></script>
-  <script>
-    /* Founding-seats counter: renders a real number or stays hidden.
-       Never invents a count. */
-    (function () {
-      fetch("https://elaye.store/api/founding-seats")
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          if (!d || typeof d.taken !== "number" || !isFinite(d.taken)) return;
-          var el = document.getElementById("founding-seats");
-          if (!el) return;
-          el.textContent = "Founding seats: " + d.taken + "/" + (d.total || 50);
-          el.hidden = false;
-        })
-        .catch(function () {});
-    })();
-  </script>
   <script>
     /* Failsafe: if the animation libs failed to load, app.js may throw
        before the reveal observer runs. Never leave copy stuck hidden. */
