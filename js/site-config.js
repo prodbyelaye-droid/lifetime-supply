@@ -1,10 +1,10 @@
 /* ─────────────────────────────────────────
    SITE CONFIG — single source of truth.
-   Founding window: one price, no sale, no timer.
+   Founding window closed: one lifetime price, no sale, no timer.
 ───────────────────────────────────────── */
 const SITE = {
-  price: 499,
-  /* Stripe Payment Link for the $499 Lifetime — wired live 2026-07-05.
+  price: 599,
+  /* Stripe Payment Link for the $599 Lifetime — swap when the new price exists.
      The HTML href on every [data-checkout] element matches this too,
      so no-JS visitors, link previews and crawlers land on the same
      Stripe checkout instead of falling back to Instagram. */

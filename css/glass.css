@@ -461,43 +461,6 @@ body {
 .hero-quote { padding: clamp(16px, 2vw, 22px) clamp(18px, 2.2vw, 26px); }
 .hero-quote-text { color: var(--ink); }
 
-/* Scarcity, not price, so it does not take the gold. Ink on a glass
-   chip clears AA at this size; white on the sky would not.
-
-   The box is reserved even while empty. The hero is flex-centred, so
-   letting the counter appear after the endpoint answers re-centred the
-   whole hero and was the page's only layout shift. Reserving it costs
-   one small gap if the endpoint is down, which beats the hero jumping. */
-.founding-seats {
-  margin: 2px 0 0;
-  font-family: var(--f-body);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  color: var(--ink);
-  background: rgba(255,255,255,0.62);
-  border: 1px solid var(--glass-line);
-  border-radius: 999px;
-  padding: 7px 16px;
-  box-shadow: 0 6px 18px rgba(9,42,62,0.10);
-  min-height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.founding-seats[hidden] {
-  display: inline-flex !important;
-  visibility: hidden;
-}
-@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-  .founding-seats {
-    background: rgba(255,255,255,0.46);
-    -webkit-backdrop-filter: blur(12px) saturate(1.3);
-            backdrop-filter: blur(12px) saturate(1.3);
-  }
-}
-
 /* ══ CREDITS STRIP ══════════════════════════════════════ */
 .credits-strip {
   background: rgba(11,45,64,0.30);
@@ -578,74 +541,6 @@ body {
 .expander summary { color: var(--ink); }
 .expander-body { color: var(--ink-soft); }
 
-/* ══ PAYMENT PLAN (subordinate to the one payment) ══════
-   Deliberately quieter than the $499 block above it:
-   no gold, smaller type, glass-soft, secondary button. */
-.plan-block {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  max-width: 620px;
-  margin: clamp(20px, 3vw, 34px) auto 0;
-  padding: clamp(20px, 2.6vw, 30px);
-  text-align: center;
-  border-radius: var(--radius);
-  background: rgba(255,255,255,0.78);
-  border: 1px solid var(--glass-line);
-  box-shadow: 0 16px 44px rgba(9,42,62,0.14);
-}
-.plan-block > :not(.sec-bg) { position: relative; z-index: 1; }
-@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-  .plan-block {
-    background: rgba(255,255,255,0.60);
-    -webkit-backdrop-filter: blur(16px) saturate(1.3);
-            backdrop-filter: blur(16px) saturate(1.3);
-  }
-}
-.plan-or {
-  font-family: var(--f-body);
-  font-weight: 800;
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
-  margin-bottom: 10px;
-}
-.plan-headline {
-  font-family: var(--f-head);
-  font-weight: 800;
-  text-transform: lowercase;
-  letter-spacing: -0.01em;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  color: var(--ink);
-  line-height: 1.05;
-}
-.plan-copy {
-  font-family: var(--f-body);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--ink);
-  margin-top: 10px;
-}
-.plan-link {
-  display: inline-block;
-  margin-top: 16px;
-  font-family: var(--f-body);
-  font-weight: 700;
-  font-size: 0.76rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink);
-  padding: 12px 26px;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  background: transparent;
-  transition: background 0.25s var(--ease-g), transform 0.25s var(--ease-g);
-  min-height: 44px;
-}
-.plan-link:hover { background: rgba(11,45,64,0.10); transform: translateY(-1px); }
-.plan-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-
 /* ══ FOOTER ═════════════════════════════════════════════ */
 .site-footer { position: relative; overflow: hidden; background: transparent; }
 .footer-sale { padding: clamp(30px, 4vw, 52px); }
@@ -721,7 +616,7 @@ a:focus-visible, summary:focus-visible, button:focus-visible {
             backdrop-filter: none;
     background: rgba(255,255,255,0.80);
   }
-  .plan-block, .footer-capture { background: rgba(255,255,255,0.24); }
+  .footer-capture { background: rgba(255,255,255,0.24); }
 }
 
 /* Coarse pointers with no hover: same story, protect FPS. */
@@ -733,7 +628,7 @@ a:focus-visible, summary:focus-visible, button:focus-visible {
    Last word on text colour. The generic rules above (e.g.
    .section-blue .body-copy -> ink) tie on specificity with the
    money-block rules and were winning by source order, which put
-   ink copy on the dark $499 panel. Resolving it here, at the end,
+   ink copy on the dark $599 panel. Resolving it here, at the end,
    keeps one place to reason about what sits on what. */
 .pricing-inner .body-copy,
 .pricing-inner .price-tag,
