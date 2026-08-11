@@ -4,11 +4,11 @@
 ───────────────────────────────────────── */
 const SITE = {
   price: 599,
-  /* Stripe Payment Link for the $599 Lifetime — swap when the new price exists.
+  /* Stripe Payment Link for the $599 Lifetime — wired live 2026-08-11.
      The HTML href on every [data-checkout] element matches this too,
      so no-JS visitors, link previews and crawlers land on the same
      Stripe checkout instead of falling back to Instagram. */
-  checkoutUrl: 'https://buy.stripe.com/14A14o7sM404biv3XI9AA00',
+  checkoutUrl: 'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
