@@ -60,8 +60,32 @@
   /* The gold bloom behind a price on a dark panel. */
   --gold-glow: 0 0 64px rgba(245,194,66,0.30);
 
+  /* Beautiful-shadows' md/lg elevation tiers, translated to plain
+     CSS custom properties (this repo has no Tailwind). md is the
+     general card/panel depth; lg ("hero media, feature callouts")
+     is the one the media-mat system below actually uses. Defining
+     both as the pair, using one depth, per that system's brief. */
+  --elev-md:
+    0px 0px 0px 1px rgba(0,0,0,0.06),
+    0px 1px 1px -0.5px rgba(0,0,0,0.06),
+    0px 3px 3px -1.5px rgba(0,0,0,0.06),
+    0px 6px 6px -3px rgba(0,0,0,0.06),
+    0px 12px 12px -6px rgba(0,0,0,0.06),
+    0px 24px 24px -12px rgba(0,0,0,0.06);
+  --elev-lg:
+    0 2.8px 2.2px rgba(0,0,0,0.034),
+    0 6.7px 5.3px rgba(0,0,0,0.048),
+    0 12.5px 10px rgba(0,0,0,0.06),
+    0 22.3px 17.9px rgba(0,0,0,0.072),
+    0 41.8px 33.4px rgba(0,0,0,0.086),
+    0 100px 80px rgba(0,0,0,0.12);
+
   --blur:     18px;
   --radius:   22px;
+  /* Concentric with --radius per the mat's own padding: the framed
+     photo's corner reads as one continuous curve with the mat's,
+     not a second, competing radius. */
+  --radius-inner: 12px;
   --ease-g:   cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -191,9 +215,7 @@ body {
 .stat,
 .value-total-block,
 .problem-photo-wrap,
-.deliverables-img,
 .pipeline-hero-frame,
-.archive-app-img,
 .feature-aside,
 .press-inner {
   background: var(--glass);
@@ -563,23 +585,58 @@ body {
 /* ══ MEDIA INSIDE GLASS ═════════════════════════════════ */
 .problem-photo-wrap,
 .pipeline-hero-frame,
-.archive-app-img,
 .feature-aside,
-.press-inner,
-.deliverables-img { overflow: hidden; padding: 0; }
+.press-inner { overflow: hidden; padding: 0; }
 .problem-photo-wrap img,
 .pipeline-hero-frame video,
-.archive-app-img img,
 .feature-aside img,
 .press-inner img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pipeline-shots img,
 .kit-reviews-img,
-.mentorship-reviews img,
-.reviews-img,
-.deliverables-img {
+.mentorship-reviews img {
   border-radius: 16px;
   box-shadow: var(--glass-cast);
   border: 1px solid var(--glass-edge);
+}
+
+/* ══ MEDIA MAT ═══════════════════════════════════════════
+   One frame for the page's four proof screenshots: the Finder
+   window (.deliverables-img), the phone mock (.archive-app-img),
+   the DM composite (.reviews-img), and the b/w studio photo beside
+   the price card (.pricing-photo). Each used to carry a different
+   ad-hoc box-shadow -- three different recipes, one of them with
+   none at all -- and no visible mat: two of them already had a
+   glass background from the shared card rule above, but
+   overflow:hidden + padding:0 hid it completely.
+
+   One light-glass mat regardless of the section it sits on (a
+   photograph is matted the same colour no matter the wall it hangs
+   on -- deliverables/reviews/pricing sit on dark navy sections,
+   archive sits on its own pastel gradient). --glass-line border,
+   --radius corners, one shadow depth (--elev-lg, beautiful-shadows'
+   "hero media, feature callouts" tier -- exactly what these are).
+   Inner photo radius is --radius-inner, concentric with the mat's
+   own --radius per better-ui, so outer and inner corners read as
+   one continuous curve rather than two competing ones. */
+.media-mat {
+  box-sizing: border-box;
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius);
+  box-shadow: var(--elev-lg);
+  padding: clamp(18px, 2.6vw, 30px);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .media-mat {
+    background: var(--glass-soft);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  }
+}
+.media-mat img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-inner);
 }
 
 /* ══ EXPANDERS ══════════════════════════════════════════ */

@@ -396,13 +396,9 @@ ul { list-style: none; }
   align-items: center;
 }
 .deliverables-text { display: flex; flex-direction: column; gap: 10px; }
-.deliverables-img {
-  width: 100%;
-  max-width: 460px;
-  border-radius: var(--radius);
-  display: block;
-  box-shadow: 0 16px 60px rgba(0,0,0,0.22);
-}
+/* Frame (background/border/radius/shadow) lives on .media-mat
+   in glass.css now; this is sizing only. */
+.deliverables-img { width: 100%; max-width: 460px; }
 
 /* ══ PIPELINE ═══════════════════════════ */
 .pipeline-top {
@@ -444,8 +440,9 @@ ul { list-style: none; }
   gap: clamp(32px,5vw,72px);
   align-items: center;
 }
-.archive-app-img { display: flex; align-items: center; justify-content: center; }
-.archive-app-img img { width:100%; max-width:340px; border-radius:var(--radius); display:block; }
+/* Frame lives on .media-mat in glass.css; fills its grid column
+   instead of floating smaller inside it with dead space. */
+.archive-app-img { width: 100%; }
 
 /* ══ KITS ═══════════════════════════════ */
 .kits-layout {
@@ -548,14 +545,8 @@ ul { list-style: none; }
 .reviews-section { padding-bottom: clamp(48px,8vw,100px); }
 .reviews-header   { margin-bottom: 32px; }
 .section-blue .heading { color: var(--white); }
-.reviews-img {
-  width: 100%;
-  max-width: 620px;
-  border-radius: var(--radius);
-  display: block;
-  margin: 0 auto;
-  box-shadow: 0 16px 60px rgba(74,169,199,0.14);
-}
+/* Frame lives on .media-mat in glass.css; this is sizing only. */
+.reviews-img { width: 100%; max-width: 620px; margin: 0 auto; }
 
 /* ══ FIT ════════════════════════════════ */
 .fit-grid {
@@ -606,14 +597,9 @@ ul { list-style: none; }
 }
 .pricing-inner  { max-width: 100%; }
 .pricing-photo  { position: sticky; top: 80px; }
-.pricing-profile-img {
-  width: 100%;
-  border-radius: var(--radius);
-  display: block;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
-  object-fit: cover;
-  aspect-ratio: 1;
-}
+/* Sizing/frame come from .media-mat img in glass.css; this is
+   just the square crop the source photo needs. */
+.pricing-profile-img { object-fit: cover; aspect-ratio: 1; }
 .price-row {
   display: flex;
   align-items: flex-start;
@@ -978,10 +964,14 @@ ul { list-style: none; }
   gap: clamp(10px, 1.2vw, 16px);
 }
 .receipt-card {
+  /* base background/border here are a pre-glass leftover for a dark
+     .receipts-section; glass.css's shared card rule (var(--glass))
+     wins and is what actually renders -- kept as the no-JS/no-glass.css
+     fallback, not dead weight. */
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
-  padding: clamp(22px, 2.8vw, 32px);
+  padding: clamp(24px, 3vw, 36px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -989,9 +979,6 @@ ul { list-style: none; }
 }
 .receipt-card.lead {
   grid-column: span 2;
-  background: rgba(245,194,66,0.05);
-  border-color: rgba(245,194,66,0.25);
-  padding: clamp(28px, 3.6vw, 44px);
 }
 .receipt-quote {
   font-family: var(--f-body);
@@ -1015,7 +1002,6 @@ ul { list-style: none; }
   line-height: 1.45;
   color: var(--white);
 }
-.receipt-card.lead .receipt-quote::before { font-size: 3rem; }
 .receipt-attribution {
   font-family: var(--f-body);
   font-size: 0.62rem;
@@ -1024,7 +1010,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   color: var(--w55);
   padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.10);
+  border-top: 1px solid var(--ink-rule);
 }
 .receipt-card.lead .receipt-attribution { color: var(--gold); }
 
@@ -1047,8 +1033,7 @@ ul { list-style: none; }
   .pipeline-shots img       { aspect-ratio: 3/4; }
   .pipeline-shots img:last-child { grid-column: span 2; aspect-ratio: 16/9; }
   .archive-layout           { grid-template-columns: 1fr; gap: 24px; }
-  .archive-app-img          { order: 2; }        /* image below text on mobile */
-  .archive-app-img img      { max-width: 260px; }
+  .archive-app-img          { order: 2; max-width: 260px; margin: 0 auto; }        /* image below text on mobile */
   .kits-layout              { grid-template-columns: 1fr; gap: 24px; }
   .kit-reviews-col          { justify-content: center; }
   .kit-reviews-img          { max-height: 360px; }  /* smaller cap at 390px */
