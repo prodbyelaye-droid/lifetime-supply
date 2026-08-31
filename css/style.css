@@ -1099,7 +1099,7 @@ ul { list-style: none; }
 }
 .sale-bar-label {
   font-family: var(--f-body);
-  font-size: 0.60rem;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1107,6 +1107,10 @@ ul { list-style: none; }
   white-space: nowrap;
 }
 .sale-bar-sep { color: var(--w55); }
+@media (max-width: 560px) {
+  .sale-bar-prefix,
+  .sale-bar-sep { display: none; }
+}
 .sale-bar-price {
   font-family: var(--f-head);
   font-weight: 800;
@@ -1130,13 +1134,16 @@ ul { list-style: none; }
 .sale-bar-timer .sale-countdown { color: var(--gold); font-weight: 800; }
 .sale-bar-cta {
   font-family: var(--f-body);
-  font-size: 0.58rem;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   background: var(--gold);
   color: var(--ink);
-  padding: 5px 13px;
+  padding: 9px 18px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
   border-radius: 4px;
   text-decoration: none;
   white-space: nowrap;
@@ -1147,10 +1154,10 @@ ul { list-style: none; }
 .sale-bar-cta:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 
 /* Founding window banner additions */
-.founding-price { color: var(--gold); font-weight: 800; }
+.founding-price { color: var(--gold); font-weight: 800; font-size: 1.15rem; }
 .founding-bar-note {
   font-family: var(--f-body);
-  font-size: 0.60rem;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
