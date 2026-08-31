@@ -17,6 +17,8 @@
   --white:    #ffffff;
   --gold:     #f5c242;
   --gold-g:   rgba(245,194,66,0.38);
+  --status-yes: #28a745;
+  --status-no:  #e02020;
   --f-head:   'Montserrat', sans-serif;
   --f-body:   'Barlow', sans-serif;
   --radius:   10px;
@@ -507,7 +509,11 @@ ul { list-style: none; }
   font-family: var(--f-head);
   font-weight: 800;
   font-size: 2rem;
-  color: #e02020;
+  /* Was a hardcoded #e02020, the same red as the "not for you" cross.
+     glass.css has always overridden it to ink-mid, so this only ever
+     showed if glass.css failed to load. Pointed at the role it
+     actually renders as. */
+  color: var(--ink-mid);
   line-height: 1;
   padding-top: 2px;
 }
@@ -564,8 +570,8 @@ ul { list-style: none; }
   position: relative;
   line-height: 1.55;
 }
-.fit-yes li::before { content: '+'; position: absolute; left: 0; color: #28a745; font-weight: 900; }
-.fit-no  li::before { content: '✕'; position: absolute; left: 0; color: #e02020; font-weight: 900; }
+.fit-yes li::before { content: '+'; position: absolute; left: 0; color: var(--status-yes); font-weight: 900; }
+.fit-no  li::before { content: '✕'; position: absolute; left: 0; color: var(--status-no); font-weight: 900; }
 
 /* ══ PRESS ══════════════════════════════ */
 .press-section { padding: clamp(80px,11vw,140px) 0; }
@@ -929,7 +935,7 @@ ul { list-style: none; }
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--gold);
-  text-shadow: 0 0 56px rgba(245,194,66,0.30);
+  text-shadow: var(--gold-glow);
 }
 .value-reveal-right {
   display: flex;
@@ -1207,7 +1213,7 @@ ul { list-style: none; }
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--gold);
-  text-shadow: 0 0 64px rgba(245,194,66,0.30);
+  text-shadow: var(--gold-glow);
 }
 
 /* ══ STAT WAS (struck-through old price) ══ */
@@ -1255,7 +1261,7 @@ ul { list-style: none; }
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--gold);
-  text-shadow: 0 0 80px rgba(245,194,66,0.45), 0 0 160px rgba(245,194,66,0.20);
+  text-shadow: var(--gold-glow);
 }
 .footer-sale-tag {
   font-family: var(--f-head);

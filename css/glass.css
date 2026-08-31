@@ -16,17 +16,49 @@
   --sky-deep:  #4a93b8;
   --sky-pool:  #b3e1ee;
 
-  /* Frosted glass. Light and airy like the renders, but opaque
-     enough that ink body copy clears WCAG AA on top of it. */
+  /* ── THE GLASS FORMULA ────────────────────────────────
+     One recipe, two tint variants. Blur, saturate, border
+     width, radius and cast are shared by every panel; only
+     the tint step (and the ink/white that sits on it) tells
+     the light and dark variants apart. Panels were drifting
+     apart on blur (12/14/16/18/22px), saturate (1.2-1.4) and
+     border strength (0.26/0.3/0.34/0.5/0.85); these tokens
+     are the single place those now live. */
+  --glass-blur: 18px;
+  --glass-sat:  1.35;
+
+  /* Light variant. The -soft step is used where the backdrop
+     filter is available and doing half the work; the plain
+     step is the heavier no-backdrop fallback. Both keep ink
+     body copy clear of WCAG AA on top. */
   --glass:      rgba(255,255,255,0.72);
   --glass-soft: rgba(255,255,255,0.52);
   --glass-line: rgba(255,255,255,0.85);
   --glass-edge: rgba(255,255,255,0.34);
   --glass-cast: 0 24px 70px rgba(9,42,62,0.18), 0 2px 8px rgba(9,42,62,0.06);
 
+  /* Dark variant. Same formula, navy tint: the brand gold only
+     clears contrast on a dark surface, and it carries white
+     type where the light variant carries ink. */
+  --glass-dk:      rgba(9,38,55,0.80);
+  --glass-dk-soft: rgba(9,38,55,0.62);
+  --glass-dk-line: rgba(255,255,255,0.26);
+  --glass-dk-cast: 0 30px 80px rgba(6,30,45,0.34);
+
+  /* Texture scrim: an override hook, so a section can dial its
+     own down. Same value it has always defaulted to. */
+  --scrim:    rgba(240,248,252,0.62);
+
   --ink:      #0b2d40;
   --ink-mid:  #245b74;
   --ink-soft: rgba(11,45,64,0.72);
+  /* Ink dropped to texture weight: the marquee is a background
+     pattern, not copy, and reads as one at this level. */
+  --ink-tex:  rgba(8,34,50,0.62);
+  /* Type that sits ON the gold fill (CTA labels). */
+  --on-gold:  #23180a;
+  /* The gold bloom behind a price on a dark panel. */
+  --gold-glow: 0 0 64px rgba(245,194,66,0.30);
 
   --blur:     18px;
   --radius:   22px;
@@ -144,8 +176,8 @@ body {
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .glass {
     background: var(--glass-soft);
-    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.35);
-            backdrop-filter: blur(var(--blur)) saturate(1.35);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 
@@ -179,8 +211,8 @@ body {
   .stat,
   .value-total-block {
     background: var(--glass-soft);
-    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.35);
-            backdrop-filter: blur(var(--blur)) saturate(1.35);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 
@@ -191,18 +223,18 @@ body {
 .value-reveal,
 .pricing-inner,
 .footer-sale {
-  background: rgba(9,38,55,0.80);
-  border: 1px solid rgba(255,255,255,0.26);
+  background: var(--glass-dk);
+  border: 1px solid var(--glass-dk-line);
   border-radius: var(--radius);
-  box-shadow: 0 30px 80px rgba(6,30,45,0.34);
+  box-shadow: var(--glass-dk-cast);
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .value-reveal,
   .pricing-inner,
   .footer-sale {
-    background: rgba(9,38,55,0.62);
-    -webkit-backdrop-filter: blur(22px) saturate(1.4);
-            backdrop-filter: blur(22px) saturate(1.4);
+    background: var(--glass-dk-soft);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 /* The money texture (gold caustics on navy) lives on the offer panels
@@ -386,7 +418,10 @@ body {
 
 .vcard-title, .step-title, .fit-col .label, .heading + .body-copy { color: var(--ink); }
 .vcard-title, .step-title { color: var(--ink); }
-.vcard-num, .step-n { color: var(--ink-mid); opacity: 0.5; }
+/* The 0.5 opacity took these numerals to 2.1:1 on their own glass.
+   ink-mid at full weight is the same colour role, still clearly
+   subordinate to the title above it, and measures 5.3-5.6:1. */
+.vcard-num, .step-n { color: var(--ink-mid); }
 
 .badge {
   background: var(--glass-soft);
@@ -417,7 +452,7 @@ body {
 
 .btn-gold {
   background: var(--gold);
-  color: #23180a;
+  color: var(--on-gold);
   box-shadow: 0 14px 38px rgba(245,194,66,0.42), 0 2px 6px rgba(9,42,62,0.16);
   border: 1px solid rgba(255,255,255,0.5);
 }
@@ -453,8 +488,8 @@ body {
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .hero-stat {
-    -webkit-backdrop-filter: blur(12px) saturate(1.3);
-            backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 
@@ -462,18 +497,23 @@ body {
 .hero-quote-text { color: var(--ink); }
 
 /* ══ CREDITS STRIP ══════════════════════════════════════ */
+/* Dark variant of the glass formula. It carried white credentials
+   on a 0.22 navy tint, which measured 3.13:1 against the sky behind
+   it: a real AA miss on the page's proof line. Moving it onto the
+   shared dark tint fixes the ratio and stops it being a third,
+   bespoke tint step. */
 .credits-strip {
-  background: rgba(11,45,64,0.30);
-  border-top: 1px solid var(--glass-edge);
-  border-bottom: 1px solid var(--glass-edge);
+  background: var(--glass-dk);
+  border-top: 1px solid var(--glass-dk-line);
+  border-bottom: 1px solid var(--glass-dk-line);
   position: relative;
   z-index: 1;
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .credits-strip {
-    background: rgba(11,45,64,0.22);
-    -webkit-backdrop-filter: blur(14px) saturate(1.2);
-            backdrop-filter: blur(14px) saturate(1.2);
+    background: var(--glass-dk-soft);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 .credits-strip-text { color: var(--white); }
@@ -492,15 +532,15 @@ body {
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   #saleBar {
     background: rgba(11,45,64,0.90);
-    -webkit-backdrop-filter: blur(16px) saturate(1.3);
-            backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 
 /* ══ MARQUEE ════════════════════════════════════════════
    Pale-on-pale measured 1.29:1. Ink at low alpha keeps it a
    background texture while still clearing the large-text bar. */
-.marquee-text { color: rgba(8,34,50,0.62); }
+.marquee-text { color: var(--ink-tex); }
 
 /* ══ DELIVERABLES ═══════════════════════════════════════
    The 260px text column was sized for the old condensed display
@@ -553,7 +593,8 @@ body {
 .footer-sale-tag, .footer-sale-urgency { color: var(--ink-mid); }
 .footer-dm { color: var(--ink-soft); }
 .footer-signoff { color: var(--white); }
-.footer-credit { color: var(--ink-mid); }
+/* Sits on bare sky, where ink-mid measured 4.11:1. Full ink. */
+.footer-credit { color: var(--ink); }
 
 /* The envelope render backs this line, so it reads as a card
    in the world but stays visually under the buy button. */
@@ -588,8 +629,8 @@ body {
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .footer-capture-wrap {
     background: rgba(255,255,255,0.54);
-    -webkit-backdrop-filter: blur(14px) saturate(1.3);
-            backdrop-filter: blur(14px) saturate(1.3);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   }
 }
 .footer-capture {
