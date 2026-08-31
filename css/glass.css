@@ -241,8 +241,12 @@ body {
 /* ══ THE MONEY BLOCKS ═══════════════════════════════════
    Deep glass, not light. Two reasons: the brand gold only
    clears contrast on a dark surface, and the offer should be
-   the one heavy thing in an airy room. */
-.value-reveal,
+   the one heavy thing in an airy room.
+
+   .value-reveal (the mid-page echo) used to be a third block
+   in this same treatment -- a near-duplicate of .pricing-inner
+   sitting one section above it, diluting which one reads as
+   the actual moment. Demoted below: light glass, ink text. */
 .pricing-inner,
 .footer-sale {
   background: var(--glass-dk);
@@ -251,7 +255,6 @@ body {
   box-shadow: var(--glass-dk-cast);
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-  .value-reveal,
   .pricing-inner,
   .footer-sale {
     background: var(--glass-dk-soft);
@@ -266,7 +269,6 @@ body {
    surface is already dark and the gold already lives.
    The 0.60 navy scrim over it is what keeps the gold price above 4.5:1;
    the artwork alone has bright gold streaks that would eat it. */
-.value-reveal,
 .pricing-inner,
 .footer-sale {
   background-image:
@@ -280,7 +282,22 @@ body {
   --money-tex: url('../img/sections/money.webp');
 }
 
-.value-reveal .value-reveal-copy,
+/* .value-reveal: the price ECHO now, not the moment. Firmer than
+   the standard light-glass card (stays at the 0.72 base tint even
+   where backdrop-filter is supported, instead of dropping to
+   --glass-soft's 0.52 like vcard/receipt-card), so it still reads
+   as a considered surface rather than a diluted duplicate of those.
+   Ink text throughout, including the price: gold measured 1.15-1.34:1
+   against light glass, nowhere near the 3:1 large-text floor -- gold
+   only clears contrast on the dark surface .pricing-inner kept. */
+.value-reveal {
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-cast);
+}
+.val-now { color: var(--ink); text-shadow: none; }
+
 .pricing-inner .body-copy,
 .pricing-inner .price-tag,
 .pricing-inner .pricing-list li,
@@ -465,8 +482,8 @@ body {
 
 .receipt-attribution, .hero-quote-attr { color: var(--ink-mid); }
 
-/* Price + CTA keep the gold. */
-.val-now,
+/* Price + CTA keep the gold -- except .val-now, demoted to ink
+   with the rest of .value-reveal's echo treatment below. */
 .price-amount-now,
 .footer-price-now,
 .founding-price,
@@ -738,9 +755,11 @@ a:focus-visible, summary:focus-visible, button:focus-visible {
 .pricing-inner .price-tag,
 .pricing-inner .pricing-list li,
 .pricing-inner .heading,
-.value-reveal .value-reveal-copy,
 .footer-sale .footer-sale-tag,
 .footer-sale .footer-signoff { color: var(--white); }
+/* .value-reveal is the echo now, not a money block -- ink, tying
+   this same specificity/source-order fight in its favour here. */
+.value-reveal .value-reveal-copy { color: var(--ink); }
 .pricing-inner .pricing-reassure,
 .footer-sale .footer-dm { color: rgba(255,255,255,0.82); }
 .pricing-inner .forever,

@@ -618,10 +618,17 @@ ul { list-style: none; }
 .price-tag {
   font-family: var(--f-head);
   font-weight: 800;
-  font-size: clamp(1.4rem,3vw,2.6rem);
-  line-height: 1.1;
+  /* Max cut 2.6rem -> 2.3rem: even at its own full-width row,
+     "EVERYTHING, UPDATING FOREVER." didn't fit on the second line
+     at 2.6rem, forcing a 3rd line the single authored <br> clearly
+     wasn't written for -- measured against the actual rendered
+     width, not guessed. 2.3rem clears it, landing the clean 2-line
+     shape the copy intends. */
+  font-size: clamp(1.4rem,2.7vw,2.3rem);
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--w80);
+  text-wrap: balance;
 }
 .forever { color: var(--gold); font-weight: 900; font-style: normal; }
 .pricing-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
@@ -648,6 +655,12 @@ ul { list-style: none; }
   font-style: italic;
 }
 .pricing-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+/* This is the hero moment's CTA -- .btn-lg is the system's largest
+   shared tier, but next to a 192px numeral it read like any other
+   large button. A scoped bump reusing the same .pricing-cta .btn
+   override pattern already used at mobile (line ~1065), not a new
+   button size in the shared system. */
+.pricing-cta .btn { font-size: 1rem; padding: 19px 44px; }
 .cta-dm {
   font-family: var(--f-body);
   font-size: 0.66rem;
@@ -1173,15 +1186,18 @@ ul { list-style: none; }
 }
 .sale-badge {
   font-family: var(--f-body);
-  font-size: 0.60rem;
+  /* Was 0.60rem (9.6px) -- the same illegible-chip pattern already
+     fixed on the sticky sale bar. 12px, same fix. */
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   background: var(--gold);
   color: var(--ink);
-  padding: 5px 14px;
+  padding: 7px 16px;
   border-radius: 100px;
   display: inline-block;
+  white-space: nowrap;
 }
 .price-pair {
   display: flex;
@@ -1203,7 +1219,10 @@ ul { list-style: none; }
   font-weight: 800;
   font-size: clamp(5rem, 14vw, 12rem);
   line-height: 1;
-  letter-spacing: -0.01em;
+  /* Tightened from -0.01em: at up to 192px a mega-numeral wants
+     more negative tracking than body-scale display type, or the
+     counters read loose next to the tighter headings elsewhere. */
+  letter-spacing: -0.025em;
   color: var(--gold);
   text-shadow: var(--gold-glow);
 }
@@ -1264,11 +1283,19 @@ ul { list-style: none; }
 }
 .footer-sale-urgency {
   font-family: var(--f-body);
-  font-size: 0.64rem;
+  /* Was 0.64rem (10.24px) with no padding/radius at all, so the
+     chip border glass.css adds sat flush against the glyphs -- the
+     same illegible-chip pattern as the sale bar and .sale-badge,
+     fixed the same way: 12px, and an actual pill shape below. */
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--w55);
+  padding: 7px 16px;
+  border-radius: 100px;
+  display: inline-block;
+  white-space: nowrap;
 }
 .footer-sale-urgency .sale-countdown { color: var(--gold); font-weight: 800; }
 .sale-sep { opacity: 0.4; }

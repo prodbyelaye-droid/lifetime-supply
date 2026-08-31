@@ -41,7 +41,7 @@
      they are near the viewport. All three are below the fold, so this
      keeps the artwork out of the first-view budget entirely. */
   var moneyPanels = Array.prototype.slice.call(
-    document.querySelectorAll('.value-reveal, .pricing-inner, .footer-sale'));
+    document.querySelectorAll('.pricing-inner, .footer-sale'));
   if ('IntersectionObserver' in window) {
     var tio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
