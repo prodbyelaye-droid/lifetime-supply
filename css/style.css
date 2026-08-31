@@ -48,11 +48,18 @@ ul { list-style: none; }
   padding: 0 var(--gutter);
 }
 
-/* ══ REVEAL ═════════════════════════════ */
+/* ══ REVEAL ═════════════════════════════
+   0.75s + a late-firing observer (only once 12% was already on
+   screen) meant a normal-speed scroll kept landing on sections
+   still mid-fade. Retimed short (0.4s, same strong ease-out
+   --ease the rest of the page already uses) and the observer in
+   app.js now fires ~200px before an element reaches the viewport
+   (rootMargin), so by the time it's visible the fade is already
+   resolving instead of just starting. */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   transition-delay: var(--d, 0s);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
