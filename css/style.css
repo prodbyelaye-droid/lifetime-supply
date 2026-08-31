@@ -48,6 +48,22 @@ ul { list-style: none; }
   padding: 0 var(--gutter);
 }
 
+/* ══ IMAGE SIZING ═══════════════════════
+   Every content image carries width/height attributes so the browser
+   can reserve its box (the CLS fix). Those attributes are
+   presentational hints that set a DEFINITE height, which outranks
+   aspect-ratio and makes object-fit moot -- so without height:auto
+   the images render at their full natural pixel height inside a
+   CSS-constrained width. That is exactly what happened: the pipeline
+   proof shots rendered 367x1470 and 367x1778, blown up and cropped
+   until the DM text was cut off mid-sentence.
+   height:auto hands layout back to CSS width + the declared ratio.
+   Excluded: .sec-bg-media, whose parallax layer sets its own height
+   on purpose. The cover-cropped frames in glass.css (.feature-aside
+   img and friends) set height:100% at equal specificity in a later
+   file, so they still win. */
+img:not(.sec-bg-media) { height: auto; }
+
 /* ══ REVEAL ═════════════════════════════
    0.75s + a late-firing observer (only once 12% was already on
    screen) meant a normal-speed scroll kept landing on sections
@@ -139,7 +155,7 @@ ul { list-style: none; }
 .btn:active { transform: translateY(0); }
 .btn-gold {
   background: var(--gold);
-  color: #0d3347;
+  color: var(--ink);
   box-shadow: 0 6px 24px var(--gold-g);
 }
 .btn-gold:hover { box-shadow: 0 10px 36px rgba(245,194,66,0.52); }
@@ -199,7 +215,14 @@ ul { list-style: none; }
 }
 .hero-sub {
   font-family: var(--f-body);
-  font-size: clamp(0.88rem, 1.4vw, 1.05rem);
+  /* >=18.66px at every viewport is deliberate, not cosmetic: at
+     weight 700 that is WCAG's large-text threshold. Below it this
+     line owed the full 4.5:1 and measured 2.97:1 against its own
+     scrim, and no shadow buys 4.5:1 on this sky without reading as
+     a dark smear (tested: a much heavier scrim only reached 3.34).
+     At large-text size it owes 3.0 and clears it, in the same band
+     as the mega headings above it (3.28-3.53). */
+  font-size: clamp(1.17rem, 1.6vw, 1.3rem);
   font-weight: 700;
   line-height: 1.65;
   color: var(--w80);
@@ -577,7 +600,7 @@ ul { list-style: none; }
   max-width: 1080px;
   margin: 0 auto;
   text-align: center;
-  background: #ffffff;
+  background: var(--white);
   border-radius: var(--radius);
   padding: clamp(20px,2.5vw,36px);
   box-shadow: 0 12px 64px rgba(74,169,199,0.14);
@@ -1031,7 +1054,7 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   :root { --gutter: 18px; }
   .hero-heading             { font-size: clamp(2.15rem,10.5vw,2.7rem); }
-  .hero-sub                 { font-size: 0.88rem; }
+  .hero-sub                 { font-size: 1.17rem; }   /* stays >=18.66px: see .hero-sub note */
   .hero-stat                { font-size: 0.62rem; padding: 6px 14px; }
   .video-frame              { width: 92vw; }
   .cred-layout-2            { grid-template-columns: 1fr; gap: 24px; }
