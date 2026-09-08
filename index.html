@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Lifetime Supply by ELAYE. One payment, lifetime access to the pipeline wired straight to artist phones every night, a 70GB+ sample archive, every kit, and mentorship from a platinum producer.">
+  <meta name="description" content="One payment, lifetime access. The pipeline wired straight to artist phones every night, a 70GB+ archive, every kit, and platinum mentorship.">
   <meta name="theme-color" content="#0d3347">
   <title>The Lifetime Supply by ELAYE</title>
   <link rel="canonical" href="https://lifetime.elaye.store/">
@@ -19,8 +19,10 @@
   <meta name="twitter:description" content="One payment, lifetime access. WE WANT HITS NOT BEATS.">
   <meta name="twitter:image" content="https://lifetime.elaye.store/elaye-banner.jpg">
 
-  <!-- Favicon (self-contained, no asset needed) -->
+  <!-- Favicon: inline SVG first, then real files for /favicon.ico and the iOS touch icon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d3347'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23f5c242' font-family='Arial,sans-serif' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Fonts are self-hosted: the Google Fonts CDN put two extra origin
        handshakes on the critical path and was holding first paint. -->
@@ -32,6 +34,25 @@
   <!-- The hero poster is the LCP element: the clip attaches after load. -->
   <link rel="preload" as="image" href="media/clip-folder-pushin-poster.webp" fetchpriority="high">
   <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <!-- price lives here too: update with banner/counter/pricing/final CTA when the ladder steps -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "The Lifetime Supply",
+    "brand": { "@type": "Brand", "name": "ELAYE" },
+    "description": "One payment, lifetime access. The live placement pipeline, 70GB+ sample archive, every kit, and mentorship from a platinum producer.",
+    "image": "https://lifetime.elaye.store/elaye-banner.jpg",
+    "url": "https://lifetime.elaye.store/",
+    "offers": {
+      "@type": "Offer",
+      "price": "599.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://lifetime.elaye.store/"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -46,6 +67,8 @@
       <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="sale-bar-cta">GET ACCESS</a>
     </div>
   </div>
+
+  <main>
 
   <!-- HERO -->
   <section class="hero" id="hero">
@@ -64,7 +87,7 @@
       <p class="hero-sub reveal">One payment. Lifetime access to the only pipeline wired straight to artist phones, every night.</p>
       <p class="hero-stat reveal">100+ ACTIVE BRIEFS, UPDATED EVERY DAY</p>
       <div class="hero-quote reveal">
-        <p class="hero-quote-text">bro idk how u f***ing did it but it really costs 500$ fr</p>
+        <p class="hero-quote-text">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable</p>
         <p class="hero-quote-attr">Lifetime member</p>
       </div>
       <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold reveal">GET LIFETIME ACCESS</a>
@@ -193,7 +216,7 @@
           </details>
         </div>
         <div class="pipeline-hero-frame">
-          <video data-lazy-video muted loop playsinline preload="none" data-poster="pipeline-poster.jpg">
+          <video data-lazy-video muted loop playsinline preload="none" poster="pipeline-poster.jpg">
             <source src="outreach-pipeline.mp4" type="video/mp4">
           </video>
         </div>
@@ -507,7 +530,7 @@
           <p class="body-copy reveal">You're in from day one. Every submission gets a personal listen, and your name goes up when the wins land. One payment. Yours forever.</p>
           <div class="pricing-cta reveal">
             <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold btn-lg">GET LIFETIME ACCESS</a>
-            <p class="pricing-reassure">Want to see inside first? DM me "IN" on Instagram @elxyee.</p>
+            <p class="pricing-reassure">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
           </div>
         </div>
         <div class="media-mat pricing-photo reveal">
@@ -624,6 +647,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="site-footer">
     <div class="sec-bg" aria-hidden="true">
       <video class="sec-bg-media" data-lazy-video data-depth="0.08"
@@ -641,7 +666,7 @@
         FOUNDING WINDOW CLOSED
       </p>
       <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold btn-lg btn-pulse">GET LIFETIME ACCESS</a>
-      <p class="footer-dm">Want to see inside first? DM me "IN" on Instagram @elxyee.</p>
+      <p class="footer-dm">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
       <p class="footer-signoff">WE WANT HITS NOT BEATS. ALL IT TAKES IS ONE LISTEN.</p>
     </div>
     <!-- Envelope render backs this, but it stays under the buy button
@@ -654,7 +679,7 @@
         <p class="footer-capture">Not ready? <a href="https://elaye.store/newsletter" class="footer-capture-link">Locked In is free. Real lessons from a platinum producer, and first access to every drop.</a></p>
       </div>
     </div>
-    <span class="footer-credit">ELAYE &nbsp;·&nbsp; THE LIFETIME SUPPLY &nbsp;·&nbsp; @ELXYEE</span>
+    <span class="footer-credit">ELAYE &nbsp;·&nbsp; THE LIFETIME SUPPLY &nbsp;·&nbsp; <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@ELXYEE</a></span>
   </footer>
 
   <script defer src="lib/lenis.min.js"></script>

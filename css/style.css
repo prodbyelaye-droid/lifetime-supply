@@ -1331,6 +1331,13 @@ img:not(.sec-bg-media) { height: auto; }
   max-width: 52ch;
   margin: 6px auto 0;
 }
+/* Instagram handle links inside the two DM lines and the footer mark */
+.pricing-reassure a,
+.footer-dm a,
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
 .footer-signoff {
   font-family: var(--f-head);
   font-weight: 800;
