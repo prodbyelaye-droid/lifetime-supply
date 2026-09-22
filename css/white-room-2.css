@@ -87,7 +87,10 @@
   border-radius: 14px;
 }
 .w3-shot-wide { display: flex; justify-content: center; }
-.w3-shot-wide img { width: auto; max-width: 100%; max-height: 720px; }
+/* A definite width, not max-height alone: with width:auto an unloaded lazy
+   image measured 0x0, never intersected the viewport and never loaded on
+   desktop. 521 = 720 tall at the file's 869x1200 ratio. */
+.w3-shot-wide img { width: min(100%, 521px); height: auto; }
 
 /* ── white card ── */
 .w3-card {
@@ -517,11 +520,12 @@
   line-height: var(--lh-body);
   color: var(--umber-700);
 }
+/* blue-700, not blue-600: on bone-100 blue-600 measures 4.03:1, blue-700 4.71:1 (LAWS §4, body 4.5:1). */
 .w3-footer-capture a {
-  color: var(--blue-600);
+  color: var(--blue-700);
   text-decoration: none;
 }
-.w3-footer-capture a:hover { color: var(--blue-700); text-decoration: underline; text-underline-offset: 3px; }
+.w3-footer-capture a:hover { color: var(--ink-900); text-decoration: underline; text-underline-offset: 3px; }
 .w3-footer-meta {
   font-size: 13px;
   color: var(--umber-700);
@@ -586,7 +590,7 @@
   .w3-row-title { font-size: 18px; }
   .w3-row-copy, .w3-get-item-copy, .w3-a { font-size: 16px; }
 
-  .w3-shot-wide img { width: 100%; max-height: none; }
+  .w3-shot-wide img { width: 100%; }
   .w3-fit { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .w3-card { padding: 28px 24px; gap: 18px; }
   .w3-fit-list { gap: 16px; }

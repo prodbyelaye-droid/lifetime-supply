@@ -27,6 +27,35 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Metric-matched fallback so the swap from Helvetica Neue to Geist does not
+   reflow: Geist is 4.37% wider on average latin text and sits on a taller
+   ascent. Values computed from the two font files (fontTools), not guessed. */
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Helvetica Neue');
+  size-adjust: 104.37%;
+  ascent-override: 96.30%;
+  descent-override: 28.27%;
+  line-gap-override: 0%;
+}
+:root { --font: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; }
+
+/* ══ BASE (W4) ══════════════════════════════════════════════
+   css/style.css and css/glass.css are retired; this is the
+   only reset the page needs. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bone-50);
+  color: var(--ink-900);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { height: auto; max-width: 100%; }
+
 /* Sentence case from UPPERCASE source text (LAWS §1). */
 .sc { display: inline-block; text-transform: lowercase; }
 .sc::first-letter { text-transform: uppercase; }
@@ -478,3 +507,68 @@
 @media (prefers-reduced-motion: reduce) {
   .site-header, .pill, .nav-link { transition: none; }
 }
+
+
+/* ══ MOTION (W4) ════════════════════════════════════════════
+   One system. Sections carry .reveal and fade up 12px in 0.45s
+   on a strong ease-out, started early by the IntersectionObserver
+   in js/app.js (rootMargin 0 0 320px, so the transition has
+   finished by the time the element is on screen). The hero folder
+   gets the one entrance the page is allowed (rise 12px + fade,
+   0.6s). Nothing else moves. The hidden state only exists on
+   html.js, so with JS off the page is simply visible, and
+   prefers-reduced-motion removes every movement. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --reveal-duration: 0.45s;
+}
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--reveal-duration) var(--ease-out) var(--d, 0s),
+      transform var(--reveal-duration) var(--ease-out) var(--d, 0s);
+  }
+  html.js .reveal.visible { opacity: 1; transform: none; }
+
+  .hero-folder { animation: folder-rise 0.6s var(--ease-out) both; }
+  @keyframes folder-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero-folder { opacity: 1; transform: none; transition: none; animation: none; }
+  .pill, .w3-pill { transition: none; }
+  .pill:active, .w3-pill:active { transform: none; }
+}
+
+/* ══ PHONE TARGETS (W4) ═════════════════════════════════════
+   Inline text links keep their size but get a 44px hit area
+   through a transparent pseudo-element (LAWS §4: 44px targets). */
+.w3-price-dm a,
+.w3-footer-capture a {
+  position: relative;
+}
+.w3-price-dm a::before,
+.w3-footer-capture a::before {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
+}
+.w3-footer-link, .nav-link { min-width: 44px; justify-content: center; }
+
+/* ══ CONTRAST (W4) ══════════════════════════════════════════
+   Measured, not assumed: blue-600 (#2f7bb0) reads 4.32:1 on bone-50
+   and 4.03:1 on bone-100, under the 4.5:1 body law. blue-700
+   (#2a70a0) reads 5.05:1 and 4.71:1 there, so links sitting on a
+   bone ground take it; links inside white cards keep blue-600
+   (4.58:1). Hover goes to ink so the change is still visible. */
+.ghost-link { color: var(--blue-700); }
+.ghost-link:hover { color: var(--ink-900); }
+/* the footer newsletter link is fixed at its source in css/white-room-2.css */
