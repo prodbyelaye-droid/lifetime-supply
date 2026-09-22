@@ -24,21 +24,16 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Geist is self-hosted (css/white-room.css): the Google Fonts CDN put a
+       cross-origin CSS + font chain on the critical path and held LCP. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/geist-latin.woff2" crossorigin>
 
   <link rel="stylesheet" href="css/tokens.css">
 
-  <!-- Fonts are self-hosted: the Google Fonts CDN put two extra origin
-       handshakes on the critical path and was holding first paint. -->
-  <link rel="preload" as="font" type="font/woff2" href="fonts/montserrat-latin.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="fonts/barlow-400-latin.woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/glass.css">
-  <!-- The hero poster is the LCP element: the clip attaches after load. -->
-  <link rel="preload" as="image" href="media/clip-folder-pushin-poster.webp" fetchpriority="high">
+  <link rel="stylesheet" href="css/white-room.css">
   <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   <!-- price lives here too: update with banner/counter/pricing/final CTA when the ladder steps -->
   <script type="application/ld+json">
@@ -62,43 +57,36 @@
 </head>
 <body>
 
-  <!-- The room. One continuous sky behind every section. -->
-  <div class="sky" aria-hidden="true"></div>
-
-  <!-- FOUNDING WINDOW BANNER -->
-  <div id="saleBar" role="complementary" aria-label="Founding window closed">
-    <div class="sale-bar-inner">
-      <span class="sale-bar-label"><span class="sale-bar-prefix">FOUNDING WINDOW CLOSED </span><span class="sale-bar-sep">·</span> LIFETIME ACCESS <strong class="founding-price">$599</strong></span>
-      <span class="founding-bar-note">One payment. Yours forever.</span>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="sale-bar-cta">GET ACCESS</a>
-    </div>
-  </div>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <a href="#hero" class="wordmark">lifetime supply.</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#everything" class="nav-link">What's inside</a>
+      <a href="https://portal.elaye.store/login" class="nav-link">Log in</a>
+      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill">Get access</a>
+    </nav>
+  </header>
 
   <main>
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.10"
-             muted loop playsinline preload="none" poster="media/clip-folder-pushin-poster.webp">
-        <source data-src="media/clip-folder-pushin.webm" type="video/webm">
-        <source data-src="media/clip-folder-pushin.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-top reveal">
-      <span class="eyebrow">@ELXYEE &nbsp;·&nbsp; THE LIFETIME SUPPLY</span>
-    </div>
-    <div class="hero-bottom">
-      <h1 class="hero-heading reveal">WE WANT HITS<br>NOT BEATS</h1>
-      <p class="hero-sub reveal">One payment. Lifetime access to the only pipeline wired straight to artist phones, every night.</p>
-      <p class="hero-stat reveal">100+ ACTIVE BRIEFS, UPDATED EVERY DAY</p>
-      <div class="hero-quote reveal">
-        <p class="hero-quote-text">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable</p>
-        <p class="hero-quote-attr">Lifetime member</p>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">The Lifetime Supply · by ELAYE</p>
+        <h1 class="hero-title">WE WANT HITS<br>NOT BEATS</h1>
+        <p class="hero-lede">One payment. Lifetime access to the only pipeline wired straight to artist phones, every night.</p>
+        <div class="hero-cta">
+          <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill pill-lg"><span class="sc">GET LIFETIME ACCESS</span></a>
+          <a href="#everything" class="ghost-link">See what's inside ›</a>
+        </div>
+        <p class="hero-price">$599 · one payment · yours forever</p>
       </div>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold reveal">GET LIFETIME ACCESS</a>
+      <div class="hero-folder">
+        <div class="folder" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet folder-sheet-b"></span><span class="folder-front"></span></div>
+        <p class="folder-caption">LIFETIME SUPPLY</p>
+      </div>
     </div>
-    <div class="scroll-hint reveal"><div class="scroll-line"></div></div>
   </section>
 
   <!-- CREDITS STRIP -->
@@ -180,7 +168,7 @@
   </section>
 
   <!-- DELIVERABLES -->
-  <section class="section section-blue deliverables-section">
+  <section class="section section-blue deliverables-section" id="everything">
     <div class="sec-bg" aria-hidden="true">
       <video class="sec-bg-media" data-lazy-video data-depth="0.14"
              muted loop playsinline preload="none" data-poster="media/clip-archive-poster.webp">

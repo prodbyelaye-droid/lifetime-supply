@@ -97,22 +97,10 @@ if (reduceMotion) {
   });
 }
 
-/* ─── Hero entrance (simple fade-up) */
-window.addEventListener('DOMContentLoaded', () => {
-  const heroReveals = document.querySelectorAll('.hero .reveal');
-  if (reduceMotion) {
-    heroReveals.forEach(el => { el.classList.add('visible'); io.unobserve(el); });
-    return;
-  }
-  gsap.to(heroReveals, {
-    opacity: 1,
-    y: 0,
-    duration: 0.45,
-    stagger: 0.14,
-    ease: 'power3.out',
-    delay: 0.2,
-    onStart() {
-      heroReveals.forEach(el => io.unobserve(el));
-    }
-  });
-});
+/* ─── Header: bone-50 at 96% plus a hairline once scrolled ── */
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+  const setHeader = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', setHeader, { passive: true });
+  setHeader();
+}

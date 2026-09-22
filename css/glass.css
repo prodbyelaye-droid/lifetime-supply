@@ -102,32 +102,13 @@ body {
   color: var(--ink);
 }
 
-.sky {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 120% 80% at 50% 8%,  rgba(255,255,255,0.42) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 60% at 50% 100%, var(--sky-pool) 0%, transparent 62%),
-    linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-lo) 22%, var(--sky-mid) 52%, var(--sky-hi) 78%, var(--sky-lo) 100%);
-}
-
-/* Soft studio floor-glow that tracks scroll: cheap depth, no repaint cost. */
-.sky::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 42% at 50% var(--glow-y, 60%), rgba(255,255,255,0.30) 0%, transparent 70%);
-  transition: none;
-}
 
 /* ══ SECTION DEPTH LAYERS ═══════════════════════════════
    A render sits behind the content, edges masked so it
    dissolves into the CSS sky instead of ending on a seam.
    Portrait 9:16 renders over landscape viewports is exactly
    why the mask exists. */
-.section, .hero, .receipts-section, .value-section { position: relative; }
+.section, .receipts-section, .value-section { position: relative; }
 
 .sec-bg {
   position: absolute;
@@ -179,8 +160,7 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 26%, rgba(0,0,0,0.5) 56%, transparent 78%);
           mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 26%, rgba(0,0,0,0.5) 56%, transparent 78%);
 }
-.section > .container,
-.hero > *:not(.sec-bg) { position: relative; z-index: 1; }
+.section > .container { position: relative; z-index: 1; }
 
 /* ══ SECTIONS GO TRANSPARENT ════════════════════════════
    The room shows through everything now. */
@@ -189,8 +169,7 @@ body {
 .section-blue,
 .value-section,
 .receipts-section,
-.archive-section,
-.hero { background: transparent; }
+.archive-section { background: transparent; }
 
 .section { padding: clamp(88px, 12vw, 168px) 0; }
 
@@ -509,7 +488,6 @@ body {
 .price-amount-now,
 .footer-price-now,
 .founding-price,
-.sale-bar-price strong { color: var(--gold); }
 
 .btn-gold {
   background: var(--gold);
@@ -518,44 +496,6 @@ body {
   border: 1px solid rgba(255,255,255,0.5);
 }
 .btn-gold:hover { box-shadow: 0 18px 48px rgba(245,194,66,0.55); }
-
-/* ══ HERO ═══════════════════════════════════════════════ */
-.hero {
-  min-height: 100svh;
-  overflow: hidden;
-}
-/* The old bordered video card is gone: the folder clip is the room now. */
-.hero .video-frame { display: none; }
-
-/* The folder is the hero's subject, so it runs near its native size
-   (1148px tall) rather than shrinking to the viewport. The glass
-   panels then frost over it, which is the whole effect. Kept at or
-   under 1.0 scale on common viewports so it never softens. */
-.hero .sec-bg-media { height: max(126%, 700px); }
-.hero .sec-bg-media {
-  -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 34%, rgba(0,0,0,0.62) 62%, transparent 82%);
-          mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 34%, rgba(0,0,0,0.62) 62%, transparent 82%);
-}
-
-.hero-bottom { gap: 22px; }
-.hero-heading { line-height: 0.92; }
-.hero-sub { max-width: 34ch; }
-
-.hero-stat {
-  background: var(--glass-soft);
-  border: 1px solid var(--glass-line);
-  color: var(--ink);
-  box-shadow: 0 8px 24px rgba(9,42,62,0.12);
-}
-@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-  .hero-stat {
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-  }
-}
-
-.hero-quote { padding: clamp(16px, 2vw, 22px) clamp(18px, 2.2vw, 26px); }
-.hero-quote-text { color: var(--ink); }
 
 /* ══ CREDITS STRIP ══════════════════════════════════════ */
 /* Dark variant of the glass formula. It carried white credentials
@@ -586,17 +526,6 @@ body {
    ink surface (matching the gold-on-ink pattern the money
    blocks already use) regardless of what's underneath;
    verified against the brightest scroll position measured. */
-#saleBar {
-  background: rgba(11,45,64,0.94);
-  border-bottom: 1px solid var(--glass-edge);
-}
-@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-  #saleBar {
-    background: rgba(11,45,64,0.90);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-  }
-}
 
 /* ══ MARQUEE ════════════════════════════════════════════
    Pale-on-pale measured 1.29:1. Ink at low alpha keeps it a
@@ -792,7 +721,6 @@ a:focus-visible, summary:focus-visible, button:focus-visible {
    Everything parallax/scroll-driven resolves to a static frame. */
 @media (prefers-reduced-motion: reduce) {
   .sec-bg-media { transform: translate(-50%, -50%) !important; }
-  .sky::after { display: none; }
   .marquee-track { transform: none !important; }
   * { scroll-behavior: auto !important; }
 }

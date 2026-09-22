@@ -35,9 +35,7 @@ body {
   color: var(--ink);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  padding-top: 44px;
 }
-body.sale-ended { padding-top: 0; }
 a  { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
@@ -165,137 +163,6 @@ img:not(.sec-bg-media) { height: auto; }
   50%       { box-shadow: 0 14px 44px rgba(245,194,66,0.62); }
 }
 .btn-pulse { animation: pulse 2.5s ease-in-out infinite; }
-
-/* ══ HERO ═══════════════════════════════ */
-.hero {
-  position: relative;
-  min-height: 100svh;
-  background: var(--blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(60px,8vh,100px) var(--gutter) clamp(60px,8vh,80px);
-  text-align: center;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.10) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-top    { margin-bottom: 28px; }
-.eyebrow {
-  font-family: var(--f-body);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--w80);
-}
-.video-frame {
-  width: clamp(260px, 46vw, 580px);
-  aspect-ratio: 16/9;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 32px;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.14);
-}
-.video-frame video { width:100%; height:100%; object-fit:cover; display:block; }
-.hero-bottom { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.hero-heading {
-  font-family: var(--f-head);
-  font-weight: 800;
-  font-size: clamp(3rem, 8vw, 9rem);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  color: var(--white);
-}
-.hero-sub {
-  font-family: var(--f-body);
-  /* >=18.66px at every viewport is deliberate, not cosmetic: at
-     weight 700 that is WCAG's large-text threshold. Below it this
-     line owed the full 4.5:1 and measured 2.97:1 against its own
-     scrim, and no shadow buys 4.5:1 on this sky without reading as
-     a dark smear (tested: a much heavier scrim only reached 3.34).
-     At large-text size it owes 3.0 and clears it, in the same band
-     as the mega headings above it (3.28-3.53). */
-  font-size: clamp(1.17rem, 1.6vw, 1.3rem);
-  font-weight: 700;
-  line-height: 1.65;
-  color: var(--w80);
-  max-width: 440px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.hero-stat {
-  font-family: var(--f-body);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--w80);
-  border: 1px solid var(--w18);
-  border-radius: 50px;
-  padding: 8px 20px;
-}
-.hero-quote {
-  background: var(--ink);
-  border: 1px solid rgba(245,194,66,0.25);
-  border-radius: var(--radius);
-  padding: clamp(14px, 2vw, 20px) clamp(18px, 3vw, 24px);
-  max-width: 420px;
-  text-align: left;
-}
-.hero-quote-text {
-  font-family: var(--f-body);
-  font-weight: 700;
-  font-size: clamp(0.8rem, 1.1vw, 0.92rem);
-  line-height: 1.5;
-  color: var(--white);
-}
-.hero-quote-text::before {
-  content: '\201C';
-  display: block;
-  font-family: var(--f-head);
-  font-weight: 800;
-  font-size: 1.7rem;
-  line-height: 1;
-  color: var(--gold);
-  margin-bottom: 2px;
-}
-.hero-quote-attr {
-  font-family: var(--f-body);
-  font-size: 0.56rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 8px;
-}
-.scroll-hint {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.scroll-line {
-  width: 1px;
-  height: 30px;
-  background: var(--w55);
-  transform-origin: top;
-  animation: drop 2s ease-in-out infinite;
-}
-@keyframes drop {
-  0%   { transform: scaleY(0); opacity: 0; }
-  30%  { opacity: 1; }
-  100% { transform: scaleY(1); opacity: 0; }
-}
 
 /* ══ CREDITS STRIP ══════════════════════ */
 .credits-strip {
@@ -1053,9 +920,6 @@ img:not(.sec-bg-media) { height: auto; }
 /* ══ MOBILE ═════════════════════════════ */
 @media (max-width: 768px) {
   :root { --gutter: 18px; }
-  .hero-heading             { font-size: clamp(2.15rem,10.5vw,2.7rem); }
-  .hero-sub                 { font-size: 1.17rem; }   /* stays >=18.66px: see .hero-sub note */
-  .hero-stat                { font-size: 0.62rem; padding: 6px 14px; }
   .video-frame              { width: 92vw; }
   .cred-layout-2            { grid-template-columns: 1fr; gap: 24px; }
   .problem-split            { grid-template-columns: 1fr; }
@@ -1096,7 +960,6 @@ img:not(.sec-bg-media) { height: auto; }
   .price-amount-was { font-size: clamp(1.8rem, 8vw, 3rem); }
   .footer-price-now { font-size: clamp(4.5rem, 16vw, 7rem); }
   .footer-price-was { font-size: clamp(1.6rem, 6vw, 2.8rem); }
-  .sale-bar-timer   { display: none; }
   /* Value breakdown */
   .value-cards      { grid-template-columns: 1fr; }
   .value-reveal     { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -1112,93 +975,6 @@ img:not(.sec-bg-media) { height: auto; }
 
 /* ══ SCROLL ANCHORS ═════════════════════ */
 #pricing { scroll-margin-top: 52px; }
-
-/* ══ SALE BAR ═══════════════════════════ */
-#saleBar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 999;
-  background: var(--ink);
-  border-bottom: 1px solid rgba(245,194,66,0.20);
-  height: 44px;
-}
-.sale-bar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 2.5vw, 28px);
-  height: 100%;
-  padding: 0 var(--gutter);
-  flex-wrap: nowrap;
-}
-.sale-bar-label {
-  font-family: var(--f-body);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--w80);
-  white-space: nowrap;
-}
-.sale-bar-sep { color: var(--w55); }
-@media (max-width: 560px) {
-  .sale-bar-prefix,
-  .sale-bar-sep { display: none; }
-}
-.sale-bar-price {
-  font-family: var(--f-head);
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  white-space: nowrap;
-}
-.sale-bar-price s    { color: var(--w55); font-size: 0.88rem; }
-.sale-bar-price strong { color: var(--gold); }
-.sale-bar-arrow      { color: var(--w55); }
-.sale-bar-timer {
-  font-family: var(--f-body);
-  font-size: 0.60rem;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--w55);
-  white-space: nowrap;
-}
-.sale-bar-timer .sale-countdown { color: var(--gold); font-weight: 800; }
-.sale-bar-cta {
-  font-family: var(--f-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: var(--ink);
-  padding: 9px 18px;
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 4px;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: opacity 0.18s;
-}
-.sale-bar-cta:hover { opacity: 0.82; }
-.sale-bar-cta:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
-
-/* Founding window banner additions */
-.founding-price { color: var(--gold); font-weight: 800; font-size: 1.15rem; }
-.founding-bar-note {
-  font-family: var(--f-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--w55);
-  white-space: nowrap;
-}
-@media (max-width: 980px) { .founding-bar-note { display: none; } }
 
 /* ══ SALE PRICE DISPLAY ═════════════════ */
 .price-sale-block {
@@ -1373,7 +1149,6 @@ img:not(.sec-bg-media) { height: auto; }
 ════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   .reveal      { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .scroll-line { animation: none !important; opacity: 0.5; }
   .btn-pulse   { animation: none !important; }
   html         { scroll-behavior: auto !important; }
 }

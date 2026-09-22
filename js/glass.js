@@ -91,17 +91,6 @@
     lazyVideos.forEach(loadVideo);
   }
 
-  /* The hero clip waits for load so it never competes with LCP.
-     Until then its poster is what the visitor sees. */
-  var hero = document.querySelector('.hero video[data-lazy-video]');
-  if (hero && !reduce) {
-    window.addEventListener('load', function () {
-      (window.requestIdleCallback || function (f) { setTimeout(f, 240); })(function () {
-        loadVideo(hero);
-      });
-    });
-  }
-
   if (reduce || !window.gsap || !window.ScrollTrigger) return;
 
   /* ─── Parallax on the rendered layers ─────────────
@@ -145,20 +134,4 @@
     );
   });
 
-  /* ─── Floor glow tracks scroll ────────────────────
-     One custom property write per frame, rAF-throttled. */
-  var sky = document.querySelector('.sky');
-  if (sky) {
-    var ticking = false;
-    var setGlow = function () {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      var p = max > 0 ? window.scrollY / max : 0;
-      sky.style.setProperty('--glow-y', (24 + p * 52).toFixed(1) + '%');
-      ticking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(setGlow); }
-    }, { passive: true });
-    setGlow();
-  }
 })();
