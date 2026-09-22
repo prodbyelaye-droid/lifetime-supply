@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/glass.css">
   <link rel="stylesheet" href="css/white-room.css">
+  <link rel="stylesheet" href="css/white-room-sections.css">
   <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   <!-- price lives here too: update with banner/counter/pricing/final CTA when the ladder steps -->
   <script type="application/ld+json">
@@ -89,221 +90,134 @@
     </div>
   </section>
 
-  <!-- CREDITS STRIP -->
-  <div class="credits-strip reveal" role="complementary" aria-label="Credentials">
-    <p class="credits-strip-text">CERTIFIED MULTI PLATINUM + #1 BILLBOARD PRODUCER &nbsp;·&nbsp; SIGNED TO SONY ATV X BEATSTARS &nbsp;·&nbsp; 150,000,000+ STREAMS</p>
-  </div>
+  <!-- CREDENTIALS STRIP -->
+  <section class="wr wr-creds reveal" aria-label="Credentials">
+    <div class="wr-in">
+      <p class="wr-creds-row">
+        <span class="wr-creds-item">CERTIFIED MULTI PLATINUM + #1 BILLBOARD PRODUCER</span>
+        <span class="wr-dot" aria-hidden="true">·</span>
+        <span class="wr-creds-item">SIGNED TO SONY ATV X BEATSTARS</span>
+        <span class="wr-dot" aria-hidden="true">·</span>
+        <span class="wr-creds-item">150,000,000+ STREAMS</span>
+      </p>
+    </div>
+  </section>
 
-  <!-- STATS -->
-  <section class="section section-blue stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat reveal">
-          <span class="stat-num" data-value="70" data-suffix="GB+">0</span>
-          <span class="stat-label">SAMPLE ARCHIVE</span>
+  <!-- STATS: the real number sits in the HTML so the resting state is right with JS off;
+       app.js counts up from 0 to data-value on scroll. -->
+  <section class="wr wr-stats">
+    <div class="wr-in">
+      <div class="wr-stats-grid">
+        <div class="wr-stat reveal">
+          <span class="wr-stat-num" data-value="70" data-suffix="GB+">70GB+</span>
+          <span class="wr-stat-label">SAMPLE ARCHIVE</span>
         </div>
-        <div class="stat reveal" style="--d:.05s">
-          <span class="stat-num" data-value="100" data-suffix="+">0</span>
-          <span class="stat-label">ACTIVE DAILY BRIEFS</span>
+        <div class="wr-stat reveal" style="--d:.05s">
+          <span class="wr-stat-num" data-value="100" data-suffix="+">100+</span>
+          <span class="wr-stat-label">ACTIVE DAILY BRIEFS</span>
         </div>
-        <div class="stat reveal" style="--d:.11s">
-          <span class="stat-num" data-value="2100" data-suffix="+">0</span>
-          <span class="stat-label">KIT FILES</span>
+        <div class="wr-stat reveal" style="--d:.11s">
+          <span class="wr-stat-num" data-value="2100" data-suffix="+">2,100+</span>
+          <span class="wr-stat-label">KIT FILES</span>
         </div>
-        <div class="stat reveal" style="--d:.16s">
-          <span class="stat-num" data-value="599" data-prefix="$">0</span>
-          <span class="stat-label">ONE PAYMENT. FOREVER.</span>
-        </div>
-      </div>
-      <div class="marquee-wrap">
-        <div class="marquee-track" id="marqueeTrack">
-          <span class="marquee-text">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
-          <span class="marquee-text" aria-hidden="true">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
-          <span class="marquee-text" aria-hidden="true">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
+        <div class="wr-stat reveal" style="--d:.16s">
+          <span class="wr-stat-num" data-value="599" data-prefix="$">$599</span>
+          <span class="wr-stat-label">ONE PAYMENT. FOREVER.</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CREDIBILITY -->
-  <section class="section section-a" id="cred">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.12" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="cred-layout-2">
-        <div class="col-text reveal">
-          <h2 class="heading">YOU'VE SEEN<br>THE CREDITS.</h2>
-        </div>
-        <div class="col-body reveal">
-          <p class="body-copy">You came from my page, so I'll keep it short. Platinum records, built by myself, a #1 on Billboard, cuts with the biggest names in the industry, sync placements with the biggest companies in the world, records charting internationally. The point isn't the list. Every one of those came from the same rooms and the same pipeline you plug into the second you're in. All self-taught from a bedroom in Australia, so this works from anywhere, with or without a name.</p>
-          <div class="badge-row">
-            <span class="badge">MULTI PLATINUM CERTIFIED</span>
-            <span class="badge">NO. 1 BILLBOARD</span>
-            <span class="badge">SONY ATV</span>
-            <span class="badge">BEATSTARS SIGNED</span>
-          </div>
+  <section class="wr wr-credits" id="cred">
+    <div class="wr-in wr-credits-grid">
+      <div class="reveal">
+        <h2 class="wr-h2 wr-h2-56">YOU'VE SEEN<br>THE CREDITS.</h2>
+      </div>
+      <div class="wr-credits-body reveal">
+        <p class="wr-p19">You came from my page, so I'll keep it short. Platinum records, built by myself, a #1 on Billboard, cuts with the biggest names in the industry, sync placements with the biggest companies in the world, records charting internationally. The point isn't the list. Every one of those came from the same rooms and the same pipeline you plug into the second you're in. All self-taught from a bedroom in Australia, so this works from anywhere, with or without a name.</p>
+        <div class="wr-chips">
+          <span class="wr-chip">MULTI PLATINUM CERTIFIED</span>
+          <span class="wr-chip">NO. 1 BILLBOARD</span>
+          <span class="wr-chip">SONY ATV</span>
+          <span class="wr-chip">BEATSTARS SIGNED</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section class="section section-b problem-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.16" src="media/still-folder-single.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="problem-split">
-        <div class="reveal">
-          <h2 class="heading-xl">YOUR BEATS<br>AREN'T THE<br>PROBLEM.<br><span class="text-accent">ACCESS IS.</span></h2>
-          <p class="body-copy body-wide">Most producers have no way to get their music in front of artists. They flip the same recycled packs and wait. No pipeline, no briefs, no relationships. Just uploads to platforms that never answer. The producers landing placements have one thing the rest don't: a direct line to where the decisions get made. That line is the whole game, and it's what you're stepping into.</p>
-          <p class="body-copy body-wide">This isn't a promise or a waitlist. The portal's built and live. The night you join you get your login and you're on that night's briefs.</p>
-        </div>
-        <div class="reveal problem-photo-wrap">
-          <img src="pic-1.webp" width="1200" height="1180" alt="Two people looking out over a hillside city view from a high-rise window" class="problem-photo" loading="lazy" decoding="async">
-        </div>
+  <!-- PROBLEM. Line pieces stay separate nodes (the comp moves the breaks; the words do not move). -->
+  <section class="wr wr-problem">
+    <div class="wr-in wr-problem-in reveal">
+      <h2 class="wr-h2 wr-h2-64"><span>YOUR BEATS</span> <span>AREN'T THE</span> <span>PROBLEM.</span><br>ACCESS IS.</h2>
+      <div class="wr-problem-copy">
+        <p class="wr-p19">Most producers have no way to get their music in front of artists. They flip the same recycled packs and wait. No pipeline, no briefs, no relationships. Just uploads to platforms that never answer. The producers landing placements have one thing the rest don't: a direct line to where the decisions get made. That line is the whole game, and it's what you're stepping into.</p>
+        <p class="wr-p19 wr-p-ink">This isn't a promise or a waitlist. The portal's built and live. The night you join you get your login and you're on that night's briefs.</p>
       </div>
     </div>
   </section>
 
-  <!-- DELIVERABLES -->
-  <section class="section section-blue deliverables-section" id="everything">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.14"
-             muted loop playsinline preload="none" data-poster="media/clip-archive-poster.webp">
-        <source data-src="media/clip-archive.webm" type="video/webm">
-        <source data-src="media/clip-archive.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="container">
-      <div class="deliverables-layout">
-        <div class="deliverables-text reveal">
-          <span class="label deliverables-label">WHAT YOU GET ACCESS TO</span>
-          <h2 class="heading" style="color:var(--white)">EVERYTHING.<br>DAY ONE.</h2>
-        </div>
-        <div class="media-mat deliverables-img reveal">
-          <img src="lifetime-deliverables.webp" alt="Lifetime Supply folder breakdown"
-               width="1074" height="1244" loading="lazy" decoding="async">
-        </div>
+  <!-- EVERYTHING. DAY ONE. -->
+  <section class="wr wr-every" id="everything">
+    <div class="wr-in">
+      <div class="wr-every-head reveal">
+        <span class="wr-eyebrow">WHAT YOU GET ACCESS TO</span>
+        <h2 class="wr-h2 wr-h2-64">EVERYTHING.<br>DAY ONE.</h2>
       </div>
-    </div>
-  </section>
 
-  <!-- PIPELINE -->
-  <section class="section section-a feature-section">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.16"
-             muted loop playsinline preload="none" data-poster="media/clip-panels-poster.webp">
-        <source data-src="media/clip-panels.webm" type="video/webm">
-        <source data-src="media/clip-panels.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="container">
-      <div class="pipeline-top reveal">
-        <div class="pipeline-text">
-          <h2 class="heading">LIVE PLACEMENT<br>PIPELINE</h2>
-          <p class="body-copy">100+ active artist briefs, updated every single day, filterable by status and genre. 5 to 10 packs go direct to artist phone numbers every night. Not email, not a submission form. Their phone. You're on the same briefs I am, and the ones that fit ride that night's send.</p>
-          <details class="expander">
+      <div class="wr-cards">
+        <article class="wr-card reveal">
+          <div class="folder is-open" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>LIVE PLACEMENT</span> <span>PIPELINE</span></h3>
+          <p class="wr-card-p">100+ active artist briefs, updated every single day, filterable by status and genre. 5 to 10 packs go direct to artist phone numbers every night. Not email, not a submission form. Their phone. You're on the same briefs I am, and the ones that fit ride that night's send.</p>
+          <details class="wr-expander">
             <summary>See how the status system works</summary>
-            <p class="expander-body">Urgent: closing this week, send now. Hot: packs actively going, high chance of landing. Warm: early conversations. Cold: on the radar for later. Each brief tells you what the artist needs, reference tracks to match, BPM and key where it exists.</p>
+            <p class="wr-expander-body">Urgent: closing this week, send now. Hot: packs actively going, high chance of landing. Warm: early conversations. Cold: on the radar for later. Each brief tells you what the artist needs, reference tracks to match, BPM and key where it exists.</p>
           </details>
-        </div>
-        <div class="pipeline-hero-frame">
-          <video data-lazy-video muted loop playsinline preload="none" poster="pipeline-poster.jpg">
-            <source src="outreach-pipeline.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="pipeline-shots reveal">
-        <img src="placements-landed.webp" width="1170" height="1470"   alt="Placement landed" loading="lazy" decoding="async">
-        <img src="placements-landed-2.webp" width="1170" height="1778" alt="Yung Bleu placement" loading="lazy" decoding="async">
-        <img src="pic-4.webp" width="1170" height="1151"               alt="Two producers posing together on a couch" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
+        </article>
 
-  <!-- ARCHIVE -->
-  <section class="section archive-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.18" src="media/still-archive.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="archive-layout reveal">
-        <div class="media-mat archive-app-img">
-          <img src="images.webp" alt="Phone screen showing the Untitled app with a hip hop sample project open" width="516" height="387" loading="lazy" decoding="async">
-        </div>
-        <div class="feature-content">
-          <h2 class="heading">70GB+ SAMPLE<br>ARCHIVE</h2>
-          <p class="body-copy">3,000+ stems and samples through the Untitled app, not a dead download link. Get notified the second new sounds land, then drag, drop and export straight into your session. New sounds daily means first mover advantage on every fresh brief.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.04s">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>70GB+ SAMPLE</span> <span>ARCHIVE</span></h3>
+          <p class="wr-card-p">3,000+ stems and samples through the Untitled app, not a dead download link. Get notified the second new sounds land, then drag, drop and export straight into your session. New sounds daily means first mover advantage on every fresh brief.</p>
+        </article>
 
-  <!-- KITS -->
-  <section class="section section-a feature-section">
-    <div class="container">
-      <div class="kits-layout reveal">
-        <div class="feature-content">
-          <h2 class="heading">EVERY KIT.<br>VAULTED KITS.<br>A NEW ONE MONTHLY.</h2>
-          <p class="body-copy">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy, 2,100+ files all analog-recorded and royalty free, plus vaulted kits pulled from sale and every kit I make from here on. Then a members-only kit every month, 30 to 50 curated files, never public.</p>
-        </div>
-        <div class="kit-reviews-col">
-          <img src="kit-reviews.webp" width="675" height="1200" alt="Screenshots of DM messages from producers praising the sample kits" loading="lazy" decoding="async" class="kit-reviews-img">
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.08s">
+          <div class="folder has-new" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>EVERY KIT.</span> <span>VAULTED KITS.</span> <span>A NEW ONE MONTHLY.</span></h3>
+          <p class="wr-card-p">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy, 2,100+ files all analog-recorded and royalty free, plus vaulted kits pulled from sale and every kit I make from here on. Then a members-only kit every month, 30 to 50 curated files, never public.</p>
+        </article>
 
-  <!-- MENTORSHIP -->
-  <section class="section section-b feature-section">
-    <div class="container">
-      <div class="feature-content reveal" style="max-width:640px">
-        <h2 class="heading">MENTORSHIP:<br>THE ACCELERATOR</h2>
-        <p class="body-copy">40GB+ of video breakdowns, plus 34 written guides, around 200 pages on top of the videos. Placements, networking, sales, and the business side nobody teaches. The exact system that took me from a bedroom to platinum.</p>
-        <details class="expander">
-          <summary>What the guide covers</summary>
-          <p class="expander-body">Building a portfolio that works for itself, outreach that doesn't read as spam, collaborating so your sends multiply through other networks, targeting emerging artists in the 1K to 100K range, going global, and the business side: contracts, publishing, royalties, PROs, negotiating. Plus 40GB+ of accelerator and mentorship videos.</p>
-        </details>
-      </div>
-      <div class="mentorship-reviews reveal">
-        <img src="lifetime-review-pic-mentorship.webp" width="945" height="847"   alt="Screenshot of a DM crediting the accelerator with changing their mindset" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-2.webp" width="1170" height="1152" alt="Screenshot of a DM thanking ELAYE for the mentorship content" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-3.webp" width="1170" height="696" alt="Screenshot of a DM saying the accelerator changed how they think about music" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-4.webp" width="897" height="572" alt="Screenshot of a DM celebrating a win after the mentorship" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>MENTORSHIP:</span> <span>THE ACCELERATOR</span></h3>
+          <p class="wr-card-p">40GB+ of video breakdowns, plus 34 written guides, around 200 pages on top of the videos. Placements, networking, sales, and the business side nobody teaches. The exact system that took me from a bedroom to platinum.</p>
+          <details class="wr-expander">
+            <summary>What the guide covers</summary>
+            <p class="wr-expander-body">Building a portfolio that works for itself, outreach that doesn't read as spam, collaborating so your sends multiply through other networks, targeting emerging artists in the 1K to 100K range, going global, and the business side: contracts, publishing, royalties, PROs, negotiating. Plus 40GB+ of accelerator and mentorship videos.</p>
+          </details>
+        </article>
 
-  <!-- SUBMISSIONS -->
-  <section class="section section-a feature-section">
-    <div class="container">
-      <div class="feature-with-photo">
-        <div class="feature-content reveal">
-          <h2 class="heading">SUBMISSION SYSTEM<br>WITH STATUS TRACKING</h2>
-          <p class="body-copy">Submit your beats and watch the status move: New, In Review, Sent to Artist, Placed. I listen to everything personally and DM you the second it moves. You always know exactly where your music sits.</p>
-        </div>
-        <div class="feature-aside reveal">
-          <img src="pic-3.webp" width="1200" height="1167" alt="Two producers posing for a photo on a city street at night" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.04s">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>SUBMISSION SYSTEM</span> <span>WITH STATUS TRACKING</span></h3>
+          <p class="wr-card-p">Submit your beats and watch the status move: New, In Review, Sent to Artist, Placed. I listen to everything personally and DM you the second it moves. You always know exactly where your music sits.</p>
+        </article>
 
-  <!-- DIRECT LINE -->
-  <section class="section section-b feature-section">
-    <div class="container">
-      <div class="feature-with-photo feature-with-photo-flip">
-        <div class="feature-aside reveal">
-          <img src="pic-2.webp" width="675" height="1200" alt="Studio session with producers working at a mixing desk" loading="lazy" decoding="async">
-        </div>
-        <div class="feature-content reveal">
-          <h2 class="heading">DIRECT LINE.<br>ALWAYS.</h2>
-          <p class="body-copy">A direct line to me whenever you need it. A brief, a placement, mixing notes, anything, sent straight to me and reviewed personally. This is the access people don't believe until they're inside.</p>
-          <p class="body-copy">It all lives in one members portal. One login, everything in it, updating forever.</p>
-        </div>
+        <article class="wr-card reveal" style="--d:.08s">
+          <div class="folder has-lock" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>DIRECT LINE.</span> <span>ALWAYS.</span></h3>
+          <p class="wr-card-p">A direct line to me whenever you need it. A brief, a placement, mixing notes, anything, sent straight to me and reviewed personally. This is the access people don't believe until they're inside.</p>
+        </article>
       </div>
+
+      <div class="wr-shots reveal">
+        <div class="wr-shot"><img src="placements-landed.webp" width="1170" height="1470" alt="Placement landed" loading="lazy" decoding="async"></div>
+        <div class="wr-shot"><img src="placements-landed-2.webp" width="1170" height="1778" alt="Yung Bleu placement" loading="lazy" decoding="async"></div>
+        <div class="wr-shot"><img src="images.webp" width="516" height="387" alt="Phone screen showing the Untitled app with a hip hop sample project open" loading="lazy" decoding="async"></div>
+      </div>
+
+      <p class="wr-close reveal">It all lives in one members portal. One login, everything in it, updating forever.</p>
     </div>
   </section>
 

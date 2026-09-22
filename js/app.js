@@ -45,7 +45,7 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 /* ─── Stat counters ────────────────── */
-document.querySelectorAll('.stat-num').forEach(el => {
+document.querySelectorAll('.wr-stat-num').forEach(el => {
   const target = parseFloat(el.dataset.value);
   const suffix = el.dataset.suffix || '';
   const prefix = el.dataset.prefix || '';
