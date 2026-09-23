@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portal login</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#faf8f3}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="position:relative;width:1440px;height:900px;overflow:hidden;background:radial-gradient(40% 26% at 76% 82%, rgba(74,169,199,0.16) 0%, rgba(74,169,199,0) 70%), #faf8f3;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;color:#131210;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;box-sizing:border-box;">
+<div style="position:absolute;left:0;top:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;box-sizing:border-box;"><a href="#" style="font-weight:700;font-size:19px;letter-spacing:-0.02em;color:#131210;text-decoration:none;white-space:nowrap;">lifetime supply.</a><a href="#" style="font-weight:500;font-size:14px;color:#5f594d;text-decoration:none;white-space:nowrap;">not a member? hi@elaye.store</a></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><div style="position:relative;width:312.00px;height:257.40px;flex:none;"><div style="position:absolute;left:35.88px;top:224.64px;width:240.24px;height:32.76px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(11,45,64,0.31) 0%, rgba(11,45,64,0) 66%);"></div><div style="position:absolute;left:31.20px;top:65.52px;width:249.60px;height:160.68px;border-radius:0 17.16px 17.16px 17.16px;background:linear-gradient(180deg,#3b8cc0 0%,#2a70a0 100%);box-shadow:0 7.80px 18.72px rgba(11,45,64,0.14);box-sizing:border-box;"></div><div style="position:absolute;left:31.20px;top:43.68px;width:117.00px;height:26.52px;border-radius:12.48px 12.48px 0 0;background:#3b8cc0;display:flex;align-items:center;padding:0 0 4.68px 14.04px;box-sizing:border-box;"></div><div style="position:absolute;left:148.20px;top:56.16px;width:10.92px;height:9.36px;background:radial-gradient(circle at 100% 0%, rgba(0,0,0,0) 9.36px, #3b8cc0 9.83px);"></div><div style="position:absolute;left:49.92px;top:74.88px;width:212.16px;height:35.88px;border-radius:7.80px 7.80px 0 0;background:linear-gradient(180deg,#ffffff 0%,#ffffff 40%,#d3e3ec 100%);box-sizing:border-box;"></div><div style="position:absolute;left:31.20px;top:95.16px;width:249.60px;height:131.04px;border-radius:15.60px;overflow:hidden;background:linear-gradient(180deg,#8dcdea 0%,#5fb3dc 55%,#45a1c3 100%);box-shadow:inset 0 1.17px 0 rgba(255,255,255,0.85), inset 0 -1.56px 0 rgba(0,0,0,0.10), 0 14.04px 23.40px rgba(11,45,64,0.27);box-sizing:border-box;"><div style="position:absolute;left:0;top:0;right:0;height:56.16px;background:linear-gradient(180deg,rgba(255,255,255,0.24) 0%,rgba(255,255,255,0) 100%);"></div></div><div style="position:absolute;left:209.04px;top:170.04px;width:71.76px;height:71.76px;border-radius:50%;background:#131210;border:2.34px solid #faf8f3;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6.24px 14.04px rgba(0,0,0,0.35);box-sizing:border-box;"><div style="width:17.16px;height:14.04px;border:3.12px solid #faf8f3;border-bottom:0;border-radius:8.58px 8.58px 0 0;box-sizing:border-box;"></div><div style="width:28.08px;height:20.28px;border-radius:4.68px;background:#faf8f3;margin-top:-0.78px;"></div></div></div><div style="font-weight:500;font-size:15px;color:#131210;">lifetime supply</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;">
+<h1 style="margin:0;font-weight:700;font-size:48px;line-height:0.98;letter-spacing:-0.035em;color:#131210;">members only.</h1>
+<p style="margin:0;font-size:19px;line-height:1.5;color:#5f594d;font-weight:400;">the invite came with your purchase.</p>
+</div>
+<form style="display:flex;align-items:center;gap:12px;margin:0;">
+<label style="display:flex;align-items:center;width:380px;height:52px;padding:0 20px;border-radius:14px;background:#ffffff;border:1px solid rgba(19,18,16,0.10);box-sizing:border-box;">
+<input type="email" placeholder="portal email" style="border:0;background:transparent;font-family:inherit;font-size:16px;color:#131210;width:100%;outline:none;padding:0;">
+</label>
+<button type="submit" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:0;background:{{accent}};color:#faf8f3;font-family:inherit;font-weight:600;font-size:16px;cursor:pointer;">Send my link</button>
+</form>
+<div style="font-size:13px;color:#5f594d;">no passwords. the link lands in your inbox.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#131210","options":["#131210","#2f7bb0","#2a70a0","#7a5f17"],"section":"Colour"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#131210', showTabLabel: this.props.showTabLabel ?? false };
+}
+}
+</script>
+</body>
+</html>

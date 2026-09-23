@@ -1,0 +1,14 @@
+:root{
+  --bone-50:#faf8f3; --bone-100:#f4f0e7; --bone-200:#ebe5d7; --white:#ffffff;
+  --ink-900:#131210; --ink-800:#1c1a16; --ink-700:#262320;
+  --umber-700:#5f594d; --umber-400:#a89f8e; --umber-300:#c2b9a7; --cream-100:#ebe4d6;
+  --brass-600:#7a5f17; --brass-400:#c8a24d; --brass-300:#d8b45f; --brass-100:#efe6cf; --gold-400:#f5c242;
+  --blue-500:#4aa9c7; --blue-600:#2f7bb0; --blue-700:#2a70a0; --blue-100:#dcedf5; --red-500:#dc2626;
+  --hairline:rgba(19,18,16,.10);
+  --radius-pill:999px; --radius-card:24px; --radius-input:14px;
+  --shadow-card:0 1px 2px rgba(19,18,16,.04),0 12px 32px rgba(19,18,16,.06);
+  --font:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  --text-12:12px; --text-14:14px; --text-15:15px; --text-17:17px; --text-21:21px; --text-26:26px;
+  --text-36:36px; --text-48:48px; --text-64:64px; --text-100:100px;
+  --track-display:-0.035em; --lh-display:0.98; --lh-body:1.5;
+}

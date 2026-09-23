@@ -1,0 +1,574 @@
+/* ══════════════════════════════════════════════════════════════
+   White Room · W1 components: folder, header, hero
+   Every size, gap, radius and colour is lifted from
+   design/white-room/C-Landing-Desktop-1.dc.html,
+   C-Landing-Phone-1.dc.html and folder-object.html, expressed
+   on the tokens in css/tokens.css. Loads after glass.css so it
+   wins the cascade while the old page is retired step by step.
+══════════════════════════════════════════════════════════════ */
+
+/* Geist, self-hosted (OFL). One variable latin file covers 400-700, so
+   the display face is one same-origin request instead of a cross-origin
+   CSS + font chain; the latin-ext file only loads for accented text. */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(../fonts/geist-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(../fonts/geist-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Metric-matched fallback so the swap from Helvetica Neue to Geist does not
+   reflow: Geist is 4.37% wider on average latin text and sits on a taller
+   ascent. Values computed from the two font files (fontTools), not guessed. */
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Helvetica Neue');
+  size-adjust: 104.37%;
+  ascent-override: 96.30%;
+  descent-override: 28.27%;
+  line-gap-override: 0%;
+}
+:root { --font: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; }
+
+/* ══ BASE (W4) ══════════════════════════════════════════════
+   css/style.css and css/glass.css are retired; this is the
+   only reset the page needs. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bone-50);
+  color: var(--ink-900);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { height: auto; max-width: 100%; }
+
+/* Sentence case from UPPERCASE source text (LAWS §1). */
+.sc { display: inline-block; text-transform: lowercase; }
+.sc::first-letter { text-transform: uppercase; }
+
+/* ══ THE FOLDER ═════════════════════════════════════════════
+   Base 400 × 330, every value is base × --s. Paint order:
+   ground shadow → back panel → tab → fillet → sheet(s) → front
+   panel (sheen inside). CSS only: no SVG, no image. */
+.folder {
+  --s: 1;
+  /* palette, scoped so variants only swap colours */
+  --fd-body-hi: #3b8cc0;
+  --fd-body-lo: var(--blue-700);
+  --fd-front-hi: #8dcdea;
+  --fd-front-mid: #5fb3dc;
+  --fd-front-lo: #45a1c3;
+  --fd-sheet-hi: var(--white);
+  --fd-sheet-lo: #d3e3ec;
+  --fd-shade: 11, 45, 64;
+  --fd-lip: rgba(255, 255, 255, 0.85);
+  position: relative;
+  width: calc(400px * var(--s));
+  height: calc(330px * var(--s));
+  flex: none;
+  pointer-events: none;
+}
+.folder > span {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+}
+.folder-ground {
+  left: calc(46px * var(--s));
+  top: calc(288px * var(--s));
+  width: calc(308px * var(--s));
+  height: calc(42px * var(--s));
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(var(--fd-shade), 0.31) 0%, rgba(var(--fd-shade), 0) 66%);
+}
+.folder-back {
+  left: calc(40px * var(--s));
+  top: calc(84px * var(--s));
+  width: calc(320px * var(--s));
+  height: calc(206px * var(--s));
+  border-radius: 0 calc(22px * var(--s)) calc(22px * var(--s)) calc(22px * var(--s));
+  background: linear-gradient(180deg, var(--fd-body-hi) 0%, var(--fd-body-lo) 100%);
+  box-shadow: 0 calc(10px * var(--s)) calc(24px * var(--s)) rgba(var(--fd-shade), 0.14);
+}
+.folder-tab {
+  left: calc(40px * var(--s));
+  top: calc(56px * var(--s));
+  width: calc(150px * var(--s));
+  height: calc(34px * var(--s));
+  border-radius: calc(16px * var(--s)) calc(16px * var(--s)) 0 0;
+  background: var(--fd-body-hi);
+}
+.folder-fillet {
+  left: calc(190px * var(--s));
+  top: calc(72px * var(--s));
+  width: calc(14px * var(--s));
+  height: calc(12px * var(--s));
+  background: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0) calc(12px * var(--s)), var(--fd-body-hi) calc(12.6px * var(--s)));
+}
+.folder-sheet {
+  left: calc(64px * var(--s));
+  top: calc(96px * var(--s));
+  width: calc(272px * var(--s));
+  height: calc(46px * var(--s));
+  border-radius: calc(10px * var(--s)) calc(10px * var(--s)) 0 0;
+  background: linear-gradient(180deg, var(--fd-sheet-hi) 0%, var(--fd-sheet-hi) 40%, var(--fd-sheet-lo) 100%);
+}
+.folder > .folder-sheet-b { display: none; }
+.folder-front {
+  left: calc(40px * var(--s));
+  top: calc(122px * var(--s));
+  width: calc(320px * var(--s));
+  height: calc(168px * var(--s));
+  border-radius: calc(20px * var(--s));
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--fd-front-hi) 0%, var(--fd-front-mid) 55%, var(--fd-front-lo) 100%);
+  box-shadow:
+    inset 0 calc(1.5px * var(--s)) 0 var(--fd-lip),
+    inset 0 calc(-2px * var(--s)) 0 rgba(0, 0, 0, 0.10),
+    0 calc(18px * var(--s)) calc(30px * var(--s)) rgba(var(--fd-shade), 0.27);
+}
+.folder-front::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; right: 0;
+  height: calc(72px * var(--s));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* open: two sheets fan out, the front panel tips forward */
+.folder.is-open .folder-sheet {
+  left: calc(98px * var(--s));
+  top: calc(78px * var(--s));
+  width: calc(250px * var(--s));
+  height: calc(80px * var(--s));
+  background: linear-gradient(180deg, var(--fd-sheet-lo) 0%, var(--fd-sheet-hi) 100%);
+  transform: rotate(3.5deg);
+  transform-origin: 100% 100%;
+}
+.folder.is-open .folder-sheet-b {
+  display: block;
+  left: calc(58px * var(--s));
+  top: calc(64px * var(--s));
+  width: calc(262px * var(--s));
+  height: calc(96px * var(--s));
+  border-radius: calc(10px * var(--s)) calc(10px * var(--s)) 0 0;
+  background: linear-gradient(180deg, var(--fd-sheet-hi) 0%, var(--fd-sheet-hi) 55%, var(--fd-sheet-lo) 100%);
+  transform: rotate(-6deg);
+  transform-origin: 0% 100%;
+  box-shadow: 0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(var(--fd-shade), 0.11);
+}
+.folder.is-open .folder-front {
+  transform: perspective(calc(900px * var(--s))) rotateX(-18deg);
+  transform-origin: 50% 100%;
+}
+
+/* lock badge (portal) */
+.folder > .folder-lock {
+  display: none;
+  left: calc(268px * var(--s));
+  top: calc(218px * var(--s));
+  width: calc(92px * var(--s));
+  height: calc(92px * var(--s));
+  border-radius: 50%;
+  background: var(--ink-900);
+  border: calc(3px * var(--s)) solid var(--bone-50);
+  box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.35);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.folder.has-lock .folder-lock { display: flex; }
+.folder-lock::before {
+  content: '';
+  width: calc(22px * var(--s));
+  height: calc(18px * var(--s));
+  border: calc(4px * var(--s)) solid var(--bone-50);
+  border-bottom: 0;
+  border-radius: calc(11px * var(--s)) calc(11px * var(--s)) 0 0;
+  box-sizing: border-box;
+}
+.folder-lock::after {
+  content: '';
+  width: calc(36px * var(--s));
+  height: calc(26px * var(--s));
+  border-radius: calc(6px * var(--s));
+  background: var(--bone-50);
+  margin-top: calc(-1px * var(--s));
+}
+
+/* NEW badge (drops) */
+.folder > .folder-new {
+  display: none;
+  left: calc(292px * var(--s));
+  top: calc(38px * var(--s));
+  height: calc(38px * var(--s));
+  padding: 0 calc(15px * var(--s));
+  border-radius: calc(19px * var(--s));
+  background: var(--gold-400);
+  color: var(--ink-900);
+  font-family: var(--font);
+  font-size: calc(14px * var(--s));
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  align-items: center;
+  box-shadow: 0 calc(6px * var(--s)) calc(14px * var(--s)) rgba(0, 0, 0, 0.25);
+}
+.folder.has-new .folder-new { display: flex; }
+.folder-new::after { content: 'NEW'; }
+
+/* gold-light variant (The Room, kits) */
+.folder.folder-gold {
+  --fd-body-hi: #8a6a1e;
+  --fd-body-lo: #5e4a16;
+  --fd-front-hi: #fbda6a;
+  --fd-front-mid: #e9bd42;
+  --fd-front-lo: #c39c42;
+  --fd-sheet-hi: #fbf6e8;
+  --fd-sheet-lo: #d9cba4;
+  --fd-shade: 46, 39, 23;
+  --fd-lip: rgba(255, 246, 210, 0.70);
+}
+
+/* caption under it, like a desktop label */
+.folder-caption {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--text-15);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink-900);
+  text-transform: lowercase;
+}
+
+/* ══ HEADER ═════════════════════════════════════════════════
+   72px, transparent over the hero, bone-50 at 96% plus a
+   hairline once the page has scrolled. Sticky, one row at 390. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: 72px;
+  margin-bottom: -72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+  box-sizing: border-box;
+  font-family: var(--font);
+  color: var(--ink-900);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.site-header.is-scrolled {
+  background: rgba(250, 248, 243, 0.96);
+  border-bottom-color: var(--hairline);
+}
+@supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .site-header.is-scrolled {
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+  }
+}
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  font-weight: 500;
+  font-size: var(--text-14);
+  color: var(--umber-700);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--ink-900); }
+
+/* ink pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-900);
+  color: var(--bone-50);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: var(--text-14);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: background-color 0.15s, transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+.pill:hover { background: var(--ink-700); color: var(--bone-50); }
+.pill:active { transform: scale(0.96); }
+.pill-lg {
+  height: 54px;
+  padding: 0 30px;
+  font-size: var(--text-17);
+}
+.ghost-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 500;
+  font-size: var(--text-17);
+  color: var(--blue-600);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ghost-link:hover { color: var(--blue-700); text-decoration: underline; text-underline-offset: 3px; }
+.wordmark:focus-visible,
+.nav-link:focus-visible,
+.pill:focus-visible,
+.ghost-link:focus-visible {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.pill:focus-visible { border-radius: var(--radius-pill); }
+
+/* ══ HERO ═══════════════════════════════════════════════════
+   Split hero on bone-50. One faint blue floor light behind the
+   folder, nothing else. */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(40% 26% at 76% 82%, rgba(74, 169, 199, 0.16) 0%, rgba(74, 169, 199, 0) 70%),
+    var(--bone-50);
+  font-family: var(--font);
+  color: var(--ink-900);
+}
+.hero-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px 0 112px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 680px) auto;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.hero-eyebrow {
+  margin: 0;
+  font-size: var(--text-12);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass-600);
+}
+.hero-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--text-100);
+  line-height: var(--lh-display);        /* 0.98, desktop comp */
+  letter-spacing: var(--track-display);  /* -0.035em, desktop comp */
+  text-transform: lowercase;
+  color: var(--ink-900);
+}
+.hero-lede {
+  margin: 0;
+  max-width: 560px;
+  font-size: var(--text-21);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--umber-700);
+}
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 6px;
+}
+.hero-price {
+  margin: 0;
+  font-size: var(--text-14);
+  letter-spacing: 0.02em;
+  color: var(--umber-700);
+  font-variant-numeric: tabular-nums;
+}
+.hero-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.hero-folder .folder { --s: 1.4; }
+
+/* anchors clear the sticky header */
+#everything { scroll-margin-top: 72px; }
+
+/* ── laptops: keep the split, shrink the folder and the display size ── */
+@media (max-width: 1359px) {
+  .hero-inner { padding: 0 56px; }
+  .hero-folder .folder { --s: 1.1; }
+  .hero-title { font-size: 80px; }
+}
+@media (max-width: 1023px) {
+  .site-header { padding: 0 40px; }
+  .hero-inner { padding: 0 40px; grid-template-columns: minmax(0, 1fr) auto; column-gap: 32px; }
+  .hero-folder .folder { --s: 0.9; }
+  .hero-title { font-size: 64px; }
+  .hero-lede { font-size: 19px; }
+}
+
+/* ── phone: wordmark + pill, copy centred, folder below at 288 ── */
+@media (max-width: 767px) {
+  .site-header { padding: 0 20px; }
+  .site-nav { gap: 0; }
+  .site-nav .nav-link { display: none; }
+  .site-nav .pill { font-size: 13px; }
+
+  .hero {
+    align-items: stretch;
+    padding: 92px 24px 22px;
+    box-sizing: border-box;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    max-width: none;
+  }
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    width: 100%;
+  }
+  .hero-eyebrow { font-size: 11px; }
+  .hero-title { font-size: 54px; line-height: 0.95; letter-spacing: -0.04em; } /* phone comp */
+  .hero-lede { font-size: var(--text-17); max-width: none; }
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: 14px;
+    margin-top: 0;
+  }
+  .hero-cta .pill-lg {
+    align-self: stretch;
+    height: 52px;
+    padding: 0 29px;
+    font-size: 16px;
+    margin-top: 6px;
+  }
+  /* keep the 44px target, but let the visual gap read as the comp's 14px */
+  .ghost-link { font-size: var(--text-15); margin: -13px 0; }
+  .hero-price { font-size: 13px; letter-spacing: 0; }
+  .hero-folder { margin-top: auto; padding-top: 28px; gap: 4px; }
+  .hero-folder .folder { --s: 0.72; }
+  .folder-caption { font-size: var(--text-14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header, .pill, .nav-link { transition: none; }
+}
+
+
+/* ══ MOTION (W4) ════════════════════════════════════════════
+   One system. Sections carry .reveal and fade up 12px in 0.45s
+   on a strong ease-out, started early by the IntersectionObserver
+   in js/app.js (rootMargin 0 0 320px, so the transition has
+   finished by the time the element is on screen). The hero folder
+   gets the one entrance the page is allowed (rise 12px + fade,
+   0.6s). Nothing else moves. The hidden state only exists on
+   html.js, so with JS off the page is simply visible, and
+   prefers-reduced-motion removes every movement. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --reveal-duration: 0.45s;
+}
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--reveal-duration) var(--ease-out) var(--d, 0s),
+      transform var(--reveal-duration) var(--ease-out) var(--d, 0s);
+  }
+  html.js .reveal.visible { opacity: 1; transform: none; }
+
+  .hero-folder { animation: folder-rise 0.6s var(--ease-out) both; }
+  @keyframes folder-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero-folder { opacity: 1; transform: none; transition: none; animation: none; }
+  .pill, .w3-pill { transition: none; }
+  .pill:active, .w3-pill:active { transform: none; }
+}
+
+/* ══ PHONE TARGETS (W4) ═════════════════════════════════════
+   Inline text links keep their size but get a 44px hit area
+   through a transparent pseudo-element (LAWS §4: 44px targets). */
+.w3-price-dm a,
+.w3-footer-capture a {
+  position: relative;
+}
+.w3-price-dm a::before,
+.w3-footer-capture a::before {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
+}
+.w3-footer-link, .nav-link { min-width: 44px; justify-content: center; }
+
+/* ══ CONTRAST (W4) ══════════════════════════════════════════
+   Measured, not assumed: blue-600 (#2f7bb0) reads 4.32:1 on bone-50
+   and 4.03:1 on bone-100, under the 4.5:1 body law. blue-700
+   (#2a70a0) reads 5.05:1 and 4.71:1 there, so links sitting on a
+   bone ground take it; links inside white cards keep blue-600
+   (4.58:1). Hover goes to ink so the change is still visible. */
+.ghost-link { color: var(--blue-700); }
+.ghost-link:hover { color: var(--ink-900); }
+/* the footer newsletter link is fixed at its source in css/white-room-2.css */
