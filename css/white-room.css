@@ -403,8 +403,8 @@ img { height: auto; max-width: 100%; }
   margin: 0;
   font-weight: 700;
   font-size: var(--text-100);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: var(--lh-display);        /* 0.98, desktop comp */
+  letter-spacing: var(--track-display);  /* -0.035em, desktop comp */
   text-transform: lowercase;
   color: var(--ink-900);
 }
@@ -480,7 +480,7 @@ img { height: auto; max-width: 100%; }
     width: 100%;
   }
   .hero-eyebrow { font-size: 11px; }
-  .hero-title { font-size: 54px; }
+  .hero-title { font-size: 54px; line-height: 0.95; letter-spacing: -0.04em; } /* phone comp */
   .hero-lede { font-size: var(--text-17); max-width: none; }
   .hero-cta {
     flex-direction: column;

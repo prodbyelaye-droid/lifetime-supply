@@ -546,6 +546,23 @@
 /* anchors clear the sticky header */
 #how, #pricing { scroll-margin-top: 72px; }
 
+/* ══ SECTION RHYTHM (W5) ════════════════════════════════════
+   C-Landing-Desktop-2.dc.html gives every section a fixed height
+   with its content centred. The W2 sections already carry those
+   heights as min-heights, so the second half does the same here;
+   a section whose content is taller (the screenshot rows) simply
+   grows. Phone has no comp for this half, so nothing applies there. */
+@media (min-width: 1024px) {
+  .w3 { display: flex; flex-direction: column; justify-content: center; }
+  .w3 > .w3-in { width: 100%; }   /* a flex item with auto margins would shrink to its content */
+  .w3-land  { min-height: 1040px; }
+  .w3-fire  { min-height: 780px; }
+  .w3-get   { min-height: 1260px; }
+  .w3-price { min-height: 1120px; }
+  .w3-faq   { min-height: 1160px; }
+  .w3-talk  { min-height: 920px; }
+}
+
 /* ── laptops ── */
 @media (max-width: 1359px) {
   .w3-in { padding: 0 56px; }
@@ -619,6 +636,7 @@
   .w3-footer-in { gap: 20px; }
   .w3-footer-row { flex-direction: column; align-items: flex-start; gap: 8px; }
   .w3-footer-links { gap: 20px; }
+  .w3-footer-link { justify-content: flex-start; } /* stacked: text sits on the wordmark's left edge, hit area stays 44 */
   .w3-footer-meta { gap: 6px; }
 }
 
