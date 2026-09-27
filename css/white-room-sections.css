@@ -103,6 +103,7 @@
   text-transform: uppercase;
   color: var(--umber-700);
 }
+.wr .wr-stats-note { margin-top: 24px; text-align: center; font-size: var(--text-14); line-height: var(--lh-body); color: var(--umber-700); }
 
 /* ── 3. "you've seen the credits." ── */
 .wr-credits { background: var(--bone-50); padding: 120px var(--g); min-height: 640px; }
@@ -155,6 +156,8 @@
   text-transform: lowercase;
 }
 .wr-card-p { font-size: var(--text-17); line-height: var(--lh-body); color: var(--umber-700); font-weight: 400; }
+/* an odd card out closes the grid full width instead of sitting alone in the last row */
+.wr-cards > .wr-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
 
 /* the two <details> expanders: summary is the blue ghost link, body opens inside the card */
 .wr-expander { margin-top: auto; }
@@ -197,6 +200,8 @@
 @media (max-width: 1023px) {
   .wr { --g: 40px; }                        /* one tablet gutter with the hero, header and W3 sections */
   .wr-cards, .wr-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wr-cards > .wr-card:last-child:nth-child(3n+1) { grid-column: auto; }
+  .wr-cards > .wr-card:last-child:nth-child(2n+1) { grid-column: 1 / -1; }
   .wr-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wr-credits-grid { grid-template-columns: 1fr; gap: 32px; }
   .wr-credits, .wr-problem { min-height: 0; }
@@ -234,6 +239,7 @@
   .wr-every .wr-in { gap: 32px; }
   .wr-every-head { gap: 12px; }
   .wr-cards, .wr-shots { grid-template-columns: 1fr; gap: 16px; }
+  .wr .wr-stats-note { margin-top: 16px; font-size: 13px; }
   .wr-card { padding: 24px; }
   .wr-card-title { font-size: 24px; }
   .wr-card-p { font-size: 16px; }
