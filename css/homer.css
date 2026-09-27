@@ -1683,11 +1683,36 @@ html.motion .stage-b .demo-caption {
   .unlock-object .folder {
     --s: 0.72;
   }
+  .demo-header {
+    padding-left: 0;
+  }
   .demo-header .wm-img {
     display: none;
   }
   .demo-tabs {
     margin-left: 0;
+    padding-left: 20px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 40px), transparent);
+  }
+  .d-pills {
+    flex-wrap: wrap;
+  }
+  .d-pill {
+    white-space: nowrap;
+  }
+  .d-feature .folder {
+    --s: 0.36;
+  }
+  .d-kits {
+    gap: 10px;
+  }
+  .d-kits .d-box {
+    padding: 16px;
+  }
+  .d-kits .folder {
+    --s: 0.28;
+    margin: -6px 0 6px -11px;
   }
   .site-header .wrap {
     height: 64px;
@@ -1770,5 +1795,90 @@ html.motion .stage-b .demo-caption {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+/* ═══ PAGE GLUE (resets and the few layouts the sections above lean on) ════ */
+.eyebrow,
+.t-item,
+.demo-panel p,
+.demo-panel h3 {
+  margin: 0;
+}
+.numbers .label {
+  margin: 20px 0 0;
+}
+.demo-tabs {
+  position: relative;
+}
+.steps {
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+.stage.is-measuring .window,
+.stage.is-measuring .folder {
+  transform: none !important;
+  transition: none !important;
+}
+.portal-intro .lead {
+  max-width: 640px;
+}
+.demo-cta {
+  padding-top: 8px;
+}
+.d-box-title + .d-habit {
+  margin-top: 12px;
+}
+.d-legend {
+  margin-top: 24px;
+}
+.d-list > .d-media {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.d-class .d-cover {
+  height: 132px;
+}
+.d-row .act,
+.d-channel .bar {
+  font-size: 14px;
+  font-weight: 500;
+}
+.d-channel .bar {
+  width: 96px;
+  height: 12px;
+}
+.d-feature .d-lead {
+  margin-top: 8px;
+}
+.credits-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 64px;
+  align-items: start;
+}
+.credits-grid .shot {
+  margin-top: 8px;
+}
+.fit-title {
+  margin: 0;
+}
+@media (max-width: 1023px) {
+  .credits-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .credits-grid .shot {
+    max-width: 420px;
+  }
+  .d-media.d-class {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .d-class .d-cover {
+    height: 96px;
   }
 }
