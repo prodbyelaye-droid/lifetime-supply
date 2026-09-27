@@ -1,0 +1,241 @@
+/* ══════════════════════════════════════════════════════════════
+   White Room · W2: the five sections under the hero.
+   Sizes, gaps, radii and colours from
+   design/white-room/C-Landing-Desktop-1.dc.html (1440) and
+   C-Landing-Phone-1.dc.html (390), on css/tokens.css.
+   The .folder component lives in css/white-room.css (W1); this
+   file loads after it and uses the same breakpoints.
+══════════════════════════════════════════════════════════════ */
+
+/* ── section shell ── */
+.wr {
+  --g: clamp(24px, 7.8vw, 112px);           /* 112 at 1440, 24 at 390 */
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--font);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
+}
+.wr *, .wr *::before, .wr *::after { box-sizing: border-box; }
+.wr h2, .wr h3, .wr p { margin: 0; }
+.wr-in { width: 100%; max-width: 1216px; margin: 0 auto; }
+
+/* ── shared type ── */
+.wr-h2 {
+  font-weight: 700;
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  color: var(--ink-900);
+  text-transform: lowercase;                 /* source text stays UPPERCASE */
+}
+.wr-h2-56 { font-size: 56px; }
+.wr-h2-64 { font-size: var(--text-64); }
+.wr-p19 { font-size: 19px; line-height: var(--lh-body); color: var(--umber-700); font-weight: 400; }
+.wr-p-ink { color: var(--ink-900); font-weight: 500; }
+.wr-eyebrow {
+  display: block;
+  font-size: var(--text-12);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass-600);
+}
+
+/* ── 1. credentials strip ── */
+.wr-creds {
+  min-height: 120px;
+  background: var(--white);
+  padding: 0 var(--g);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.wr-creds-row { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.wr-creds-item {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--umber-700);
+  white-space: nowrap;
+}
+/* the "·" text node stays (it is the live copy); drawn as the comp's 4px dot */
+.wr-dot {
+  display: inline-block;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--umber-400);
+  flex: none;
+  font-size: 0; line-height: 0;
+  overflow: hidden;
+}
+
+/* ── 2. stats ── */
+.wr-stats { background: var(--bone-50); padding: 64px var(--g); min-height: 300px; }
+.wr-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.wr-stat {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+.wr-stat-num {
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink-900);
+  font-variant-numeric: tabular-nums;
+}
+.wr-stat-label {
+  font-size: var(--text-12);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--umber-700);
+}
+
+/* ── 3. "you've seen the credits." ── */
+.wr-credits { background: var(--bone-50); padding: 120px var(--g); min-height: 640px; }
+.wr-credits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: start; }
+.wr-credits-body { display: flex; flex-direction: column; gap: 28px; }
+.wr-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.wr-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--bone-100);
+  color: var(--ink-900);
+  font-size: var(--text-12);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+
+/* ── 4. "your beats aren't the problem. access is." ── */
+.wr-problem { background: var(--white); padding: 120px var(--g); min-height: 860px; }
+.wr-problem-in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px; }
+.wr-problem-copy { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+.wr-problem-copy p { max-width: 720px; }
+
+/* ── 5. "everything. day one." ── */
+.wr-every { background: var(--bone-50); padding: 120px var(--g); min-height: 1620px; }
+.wr-every .wr-in { display: flex; flex-direction: column; gap: 48px; }
+.wr-every-head { display: flex; flex-direction: column; gap: 16px; }
+.wr-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.wr-card {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wr-card-title {
+  font-weight: 700;
+  font-size: var(--text-26);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink-900);
+  text-transform: lowercase;
+}
+.wr-card-p { font-size: var(--text-17); line-height: var(--lh-body); color: var(--umber-700); font-weight: 400; }
+
+/* the two <details> expanders: summary is the blue ghost link, body opens inside the card */
+.wr-expander { margin-top: auto; }
+.wr-expander summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 12px 0;                 /* 12 above = the comp's padding-top; 12 below = the 44px hit area */
+  margin-bottom: -12px;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: var(--text-15);
+  color: var(--blue-600);
+  white-space: nowrap;
+}
+.wr-expander summary::-webkit-details-marker { display: none; }
+.wr-expander summary::after { content: " \203A"; }
+.wr-expander summary:hover { color: var(--blue-700); }
+.wr-expander summary:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 3px; border-radius: 6px; }
+.wr-expander[open] summary { margin-bottom: 0; }
+.wr-expander-body { font-size: var(--text-15); line-height: var(--lh-body); color: var(--umber-700); }
+
+/* screenshot cards (LAWS.md §3) */
+.wr-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.wr-shot {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  padding: 8px;
+}
+.wr-shot img { display: block; width: 100%; height: auto; border-radius: 14px; }
+
+.wr-close { max-width: 720px; font-size: var(--text-21); line-height: var(--lh-body); color: var(--ink-900); font-weight: 500; }
+
+/* ── laptops / tablets ── */
+@media (max-width: 1359px) {
+  .wr-every { min-height: 0; }
+}
+@media (max-width: 1023px) {
+  .wr { --g: 40px; }                        /* one tablet gutter with the hero, header and W3 sections */
+  .wr-cards, .wr-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wr-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wr-credits-grid { grid-template-columns: 1fr; gap: 32px; }
+  .wr-credits, .wr-problem { min-height: 0; }
+}
+
+/* ── phone (390 comp) ── */
+@media (max-width: 767px) {
+  .wr { --g: 24px; }
+  .wr-h2-56 { font-size: 40px; }
+  .wr-h2-64 { font-size: 44px; }
+  .wr-p19 { font-size: 16px; }
+  .wr-eyebrow { font-size: 11px; }
+
+  .wr-creds { min-height: 170px; }
+  .wr-creds-row { flex-direction: column; gap: 12px; }
+  .wr-creds-item { font-size: 11px; letter-spacing: 0.16em; white-space: normal; text-align: center; }
+  .wr-dot { display: none; }
+
+  .wr-stats { padding: 48px var(--g); min-height: 440px; }
+  .wr-stats-grid { gap: 12px; }
+  .wr-stat { padding: 28px 12px; }
+  .wr-stat-num { font-size: 40px; }
+
+  .wr-credits { padding: 64px var(--g); min-height: 860px; }
+  .wr-credits-grid { gap: 24px; }
+  .wr-credits-body { gap: 24px; }
+  .wr-chips { gap: 8px; }
+  .wr-chip { height: 30px; }
+
+  .wr-problem { padding: 64px var(--g); min-height: 900px; }
+  .wr-problem-in { align-items: flex-start; text-align: left; gap: 24px; }
+  .wr-problem-copy { gap: 24px; align-items: flex-start; }
+
+  .wr-every { padding: 64px var(--g); }
+  .wr-every .wr-in { gap: 32px; }
+  .wr-every-head { gap: 12px; }
+  .wr-cards, .wr-shots { grid-template-columns: 1fr; gap: 16px; }
+  .wr-card { padding: 24px; }
+  .wr-card-title { font-size: 24px; }
+  .wr-card-p { font-size: 16px; }
+  .wr-close { font-size: 18px; }
+}

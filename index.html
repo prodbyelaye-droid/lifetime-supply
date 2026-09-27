@@ -24,16 +24,17 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Fonts are self-hosted: the Google Fonts CDN put two extra origin
-       handshakes on the critical path and was holding first paint. -->
-  <link rel="preload" as="font" type="font/woff2" href="fonts/montserrat-latin.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="fonts/barlow-400-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/glass.css">
-  <!-- The hero poster is the LCP element: the clip attaches after load. -->
-  <link rel="preload" as="image" href="media/clip-folder-pushin-poster.webp" fetchpriority="high">
-  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <!-- Geist is self-hosted (css/white-room.css): the Google Fonts CDN put a
+       cross-origin CSS + font chain on the critical path and held LCP. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/geist-latin.woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/tokens.css">
+
+  <link rel="stylesheet" href="css/white-room.css">
+  <link rel="stylesheet" href="css/white-room-sections.css">
+  <link rel="stylesheet" href="css/white-room-2.css">
+  <!-- Reveals only hide on html.js (css/white-room.css, MOTION), so with JS off the page is simply visible. -->
+  <script>document.documentElement.classList.add('js')</script>
   <!-- price lives here too: update with banner/counter/pricing/final CTA when the ladder steps -->
   <script type="application/ld+json">
   {
@@ -56,333 +57,223 @@
 </head>
 <body>
 
-  <!-- The room. One continuous sky behind every section. -->
-  <div class="sky" aria-hidden="true"></div>
-
-  <!-- FOUNDING WINDOW BANNER -->
-  <div id="saleBar" role="complementary" aria-label="Founding window closed">
-    <div class="sale-bar-inner">
-      <span class="sale-bar-label"><span class="sale-bar-prefix">FOUNDING WINDOW CLOSED </span><span class="sale-bar-sep">·</span> LIFETIME ACCESS <strong class="founding-price">$599</strong></span>
-      <span class="founding-bar-note">One payment. Yours forever.</span>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="sale-bar-cta">GET ACCESS</a>
-    </div>
-  </div>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <a href="#hero" class="wordmark">lifetime supply.</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#everything" class="nav-link">What's inside</a>
+      <a href="https://portal.elaye.store/login" class="nav-link">Log in</a>
+      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill">Get access</a>
+    </nav>
+  </header>
 
   <main>
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.10"
-             muted loop playsinline preload="none" poster="media/clip-folder-pushin-poster.webp">
-        <source data-src="media/clip-folder-pushin.webm" type="video/webm">
-        <source data-src="media/clip-folder-pushin.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-top reveal">
-      <span class="eyebrow">@ELXYEE &nbsp;·&nbsp; THE LIFETIME SUPPLY</span>
-    </div>
-    <div class="hero-bottom">
-      <h1 class="hero-heading reveal">WE WANT HITS<br>NOT BEATS</h1>
-      <p class="hero-sub reveal">One payment. Lifetime access to the only pipeline wired straight to artist phones, every night.</p>
-      <p class="hero-stat reveal">100+ ACTIVE BRIEFS, UPDATED EVERY DAY</p>
-      <div class="hero-quote reveal">
-        <p class="hero-quote-text">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable</p>
-        <p class="hero-quote-attr">Lifetime member</p>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">The Lifetime Supply · by ELAYE</p>
+        <h1 class="hero-title">WE WANT HITS<br>NOT BEATS</h1>
+        <p class="hero-lede">One payment. Lifetime access to the only pipeline wired straight to artist phones, every night.</p>
+        <div class="hero-cta">
+          <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill pill-lg"><span class="sc">GET LIFETIME ACCESS</span></a>
+          <a href="#everything" class="ghost-link">See what's inside ›</a>
+        </div>
+        <p class="hero-price">$599 · one payment · yours forever</p>
       </div>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold reveal">GET LIFETIME ACCESS</a>
+      <div class="hero-folder">
+        <div class="folder" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet folder-sheet-b"></span><span class="folder-front"></span></div>
+        <p class="folder-caption">LIFETIME SUPPLY</p>
+      </div>
     </div>
-    <div class="scroll-hint reveal"><div class="scroll-line"></div></div>
   </section>
 
-  <!-- CREDITS STRIP -->
-  <div class="credits-strip reveal" role="complementary" aria-label="Credentials">
-    <p class="credits-strip-text">CERTIFIED MULTI PLATINUM + #1 BILLBOARD PRODUCER &nbsp;·&nbsp; SIGNED TO SONY ATV X BEATSTARS &nbsp;·&nbsp; 150,000,000+ STREAMS</p>
-  </div>
+  <!-- CREDENTIALS STRIP -->
+  <section class="wr wr-creds reveal" aria-label="Credentials">
+    <div class="wr-in">
+      <p class="wr-creds-row">
+        <span class="wr-creds-item">CERTIFIED MULTI PLATINUM + #1 BILLBOARD PRODUCER</span>
+        <span class="wr-dot" aria-hidden="true">·</span>
+        <span class="wr-creds-item">SIGNED TO SONY ATV X BEATSTARS</span>
+        <span class="wr-dot" aria-hidden="true">·</span>
+        <span class="wr-creds-item">150,000,000+ STREAMS</span>
+      </p>
+    </div>
+  </section>
 
-  <!-- STATS -->
-  <section class="section section-blue stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat reveal">
-          <span class="stat-num" data-value="70" data-suffix="GB+">0</span>
-          <span class="stat-label">SAMPLE ARCHIVE</span>
+  <!-- STATS: static numbers, no counters (W4: nothing moves but the folder and the reveals). -->
+  <section class="wr wr-stats">
+    <div class="wr-in">
+      <div class="wr-stats-grid">
+        <div class="wr-stat reveal">
+          <span class="wr-stat-num" data-value="70" data-suffix="GB+">70GB+</span>
+          <span class="wr-stat-label">SAMPLE ARCHIVE</span>
         </div>
-        <div class="stat reveal" style="--d:.05s">
-          <span class="stat-num" data-value="100" data-suffix="+">0</span>
-          <span class="stat-label">ACTIVE DAILY BRIEFS</span>
+        <div class="wr-stat reveal" style="--d:.05s">
+          <span class="wr-stat-num" data-value="100" data-suffix="+">100+</span>
+          <span class="wr-stat-label">ACTIVE DAILY BRIEFS</span>
         </div>
-        <div class="stat reveal" style="--d:.11s">
-          <span class="stat-num" data-value="2100" data-suffix="+">0</span>
-          <span class="stat-label">KIT FILES</span>
+        <div class="wr-stat reveal" style="--d:.11s">
+          <span class="wr-stat-num" data-value="2100" data-suffix="+">2,100+</span>
+          <span class="wr-stat-label">KIT FILES</span>
         </div>
-        <div class="stat reveal" style="--d:.16s">
-          <span class="stat-num" data-value="599" data-prefix="$">0</span>
-          <span class="stat-label">ONE PAYMENT. FOREVER.</span>
-        </div>
-      </div>
-      <div class="marquee-wrap">
-        <div class="marquee-track" id="marqueeTrack">
-          <span class="marquee-text">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
-          <span class="marquee-text" aria-hidden="true">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
-          <span class="marquee-text" aria-hidden="true">WE WANT HITS NOT BEATS &nbsp;·&nbsp; ALL IT TAKES IS ONE LISTEN &nbsp;·&nbsp; </span>
+        <div class="wr-stat reveal" style="--d:.16s">
+          <span class="wr-stat-num" data-value="599" data-prefix="$">$599</span>
+          <span class="wr-stat-label">ONE PAYMENT. FOREVER.</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CREDIBILITY -->
-  <section class="section section-a" id="cred">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.12" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="cred-layout-2">
-        <div class="col-text reveal">
-          <h2 class="heading">YOU'VE SEEN<br>THE CREDITS.</h2>
-        </div>
-        <div class="col-body reveal">
-          <p class="body-copy">You came from my page, so I'll keep it short. Platinum records, built by myself, a #1 on Billboard, cuts with the biggest names in the industry, sync placements with the biggest companies in the world, records charting internationally. The point isn't the list. Every one of those came from the same rooms and the same pipeline you plug into the second you're in. All self-taught from a bedroom in Australia, so this works from anywhere, with or without a name.</p>
-          <div class="badge-row">
-            <span class="badge">MULTI PLATINUM CERTIFIED</span>
-            <span class="badge">NO. 1 BILLBOARD</span>
-            <span class="badge">SONY ATV</span>
-            <span class="badge">BEATSTARS SIGNED</span>
-          </div>
+  <section class="wr wr-credits" id="cred">
+    <div class="wr-in wr-credits-grid">
+      <div class="reveal">
+        <h2 class="wr-h2 wr-h2-56">YOU'VE SEEN<br>THE CREDITS.</h2>
+      </div>
+      <div class="wr-credits-body reveal">
+        <p class="wr-p19">You came from my page, so I'll keep it short. Platinum records, built by myself, a #1 on Billboard, cuts with the biggest names in the industry, sync placements with the biggest companies in the world, records charting internationally. The point isn't the list. Every one of those came from the same rooms and the same pipeline you plug into the second you're in. All self-taught from a bedroom in Australia, so this works from anywhere, with or without a name.</p>
+        <div class="wr-chips">
+          <span class="wr-chip">MULTI PLATINUM CERTIFIED</span>
+          <span class="wr-chip">NO. 1 BILLBOARD</span>
+          <span class="wr-chip">SONY ATV</span>
+          <span class="wr-chip">BEATSTARS SIGNED</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section class="section section-b problem-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.16" src="media/still-folder-single.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="problem-split">
-        <div class="reveal">
-          <h2 class="heading-xl">YOUR BEATS<br>AREN'T THE<br>PROBLEM.<br><span class="text-accent">ACCESS IS.</span></h2>
-          <p class="body-copy body-wide">Most producers have no way to get their music in front of artists. They flip the same recycled packs and wait. No pipeline, no briefs, no relationships. Just uploads to platforms that never answer. The producers landing placements have one thing the rest don't: a direct line to where the decisions get made. That line is the whole game, and it's what you're stepping into.</p>
-          <p class="body-copy body-wide">This isn't a promise or a waitlist. The portal's built and live. The night you join you get your login and you're on that night's briefs.</p>
-        </div>
-        <div class="reveal problem-photo-wrap">
-          <img src="pic-1.webp" width="1200" height="1180" alt="Two people looking out over a hillside city view from a high-rise window" class="problem-photo" loading="lazy" decoding="async">
-        </div>
+  <!-- PROBLEM. Line pieces stay separate nodes (the comp moves the breaks; the words do not move). -->
+  <section class="wr wr-problem">
+    <div class="wr-in wr-problem-in reveal">
+      <h2 class="wr-h2 wr-h2-64"><span>YOUR BEATS</span> <span>AREN'T THE</span> <span>PROBLEM.</span><br>ACCESS IS.</h2>
+      <div class="wr-problem-copy">
+        <p class="wr-p19">Most producers have no way to get their music in front of artists. They flip the same recycled packs and wait. No pipeline, no briefs, no relationships. Just uploads to platforms that never answer. The producers landing placements have one thing the rest don't: a direct line to where the decisions get made. That line is the whole game, and it's what you're stepping into.</p>
+        <p class="wr-p19 wr-p-ink">This isn't a promise or a waitlist. The portal's built and live. The night you join you get your login and you're on that night's briefs.</p>
       </div>
     </div>
   </section>
 
-  <!-- DELIVERABLES -->
-  <section class="section section-blue deliverables-section">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.14"
-             muted loop playsinline preload="none" data-poster="media/clip-archive-poster.webp">
-        <source data-src="media/clip-archive.webm" type="video/webm">
-        <source data-src="media/clip-archive.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="container">
-      <div class="deliverables-layout">
-        <div class="deliverables-text reveal">
-          <span class="label deliverables-label">WHAT YOU GET ACCESS TO</span>
-          <h2 class="heading" style="color:var(--white)">EVERYTHING.<br>DAY ONE.</h2>
-        </div>
-        <div class="media-mat deliverables-img reveal">
-          <img src="lifetime-deliverables.webp" alt="Lifetime Supply folder breakdown"
-               width="1074" height="1244" loading="lazy" decoding="async">
-        </div>
+  <!-- EVERYTHING. DAY ONE. -->
+  <section class="wr wr-every" id="everything">
+    <div class="wr-in">
+      <div class="wr-every-head reveal">
+        <span class="wr-eyebrow">WHAT YOU GET ACCESS TO</span>
+        <h2 class="wr-h2 wr-h2-64">EVERYTHING.<br>DAY ONE.</h2>
       </div>
-    </div>
-  </section>
 
-  <!-- PIPELINE -->
-  <section class="section section-a feature-section">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.16"
-             muted loop playsinline preload="none" data-poster="media/clip-panels-poster.webp">
-        <source data-src="media/clip-panels.webm" type="video/webm">
-        <source data-src="media/clip-panels.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="container">
-      <div class="pipeline-top reveal">
-        <div class="pipeline-text">
-          <h2 class="heading">LIVE PLACEMENT<br>PIPELINE</h2>
-          <p class="body-copy">100+ active artist briefs, updated every single day, filterable by status and genre. 5 to 10 packs go direct to artist phone numbers every night. Not email, not a submission form. Their phone. You're on the same briefs I am, and the ones that fit ride that night's send.</p>
-          <details class="expander">
+      <div class="wr-cards">
+        <article class="wr-card reveal">
+          <div class="folder is-open" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>LIVE PLACEMENT</span> <span>PIPELINE</span></h3>
+          <p class="wr-card-p">100+ active artist briefs, updated every single day, filterable by status and genre. 5 to 10 packs go direct to artist phone numbers every night. Not email, not a submission form. Their phone. You're on the same briefs I am, and the ones that fit ride that night's send.</p>
+          <details class="wr-expander">
             <summary>See how the status system works</summary>
-            <p class="expander-body">Urgent: closing this week, send now. Hot: packs actively going, high chance of landing. Warm: early conversations. Cold: on the radar for later. Each brief tells you what the artist needs, reference tracks to match, BPM and key where it exists.</p>
+            <p class="wr-expander-body">Urgent: closing this week, send now. Hot: packs actively going, high chance of landing. Warm: early conversations. Cold: on the radar for later. Each brief tells you what the artist needs, reference tracks to match, BPM and key where it exists.</p>
           </details>
-        </div>
-        <div class="pipeline-hero-frame">
-          <video data-lazy-video muted loop playsinline preload="none" poster="pipeline-poster.jpg">
-            <source src="outreach-pipeline.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="pipeline-shots reveal">
-        <img src="placements-landed.webp" width="1170" height="1470"   alt="Placement landed" loading="lazy" decoding="async">
-        <img src="placements-landed-2.webp" width="1170" height="1778" alt="Yung Bleu placement" loading="lazy" decoding="async">
-        <img src="pic-4.webp" width="1170" height="1151"               alt="Two producers posing together on a couch" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
+        </article>
 
-  <!-- ARCHIVE -->
-  <section class="section archive-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.18" src="media/still-archive.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="archive-layout reveal">
-        <div class="media-mat archive-app-img">
-          <img src="images.webp" alt="Phone screen showing the Untitled app with a hip hop sample project open" width="516" height="387" loading="lazy" decoding="async">
-        </div>
-        <div class="feature-content">
-          <h2 class="heading">70GB+ SAMPLE<br>ARCHIVE</h2>
-          <p class="body-copy">3,000+ stems and samples through the Untitled app, not a dead download link. Get notified the second new sounds land, then drag, drop and export straight into your session. New sounds daily means first mover advantage on every fresh brief.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.04s">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>70GB+ SAMPLE</span> <span>ARCHIVE</span></h3>
+          <p class="wr-card-p">3,000+ stems and samples through the Untitled app, not a dead download link. Get notified the second new sounds land, then drag, drop and export straight into your session. New sounds daily means first mover advantage on every fresh brief.</p>
+        </article>
 
-  <!-- KITS -->
-  <section class="section section-a feature-section">
-    <div class="container">
-      <div class="kits-layout reveal">
-        <div class="feature-content">
-          <h2 class="heading">EVERY KIT.<br>VAULTED KITS.<br>A NEW ONE MONTHLY.</h2>
-          <p class="body-copy">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy, 2,100+ files all analog-recorded and royalty free, plus vaulted kits pulled from sale and every kit I make from here on. Then a members-only kit every month, 30 to 50 curated files, never public.</p>
-        </div>
-        <div class="kit-reviews-col">
-          <img src="kit-reviews.webp" width="675" height="1200" alt="Screenshots of DM messages from producers praising the sample kits" loading="lazy" decoding="async" class="kit-reviews-img">
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.08s">
+          <div class="folder has-new" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>EVERY KIT.</span> <span>VAULTED KITS.</span> <span>A NEW ONE MONTHLY.</span></h3>
+          <p class="wr-card-p">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy, 2,100+ files all analog-recorded and royalty free, plus vaulted kits pulled from sale and every kit I make from here on. Then a members-only kit every month, 30 to 50 curated files, never public.</p>
+        </article>
 
-  <!-- MENTORSHIP -->
-  <section class="section section-b feature-section">
-    <div class="container">
-      <div class="feature-content reveal" style="max-width:640px">
-        <h2 class="heading">MENTORSHIP:<br>THE ACCELERATOR</h2>
-        <p class="body-copy">40GB+ of video breakdowns, plus 34 written guides, around 200 pages on top of the videos. Placements, networking, sales, and the business side nobody teaches. The exact system that took me from a bedroom to platinum.</p>
-        <details class="expander">
-          <summary>What the guide covers</summary>
-          <p class="expander-body">Building a portfolio that works for itself, outreach that doesn't read as spam, collaborating so your sends multiply through other networks, targeting emerging artists in the 1K to 100K range, going global, and the business side: contracts, publishing, royalties, PROs, negotiating. Plus 40GB+ of accelerator and mentorship videos.</p>
-        </details>
-      </div>
-      <div class="mentorship-reviews reveal">
-        <img src="lifetime-review-pic-mentorship.webp" width="945" height="847"   alt="Screenshot of a DM crediting the accelerator with changing their mindset" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-2.webp" width="1170" height="1152" alt="Screenshot of a DM thanking ELAYE for the mentorship content" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-3.webp" width="1170" height="696" alt="Screenshot of a DM saying the accelerator changed how they think about music" loading="lazy" decoding="async">
-        <img src="lifetime-review-pic-mentorship-4.webp" width="897" height="572" alt="Screenshot of a DM celebrating a win after the mentorship" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>MENTORSHIP:</span> <span>THE ACCELERATOR</span></h3>
+          <p class="wr-card-p">40GB+ of video breakdowns, plus 34 written guides, around 200 pages on top of the videos. Placements, networking, sales, and the business side nobody teaches. The exact system that took me from a bedroom to platinum.</p>
+          <details class="wr-expander">
+            <summary>What the guide covers</summary>
+            <p class="wr-expander-body">Building a portfolio that works for itself, outreach that doesn't read as spam, collaborating so your sends multiply through other networks, targeting emerging artists in the 1K to 100K range, going global, and the business side: contracts, publishing, royalties, PROs, negotiating. Plus 40GB+ of accelerator and mentorship videos.</p>
+          </details>
+        </article>
 
-  <!-- SUBMISSIONS -->
-  <section class="section section-a feature-section">
-    <div class="container">
-      <div class="feature-with-photo">
-        <div class="feature-content reveal">
-          <h2 class="heading">SUBMISSION SYSTEM<br>WITH STATUS TRACKING</h2>
-          <p class="body-copy">Submit your beats and watch the status move: New, In Review, Sent to Artist, Placed. I listen to everything personally and DM you the second it moves. You always know exactly where your music sits.</p>
-        </div>
-        <div class="feature-aside reveal">
-          <img src="pic-3.webp" width="1200" height="1167" alt="Two producers posing for a photo on a city street at night" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </div>
-  </section>
+        <article class="wr-card reveal" style="--d:.04s">
+          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>SUBMISSION SYSTEM</span> <span>WITH STATUS TRACKING</span></h3>
+          <p class="wr-card-p">Submit your beats and watch the status move: New, In Review, Sent to Artist, Placed. I listen to everything personally and DM you the second it moves. You always know exactly where your music sits.</p>
+        </article>
 
-  <!-- DIRECT LINE -->
-  <section class="section section-b feature-section">
-    <div class="container">
-      <div class="feature-with-photo feature-with-photo-flip">
-        <div class="feature-aside reveal">
-          <img src="pic-2.webp" width="675" height="1200" alt="Studio session with producers working at a mixing desk" loading="lazy" decoding="async">
-        </div>
-        <div class="feature-content reveal">
-          <h2 class="heading">DIRECT LINE.<br>ALWAYS.</h2>
-          <p class="body-copy">A direct line to me whenever you need it. A brief, a placement, mixing notes, anything, sent straight to me and reviewed personally. This is the access people don't believe until they're inside.</p>
-          <p class="body-copy">It all lives in one members portal. One login, everything in it, updating forever.</p>
-        </div>
+        <article class="wr-card reveal" style="--d:.08s">
+          <div class="folder has-lock" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
+          <h3 class="wr-card-title"><span>DIRECT LINE.</span> <span>ALWAYS.</span></h3>
+          <p class="wr-card-p">A direct line to me whenever you need it. A brief, a placement, mixing notes, anything, sent straight to me and reviewed personally. This is the access people don't believe until they're inside.</p>
+        </article>
       </div>
+
+      <div class="wr-shots reveal">
+        <div class="wr-shot"><img src="placements-landed.webp" width="1170" height="1470" alt="Placement landed" loading="lazy" decoding="async"></div>
+        <div class="wr-shot"><img src="placements-landed-2.webp" width="1170" height="1778" alt="Yung Bleu placement" loading="lazy" decoding="async"></div>
+        <div class="wr-shot"><img src="images.webp" width="516" height="387" alt="Phone screen showing the Untitled app with a hip hop sample project open" loading="lazy" decoding="async"></div>
+      </div>
+
+      <p class="wr-close reveal">It all lives in one members portal. One login, everything in it, updating forever.</p>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section section-a steps-section">
-    <div class="container">
-      <div class="steps-header reveal">
-        <h2 class="heading">HOW MEMBERS LAND.</h2>
-      </div>
-      <div class="steps-list">
-        <div class="step reveal" style="--d:0s">
-          <span class="step-n">01</span>
-          <div class="step-body">
-            <h3 class="step-title">GET EVERYTHING, IMMEDIATELY.</h3>
-            <p class="step-copy">Day one you have the full archive, every kit, the accelerator, the submission system, and the live pipeline. Nothing held back.</p>
+  <section class="w3 w3-land" id="how" aria-labelledby="how-title">
+    <div class="w3-in w3-stack-48">
+      <h2 class="w3-h2 reveal" id="how-title">HOW MEMBERS LAND.</h2>
+      <div class="w3-rows">
+        <div class="w3-row reveal" style="--d:0s">
+          <div class="w3-row-head">
+            <span class="w3-num">01</span>
+            <h3 class="w3-row-title">GET EVERYTHING, IMMEDIATELY.</h3>
           </div>
+          <p class="w3-row-copy">Day one you have the full archive, every kit, the accelerator, the submission system, and the live pipeline. Nothing held back.</p>
         </div>
-        <div class="step reveal" style="--d:.04s">
-          <span class="step-n">02</span>
-          <div class="step-body">
-            <h3 class="step-title">SUBMIT YOUR BEST WORK.</h3>
-            <p class="step-copy">Upload your heat and tag the vibe and genre. I get notified the moment it lands.</p>
+        <div class="w3-row reveal" style="--d:.04s">
+          <div class="w3-row-head">
+            <span class="w3-num">02</span>
+            <h3 class="w3-row-title">SUBMIT YOUR BEST WORK.</h3>
           </div>
+          <p class="w3-row-copy">Upload your heat and tag the vibe and genre. I get notified the moment it lands.</p>
         </div>
-        <div class="step reveal" style="--d:.09s">
-          <span class="step-n">03</span>
-          <div class="step-body">
-            <h3 class="step-title">I REVIEW IT PERSONALLY.</h3>
-            <p class="step-copy">I listen and match your beats to the active briefs. If it fits, it's tagged for the next nightly send.</p>
+        <div class="w3-row reveal" style="--d:.09s">
+          <div class="w3-row-head">
+            <span class="w3-num">03</span>
+            <h3 class="w3-row-title">I REVIEW IT PERSONALLY.</h3>
           </div>
+          <p class="w3-row-copy">I listen and match your beats to the active briefs. If it fits, it's tagged for the next nightly send.</p>
         </div>
-        <div class="step reveal" style="--d:.13s">
-          <span class="step-n">04</span>
-          <div class="step-body">
-            <h3 class="step-title">THE RIGHT ONES HIT ARTIST PHONES.</h3>
-            <p class="step-copy">When your beat fits a brief it rides that night's send, straight to artist phone numbers. Not a playlist, not a form. A text.</p>
+        <div class="w3-row reveal" style="--d:.13s">
+          <div class="w3-row-head">
+            <span class="w3-num">04</span>
+            <h3 class="w3-row-title">THE RIGHT ONES HIT ARTIST PHONES.</h3>
           </div>
+          <p class="w3-row-copy">When your beat fits a brief it rides that night's send, straight to artist phone numbers. Not a playlist, not a form. A text.</p>
         </div>
-        <div class="step reveal" style="--d:.17s">
-          <span class="step-n">05</span>
-          <div class="step-body">
-            <h3 class="step-title">PLACED. CREDIT LOCKED.</h3>
-            <p class="step-copy">When a record connects your status moves to Placed and you hear it from me. Credit and splits agreed before anything releases. Your rights stay yours, always.</p>
+        <div class="w3-row reveal" style="--d:.17s">
+          <div class="w3-row-head">
+            <span class="w3-num">05</span>
+            <h3 class="w3-row-title">PLACED. CREDIT LOCKED.</h3>
           </div>
+          <p class="w3-row-copy">When a record connects your status moves to Placed and you hear it from me. Credit and splits agreed before anything releases. Your rights stay yours, always.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="section section-blue reviews-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.14" src="media/still-panels.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="reveal reviews-header">
-        <h2 class="heading" style="color:var(--white)">THE PORTAL IS ACTUALLY FIRE.</h2>
+  <!-- THE PORTAL IS ACTUALLY FIRE: reviews screenshot, then who it is for -->
+  <section class="w3 w3-white w3-fire" aria-labelledby="fire-title">
+    <div class="w3-in w3-stack-56">
+      <h2 class="w3-h2 reveal" id="fire-title">THE PORTAL IS ACTUALLY FIRE.</h2>
+      <div class="w3-shot w3-shot-wide reveal">
+        <img src="reviews.webp" alt="Screenshots of member reviews of the Lifetime Supply portal" width="869" height="1200" loading="lazy" decoding="async">
       </div>
-      <div class="media-mat reviews-img reveal">
-        <img src="reviews.webp" alt="Screenshots of member reviews of the Lifetime Supply portal"
-             width="869" height="1200" loading="lazy" decoding="async"
-             data-missing-hides=".reviews-section">
-      </div>
-    </div>
-  </section>
-
-  <!-- WHO IT'S FOR -->
-  <section class="section section-b fit-section">
-    <div class="container">
-      <div class="fit-grid">
-        <div class="fit-col reveal">
-          <span class="label">THIS IS FOR YOU</span>
-          <ul class="fit-list fit-yes">
+      <div class="w3-fit">
+        <div class="w3-card reveal">
+          <span class="w3-eyebrow">THIS IS FOR YOU</span>
+          <ul class="w3-fit-list w3-fit-yes">
             <li>You've got beats and no real way to get them heard</li>
             <li>You want placements, not just more sounds</li>
             <li>You're ready to treat this like a business</li>
@@ -390,9 +281,9 @@
             <li>You get that one placement pays this back many times over</li>
           </ul>
         </div>
-        <div class="fit-col reveal" style="--d:.06s">
-          <span class="label">THIS IS NOT FOR YOU</span>
-          <ul class="fit-list fit-no">
+        <div class="w3-card reveal" style="--d:.06s">
+          <span class="w3-eyebrow">THIS IS NOT FOR YOU</span>
+          <ul class="w3-fit-list w3-fit-no">
             <li>You're hunting cheap sample packs</li>
             <li>You expect placements without doing the work</li>
             <li>You want a shortcut that does it for you</li>
@@ -403,297 +294,211 @@
     </div>
   </section>
 
-  <!-- PRESS FEATURE -->
-  <section class="section section-b press-section">
-    <div class="container">
-      <div class="press-inner reveal">
-        <img src="elaye-banner.webp" width="1600" height="804" alt="How ELAYE went platinum from Australia"
-             class="press-img" loading="lazy" decoding="async"
-             data-missing-hides=".press-section">
+  <!-- WHAT YOU'RE REALLY GETTING -->
+  <section class="w3 w3-get" aria-labelledby="get-title">
+    <div class="w3-in w3-stack-48">
+      <div class="w3-get-head reveal">
+        <div class="w3-get-title">
+          <span class="w3-eyebrow">WHAT YOU'RE REALLY GETTING</span>
+          <h2 class="w3-h2" id="get-title">WHAT YOU'RE<br>REALLY GETTING.</h2>
+        </div>
+        <p class="w3-lead">Most producers will spend the next ten years trying to build a fraction of what you get on day one.</p>
+      </div>
+      <div class="w3-get-grid">
+        <div class="w3-get-item reveal" style="--d:.02s">
+          <div class="w3-get-item-head"><span class="w3-num">01</span><h3 class="w3-get-item-title">MY ENTIRE CAREER'S ARCHIVE</h3></div>
+          <p class="w3-get-item-copy">Every melody, loop and stem I've made, the actual files behind platinum records, yours to flip. 3,000+ and growing daily.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.04s">
+          <div class="w3-get-item-head"><span class="w3-num">02</span><h3 class="w3-get-item-title">THE LIVE OPPORTUNITY PIPELINE</h3></div>
+          <p class="w3-get-item-copy">The one money can't buy. The briefs and artist connections I run my career off. You skip the years it took to build them and send alongside me every day.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.06s">
+          <div class="w3-get-item-head"><span class="w3-num">03</span><h3 class="w3-get-item-title">THE MENTORSHIP THAT TOOK ME TO PLATINUM</h3></div>
+          <p class="w3-get-item-copy">The exact blueprint from bedroom to platinum. How to sell to artists, build full-time income, and think like someone who makes it.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.09s">
+          <div class="w3-get-item-head"><span class="w3-num">04</span><h3 class="w3-get-item-title">EVERY KIT, RECORDED ON REAL ANALOG GEAR</h3></div>
+          <p class="w3-get-item-copy">Drum kits and multikits run through thousands of dollars of analog hardware. Warmth no plugin fakes.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.11s">
+          <div class="w3-get-item-head"><span class="w3-num">05</span><h3 class="w3-get-item-title">ALL MY GUIDES + EVERY DROP OF SAUCE</h3></div>
+          <p class="w3-get-item-copy">Everything I know, zero gatekeeping. Production, mixing, the business, one place.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.13s">
+          <div class="w3-get-item-head"><span class="w3-num">06</span><h3 class="w3-get-item-title">ME, IN YOUR CORNER</h3></div>
+          <p class="w3-get-item-copy">Direct access to a platinum producer. People pay thousands for one hour. You get me ongoing, for life.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.15s">
+          <div class="w3-get-item-head"><span class="w3-num">07</span><h3 class="w3-get-item-title">FOREVER UPDATES</h3></div>
+          <p class="w3-get-item-copy">Every new sample, connection and opportunity I make for the rest of my career lands with you too. As I climb, you climb.</p>
+        </div>
+        <div class="w3-get-item reveal" style="--d:.17s">
+          <div class="w3-get-item-head"><span class="w3-num">08</span><h3 class="w3-get-item-title">THE ROOM</h3></div>
+          <p class="w3-get-item-copy">The members community, opening soon. Producers in the same pipeline sharing feedback, flips and wins. Included, like everything else, forever.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- VALUE BREAKDOWN -->
-  <section class="section value-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-
-      <div class="value-intro reveal">
-        <span class="label">WHAT YOU'RE REALLY GETTING</span>
-        <h2 class="heading">WHAT YOU'RE<br>REALLY GETTING.</h2>
-        <p class="value-intro-line">Most producers will spend the next ten years trying to build a fraction of what you get on day one.</p>
+  <!-- PRICE BAND: the one price moment on the page (the header pill is the only other) -->
+  <section class="w3 w3-price" id="pricing" aria-labelledby="price-title">
+    <div class="w3-in w3-price-grid">
+      <div class="w3-price-copy reveal">
+        <p class="w3-eyebrow w3-eyebrow-light">NO FAKE MATH</p>
+        <h2 class="w3-h2 w3-h2-64 w3-h2-cream" id="price-title">ONE PAYMENT.<br>YOURS FOREVER.</h2>
+        <p class="w3-price-nofake">I'm not going to invent a number and cross it out to make you feel something. You've seen exactly what's inside. One payment gets you all of it, plus everything I build for the rest of my career. The pipeline and the updates alone can't be priced. It's worth more than the ask.</p>
+        <p class="w3-price-support">2,100+ kit files, a 70GB archive growing daily, 100+ live briefs and 40GB+ of mentorship. Bought separately, none of it comes close. A drum-kit habit costs more than this in a year. One placement off one brief pays it back many times over. Unlimited swings, forever.</p>
+        <p class="w3-price-support">You're in from day one. Every submission gets a personal listen, and your name goes up when the wins land. One payment. Yours forever.</p>
       </div>
-
-      <div class="value-cards">
-
-        <div class="vcard reveal" style="--d:.02s">
-          <span class="vcard-num">01</span>
-          <h3 class="vcard-title">MY ENTIRE CAREER'S ARCHIVE</h3>
-          <p class="vcard-body">Every melody, loop and stem I've made, the actual files behind platinum records, yours to flip. 3,000+ and growing daily.</p>
+      <div class="w3-price-card reveal" style="--d:.06s">
+        <div><span class="w3-chip">FOUNDING WINDOW CLOSED</span></div>
+        <div class="w3-price-stack">
+          <span class="w3-price-amount" aria-label="Price 599 dollars">$599</span>
+          <span class="w3-price-tag">ONE PAYMENT.</span>
+          <span class="w3-price-tag w3-price-tag-soft">EVERYTHING, UPDATING <strong class="w3-forever">FOREVER</strong>.</span>
         </div>
-
-        <div class="vcard reveal" style="--d:.04s">
-          <span class="vcard-num">02</span>
-          <h3 class="vcard-title">THE LIVE OPPORTUNITY PIPELINE</h3>
-          <p class="vcard-body">The one money can't buy. The briefs and artist connections I run my career off. You skip the years it took to build them and send alongside me every day.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.06s">
-          <span class="vcard-num">03</span>
-          <h3 class="vcard-title">THE MENTORSHIP THAT TOOK ME TO PLATINUM</h3>
-          <p class="vcard-body">The exact blueprint from bedroom to platinum. How to sell to artists, build full-time income, and think like someone who makes it.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.09s">
-          <span class="vcard-num">04</span>
-          <h3 class="vcard-title">EVERY KIT, RECORDED ON REAL ANALOG GEAR</h3>
-          <p class="vcard-body">Drum kits and multikits run through thousands of dollars of analog hardware. Warmth no plugin fakes.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.11s">
-          <span class="vcard-num">05</span>
-          <h3 class="vcard-title">ALL MY GUIDES + EVERY DROP OF SAUCE</h3>
-          <p class="vcard-body">Everything I know, zero gatekeeping. Production, mixing, the business, one place.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.13s">
-          <span class="vcard-num">06</span>
-          <h3 class="vcard-title">ME, IN YOUR CORNER</h3>
-          <p class="vcard-body">Direct access to a platinum producer. People pay thousands for one hour. You get me ongoing, for life.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.15s">
-          <span class="vcard-num">07</span>
-          <h3 class="vcard-title">FOREVER UPDATES</h3>
-          <p class="vcard-body">Every new sample, connection and opportunity I make for the rest of my career lands with you too. As I climb, you climb.</p>
-        </div>
-
-        <div class="vcard reveal" style="--d:.17s">
-          <span class="vcard-num">08</span>
-          <h3 class="vcard-title">THE ROOM</h3>
-          <p class="vcard-body">The members community, opening soon. Producers in the same pipeline sharing feedback, flips and wins. Included, like everything else, forever.</p>
-        </div>
-
+        <hr class="w3-hr">
+        <ul class="w3-ticks">
+          <li>Live placement pipeline, 100+ daily briefs, packs to artist phones nightly</li>
+          <li>70GB+ sample archive via the Untitled app, deliverables sent on purchase, updating forever</li>
+          <li>OCTAVES Creator Suite, Analog Alchemy, and every future kit</li>
+          <li>Vaulted kits plus an exclusive monthly member kit that never goes public</li>
+          <li>40GB+ accelerator and mentorship videos plus 34 written guides, around 200 pages, no gatekeeping</li>
+          <li>Submission system with personal review and live status tracking</li>
+          <li>A direct line to me, always</li>
+          <li>Your rights stay yours until a record places and splits are agreed</li>
+        </ul>
+        <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="w3-pill">GET LIFETIME ACCESS</a>
+        <p class="w3-price-dm">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
       </div>
-
-      <div class="value-total-block reveal">
-        <p class="value-add-label">NO FAKE MATH</p>
-        <p class="value-nofake">I'm not going to invent a number and cross it out to make you feel something. You've seen exactly what's inside. One payment gets you all of it, plus everything I build for the rest of my career. The pipeline and the updates alone can't be priced. It's worth more than the ask.</p>
-      </div>
-
-      <div class="value-reveal reveal">
-        <div class="value-reveal-price">
-          <span class="val-now" aria-label="Price 599 dollars, one payment">$599</span>
-        </div>
-        <div class="value-reveal-right">
-          <p class="value-reveal-copy">ONE PAYMENT.<br>YOURS FOREVER.</p>
-          <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold btn-lg">GET LIFETIME ACCESS</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="section section-blue pricing-section" id="pricing">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="pricing-split">
-        <div class="pricing-inner">
-          <div class="reveal">
-            <div class="price-row">
-              <div class="price-sale-block">
-                <span class="sale-badge">FOUNDING WINDOW CLOSED</span>
-                <div class="price-pair">
-                  <span class="price-amount-now" aria-label="Price 599 dollars">$599</span>
-                </div>
-              </div>
-              <span class="price-tag">ONE PAYMENT.<br>EVERYTHING, UPDATING <strong class="forever">FOREVER</strong>.</span>
-            </div>
-          </div>
-          <ul class="pricing-list reveal">
-            <li>Live placement pipeline, 100+ daily briefs, packs to artist phones nightly</li>
-            <li>70GB+ sample archive via the Untitled app, deliverables sent on purchase, updating forever</li>
-            <li>OCTAVES Creator Suite, Analog Alchemy, and every future kit</li>
-            <li>Vaulted kits plus an exclusive monthly member kit that never goes public</li>
-            <li>40GB+ accelerator and mentorship videos plus 34 written guides, around 200 pages, no gatekeeping</li>
-            <li>Submission system with personal review and live status tracking</li>
-            <li>A direct line to me, always</li>
-            <li>Your rights stay yours until a record places and splits are agreed</li>
-          </ul>
-          <p class="body-copy reveal">2,100+ kit files, a 70GB archive growing daily, 100+ live briefs and 40GB+ of mentorship. Bought separately, none of it comes close. A drum-kit habit costs more than this in a year. One placement off one brief pays it back many times over. Unlimited swings, forever.</p>
-          <p class="body-copy reveal">You're in from day one. Every submission gets a personal listen, and your name goes up when the wins land. One payment. Yours forever.</p>
-          <div class="pricing-cta reveal">
-            <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold btn-lg">GET LIFETIME ACCESS</a>
-            <p class="pricing-reassure">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
-          </div>
-        </div>
-        <div class="media-mat pricing-photo reveal">
-          <img src="channels4_profile.webp" alt="Black and white photo of two producers working at a studio mixing desk"
-               width="160" height="160" loading="lazy" decoding="async" class="pricing-profile-img">
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section section-a faq-section">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="heading">BEFORE YOU ASK.</h2>
-      </div>
-      <div class="faq-list reveal">
-        <details class="expander">
+  <section class="w3 w3-white w3-faq" aria-labelledby="faq-title">
+    <div class="w3-in w3-faq-grid">
+      <h2 class="w3-h2 reveal" id="faq-title">BEFORE YOU ASK.</h2>
+      <div class="w3-faq-list reveal">
+        <details class="w3-q" open>
           <summary>Is this a subscription?</summary>
-          <p class="expander-body">No. One payment, in for life. No monthly, no upsells, nothing else ever. Whatever you lock in at, you keep everything forever.</p>
+          <p class="w3-a">No. One payment, in for life. No monthly, no upsells, nothing else ever. Whatever you lock in at, you keep everything forever.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>Is it actually legit?</summary>
-          <p class="expander-body">Fair question, you should be asking it. The portal's built and live, not a promise. Want to see it first, DM me and I'll walk you through everything before you pay a dollar. Either way you're set up within the hour. The risk is on me, not you.</p>
+          <p class="w3-a">Fair question, you should be asking it. The portal's built and live, not a promise. Want to see it first, DM me and I'll walk you through everything before you pay a dollar. Either way you're set up within the hour. The risk is on me, not you.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>Do you place my beats for me?</summary>
-          <p class="expander-body">No, and run from anyone who says they will. What you get is access. You send on the exact same briefs I run my own career off. The door's open, your music walks through it. We want hits not beats.</p>
+          <p class="w3-a">No, and run from anyone who says they will. What you get is access. You send on the exact same briefs I run my own career off. The door's open, your music walks through it. We want hits not beats.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>I'm not landing placements yet. Am I good enough?</summary>
-          <p class="expander-body">Everyone in there started in a bedroom with nothing. You don't get good then join, you join and get good. The sounds level you up instantly, the mentorship shows you how, being around it daily does the rest.</p>
+          <p class="w3-a">Everyone in there started in a bedroom with nothing. You don't get good then join, you join and get good. The sounds level you up instantly, the mentorship shows you how, being around it daily does the rest.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>I don't have much time.</summary>
-          <p class="expander-body">That's exactly why it fits. The part that eats your time, finding opps and chasing contacts and digging for sounds, is done for you and handed over daily. You just make music and send.</p>
+          <p class="w3-a">That's exactly why it fits. The part that eats your time, finding opps and chasing contacts and digging for sounds, is done for you and handed over daily. You just make music and send.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>What happens to beats that don't place?</summary>
-          <p class="expander-body">They stay yours. Sell them, lease them, put them on BeatStars. Placed records get proper credit and splits, agreed clearly before anything releases.</p>
+          <p class="w3-a">They stay yours. Sell them, lease them, put them on BeatStars. Placed records get proper credit and splits, agreed clearly before anything releases.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>How do I pay and get in?</summary>
-          <p class="expander-body">Hit Get Lifetime Access and check out. You're in the moment it clears, working that night's briefs. Want to see inside first, DM me "IN" on IG @elxyee.</p>
+          <p class="w3-a">Hit Get Lifetime Access and check out. You're in the moment it clears, working that night's briefs. Want to see inside first, DM me "IN" on IG @elxyee.</p>
         </details>
-        <details class="expander">
+        <details class="w3-q">
           <summary>Does it really keep updating?</summary>
-          <p class="expander-body">Forever. New samples daily, a new kit monthly, new briefs every day, plus every kit and guide I make for the rest of my career. As I climb, you climb.</p>
+          <p class="w3-a">Forever. New samples daily, a new kit monthly, new briefs every day, plus every kit and guide I make for the rest of my career. As I climb, you climb.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- RECEIPTS -->
-  <section class="section receipts-section">
-    <div class="sec-bg" aria-hidden="true">
-      <img class="sec-bg-media" data-depth="0.10" src="media/still-wall.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-    </div>
-    <div class="container">
-      <div class="reveal">
-        <h2 class="heading">THE MEMBERS TALK.</h2>
-        <p class="receipts-sub">Real messages, unedited. Only the names are left out.</p>
+  <!-- THE MEMBERS TALK -->
+  <section class="w3 w3-talk" aria-labelledby="talk-title">
+    <div class="w3-in w3-stack-48">
+      <div class="w3-talk-head reveal">
+        <h2 class="w3-h2" id="talk-title">THE MEMBERS TALK.</h2>
+        <p class="w3-sub">Real messages, unedited. Only the names are left out.</p>
       </div>
 
-      <div class="receipts-grid">
+      <div class="w3-shots reveal">
+        <div class="w3-shot"><img src="kit-reviews.webp" width="675" height="1200" alt="Screenshots of DM messages from producers praising the sample kits" loading="lazy" decoding="async"></div>
+        <div class="w3-shot"><img src="lifetime-review-pic-mentorship.webp" width="945" height="847" alt="Screenshot of a DM crediting the accelerator with changing their mindset" loading="lazy" decoding="async"></div>
+        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-2.webp" width="1170" height="1152" alt="Screenshot of a DM thanking ELAYE for the mentorship content" loading="lazy" decoding="async"></div>
+        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-3.webp" width="1170" height="696" alt="Screenshot of a DM saying the accelerator changed how they think about music" loading="lazy" decoding="async"></div>
+        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-4.webp" width="897" height="572" alt="Screenshot of a DM celebrating a win after the mentorship" loading="lazy" decoding="async"></div>
+      </div>
 
-        <div class="receipt-card lead reveal" style="--d:0s">
-          <p class="receipt-quote">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable and you've completely changed my mindset</p>
-          <p class="receipt-attribution">Lifetime member</p>
+      <div class="w3-quotes">
+        <div class="w3-quote reveal" style="--d:0s">
+          <p class="w3-quote-text">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable and you've completely changed my mindset</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.02s">
-          <p class="receipt-quote">I do not regret getting the lifetime bundle , too much sauce</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.02s">
+          <p class="w3-quote-text">I do not regret getting the lifetime bundle , too much sauce</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card lead reveal" style="--d:.04s">
-          <p class="receipt-quote">bro idk how u f***ing did it but it really costs 500$ fr</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.04s">
+          <p class="w3-quote-text">bro idk how u f***ing did it but it really costs 500$ fr</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.06s">
-          <p class="receipt-quote">fuxk with the organization and how streamlined it is. Makes it super easy to keep track of who to send for</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.06s">
+          <p class="w3-quote-text">fuxk with the organization and how streamlined it is. Makes it super easy to keep track of who to send for</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.09s">
-          <p class="receipt-quote">i'm gonna keep looking through it you got hella value in there 💯</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.09s">
+          <p class="w3-quote-text">i'm gonna keep looking through it you got hella value in there 💯</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.11s">
-          <p class="receipt-quote">that notion thing with the opportunities and s*** is fire too bro. you da goat for that</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.11s">
+          <p class="w3-quote-text">that notion thing with the opportunities and s*** is fire too bro. you da goat for that</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.13s">
-          <p class="receipt-quote">so many plays in there🤯</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.13s">
+          <p class="w3-quote-text">so many plays in there🤯</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.15s">
-          <p class="receipt-quote">even the lifetime supply was enough to make me think that but I love how you want the best for other creatives</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.15s">
+          <p class="w3-quote-text">even the lifetime supply was enough to make me think that but I love how you want the best for other creatives</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
-        <div class="receipt-card reveal" style="--d:.17s">
-          <p class="receipt-quote">New process is way better ngl. Keeps everything tracked and organized</p>
-          <p class="receipt-attribution">Lifetime member</p>
+        <div class="w3-quote reveal" style="--d:.17s">
+          <p class="w3-quote-text">New process is way better ngl. Keeps everything tracked and organized</p>
+          <p class="w3-quote-attr">Lifetime member</p>
         </div>
-
       </div>
     </div>
   </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="sec-bg" aria-hidden="true">
-      <video class="sec-bg-media" data-lazy-video data-depth="0.08"
-             muted loop playsinline preload="none" data-poster="media/clip-wordmark-poster.webp">
-        <source data-src="media/clip-wordmark.webm" type="video/webm">
-        <source data-src="media/clip-wordmark.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="footer-sale">
-      <div class="footer-sale-price">
-        <span class="footer-price-now" aria-label="Price 599 dollars, one payment">$599</span>
+  <footer class="w3-footer">
+    <div class="w3-in w3-footer-in">
+      <div class="w3-footer-row">
+        <a href="#" class="w3-wordmark">lifetime supply.</a>
+        <nav class="w3-footer-links" aria-label="Footer">
+          <a href="https://portal.elaye.store/login" class="w3-footer-link">Log in</a>
+          <a href="https://instagram.com/elxyee" target="_blank" rel="noopener" class="w3-footer-link">Instagram @elxyee</a>
+        </nav>
       </div>
-      <p class="footer-sale-tag">ONE PAYMENT. LIFETIME ACCESS.</p>
-      <p class="footer-sale-urgency">
-        FOUNDING WINDOW CLOSED
-      </p>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="btn btn-gold btn-lg btn-pulse">GET LIFETIME ACCESS</a>
-      <p class="footer-dm">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
-      <p class="footer-signoff">WE WANT HITS NOT BEATS. ALL IT TAKES IS ONE LISTEN.</p>
-    </div>
-    <!-- Envelope render backs this, but it stays under the buy button
-         in the visual order. Never competes with checkout. -->
-    <div class="footer-capture-band reveal">
-      <div class="sec-bg" aria-hidden="true">
-        <img class="sec-bg-media" data-depth="0.06" src="media/still-envelope.webp" alt="" loading="lazy" decoding="async" width="768" height="1376">
-      </div>
-      <div class="footer-capture-wrap">
-        <p class="footer-capture">Not ready? <a href="https://elaye.store/newsletter" class="footer-capture-link">Locked In is free. Real lessons from a platinum producer, and first access to every drop.</a></p>
+      <p class="w3-footer-capture">Not ready? <a href="https://elaye.store/newsletter">Locked In is free. Real lessons from a platinum producer, and first access to every drop.</a></p>
+      <div class="w3-footer-row w3-footer-meta">
+        <span class="w3-lower">One payment. Yours forever.</span>
+        <span>© 2026 ELAYE</span>
       </div>
     </div>
-    <span class="footer-credit">ELAYE &nbsp;·&nbsp; THE LIFETIME SUPPLY &nbsp;·&nbsp; <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@ELXYEE</a></span>
   </footer>
 
-  <script defer src="lib/lenis.min.js"></script>
-  <script defer src="lib/gsap.min.js"></script>
-  <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="js/site-config.js"></script>
   <script defer src="js/app.js"></script>
-  <script defer src="js/glass.js"></script>
   <script>
-    /* Failsafe: if the animation libs failed to load, app.js may throw
-       before the reveal observer runs. Never leave copy stuck hidden. */
+    /* Failsafe: if app.js never ran (blocked, failed, or threw before the
+       observer), drop the html.js gate so nothing stays hidden. */
     addEventListener('load', () => setTimeout(() => {
-      if (!window.gsap) document.querySelectorAll('.reveal:not(.visible)')
-        .forEach(el => el.classList.add('visible'));
+      if (!window.__reveals) document.documentElement.classList.remove('js');
     }, 1200));
   </script>
 </body>
