@@ -1,0 +1,262 @@
+/* ══ THE FOLDER ═══════════════════════════════════════════════════════════════
+   The White Room folder object, CSS only (design/white-room/folder-object.html).
+   Base 400 × 330; every length below is base × --s, so one component draws the
+   login object (0.78), the home doors (0.20), a card (0.22) and a kit cover
+   (0.42). Parts in paint order: ground shadow → back panel → tab → fillet →
+   sheet(s) → front panel (sheen inside) → badge. No image, no SVG, no three.js.
+
+   Markup, parts in this order:
+     <div class="folder" style="--s: .22">
+       <i class="folder-ground"></i>
+       <i class="folder-back"></i>
+       <i class="folder-tab"></i>
+       <i class="folder-fillet"></i>
+       <i class="folder-sheet-2"></i>   (only paints in .is-open)
+       <i class="folder-sheet"></i>
+       <i class="folder-front"></i>
+       <i class="folder-lock"></i>      (only paints in .has-lock)
+       <i class="folder-new">NEW</i>    (only paints in .has-new)
+     </div>
+     <div class="folder-caption">the vault</div>
+
+   States: .is-open (two sheets rise, the front tips back), .has-lock (the ink
+   lock badge, bottom right), .has-new (the gold NEW pill, top right).
+   Variant: .folder-gold (The Room door and kit drops only). */
+
+  .folder {
+    --s: 1;
+    /* Blue, the default. The shadow tone is a triplet so one alpha ramp
+       serves every shadow on the object. */
+    --folder-shadow: 11, 45, 64;
+    --folder-back-top: #3b8cc0;
+    --folder-back-bottom: var(--blue-700);
+    --folder-sheet-face: var(--white);
+    --folder-sheet-tint: #d3e3ec;
+    --folder-front-top: #8dcdea;
+    --folder-front-mid: #5fb3dc;
+    --folder-front-bottom: #45a1c3;
+    --folder-front-edge: rgba(255, 255, 255, 0.85);
+
+    position: relative;
+    display: block;
+    flex: none;
+    width: calc(400px * var(--s));
+    height: calc(330px * var(--s));
+  }
+  .folder > * {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  /* 1 · ground shadow */
+  .folder-ground {
+    left: calc(46px * var(--s));
+    top: calc(288px * var(--s));
+    width: calc(308px * var(--s));
+    height: calc(42px * var(--s));
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(var(--folder-shadow), 0.31) 0%,
+      rgba(var(--folder-shadow), 0) 66%
+    );
+  }
+
+  /* 2 · back panel: square top-left corner, the tab sits on it */
+  .folder-back {
+    left: calc(40px * var(--s));
+    top: calc(84px * var(--s));
+    width: calc(320px * var(--s));
+    height: calc(206px * var(--s));
+    border-radius: 0 calc(22px * var(--s)) calc(22px * var(--s)) calc(22px * var(--s));
+    background: linear-gradient(180deg, var(--folder-back-top) 0%, var(--folder-back-bottom) 100%);
+    box-shadow: 0 calc(10px * var(--s)) calc(24px * var(--s)) rgba(var(--folder-shadow), 0.14);
+  }
+
+  /* 3 · tab: overlaps the body top by 6 */
+  .folder-tab {
+    left: calc(40px * var(--s));
+    top: calc(56px * var(--s));
+    width: calc(150px * var(--s));
+    height: calc(34px * var(--s));
+    border-radius: calc(16px * var(--s)) calc(16px * var(--s)) 0 0;
+    background: var(--folder-back-top);
+  }
+
+  /* 4 · fillet: the concave curve where the tab meets the body */
+  .folder-fillet {
+    left: calc(190px * var(--s));
+    top: calc(72px * var(--s));
+    width: calc(14px * var(--s));
+    height: calc(12px * var(--s));
+    background: radial-gradient(
+      circle at 100% 0%,
+      rgba(0, 0, 0, 0) calc(12px * var(--s)),
+      var(--folder-back-top) calc(12.6px * var(--s))
+    );
+  }
+
+  /* 5 · the sheet (closed: one, tucked behind the front) */
+  .folder-sheet {
+    left: calc(64px * var(--s));
+    top: calc(96px * var(--s));
+    width: calc(272px * var(--s));
+    height: calc(46px * var(--s));
+    border-radius: calc(10px * var(--s)) calc(10px * var(--s)) 0 0;
+    background: linear-gradient(
+      180deg,
+      var(--folder-sheet-face) 0%,
+      var(--folder-sheet-face) 40%,
+      var(--folder-sheet-tint) 100%
+    );
+  }
+  .folder-sheet-2 {
+    display: none;
+  }
+
+  /* 6 · front panel, sheen inside */
+  .folder-front {
+    left: calc(40px * var(--s));
+    top: calc(122px * var(--s));
+    width: calc(320px * var(--s));
+    height: calc(168px * var(--s));
+    border-radius: calc(20px * var(--s));
+    overflow: hidden;
+    background: linear-gradient(
+      180deg,
+      var(--folder-front-top) 0%,
+      var(--folder-front-mid) 55%,
+      var(--folder-front-bottom) 100%
+    );
+    box-shadow:
+      inset 0 calc(1.5px * var(--s)) 0 var(--folder-front-edge),
+      inset 0 calc(-2px * var(--s)) 0 rgba(0, 0, 0, 0.1),
+      0 calc(18px * var(--s)) calc(30px * var(--s)) rgba(var(--folder-shadow), 0.27);
+  }
+  .folder-front::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: calc(72px * var(--s));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  /* 7 · badges, off until a state asks for them */
+  .folder-lock,
+  .folder-new {
+    display: none;
+  }
+
+  /* ── .is-open: two sheets rise, the front tips back ────────────────────── */
+  .folder.is-open .folder-sheet-2 {
+    display: block;
+    left: calc(98px * var(--s));
+    top: calc(78px * var(--s));
+    width: calc(250px * var(--s));
+    height: calc(80px * var(--s));
+    border-radius: calc(10px * var(--s)) calc(10px * var(--s)) 0 0;
+    background: linear-gradient(180deg, var(--folder-sheet-tint) 0%, var(--folder-sheet-face) 100%);
+    transform: rotate(3.5deg);
+    transform-origin: 100% 100%;
+  }
+  .folder.is-open .folder-sheet {
+    left: calc(58px * var(--s));
+    top: calc(64px * var(--s));
+    width: calc(262px * var(--s));
+    height: calc(96px * var(--s));
+    background: linear-gradient(
+      180deg,
+      var(--folder-sheet-face) 0%,
+      var(--folder-sheet-face) 55%,
+      var(--folder-sheet-tint) 100%
+    );
+    transform: rotate(-6deg);
+    transform-origin: 0% 100%;
+    box-shadow: 0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(var(--folder-shadow), 0.11);
+  }
+  .folder.is-open .folder-front {
+    transform: perspective(calc(900px * var(--s))) rotateX(-18deg);
+    transform-origin: 50% 100%;
+  }
+
+  /* ── .has-lock: the ink lock badge, bottom right ───────────────────────── */
+  .folder.has-lock .folder-lock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: calc(268px * var(--s));
+    top: calc(218px * var(--s));
+    width: calc(92px * var(--s));
+    height: calc(92px * var(--s));
+    border-radius: 50%;
+    background: var(--ink-900);
+    border: calc(3px * var(--s)) solid var(--bone-50);
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.35);
+  }
+  /* shackle */
+  .folder-lock::before {
+    content: "";
+    display: block;
+    width: calc(22px * var(--s));
+    height: calc(18px * var(--s));
+    border: calc(4px * var(--s)) solid var(--bone-50);
+    border-bottom: 0;
+    border-radius: calc(11px * var(--s)) calc(11px * var(--s)) 0 0;
+    box-sizing: border-box;
+  }
+  /* body */
+  .folder-lock::after {
+    content: "";
+    display: block;
+    width: calc(36px * var(--s));
+    height: calc(26px * var(--s));
+    border-radius: calc(6px * var(--s));
+    background: var(--bone-50);
+    margin-top: calc(-1px * var(--s));
+  }
+
+  /* ── .has-new: the gold NEW pill, top right ────────────────────────────── */
+  .folder.has-new .folder-new {
+    display: flex;
+    align-items: center;
+    left: calc(292px * var(--s));
+    top: calc(38px * var(--s));
+    height: calc(38px * var(--s));
+    padding: 0 calc(15px * var(--s));
+    border-radius: calc(19px * var(--s));
+    background: var(--gold-400);
+    color: var(--ink-900);
+    font-style: normal;
+    font-size: calc(14px * var(--s));
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    white-space: nowrap;
+    box-shadow: 0 calc(6px * var(--s)) calc(14px * var(--s)) rgba(0, 0, 0, 0.25);
+  }
+
+  /* ── .folder-gold: The Room door and kit drops only ────────────────────── */
+  .folder-gold {
+    --folder-shadow: 46, 39, 23;
+    --folder-back-top: #8a6a1e;
+    --folder-back-bottom: #5e4a16;
+    --folder-sheet-face: #fbf6e8;
+    --folder-sheet-tint: #d9cba4;
+    --folder-front-top: #fbda6a;
+    --folder-front-mid: #e9bd42;
+    --folder-front-bottom: #c39c42;
+    --folder-front-edge: rgba(255, 246, 210, 0.7);
+  }
+
+  /* ── caption under the object, like a desktop label ────────────────────── */
+  .folder-caption {
+    font-size: var(--text-base);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-primary);
+    text-align: center;
+  }
