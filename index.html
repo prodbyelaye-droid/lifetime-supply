@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="My whole setup, one bundle, forever. Every kit, sound and session file I've made, 6,000+ files and counting, members-only drops and 120+ live artist briefs. One payment.">
-  <meta name="theme-color" content="#0d3347">
+  <meta name="theme-color" content="#ffffff">
   <title>The Lifetime Supply by ELAYE</title>
   <link rel="canonical" href="https://lifetime.elaye.store/">
 
@@ -19,23 +19,24 @@
   <meta name="twitter:description" content="One payment, lifetime access. WE WANT HITS NOT BEATS.">
   <meta name="twitter:image" content="https://lifetime.elaye.store/elaye-banner.jpg">
 
-  <!-- Favicon: inline SVG first, then real files for /favicon.ico and the iOS touch icon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d3347'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23f5c242' font-family='Arial,sans-serif' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0b'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23f5c242' font-family='Arial,sans-serif' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Geist is self-hosted (css/white-room.css): the Google Fonts CDN put a
-       cross-origin CSS + font chain on the critical path and held LCP. -->
   <link rel="preload" as="font" type="font/woff2" href="fonts/geist-latin.woff2" crossorigin>
-
-  <link rel="stylesheet" href="css/tokens.css">
-
-  <link rel="stylesheet" href="css/white-room.css">
-  <link rel="stylesheet" href="css/white-room-sections.css">
-  <link rel="stylesheet" href="css/white-room-2.css">
-  <!-- Reveals only hide on html.js (css/white-room.css, MOTION), so with JS off the page is simply visible. -->
-  <script>document.documentElement.classList.add('js')</script>
-  <!-- price lives here too: update with banner/counter/pricing/final CTA when the ladder steps -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/GeistPixel-Circle.woff2" crossorigin>
+  <link rel="stylesheet" href="css/folder.css">
+  <link rel="stylesheet" href="css/homer.css">
+  <!-- html.js: reveals may hide until seen. html.motion: the portal stage pins
+       and plays (js/homer.js); without it the page is the settled, final state. -->
+  <script>
+    (function (d) {
+      d.classList.add('js');
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!still && window.innerHeight >= 520) d.classList.add('motion');
+    })(document.documentElement);
+  </script>
+  <!-- the price lives here too: update it with the hero line, the FAQ and the price card on 6 Oct -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,355 +57,201 @@
   </script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- HEADER -->
-  <header class="site-header" id="siteHeader">
-    <a href="#hero" class="wordmark">lifetime supply.</a>
-    <nav class="site-nav" aria-label="Site">
-      <a href="#everything" class="nav-link">What's inside</a>
-      <a href="https://portal.elaye.store/login" class="nav-link">Log in</a>
-      <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill">Get access</a>
-    </nav>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand-link" href="#top" aria-label="lifetime supply, back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -147.8 1176.28 193.54" class="wm wm-intro" focusable="false" role="img" aria-label="lifetime supply"><title>lifetime supply</title><defs><linearGradient id="wm-h-g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="615.8" y2="0"><stop offset="0" stop-color="#0b0b0b"/><stop offset="1" stop-color="#1c1c1c"/></linearGradient></defs><path d="M28.00-145.80L0-145.80L0 0L28.00 0ZM74.60-108L46.60-108L46.60 0L74.60 0ZM74.60-145.80L46.60-145.80L46.60-120.80L74.60-120.80ZM142.40-105.80L125.80-105.80L125.80-116.40C125.80-122 128.20-124.80 133.40-124.80C136-124.80 138.60-124.60 141.40-124.20L141.40-145.20C135.40-145.60 129.60-145.80 125.40-145.80C106.80-145.80 97.80-137 97.80-118.80L97.80-105.80L82.60-105.80L82.60-87.20L97.80-87.20L97.80 0L125.80 0L125.80-87.20L142.40-87.20ZM241.60-45.20C241.80-47.60 241.80-48.60 241.80-50C241.80-60.80 240.20-70.80 237.60-78.40C230.40-98 213-109.80 191.20-109.80C160.20-109.80 141.20-87.40 141.20-51.20C141.20-16.60 160 4.60 190.60 4.60C214.80 4.60 234.40-9 240.60-30.40L213-30.40C209.60-21.80 201.80-16.80 191.60-16.80C183.60-16.80 177.20-20.20 173.20-26.20C170.60-30.20 169.60-35 169.20-45.20ZM169.60-63.80C171.40-80.40 178.40-88.40 190.80-88.40C203.60-88.40 211.20-79.80 212.60-63.80ZM298.40-105.80L282.80-105.80L282.80-134.80L254.80-134.80L254.80-105.80L241.00-105.80L241.00-87.20L254.80-87.20L254.80-20.80C254.80-3.80 263.80 4.60 282.20 4.60C288.60 4.60 293.20 4 298.40 2.40L298.40-17.20C295.60-16.80 294.20-16.60 292-16.60C284.60-16.60 282.80-18.80 282.80-28.40L282.80-87.20L298.40-87.20ZM336.80-108L308.80-108L308.80 0L336.80 0ZM336.80-145.80L308.80-145.80L308.80-120.80L336.80-120.80ZM354.00-108L354.00 0L382.00 0L382.00-64.80C382.00-78.20 389.20-86 401.20-86C410.60-86 416.40-80.60 416.40-72L416.40 0L444.40 0L444.40-64.80C444.40-78 451.60-86 463.60-86C473.00-86 478.80-80.60 478.80-72L478.80 0L506.80 0L506.80-76.40C506.80-97.40 494.00-109.80 472.40-109.80C458.60-109.80 449.20-105 440.80-93.80C435.60-104 424.80-109.80 411.40-109.80C399.00-109.80 391.00-105.80 381.80-94.60L381.80-108ZM615.60-45.20C615.80-47.60 615.80-48.60 615.80-50C615.80-60.80 614.20-70.80 611.60-78.40C604.40-98 587.00-109.80 565.20-109.80C534.20-109.80 515.20-87.40 515.20-51.20C515.20-16.60 534.00 4.60 564.60 4.60C588.80 4.60 608.40-9 614.60-30.40L587.00-30.40C583.60-21.80 575.80-16.80 565.60-16.80C557.60-16.80 551.20-20.20 547.20-26.20C544.60-30.20 543.60-35 543.20-45.20ZM543.60-63.80C545.40-80.40 552.40-88.40 564.80-88.40C577.60-88.40 585.20-79.80 586.60-63.80Z" fill="url(#wm-h-g)"/><g class="wm-col" style="--c:0" fill="#1c1c1c"><circle cx="629.04" cy="-22.5" r="3.24"/><circle cx="629.04" cy="-67.5" r="3.24"/><circle cx="629.04" cy="-76.5" r="3.24"/><circle cx="629.04" cy="-85.5" r="3.24"/></g><g class="wm-col" style="--c:1" fill="#1e1e1e"><circle cx="638.04" cy="-13.5" r="3.24"/><circle cx="638.04" cy="-22.5" r="3.24"/><circle cx="638.04" cy="-58.5" r="3.24"/><circle cx="638.04" cy="-67.5" r="3.24"/><circle cx="638.04" cy="-76.5" r="3.24"/><circle cx="638.04" cy="-85.5" r="3.24"/><circle cx="638.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:2" fill="#202020"><circle cx="647.04" cy="-4.5" r="3.24"/><circle cx="647.04" cy="-13.5" r="3.24"/><circle cx="647.04" cy="-49.5" r="3.24"/><circle cx="647.04" cy="-58.5" r="3.24"/><circle cx="647.04" cy="-94.5" r="3.24"/><circle cx="647.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:3" fill="#222222"><circle cx="656.04" cy="-4.5" r="3.24"/><circle cx="656.04" cy="-13.5" r="3.24"/><circle cx="656.04" cy="-49.5" r="3.24"/><circle cx="656.04" cy="-58.5" r="3.24"/><circle cx="656.04" cy="-94.5" r="3.24"/><circle cx="656.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:4" fill="#232323"><circle cx="665.04" cy="-4.5" r="3.24"/><circle cx="665.04" cy="-13.5" r="3.24"/><circle cx="665.04" cy="-49.5" r="3.24"/><circle cx="665.04" cy="-58.5" r="3.24"/><circle cx="665.04" cy="-94.5" r="3.24"/><circle cx="665.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:5" fill="#252525"><circle cx="674.04" cy="-4.5" r="3.24"/><circle cx="674.04" cy="-13.5" r="3.24"/><circle cx="674.04" cy="-49.5" r="3.24"/><circle cx="674.04" cy="-58.5" r="3.24"/><circle cx="674.04" cy="-94.5" r="3.24"/><circle cx="674.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:6" fill="#272727"><circle cx="683.04" cy="-4.5" r="3.24"/><circle cx="683.04" cy="-13.5" r="3.24"/><circle cx="683.04" cy="-49.5" r="3.24"/><circle cx="683.04" cy="-58.5" r="3.24"/><circle cx="683.04" cy="-94.5" r="3.24"/><circle cx="683.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:7" fill="#292929"><circle cx="692.04" cy="-4.5" r="3.24"/><circle cx="692.04" cy="-13.5" r="3.24"/><circle cx="692.04" cy="-49.5" r="3.24"/><circle cx="692.04" cy="-58.5" r="3.24"/><circle cx="692.04" cy="-94.5" r="3.24"/><circle cx="692.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:8" fill="#2b2b2b"><circle cx="701.04" cy="-13.5" r="3.24"/><circle cx="701.04" cy="-22.5" r="3.24"/><circle cx="701.04" cy="-31.5" r="3.24"/><circle cx="701.04" cy="-40.5" r="3.24"/><circle cx="701.04" cy="-49.5" r="3.24"/><circle cx="701.04" cy="-85.5" r="3.24"/><circle cx="701.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:9" fill="#2d2d2d"><circle cx="710.04" cy="-22.5" r="3.24"/><circle cx="710.04" cy="-31.5" r="3.24"/><circle cx="710.04" cy="-40.5" r="3.24"/><circle cx="710.04" cy="-85.5" r="3.24"/></g><g class="wm-col" style="--c:10" fill="#313131"><circle cx="728.04" cy="-31.5" r="3.24"/><circle cx="728.04" cy="-40.5" r="3.24"/><circle cx="728.04" cy="-49.5" r="3.24"/><circle cx="728.04" cy="-58.5" r="3.24"/><circle cx="728.04" cy="-67.5" r="3.24"/><circle cx="728.04" cy="-76.5" r="3.24"/><circle cx="728.04" cy="-85.5" r="3.24"/><circle cx="728.04" cy="-94.5" r="3.24"/><circle cx="728.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:11" fill="#323232"><circle cx="737.04" cy="-13.5" r="3.24"/><circle cx="737.04" cy="-22.5" r="3.24"/><circle cx="737.04" cy="-31.5" r="3.24"/><circle cx="737.04" cy="-40.5" r="3.24"/><circle cx="737.04" cy="-49.5" r="3.24"/><circle cx="737.04" cy="-58.5" r="3.24"/><circle cx="737.04" cy="-67.5" r="3.24"/><circle cx="737.04" cy="-76.5" r="3.24"/><circle cx="737.04" cy="-85.5" r="3.24"/><circle cx="737.04" cy="-94.5" r="3.24"/><circle cx="737.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:12" fill="#343434"><circle cx="746.04" cy="-13.5" r="3.24"/><circle cx="746.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:13" fill="#363636"><circle cx="755.04" cy="-4.5" r="3.24"/><circle cx="755.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:14" fill="#383838"><circle cx="764.04" cy="-4.5" r="3.24"/><circle cx="764.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:15" fill="#3a3a3a"><circle cx="773.04" cy="-4.5" r="3.24"/><circle cx="773.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:16" fill="#3c3c3c"><circle cx="782.04" cy="-4.5" r="3.24"/><circle cx="782.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:17" fill="#3e3e3e"><circle cx="791.04" cy="-4.5" r="3.24"/><circle cx="791.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:18" fill="#3f3f3f"><circle cx="800.04" cy="-13.5" r="3.24"/><circle cx="800.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:19" fill="#414141"><circle cx="809.04" cy="-4.5" r="3.24"/><circle cx="809.04" cy="-13.5" r="3.24"/><circle cx="809.04" cy="-22.5" r="3.24"/><circle cx="809.04" cy="-31.5" r="3.24"/><circle cx="809.04" cy="-40.5" r="3.24"/><circle cx="809.04" cy="-49.5" r="3.24"/><circle cx="809.04" cy="-58.5" r="3.24"/><circle cx="809.04" cy="-67.5" r="3.24"/><circle cx="809.04" cy="-76.5" r="3.24"/><circle cx="809.04" cy="-85.5" r="3.24"/><circle cx="809.04" cy="-94.5" r="3.24"/><circle cx="809.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:20" fill="#434343"><circle cx="818.04" cy="-4.5" r="3.24"/><circle cx="818.04" cy="-13.5" r="3.24"/><circle cx="818.04" cy="-22.5" r="3.24"/><circle cx="818.04" cy="-31.5" r="3.24"/><circle cx="818.04" cy="-40.5" r="3.24"/><circle cx="818.04" cy="-49.5" r="3.24"/><circle cx="818.04" cy="-58.5" r="3.24"/><circle cx="818.04" cy="-67.5" r="3.24"/><circle cx="818.04" cy="-76.5" r="3.24"/><circle cx="818.04" cy="-85.5" r="3.24"/><circle cx="818.04" cy="-94.5" r="3.24"/><circle cx="818.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:21" fill="#474747"><circle cx="836.04" cy="40.5" r="3.24"/><circle cx="836.04" cy="31.5" r="3.24"/><circle cx="836.04" cy="22.5" r="3.24"/><circle cx="836.04" cy="13.5" r="3.24"/><circle cx="836.04" cy="4.5" r="3.24"/><circle cx="836.04" cy="-4.5" r="3.24"/><circle cx="836.04" cy="-13.5" r="3.24"/><circle cx="836.04" cy="-22.5" r="3.24"/><circle cx="836.04" cy="-31.5" r="3.24"/><circle cx="836.04" cy="-40.5" r="3.24"/><circle cx="836.04" cy="-49.5" r="3.24"/><circle cx="836.04" cy="-58.5" r="3.24"/><circle cx="836.04" cy="-67.5" r="3.24"/><circle cx="836.04" cy="-76.5" r="3.24"/><circle cx="836.04" cy="-85.5" r="3.24"/><circle cx="836.04" cy="-94.5" r="3.24"/><circle cx="836.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:22" fill="#494949"><circle cx="845.04" cy="40.5" r="3.24"/><circle cx="845.04" cy="31.5" r="3.24"/><circle cx="845.04" cy="22.5" r="3.24"/><circle cx="845.04" cy="13.5" r="3.24"/><circle cx="845.04" cy="4.5" r="3.24"/><circle cx="845.04" cy="-4.5" r="3.24"/><circle cx="845.04" cy="-13.5" r="3.24"/><circle cx="845.04" cy="-22.5" r="3.24"/><circle cx="845.04" cy="-31.5" r="3.24"/><circle cx="845.04" cy="-40.5" r="3.24"/><circle cx="845.04" cy="-49.5" r="3.24"/><circle cx="845.04" cy="-58.5" r="3.24"/><circle cx="845.04" cy="-67.5" r="3.24"/><circle cx="845.04" cy="-76.5" r="3.24"/><circle cx="845.04" cy="-85.5" r="3.24"/><circle cx="845.04" cy="-94.5" r="3.24"/><circle cx="845.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:23" fill="#4b4b4b"><circle cx="854.04" cy="-13.5" r="3.24"/><circle cx="854.04" cy="-22.5" r="3.24"/><circle cx="854.04" cy="-85.5" r="3.24"/><circle cx="854.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:24" fill="#4d4d4d"><circle cx="863.04" cy="-4.5" r="3.24"/><circle cx="863.04" cy="-13.5" r="3.24"/><circle cx="863.04" cy="-94.5" r="3.24"/><circle cx="863.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:25" fill="#4e4e4e"><circle cx="872.04" cy="-4.5" r="3.24"/><circle cx="872.04" cy="-13.5" r="3.24"/><circle cx="872.04" cy="-94.5" r="3.24"/><circle cx="872.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:26" fill="#505050"><circle cx="881.04" cy="-4.5" r="3.24"/><circle cx="881.04" cy="-13.5" r="3.24"/><circle cx="881.04" cy="-94.5" r="3.24"/><circle cx="881.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:27" fill="#525252"><circle cx="890.04" cy="-4.5" r="3.24"/><circle cx="890.04" cy="-13.5" r="3.24"/><circle cx="890.04" cy="-94.5" r="3.24"/><circle cx="890.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:28" fill="#545454"><circle cx="899.04" cy="-4.5" r="3.24"/><circle cx="899.04" cy="-13.5" r="3.24"/><circle cx="899.04" cy="-94.5" r="3.24"/><circle cx="899.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:29" fill="#565656"><circle cx="908.04" cy="-13.5" r="3.24"/><circle cx="908.04" cy="-22.5" r="3.24"/><circle cx="908.04" cy="-85.5" r="3.24"/><circle cx="908.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:30" fill="#585858"><circle cx="917.04" cy="-13.5" r="3.24"/><circle cx="917.04" cy="-22.5" r="3.24"/><circle cx="917.04" cy="-31.5" r="3.24"/><circle cx="917.04" cy="-40.5" r="3.24"/><circle cx="917.04" cy="-49.5" r="3.24"/><circle cx="917.04" cy="-58.5" r="3.24"/><circle cx="917.04" cy="-67.5" r="3.24"/><circle cx="917.04" cy="-76.5" r="3.24"/><circle cx="917.04" cy="-85.5" r="3.24"/><circle cx="917.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:31" fill="#5a5a5a"><circle cx="926.04" cy="-31.5" r="3.24"/><circle cx="926.04" cy="-40.5" r="3.24"/><circle cx="926.04" cy="-49.5" r="3.24"/><circle cx="926.04" cy="-58.5" r="3.24"/><circle cx="926.04" cy="-67.5" r="3.24"/><circle cx="926.04" cy="-76.5" r="3.24"/></g><g class="wm-col" style="--c:32" fill="#5d5d5d"><circle cx="944.04" cy="40.5" r="3.24"/><circle cx="944.04" cy="31.5" r="3.24"/><circle cx="944.04" cy="22.5" r="3.24"/><circle cx="944.04" cy="13.5" r="3.24"/><circle cx="944.04" cy="4.5" r="3.24"/><circle cx="944.04" cy="-4.5" r="3.24"/><circle cx="944.04" cy="-13.5" r="3.24"/><circle cx="944.04" cy="-22.5" r="3.24"/><circle cx="944.04" cy="-31.5" r="3.24"/><circle cx="944.04" cy="-40.5" r="3.24"/><circle cx="944.04" cy="-49.5" r="3.24"/><circle cx="944.04" cy="-58.5" r="3.24"/><circle cx="944.04" cy="-67.5" r="3.24"/><circle cx="944.04" cy="-76.5" r="3.24"/><circle cx="944.04" cy="-85.5" r="3.24"/><circle cx="944.04" cy="-94.5" r="3.24"/><circle cx="944.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:33" fill="#5f5f5f"><circle cx="953.04" cy="40.5" r="3.24"/><circle cx="953.04" cy="31.5" r="3.24"/><circle cx="953.04" cy="22.5" r="3.24"/><circle cx="953.04" cy="13.5" r="3.24"/><circle cx="953.04" cy="4.5" r="3.24"/><circle cx="953.04" cy="-4.5" r="3.24"/><circle cx="953.04" cy="-13.5" r="3.24"/><circle cx="953.04" cy="-22.5" r="3.24"/><circle cx="953.04" cy="-31.5" r="3.24"/><circle cx="953.04" cy="-40.5" r="3.24"/><circle cx="953.04" cy="-49.5" r="3.24"/><circle cx="953.04" cy="-58.5" r="3.24"/><circle cx="953.04" cy="-67.5" r="3.24"/><circle cx="953.04" cy="-76.5" r="3.24"/><circle cx="953.04" cy="-85.5" r="3.24"/><circle cx="953.04" cy="-94.5" r="3.24"/><circle cx="953.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:34" fill="#616161"><circle cx="962.04" cy="-13.5" r="3.24"/><circle cx="962.04" cy="-22.5" r="3.24"/><circle cx="962.04" cy="-85.5" r="3.24"/><circle cx="962.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:35" fill="#636363"><circle cx="971.04" cy="-4.5" r="3.24"/><circle cx="971.04" cy="-13.5" r="3.24"/><circle cx="971.04" cy="-94.5" r="3.24"/><circle cx="971.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:36" fill="#656565"><circle cx="980.04" cy="-4.5" r="3.24"/><circle cx="980.04" cy="-13.5" r="3.24"/><circle cx="980.04" cy="-94.5" r="3.24"/><circle cx="980.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:37" fill="#676767"><circle cx="989.04" cy="-4.5" r="3.24"/><circle cx="989.04" cy="-13.5" r="3.24"/><circle cx="989.04" cy="-94.5" r="3.24"/><circle cx="989.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:38" fill="#696969"><circle cx="998.04" cy="-4.5" r="3.24"/><circle cx="998.04" cy="-13.5" r="3.24"/><circle cx="998.04" cy="-94.5" r="3.24"/><circle cx="998.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:39" fill="#6a6a6a"><circle cx="1007.04" cy="-4.5" r="3.24"/><circle cx="1007.04" cy="-13.5" r="3.24"/><circle cx="1007.04" cy="-94.5" r="3.24"/><circle cx="1007.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:40" fill="#6c6c6c"><circle cx="1016.04" cy="-13.5" r="3.24"/><circle cx="1016.04" cy="-22.5" r="3.24"/><circle cx="1016.04" cy="-85.5" r="3.24"/><circle cx="1016.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:41" fill="#6e6e6e"><circle cx="1025.04" cy="-13.5" r="3.24"/><circle cx="1025.04" cy="-22.5" r="3.24"/><circle cx="1025.04" cy="-31.5" r="3.24"/><circle cx="1025.04" cy="-40.5" r="3.24"/><circle cx="1025.04" cy="-49.5" r="3.24"/><circle cx="1025.04" cy="-58.5" r="3.24"/><circle cx="1025.04" cy="-67.5" r="3.24"/><circle cx="1025.04" cy="-76.5" r="3.24"/><circle cx="1025.04" cy="-85.5" r="3.24"/><circle cx="1025.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:42" fill="#707070"><circle cx="1034.04" cy="-31.5" r="3.24"/><circle cx="1034.04" cy="-40.5" r="3.24"/><circle cx="1034.04" cy="-49.5" r="3.24"/><circle cx="1034.04" cy="-58.5" r="3.24"/><circle cx="1034.04" cy="-67.5" r="3.24"/><circle cx="1034.04" cy="-76.5" r="3.24"/></g><g class="wm-col" style="--c:43" fill="#747474"><circle cx="1052.04" cy="-4.5" r="3.24"/><circle cx="1052.04" cy="-13.5" r="3.24"/><circle cx="1052.04" cy="-22.5" r="3.24"/><circle cx="1052.04" cy="-31.5" r="3.24"/><circle cx="1052.04" cy="-40.5" r="3.24"/><circle cx="1052.04" cy="-49.5" r="3.24"/><circle cx="1052.04" cy="-58.5" r="3.24"/><circle cx="1052.04" cy="-67.5" r="3.24"/><circle cx="1052.04" cy="-76.5" r="3.24"/><circle cx="1052.04" cy="-85.5" r="3.24"/><circle cx="1052.04" cy="-94.5" r="3.24"/><circle cx="1052.04" cy="-103.5" r="3.24"/><circle cx="1052.04" cy="-112.5" r="3.24"/><circle cx="1052.04" cy="-121.5" r="3.24"/><circle cx="1052.04" cy="-130.5" r="3.24"/><circle cx="1052.04" cy="-139.5" r="3.24"/></g><g class="wm-col" style="--c:44" fill="#767676"><circle cx="1061.04" cy="-4.5" r="3.24"/><circle cx="1061.04" cy="-13.5" r="3.24"/><circle cx="1061.04" cy="-22.5" r="3.24"/><circle cx="1061.04" cy="-31.5" r="3.24"/><circle cx="1061.04" cy="-40.5" r="3.24"/><circle cx="1061.04" cy="-49.5" r="3.24"/><circle cx="1061.04" cy="-58.5" r="3.24"/><circle cx="1061.04" cy="-67.5" r="3.24"/><circle cx="1061.04" cy="-76.5" r="3.24"/><circle cx="1061.04" cy="-85.5" r="3.24"/><circle cx="1061.04" cy="-94.5" r="3.24"/><circle cx="1061.04" cy="-103.5" r="3.24"/><circle cx="1061.04" cy="-112.5" r="3.24"/><circle cx="1061.04" cy="-121.5" r="3.24"/><circle cx="1061.04" cy="-130.5" r="3.24"/><circle cx="1061.04" cy="-139.5" r="3.24"/></g><g class="wm-col" style="--c:45" fill="#797979"><circle cx="1079.04" cy="-31.5" r="3.24"/><circle cx="1079.04" cy="-40.5" r="3.24"/><circle cx="1079.04" cy="-49.5" r="3.24"/><circle cx="1079.04" cy="-58.5" r="3.24"/><circle cx="1079.04" cy="-67.5" r="3.24"/><circle cx="1079.04" cy="-76.5" r="3.24"/><circle cx="1079.04" cy="-85.5" r="3.24"/><circle cx="1079.04" cy="-94.5" r="3.24"/><circle cx="1079.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:46" fill="#7b7b7b"><circle cx="1088.04" cy="31.5" r="3.24"/><circle cx="1088.04" cy="-13.5" r="3.24"/><circle cx="1088.04" cy="-22.5" r="3.24"/><circle cx="1088.04" cy="-31.5" r="3.24"/><circle cx="1088.04" cy="-40.5" r="3.24"/><circle cx="1088.04" cy="-49.5" r="3.24"/><circle cx="1088.04" cy="-58.5" r="3.24"/><circle cx="1088.04" cy="-67.5" r="3.24"/><circle cx="1088.04" cy="-76.5" r="3.24"/><circle cx="1088.04" cy="-85.5" r="3.24"/><circle cx="1088.04" cy="-94.5" r="3.24"/><circle cx="1088.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:47" fill="#7d7d7d"><circle cx="1097.04" cy="40.5" r="3.24"/><circle cx="1097.04" cy="31.5" r="3.24"/><circle cx="1097.04" cy="-13.5" r="3.24"/><circle cx="1097.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:48" fill="#7f7f7f"><circle cx="1106.04" cy="40.5" r="3.24"/><circle cx="1106.04" cy="31.5" r="3.24"/><circle cx="1106.04" cy="-4.5" r="3.24"/><circle cx="1106.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:49" fill="#818181"><circle cx="1115.04" cy="40.5" r="3.24"/><circle cx="1115.04" cy="31.5" r="3.24"/><circle cx="1115.04" cy="-4.5" r="3.24"/><circle cx="1115.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:50" fill="#838383"><circle cx="1124.04" cy="40.5" r="3.24"/><circle cx="1124.04" cy="31.5" r="3.24"/><circle cx="1124.04" cy="-4.5" r="3.24"/><circle cx="1124.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:51" fill="#858585"><circle cx="1133.04" cy="40.5" r="3.24"/><circle cx="1133.04" cy="31.5" r="3.24"/><circle cx="1133.04" cy="-4.5" r="3.24"/><circle cx="1133.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:52" fill="#868686"><circle cx="1142.04" cy="40.5" r="3.24"/><circle cx="1142.04" cy="31.5" r="3.24"/><circle cx="1142.04" cy="-4.5" r="3.24"/><circle cx="1142.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:53" fill="#888888"><circle cx="1151.04" cy="40.5" r="3.24"/><circle cx="1151.04" cy="31.5" r="3.24"/><circle cx="1151.04" cy="22.5" r="3.24"/><circle cx="1151.04" cy="-13.5" r="3.24"/><circle cx="1151.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:54" fill="#8a8a8a"><circle cx="1160.04" cy="31.5" r="3.24"/><circle cx="1160.04" cy="22.5" r="3.24"/><circle cx="1160.04" cy="13.5" r="3.24"/><circle cx="1160.04" cy="4.5" r="3.24"/><circle cx="1160.04" cy="-4.5" r="3.24"/><circle cx="1160.04" cy="-13.5" r="3.24"/><circle cx="1160.04" cy="-22.5" r="3.24"/><circle cx="1160.04" cy="-31.5" r="3.24"/><circle cx="1160.04" cy="-40.5" r="3.24"/><circle cx="1160.04" cy="-49.5" r="3.24"/><circle cx="1160.04" cy="-58.5" r="3.24"/><circle cx="1160.04" cy="-67.5" r="3.24"/><circle cx="1160.04" cy="-76.5" r="3.24"/><circle cx="1160.04" cy="-85.5" r="3.24"/><circle cx="1160.04" cy="-94.5" r="3.24"/><circle cx="1160.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:55" fill="#8c8c8c"><circle cx="1169.04" cy="22.5" r="3.24"/><circle cx="1169.04" cy="13.5" r="3.24"/><circle cx="1169.04" cy="4.5" r="3.24"/><circle cx="1169.04" cy="-4.5" r="3.24"/><circle cx="1169.04" cy="-13.5" r="3.24"/><circle cx="1169.04" cy="-22.5" r="3.24"/><circle cx="1169.04" cy="-31.5" r="3.24"/><circle cx="1169.04" cy="-40.5" r="3.24"/><circle cx="1169.04" cy="-49.5" r="3.24"/><circle cx="1169.04" cy="-58.5" r="3.24"/><circle cx="1169.04" cy="-67.5" r="3.24"/><circle cx="1169.04" cy="-76.5" r="3.24"/><circle cx="1169.04" cy="-85.5" r="3.24"/><circle cx="1169.04" cy="-94.5" r="3.24"/><circle cx="1169.04" cy="-103.5" r="3.24"/></g></svg></a>
+      <nav class="site-nav" aria-label="Page">
+        <a href="#inside">what's inside</a>
+        <a href="#portal">the portal</a>
+        <a href="#price">price</a>
+      </nav>
+      <div class="header-actions">
+        <a class="login" href="https://portal.elaye.store/login">Log in</a>
+        <a class="pill pill-sm" href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener">Get access</a>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <main id="main">
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="hero-eyebrow">6,000+ FILES AND COUNTING · EVERY KIT · 120+ LIVE BRIEFS</p>
-        <h1 class="hero-title">MY WHOLE SETUP.<br>YOURS FOREVER.</h1>
-        <p class="hero-lede">Every kit, sound and session file I've made, members-only drops that never go public, and the live brief board. One payment.</p>
-        <div class="hero-cta">
-          <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="pill pill-lg"><span class="sc">GET LIFETIME ACCESS</span></a>
-          <a href="#everything" class="ghost-link">See what's inside ›</a>
-        </div>
-        <p class="hero-price">$599 · one payment · yours forever</p>
-      </div>
-      <div class="hero-folder">
-        <div class="folder" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet folder-sheet-b"></span><span class="folder-front"></span></div>
-        <p class="folder-caption">LIFETIME SUPPLY</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS STRIP -->
-  <section class="wr wr-creds reveal" aria-label="Credentials">
-    <div class="wr-in">
-      <p class="wr-creds-row">
-        <span class="wr-creds-item">CERTIFIED MULTI-PLATINUM + #1 BILLBOARD PRODUCER</span>
-        <span class="wr-dot" aria-hidden="true">·</span>
-        <span class="wr-creds-item">150,000,000+ STREAMS</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- STATS: static numbers, no counters (W4: nothing moves but the folder and the reveals). -->
-  <section class="wr wr-stats">
-    <div class="wr-in">
-      <div class="wr-stats-grid">
-        <div class="wr-stat reveal">
-          <span class="wr-stat-num" data-value="70" data-suffix="GB+">70GB+</span>
-          <span class="wr-stat-label">SAMPLE ARCHIVE</span>
-        </div>
-        <div class="wr-stat reveal" style="--d:.05s">
-          <span class="wr-stat-num" data-value="120" data-suffix="+">120+</span>
-          <span class="wr-stat-label">LIVE BRIEFS, UPDATED DAILY</span>
-        </div>
-        <div class="wr-stat reveal" style="--d:.11s">
-          <span class="wr-stat-num" data-value="6000" data-suffix="+">6,000+</span>
-          <span class="wr-stat-label">FILES INSIDE, AND COUNTING</span>
-        </div>
-        <div class="wr-stat reveal" style="--d:.16s">
-          <span class="wr-stat-num" data-value="599" data-prefix="$">$599</span>
-          <span class="wr-stat-label">ONE PAYMENT. FOREVER.</span>
-        </div>
-      </div>
-      <p class="wr-stats-note reveal">Today's count. New files, kits and briefs land every week, and you get all of it. Evolving forever.</p>
-    </div>
-  </section>
-
-  <!-- WHAT'S INSIDE: one grid (replaces "everything. day one." + "what you're really getting") -->
-  <section class="wr wr-every" id="everything">
-    <div class="wr-in">
-      <div class="wr-every-head reveal">
-        <span class="wr-eyebrow">WHAT'S INSIDE</span>
-        <h2 class="wr-h2 wr-h2-64">EVERYTHING.<br>DAY ONE.</h2>
-      </div>
-
-      <div class="wr-cards">
-        <article class="wr-card reveal">
-          <div class="folder is-open" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>THE VAULT</span></h3>
-          <p class="wr-card-p">3,500+ samples and stems, and growing daily. Every melody, loop, stem and session file I've made, solos and starters built to flip.</p>
-        </article>
-
-        <article class="wr-card reveal" style="--d:.04s">
-          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>EVERY KIT</span></h3>
-          <p class="wr-card-p">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy and vaulted kits pulled from sale, 2,100+ files, all analog-recorded and royalty-free, plus every kit I make from here on.</p>
-        </article>
-
-        <article class="wr-card reveal" style="--d:.08s">
-          <div class="folder has-lock" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>MEMBERS-ONLY</span> <span>MONTHLY KIT</span></h3>
-          <p class="wr-card-p">A new kit every month, never public.</p>
-        </article>
-
-        <article class="wr-card reveal">
-          <div class="folder has-new" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>THE BOARD</span></h3>
-          <p class="wr-card-p">120+ live artist briefs, updated daily. The briefs come with it. Send your best through the portal and I go through every one myself.</p>
-          <details class="wr-expander">
-            <summary>See how the status system works</summary>
-            <p class="wr-expander-body">Urgent: closing this week, send now. Hot: packs actively going, high chance of landing. Warm: early conversations. Cold: on the radar for later. Each brief tells you what the artist needs, reference tracks to match, BPM and key where it exists.</p>
-          </details>
-        </article>
-
-        <article class="wr-card reveal" style="--d:.04s">
-          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>THE ROOM</span></h3>
-          <p class="wr-card-p">The private members Discord. Feedback, flips, wins.</p>
-        </article>
-
-        <article class="wr-card reveal" style="--d:.08s">
-          <div class="folder" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>HOW I DID IT</span></h3>
-          <p class="wr-card-p">Two classes, written out in full (around 200 pages), plus the guides and my Notion producer system. Read it on your own time.</p>
-        </article>
-
-        <article class="wr-card reveal">
-          <div class="folder has-new" style="--s:.22" aria-hidden="true"><span class="folder-ground"></span><span class="folder-back"></span><span class="folder-tab"></span><span class="folder-fillet"></span><span class="folder-sheet"></span><span class="folder-sheet-b"></span><span class="folder-front"></span><span class="folder-lock"></span><span class="folder-new"></span></div>
-          <h3 class="wr-card-title"><span>FOREVER UPDATES</span></h3>
-          <p class="wr-card-p">Everything I add, you get. The numbers on this page are just today's.</p>
-        </article>
-      </div>
-
-      <div class="wr-shots reveal">
-        <div class="wr-shot"><img src="placements-landed.webp" width="1170" height="1470" alt="Placement landed" loading="lazy" decoding="async"></div>
-        <div class="wr-shot"><img src="placements-landed-2.webp" width="1170" height="1778" alt="Yung Bleu placement" loading="lazy" decoding="async"></div>
-        <div class="wr-shot"><img src="images.webp" width="516" height="387" alt="Phone screen showing the Untitled app with a hip hop sample project open" loading="lazy" decoding="async"></div>
-      </div>
-
-      <p class="wr-close reveal">It all lives in one members portal. One login, everything in it, updating forever.</p>
-    </div>
-  </section>
-
-  <!-- THE PORTAL IS ACTUALLY FIRE: reviews screenshot, then who it is for -->
-  <section class="w3 w3-white w3-fire" aria-labelledby="fire-title">
-    <div class="w3-in w3-stack-56">
-      <h2 class="w3-h2 reveal" id="fire-title">THE PORTAL IS ACTUALLY FIRE.</h2>
-      <div class="w3-shot w3-shot-wide reveal">
-        <img src="reviews.webp" alt="Screenshots of member reviews of the Lifetime Supply portal" width="869" height="1200" loading="lazy" decoding="async">
-      </div>
-      <div class="w3-fit">
-        <div class="w3-card reveal">
-          <span class="w3-eyebrow">THIS IS FOR YOU</span>
-          <ul class="w3-fit-list w3-fit-yes">
-            <li>You've got beats and no real way to get them heard</li>
-            <li>You want the full setup, not one more pack</li>
-            <li>You'd rather own everything once than keep buying kits</li>
-            <li>You want new sounds landing every week without paying again</li>
-            <li>You're ready to treat this like a business</li>
-          </ul>
-        </div>
-        <div class="w3-card reveal" style="--d:.06s">
-          <span class="w3-eyebrow">THIS IS NOT FOR YOU</span>
-          <ul class="w3-fit-list w3-fit-no">
-            <li>You're hunting cheap sample packs</li>
-            <li>You expect placements without doing the work</li>
-            <li>You want a shortcut that does it for you</li>
-            <li>You're not ready to invest in your career yet</li>
-          </ul>
+    <!-- HERO + THE UNLOCK: one pinned stage from the top. The hero's folder
+         turns gold, its lock breaks and rises away, the folder opens on 03,
+         then the page scrolls on (js/homer.js). -->
+    <div class="show" id="top">
+      <div class="stage">
+        <div class="stage-a wrap">
+          <div class="unlock-caps">
+            <div class="hero-copy">
+              <h1 class="display display-xl">my whole setup.<br><span class="soft">yours forever.</span></h1>
+              <p class="lead">Every kit, sound and session file I've made, the live brief board, and everything I add from here on. One payment, in for life.</p>
+              <div class="cta-row">
+                <a class="pill" href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener">Get lifetime access</a>
+                <a class="link-more" href="#portal">See inside ›</a>
+              </div>
+              <p class="price-line">$599 until Tue 6 Oct, then $699. One payment, yours forever.</p>
+            </div>
+            <div class="caps-seq" aria-hidden="true">
+              <p class="unlock-count"><span data-unlock-count>01</span> / 03</p>
+              <div class="caps-box">
+                <p class="display display-xl unlock-cap is-on" data-i="0">everything's<br>in here.</p>
+                <p class="display display-xl unlock-cap" data-i="1">one payment<br>opens it.</p>
+                <p class="display display-xl unlock-cap" data-i="2">and this is<br>inside.</p>
+              </div>
+            </div>
+          </div>
+          <div class="unlock-object"><div class="folder has-lock" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- CREDIBILITY -->
-  <section class="wr wr-credits" id="cred">
-    <div class="wr-in wr-credits-grid">
-      <div class="reveal">
-        <h2 class="wr-h2 wr-h2-56">YOU'VE SEEN<br>THE CREDITS.</h2>
-      </div>
-      <div class="wr-credits-body reveal">
-        <p class="wr-p19">You came from my page, so I'll keep it short. Platinum records, built by myself, a #1 on Billboard, cuts with the biggest names in the industry, sync placements with the biggest companies in the world, records charting internationally. All self-taught from a bedroom in Australia, so this works from anywhere, with or without a name.</p>
-        <div class="wr-chips">
-          <span class="wr-chip">MULTI PLATINUM CERTIFIED</span>
-          <span class="wr-chip">NO. 1 BILLBOARD</span>
+    <!-- THE PORTAL: its own section, clickable, nothing pinned -->
+    <section class="section demo-section" id="portal" aria-labelledby="portal-h">
+      <div class="wrap">
+        <h2 class="display display-l" id="portal-h">click around.</h2>
+        <p class="lead">This is the members portal, the real layout. Click any tab. The briefs show as blank cards, the artists stay locked until you're in.</p>
+        <div class="demo-frame">
+          <div class="window" id="demo">
+            <div class="window-bar" aria-hidden="true">
+              <div class="window-dots"><span></span><span></span><span></span></div>
+              <span class="window-url">portal.elaye.store</span>
+            </div>
+            <div class="demo-header">
+              <img class="wm-img" src="assets/brand/lifetime-supply-light.svg" width="1176" height="194" alt="" draggable="false">
+              <div class="demo-tabs" role="tablist" aria-label="Portal sections"><button class="demo-tab" type="button" role="tab" id="dt-0" aria-controls="dp-0" aria-selected="true" tabindex="0"><img src="assets/brand/headings/your-day-light.svg" width="768" height="196" alt="Your day" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-1" aria-controls="dp-1" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/briefs-light.svg" width="498" height="196" alt="Briefs" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-2" aria-controls="dp-2" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/submissions-light.svg" width="1144" height="196" alt="Submissions" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-3" aria-controls="dp-3" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/vault-light.svg" width="434" height="196" alt="Vault" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-4" aria-controls="dp-4" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/kits-light.svg" width="331" height="196" alt="Kits" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-5" aria-controls="dp-5" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/mentorship-light.svg" width="977" height="196" alt="Mentorship" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-6" aria-controls="dp-6" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/guides-light.svg" width="620" height="196" alt="Guides" draggable="false"></button><button class="demo-tab" type="button" role="tab" id="dt-7" aria-controls="dp-7" aria-selected="false" tabindex="-1"><img src="assets/brand/headings/the-room-light.svg" width="899" height="196" alt="The Room" draggable="false"></button></div>
+            </div>
+            <div class="demo-body">
+<div class="demo-panel is-on" id="dp-0" role="tabpanel" aria-labelledby="dt-0" data-name="your day" data-text="To-dos, habits and wins, planned where you work."><p class="d-title">your day</p><div class="d-cols"><div class="d-box"><p class="d-box-title">to-do</p><div class="d-input">Add a to-do</div><div class="d-habit" style="margin-top:12px"><span class="d-check"></span><span class="bar" style="width:58%"></span></div><div class="d-habit"><span class="d-tick"></span><span class="bar" style="width:66%"></span></div><div class="d-habit"><span class="d-tick"></span><span class="bar" style="width:44%"></span></div></div><div class="d-box"><p class="d-box-title">habits</p><div class="d-habit"><span class="d-check"></span><span class="bar" style="width:38%"></span><span class="d-streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div><div class="d-habit"><span class="d-check"></span><span class="bar" style="width:30%"></span><span class="d-streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div><div class="d-habit"><span class="d-tick"></span><span class="bar" style="width:42%"></span><span class="d-streak"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span></div><div class="d-habit"><span class="d-check"></span><span class="bar" style="width:26%"></span><span class="d-streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div></div><div class="d-box"><p class="d-box-title">wins</p><div class="d-habit"><span class="bar" style="width:72%"></span></div><div class="d-habit"><span class="bar" style="width:54%"></span></div><div class="d-input">Log a win</div></div></div><div class="d-week"><div class="d-day">Mon<span class="bar" style="width:64%;opacity:1"></span></div><div class="d-day">Tue<span class="bar" style="width:80%;opacity:1"></span></div><div class="d-day">Wed<span class="bar" style="width:52%;opacity:1"></span></div><div class="d-day is-today">Thu<span class="bar" style="width:72%;opacity:1"></span></div><div class="d-day">Fri<span class="bar" style="width:100%;opacity:.45"></span></div><div class="d-day">Sat<span class="bar" style="width:100%;opacity:.45"></span></div><div class="d-day">Sun<span class="bar" style="width:100%;opacity:.45"></span></div></div></div>
+<div class="demo-panel" id="dp-1" role="tabpanel" aria-labelledby="dt-1" data-name="the board" data-text="120+ live artist briefs, updated daily. Find the one that fits your sound and send it."><p class="d-title">the board</p><p class="d-meta">120+ live briefs, updated daily</p><div class="d-filters"><span class="d-filter is-on">All</span><span class="d-filter">Urgent</span><span class="d-filter">Picked by Elaye</span><span class="d-filter">Hot</span><span class="d-filter">Warm</span><span class="d-filter">Cold</span></div><div class="d-grid"><div class="d-card"><span class="bar bar-l" style="width:72%"></span><span class="bar" style="width:58%"></span><div class="d-chips"><span class="chip chip-urgent">Urgent</span><span class="chip">Hot</span></div><div class="d-foot"><span class="muted">posted today</span><span class="act">submit ›</span></div></div><div class="d-card"><span class="bar bar-l" style="width:58%"></span><span class="bar" style="width:80%"></span><div class="d-chips"><span class="chip chip-pick">Picked by Elaye</span><span class="chip">Warm</span></div><div class="d-foot"><span class="muted">posted 2 days ago</span><span class="act">submit ›</span></div></div><div class="d-card"><span class="bar bar-l" style="width:80%"></span><span class="bar" style="width:64%"></span><div class="d-chips"><span class="chip">Hot</span></div><div class="d-foot"><span class="muted">posted yesterday</span><span class="act">submit ›</span></div></div><div class="d-card"><span class="bar bar-l" style="width:64%"></span><span class="bar" style="width:76%"></span><div class="d-chips"><span class="chip">Cold</span></div><div class="d-foot"><span class="muted">posted 2 days ago</span><span class="act">submit ›</span></div></div><div class="d-card"><span class="bar bar-l" style="width:76%"></span><span class="bar" style="width:52%"></span><div class="d-chips"><span class="chip chip-urgent">Urgent</span><span class="chip">Warm</span></div><div class="d-foot"><span class="muted">posted today</span><span class="act">submit ›</span></div></div><div class="d-card"><span class="bar bar-l" style="width:52%"></span><span class="bar" style="width:72%"></span><div class="d-chips"><span class="chip chip-pick">Picked by Elaye</span><span class="chip">Hot</span></div><div class="d-foot"><span class="muted">posted 2 days ago</span><span class="act">submit ›</span></div></div></div></div>
+<div class="demo-panel" id="dp-2" role="tabpanel" aria-labelledby="dt-2" data-name="submissions" data-text="Every beat you send gets a status, and I move each one by hand."><p class="d-title">your submissions</p><div class="d-chips d-legend"><span class="chip">New</span><span class="chip chip-review">In review</span><span class="chip chip-sent">Sent to artist</span><span class="chip chip-placed">Placed</span></div><div class="d-cols"><div class="d-box"><p class="d-small">01</p><p class="d-box-title" style="margin-top:10px">pick a brief</p><span class="bar" style="width:70%;display:block;margin-top:14px"></span></div><div class="d-box"><p class="d-small">02</p><p class="d-box-title" style="margin-top:10px">send your beat</p><span class="bar" style="width:56%;display:block;margin-top:14px"></span></div><div class="d-box"><p class="d-small">03</p><p class="d-box-title" style="margin-top:10px">track it</p><span class="bar" style="width:64%;display:block;margin-top:14px"></span></div></div><div class="d-list"><div class="d-item"><div class="bars"><span class="bar bar-l" style="width:38%"></span><span class="bar" style="width:24%"></span></div><span class="chip">New</span></div><div class="d-item"><div class="bars"><span class="bar bar-l" style="width:46%"></span><span class="bar" style="width:30%"></span></div><span class="chip chip-review">In review</span></div><div class="d-item"><div class="bars"><span class="bar bar-l" style="width:34%"></span><span class="bar" style="width:22%"></span></div><span class="chip chip-sent">Sent to artist</span></div></div></div>
+<div class="demo-panel" id="dp-3" role="tabpanel" aria-labelledby="dt-3" data-name="the vault" data-text="3,500+ samples and stems, growing daily. Open it in Untitled or Dropbox."><p class="d-title">the vault</p><p class="d-meta">3,500+ samples and stems, growing daily</p><div class="d-box d-feature" style="margin-top:28px"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div><p class="d-box-title">the full vault</p><p class="d-lead">Every melody, loop, stem and session file I've made.</p><div class="d-pills"><span class="d-pill">Open in Untitled</span><span class="d-pill d-pill-2">Open in Dropbox</span></div></div></div><div class="d-cols"><div class="d-box" style="display:flex;align-items:center;gap:14px"><div class="folder" style="--s:0.14;margin:-6px -4px -6px -8px" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div style="flex:1"><span class="bar" style="width:74%;display:block"></span><span class="bar" style="width:52%;display:block;margin-top:8px;height:10px"></span></div></div><div class="d-box" style="display:flex;align-items:center;gap:14px"><div class="folder" style="--s:0.14;margin:-6px -4px -6px -8px" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div style="flex:1"><span class="bar" style="width:62%;display:block"></span><span class="bar" style="width:40%;display:block;margin-top:8px;height:10px"></span></div></div><div class="d-box" style="display:flex;align-items:center;gap:14px"><div class="folder" style="--s:0.14;margin:-6px -4px -6px -8px" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div style="flex:1"><span class="bar" style="width:80%;display:block"></span><span class="bar" style="width:58%;display:block;margin-top:8px;height:10px"></span></div></div></div></div>
+<div class="demo-panel" id="dp-4" role="tabpanel" aria-labelledby="dt-4" data-name="kits" data-text="Every signature kit, plus a members-only kit every month that never goes public."><p class="d-title">kits</p><p class="d-meta">every kit I make, royalty-free</p><div class="d-kits"><div class="d-box"><div class="folder folder-gold has-new" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><p class="name">monthly kit</p><p class="d-small">members only, new every month</p></div><div class="d-box"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><p class="name">octaves creator suite</p><p class="d-small">7 kits plus mix and master chains</p></div><div class="d-box"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><p class="name">analog alchemy</p><p class="d-small">analog-recorded, royalty-free</p></div><div class="d-box"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><p class="name">vaulted kits</p><p class="d-small">pulled from sale</p></div></div></div>
+<div class="demo-panel" id="dp-5" role="tabpanel" aria-labelledby="dt-5" data-name="mentorship" data-text="How I did it. 40GB+ of mentorship and countless guides, read on your own time."><p class="d-title">how i did it</p><p class="d-meta">40GB+ of mentorship, read on your own time</p><div class="d-list"><div class="d-media d-class"><div class="d-cover"><div class="folder" style="--s:0.26;" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div></div><div><span class="bar bar-l" style="width:46%;display:block"></span><span class="bar" style="width:68%;display:block;margin-top:10px"></span><p class="d-small" style="margin-top:16px">0 of 18 done</p><div class="d-progress"></div></div></div><div class="d-media d-class"><div class="d-cover"><div class="folder" style="--s:0.26;" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div></div><div><span class="bar bar-l" style="width:38%;display:block"></span><span class="bar" style="width:60%;display:block;margin-top:10px"></span><p class="d-small" style="margin-top:16px">not started</p><div class="d-progress"></div></div></div></div></div>
+<div class="demo-panel" id="dp-6" role="tabpanel" aria-labelledby="dt-6" data-name="guides" data-text="The written playbooks behind my career, updated every week."><p class="d-title">guides</p><p class="d-meta">updated every week</p><div class="d-list" style="margin-top:28px"><div class="d-row"><span class="n">01</span><div class="bars" style="display:flex;flex-direction:column;gap:8px"><span class="bar bar-l" style="width:52%"></span><span class="bar" style="width:34%"></span></div><span class="act">read ›</span></div><div class="d-row"><span class="n">02</span><div class="bars" style="display:flex;flex-direction:column;gap:8px"><span class="bar bar-l" style="width:44%"></span><span class="bar" style="width:40%"></span></div><span class="act">read ›</span></div><div class="d-row"><span class="n">03</span><div class="bars" style="display:flex;flex-direction:column;gap:8px"><span class="bar bar-l" style="width:60%"></span><span class="bar" style="width:28%"></span></div><span class="act">read ›</span></div><div class="d-row"><span class="n">04</span><div class="bars" style="display:flex;flex-direction:column;gap:8px"><span class="bar bar-l" style="width:40%"></span><span class="bar" style="width:36%"></span></div><span class="act">read ›</span></div></div></div>
+<div class="demo-panel" id="dp-7" role="tabpanel" aria-labelledby="dt-7" data-name="the room" data-text="The private members Discord. Feedback, flips, wins."><p class="d-title">the room</p><div class="d-box d-feature" style="margin-top:28px"><div class="folder folder-gold" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div><p class="d-box-title">the private members Discord</p><p class="d-lead">Feedback, flips, wins.</p><div class="d-pills"><span class="d-pill">Join THE ROOM on Discord</span></div></div></div><div class="d-list"><div class="d-channel"><span># feedback</span><span class="bar"></span></div><div class="d-channel"><span># flips</span><span class="bar"></span></div><div class="d-channel"><span># wins</span><span class="bar"></span></div></div></div>
+            </div>
+          </div>
+          <div class="demo-caption" aria-live="polite">
+            <span class="demo-step" data-demo-step>01 / 08</span>
+            <div class="demo-what"><span class="t-item" data-demo-name>your day</span><p data-demo-text>To-dos, habits and wins, planned where you work.</p></div>
+          </div>
+          <div class="demo-cta">
+            <a class="pill" href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener">Get lifetime access</a>
+            <p>You only see the real names once you're in.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section class="w3 w3-white w3-faq" aria-labelledby="faq-title">
-    <div class="w3-in w3-faq-grid">
-      <h2 class="w3-h2 reveal" id="faq-title">BEFORE YOU ASK.</h2>
-      <div class="w3-faq-list reveal">
-        <details class="w3-q" open>
-          <summary>Is this a course?</summary>
-          <p class="w3-a">No. It's my whole setup: every kit, sound and session file I've made, plus members-only drops. There's written stuff on how I did it in there too, but that's the side, not the thing.</p>
-        </details>
-        <details class="w3-q">
-          <summary>Am I paying for placements?</summary>
-          <p class="w3-a">No. Nobody can sell those. The briefs come with it, you send your best through, and I go through every one myself.</p>
-        </details>
-        <details class="w3-q">
-          <summary>Is this a subscription?</summary>
-          <p class="w3-a">No. One payment, in for life. Everything in the Lifetime stays yours, and nothing in it will ever be locked behind another payment.</p>
-        </details>
-        <details class="w3-q">
-          <summary>Is it actually legit?</summary>
-          <p class="w3-a">Fair question, you should be asking it. The portal's built and live, not a promise. Want to see it first, DM me and I'll walk you through everything before you pay a dollar. Either way you're set up within the hour. The risk is on me, not you.</p>
-        </details>
-        <details class="w3-q">
-          <summary>Do you place my beats for me?</summary>
-          <p class="w3-a">No, and run from anyone who says they will. What you get is access. You send on the exact same briefs I run my own career off. The door's open, your music walks through it. We want hits not beats.</p>
-        </details>
-        <details class="w3-q">
-          <summary>I'm not landing placements yet. Am I good enough?</summary>
-          <p class="w3-a">Everyone in there started in a bedroom with nothing. You don't get good then join, you join and get good. The sounds level you up instantly, the written stuff shows you how, being around it daily does the rest.</p>
-        </details>
-        <details class="w3-q">
-          <summary>I don't have much time.</summary>
-          <p class="w3-a">That's exactly why it fits. The part that eats your time, finding opps and chasing contacts and digging for sounds, is done for you and handed over daily. You just make music and send.</p>
-        </details>
-        <details class="w3-q">
-          <summary>What happens to beats that don't place?</summary>
-          <p class="w3-a">They stay yours. Sell them, lease them, put them on BeatStars. Placed records get proper credit and splits, agreed clearly before anything releases.</p>
-        </details>
-        <details class="w3-q">
-          <summary>How do I pay and get in?</summary>
-          <p class="w3-a">Hit Get Lifetime Access and check out. You're in the moment it clears, working that night's briefs. Want to see inside first, DM me "IN" on IG @elxyee.</p>
-        </details>
-        <details class="w3-q">
-          <summary>Does it really keep updating?</summary>
-          <p class="w3-a">Forever. New samples daily, a new kit monthly, new briefs every day, plus every kit and guide I make for the rest of my career. As I climb, you climb.</p>
-        </details>
+    <!-- NUMBERS -->
+    <section class="section" aria-label="The numbers">
+      <div class="wrap">
+        <div class="numbers reveal">
+          <div><div class="pixel">6,000+</div><p class="label">files inside, and counting</p></div>
+          <div><div class="pixel">120+</div><p class="label">live briefs, updated daily</p></div>
+          <div><div class="pixel">70GB+</div><p class="label">sample archive</p></div>
+          <div><div class="pixel">1</div><p class="label">payment, yours forever</p></div>
+        </div>
+        <p class="note">Today's count. New files, kits and briefs land every week, and you get all of it.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- THE MEMBERS TALK -->
-  <section class="w3 w3-talk" aria-labelledby="talk-title">
-    <div class="w3-in w3-stack-48">
-      <div class="w3-talk-head reveal">
-        <h2 class="w3-h2" id="talk-title">THE MEMBERS TALK.</h2>
-        <p class="w3-sub">Real messages, unedited. Only the names are left out.</p>
+    <!-- WHAT'S INSIDE -->
+    <section class="section" id="inside" aria-labelledby="inside-h">
+      <div class="wrap">
+        <h2 class="display display-l" id="inside-h">everything.<br>day one.</h2>
+        <div class="inside-grid"><article class="card inside-card span-2 reveal"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">the vault</h3><p class="body-s">3,500+ samples and stems, growing daily. Every melody, loop, stem and session file I've made, solos and starters built to flip.</p></article><article class="card inside-card span-2 reveal"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">every kit</h3><p class="body-s">The OCTAVES Creator Suite (7 kits plus my mix and master chains), the unreleased Pt 2, Analog Alchemy and vaulted kits pulled from sale. All analog-recorded, all royalty-free, plus every kit I make from here on.</p></article><article class="card inside-card  reveal"><div class="folder folder-gold has-new" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">members-only monthly kit</h3><p class="body-s">A new kit every month. Never public.</p></article><article class="card inside-card  reveal"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">the board</h3><p class="body-s">120+ live artist briefs, updated daily. Send your best through the portal and I go through every one myself.</p></article><article class="card inside-card  reveal"><div class="folder folder-gold" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">the room</h3><p class="body-s">The private members Discord. Feedback, flips, wins.</p></article><article class="card inside-card  reveal"><div class="folder" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><h3 class="t-item">how i did it</h3><p class="body-s">40GB+ of mentorship and countless guides, plus my Notion producer system. Read it on your own time.</p></article><article class="card inside-card span-4 inside-wide reveal"><div class="folder is-open" aria-hidden="true"><i class="folder-ground"></i><i class="folder-back"></i><i class="folder-tab"></i><i class="folder-fillet"></i><i class="folder-sheet-2"></i><i class="folder-sheet"></i><i class="folder-front"></i><i class="folder-lock"></i><i class="folder-new">NEW</i></div><div class="inside-wide-copy"><h3 class="t-item">forever updates</h3><p class="body-s">Everything I add, you get. The numbers on this page are just today's.</p></div></article></div>
+        <p class="one-login">One login. Everything in it, updating forever.</p>
       </div>
+    </section>
 
-      <div class="w3-shots reveal">
-        <div class="w3-shot"><img src="kit-reviews.webp" width="675" height="1200" alt="Screenshots of DM messages from producers praising the sample kits" loading="lazy" decoding="async"></div>
-        <div class="w3-shot"><img src="lifetime-review-pic-mentorship.webp" width="945" height="847" alt="Screenshot of a DM crediting the accelerator with changing their mindset" loading="lazy" decoding="async"></div>
-        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-2.webp" width="1170" height="1152" alt="Screenshot of a DM thanking ELAYE for the mentorship content" loading="lazy" decoding="async"></div>
-        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-3.webp" width="1170" height="696" alt="Screenshot of a DM saying the accelerator changed how they think about music" loading="lazy" decoding="async"></div>
-        <div class="w3-shot"><img src="lifetime-review-pic-mentorship-4.webp" width="897" height="572" alt="Screenshot of a DM celebrating a win after the mentorship" loading="lazy" decoding="async"></div>
+    <!-- HOW THE BOARD WORKS -->
+    <section class="section" aria-labelledby="board-h">
+      <div class="wrap">
+        <h2 class="display display-l" id="board-h">send it.<br>i listen.</h2>
+        <ol class="steps"><li class="step reveal"><span class="n">01</span><h3 class="t-item">pick a brief that fits</h3><p class="body-s">Find the artist your sound fits on the live board.</p></li><li class="step reveal"><span class="n">02</span><h3 class="t-item">build to it</h3><p class="body-s">Make the beat or pack that brief is actually asking for.</p></li><li class="step reveal"><span class="n">03</span><h3 class="t-item">send it through the portal</h3><p class="body-s">I go through every submission myself.</p></li><li class="step reveal"><span class="n">04</span><h3 class="t-item">track it</h3><p class="body-s">New, In review, Sent to artist, Placed. I move every status by hand, and you see it first.</p><div class="status-row"><span class="chip">New</span><span class="chip chip-review">In review</span><span class="chip chip-sent">Sent to artist</span><span class="chip chip-placed">Placed</span></div></li></ol>
+        <p class="rights">Your rights stay yours. Placed records get proper credit and splits, agreed before anything releases.</p>
       </div>
+    </section>
 
-      <div class="w3-quotes">
-        <div class="w3-quote reveal" style="--d:0s">
-          <p class="w3-quote-text">I do not regret getting the lifetime bundle , too much sauce</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.02s">
-          <p class="w3-quote-text">bro idk how u f***ing did it but it really costs 500$ fr</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.04s">
-          <p class="w3-quote-text">fuxk with the organization and how streamlined it is. Makes it super easy to keep track of who to send for</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.06s">
-          <p class="w3-quote-text">i'm gonna keep looking through it you got hella value in there 💯</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.09s">
-          <p class="w3-quote-text">that notion thing with the opportunities and s*** is fire too bro. you da goat for that</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.11s">
-          <p class="w3-quote-text">so many plays in there🤯</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.13s">
-          <p class="w3-quote-text">even the lifetime supply was enough to make me think that but I love how you want the best for other creatives</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.15s">
-          <p class="w3-quote-text">New process is way better ngl. Keeps everything tracked and organized</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
-        <div class="w3-quote reveal" style="--d:.17s">
-          <p class="w3-quote-text">Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable and you've completely changed my mindset</p>
-          <p class="w3-quote-attr">Lifetime member</p>
-        </div>
+    <!-- THE MEMBERS TALK -->
+    <section class="section" aria-labelledby="talk-h">
+      <div class="wrap">
+        <h2 class="display display-l" id="talk-h">the members talk.</h2>
+        <p class="lead">Real messages, unedited. Only the names are left out.</p>
+        <div class="talk-grid"><div class="talk-col"><figure class="card quote reveal"><blockquote>I do not regret getting the lifetime bundle , too much sauce</blockquote><figcaption>Lifetime member</figcaption></figure><figure class="card quote reveal"><blockquote>that notion thing with the opportunities and s*** is fire too bro. you da goat for that</blockquote><figcaption>Lifetime member</figcaption></figure><figure class="card quote reveal"><blockquote>New process is way better ngl. Keeps everything tracked and organized</blockquote><figcaption>Lifetime member</figcaption></figure></div><div class="talk-col"><figure class="card quote reveal"><blockquote>fuxk with the organization and how streamlined it is. Makes it super easy to keep track of who to send for</blockquote><figcaption>Lifetime member</figcaption></figure><figure class="card quote reveal"><blockquote>so many plays in there🤯</blockquote><figcaption>Lifetime member</figcaption></figure><figure class="card quote reveal"><blockquote>Watched most of producer accelerator , and holy shit bro , my motivation is immeasurable and you've completely changed my mindset</blockquote><figcaption>Lifetime member</figcaption></figure></div><div class="talk-col"><figure class="card quote reveal"><blockquote>i'm gonna keep looking through it you got hella value in there 💯</blockquote><figcaption>Lifetime member</figcaption></figure><figure class="card quote reveal"><blockquote>even the lifetime supply was enough to make me think that but I love how you want the best for other creatives</blockquote><figcaption>Lifetime member</figcaption></figure></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FINAL CTA / PRICE BAND: the one price moment on the page (the header pill is the only other) -->
-  <section class="w3 w3-price" id="pricing" aria-labelledby="price-title">
-    <div class="w3-in w3-price-grid">
-      <div class="w3-price-copy reveal">
-        <p class="w3-eyebrow w3-eyebrow-light">NO FAKE MATH</p>
-        <h2 class="w3-h2 w3-h2-64 w3-h2-cream" id="price-title">ONE PAYMENT.<br>YOURS FOREVER.</h2>
-        <p class="w3-price-nofake">I'm not going to invent a number and cross it out to make you feel something. You've seen exactly what's inside. One payment gets you all of it, plus everything I build for the rest of my career. Everything I add from here on is yours too. It's worth more than the ask.</p>
-        <p class="w3-price-support">6,000+ files and counting, every kit, a members-only kit monthly and 120+ live briefs. Bought separately, none of it comes close. A drum-kit habit costs more than this in a year. One placement off one brief pays it back many times over. Unlimited swings, forever.</p>
-        <p class="w3-price-support">You're in from day one. Every submission gets a personal listen, and your name goes up when the wins land. One payment. Yours forever.</p>
+    <!-- THE CREDITS -->
+    <section class="section credits" aria-labelledby="credits-h">
+      <div class="wrap">
+          <h2 class="display display-l" id="credits-h">you've seen<br>the credits.</h2>
+          <p class="lead">You came from my page, so I'll keep it short. Platinum records, a #1 on Billboard, cuts with the biggest names in the industry, sync with the biggest companies in the world. All self-taught from a bedroom in Australia. This is the setup I run my own career off, handed over.</p>
+          <div class="badges reveal"><div>Multi-platinum certified</div><div>No. 1 on Billboard</div><div>150,000,000+ streams</div></div>
       </div>
-      <div class="w3-price-card reveal" style="--d:.06s">
-        <div><span class="w3-chip">LIFETIME ACCESS</span></div>
-        <div class="w3-price-stack">
-          <span class="w3-price-amount" aria-label="Price 599 dollars">$599</span>
-          <span class="w3-price-tag">ONE PAYMENT.</span>
-          <span class="w3-price-tag w3-price-tag-soft">EVERYTHING, UPDATING <strong class="w3-forever">FOREVER</strong>.</span>
+    </section>
+
+    <!-- FOR YOU / NOT FOR YOU -->
+    <section class="section" aria-label="Who it's for">
+      <div class="wrap fit">
+        <div class="card fit-card reveal">
+          <h2 class="fit-title">for you</h2>
+          <ul class="ticks"><li>You've got beats and no real way to get them heard</li><li>You want the full setup, not one more pack</li><li>You'd rather own everything once than keep buying kits</li><li>You want new sounds landing every week without paying again</li><li>You're ready to treat this like a business</li></ul>
         </div>
-        <hr class="w3-hr">
-        <ul class="w3-ticks">
-          <li>The board: 120+ live artist briefs, updated daily</li>
-          <li>70GB+ sample archive via the Untitled app, deliverables sent on purchase, updating forever</li>
-          <li>OCTAVES Creator Suite, Analog Alchemy, and every future kit</li>
-          <li>Vaulted kits plus an exclusive monthly member kit that never goes public</li>
-          <li>How I did it: two classes written out in full, around 200 pages, plus the guides and my Notion producer system</li>
-          <li>Send your best through the portal and I go through every one myself</li>
-          <li>The room: the private members Discord</li>
-          <li>Your rights stay yours until a record places and splits are agreed</li>
-        </ul>
-        <a href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener" class="w3-pill">GET LIFETIME ACCESS</a>
-        <p class="w3-price-dm">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
+        <div class="card fit-card reveal">
+          <h2 class="fit-title">not for you</h2>
+          <ul class="ticks ticks-no"><li>You're hunting cheap sample packs</li><li>You expect placements without doing the work</li><li>You want a shortcut that does it for you</li></ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="section faq-section" aria-labelledby="faq-h">
+      <div class="wrap">
+        <h2 class="display display-l" id="faq-h">questions.</h2>
+        <div class="faq"><details open><summary>Is this a course?</summary><p>No. It's the full setup: every kit, sound and session file I've made, the live board and the members-only drops. The written stuff on how I did it is in there too, but that's the side, not the thing.</p></details><details><summary>Am I paying for placements?</summary><p>No. Nobody can sell those. You get the same briefs I run my own career off. Your music does the rest.</p></details><details><summary>Do you place my beats for me?</summary><p>No, and run from anyone who says they will. You send, I listen to every one, and the ones that fit go straight to the artist. We want hits not beats.</p></details><details><summary>Is this a subscription?</summary><p>No. One payment, in for life. Nothing in it will ever sit behind another payment.</p></details><details><summary>Is the price going up?</summary><p>Yes. $599 until Tue 6 Oct, then $699. Same Lifetime either way.</p></details><details><summary>Is it actually legit?</summary><p>Fair question. The portal's built and live, you just clicked through it. Want a walkthrough first? DM me "IN" on Instagram <a class="prose-link" href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p></details><details><summary>I'm not landing placements yet. Am I good enough?</summary><p>Everyone in there started in a bedroom with nothing. You don't get good then join, you join and get good.</p></details><details><summary>I don't have much time.</summary><p>That's why it fits. Finding opps, chasing contacts and digging for sounds is done for you and handed over daily. You make music and send.</p></details><details><summary>What happens to beats that don't place?</summary><p>They stay yours. Sell them, lease them, put them on BeatStars.</p></details><details><summary>Already bought something from elaye.store?</summary><p>It comes off your Lifetime if you apply it within 14 days.</p></details><details><summary>Refunds?</summary><p>Every file is yours the moment you're in, so there are no refunds for change of mind. Full policy at <a class="prose-link" href="https://elaye.store/refund-policy">elaye.store/refund-policy</a>.</p></details><details><summary>How do I pay and get in?</summary><p>Hit Get lifetime access and check out. You're in the moment it clears, working that night's briefs.</p></details><details><summary>Does it really keep updating?</summary><p>Forever. New samples daily, a new kit monthly, new briefs every day, plus every kit and guide I make for the rest of my career.</p></details></div>
+      </div>
+    </section>
+
+    <!-- THE PRICE CARD: the one black band -->
+    <section class="price-band" id="price" aria-labelledby="price-h">
+      <div class="wrap">
+        <h2 class="display display-xl" id="price-h">one payment.<br>yours forever.</h2>
+        <div class="price-grid">
+          <p>I'm not going to invent a number and cross it out. You've seen what's inside and you've clicked through the portal. One payment gets all of it, plus everything I build for the rest of my career.</p>
+          <div class="price-card">
+            <div class="pixel">$599</div>
+            <p class="price-sub">Until Tue 6 Oct, then $699. One payment.</p>
+            <ul class="price-list"><li>The board: 120+ live artist briefs, updated daily</li><li>70GB+ sample archive via the Untitled app, sent on purchase, updating forever</li><li>OCTAVES Creator Suite, Analog Alchemy and every future kit</li><li>Vaulted kits plus a members-only kit every month</li><li>How I did it: 40GB+ of mentorship, countless guides and my Notion producer system</li><li>Every submission goes through me</li><li>The room: the private members Discord</li><li>Your rights stay yours until a record places and splits are agreed</li></ul>
+            <a class="pill pill-light" href="https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03" data-checkout target="_blank" rel="noopener">Get lifetime access</a>
+            <p class="dm-line">Want to see inside first? DM me "IN" on Instagram <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">@elxyee</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <footer class="w3-footer">
-    <div class="w3-in w3-footer-in">
-      <div class="w3-footer-row">
-        <a href="#" class="w3-wordmark">lifetime supply.</a>
-        <nav class="w3-footer-links" aria-label="Footer">
-          <a href="https://portal.elaye.store/login" class="w3-footer-link">Log in</a>
-          <a href="https://instagram.com/elxyee" target="_blank" rel="noopener" class="w3-footer-link">Instagram @elxyee</a>
-        </nav>
-      </div>
-      <p class="w3-footer-capture">Not ready? <a href="https://elaye.store/newsletter">Locked In is free. Real lessons from a platinum producer, and first access to every drop.</a></p>
-      <div class="w3-footer-row w3-footer-meta">
-        <span class="w3-lower">One payment. Yours forever.</span>
+  <footer class="site-footer">
+    <div class="wrap foot-top">
+      <img class="wm-img" src="assets/brand/lifetime-supply-light.svg" width="1176" height="194" alt="lifetime supply" loading="lazy">
+      <span class="foot-tag">one payment. yours forever.</span>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="https://portal.elaye.store/login">Log in</a>
+        <a href="https://instagram.com/elxyee" target="_blank" rel="noopener">Instagram @elxyee</a>
+        <a href="https://elaye.store/refund-policy">Refund policy</a>
         <span>© 2026 ELAYE</span>
-      </div>
+      </nav>
     </div>
+    <div class="wrap">
+      <p class="foot-note">Not ready? <a class="prose-link" href="https://elaye.store/newsletter">Locked In</a> is free. Real lessons from a platinum producer, and first access to every drop.</p>
+    </div>
+    <div class="band" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -147.8 1176.28 193.54" class="wm wm-wait" focusable="false" aria-hidden="true"><defs><linearGradient id="wm-f-g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="615.8" y2="0"><stop offset="0" stop-color="#0b0b0b"/><stop offset="1" stop-color="#1c1c1c"/></linearGradient></defs><g class="wm-guides" fill="none" stroke-width="1" vector-effect="non-scaling-stroke"><line x1="-3000" x2="4000" y1="-145.8" y2="-145.8" stroke="rgba(11,11,11,0.1)" vector-effect="non-scaling-stroke"/><line x1="-3000" x2="4000" y1="-108" y2="-108" stroke="rgba(11,11,11,0.1)" vector-effect="non-scaling-stroke"/><line x1="-3000" x2="4000" y1="0" y2="0" stroke="rgba(11,11,11,0.18)" vector-effect="non-scaling-stroke"/><line x1="0" x2="0" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="28" x2="28" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="46.6" x2="46.6" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="74.6" x2="74.6" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="97.8" x2="97.8" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="125.8" x2="125.8" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="254.8" x2="254.8" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="282.8" x2="282.8" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="308.7" x2="308.7" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="336.6" x2="336.6" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="354.1" x2="354.1" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="506.9" x2="506.9" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/><line x1="629.04" x2="629.04" y1="-400" y2="400" stroke="rgba(11,11,11,.10)" vector-effect="non-scaling-stroke"/></g><path d="M28.00-145.80L0-145.80L0 0L28.00 0ZM74.60-108L46.60-108L46.60 0L74.60 0ZM74.60-145.80L46.60-145.80L46.60-120.80L74.60-120.80ZM142.40-105.80L125.80-105.80L125.80-116.40C125.80-122 128.20-124.80 133.40-124.80C136-124.80 138.60-124.60 141.40-124.20L141.40-145.20C135.40-145.60 129.60-145.80 125.40-145.80C106.80-145.80 97.80-137 97.80-118.80L97.80-105.80L82.60-105.80L82.60-87.20L97.80-87.20L97.80 0L125.80 0L125.80-87.20L142.40-87.20ZM241.60-45.20C241.80-47.60 241.80-48.60 241.80-50C241.80-60.80 240.20-70.80 237.60-78.40C230.40-98 213-109.80 191.20-109.80C160.20-109.80 141.20-87.40 141.20-51.20C141.20-16.60 160 4.60 190.60 4.60C214.80 4.60 234.40-9 240.60-30.40L213-30.40C209.60-21.80 201.80-16.80 191.60-16.80C183.60-16.80 177.20-20.20 173.20-26.20C170.60-30.20 169.60-35 169.20-45.20ZM169.60-63.80C171.40-80.40 178.40-88.40 190.80-88.40C203.60-88.40 211.20-79.80 212.60-63.80ZM298.40-105.80L282.80-105.80L282.80-134.80L254.80-134.80L254.80-105.80L241.00-105.80L241.00-87.20L254.80-87.20L254.80-20.80C254.80-3.80 263.80 4.60 282.20 4.60C288.60 4.60 293.20 4 298.40 2.40L298.40-17.20C295.60-16.80 294.20-16.60 292-16.60C284.60-16.60 282.80-18.80 282.80-28.40L282.80-87.20L298.40-87.20ZM336.80-108L308.80-108L308.80 0L336.80 0ZM336.80-145.80L308.80-145.80L308.80-120.80L336.80-120.80ZM354.00-108L354.00 0L382.00 0L382.00-64.80C382.00-78.20 389.20-86 401.20-86C410.60-86 416.40-80.60 416.40-72L416.40 0L444.40 0L444.40-64.80C444.40-78 451.60-86 463.60-86C473.00-86 478.80-80.60 478.80-72L478.80 0L506.80 0L506.80-76.40C506.80-97.40 494.00-109.80 472.40-109.80C458.60-109.80 449.20-105 440.80-93.80C435.60-104 424.80-109.80 411.40-109.80C399.00-109.80 391.00-105.80 381.80-94.60L381.80-108ZM615.60-45.20C615.80-47.60 615.80-48.60 615.80-50C615.80-60.80 614.20-70.80 611.60-78.40C604.40-98 587.00-109.80 565.20-109.80C534.20-109.80 515.20-87.40 515.20-51.20C515.20-16.60 534.00 4.60 564.60 4.60C588.80 4.60 608.40-9 614.60-30.40L587.00-30.40C583.60-21.80 575.80-16.80 565.60-16.80C557.60-16.80 551.20-20.20 547.20-26.20C544.60-30.20 543.60-35 543.20-45.20ZM543.60-63.80C545.40-80.40 552.40-88.40 564.80-88.40C577.60-88.40 585.20-79.80 586.60-63.80Z" fill="url(#wm-f-g)"/><g class="wm-col" style="--c:0" fill="#1c1c1c"><circle cx="629.04" cy="-22.5" r="3.24"/><circle cx="629.04" cy="-67.5" r="3.24"/><circle cx="629.04" cy="-76.5" r="3.24"/><circle cx="629.04" cy="-85.5" r="3.24"/></g><g class="wm-col" style="--c:1" fill="#1e1e1e"><circle cx="638.04" cy="-13.5" r="3.24"/><circle cx="638.04" cy="-22.5" r="3.24"/><circle cx="638.04" cy="-58.5" r="3.24"/><circle cx="638.04" cy="-67.5" r="3.24"/><circle cx="638.04" cy="-76.5" r="3.24"/><circle cx="638.04" cy="-85.5" r="3.24"/><circle cx="638.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:2" fill="#202020"><circle cx="647.04" cy="-4.5" r="3.24"/><circle cx="647.04" cy="-13.5" r="3.24"/><circle cx="647.04" cy="-49.5" r="3.24"/><circle cx="647.04" cy="-58.5" r="3.24"/><circle cx="647.04" cy="-94.5" r="3.24"/><circle cx="647.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:3" fill="#222222"><circle cx="656.04" cy="-4.5" r="3.24"/><circle cx="656.04" cy="-13.5" r="3.24"/><circle cx="656.04" cy="-49.5" r="3.24"/><circle cx="656.04" cy="-58.5" r="3.24"/><circle cx="656.04" cy="-94.5" r="3.24"/><circle cx="656.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:4" fill="#232323"><circle cx="665.04" cy="-4.5" r="3.24"/><circle cx="665.04" cy="-13.5" r="3.24"/><circle cx="665.04" cy="-49.5" r="3.24"/><circle cx="665.04" cy="-58.5" r="3.24"/><circle cx="665.04" cy="-94.5" r="3.24"/><circle cx="665.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:5" fill="#252525"><circle cx="674.04" cy="-4.5" r="3.24"/><circle cx="674.04" cy="-13.5" r="3.24"/><circle cx="674.04" cy="-49.5" r="3.24"/><circle cx="674.04" cy="-58.5" r="3.24"/><circle cx="674.04" cy="-94.5" r="3.24"/><circle cx="674.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:6" fill="#272727"><circle cx="683.04" cy="-4.5" r="3.24"/><circle cx="683.04" cy="-13.5" r="3.24"/><circle cx="683.04" cy="-49.5" r="3.24"/><circle cx="683.04" cy="-58.5" r="3.24"/><circle cx="683.04" cy="-94.5" r="3.24"/><circle cx="683.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:7" fill="#292929"><circle cx="692.04" cy="-4.5" r="3.24"/><circle cx="692.04" cy="-13.5" r="3.24"/><circle cx="692.04" cy="-49.5" r="3.24"/><circle cx="692.04" cy="-58.5" r="3.24"/><circle cx="692.04" cy="-94.5" r="3.24"/><circle cx="692.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:8" fill="#2b2b2b"><circle cx="701.04" cy="-13.5" r="3.24"/><circle cx="701.04" cy="-22.5" r="3.24"/><circle cx="701.04" cy="-31.5" r="3.24"/><circle cx="701.04" cy="-40.5" r="3.24"/><circle cx="701.04" cy="-49.5" r="3.24"/><circle cx="701.04" cy="-85.5" r="3.24"/><circle cx="701.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:9" fill="#2d2d2d"><circle cx="710.04" cy="-22.5" r="3.24"/><circle cx="710.04" cy="-31.5" r="3.24"/><circle cx="710.04" cy="-40.5" r="3.24"/><circle cx="710.04" cy="-85.5" r="3.24"/></g><g class="wm-col" style="--c:10" fill="#313131"><circle cx="728.04" cy="-31.5" r="3.24"/><circle cx="728.04" cy="-40.5" r="3.24"/><circle cx="728.04" cy="-49.5" r="3.24"/><circle cx="728.04" cy="-58.5" r="3.24"/><circle cx="728.04" cy="-67.5" r="3.24"/><circle cx="728.04" cy="-76.5" r="3.24"/><circle cx="728.04" cy="-85.5" r="3.24"/><circle cx="728.04" cy="-94.5" r="3.24"/><circle cx="728.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:11" fill="#323232"><circle cx="737.04" cy="-13.5" r="3.24"/><circle cx="737.04" cy="-22.5" r="3.24"/><circle cx="737.04" cy="-31.5" r="3.24"/><circle cx="737.04" cy="-40.5" r="3.24"/><circle cx="737.04" cy="-49.5" r="3.24"/><circle cx="737.04" cy="-58.5" r="3.24"/><circle cx="737.04" cy="-67.5" r="3.24"/><circle cx="737.04" cy="-76.5" r="3.24"/><circle cx="737.04" cy="-85.5" r="3.24"/><circle cx="737.04" cy="-94.5" r="3.24"/><circle cx="737.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:12" fill="#343434"><circle cx="746.04" cy="-13.5" r="3.24"/><circle cx="746.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:13" fill="#363636"><circle cx="755.04" cy="-4.5" r="3.24"/><circle cx="755.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:14" fill="#383838"><circle cx="764.04" cy="-4.5" r="3.24"/><circle cx="764.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:15" fill="#3a3a3a"><circle cx="773.04" cy="-4.5" r="3.24"/><circle cx="773.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:16" fill="#3c3c3c"><circle cx="782.04" cy="-4.5" r="3.24"/><circle cx="782.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:17" fill="#3e3e3e"><circle cx="791.04" cy="-4.5" r="3.24"/><circle cx="791.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:18" fill="#3f3f3f"><circle cx="800.04" cy="-13.5" r="3.24"/><circle cx="800.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:19" fill="#414141"><circle cx="809.04" cy="-4.5" r="3.24"/><circle cx="809.04" cy="-13.5" r="3.24"/><circle cx="809.04" cy="-22.5" r="3.24"/><circle cx="809.04" cy="-31.5" r="3.24"/><circle cx="809.04" cy="-40.5" r="3.24"/><circle cx="809.04" cy="-49.5" r="3.24"/><circle cx="809.04" cy="-58.5" r="3.24"/><circle cx="809.04" cy="-67.5" r="3.24"/><circle cx="809.04" cy="-76.5" r="3.24"/><circle cx="809.04" cy="-85.5" r="3.24"/><circle cx="809.04" cy="-94.5" r="3.24"/><circle cx="809.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:20" fill="#434343"><circle cx="818.04" cy="-4.5" r="3.24"/><circle cx="818.04" cy="-13.5" r="3.24"/><circle cx="818.04" cy="-22.5" r="3.24"/><circle cx="818.04" cy="-31.5" r="3.24"/><circle cx="818.04" cy="-40.5" r="3.24"/><circle cx="818.04" cy="-49.5" r="3.24"/><circle cx="818.04" cy="-58.5" r="3.24"/><circle cx="818.04" cy="-67.5" r="3.24"/><circle cx="818.04" cy="-76.5" r="3.24"/><circle cx="818.04" cy="-85.5" r="3.24"/><circle cx="818.04" cy="-94.5" r="3.24"/><circle cx="818.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:21" fill="#474747"><circle cx="836.04" cy="40.5" r="3.24"/><circle cx="836.04" cy="31.5" r="3.24"/><circle cx="836.04" cy="22.5" r="3.24"/><circle cx="836.04" cy="13.5" r="3.24"/><circle cx="836.04" cy="4.5" r="3.24"/><circle cx="836.04" cy="-4.5" r="3.24"/><circle cx="836.04" cy="-13.5" r="3.24"/><circle cx="836.04" cy="-22.5" r="3.24"/><circle cx="836.04" cy="-31.5" r="3.24"/><circle cx="836.04" cy="-40.5" r="3.24"/><circle cx="836.04" cy="-49.5" r="3.24"/><circle cx="836.04" cy="-58.5" r="3.24"/><circle cx="836.04" cy="-67.5" r="3.24"/><circle cx="836.04" cy="-76.5" r="3.24"/><circle cx="836.04" cy="-85.5" r="3.24"/><circle cx="836.04" cy="-94.5" r="3.24"/><circle cx="836.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:22" fill="#494949"><circle cx="845.04" cy="40.5" r="3.24"/><circle cx="845.04" cy="31.5" r="3.24"/><circle cx="845.04" cy="22.5" r="3.24"/><circle cx="845.04" cy="13.5" r="3.24"/><circle cx="845.04" cy="4.5" r="3.24"/><circle cx="845.04" cy="-4.5" r="3.24"/><circle cx="845.04" cy="-13.5" r="3.24"/><circle cx="845.04" cy="-22.5" r="3.24"/><circle cx="845.04" cy="-31.5" r="3.24"/><circle cx="845.04" cy="-40.5" r="3.24"/><circle cx="845.04" cy="-49.5" r="3.24"/><circle cx="845.04" cy="-58.5" r="3.24"/><circle cx="845.04" cy="-67.5" r="3.24"/><circle cx="845.04" cy="-76.5" r="3.24"/><circle cx="845.04" cy="-85.5" r="3.24"/><circle cx="845.04" cy="-94.5" r="3.24"/><circle cx="845.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:23" fill="#4b4b4b"><circle cx="854.04" cy="-13.5" r="3.24"/><circle cx="854.04" cy="-22.5" r="3.24"/><circle cx="854.04" cy="-85.5" r="3.24"/><circle cx="854.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:24" fill="#4d4d4d"><circle cx="863.04" cy="-4.5" r="3.24"/><circle cx="863.04" cy="-13.5" r="3.24"/><circle cx="863.04" cy="-94.5" r="3.24"/><circle cx="863.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:25" fill="#4e4e4e"><circle cx="872.04" cy="-4.5" r="3.24"/><circle cx="872.04" cy="-13.5" r="3.24"/><circle cx="872.04" cy="-94.5" r="3.24"/><circle cx="872.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:26" fill="#505050"><circle cx="881.04" cy="-4.5" r="3.24"/><circle cx="881.04" cy="-13.5" r="3.24"/><circle cx="881.04" cy="-94.5" r="3.24"/><circle cx="881.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:27" fill="#525252"><circle cx="890.04" cy="-4.5" r="3.24"/><circle cx="890.04" cy="-13.5" r="3.24"/><circle cx="890.04" cy="-94.5" r="3.24"/><circle cx="890.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:28" fill="#545454"><circle cx="899.04" cy="-4.5" r="3.24"/><circle cx="899.04" cy="-13.5" r="3.24"/><circle cx="899.04" cy="-94.5" r="3.24"/><circle cx="899.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:29" fill="#565656"><circle cx="908.04" cy="-13.5" r="3.24"/><circle cx="908.04" cy="-22.5" r="3.24"/><circle cx="908.04" cy="-85.5" r="3.24"/><circle cx="908.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:30" fill="#585858"><circle cx="917.04" cy="-13.5" r="3.24"/><circle cx="917.04" cy="-22.5" r="3.24"/><circle cx="917.04" cy="-31.5" r="3.24"/><circle cx="917.04" cy="-40.5" r="3.24"/><circle cx="917.04" cy="-49.5" r="3.24"/><circle cx="917.04" cy="-58.5" r="3.24"/><circle cx="917.04" cy="-67.5" r="3.24"/><circle cx="917.04" cy="-76.5" r="3.24"/><circle cx="917.04" cy="-85.5" r="3.24"/><circle cx="917.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:31" fill="#5a5a5a"><circle cx="926.04" cy="-31.5" r="3.24"/><circle cx="926.04" cy="-40.5" r="3.24"/><circle cx="926.04" cy="-49.5" r="3.24"/><circle cx="926.04" cy="-58.5" r="3.24"/><circle cx="926.04" cy="-67.5" r="3.24"/><circle cx="926.04" cy="-76.5" r="3.24"/></g><g class="wm-col" style="--c:32" fill="#5d5d5d"><circle cx="944.04" cy="40.5" r="3.24"/><circle cx="944.04" cy="31.5" r="3.24"/><circle cx="944.04" cy="22.5" r="3.24"/><circle cx="944.04" cy="13.5" r="3.24"/><circle cx="944.04" cy="4.5" r="3.24"/><circle cx="944.04" cy="-4.5" r="3.24"/><circle cx="944.04" cy="-13.5" r="3.24"/><circle cx="944.04" cy="-22.5" r="3.24"/><circle cx="944.04" cy="-31.5" r="3.24"/><circle cx="944.04" cy="-40.5" r="3.24"/><circle cx="944.04" cy="-49.5" r="3.24"/><circle cx="944.04" cy="-58.5" r="3.24"/><circle cx="944.04" cy="-67.5" r="3.24"/><circle cx="944.04" cy="-76.5" r="3.24"/><circle cx="944.04" cy="-85.5" r="3.24"/><circle cx="944.04" cy="-94.5" r="3.24"/><circle cx="944.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:33" fill="#5f5f5f"><circle cx="953.04" cy="40.5" r="3.24"/><circle cx="953.04" cy="31.5" r="3.24"/><circle cx="953.04" cy="22.5" r="3.24"/><circle cx="953.04" cy="13.5" r="3.24"/><circle cx="953.04" cy="4.5" r="3.24"/><circle cx="953.04" cy="-4.5" r="3.24"/><circle cx="953.04" cy="-13.5" r="3.24"/><circle cx="953.04" cy="-22.5" r="3.24"/><circle cx="953.04" cy="-31.5" r="3.24"/><circle cx="953.04" cy="-40.5" r="3.24"/><circle cx="953.04" cy="-49.5" r="3.24"/><circle cx="953.04" cy="-58.5" r="3.24"/><circle cx="953.04" cy="-67.5" r="3.24"/><circle cx="953.04" cy="-76.5" r="3.24"/><circle cx="953.04" cy="-85.5" r="3.24"/><circle cx="953.04" cy="-94.5" r="3.24"/><circle cx="953.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:34" fill="#616161"><circle cx="962.04" cy="-13.5" r="3.24"/><circle cx="962.04" cy="-22.5" r="3.24"/><circle cx="962.04" cy="-85.5" r="3.24"/><circle cx="962.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:35" fill="#636363"><circle cx="971.04" cy="-4.5" r="3.24"/><circle cx="971.04" cy="-13.5" r="3.24"/><circle cx="971.04" cy="-94.5" r="3.24"/><circle cx="971.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:36" fill="#656565"><circle cx="980.04" cy="-4.5" r="3.24"/><circle cx="980.04" cy="-13.5" r="3.24"/><circle cx="980.04" cy="-94.5" r="3.24"/><circle cx="980.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:37" fill="#676767"><circle cx="989.04" cy="-4.5" r="3.24"/><circle cx="989.04" cy="-13.5" r="3.24"/><circle cx="989.04" cy="-94.5" r="3.24"/><circle cx="989.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:38" fill="#696969"><circle cx="998.04" cy="-4.5" r="3.24"/><circle cx="998.04" cy="-13.5" r="3.24"/><circle cx="998.04" cy="-94.5" r="3.24"/><circle cx="998.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:39" fill="#6a6a6a"><circle cx="1007.04" cy="-4.5" r="3.24"/><circle cx="1007.04" cy="-13.5" r="3.24"/><circle cx="1007.04" cy="-94.5" r="3.24"/><circle cx="1007.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:40" fill="#6c6c6c"><circle cx="1016.04" cy="-13.5" r="3.24"/><circle cx="1016.04" cy="-22.5" r="3.24"/><circle cx="1016.04" cy="-85.5" r="3.24"/><circle cx="1016.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:41" fill="#6e6e6e"><circle cx="1025.04" cy="-13.5" r="3.24"/><circle cx="1025.04" cy="-22.5" r="3.24"/><circle cx="1025.04" cy="-31.5" r="3.24"/><circle cx="1025.04" cy="-40.5" r="3.24"/><circle cx="1025.04" cy="-49.5" r="3.24"/><circle cx="1025.04" cy="-58.5" r="3.24"/><circle cx="1025.04" cy="-67.5" r="3.24"/><circle cx="1025.04" cy="-76.5" r="3.24"/><circle cx="1025.04" cy="-85.5" r="3.24"/><circle cx="1025.04" cy="-94.5" r="3.24"/></g><g class="wm-col" style="--c:42" fill="#707070"><circle cx="1034.04" cy="-31.5" r="3.24"/><circle cx="1034.04" cy="-40.5" r="3.24"/><circle cx="1034.04" cy="-49.5" r="3.24"/><circle cx="1034.04" cy="-58.5" r="3.24"/><circle cx="1034.04" cy="-67.5" r="3.24"/><circle cx="1034.04" cy="-76.5" r="3.24"/></g><g class="wm-col" style="--c:43" fill="#747474"><circle cx="1052.04" cy="-4.5" r="3.24"/><circle cx="1052.04" cy="-13.5" r="3.24"/><circle cx="1052.04" cy="-22.5" r="3.24"/><circle cx="1052.04" cy="-31.5" r="3.24"/><circle cx="1052.04" cy="-40.5" r="3.24"/><circle cx="1052.04" cy="-49.5" r="3.24"/><circle cx="1052.04" cy="-58.5" r="3.24"/><circle cx="1052.04" cy="-67.5" r="3.24"/><circle cx="1052.04" cy="-76.5" r="3.24"/><circle cx="1052.04" cy="-85.5" r="3.24"/><circle cx="1052.04" cy="-94.5" r="3.24"/><circle cx="1052.04" cy="-103.5" r="3.24"/><circle cx="1052.04" cy="-112.5" r="3.24"/><circle cx="1052.04" cy="-121.5" r="3.24"/><circle cx="1052.04" cy="-130.5" r="3.24"/><circle cx="1052.04" cy="-139.5" r="3.24"/></g><g class="wm-col" style="--c:44" fill="#767676"><circle cx="1061.04" cy="-4.5" r="3.24"/><circle cx="1061.04" cy="-13.5" r="3.24"/><circle cx="1061.04" cy="-22.5" r="3.24"/><circle cx="1061.04" cy="-31.5" r="3.24"/><circle cx="1061.04" cy="-40.5" r="3.24"/><circle cx="1061.04" cy="-49.5" r="3.24"/><circle cx="1061.04" cy="-58.5" r="3.24"/><circle cx="1061.04" cy="-67.5" r="3.24"/><circle cx="1061.04" cy="-76.5" r="3.24"/><circle cx="1061.04" cy="-85.5" r="3.24"/><circle cx="1061.04" cy="-94.5" r="3.24"/><circle cx="1061.04" cy="-103.5" r="3.24"/><circle cx="1061.04" cy="-112.5" r="3.24"/><circle cx="1061.04" cy="-121.5" r="3.24"/><circle cx="1061.04" cy="-130.5" r="3.24"/><circle cx="1061.04" cy="-139.5" r="3.24"/></g><g class="wm-col" style="--c:45" fill="#797979"><circle cx="1079.04" cy="-31.5" r="3.24"/><circle cx="1079.04" cy="-40.5" r="3.24"/><circle cx="1079.04" cy="-49.5" r="3.24"/><circle cx="1079.04" cy="-58.5" r="3.24"/><circle cx="1079.04" cy="-67.5" r="3.24"/><circle cx="1079.04" cy="-76.5" r="3.24"/><circle cx="1079.04" cy="-85.5" r="3.24"/><circle cx="1079.04" cy="-94.5" r="3.24"/><circle cx="1079.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:46" fill="#7b7b7b"><circle cx="1088.04" cy="31.5" r="3.24"/><circle cx="1088.04" cy="-13.5" r="3.24"/><circle cx="1088.04" cy="-22.5" r="3.24"/><circle cx="1088.04" cy="-31.5" r="3.24"/><circle cx="1088.04" cy="-40.5" r="3.24"/><circle cx="1088.04" cy="-49.5" r="3.24"/><circle cx="1088.04" cy="-58.5" r="3.24"/><circle cx="1088.04" cy="-67.5" r="3.24"/><circle cx="1088.04" cy="-76.5" r="3.24"/><circle cx="1088.04" cy="-85.5" r="3.24"/><circle cx="1088.04" cy="-94.5" r="3.24"/><circle cx="1088.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:47" fill="#7d7d7d"><circle cx="1097.04" cy="40.5" r="3.24"/><circle cx="1097.04" cy="31.5" r="3.24"/><circle cx="1097.04" cy="-13.5" r="3.24"/><circle cx="1097.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:48" fill="#7f7f7f"><circle cx="1106.04" cy="40.5" r="3.24"/><circle cx="1106.04" cy="31.5" r="3.24"/><circle cx="1106.04" cy="-4.5" r="3.24"/><circle cx="1106.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:49" fill="#818181"><circle cx="1115.04" cy="40.5" r="3.24"/><circle cx="1115.04" cy="31.5" r="3.24"/><circle cx="1115.04" cy="-4.5" r="3.24"/><circle cx="1115.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:50" fill="#838383"><circle cx="1124.04" cy="40.5" r="3.24"/><circle cx="1124.04" cy="31.5" r="3.24"/><circle cx="1124.04" cy="-4.5" r="3.24"/><circle cx="1124.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:51" fill="#858585"><circle cx="1133.04" cy="40.5" r="3.24"/><circle cx="1133.04" cy="31.5" r="3.24"/><circle cx="1133.04" cy="-4.5" r="3.24"/><circle cx="1133.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:52" fill="#868686"><circle cx="1142.04" cy="40.5" r="3.24"/><circle cx="1142.04" cy="31.5" r="3.24"/><circle cx="1142.04" cy="-4.5" r="3.24"/><circle cx="1142.04" cy="-13.5" r="3.24"/></g><g class="wm-col" style="--c:53" fill="#888888"><circle cx="1151.04" cy="40.5" r="3.24"/><circle cx="1151.04" cy="31.5" r="3.24"/><circle cx="1151.04" cy="22.5" r="3.24"/><circle cx="1151.04" cy="-13.5" r="3.24"/><circle cx="1151.04" cy="-22.5" r="3.24"/></g><g class="wm-col" style="--c:54" fill="#8a8a8a"><circle cx="1160.04" cy="31.5" r="3.24"/><circle cx="1160.04" cy="22.5" r="3.24"/><circle cx="1160.04" cy="13.5" r="3.24"/><circle cx="1160.04" cy="4.5" r="3.24"/><circle cx="1160.04" cy="-4.5" r="3.24"/><circle cx="1160.04" cy="-13.5" r="3.24"/><circle cx="1160.04" cy="-22.5" r="3.24"/><circle cx="1160.04" cy="-31.5" r="3.24"/><circle cx="1160.04" cy="-40.5" r="3.24"/><circle cx="1160.04" cy="-49.5" r="3.24"/><circle cx="1160.04" cy="-58.5" r="3.24"/><circle cx="1160.04" cy="-67.5" r="3.24"/><circle cx="1160.04" cy="-76.5" r="3.24"/><circle cx="1160.04" cy="-85.5" r="3.24"/><circle cx="1160.04" cy="-94.5" r="3.24"/><circle cx="1160.04" cy="-103.5" r="3.24"/></g><g class="wm-col" style="--c:55" fill="#8c8c8c"><circle cx="1169.04" cy="22.5" r="3.24"/><circle cx="1169.04" cy="13.5" r="3.24"/><circle cx="1169.04" cy="4.5" r="3.24"/><circle cx="1169.04" cy="-4.5" r="3.24"/><circle cx="1169.04" cy="-13.5" r="3.24"/><circle cx="1169.04" cy="-22.5" r="3.24"/><circle cx="1169.04" cy="-31.5" r="3.24"/><circle cx="1169.04" cy="-40.5" r="3.24"/><circle cx="1169.04" cy="-49.5" r="3.24"/><circle cx="1169.04" cy="-58.5" r="3.24"/><circle cx="1169.04" cy="-67.5" r="3.24"/><circle cx="1169.04" cy="-76.5" r="3.24"/><circle cx="1169.04" cy="-85.5" r="3.24"/><circle cx="1169.04" cy="-94.5" r="3.24"/><circle cx="1169.04" cy="-103.5" r="3.24"/></g></svg></div>
   </footer>
 
-  <script defer src="js/site-config.js"></script>
-  <script defer src="js/app.js"></script>
-  <script>
-    /* Failsafe: if app.js never ran (blocked, failed, or threw before the
-       observer), drop the html.js gate so nothing stays hidden. */
-    addEventListener('load', () => setTimeout(() => {
-      if (!window.__reveals) document.documentElement.classList.remove('js');
-    }, 1200));
-  </script>
+  <script src="js/site-config.js" defer></script>
+  <script src="js/homer.js" defer></script>
 </body>
 </html>
