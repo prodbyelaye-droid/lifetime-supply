@@ -391,6 +391,8 @@ button {
   gap: 20px;
 }
 .header-actions .login {
+  flex: none;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -457,18 +459,13 @@ button {
   margin-right: -44px;
 }
 
-/* ═══ THE PORTAL: INTRO, THEN THE SHOW ══════════════════════════════════════
-   One pinned stage carries the unlock AND the demo (js/homer.js writes the
-   vars on .stage and the window's inline transform):
-     unlock  --lift (shackle lifts, swings), --drop (badge falls away), then
-             .is-open on the folder; captions 01 / 02 / 03 change by beat
-     rise    --rise 0 to 1: the demo window climbs out of the open folder and
-             grows to full width while the folder and captions fall away
-     demo    .stage.is-live: the window is clickable; each stretch of scroll
-             selects the next tab, and a tab click jumps the scroll to its step
-   Markup ships in the FINAL state (folder .is-open, no lock, caption 03,
-   panel 01), so with JS off or reduced motion nothing pins and the page is
-   simply the open folder and the demo below it, tabs clickable with JS. */
+/* ═══ HERO + THE UNLOCK ═════════════════════════════════════════════════════
+   One sticky stage from the top of the page; js/homer.js writes the vars on
+   .stage from the scroll. The hero first; the first scroll hands over to the
+   captions (.is-beats) while the folder turns gold (--gold), the shackle
+   snaps open (--lift), the broken lock rises away (--float), and the folder
+   opens on 03 (.is-open). Then the stage lets go and the page scrolls on.
+   Without html.motion nothing pins: the hero and its locked folder. */
 .show {
   position: relative;
 }
@@ -477,11 +474,22 @@ button {
 }
 .stage-a {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 560px;
+  grid-template-columns: minmax(0, 1fr) 400px;
   gap: 64px;
   align-items: center;
-  padding-top: 72px;
-  padding-bottom: 72px;
+  padding-top: clamp(64px, 8.3vw, 120px);
+  padding-bottom: clamp(88px, 11vw, 160px);
+}
+.unlock-caps {
+  display: grid;
+}
+.unlock-caps > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+  align-self: center;
+}
+.caps-seq {
+  display: none;
 }
 .unlock-count {
   margin: 0;
@@ -498,16 +506,13 @@ button {
   grid-area: 1 / 1;
   margin: 0;
 }
-html:not(.motion) .unlock-cap:not([data-i='2']) {
-  display: none;
-}
 .unlock-object {
   display: flex;
   justify-content: flex-end;
 }
 .unlock-object .folder {
-  --s: 1.4;
-  margin-right: -56px;
+  --s: 1.1;
+  margin-right: -44px;
 }
 
 html.motion .stage {
@@ -517,15 +522,34 @@ html.motion .stage {
   height: calc(100svh - var(--header-h));
   overflow: hidden;
 }
-html.motion .stage-a,
-html.motion .stage-b {
-  position: absolute;
-  inset: 0;
-}
 html.motion .stage-a {
-  z-index: 1;
+  height: 100%;
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 24px;
+}
+html.motion .caps-seq {
+  display: block;
+}
+html.motion .hero-copy {
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s;
+}
+html.motion .stage.is-beats .hero-copy,
+html.motion .caps-seq {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s linear 0.5s;
+}
+html.motion .stage.is-beats .hero-copy {
+  transform: translateY(-16px);
+}
+html.motion .caps-seq {
+  transform: translateY(16px);
+}
+html.motion .stage.is-beats .caps-seq {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s;
 }
 html.motion .unlock-cap {
   opacity: 0;
@@ -536,21 +560,55 @@ html.motion .unlock-cap.is-on {
   opacity: 1;
   transform: none;
 }
-html.motion .unlock-caps {
-  opacity: calc(1 - var(--rise, 0) * 2.5);
+/* the folder fills with gold from the bottom up as you scroll (--gold, 0 to
+   1). The fill line runs from the body's foot (y 290) to the tab's top
+   (y 56) in the folder's base units; each part clips its gold layer to it.
+   The gold paint is folder.css's .folder-gold. */
+html.motion .show .folder {
+  --folder-shadow: calc(11 + 35 * var(--gold, 0)), calc(45 - 6 * var(--gold, 0)), calc(64 - 41 * var(--gold, 0));
 }
-html.motion .unlock-object .folder {
-  transform-origin: 50% 60%;
-  transform: scale(calc(1 - var(--rise, 0) * 0.35));
-  opacity: calc(1 - var(--rise, 0) * 1.8);
+html.motion .show .folder-back::before,
+html.motion .show .folder-tab::before,
+html.motion .show .folder-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
 }
+html.motion .show .folder-back::before {
+  background: linear-gradient(180deg, #8a6a1e 0%, #5e4a16 100%);
+  clip-path: inset(clamp(0%, calc((290 - 234 * var(--gold, 0) - 84) / 206 * 100%), 100%) 0 0 0);
+}
+html.motion .show .folder-tab::before {
+  background: #8a6a1e;
+  clip-path: inset(clamp(0%, calc((290 - 234 * var(--gold, 0) - 56) / 34 * 100%), 100%) 0 0 0);
+}
+html.motion .show .folder-front::before {
+  background: linear-gradient(180deg, #fbda6a 0%, #e9bd42 55%, #c39c42 100%);
+  box-shadow: inset 0 calc(1.5px * var(--s)) 0 rgba(255, 246, 210, 0.7), inset 0 calc(-2px * var(--s)) 0 rgba(0, 0, 0, 0.1);
+  clip-path: inset(clamp(0%, calc((290 - 234 * var(--gold, 0) - 122) / 168 * 100%), 100%) 0 0 0);
+}
+@supports (color: color-mix(in srgb, red, blue 50%)) {
+  html.motion .show .folder {
+    --gf: clamp(0, calc((var(--gold, 0) - 0.86) * 12), 1);
+    --folder-sheet-face: color-mix(in srgb, #ffffff, #fbf6e8 calc(var(--gold, 0) * 100%));
+    --folder-sheet-tint: color-mix(in srgb, #d3e3ec, #d9cba4 calc(var(--gold, 0) * 100%));
+  }
+  html.motion .show .folder-fillet {
+    background: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0) calc(12px * var(--s)), color-mix(in srgb, #3b8cc0, #8a6a1e calc(var(--gf) * 100%)) calc(12.6px * var(--s)));
+  }
+}
+/* the lock: the shackle snaps up and swings open, then the broken lock
+   rises off the folder and fades */
 html.motion .show .folder-lock {
-  transform: translate(calc(var(--drop, 0) * 24px), calc(var(--drop, 0) * 160px)) rotate(calc(var(--drop, 0) * 28deg));
-  opacity: calc(1 - var(--drop, 0) * 1.2);
+  z-index: 2;
+  transform: translate(calc(var(--float, 0) * 28px), calc(var(--float, 0) * -260px)) rotate(calc(var(--float, 0) * -16deg)) scale(calc(1 - var(--float, 0) * 0.18));
+  opacity: calc(1 - (var(--float, 0) - 0.55) * 2.4);
 }
 html.motion .show .folder-lock::before {
   transform-origin: 100% 100%;
-  transform: translateY(calc(var(--lift, 0) * -10px * var(--s))) rotate(calc(var(--lift, 0) * -28deg));
+  transform: translateY(calc(var(--lift, 0) * -12px * var(--s))) rotate(calc(var(--lift, 0) * -38deg));
 }
 .show .folder-sheet,
 .show .folder-sheet-2,
@@ -562,36 +620,6 @@ html.motion .show .folder-lock::before {
 }
 html.motion .show .folder.is-open .folder-sheet-2 {
   animation: sheet-in 0.55s var(--ease) backwards;
-}
-html.motion .stage-b {
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  pointer-events: none;
-}
-html.motion .stage.is-live .stage-b {
-  pointer-events: auto;
-}
-html.motion .stage.is-live .stage-a {
-  visibility: hidden;
-}
-html.motion .stage-b .window {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  transform-origin: 50% 50%;
-  will-change: transform, opacity;
-}
-html.motion .stage-b .demo-body {
-  flex: 1 1 auto;
-  height: auto;
-  min-height: 0;
-}
-html.motion .stage-b .demo-caption {
-  opacity: calc((var(--rise, 0) - 0.75) * 4);
 }
 
 /* ═══ THE DEMO WINDOW ════════════════════════════════════════════════════════ */
@@ -1571,18 +1599,17 @@ html.motion .stage-b .demo-caption {
   }
   .stage-a {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding-top: 56px;
-    padding-bottom: 56px;
+    gap: 40px;
   }
   html.motion .stage-a {
     align-content: center;
+    gap: 24px;
   }
   .unlock-object {
     justify-content: center;
   }
   .unlock-object .folder {
-    --s: 0.8;
+    --s: 0.72;
     margin-right: 0;
   }
   .d-kits {
@@ -1680,7 +1707,7 @@ html.motion .stage-b .demo-caption {
     font-size: 16px;
   }
   .unlock-object .folder {
-    --s: 0.72;
+    --s: 0.6;
   }
   .demo-header {
     padding-left: 0;
@@ -1879,5 +1906,98 @@ html.motion .stage-b .demo-caption {
   }
   .d-class .d-cover {
     height: 96px;
+  }
+}
+
+/* ═══ THE PORTAL SECTION (its own section, clickable, nothing pinned) ═══════ */
+.demo-section .display,
+.demo-section .lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.demo-section .lead {
+  max-width: 600px;
+}
+.demo-frame {
+  max-width: 1080px;
+  margin: 56px auto 0;
+}
+.demo-body {
+  height: 560px;
+}
+.demo-tab {
+  position: relative;
+}
+.demo-tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+}
+.demo-caption {
+  margin-top: 28px;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.demo-what {
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.demo-what p {
+  max-width: 560px;
+}
+.demo-cta {
+  margin-top: 24px;
+  padding-top: 0;
+  justify-content: center;
+}
+@media (max-width: 1023px) {
+  .demo-body {
+    height: 520px;
+  }
+}
+@media (max-width: 1023px) and (max-height: 760px) {
+  html.motion .unlock-object .folder {
+    --s: 0.4;
+  }
+  html.motion .stage-a {
+    gap: 16px;
+  }
+  html.motion .hero-copy .display-xl {
+    font-size: 44px;
+  }
+  html.motion .hero-copy .lead {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+  html.motion .hero-copy .cta-row {
+    margin-top: 20px;
+  }
+  html.motion .hero-copy .price-line {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 400px) {
+  .site-header .wrap {
+    gap: 10px;
+  }
+  .brand-link .wm {
+    height: 22px;
+  }
+  .header-actions {
+    gap: 10px;
+  }
+  .header-actions .pill-sm {
+    padding: 0 16px;
   }
 }
