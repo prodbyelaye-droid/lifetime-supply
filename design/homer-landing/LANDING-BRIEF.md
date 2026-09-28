@@ -1,6 +1,6 @@
 # lifetime.elaye.store · Homer landing brief (27 Sep 2026)
 
-Read this first. It holds the look, the sections, the two interactive pieces and every word of copy. Elaye's calls (27 Sep): the landing uses the exact design system of the live portal (portal.elaye.store); the copy is rewritten; the lock on the folder breaks as you scroll and the folder opens into a clickable demo portal (guided + clickable, briefs shown as blank cards); the price reads "$599 until Tue 6 Oct, then $699".
+Read this first. It holds the look, the sections, the two interactive pieces and every word of copy. Elaye's calls (27 Sep): the landing uses the exact design system of the live portal (portal.elaye.store); the copy is rewritten; the lock on the folder breaks as you scroll and the folder opens into a clickable demo portal (guided + clickable, briefs shown as blank cards); the price reads "$599 until Wed 7 Oct, then $699".
 
 ## 1. The look (same system as the portal, see HOMER-LAWS.md in this folder)
 - Page white #ffffff. Ink #0b0b0b. Secondary text #595959 (7.0:1). Placeholders and meta #666666. Chips and secondary surfaces #f2f2f2, pressed #e6e6e6, hairline rgba(11,11,11,.12), strong hairline rgba(11,11,11,.5). Exact tokens: portal-globals.css (light block).
@@ -54,7 +54,7 @@ HERO
 - h1: my whole setup. / yours forever.
 - sub: Every kit, sound and session file I've made, the live brief board, and everything I add from here on. One payment, in for life.
 - pill: Get lifetime access · link: See inside ›
-- price line: $599 until Tue 6 Oct, then $699 · one payment · yours forever
+- price line: $599 until Wed 7 Oct, then $699 · one payment · yours forever
 
 UNLOCK CAPTIONS: everything's in here. / one payment opens it. / and this is inside.
 
@@ -127,7 +127,7 @@ QUESTIONS
 - Am I paying for placements? No. Nobody can sell those. You get the same briefs I run my own career off. Your music does the rest.
 - Do you place my beats for me? No, and run from anyone who says they will. You send, I listen to every one, and the ones that fit go straight to the artist. We want hits not beats.
 - Is this a subscription? No. One payment, in for life. Nothing in it will ever sit behind another payment.
-- Is the price going up? Yes. $599 until Tue 6 Oct, then $699. Same Lifetime either way.
+- Is the price going up? Yes. $599 until Wed 7 Oct, then $699. Same Lifetime either way.
 - Is it actually legit? Fair question. The portal's built and live, you just clicked through it. Want a walkthrough first? DM me "IN" on Instagram @elxyee.
 - I'm not landing placements yet. Am I good enough? Everyone in there started in a bedroom with nothing. You don't get good then join, you join and get good.
 - I don't have much time. That's why it fits. Finding opps, chasing contacts and digging for sounds is done for you and handed over daily. You make music and send.
@@ -141,7 +141,7 @@ THE PRICE CARD (the black band)
 - eyebrow: no fake math
 - h2: one payment. / yours forever.
 - body: I'm not going to invent a number and cross it out. You've seen what's inside and you've clicked through the portal. One payment gets all of it, plus everything I build for the rest of my career.
-- price: $599 · small line: until Tue 6 Oct, then $699 · one payment
+- price: $599 · small line: until Wed 7 Oct, then $699 · one payment
 - list: The board: 120+ live artist briefs, updated daily · 70GB+ sample archive via the Untitled app, sent on purchase, updating forever · OCTAVES Creator Suite, Analog Alchemy and every future kit · Vaulted kits plus a members-only kit every month · How I did it: 40GB+ of mentorship, countless guides and my Notion producer system · Every submission goes through me · The room: the private members Discord · Your rights stay yours until a record places and splits are agreed
 - pill: Get lifetime access
 - under: Want to see inside first? DM me "IN" on Instagram @elxyee.
@@ -151,7 +151,7 @@ FOOTER
 - small line: Not ready? Locked In is free. Real lessons from a platinum producer, and first access to every drop. (links elaye.store/newsletter)
 
 ## 6. Links (never change)
-- Every checkout pill: https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03 (target _blank, data-checkout). On 6 Oct the price and the link change in code, not in the design.
+- Every checkout pill: https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03 (target _blank, data-checkout). On 8 Oct the price and the link change in code, not in the design.
 - Log in: https://portal.elaye.store/login · Instagram: https://instagram.com/elxyee · Refund policy: https://elaye.store/refund-policy · Newsletter line: https://elaye.store/newsletter
 
 ## 7. Copy law
