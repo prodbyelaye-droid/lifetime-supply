@@ -51,8 +51,9 @@
   /* ── 4: the portal demo ──────────────────────────────────────────────── */
   var demo = document.getElementById('demo');
   if (demo) {
-    var tablist = demo.querySelector('.demo-tabs');
-    var tabs = Array.prototype.slice.call(demo.querySelectorAll('.demo-tab'));
+    var header = demo.querySelector('.demo-header');
+    var strip = demo.querySelector('.demo-tabs');
+    var tabs = Array.prototype.slice.call(demo.querySelectorAll('[role="tab"]'));
     var panels = Array.prototype.slice.call(demo.querySelectorAll('.demo-panel'));
     var stepEl = document.querySelector('[data-demo-step]');
     var nameEl = document.querySelector('[data-demo-name]');
@@ -68,16 +69,20 @@
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         t.tabIndex = on ? 0 : -1;
       });
-      panels.forEach(function (p, k) { p.classList.toggle('is-on', k === i); });
+      panels.forEach(function (p, k) {
+        var on = k === i;
+        if (on && !p.classList.contains('is-on')) p.scrollTop = 0;
+        p.classList.toggle('is-on', on);
+      });
       stepEl.textContent = pad(i + 1) + ' / ' + pad(N);
       nameEl.textContent = panels[i].getAttribute('data-name');
       textEl.textContent = panels[i].getAttribute('data-text');
       /* keep the selected tab in view when the tab strip scrolls (phone) */
-      if (tablist.scrollWidth > tablist.clientWidth + 1) {
+      if (strip.scrollWidth > strip.clientWidth + 1) {
         var t = tabs[i];
-        var left = t.offsetLeft - (tablist.clientWidth - t.offsetWidth) / 2;
-        if (tablist.scrollTo) tablist.scrollTo({ left: left, behavior: stillPlease() ? 'auto' : 'smooth' });
-        else tablist.scrollLeft = left;
+        var left = strip.contains(t) ? t.offsetLeft - (strip.clientWidth - t.offsetWidth) / 2 : 0;
+        if (strip.scrollTo) strip.scrollTo({ left: left, behavior: stillPlease() ? 'auto' : 'smooth' });
+        else strip.scrollLeft = left;
       }
       return i;
     };
@@ -85,12 +90,42 @@
     tabs.forEach(function (t, k) {
       t.addEventListener('click', function () { select(k); });
     });
-    tablist.addEventListener('keydown', function (e) {
+    header.addEventListener('keydown', function (e) {
       var map = { ArrowRight: step + 1, ArrowLeft: step - 1, Home: 0, End: N - 1 };
       if (!(e.key in map)) return;
       e.preventDefault();
       tabs[select(map[e.key])].focus();
     });
+
+    /* the urgent pop-up: slides in at the window's bottom right once the
+       demo is on screen; "view" opens the board, × dismisses it */
+    var toast = demo.querySelector('.d-toast');
+    if (toast) {
+      var hideToast = function () {
+        toast.classList.remove('is-in');
+        toast.hidden = true;
+      };
+      toast.querySelector('.d-toast-go').addEventListener('click', function () {
+        select(parseInt(this.getAttribute('data-go'), 10));
+        hideToast();
+      });
+      toast.querySelector('.d-toast-x').addEventListener('click', hideToast);
+      var showToast = function () {
+        toast.hidden = false;
+        toast.classList.add('is-in');
+      };
+      if ('IntersectionObserver' in window) {
+        var to = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            to.disconnect();
+            setTimeout(showToast, 1600);
+          }
+        }, { threshold: 0.45 });
+        to.observe(demo);
+      } else {
+        showToast();
+      }
+    }
   }
 
   /* the demo's "your day" wears today's date and this week, like the portal */
