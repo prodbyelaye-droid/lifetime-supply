@@ -1212,9 +1212,8 @@ html.motion .stage-b .demo-caption {
 }
 .quote figcaption {
   margin-top: 24px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.04em;
   color: var(--secondary);
 }
 .shot {
@@ -1240,9 +1239,9 @@ html.motion .stage-b .demo-caption {
 }
 .badges div {
   padding: 28px 0;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
 }
 .badges div + div {
