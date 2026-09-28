@@ -93,6 +93,30 @@
     });
   }
 
+  /* the demo's "your day" wears today's date and this week, like the portal */
+  (function () {
+    var now = new Date();
+    var DAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var today = document.querySelector('[data-today]');
+    if (today) {
+      var d = DAYS[now.getDay()];
+      today.textContent = d.charAt(0).toUpperCase() + d.slice(1) + ' ' + now.getDate() + ' ' + MONTHS[now.getMonth()];
+    }
+    var cells = document.querySelectorAll('.d-week .d-day');
+    if (cells.length === 7) {
+      var monday = new Date(now);
+      monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+      Array.prototype.forEach.call(cells, function (cell, k) {
+        var day = new Date(monday);
+        day.setDate(monday.getDate() + k);
+        var b = cell.querySelector('b');
+        if (b) b.textContent = day.getDate();
+        cell.classList.toggle('is-today', day.toDateString() === now.toDateString());
+      });
+    }
+  })();
+
   /* ── 3: the unlock ───────────────────────────────────────────────────── */
   var show = document.getElementById('top');
   if (!show) return;

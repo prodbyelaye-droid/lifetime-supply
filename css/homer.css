@@ -2001,3 +2001,532 @@ html.motion .show .folder.is-open .folder-sheet-2 {
     padding: 0 16px;
   }
 }
+
+/* ═══ PORTAL SCALE (28 Sep) ══════════════════════════════════════════════════
+   The landing at the members portal's own scale and components
+   (portal app/globals.css + components/member-home.css): page title 64,
+   section heads 48, card titles 26, lead 19, body 15, door cards, the stats
+   card, numbered rows, a 72px header with 14px nav at 0.55. */
+:root {
+  --section-gap: clamp(80px, 8.3vw, 120px);
+}
+body {
+  font-size: 15px;
+}
+.display-xl {
+  font-size: clamp(44px, 4.44vw, 64px);
+  line-height: 0.98;
+}
+.display-l {
+  font-size: clamp(36px, 3.33vw, 48px);
+  line-height: 0.98;
+}
+.lead {
+  margin-top: 20px;
+  max-width: 560px;
+  font-size: clamp(17px, 1.32vw, 19px);
+}
+.body-s {
+  font-size: 15px;
+}
+
+/* header: the portal bar */
+.site-nav a {
+  font-size: 14px;
+  color: var(--ink);
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--ink);
+  opacity: 1;
+}
+.header-actions .login {
+  font-size: 14px;
+}
+
+/* hero */
+.hero-copy .lead {
+  margin-top: 20px;
+}
+.cta-row {
+  margin-top: 28px;
+  gap: 12px 24px;
+}
+.price-line {
+  margin-top: 18px;
+}
+.caps-box {
+  margin-top: 16px;
+}
+
+/* the portal section */
+.demo-frame {
+  margin-top: 40px;
+}
+.demo-tab[aria-selected='true']::after {
+  display: none;
+}
+.demo-tab {
+  opacity: 0.55;
+}
+.demo-tabs {
+  margin-left: auto;
+}
+.d-avatar {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--pressed);
+  margin-left: 4px;
+}
+.demo-panel {
+  padding: 44px clamp(20px, 3.9vw, 48px) 48px;
+}
+.d-title {
+  font-size: 44px;
+}
+.d-lead {
+  margin-top: 12px;
+  font-size: 15px;
+  max-width: 480px;
+}
+.d-meta {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.d-headrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.d-headrow .d-meta {
+  font-weight: 400;
+  color: var(--secondary);
+}
+.d-pill {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+.d-pills {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.d-box {
+  padding: 20px;
+}
+.d-box-title {
+  font-size: 20px;
+}
+.d-boxhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.d-cols {
+  margin-top: 28px;
+}
+.d-habit {
+  font-size: 14px;
+  gap: 10px;
+}
+.d-habit-name {
+  flex: 1;
+  min-width: 0;
+}
+.d-habit .d-streak {
+  margin-left: 0;
+}
+.d-sub {
+  margin-top: 28px !important;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+.d-week {
+  margin-top: 12px;
+}
+.d-day {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+}
+.d-day b {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.d-filterrow {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.d-filterrow .d-filters {
+  margin-top: 0;
+}
+.d-filter {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+.d-selects {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.d-select {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  min-width: 96px;
+  padding: 0 32px 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' fill='none' stroke='%230b0b0b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 12px center / 12px no-repeat;
+}
+.d-grid {
+  margin-top: 24px;
+}
+.d-card {
+  padding: 18px;
+  gap: 10px;
+}
+.d-card .bar-l + .bar-l {
+  margin-top: -2px;
+}
+.d-split {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 16px;
+}
+.d-legend-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.d-steps {
+  margin-top: 24px;
+}
+.d-steps .d-row {
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  padding: 14px 0;
+}
+.d-rowtitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+.d-feature {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.d-cover-tile {
+  width: 176px;
+  height: 140px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--chip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d-cover-tile .folder {
+  margin: 0;
+}
+.d-class {
+  margin-top: 16px;
+}
+.d-class .d-cover-tile {
+  width: 132px;
+  height: 104px;
+}
+.d-list > .d-class:first-child {
+  margin-top: 24px;
+}
+
+/* numbers: the portal's stats card */
+.numbers {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.numbers > div {
+  padding: 40px 20px 32px;
+  text-align: center;
+}
+.numbers > div:nth-child(odd) {
+  border-right: 0;
+}
+.numbers > div:nth-child(-n + 2) {
+  border-bottom: 0;
+}
+.numbers > div + div {
+  border-left: 1px solid var(--line);
+}
+.numbers .pixel {
+  font-size: clamp(44px, 4vw, 56px);
+}
+.numbers .label {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 400;
+}
+.note {
+  font-size: 13px;
+}
+
+/* what's inside: the portal's door cards */
+.inside-grid {
+  margin-top: 40px;
+  gap: 20px;
+}
+.inside-card {
+  padding: 28px;
+}
+.inside-card .folder {
+  --s: 0.2;
+  margin-left: -8px;
+}
+.inside-card .t-item {
+  margin-top: 12px;
+}
+.inside-card p {
+  margin-top: 8px;
+}
+.one-login {
+  margin-top: 24px;
+  font-size: 17px;
+}
+
+/* the board: numbered rows, like the submissions page */
+.steps {
+  display: block;
+  margin-top: 32px;
+  max-width: 760px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  column-gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.step:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.step .n {
+  grid-row: span 3;
+  padding-top: 2px;
+  font-size: 14px;
+  color: var(--secondary);
+}
+.step .t-item {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.step p {
+  margin: 4px 0 0;
+}
+.status-row {
+  margin-top: 12px;
+}
+.rights {
+  margin-top: 24px;
+  font-size: 13px;
+}
+
+/* members talk */
+.talk-grid {
+  margin-top: 40px;
+  gap: 20px;
+}
+.talk-col {
+  gap: 20px;
+}
+.quote {
+  padding: 24px;
+}
+.quote blockquote {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.quote figcaption {
+  margin-top: 16px;
+}
+
+/* credits */
+.credits .lead {
+  margin-top: 20px;
+  max-width: 620px;
+}
+.badges {
+  margin-top: 32px;
+  max-width: 760px;
+}
+.badges div {
+  padding: 20px 0;
+  font-size: 15px;
+}
+.badges div + div {
+  padding-left: 24px;
+}
+
+/* fit */
+.fit {
+  gap: 20px;
+}
+.fit-card {
+  padding: 32px;
+}
+.fit-title {
+  font-size: 36px;
+}
+.ticks {
+  margin-top: 24px;
+  gap: 14px;
+  font-size: 15px;
+}
+
+/* questions */
+.faq {
+  margin-top: 32px;
+}
+.faq summary {
+  min-height: 64px;
+  font-size: 17px;
+}
+.faq details p {
+  font-size: 15px;
+  padding-bottom: 24px;
+}
+
+/* price band */
+.price-band {
+  padding: clamp(80px, 8.3vw, 120px) 0;
+}
+.price-grid {
+  margin-top: 40px;
+  gap: 48px;
+}
+.price-grid > p {
+  font-size: 17px;
+}
+.price-card .pixel {
+  font-size: clamp(72px, 7.2vw, 104px);
+}
+.price-sub {
+  margin-top: 16px;
+  font-size: 14px;
+}
+.price-list {
+  margin-top: 28px;
+  padding-top: 24px;
+  gap: 12px;
+  font-size: 15px;
+}
+.pill-light {
+  margin-top: 32px;
+}
+
+/* footer: the portal's footer row */
+.site-footer .wrap.foot-top {
+  min-height: 96px;
+  padding-top: 28px;
+  padding-bottom: 20px;
+}
+.foot-top .wm-img {
+  height: 24px;
+}
+.foot-tag {
+  font-size: 13px;
+}
+.foot-nav {
+  font-size: 14px;
+}
+.foot-nav a {
+  color: var(--secondary);
+  transition: color 0.15s;
+}
+.foot-nav a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+.foot-note {
+  font-size: 13px;
+  padding-bottom: 48px;
+}
+
+@media (max-width: 1023px) {
+  .numbers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .numbers > div:nth-child(3) {
+    border-left: 0;
+  }
+  .numbers > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+  .numbers > div:not(:last-child) {
+    border-bottom: 0;
+  }
+  .d-split {
+    grid-template-columns: 1fr;
+  }
+  .d-legend-box {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .d-selects {
+    display: none;
+  }
+  .d-avatar {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .d-title {
+    font-size: 34px;
+  }
+  .d-headrow {
+    flex-direction: column;
+  }
+  .d-feature {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .d-cover-tile {
+    width: 100%;
+    height: 120px;
+  }
+  .step {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+  .fit-title {
+    font-size: 32px;
+  }
+  .badges div + div {
+    padding-left: 0;
+  }
+}
+@media (hover: none) {
+  .demo-tab:hover:not([aria-selected='true']) {
+    opacity: 0.55;
+  }
+}
