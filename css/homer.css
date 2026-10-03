@@ -2800,3 +2800,72 @@ body {
     animation: none;
   }
 }
+
+/* ═══ CREDITS · the live numbers (3 Oct 2026) ════════════════════════════════
+   The stats card (.numbers) again, as a 2 by 2 beside the credits copy, filled
+   from Muso.AI by js/homer.js. Four badges under it instead of three. */
+.credits-top {
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(0, 520px);
+  justify-content: space-between;
+  align-items: end;
+  gap: 48px clamp(40px, 6vw, 96px);
+}
+.credits .numbers {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.credits .numbers > div:nth-child(3) {
+  border-left: 0;
+}
+.credits .numbers > div:nth-child(n + 3) {
+  border-top: 1px solid var(--line);
+}
+.credits .note {
+  margin-top: 16px;
+}
+.credits .badges {
+  margin-top: 48px;
+}
+@media (min-width: 641px) {
+  .credits .badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 641px) and (max-width: 1339px) {
+  .credits .badges div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .credits .badges div:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+@media (min-width: 1024px) {
+  .credits .badges {
+    max-width: none;
+  }
+}
+@media (min-width: 1340px) {
+  .credits .badges {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1023px) {
+  .credits-top {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  .credits-live {
+    max-width: 760px;
+  }
+}
+@media (max-width: 640px) {
+  /* five dotted characters have to fit half a phone: tighter cell, 36px floor */
+  .credits .numbers > div {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .credits .numbers .pixel {
+    font-size: clamp(36px, 11vw, 44px);
+  }
+}

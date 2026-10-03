@@ -10,6 +10,8 @@
       Without html.motion: the hero and its locked folder, nothing pinned.
    4. The portal demo (#portal): a normal section. Tabs switch on click and
       with the arrow keys; the caption under the window follows.
+   5. The credits numbers: every [data-muso] takes the live count from
+      /api/muso (Muso.AI). If that fails, the numbers in the HTML stay.
    ═══════════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -151,6 +153,33 @@
       });
     }
   })();
+
+  /* ── 5: the credits numbers ──────────────────────────────────────────── */
+  var live = document.querySelectorAll('[data-muso]');
+  if (live.length && window.fetch) {
+    /* 166152313 → "166M+", 398197 → "398K+", 9460000 → "9.4M+", 117 → "117".
+       Always rounded down, so the page never claims more than Muso counts. */
+    var short = function (n) {
+      var units = [[1e9, 'B'], [1e6, 'M'], [1e3, 'K']];
+      for (var i = 0; i < units.length; i++) {
+        if (n >= units[i][0]) {
+          var v = n / units[i][0];
+          return (v >= 100 ? Math.floor(v) : Math.floor(v * 10) / 10) + units[i][1] + '+';
+        }
+      }
+      return String(n);
+    };
+    fetch('/api/muso')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        Array.prototype.forEach.call(live, function (el) {
+          var n = d[el.getAttribute('data-muso')];
+          if (typeof n === 'number' && n > 0) el.textContent = short(n);
+        });
+      })
+      .catch(function () { /* the numbers written in index.html stay */ });
+  }
 
   /* ── 3: the unlock ───────────────────────────────────────────────────── */
   var show = document.getElementById('top');

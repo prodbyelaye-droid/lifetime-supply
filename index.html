@@ -190,9 +190,27 @@
     <!-- THE CREDITS -->
     <section class="section credits" aria-labelledby="credits-h">
       <div class="wrap">
-          <h2 class="display display-l" id="credits-h">you've seen<br>the credits.</h2>
-          <p class="lead">You came from my page, so I'll keep it short. Platinum records, a #1 on Billboard, cuts with the biggest names in the industry, sync with the biggest companies in the world. All self-taught from a bedroom in Australia. This is the setup I run my own career off, handed over.</p>
-          <div class="badges reveal"><div>Multi-platinum certified</div><div>No. 1 on Billboard</div><div>150,000,000+ streams</div></div>
+        <div class="credits-top">
+          <div>
+            <h2 class="display display-l" id="credits-h">you've seen<br>the credits.</h2>
+            <p class="lead">You came from my page, so I'll keep it short. Platinum records, a #1 on Billboard, cuts with the biggest names in the industry, sync with the biggest companies in the world. All self-taught from a bedroom in Australia. This is the setup I run my own career off, handed over.</p>
+          </div>
+          <!-- The four numbers are the count on 3 Oct 2026, written in so the page is
+               right with JS off or Muso down. js/homer.js swaps in the live count from
+               /api/muso (api/muso.js, key in the Vercel env var MUSO_API_KEY). -->
+          <div class="credits-live reveal">
+            <div class="numbers">
+              <div><div class="pixel" data-muso="streams">166M+</div><p class="label">streams</p></div>
+              <div><div class="pixel" data-muso="views">109M+</div><p class="label">video views</p></div>
+              <div><div class="pixel" data-muso="shazams">398K+</div><p class="label">Shazams</p></div>
+              <div><div class="pixel" data-muso="credits">146</div><p class="label">credits</p></div>
+            </div>
+            <p class="note">Counted by <a class="prose-link" href="https://muso.ai/profile/22fd6589-91b4-4c55-b5ad-da7f13e2a390" target="_blank" rel="noopener">Muso.AI</a>, updated daily.</p>
+          </div>
+        </div>
+        <!-- The two Muso chart lines are typed in by hand (Muso's API has no chart
+             rank): week of 24 Sep to 1 Oct 2026. Recheck them on muso.ai > Analytics. -->
+        <div class="badges reveal"><div>Multi-platinum certified</div><div>No. 1 on Billboard</div><div>Top 1% of producers on Muso.AI</div><div>Top 2% of songwriters on Muso.AI</div></div>
       </div>
     </section>
 
