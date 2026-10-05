@@ -1,5 +1,14 @@
 # HOMER PASS LAWS (portal.elaye.store) · read before every step
 
+## 5 October 2026: engagement refinement
+
+Owner-approved: the hero folder enters the interactive portal; short, one-time
+entrances support room messages and the purchase heading. Reduced motion stays
+static. Quiet video plates are still images, with no redundant playback control.
+Sage ticks and dusty-rose crosses replace decorative gold/grey. The checkout
+card leads with price and action, with full inclusions in native disclosure.
+Room messages are explicitly illustrative, never invented member activity.
+
 ## 5 October 2026: owner-approved accent amendment
 
 Elaye approved a restrained blue, lilac and peach gradient for supply dots,
