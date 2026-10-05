@@ -25,6 +25,16 @@ for (const html of [before, after, waiting]) {
   assert.equal(checkouts.length, 4);
   assert(checkouts.every(url => url === schema.offers.url));
 }
+const cardLine = html => html.match(/<p class="price-sub">([^<]*)<\/p>/)[1];
+assert.equal(cardLine(before), 'until sunday 11 october 2026, 8 am AEDT. then $699 USD.');
+assert.equal(cardLine(after), '$699 USD. one payment, yours forever.');
+assert.equal(cardLine(waiting), '$699 USD. one payment, yours forever. checkout is updating. DM me for access.');
+assert.equal(before.split('$599 USD until sunday 11 october 2026 at 8 am AEDT, then $699 USD').length - 1, 2, 'hero and FAQ keep their dated wording');
+for (const html of [before, after, waiting]) {
+  assert(html.includes('<details class="price-includes" open>'));
+  assert.equal((html.match(/class="dm-line price-note"/g) || []).length, 1);
+  for (const retired of ['all future updates', 'manual tracking', 'with you for the long run', 'placements are never guaranteed']) assert(!html.includes(retired), retired);
+}
 assert(!after.includes(CHECKOUT_599));
 assert(!after.includes('$599'));
 assert(!waiting.includes(CHECKOUT_599));
