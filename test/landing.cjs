@@ -85,13 +85,26 @@ const server = http.createServer((req, res) => {
       assert(await page.getByText('a feel for the room. illustrative messages.').isVisible());
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-room.png`});
       await page.locator('#price').scrollIntoViewIfNeeded();
-      const cardHeight=await page.locator('.price-card').evaluate(el=>el.getBoundingClientRect().height);
-      assert(cardHeight<540,`compact checkout card: ${cardHeight}`);
+      const includes=page.locator('.price-includes');
+      const summary=includes.locator('summary');
+      const note=page.locator('.price-note');
+      assert.equal(await includes.evaluate(el=>el.open),true,'inclusions open on load');
+      assert.equal(await page.locator('.price-list li:visible').count(),8);
+      assert.equal(await note.count(),1);
+      assert.equal(await note.innerText(),'your music and rights stay yours. sending is never a guaranteed placement.');
+      assert.equal(await note.locator('li').count(),0);
+      assert.equal(await note.evaluate(el=>getComputedStyle(el,'::before').content),'none');
+      if(width===1440) assert(await page.evaluate(()=>document.querySelector('.price-intro').getBoundingClientRect().right<=document.querySelector('.price-card').getBoundingClientRect().left),'columns do not overlap');
       await page.locator('.price-intro span').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-price.png`});
-      await page.locator('.price-includes summary').click();
-      assert.equal(await page.locator('.price-list li:visible').count(),9);
-      await page.locator('.price-includes summary').click();
+      await page.locator('#price').screenshot({path:`${output}/${width}-${reducedMotion}-price-section.png`});
+      await summary.click();assert.equal(await includes.evaluate(el=>el.open),false);assert(await note.isVisible());
+      await summary.click();assert.equal(await includes.evaluate(el=>el.open),true);
+      await summary.focus();
+      for(const key of ['Enter','Space']) {
+        await summary.press(key);assert.equal(await includes.evaluate(el=>el.open),false);assert(await note.isVisible());
+        await summary.press(key);assert.equal(await includes.evaluate(el=>el.open),true);
+      }
       if(reducedMotion==='reduce') {
         assert.equal(await page.locator('.room-message').first().evaluate(el=>getComputedStyle(el).animationName),'none');
         assert.equal(await page.locator('.price-intro span').first().evaluate(el=>getComputedStyle(el).animationName),'none');
@@ -109,6 +122,8 @@ const server = http.createServer((req, res) => {
       assert(await page.locator('#inside').isVisible());
       assert(await page.locator('#learning').isVisible());
       assert(await page.locator('.inside-card').evaluateAll(v=>v.every(el=>getComputedStyle(el).opacity==='1')));
+      assert.equal(await page.locator('.price-includes').evaluate(el=>el.open),true);
+      assert.equal(await page.locator('.price-list li:visible').count(),8);
       assert(await page.locator('.room-message').evaluateAll(v=>v.every(el=>getComputedStyle(el).visibility!=='hidden')));
       assert.equal(await page.locator('#price [data-checkout]').getAttribute('href'),'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03');
       await page.screenshot({path:`${output}/390-${failure}.png`,fullPage:true});
