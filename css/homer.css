@@ -1575,9 +1575,6 @@ html.motion .show .folder.is-open .folder-sheet-2 {
   .d-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .d-grid > :nth-child(n + 5) {
-    display: none;
-  }
 }
 @media (max-width: 1023px) {
   .site-nav {
@@ -1639,14 +1636,8 @@ html.motion .show .folder.is-open .folder-sheet-2 {
   .d-cols {
     grid-template-columns: 1fr;
   }
-  .d-cols > :nth-child(n + 2) {
-    display: none;
-  }
   .d-week {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .d-week > :nth-child(n + 5) {
-    display: none;
   }
   .d-media {
     grid-template-columns: 1fr;
@@ -1764,9 +1755,6 @@ html.motion .show .folder.is-open .folder-sheet-2 {
   }
   .d-grid {
     grid-template-columns: 1fr;
-  }
-  .d-grid > :nth-child(n + 3) {
-    display: none;
   }
   .window-bar {
     height: 36px;
@@ -2750,9 +2738,6 @@ body {
   .d-doors {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .d-doors > :nth-child(n + 4) {
-    display: none;
-  }
   .d-ghost {
     display: none;
   }
@@ -2776,9 +2761,6 @@ body {
   }
   .d-doors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .d-doors > :nth-child(n + 3) {
-    display: none;
   }
   .d-stats b {
     font-size: 24px;
