@@ -52,16 +52,14 @@ const server = http.createServer((req, res) => {
         if(i===5){assert(await page.locator('#dp-5').getByText('analog alchemy',{exact:true}).isVisible());assert(await page.locator('#dp-5').getByText('octaves creator suite · part two (unreleased)',{exact:true}).isVisible());}
         if(i===7)assert.equal(await page.locator('#dp-7 .d-row:visible').count(),7);
         await page.locator('#portal').scrollIntoViewIfNeeded();
+        await page.locator(`#dp-${i}`).evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
         await page.screenshot({path:`${output}/${width}-${reducedMotion}-tab-${i}.png`});
       }
       if(width===1440){await tabs.nth(0).focus();await page.keyboard.press('End');assert.equal(await tabs.nth(8).getAttribute('aria-selected'),'true');await page.keyboard.press('Home');assert.equal(await tabs.nth(0).getAttribute('aria-selected'),'true');}
       await page.locator('[data-demo-go="6"]').first().click();
       assert.equal(await page.locator('#dp-6').isVisible(),true);
       await page.locator('.vault-media').scrollIntoViewIfNeeded();
-      if(reducedMotion==='no-preference') {
-        await page.waitForFunction(()=>document.querySelector('.vault-media video').readyState>=2);
-        assert(await page.locator('.vault-media video').evaluate(v=>!v.paused));
-      }
+      assert.equal(await page.locator('video, [data-motion-toggle]').count(),0,'quiet plates use stills without playback controls');
       await page.locator('#learning').scrollIntoViewIfNeeded();
       await page.locator('.syllabi summary').first().click();
       assert.equal(await page.locator('.syllabi details').first().getAttribute('open'),'');
@@ -74,17 +72,29 @@ const server = http.createServer((req, res) => {
       await page.keyboard.press('Shift+Tab');
       const focus=await page.locator('#price [data-checkout]').evaluate(el=>getComputedStyle(el).outlineColor);
       assert.equal(focus,'rgb(11, 11, 11)');
-      await page.locator('#portal').scrollIntoViewIfNeeded();
+      assert.equal(videoRequests.length,0,'no background video downloads');
+      await page.locator('.hero-folder-link').click();
+      assert.equal(await page.locator('#dp-0').isVisible(),true);
+      assert.equal(await page.evaluate(()=>document.activeElement.id),width===390?'demo-section':'dt-0');
+      await page.waitForFunction(()=>Math.abs(document.querySelector('#demo').getBoundingClientRect().top-(innerWidth===390?80:104))<3);
+      await page.locator('.d-door[data-demo-go="4"]').click();
+      assert.equal(await page.locator('#dp-4').isVisible(),true,'preview doors open their section');
+      await page.locator('.room-scene').scrollIntoViewIfNeeded();
+      await page.waitForFunction(()=>document.querySelector('.room-scene').classList.contains('is-entered'));
+      await page.locator('.room-message').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
+      assert(await page.getByText('a feel for the room. illustrative messages.').isVisible());
+      await page.screenshot({path:`${output}/${width}-${reducedMotion}-room.png`});
+      await page.locator('#price').scrollIntoViewIfNeeded();
+      const cardHeight=await page.locator('.price-card').evaluate(el=>el.getBoundingClientRect().height);
+      assert(cardHeight<540,`compact checkout card: ${cardHeight}`);
+      await page.locator('.price-intro span').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
+      await page.screenshot({path:`${output}/${width}-${reducedMotion}-price.png`});
+      await page.locator('.price-includes summary').click();
+      assert.equal(await page.locator('.price-list li:visible').count(),9);
+      await page.locator('.price-includes summary').click();
       if(reducedMotion==='reduce') {
-        assert.equal(videoRequests.length,0,'reduced motion must not download videos');
-        assert(await page.locator('video').evaluateAll(v=>v.every(x=>x.paused)));
-        assert.equal(await page.locator('[data-motion-toggle]:visible').count(),0);
-      } else {
-        await page.locator('.portal-motion').click();
-        assert(await page.locator('video').evaluateAll(v=>v.every(x=>x.paused)));
-        await page.emulateMedia({reducedMotion:'reduce'});
-        assert(await page.locator('video').evaluateAll(v=>v.every(x=>x.paused)));
-        await page.emulateMedia({reducedMotion:'no-preference'});
+        assert.equal(await page.locator('.room-message').first().evaluate(el=>getComputedStyle(el).animationName),'none');
+        assert.equal(await page.locator('.price-intro span').first().evaluate(el=>getComputedStyle(el).animationName),'none');
       }
       assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
       results.push({width,reducedMotion,portalY,errors,missing,videoRequests:videoRequests.length});
@@ -94,11 +104,12 @@ const server = http.createServer((req, res) => {
       const context=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:failure!=='no-js'});
       const page=await context.newPage();
       if(failure==='homer-blocked')await page.route('**/js/homer.js',r=>r.abort());
-      if(failure==='media-blocked')await page.route('**/assets/launch/*.mp4',r=>r.abort());
+      if(failure==='media-blocked')await page.route('**/assets/launch/*',r=>r.abort());
       await page.goto(base,{waitUntil:'networkidle'});
       assert(await page.locator('#inside').isVisible());
       assert(await page.locator('#learning').isVisible());
       assert(await page.locator('.inside-card').evaluateAll(v=>v.every(el=>getComputedStyle(el).opacity==='1')));
+      assert(await page.locator('.room-message').evaluateAll(v=>v.every(el=>getComputedStyle(el).visibility!=='hidden')));
       assert.equal(await page.locator('#price [data-checkout]').getAttribute('href'),'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03');
       await page.screenshot({path:`${output}/390-${failure}.png`,fullPage:true});
       await context.close();
