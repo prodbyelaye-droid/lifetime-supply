@@ -1,32 +1,12 @@
-/* ─────────────────────────────────────────
-   SITE CONFIG — single source of truth.
-   Founding window closed: one lifetime price, no sale, no timer.
-───────────────────────────────────────── */
-const SITE = {
-  price: 599,
-  /* Stripe Payment Link for the $599 Lifetime — wired live 2026-08-11.
-     The HTML href on every [data-checkout] element matches this too,
-     so no-JS visitors, link previews and crawlers land on the same
-     Stripe checkout instead of falling back to Instagram. */
-  checkoutUrl: 'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03',
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  /* Point every checkout button at the configured URL. The HTML href on
-     each [data-checkout] element already matches this, so no-JS visitors
-     land on the same Stripe checkout. */
-  document.querySelectorAll('[data-checkout]').forEach(a => {
-    a.href = SITE.checkoutUrl;
-  });
-
-  /* If any image 404s, hide its slot cleanly instead of showing a broken
-     image. Single-image sections carry data-missing-hides pointing at the
-     wrapper to collapse; grid images just remove themselves. */
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', () => {
-      const sel = img.getAttribute('data-missing-hides');
-      const slot = sel ? img.closest(sel) : img;
-      if (slot) slot.style.display = 'none';
-    });
-  });
-});
+/* The server supplies price, structured data and checkout together. Refresh
+   an already-open tab at the next absolute offer boundary as well. */
+(function(){
+  var marker=document.querySelector('meta[name="offer-refresh-at"]');
+  if(!marker)return;
+  // Elapsed time avoids reload loops when a visitor's wall clock is fast.
+  var delay=Number(marker.dataset.delayMs);
+  var started=performance.now();
+  function refresh(){if(performance.now()-started>=delay)window.location.reload();}
+  setTimeout(refresh,Math.max(0,Math.min(delay+1000,2147483647)));
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)refresh();});
+})();

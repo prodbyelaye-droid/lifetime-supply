@@ -1,0 +1,7 @@
+{
+  "functions": {"api/landing.js": {"includeFiles": "index.html"}},
+  "rewrites": [
+    {"source": "/", "destination": "/api/landing"},
+    {"source": "/index.html", "destination": "/api/landing"}
+  ]
+}
