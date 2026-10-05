@@ -1,5 +1,18 @@
 # HOMER PASS LAWS (portal.elaye.store) · read before every step
 
+## 5 October 2026: owner-approved accent amendment
+
+Elaye approved a restrained blue, lilac and peach gradient for supply dots,
+logos, action hover/focus states and selected decorative touches across the
+portal and landing. This supersedes the older blanket no-gradient/no-colour
+wordmark restrictions only for these accents. Keep the original 385 dots,
+56 columns, viewBox and lifetime path. Status colours, flat readable cards,
+folder geometry, copy, data, entitlements and normal navigation remain intact.
+Hover is optional and has the same keyboard focus treatment; reduced motion
+removes movement. Light and dark marks use the same spatial gradient with
+separate legible paint. The landing's purchase band may use the soft wash.
+
+
 Decided by Elaye, 27 Sep 2026. This pass takes the portal from the White Room palette to the Homer Radio look: off-white paper, black ink, a grey ramp, one amber signal light, flat print surfaces, construction-sheet guides, and a wordmark whose dots power on at sign-in.
 
 It supersedes the colour, chip, radius, shadow and type lines of `design/white-room/PORTAL-LAWS.md` where they differ. Everything else in PORTAL-LAWS still binds: scope (§1), copy (§4), the folder (§6), JS-off public routes, shipping (§8), `portalcheck.py`. If this file and a comp disagree, this file wins. Anything not covered: stop and ask, never guess.

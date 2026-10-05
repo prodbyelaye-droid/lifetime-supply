@@ -73,7 +73,7 @@ const server = http.createServer((req, res) => {
       await page.keyboard.press('Tab');
       await page.keyboard.press('Shift+Tab');
       const focus=await page.locator('#price [data-checkout]').evaluate(el=>getComputedStyle(el).outlineColor);
-      assert.equal(focus,'rgb(255, 255, 255)');
+      assert.equal(focus,'rgb(11, 11, 11)');
       await page.locator('#portal').scrollIntoViewIfNeeded();
       if(reducedMotion==='reduce') {
         assert.equal(videoRequests.length,0,'reduced motion must not download videos');
