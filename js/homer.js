@@ -32,6 +32,14 @@
     history.replaceState(null,'','#portal');
   });});
   select(0);root.classList.add('demo-ready');
+  var filmStage=document.querySelector('.film-stage');
+  if(filmStage){
+    var film=filmStage.querySelector('video');
+    filmStage.querySelector('.film-cover').addEventListener('click',function(){
+      filmStage.classList.remove('is-ready');film.inert=false;film.focus();film.play().catch(function(){});
+    });
+    film.inert=true;filmStage.classList.add('is-ready');
+  }
   // Illustrative calendar; no member tasks or progress are copied.
   var today=new Date();
   document.querySelectorAll('[data-today]').forEach(function(element){element.textContent=new Intl.DateTimeFormat('en-AU',{weekday:'long',day:'numeric',month:'long'}).format(today);});

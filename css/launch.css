@@ -25,6 +25,21 @@ a, button, select, summary { touch-action: manipulation; }
 .bundle-summary b { font-size: 24px; font-weight: 600; letter-spacing: -.035em; }
 .bundle-summary span { font-size: 14px; color: var(--secondary); }
 .bundle-summary a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+.film-section { padding: 56px 0 28px; }
+.film-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.film-label { margin: 0 0 10px; color: var(--accent-link); font-size: 14px; }
+.film-head > p { max-width: 270px; margin: 0 0 4px; color: var(--secondary); font-size: 15px; line-height: 1.5; }
+.film-stage { position: relative; }
+.film-player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 18px; background: #edf3f6; }
+.film-player:focus-visible { outline: 3px solid var(--accent-link); outline-offset: 4px; }
+.film-cover { display: none; position: absolute; inset: 0; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; cursor: pointer; background: #edf3f6; }
+.film-stage.is-ready .film-cover { display: block; }
+.film-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-play { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: #fff; font: 600 16px 'Geist', sans-serif; white-space: nowrap; }
+.film-play span { font-size: 13px; }
+.film-cover:is(:hover, :focus-visible) .film-play { background: var(--accent-hover); color: var(--ink); }
+.film-cover:focus-visible { outline: 3px solid var(--accent-link); outline-offset: 4px; }
+.film-next { display: inline-block; margin-top: 20px; }
 .demo-section { padding-top: 72px; }
 .demo-section .lead { max-width: 670px; }
 .demo-frame { position: relative; padding: 56px 40px 40px; isolation: isolate; border-radius: 24px; margin-top: 32px; }
@@ -179,6 +194,12 @@ a, button, select, summary { touch-action: manipulation; }
 .price-band .pill:focus-visible, .price-band a:focus-visible { outline-color: var(--ink); }
 @media (min-width: 1024px) { .d-ghost { display: block; } }
 @media (max-width: 640px) {
+  .film-section { padding: 40px 0 12px; }
+  .film-head { display: block; margin-bottom: 18px; }
+  .film-head > p { margin-top: 12px; }
+  .film-player { border-radius: 12px; }
+  .film-cover { border-radius: 12px; }
+  .film-play { bottom: 14px; min-height: 44px; padding: 0 18px; font-size: 14px; }
   .hero-folder-stage { min-height: 236px; }
   .hero-folder-stage .folder { --s: .64; }
   .hero-folder-caption { font-size: 13px; }
