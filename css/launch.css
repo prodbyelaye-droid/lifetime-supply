@@ -30,7 +30,6 @@ a, button, select, summary { touch-action: manipulation; }
 .bundle-forever span { color: var(--ink); font-size: 18px; }
 .film-section { padding: 56px 0 28px; }
 .film-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
-.film-label { margin: 0 0 10px; color: var(--accent-link); font-size: 14px; }
 .film-head > p { max-width: 430px; margin: 0 0 4px; color: var(--secondary); font-size: 15px; line-height: 1.5; }
 .film-stage { position: relative; }
 .film-player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 18px; background: #edf3f6; }
@@ -44,7 +43,6 @@ a, button, select, summary { touch-action: manipulation; }
 .film-cover:focus-visible { outline: 3px solid var(--accent-link); outline-offset: 4px; }
 .film-next { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; padding: 24px 28px; border: 1px solid var(--line); border-radius: 18px; color: var(--ink); text-decoration: none; background: #f6f9fb; }
 .film-next-copy { display: grid; gap: 5px; }
-.film-next-kicker { color: var(--accent-link); font-size: 13px; }
 .film-next strong { font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -.04em; }
 .film-next-copy > span:last-child { color: var(--secondary); font-size: 15px; line-height: 1.45; }
 .film-next-arrow { display: grid; place-items: center; flex: none; width: 58px; height: 58px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 26px; }
@@ -52,6 +50,10 @@ a, button, select, summary { touch-action: manipulation; }
 .film-next:is(:hover, :focus-visible) .film-next-arrow { background: var(--accent-hover); color: var(--ink); }
 .film-next:focus-visible { outline: 3px solid var(--accent-link); outline-offset: 3px; }
 .talk-grid { max-width: 1080px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.talk-more { max-width: 1080px; margin-top: 20px; }
+.talk-more summary { width: fit-content; min-height: 44px; padding: 12px 0; cursor: pointer; font-size: 15px; font-weight: 500; }
+.talk-more summary:is(:hover, :focus-visible) { text-decoration: underline; text-underline-offset: 4px; }
+.talk-more .talk-grid { margin-top: 16px; }
 .demo-section { padding-top: 72px; }
 .demo-section .lead { max-width: 670px; }
 .demo-frame { position: relative; padding: 56px 40px 40px; isolation: isolate; border-radius: 24px; margin-top: 32px; }
@@ -274,7 +276,7 @@ a.d-door:is(:hover, :focus-visible) .d-open { color: var(--accent-link); text-de
 .room-message p { font-size: 13px; line-height: 1.4; margin: 4px 0 0; color: var(--secondary); }
 .room-scene figcaption { position: absolute; bottom: 14px; left: 20px; right: 20px; font-size: 11px; color: #595959; }
 .price-band { padding: 72px 0; }
-.price-grid { margin-top: 0; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 56px; }
+.price-grid { margin-top: 0; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .price-intro .display-xl { font-size: clamp(44px, 5vw, 68px); }
 .price-intro h2 span { display: inline-block; }
 .price-intro p { color: var(--secondary); max-width: 450px; font-size: 18px; line-height: 1.5; margin-top: 24px; }
@@ -286,10 +288,23 @@ a.d-door:is(:hover, :focus-visible) .d-open { color: var(--accent-link); text-de
 .price-includes summary { min-height: 44px; display: list-item; padding-block: 12px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--accent-link); }
 .price-includes .price-list { border: 0; margin: 0 0 16px; padding: 4px 0 0; font-size: 14px; gap: 10px; }
 .price-card .dm-line { margin-top: 12px; font-size: 13px; }
+@media (min-width: 900px) {
+  .price-intro { text-align: center; }
+  .price-intro h2 { display: flex; justify-content: center; flex-wrap: wrap; column-gap: .22em; }
+  .price-intro h2 br { display: none; }
+  .price-intro p { max-width: 760px; margin: 16px auto 0; }
+  .price-card { padding: 32px; }
+  .price-purchase { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; margin-bottom: 24px; }
+  .price-card .pill-light { margin-top: 0; }
+  .price-summary { margin: 12px 0 0; text-align: center; }
+  .price-includes .price-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 40px; }
+}
 /* Native, short entrances. Reading order and scrolling always stay under the visitor's control. */
 @keyframes panel-arrive { from { opacity: .65; transform: translateY(5px); } to { opacity: 1; transform: none; } }
 @keyframes gentle-arrive { from { opacity: .25; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes quote-arrive { from { opacity: .6; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
+  .quote.is-entered { animation: quote-arrive 420ms ease-out both; }
   .room-scene.is-entered .room-message { animation: gentle-arrive 550ms both; }
   .room-scene.is-entered .room-message:nth-child(2) { animation-delay: 160ms; }
   .room-scene.is-entered .room-message:nth-child(3) { animation-delay: 320ms; }
