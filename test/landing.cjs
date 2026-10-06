@@ -38,6 +38,15 @@ const server = http.createServer((req, res) => {
       await page.goto(base,{waitUntil:'networkidle'});
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-hero.png`});
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'page width');
+      const film=page.locator('.film-player');
+      assert.equal(await film.count(),1);
+      assert.equal(await film.getAttribute('preload'),'none');
+      assert.equal(await film.evaluate(el=>el.paused),true);
+      await page.locator('#film').scrollIntoViewIfNeeded();
+      assert(await page.locator('.film-cover').isVisible());
+      assert.equal(await film.evaluate(el=>el.inert),true);
+      await page.screenshot({path:`${output}/${width}-${reducedMotion}-film.png`});
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'film width');
       assert.equal(await page.locator('[role="tabpanel"]:visible').count(),1);
       assert.equal(await page.locator('.d-toast').count(),0);
       const portalY=await page.locator('#portal').evaluate(el=>el.offsetTop);
@@ -59,7 +68,8 @@ const server = http.createServer((req, res) => {
       await page.locator('[data-demo-go="6"]').first().click();
       assert.equal(await page.locator('#dp-6').isVisible(),true);
       await page.locator('.vault-media').scrollIntoViewIfNeeded();
-      assert.equal(await page.locator('video, [data-motion-toggle]').count(),0,'quiet plates use stills without playback controls');
+      assert.equal(await page.locator('video').count(),1,'the film is the only video');
+      assert.equal(await page.locator('[data-motion-toggle]').count(),0,'quiet plates use stills');
       await page.locator('#learning').scrollIntoViewIfNeeded();
       await page.locator('.syllabi summary').first().click();
       assert.equal(await page.locator('.syllabi details').first().getAttribute('open'),'');
@@ -109,6 +119,14 @@ const server = http.createServer((req, res) => {
         assert.equal(await page.locator('.room-message').first().evaluate(el=>getComputedStyle(el).animationName),'none');
         assert.equal(await page.locator('.price-intro span').first().evaluate(el=>getComputedStyle(el).animationName),'none');
       }
+      if(reducedMotion==='no-preference') {
+        await page.locator('.film-cover').click();
+        assert.equal(await page.locator('.film-cover').isVisible(),false);
+        assert.equal(await film.evaluate(el=>el.inert),false);
+        await page.waitForFunction(()=>document.querySelector('.film-player').currentTime>0);
+        assert.equal(await film.evaluate(el=>el.paused),false);
+        await film.evaluate(el=>el.pause());
+      }
       assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
       results.push({width,reducedMotion,portalY,errors,missing,videoRequests:videoRequests.length});
       await context.close();
@@ -124,6 +142,8 @@ const server = http.createServer((req, res) => {
       assert(await page.locator('.inside-card').evaluateAll(v=>v.every(el=>getComputedStyle(el).opacity==='1')));
       assert.equal(await page.locator('.price-includes').evaluate(el=>el.open),true);
       assert.equal(await page.locator('.price-list li:visible').count(),8);
+      assert.equal(await page.locator('.film-cover').isVisible(),failure!=='no-js'&&failure!=='homer-blocked');
+      if(failure==='no-js')assert.equal(await page.locator('.film-player').evaluate(el=>el.inert),false);
       assert(await page.locator('.room-message').evaluateAll(v=>v.every(el=>getComputedStyle(el).visibility!=='hidden')));
       assert.equal(await page.locator('#price [data-checkout]').getAttribute('href'),'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03');
       await page.screenshot({path:`${output}/390-${failure}.png`,fullPage:true});
