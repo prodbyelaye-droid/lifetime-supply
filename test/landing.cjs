@@ -114,6 +114,19 @@ const server = http.createServer((req, res) => {
       await page.locator('.room-message').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
       assert(await page.getByText('a feel for the room. illustrative messages.').isVisible());
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-room.png`});
+      const moreMessages=page.locator('.talk-more');
+      assert.equal(await page.locator('.quote:visible').count(),8);
+      await moreMessages.locator('summary').click();
+      assert.equal(await page.locator('.quote:visible').count(),12);
+      const lastQuote=page.locator('.quote').last();
+      await lastQuote.scrollIntoViewIfNeeded();
+      await page.waitForFunction(()=>document.querySelector('.talk-more .quote:last-child').classList.contains('is-entered'));
+      assert.equal(await lastQuote.evaluate(el=>getComputedStyle(el).animationName),reducedMotion==='reduce'?'none':'quote-arrive');
+      await lastQuote.evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
+      await page.screenshot({path:`${output}/${width}-${reducedMotion}-more-messages.png`});
+      await moreMessages.locator('summary').focus();
+      await page.keyboard.press('Enter');
+      assert.equal(await page.locator('.quote:visible').count(),8);
       await page.locator('#price').scrollIntoViewIfNeeded();
       const includes=page.locator('.price-includes');
       const summary=includes.locator('summary');
@@ -124,7 +137,8 @@ const server = http.createServer((req, res) => {
       assert.equal(await note.innerText(),'your music and rights stay yours. sending is never a guaranteed placement.');
       assert.equal(await note.locator('li').count(),0);
       assert.equal(await note.evaluate(el=>getComputedStyle(el,'::before').content),'none');
-      if(width===1440) assert(await page.evaluate(()=>document.querySelector('.price-intro').getBoundingClientRect().right<=document.querySelector('.price-card').getBoundingClientRect().left),'columns do not overlap');
+      assert(await page.evaluate(()=>document.querySelector('.price-intro').getBoundingClientRect().bottom<=document.querySelector('.price-card').getBoundingClientRect().top),'purchase card sits below the introduction');
+      if(width===1440) assert(await page.locator('.price-card').evaluate(el=>el.getBoundingClientRect().width>1100),'desktop purchase card uses the full content width');
       await page.locator('.price-intro span').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-price.png`});
       await page.locator('#price').screenshot({path:`${output}/${width}-${reducedMotion}-price-section.png`});
@@ -164,6 +178,8 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.locator('.price-list li:visible').count(),8);
       assert.equal(await page.locator('.film-cover').isVisible(),failure!=='no-js'&&failure!=='homer-blocked');
       if(failure==='no-js')assert.equal(await page.locator('.film-player').evaluate(el=>el.inert),false);
+      await page.locator('.talk-more summary').click();
+      assert.equal(await page.locator('.quote:visible').count(),12,'more testimonials work without scripts');
       assert(await page.locator('.room-message').evaluateAll(v=>v.every(el=>getComputedStyle(el).visibility!=='hidden')));
       assert.equal(await page.locator('#price [data-checkout]').getAttribute('href'),'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03');
       await page.screenshot({path:`${output}/390-${failure}.png`,fullPage:true});
