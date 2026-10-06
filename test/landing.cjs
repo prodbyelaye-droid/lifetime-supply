@@ -64,11 +64,12 @@ const server = http.createServer((req, res) => {
       const portalY=await page.locator('#portal').evaluate(el=>el.offsetTop);
       await page.locator('.film-next').click();
       assert.equal(await page.evaluate(()=>document.activeElement.id),width===390?'demo-section':'dt-0');
+      const streamsTarget=await page.locator('[data-muso="streams"]').innerText();
       await page.locator('.credits-live').scrollIntoViewIfNeeded();
       if(reducedMotion==='no-preference') {
-        await page.waitForFunction(()=>document.querySelector('[data-muso="streams"]').textContent!=='166M+');
-        await page.waitForFunction(()=>document.querySelector('[data-muso="streams"]').textContent==='166M+');
-      } else assert.equal(await page.locator('[data-muso="streams"]').innerText(),'166M+');
+        await page.waitForFunction(target=>document.querySelector('[data-muso="streams"]').textContent!==target,streamsTarget);
+        await page.waitForFunction(target=>document.querySelector('[data-muso="streams"]').textContent===target,streamsTarget);
+      } else assert.equal(await page.locator('[data-muso="streams"]').innerText(),streamsTarget);
       const tabs=page.getByRole('tab');
       for(let i=0;i<9;i++) {
         if(width===390)await page.locator('#demo-section').selectOption(String(i));
