@@ -56,5 +56,19 @@
   }
   // A failed API retains the dated career snapshot, never a false live label.
   function short(n){var units=[[1e9,'B'],[1e6,'M'],[1e3,'K']];for(var i=0;i<units.length;i++){if(n>=units[i][0]){var value=n/units[i][0];return(value>=100?Math.floor(value):Math.floor(value*10)/10)+units[i][1]+'+';}}return String(Math.floor(n));}
-  fetch('/api/muso').then(function(r){return r.ok?r.json():null;}).then(function(data){if(!data)return;document.querySelectorAll('[data-muso]').forEach(function(element){var n=data[element.dataset.muso];if(typeof n==='number'&&Number.isFinite(n)&&n>0)element.textContent=short(n);});}).catch(function(){});
+  fetch('/api/muso').then(function(r){return r.ok?r.json():null;}).then(function(data){if(!data)return;document.querySelectorAll('[data-muso]').forEach(function(element){var n=data[element.dataset.muso];if(typeof n==='number'&&Number.isFinite(n)&&n>0)element.textContent=short(n);});}).catch(function(){}).finally(function(){
+    if(mq.matches||!('IntersectionObserver' in window))return;
+    var box=document.querySelector('.credits-live');
+    var observer=new IntersectionObserver(function(entries){if(!entries[0].isIntersecting)return;observer.disconnect();
+      var cells=Array.from(box.querySelectorAll('[data-muso]'));
+      var targets=cells.map(function(cell){var text=cell.textContent;var match=text.match(/^(\d+(?:\.\d+)?)(.*)$/);return{value:Number(match[1]),suffix:match[2],digits:match[1].includes('.')?1:0,text:text};});
+      var start;
+      function tick(now){if(start===undefined)start=now;var progress=Math.min((now-start)/1000,1);var eased=1-Math.pow(1-progress,3);
+        cells.forEach(function(cell,i){var target=targets[i];cell.textContent=progress===1?target.text:(target.value*eased).toFixed(target.digits)+target.suffix;});
+        if(progress<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    },{threshold:.35});
+    observer.observe(box);
+  });
 })();

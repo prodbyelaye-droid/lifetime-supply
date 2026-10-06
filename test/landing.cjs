@@ -38,6 +38,18 @@ const server = http.createServer((req, res) => {
       await page.goto(base,{waitUntil:'networkidle'});
       await page.screenshot({path:`${output}/${width}-${reducedMotion}-hero.png`});
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'page width');
+      assert.equal(await page.locator('.bundle-summary a').count(),6,'five bundle links and one forever panel');
+      const sheet=page.locator('.hero-folder-stage .folder-sheet');
+      if(reducedMotion==='no-preference') {
+        const sheetY=()=>sheet.evaluate(el=>parseFloat(getComputedStyle(el).translate.split(' ')[1])||0);
+        const startY=await sheetY();
+        await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));
+        await page.waitForTimeout(100);
+        assert(await sheetY()<startY-5,'paper rises with scrolling');
+        await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+        await page.waitForTimeout(100);
+        assert(Math.abs(await sheetY()-startY)<2,'paper returns on reverse scroll');
+      } else assert.equal(await sheet.evaluate(el=>getComputedStyle(el).animationName),'none');
       const film=page.locator('.film-player');
       assert.equal(await film.count(),1);
       assert.equal(await film.getAttribute('preload'),'none');
@@ -50,6 +62,13 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.locator('[role="tabpanel"]:visible').count(),1);
       assert.equal(await page.locator('.d-toast').count(),0);
       const portalY=await page.locator('#portal').evaluate(el=>el.offsetTop);
+      await page.locator('.film-next').click();
+      assert.equal(await page.evaluate(()=>document.activeElement.id),width===390?'demo-section':'dt-0');
+      await page.locator('.credits-live').scrollIntoViewIfNeeded();
+      if(reducedMotion==='no-preference') {
+        await page.waitForFunction(()=>document.querySelector('[data-muso="streams"]').textContent!=='166M+');
+        await page.waitForFunction(()=>document.querySelector('[data-muso="streams"]').textContent==='166M+');
+      } else assert.equal(await page.locator('[data-muso="streams"]').innerText(),'166M+');
       const tabs=page.getByRole('tab');
       for(let i=0;i<9;i++) {
         if(width===390)await page.locator('#demo-section').selectOption(String(i));
