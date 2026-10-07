@@ -111,6 +111,7 @@
       if(!dayTasks.length&&exampleBrief.day!==day)cell.append(element('p','d-small','nothing planned'));
       week.append(cell);
     });
+    document.dispatchEvent(new CustomEvent('demo:tasks',{detail:tasks.map(function(task){return{id:task.id,body:task.body,done:task.done};})}));
   }
   function alignToday(){var cell=week.querySelector('[aria-current="date"]')||week.firstElementChild;if(cell)week.scrollLeft=cell.offsetLeft-week.firstElementChild.offsetLeft;}
   renderTasks();

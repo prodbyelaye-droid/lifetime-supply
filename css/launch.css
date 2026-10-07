@@ -334,6 +334,34 @@ a.d-door:is(:hover, :focus-visible) .d-open { color: var(--accent-link); text-de
 
 a.d-pill { text-decoration: none; }
 
+/* Goal and review examples sit after the frozen calendar week. */
+.d-next-move { display: grid; gap: 16px; margin-top: 32px; }
+.d-next-move [hidden] { display: none; }
+.d-next-move h3 { margin: 0 0 12px; font-size: 20px; }
+.d-next-move h4 { margin: 16px 0 8px; font-size: 16px; }
+.d-next-move p { margin: 12px 0; }
+.d-next-move form, .d-next-focus, .d-next-step { display: grid; gap: 12px; min-width: 0; }
+.d-next-move label, .d-next-move legend { font-size: 14px; }
+.d-next-move summary { cursor: pointer; min-height: 44px; padding: 12px 0; }
+.d-next-move textarea { resize: vertical; min-height: 100px; }
+.d-next-move button:disabled { opacity: .55; cursor: not-allowed; }
+.d-next-move .d-input { box-sizing: border-box; }
+.d-next-focus { border: 1px solid var(--line); border-radius: 12px; margin: 16px 0; padding: 16px; }
+.d-next-step { border-top: 1px solid var(--line); padding-top: 12px; }
+.d-next-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.d-next-fields label { display: grid; gap: 8px; }
+.d-next-check { display: flex; align-items: center; gap: 12px; min-height: 44px; overflow-wrap: anywhere; }
+.d-next-checklist { list-style: none; margin: 12px 0; padding: 0; }
+.d-next-checklist li { border-top: 1px solid var(--line); padding: 8px 0; overflow-wrap: anywhere; }
+.d-next-checklist small { display: block; color: var(--secondary); }
+.d-review-counts { display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px; }
+.d-example-work { margin-top: 16px; }
+#demo-suggestions > button { display: block; text-align: left; }
+.submission-preview form { display: grid; gap: 12px; margin-top: 16px; }
+.submission-preview input { box-sizing: border-box; width: 100%; }
+.submission-preview button { cursor: pointer; font-family: inherit; min-height: 44px; }
+@media(max-width:640px) { .d-next-fields { grid-template-columns: minmax(0,1fr); } }
+
 /* Your Day mirrors the member planner using disposable example data. */
 #dp-1 .d-headrow { flex-wrap: wrap; }
 #dp-1 .d-box { min-width: 0; }
