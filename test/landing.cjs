@@ -97,6 +97,53 @@ const server = http.createServer((req, res) => {
           assert.equal(await todayTasks.getByText('finish a beat',{exact:true}).count(),0);
           assert(await week.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked());
           await week.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          await day.getByRole('button',{name:'Undo',exact:true}).click();
+          assert.equal(await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked(),false,'Undo restores the task');
+          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          await day.locator('#demo-completed summary').click();
+          assert.equal(await day.locator('#demo-completed summary').innerText(),'completed (1) · last 90 days');
+          assert(await day.getByText('up to 500 most recent completed tasks. untick to reopen.',{exact:true}).isVisible());
+          await day.locator('#demo-completed-tasks').getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          assert.equal(await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked(),false,'completed list can reopen a task');
+          const originalDay=await page.locator('#demo-week-date').inputValue();
+          const futureDay=await page.evaluate(day=>{const value=new Date(day+'T12:00:00Z');value.setUTCDate(value.getUTCDate()+35);return value.toISOString().slice(0,10);},originalDay);
+          const planned='plan an example session';
+          await day.getByRole('textbox',{name:'Add task',exact:true}).fill(planned);
+          await day.getByRole('textbox',{name:'Add task',exact:true}).press('Enter');
+          await todayTasks.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
+          const taskPlan=page.getByRole('dialog',{name:'plan task',exact:true});
+          await taskPlan.getByLabel('day',{exact:true}).fill(futureDay);
+          await taskPlan.getByLabel('start time',{exact:true}).fill('09:15');
+          await taskPlan.getByLabel('length',{exact:true}).selectOption('45');
+          await page.screenshot({path:`${output}/${width}-${reducedMotion}-task-plan.png`});
+          assert(await taskPlan.evaluate(el=>el.scrollWidth<=el.clientWidth),'task plan fits');
+          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
+          assert.equal(await page.locator('#demo-week-date').inputValue(),futureDay);
+          const futureTask=week.locator(`[data-day="${futureDay}"] .d-task`).filter({hasText:planned});
+          assert.equal((await futureTask.locator('.d-task-time').innerText()).trim(),'09:15');
+          assert((await futureTask.innerText()).includes('45 min'));
+          assert.equal(await todayTasks.getByRole('button',{name:'plan task: '+planned,exact:true}).count(),0,'future task leaves today');
+          await futureTask.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
+          await taskPlan.getByRole('button',{name:'clear time',exact:true}).click();
+          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
+          assert.equal(await futureTask.locator('.d-task-time').count(),0,'time can be cleared');
+          await futureTask.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
+          await taskPlan.getByLabel('day',{exact:true}).fill('');
+          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
+          await todayTasks.getByRole('button',{name:'Remove: '+planned,exact:true}).click();
+          await day.getByRole('button',{name:'previous week',exact:true}).click();
+          assert.notEqual(await page.locator('#demo-week-date').inputValue(),futureDay,'previous week works');
+          await day.getByRole('button',{name:'this week',exact:true}).click();
+          assert.equal(await page.locator('#demo-week-date').inputValue(),originalDay);
+          const exampleDeadline=await week.locator('.d-week-deadline').count();
+          if(!exampleDeadline){await day.getByRole('button',{name:'next week',exact:true}).click();}
+          assert.equal(await week.locator('.d-week-deadline').count(),1,'example brief deadline appears in its actual week');
+          await week.locator('.d-week-deadline').click();
+          assert(await page.locator('#dp-2').isVisible(),'deadline opens the example brief');
+          assert.equal(await page.locator('.d-brief-calendar details').evaluate(el=>el.open),true);
+          if(width===390)await page.locator('#demo-section').selectOption('1');else await tabs.nth(1).click();
+          await day.getByRole('button',{name:'this week',exact:true}).click();
           await day.getByRole('checkbox',{name:'made music 2 days',exact:true}).uncheck();
           assert(await day.getByRole('checkbox',{name:'made music 1 day',exact:true}).isVisible());
           await day.locator('.d-win-add summary').click();
@@ -105,15 +152,31 @@ const server = http.createServer((req, res) => {
           await day.getByRole('button',{name:'Save',exact:true}).click();
           assert.equal(await page.locator('#demo-win-count').innerText(),'1 win this month');
           const requests=[];const track=req=>requests.push(req.url());page.on('request',track);
-          await day.getByRole('button',{name:'calendar',exact:true}).click();
+          await day.getByRole('button',{name:'add to your calendar',exact:true}).click();
           const dialog=page.getByRole('dialog',{name:'your calendar',exact:true});
           assert(await dialog.isVisible());
           await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-off.png`});
           for(let key=0;key<4;key++){await page.keyboard.press('Tab');assert(await dialog.evaluate(el=>document.activeElement===document.body||el.contains(document.activeElement)),'Tab never focuses background controls');}
           await dialog.getByRole('button',{name:'turn on',exact:true}).click();
           const link=dialog.getByRole('textbox',{name:'your calendar link (example)',exact:true});
-          const initialLink=await link.inputValue();assert.match(initialLink,/^https:\/\/example\.invalid\/calendar\/demo-\d+\.ics$/);
+          const initialLink=await link.inputValue();assert.match(initialLink,/^https:\/\/example\.invalid\/calendar\/demo-\d+\/all\.ics$/);
+          const feeds=dialog.getByRole('combobox',{name:'choose a feed',exact:true});
+          for(const [feed,description] of [['plan','your dated tasks and time blocks. inbox tasks, habits and wins stay in the portal.'],['deadlines','current board briefs with a real deadline. briefs without a deadline are left out.'],['all','your plan and the board, with the choices below.']]){
+            await feeds.selectOption(feed);assert.equal(await link.inputValue(),initialLink.replace(/all\.ics$/,feed+'.ics'));assert(await dialog.getByText(description,{exact:true}).isVisible());
+          }
+          await dialog.getByRole('checkbox',{name:'my plan in everything',exact:true}).uncheck();
+          assert.equal(await link.inputValue(),initialLink,'feed options keep existing private URL');
+          await dialog.getByRole('checkbox',{name:'my plan in everything',exact:true}).check();
           for(const name of ['apple calendar','google calendar','outlook'])await dialog.getByRole('button',{name,exact:true}).click();
+          assert(await dialog.getByText(/Subscribe from web/).isVisible(),'Outlook setup explains subscription');
+          assert(await dialog.getByText('your calendar app checks this link on its own schedule. changes can take a day or longer to appear.',{exact:true}).isVisible());
+          await dialog.locator('[data-calendar-zone]').click();
+          await dialog.getByRole('button',{name:'change timezone',exact:true}).click();
+          await dialog.getByRole('combobox',{name:'timezone',exact:true}).selectOption('UTC');
+          await dialog.getByRole('button',{name:'use this timezone',exact:true}).click();
+          assert(await dialog.getByText('times are in UTC',{exact:true}).isVisible());
+          assert.equal(await dialog.getByText(/a few minutes/).count(),0,'no misleading refresh promise');
+          assert(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth),'calendar fits');
           assert.equal(context.pages().length,1,'calendar examples stay in the preview');
           await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-on.png`});
           await page.evaluate(()=>document.documentElement.dataset.recording='on');
@@ -131,7 +194,7 @@ const server = http.createServer((req, res) => {
           assert.notEqual(await link.inputValue(),initialLink);
           await page.keyboard.press('Escape');assert.equal(await dialog.isVisible(),false);
           assert.equal(await page.evaluate(()=>document.activeElement.hasAttribute('data-calendar-open')),true);
-          await day.getByRole('button',{name:'calendar',exact:true}).click();
+          await day.getByRole('button',{name:'add to your calendar',exact:true}).click();
           await dialog.getByRole('button',{name:'turn off',exact:true}).click();
           assert(await dialog.getByRole('button',{name:'turn on',exact:true}).isVisible());
           await dialog.getByRole('button',{name:'Close',exact:true}).click();
@@ -142,7 +205,7 @@ const server = http.createServer((req, res) => {
         if(i===2){
           const deadline=page.locator('.d-brief-calendar');
           assert((await deadline.locator('[data-brief-deadline]').innerText()).length>0);
-          await deadline.locator('summary').click();
+          if(!(await deadline.locator('details').evaluate(el=>el.open)))await deadline.locator('summary').click();
           await deadline.getByRole('button',{name:'google',exact:true}).click();
           assert.match(await deadline.getByRole('status').innerText(),/this example stays here/);
         }
