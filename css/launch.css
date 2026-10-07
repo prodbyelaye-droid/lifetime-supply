@@ -350,6 +350,10 @@ a.d-pill { text-decoration: none; }
 .d-task-label { display: flex; align-items: center; gap: 10px; min-height: 44px; overflow-wrap: anywhere; }
 #dp-1 input[type="checkbox"] { flex: none; width: 18px; height: 18px; accent-color: var(--ink); }
 .d-task-actions { display: flex; align-items: center; gap: 8px; }
+.d-task-actions { flex-wrap: wrap; }
+.d-task-actions select { flex: 1 1 100px; }
+.d-task-label > span { min-width: 0; }
+.d-task-time { font-variant-numeric: tabular-nums; color: var(--secondary); }
 .d-task-actions select { min-width: 0; max-width: 100%; min-height: 44px; padding: 4px 8px; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; color: var(--secondary); background: #fff; }
 .d-task-actions button { min-width: 44px; }
 .d-task.is-done .d-task-label span { text-decoration: line-through; color: var(--secondary); }
@@ -373,6 +377,30 @@ a.d-pill { text-decoration: none; }
 .d-sheet-panel .d-demo-note { margin: 0; }
 .d-sheet-panel .d-pill { min-height: 44px; }
 .d-sheet-panel > div { width: 100%; }
+.d-calendar-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.d-calendar-head .d-text-button { min-height: 44px; }
+.d-sheet-panel :is(input, select) { box-sizing: border-box; width: 100%; min-width: 0; min-height: 44px; padding: 10px 12px; background: var(--blank); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 12px; font: inherit; font-size: 15px; }
+.d-sheet-panel label { display: block; font-size: 14px; color: var(--ink); }
+.d-sheet-panel select { margin: 6px 0 12px; }
+.d-sheet-panel button { cursor: pointer; font-family: inherit; min-height: 44px; }
+.d-calendar-options { margin: 12px 0; }
+.d-calendar-options label { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.d-calendar-options input[type="checkbox"] { width: 18px; min-height: 18px; height: 18px; accent-color: var(--ink); }
+.d-calendar-instructions { margin: 12px 0; }
+.d-calendar-instructions summary, .d-completed summary { min-height: 44px; padding: 12px 0; box-sizing: border-box; cursor: pointer; font-size: 14px; }
+.d-calendar-instructions p + p { margin-top: 12px; }
+.d-task-undo { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; overflow-wrap: anywhere; }
+.d-task-undo[hidden], .d-completed[hidden] { display: none; }
+.d-task-plan-form { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.d-task-plan-form label { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.d-task-plan-form .d-input { margin: 0; }
+.d-task-plan-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.d-week-range { margin: 12px 0; font-variant-numeric: tabular-nums; }
+.d-week-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 12px; }
+.d-week-controls label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; }
+.d-week-controls .d-input { margin: 0; width: 170px; color: var(--ink); background: var(--blank); }
+.d-week-deadline { display: flex; flex-direction: column; gap: 4px; min-height: 44px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; overflow-wrap: anywhere; font-size: 14px; }
+.d-week-deadline:hover, .d-week-deadline:focus-visible { text-decoration: underline; }
 .d-calendar-notes { padding-left: 20px; margin: 16px 0; }
 .d-calendar-notes li + li { margin-top: 8px; }
 .d-brief-calendar { margin-top: 24px; max-width: 560px; }
@@ -381,4 +409,4 @@ a.d-pill { text-decoration: none; }
   #dp-1 .d-cols { grid-template-columns: minmax(0, 1fr); }
   #dp-1 .d-week { grid-template-columns: repeat(7, minmax(230px, 1fr)); }
 }
-@media (max-width: 640px) { .d-sheet-panel { padding: 20px; } }
+@media (max-width: 640px) { .d-sheet-panel { padding: 20px; } .d-task-plan-fields { grid-template-columns: minmax(0, 1fr); } }
