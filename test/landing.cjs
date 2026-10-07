@@ -77,7 +77,75 @@ const server = http.createServer((req, res) => {
         assert.equal(await page.locator('[role="tabpanel"]:visible').getAttribute('id'),`dp-${i}`);
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,`tab ${i} width`);
         assert(await page.locator(`#dp-${i}`).evaluate(el=>el.scrollWidth<=el.clientWidth),`tab ${i} overflow`);
-        if(i===1){assert(await page.locator('#dp-1').getByText('made music',{exact:true}).isVisible());assert(await page.locator('#dp-1').getByText('wins',{exact:true}).isVisible());assert.equal(await page.locator('.d-week .d-day:visible').count(),7);}
+        if(i===1){
+          const day=page.locator('#dp-1'),todayTasks=page.locator('#demo-tasks'),week=page.locator('#demo-week');
+          assert(await day.getByText('made music',{exact:true}).isVisible());
+          assert(await day.getByText('wins',{exact:true}).isVisible());
+          assert.equal(await week.locator('.d-day').count(),7);
+          assert.equal(await week.locator('[aria-current="date"]').count(),1);
+          if(width===390)assert(await week.evaluate(el=>el.scrollWidth>el.clientWidth),'week scrolls inside its box');
+          const draft='<img src=x onerror=alert(1)> example task';
+          await day.getByRole('textbox',{name:'Add task',exact:true}).fill(draft);
+          await day.getByRole('textbox',{name:'Add task',exact:true}).press('Enter');
+          assert.equal(await day.locator('img[src="x"]').count(),0,'task text stays inert');
+          assert.equal(await todayTasks.getByText(draft,{exact:true}).count(),1);
+          assert.equal(await week.getByText(draft,{exact:true}).count(),1);
+          await todayTasks.getByRole('combobox',{name:'Move to: '+draft,exact:true}).selectOption('inbox');
+          assert.equal(await week.getByText(draft,{exact:true}).count(),0,'inbox has no calendar date');
+          await todayTasks.getByRole('button',{name:'Remove: '+draft,exact:true}).click();
+          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          assert.equal(await todayTasks.getByText('finish a beat',{exact:true}).count(),0);
+          assert(await week.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked());
+          await week.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
+          await day.getByRole('checkbox',{name:'made music 2 days',exact:true}).uncheck();
+          assert(await day.getByRole('checkbox',{name:'made music 1 day',exact:true}).isVisible());
+          await day.locator('.d-win-add summary').click();
+          await day.getByRole('textbox',{name:'What happened',exact:true}).fill('finished an example beat');
+          await day.getByRole('combobox',{name:'Win kind',exact:true}).selectOption('finished');
+          await day.getByRole('button',{name:'Save',exact:true}).click();
+          assert.equal(await page.locator('#demo-win-count').innerText(),'1 win this month');
+          const requests=[];const track=req=>requests.push(req.url());page.on('request',track);
+          await day.getByRole('button',{name:'calendar',exact:true}).click();
+          const dialog=page.getByRole('dialog',{name:'your calendar',exact:true});
+          assert(await dialog.isVisible());
+          await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-off.png`});
+          for(let key=0;key<4;key++){await page.keyboard.press('Tab');assert(await dialog.evaluate(el=>document.activeElement===document.body||el.contains(document.activeElement)),'Tab never focuses background controls');}
+          await dialog.getByRole('button',{name:'turn on',exact:true}).click();
+          const link=dialog.getByRole('textbox',{name:'your calendar link (example)',exact:true});
+          const initialLink=await link.inputValue();assert.match(initialLink,/^https:\/\/example\.invalid\/calendar\/demo-\d+\.ics$/);
+          for(const name of ['apple calendar','google calendar','outlook'])await dialog.getByRole('button',{name,exact:true}).click();
+          assert.equal(context.pages().length,1,'calendar examples stay in the preview');
+          await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-on.png`});
+          await page.evaluate(()=>document.documentElement.dataset.recording='on');
+          await page.waitForFunction(()=>getComputedStyle(document.getElementById('demo-calendar-link')).filter==='blur(9px)');
+          await page.evaluate(()=>delete document.documentElement.dataset.recording);
+          await context.grantPermissions(['clipboard-read','clipboard-write']);
+          await dialog.getByRole('button',{name:'copy link',exact:true}).click();
+          assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),initialLink);
+          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
+          assert.equal(await link.inputValue(),initialLink,'reset requires confirmation');
+          await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
+          assert.equal(await link.inputValue(),initialLink);
+          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
+          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
+          assert.notEqual(await link.inputValue(),initialLink);
+          await page.keyboard.press('Escape');assert.equal(await dialog.isVisible(),false);
+          assert.equal(await page.evaluate(()=>document.activeElement.hasAttribute('data-calendar-open')),true);
+          await day.getByRole('button',{name:'calendar',exact:true}).click();
+          await dialog.getByRole('button',{name:'turn off',exact:true}).click();
+          assert(await dialog.getByRole('button',{name:'turn on',exact:true}).isVisible());
+          await dialog.getByRole('button',{name:'Close',exact:true}).click();
+          page.off('request',track);
+          assert.equal(requests.filter(url=>/example\.invalid|\/api\/calendar|supabase|calendar\.google|outlook/.test(url)).length,0,'no feed or subscription requests');
+          await day.screenshot({path:`${output}/${width}-${reducedMotion}-your-day-full.png`});
+        }
+        if(i===2){
+          const deadline=page.locator('.d-brief-calendar');
+          assert((await deadline.locator('[data-brief-deadline]').innerText()).length>0);
+          await deadline.locator('summary').click();
+          await deadline.getByRole('button',{name:'google',exact:true}).click();
+          assert.match(await deadline.getByRole('status').innerText(),/this example stays here/);
+        }
         if(i===5){assert(await page.locator('#dp-5').getByText('analog alchemy',{exact:true}).isVisible());assert(await page.locator('#dp-5').getByText('octaves creator suite · part two (unreleased)',{exact:true}).isVisible());}
         if(i===7)assert.equal(await page.locator('#dp-7 .d-row:visible').count(),7);
         await page.locator('#portal').scrollIntoViewIfNeeded();
