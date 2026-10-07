@@ -82,3 +82,18 @@ next-action and calendar headings. The main headings, useful dates, status
 labels, Outlook instructions, feed controls and recording blur retain their
 existing behavior. The 1440/390 browser matrix with normal/reduced motion
 and offer boundary checks passed after this cleanup.
+
+
+## 8 October: outer section borders
+
+The owner additionally requested the existing blue/lilac/peach gradient on
+the outside border of each outer section box. Two background layers colour
+only the existing one-pixel border: the interior stays flat white. Nested
+boxes, fields, task rows, covers and contents keep their existing styles.
+No wrapper, positioning, box size or hit target changes. Native borders
+replace the gradient in forced colours.
+
+The final 1440/390 normal/reduced-motion browser matrix and offer boundary
+checks passed. A focused computed-style check confirmed the outer border
+gradient, an unchanged plain inner textarea, and a visible native border
+without gradient in forced colours.

@@ -438,3 +438,12 @@ a.d-pill { text-decoration: none; }
   #dp-1 .d-week { grid-template-columns: repeat(7, minmax(230px, 1fr)); }
 }
 @media (max-width: 640px) { .d-sheet-panel { padding: 20px; } .d-task-plan-fields { grid-template-columns: minmax(0, 1fr); } }
+
+/* Match the member portal's existing outer section border, with plain contents. */
+:is(.demo-panel .d-box, .demo-panel .d-card, .d-calendar-sheet):not(:is(.d-box, .d-card, .d-calendar-sheet) *) {
+  border-color: transparent;
+  background: linear-gradient(#fff, #fff) padding-box, var(--accent-ink) border-box;
+}
+@media (forced-colors: active) {
+  :is(.demo-panel .d-box, .demo-panel .d-card, .d-calendar-sheet):not(:is(.d-box, .d-card, .d-calendar-sheet) *) { border-color: CanvasText; background: Canvas; }
+}

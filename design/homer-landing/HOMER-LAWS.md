@@ -1,5 +1,14 @@
 # HOMER PASS LAWS (portal.elaye.store) · read before every step
 
+## 8 October 2026: owner-approved section borders
+
+The interactive portal's outer section boxes use the existing blue, lilac
+and peach gradient only around their borders. Their contents, fields, task
+rows and nested boxes retain their original surfaces. The static ring follows
+the existing radius, never intercepts clicks, and yields to native borders
+in forced colours.
+
+
 ## 8 October 2026: owner-approved heading cleanup
 
 Remove decorative small labels above the interactive portal's main headings.
