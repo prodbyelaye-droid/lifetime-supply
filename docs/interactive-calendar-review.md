@@ -73,3 +73,12 @@ The browser matrix verifies draft versus approval, focus limits, editable next
 steps, completion/Undo, recommendations, checklist approval, example receipts,
 review counts, consent/fallback and email preference controls. It also asserts
 that these flows make no member, AI, submission or email requests.
+
+
+## 8 October: heading cleanup
+
+Owner-approved: remove the decorative small labels above task, habit, win,
+next-action and calendar headings. The main headings, useful dates, status
+labels, Outlook instructions, feed controls and recording blur retain their
+existing behavior. The 1440/390 browser matrix with normal/reduced motion
+and offer boundary checks passed after this cleanup.
