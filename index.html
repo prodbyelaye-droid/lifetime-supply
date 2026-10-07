@@ -156,17 +156,17 @@
   <p class="d-small d-demo-note">try it with example data. changes reset when you reload; no account or calendar is connected.</p>
   <div class="d-task-undo" id="demo-task-undo" role="status" hidden><span></span><button type="button" class="d-text-button">Undo</button></div>
   <div class="d-cols">
-    <section class="d-box"><span class="d-eyebrow">To do</span><h3 class="d-box-title">today</h3>
+    <section class="d-box"><h3 class="d-box-title">today</h3>
       <form id="demo-task-form"><input class="d-input" id="demo-task" aria-label="Add task" placeholder="add a task, press enter" maxlength="140" autocomplete="off" enterkeyhint="done"></form>
       <ul class="d-task-list" id="demo-tasks" aria-label="today"></ul><p class="d-small" id="demo-done" role="status">0 done today</p>
       <details class="d-completed" id="demo-completed" hidden><summary>completed</summary><p class="d-small">up to 500 most recent completed tasks. untick to reopen.</p><ul class="d-task-list" id="demo-completed-tasks" aria-label="completed tasks"></ul></details>
     </section>
-    <section class="d-box"><span class="d-eyebrow">Habits</span><h3 class="d-box-title">every day</h3>
+    <section class="d-box"><h3 class="d-box-title">every day</h3>
       <label class="d-habit"><input type="checkbox" checked><span class="d-habit-name">made music</span><span class="d-small" data-streak>2 days</span></label>
       <label class="d-habit"><input type="checkbox" checked><span class="d-habit-name">sent beats</span><span class="d-small" data-streak>2 days</span></label>
       <label class="d-habit"><input type="checkbox" checked><span class="d-habit-name">read a guide</span><span class="d-small" data-streak>2 days</span></label>
     </section>
-    <section class="d-box"><span class="d-eyebrow">Wins</span><h3 class="d-box-title">wins</h3>
+    <section class="d-box"><h3 class="d-box-title">wins</h3>
       <details class="d-win-add"><summary>add a win</summary><form id="demo-win-form"><input class="d-input" aria-label="What happened" placeholder="what happened" maxlength="240" required><select class="d-input" aria-label="Win kind"><option>placement</option><option>sent</option><option>finished</option><option>sale</option><option>other</option></select><button class="d-pill d-pill-2" type="submit">Save</button></form></details>
       <ul class="d-task-list" id="demo-wins"></ul><p class="d-small" id="demo-win-count" role="status">log your first win. a placement, a pack sent, a beat finished, a sale.</p>
     </section>
@@ -175,7 +175,7 @@
   <div class="d-week-controls"><button type="button" class="d-text-button" aria-label="previous week" data-week-go="-7">previous</button><button type="button" class="d-text-button" data-week-today>this week</button><button type="button" class="d-text-button" aria-label="next week" data-week-go="7">next</button><label for="demo-week-date">choose a week<input type="date" class="d-input" id="demo-week-date"></label></div>
   <ol class="d-week" id="demo-week" aria-label="the week"></ol>
   <section id="demo-next-move" class="d-next-move" aria-label="Your plan">
-    <section class="d-box"><span class="d-eyebrow">Your next move</span><h3 id="demo-next-title">give your goal a next step.</h3><p class="d-small" id="demo-next-date">start small. you choose the focus, the steps and the dates.</p><button type="button" class="d-pill d-pill-2" id="demo-next-done" hidden>mark step done</button></section>
+    <section class="d-box"><h3 id="demo-next-title">give your goal a next step.</h3><p class="d-small" id="demo-next-date">start small. you choose the focus, the steps and the dates.</p><button type="button" class="d-pill d-pill-2" id="demo-next-done" hidden>mark step done</button></section>
     <details class="d-box" id="demo-goal-editor" open><summary>turn a loose goal into a plan</summary><form id="demo-goal-form"><label for="demo-goal">what would you like to work towards?</label><textarea id="demo-goal" class="d-input" maxlength="280" rows="3" placeholder="e.g. finish more beats and start sending them" required></textarea><div class="d-pills"><button type="button" class="d-pill d-pill-2" id="demo-goal-start">give me a starting point</button><button type="button" class="d-text-button" id="demo-goal-manual">write my own focus</button></div><details><summary>optional AI help</summary><p class="d-small">AI help is unavailable in this example. no goal or selected interests are sent anywhere. use the editable starting point or write your own steps.</p><label class="d-next-check"><input type="checkbox" id="demo-goal-consent">send my goal and selected interests to Google Gemini for editable suggestions</label><button type="button" class="d-pill d-pill-2" id="demo-goal-ai" disabled>suggest focuses and steps</button><p class="d-small" id="demo-ai-status" role="status"></p></details><div id="demo-focus-editor"></div><div class="d-pills" id="demo-goal-actions" hidden><button type="button" class="d-text-button" id="demo-focus-add">add another focus</button><button type="submit" class="d-pill">approve and save this plan</button></div><p class="d-small" id="demo-goal-notice" role="status"></p></form></details>
     <section class="d-box" id="demo-saved-plan" aria-label="Saved focuses" hidden></section>
     <section class="d-box" aria-label="Briefs you are working on"><h3>working on</h3><p class="d-small">illustrative brief only. your checklist dates do not change its example deadline.</p><button type="button" class="d-text-button" data-demo-board>choose a brief from the board</button><div id="demo-working-brief" hidden><h4>example artist</h4><p class="d-small" id="demo-working-deadline"></p><button type="button" class="d-text-button" data-demo-submit>read brief and submit</button><button type="button" class="d-text-button" id="demo-stop-brief">stop working on this brief</button><ul id="demo-brief-saved" class="d-next-checklist"></ul><details id="demo-brief-editor" open><summary>make a small checklist</summary><p class="d-small">edit these steps before saving. your dates do not change the brief’s deadline.</p><form id="demo-checklist-form"><div id="demo-brief-step-editor"></div><button type="button" class="d-text-button" id="demo-brief-add">add a step</button><button type="submit" class="d-pill d-pill-2">approve and save checklist</button><p class="d-small" id="demo-checklist-status" role="status"></p></form></details></div></section>
@@ -193,7 +193,7 @@
     </form>
   </div></dialog>
   <dialog class="d-calendar-sheet" id="demo-calendar" aria-labelledby="demo-calendar-title">
-    <div class="d-sheet-panel"><div class="d-calendar-head"><span class="d-eyebrow">Calendar</span><button type="button" class="d-text-button" data-calendar-close>Close</button></div><h2 id="demo-calendar-title">your calendar</h2>
+    <div class="d-sheet-panel"><div class="d-calendar-head"><button type="button" class="d-text-button" data-calendar-close>Close</button></div><h2 id="demo-calendar-title">your calendar</h2>
       <p>your dated tasks and the board's deadlines, in the calendar you already use.</p>
       <p class="d-demo-note">interactive example only. no calendar is connected.</p>
       <div id="demo-calendar-off"><p>turn on a private link and subscribe from your calendar app.</p><button type="button" class="d-pill" data-calendar-enable>turn on</button></div>

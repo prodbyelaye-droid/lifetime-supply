@@ -1,5 +1,12 @@
 # HOMER PASS LAWS (portal.elaye.store) · read before every step
 
+## 8 October 2026: owner-approved heading cleanup
+
+Remove decorative small labels above the interactive portal's main headings.
+Keep useful dates and real status indicators. Calendar instructions and
+controls retain their existing behavior.
+
+
 ## 5 October 2026: engagement refinement
 
 Owner-approved: the hero folder enters the interactive portal; short, one-time
