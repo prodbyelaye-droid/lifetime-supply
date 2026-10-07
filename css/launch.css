@@ -333,3 +333,52 @@ a.d-door:is(:hover, :focus-visible) .d-open { color: var(--accent-link); text-de
 }
 
 a.d-pill { text-decoration: none; }
+
+/* Your Day mirrors the member planner using disposable example data. */
+#dp-1 .d-headrow { flex-wrap: wrap; }
+#dp-1 .d-box { min-width: 0; }
+#dp-1 .d-box-title { margin: 12px 0; }
+.d-demo-note { margin-top: 16px; color: var(--secondary); }
+#dp-1 .d-input { width: 100%; min-width: 0; font-family: inherit; color: var(--ink); background: #fff; }
+#dp-1 input::placeholder { color: var(--secondary); opacity: 1; }
+#dp-1 button.d-pill, .d-brief-calendar button.d-pill { border: 0; }
+#dp-1 button, .d-brief-calendar button { cursor: pointer; font-family: inherit; min-height: 44px; }
+.d-text-button { border: 0; background: transparent; color: var(--secondary); font-size: 14px; padding: 10px 8px; }
+.d-text-button:hover { text-decoration: underline; }
+.d-task-list { list-style: none; padding: 0; margin: 16px 0; }
+.d-task { border-top: 1px solid var(--line); padding: 8px 0; font-size: 14px; }
+.d-task-label { display: flex; align-items: center; gap: 10px; min-height: 44px; overflow-wrap: anywhere; }
+#dp-1 input[type="checkbox"] { flex: none; width: 18px; height: 18px; accent-color: var(--ink); }
+.d-task-actions { display: flex; align-items: center; gap: 8px; }
+.d-task-actions select { min-width: 0; max-width: 100%; min-height: 44px; padding: 4px 8px; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; color: var(--secondary); background: #fff; }
+.d-task-actions button { min-width: 44px; }
+.d-task.is-done .d-task-label span { text-decoration: line-through; color: var(--secondary); }
+#dp-1 .d-habit { min-height: 48px; cursor: pointer; }
+.d-win-add summary, .d-brief-calendar summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-size: 14px; }
+.d-win { padding: 10px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; font-size: 14px; }
+.d-win small { display: block; margin-top: 4px; }
+#dp-1 .d-week { list-style: none; padding: 0 0 8px; overflow-x: auto; overscroll-behavior-x: contain; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+#dp-1 .d-day { display: block; padding: 14px; min-height: 160px; }
+.d-day-heading { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; font-size: 13px; font-weight: 500; margin-bottom: 12px; }
+#dp-1 .d-day b { font-size: 22px; }
+#dp-1 .d-day .d-small { font-size: 13px; }
+#dp-1 .d-day .d-task-list { margin: 0; }
+.d-calendar-sheet { width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 1px solid var(--line); border-radius: 16px; background: #fff; color: var(--ink); overflow: auto; }
+.d-calendar-sheet::backdrop { background: rgba(11,11,11,.4); }
+.d-sheet-panel { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 28px; }
+.d-sheet-panel h2 { margin: 0; font-size: 26px; letter-spacing: -.025em; }
+.d-sheet-panel p, .d-calendar-notes { font-size: 15px; line-height: 1.5; color: var(--secondary); }
+.d-sheet-panel p { margin: 0; }
+.d-sheet-panel .d-eyebrow { margin: 0; }
+.d-sheet-panel .d-demo-note { margin: 0; }
+.d-sheet-panel .d-pill { min-height: 44px; }
+.d-sheet-panel > div { width: 100%; }
+.d-calendar-notes { padding-left: 20px; margin: 16px 0; }
+.d-calendar-notes li + li { margin-top: 8px; }
+.d-brief-calendar { margin-top: 24px; max-width: 560px; }
+[data-recording="on"] #demo-calendar-link { filter: blur(9px); user-select: none; }
+@media (max-width: 1023px) {
+  #dp-1 .d-cols { grid-template-columns: minmax(0, 1fr); }
+  #dp-1 .d-week { grid-template-columns: repeat(7, minmax(230px, 1fr)); }
+}
+@media (max-width: 640px) { .d-sheet-panel { padding: 20px; } }
