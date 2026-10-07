@@ -44,3 +44,32 @@ The legacy `design/white-room/copycheck.py` is not a current release gate: its
 pre-redesign snapshot reports 543 violations on unmodified main
 `1691cb2`. Its baseline and allowlist were not rewritten for this change.
 Current offer checks and browser checks remain the meaningful gates.
+
+## Next move and weekly review example
+
+The next stage sits after the existing week. Calendar markup, controls, copy
+and styling remain fixed. The planner emits only its disposable task state to
+the local weekly review; no saved account data is read or written.
+
+A loose goal can become one to three editable focuses, each with one to eight
+small steps and optional personal dates. Drafts do not change the saved next
+action until the visitor presses approve and save. Completion can be undone.
+AI help shows the member consent control and an honest unavailable fallback;
+the starting point and fully manual path work without any API call.
+
+The illustrative Hip hop brief can be saved as working on, given an approved
+editable checklist, and submitted as an example.invalid link. The local receipt
+is clearly an example and never claims an email was sent. Guide suggestions use
+three actual titles and descriptions from the portal's lib/content.ts; matching
+reasons describe only shared words. Brief matching uses an explicitly saved
+genre interest and never assigns a fit score.
+
+The review counts only demo tasks marked done, briefs saved as working on and
+example submissions recorded. Undo removes a completion; no placement or work
+is inferred. Weekly email preferences default off, accept a validated timezone,
+day and hour, and can be turned off. Delivery remains disabled.
+
+The browser matrix verifies draft versus approval, focus limits, editable next
+steps, completion/Undo, recommendations, checklist approval, example receipts,
+review counts, consent/fallback and email preference controls. It also asserts
+that these flows make no member, AI, submission or email requests.
