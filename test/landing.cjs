@@ -19,6 +19,7 @@ async function nextMove(page,width,motion,tabs,output){
   assert.equal(await page.locator('#demo-saved-plan').isVisible(),false,'draft is not saved');
   assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.','draft does not change next action');
   await draft.getByText('optional AI help',{exact:true}).click();
+  assert(await draft.getByText(/members can opt into Claude by Anthropic/).isVisible(),'copy names the member provider');
   assert(await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).isDisabled(),'example asks for consent');
   await draft.getByRole('checkbox',{name:'try the example suggestion flow (no data is sent)',exact:true}).check();
   await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).click();
@@ -81,7 +82,7 @@ async function nextMove(page,width,motion,tabs,output){
   assert((await page.locator('#demo-recap-status').innerText()).includes('valid timezone'));
   assert(await plan.evaluate(node=>node.scrollWidth<=node.clientWidth),'goal/review fits');
   await plan.screenshot({path:`${output}/${width}-${motion}-next-move.png`});
-  page.off('request',watch);assert.equal(requests.filter(request=>request.method!=='GET'||/example\.invalid|generativelanguage|supabase|resend|\/api\//.test(request.url)).length,0,'no member, AI, submission or email calls');
+  page.off('request',watch);assert.equal(requests.filter(request=>request.method!=='GET'||/example\.invalid|generativelanguage|api\.anthropic\.com|supabase|resend|\/api\//.test(request.url)).length,0,'no member, AI, submission or email calls');
 }
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
