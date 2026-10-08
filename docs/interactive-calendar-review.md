@@ -122,3 +122,13 @@ authenticated portal.
 
 Calendar markup, scripts, instructions and styles are unchanged by this update.
 Outer gradient borders and the removed decorative headings are retained.
+
+
+## 8 October: Claude provider update
+
+Your Day now uses Claude Haiku 5.5 in the member portal. The public example
+uses Claude/Anthropic wording, retains explicit example disclosure, and makes
+no external AI request. Calendar screens and outer-border styles are unchanged.
+The member provider is time-gated before the owner-reported 24 October credit
+expiry; manual planning remains available afterward. This supersedes the
+earlier Gemini integration descriptions above.
