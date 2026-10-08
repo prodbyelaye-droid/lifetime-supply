@@ -1,4 +1,4 @@
-/* Disposable manual goal/review example. No API, storage or member calls. */
+/* Disposable goal/review example with illustrative AI suggestions. No API, storage or member calls. */
 (function(){
   'use strict';
   var area=document.getElementById('demo-next-move');if(!area)return;
@@ -16,7 +16,7 @@
   get('demo-goal-start').addEventListener('click',function(){if(!get('demo-goal').value.trim()){get('demo-goal').focus();return;}draft=startingPoint(get('demo-goal').value);renderDraft();get('demo-goal-notice').textContent='a starting point. edit it until it says what you want to do. nothing is saved yet.';});
   get('demo-goal-manual').addEventListener('click',function(){draft=[{title:'',steps:[{body:'',date:''}]}];renderDraft();});
   get('demo-focus-add').addEventListener('click',function(){if(draft.length<3){draft.push({title:'',steps:[{body:'',date:''}]});renderDraft();}});
-  get('demo-goal-ai').addEventListener('click',function(){get('demo-ai-status').textContent='AI help is not available right now. use the editable starting point or write your own steps.';});
+  get('demo-goal-ai').addEventListener('click',function(){if(!get('demo-goal-consent').checked||!get('demo-goal').value.trim())return;draft=startingPoint(get('demo-goal').value);renderDraft();get('demo-goal-notice').textContent='nothing is saved yet. edit the suggestions, then approve your plan.';get('demo-ai-status').textContent='illustrative suggestions only. no Gemini request was made. edit these steps before approving.';});
   function aiConsent(){get('demo-goal-ai').disabled=!get('demo-goal-consent').checked||!get('demo-goal').value.trim();}get('demo-goal-consent').addEventListener('change',aiConsent);get('demo-goal').addEventListener('input',aiConsent);
   function validSteps(steps){return steps.length>0&&steps.length<=8&&steps.every(function(step){return step.body.trim().length>0&&step.body.trim().length<=140&&(!step.date||/^\d{4}-\d{2}-\d{2}$/.test(step.date));});}
   function assignIds(steps){return steps.map(function(step){return Object.assign({},step,{id:step.id||nextId++,body:step.body.trim(),done:!!step.done});});}

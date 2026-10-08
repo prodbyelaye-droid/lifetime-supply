@@ -18,6 +18,14 @@ async function nextMove(page,width,motion,tabs,output){
   await draft.getByRole('button',{name:'give me a starting point',exact:true}).click();
   assert.equal(await page.locator('#demo-saved-plan').isVisible(),false,'draft is not saved');
   assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.','draft does not change next action');
+  await draft.getByText('optional AI help',{exact:true}).click();
+  assert(await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).isDisabled(),'example asks for consent');
+  await draft.getByRole('checkbox',{name:'try the example suggestion flow (no data is sent)',exact:true}).check();
+  await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).click();
+  assert((await page.locator('#demo-ai-status').innerText()).includes('illustrative suggestions only'));
+  assert.equal(await page.locator('#demo-saved-plan').isVisible(),false,'suggestions are not saved');
+  assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.','suggestions need approval');
+  assert.equal(await draft.getByLabel('your date (optional)',{exact:true}).first().inputValue(),'','no invented deadline');
   await draft.getByLabel('one specific focus',{exact:true}).fill('make one useful offer');
   await draft.getByLabel('step 1',{exact:true}).fill('choose one artist to contact today');
   await draft.getByLabel('your date (optional)',{exact:true}).first().fill('2026-12-01');
@@ -27,11 +35,6 @@ async function nextMove(page,width,motion,tabs,output){
   await draft.getByRole('button',{name:'add another focus',exact:true}).click();
   assert.equal(await draft.getByRole('button',{name:'add another focus',exact:true}).isVisible(),false,'three-focus cap');
   await draft.getByRole('button',{name:'remove focus 3',exact:true}).click();
-  await draft.getByText('optional AI help',{exact:true}).click();
-  assert(await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).isDisabled(),'AI asks for consent');
-  await draft.getByRole('checkbox',{name:'send my goal and selected interests to Google Gemini for editable suggestions',exact:true}).check();
-  await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).click();
-  assert((await page.locator('#demo-ai-status').innerText()).includes('not available'));
   await page.screenshot({path:`${output}/${width}-${motion}-goal-draft.png`});
   await draft.getByRole('button',{name:'approve and save this plan',exact:true}).click();
   assert.equal(await page.locator('#demo-next-title').innerText(),'choose one artist to contact today');
