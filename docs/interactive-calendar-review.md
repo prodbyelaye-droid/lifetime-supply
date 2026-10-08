@@ -54,8 +54,10 @@ the local weekly review; no saved account data is read or written.
 A loose goal can become one to three editable focuses, each with one to eight
 small steps and optional personal dates. Drafts do not change the saved next
 action until the visitor presses approve and save. Completion can be undone.
-AI help shows the member consent control and an honest unavailable fallback;
-the starting point and fully manual path work without any API call.
+AI help now demonstrates illustrative suggestions, editing and explicit approval.
+Its disclosure explains that no Gemini request is made; real members can opt
+into Gemini in their portal. The starting point and fully manual path also work
+without any API call.
 
 The illustrative Hip hop brief can be saved as working on, given an approved
 editable checklist, and submitted as an example.invalid link. The local receipt
@@ -71,7 +73,7 @@ day and hour, and can be turned off. Delivery remains disabled.
 
 The browser matrix verifies draft versus approval, focus limits, editable next
 steps, completion/Undo, recommendations, checklist approval, example receipts,
-review counts, consent/fallback and email preference controls. It also asserts
+review counts, example consent and email preference controls. It also asserts
 that these flows make no member, AI, submission or email requests.
 
 
@@ -97,3 +99,26 @@ The final 1440/390 normal/reduced-motion browser matrix and offer boundary
 checks passed. A focused computed-style check confirmed the outer border
 gradient, an unchanged plain inner textarea, and a visible native border
 without gradient in forced colours.
+
+
+## 8 October: comparison with the live member Your Day
+
+Compared against production portal commit
+`0a3dae867d733ac12993568276aad8cb26924e3f`, including the actual
+MemberPlan controls and manualStartingPoint helper. A fresh disposable member
+passed live manual approval, next-action selection, completion and persisted
+undo at 1440 and 390 pixels, with no browser errors. Email opt-in defaulted
+off and delivery remained disabled. The test member was removed afterward;
+no emails were sent.
+
+The preview already demonstrated approved focuses, working-on briefs and
+checklists, honest guide/interest suggestions, activity counts and recap
+preferences. Its remaining mismatch was showing unavailable AI after member
+Gemini had been enabled. It now demonstrates consent, illustrative suggestions,
+editing and approval. Public suggestions use the existing starting-point
+helper, with no provider calls or invented dates. They are clearly labelled
+examples; real member Gemini consent and private persistence remain in the
+authenticated portal.
+
+Calendar markup, scripts, instructions and styles are unchanged by this update.
+Outer gradient borders and the removed decorative headings are retained.
