@@ -119,7 +119,7 @@ The replacement therefore makes no call, nightly artist-phone or income promise.
 The verified schedule is:
 
 - Giveaway closes **10 October 2026, 20:00 AEDT** (`2026-10-10T09:00:00Z`).
-- Price rises **11 October 2026, 08:00 AEDT** (`2026-10-10T21:00:00Z`).
+- Price rises **11 October 2026, 20:00 AEDT** (`2026-10-11T09:00:00Z`).
 - Current verified payment link is **USD 599**. The new **USD 699** payment
   link has not been supplied. Before release, verify its amount, currency,
   bundle description and fulfillment, then set `LIFETIME_CHECKOUT_699_URL`
