@@ -295,7 +295,7 @@ const server = http.createServer((req, res) => {
       await page.locator('[data-demo-go="6"]').first().click();
       assert.equal(await page.locator('#dp-6').isVisible(),true);
       await page.locator('.vault-media').scrollIntoViewIfNeeded();
-      assert.equal(await page.locator('video').count(),1,'the film is the only video');
+      assert.equal(await page.locator('video').count(),2,'launch film and on-demand highlight player');
       assert.equal(await page.locator('[data-motion-toggle]').count(),0,'quiet plates use stills');
       await page.locator('#learning').scrollIntoViewIfNeeded();
       await page.locator('.syllabi summary').first().click();
