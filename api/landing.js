@@ -13,7 +13,7 @@ function render(now, checkout699) {
     .replaceAll('$599 <span class="currency">USD</span>', '$' + offer.price + ' <span class="currency">USD</span>')
     .replaceAll(PRICE_LINE, offer.priceLine)
     .replace(/(<p class="price-sub">)[^<]*(<\/p>)/, (_, open, close) => open + cardPriceLine + close)
-    .replaceAll('yes. $599 USD until sunday 11 october 2026 at 8 am AEDT, then $699 USD. the same Lifetime either way.', offer.priceFaq)
+    .replaceAll('yes. $599 USD until sunday 11 october 2026 at 8 pm AEDT, then $699 USD. the same Lifetime either way.', offer.priceFaq)
     .replaceAll(GIVEAWAY_LINE, offer.giveawayLine)
     .replace(/(data-checkout[^>]*>)get lifetime access/g, '$1' + offer.checkoutLabel);
   if (offer.refreshAt) html = html.replace('</head>', '<meta name="offer-refresh-at" content="' + new Date(offer.refreshAt).toISOString() + '" data-delay-ms="' + Math.max(0, offer.refreshAt - (now ?? Date.now())) + '"></head>');

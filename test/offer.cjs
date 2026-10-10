@@ -4,6 +4,8 @@ process.chdir(path.join(__dirname, '..'));
 const {getOffer, PRICE_CHANGE, DRAW_CLOSE, CHECKOUT_599} = require('../lib/offer');
 const {render} = require('../api/landing');
 
+assert.equal(PRICE_CHANGE - DRAW_CLOSE, 24 * 60 * 60 * 1000);
+assert.equal(new Date(PRICE_CHANGE).toISOString(), '2026-10-11T09:00:00.000Z');
 assert.equal(getOffer(PRICE_CHANGE - 1).price, 599);
 assert.equal(getOffer(PRICE_CHANGE).price, 699);
 assert.equal(getOffer(DRAW_CLOSE - 1).refreshAt, DRAW_CLOSE);
@@ -26,10 +28,10 @@ for (const html of [before, after, waiting]) {
   assert(checkouts.every(url => url === schema.offers.url));
 }
 const cardLine = html => html.match(/<p class="price-sub">([^<]*)<\/p>/)[1];
-assert.equal(cardLine(before), 'until sunday 11 october 2026, 8 am AEDT. then $699 USD.');
+assert.equal(cardLine(before), 'until sunday 11 october 2026, 8 pm AEDT. then $699 USD.');
 assert.equal(cardLine(after), '$699 USD. one payment, yours forever.');
 assert.equal(cardLine(waiting), '$699 USD. one payment, yours forever. checkout is updating. DM me for access.');
-assert.equal(before.split('$599 USD until sunday 11 october 2026 at 8 am AEDT, then $699 USD').length - 1, 2, 'hero and FAQ keep their dated wording');
+assert.equal(before.split('$599 USD until sunday 11 october 2026 at 8 pm AEDT, then $699 USD').length - 1, 2, 'hero and FAQ keep their dated wording');
 for (const html of [before, after, waiting]) {
   assert(html.includes('<details class="price-includes" open>'));
   assert.equal((html.match(/class="dm-line price-note"/g) || []).length, 1);
