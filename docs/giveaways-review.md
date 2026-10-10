@@ -1,7 +1,8 @@
-# Community giveaways — review only, 10 October 2026
+# Community giveaways — 10 October 2026
 
-**Do not merge.** This is Job 1, kept on `codex/community-giveaways-review`.
-The separately authorized video pass does not include any of these changes.
+Originally prepared as Job 1 on `codex/community-giveaways-review`.
+The owner approved the preview and authorized merging on 10 October 2026.
+The video pass was released separately in PR #36.
 
 Added a two-prize section after member testimonials, before Elaye's credits.
 It uses the existing lowercase, first-person copy, Geist type, spacing and blue
@@ -39,5 +40,5 @@ boundary checks pass. Existing page header/hero overflow at 320 px is outside
 this section; full-page 390/1440 layouts fit.
 
 Screenshots: `/tmp/lifetime-highlights-review/giveaways-*.png`.
-No merge, production deployment, draw operation or external message is part of
-this build. Review the final copy and image choice before authorizing a merge.
+The owner approved this copy and image choice for release. No draw operation
+or external message is part of this change.
