@@ -12,7 +12,6 @@ a, button, select, summary { touch-action: manipulation; }
 .hero-first { white-space: nowrap; }
 .launch-hero .hero-copy .lead { max-width: 590px; font-size: 20px; }
 .launch-hero .price-line { font-size: 13px; line-height: 1.6; color: var(--secondary); }
-.launch-hero .giveaway-line { margin-top: 12px; }
 .hero-art { min-width: 0; text-align: center; }
 .motion-media { position: relative; overflow: hidden; border-radius: 16px; background: #fff; }
 .motion-media img { width: 100%; height: 100%; object-fit: cover; }
@@ -119,7 +118,6 @@ a, button, select, summary { touch-action: manipulation; }
 .syllabi ol { margin: 0 0 20px; padding-left: 24px; color: var(--secondary); font-size: 15px; }
 .syllabi li { margin-top: 8px; }
 .currency { font-size: 24px; font-weight: 400; letter-spacing: 0; }
-.giveaway-line a { white-space: nowrap; }
 @media (max-width: 1100px) {
   .demo-header { flex-wrap: wrap; padding-bottom: 6px; }
   .demo-tabs { flex: 1 1 100%; margin-left: 0; }
