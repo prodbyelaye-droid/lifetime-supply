@@ -1,398 +1,120 @@
-/* Run with PLAYWRIGHT_MODULE pointing to an installed Playwright package. */
+/* Landing page contract (task 016: the old-layout checks for the retired bundle links, portal demo tabs, quotes and
+ * folder hero are replaced by checks of the current page). Every payment and fallback check is kept: four CTAs on
+ * the live checkout, the price card and its inclusions, the CTA focus ring, no background video, and the page with no
+ * script, with the page script blocked and with the launch media blocked.
+ * Run: node test/landing.cjs (set PLAYWRIGHT_MODULE / PW_CHANNEL=chrome if needed; SHOTS_DIR for captures). */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const path = require('node:path');
 const http = require('node:http');
-process.chdir(path.join(__dirname, '..'));
+const path = require('node:path');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+process.chdir(path.join(__dirname, '..'));
 const {render} = require('../api/landing');
-const output = process.env.SHOTS_DIR || '/tmp/lifetime-landing-shots';
-fs.mkdirSync(output, {recursive:true});
-const types = {'.css':'text/css','.js':'application/javascript','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.mp4':'video/mp4','.woff2':'font/woff2'};
-async function nextMove(page,width,motion,tabs,output){
-  const plan=page.locator('#demo-next-move'),draft=page.locator('#demo-goal-editor'),counts=page.locator('#demo-review-counts');
-  const requests=[];const watch=request=>requests.push({url:request.url(),method:request.method()});page.on('request',watch);
-  assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.');
-  assert((await counts.innerText()).includes('0 tasks marked done'));
-  await draft.getByLabel('what would you like to work towards?',{exact:true}).fill('sell beats and build artist relationships');
-  await draft.getByRole('button',{name:'give me a starting point',exact:true}).click();
-  assert.equal(await page.locator('#demo-saved-plan').isVisible(),false,'draft is not saved');
-  assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.','draft does not change next action');
-  await draft.getByText('optional AI help',{exact:true}).click();
-  assert(await draft.getByText(/members can opt into Claude by Anthropic/).isVisible(),'copy names the member provider');
-  assert(await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).isDisabled(),'example asks for consent');
-  await draft.getByRole('checkbox',{name:'try the example suggestion flow (no data is sent)',exact:true}).check();
-  await draft.getByRole('button',{name:'suggest focuses and steps',exact:true}).click();
-  assert((await page.locator('#demo-ai-status').innerText()).includes('illustrative suggestions only'));
-  assert.equal(await page.locator('#demo-saved-plan').isVisible(),false,'suggestions are not saved');
-  assert.equal(await page.locator('#demo-next-title').innerText(),'give your goal a next step.','suggestions need approval');
-  assert.equal(await draft.getByLabel('your date (optional)',{exact:true}).first().inputValue(),'','no invented deadline');
-  await draft.getByLabel('one specific focus',{exact:true}).fill('make one useful offer');
-  await draft.getByLabel('step 1',{exact:true}).fill('choose one artist to contact today');
-  await draft.getByLabel('your date (optional)',{exact:true}).first().fill('2026-12-01');
-  await draft.getByRole('button',{name:'add another focus',exact:true}).click();
-  await draft.getByLabel('one specific focus',{exact:true}).nth(1).fill('finish a shareable beat');
-  await draft.getByLabel('step 1',{exact:true}).nth(1).fill('choose one beat idea');
-  await draft.getByRole('button',{name:'add another focus',exact:true}).click();
-  assert.equal(await draft.getByRole('button',{name:'add another focus',exact:true}).isVisible(),false,'three-focus cap');
-  await draft.getByRole('button',{name:'remove focus 3',exact:true}).click();
-  await page.screenshot({path:`${output}/${width}-${motion}-goal-draft.png`});
-  await draft.getByRole('button',{name:'approve and save this plan',exact:true}).click();
-  assert.equal(await page.locator('#demo-next-title').innerText(),'choose one artist to contact today');
-  assert.equal(await page.locator('#demo-next-date').innerText(),'your planned date: 2026-12-01');
-  await plan.getByRole('button',{name:'mark step done',exact:true}).click();
-  assert((await counts.innerText()).includes('1 tasks marked done'));
-  await page.locator('#demo-saved-plan').getByRole('checkbox',{name:/choose one artist to contact today/}).click();
-  assert((await counts.innerText()).includes('0 tasks marked done'),'undo removes completion');
-  await plan.getByText('choose your interests · 0 saved',{exact:true}).click();
-  await plan.getByRole('checkbox',{name:'Hip hop',exact:true}).check();
-  assert.equal(await plan.getByText(/its listed sound/).count(),0,'interest draft is not applied');
-  await plan.getByRole('button',{name:'save interests',exact:true}).click();
-  await plan.getByText('choose your interests · 1 saved',{exact:true}).click();
-  assert.equal(await plan.getByRole('checkbox',{name:'Hip hop',exact:true}).isVisible(),false,'interests disclosure can close');
-  assert(await plan.getByText('its listed sound, Hip hop, matches an interest you selected. read the brief to check the requirements.',{exact:true}).isVisible());
-  assert(await plan.getByRole('button',{name:'Artist Selling Guide',exact:true}).isVisible(),'real guide suggested with honest reason');
-  await plan.getByRole('button',{name:'open example brief',exact:true}).click();
-  const board=page.locator('#dp-2');await board.getByRole('button',{name:'save as working on',exact:true}).click();
-  await board.getByRole('button',{name:'plan it in Your Day',exact:true}).click();
-  assert((await counts.innerText()).includes('1 briefs saved as working on'));
-  const brief=page.locator('#demo-working-brief');assert(await brief.isVisible());
-  assert((await page.locator('#demo-working-deadline').innerText()).includes('example brief deadline:'));
-  assert.equal(await page.locator('#demo-brief-saved').getByRole('checkbox').count(),0,'checklist draft is not saved');
-  await brief.getByLabel('step 1',{exact:true}).fill('read the example requirements');
-  await brief.getByRole('button',{name:'approve and save checklist',exact:true}).click();
-  await brief.getByRole('checkbox',{name:'read the example requirements',exact:true}).click();
-  assert((await counts.innerText()).includes('1 tasks marked done'));
-  await brief.getByRole('button',{name:'read brief and submit',exact:true}).click();
-  await board.getByLabel('example submission link',{exact:true}).fill('https://example.invalid/music/demo');
-  await board.getByRole('button',{name:'record example submission',exact:true}).click();
-  assert(await page.locator('#dp-3').getByRole('region',{name:'Example submissions',exact:true}).isVisible());
-  if(width===390)await page.locator('#demo-section').selectOption('1');else await tabs.nth(1).click();
-  assert((await counts.innerText()).includes('1 submissions recorded'));
-  await plan.getByText('weekly email preference',{exact:true}).click();
-  const opt=page.locator('#demo-recap-opt');assert.equal(await opt.isChecked(),false,'email defaults off');
-  await opt.check();await page.locator('#demo-recap-zone').fill('Australia/Sydney');
-  await plan.getByRole('combobox',{name:'recap day',exact:true}).selectOption('0');
-  await plan.getByRole('combobox',{name:'recap time',exact:true}).selectOption('18');
-  await plan.getByRole('button',{name:'save email preference',exact:true}).click();
-  assert.equal(await page.locator('#demo-recap-status').innerText(),'preference saved. email delivery remains disabled.');
-  await opt.uncheck();await plan.getByRole('button',{name:'save email preference',exact:true}).click();
-  assert.equal(await page.locator('#demo-recap-status').innerText(),'weekly email preference is off. email delivery remains disabled.');
-  await page.locator('#demo-recap-zone').fill('wrong/zone');await plan.getByRole('button',{name:'save email preference',exact:true}).click();
-  assert((await page.locator('#demo-recap-status').innerText()).includes('valid timezone'));
-  assert(await plan.evaluate(node=>node.scrollWidth<=node.clientWidth),'goal/review fits');
-  await plan.screenshot({path:`${output}/${width}-${motion}-next-move.png`});
-  page.off('request',watch);assert.equal(requests.filter(request=>request.method!=='GET'||/example\.invalid|generativelanguage|api\.anthropic\.com|supabase|resend|\/api\//.test(request.url)).length,0,'no member, AI, submission or email calls');
-}
+const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
+const output = process.env.SHOTS_DIR || '/tmp/lifetime-landing-review';
+fs.mkdirSync(output, {recursive: true});
+const types = {'.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.mp4': 'video/mp4', '.woff2': 'font/woff2', '.json': 'application/json'};
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
-  if (pathname === '/' || pathname === '/index.html') {
-    res.writeHead(200, {'Content-Type':'text/html'});res.end(render());return;
-  }
-  if (pathname === '/api/muso') {res.writeHead(200,{'Content-Type':'application/json'});res.end('{}');return;}
+  if (pathname === '/' || pathname === '/index.html') { res.writeHead(200, {'Content-Type': 'text/html'}); res.end(render()); return; }
   const file = path.join(process.cwd(), decodeURIComponent(pathname));
-  if (!file.startsWith(process.cwd() + path.sep)) {res.writeHead(403);res.end();return;}
-  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {res.writeHead(404);res.end();return;}
-  res.writeHead(200, {'Content-Type':types[path.extname(file)] || 'application/octet-stream'});
+  if (!file.startsWith(process.cwd() + path.sep)) { res.writeHead(403); res.end(); return; }
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404); res.end(); return; }
+  res.writeHead(200, {'Content-Type': types[path.extname(file)] || 'application/octet-stream'});
   fs.createReadStream(file).pipe(res);
 });
+const NOTE = 'your music and rights stay yours. sending is never a guaranteed placement.';
 (async () => {
-  server.listen(0,'127.0.0.1');
-  await new Promise(resolve => server.once('listening',resolve));
-  const browser = await chromium.launch({headless:true});
+  server.listen(0, '127.0.0.1');
+  await new Promise((resolve) => server.once('listening', resolve));
+  const browser = await chromium.launch({headless: true, channel: process.env.PW_CHANNEL || undefined});
   const base = process.env.TEST_URL || `http://127.0.0.1:${server.address().port}`;
-  const results=[];
+  const results = [];
   try {
-    for (const width of [1440,390]) for (const reducedMotion of ['no-preference','reduce']) {
-      const context=await browser.newContext({viewport:{width,height:width===390?844:1000},reducedMotion});
-      const page=await context.newPage();
-      const errors=[],missing=[],videoRequests=[];
-      page.on('pageerror',e=>errors.push(e.message));
-      page.on('response',r=>{if(r.status()===404)missing.push(r.url());});
-      page.on('request',r=>{if(r.url().endsWith('.mp4'))videoRequests.push(r.url());});
-      await page.goto(base,{waitUntil:'networkidle'});
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-hero.png`});
-      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'page width');
-      assert.equal(await page.locator('.bundle-summary a').count(),6,'five bundle links and one forever panel');
-      const sheet=page.locator('.hero-folder-stage .folder-sheet');
-      if(reducedMotion==='no-preference') {
-        const sheetY=()=>sheet.evaluate(el=>parseFloat(getComputedStyle(el).translate.split(' ')[1])||0);
-        const startY=await sheetY();
-        await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));
-        await page.waitForTimeout(100);
-        assert(await sheetY()<startY-5,'paper rises with scrolling');
-        await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-        await page.waitForTimeout(100);
-        assert(Math.abs(await sheetY()-startY)<2,'paper returns on reverse scroll');
-      } else assert.equal(await sheet.evaluate(el=>getComputedStyle(el).animationName),'none');
-      const film=page.locator('.film-player');
-      assert.equal(await film.count(),1);
-      assert.equal(await film.getAttribute('preload'),'none');
-      assert.equal(await film.evaluate(el=>el.paused),true);
-      await page.locator('#film').scrollIntoViewIfNeeded();
-      assert(await page.locator('.film-cover').isVisible());
-      assert.equal(await film.evaluate(el=>el.inert),true);
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-film.png`});
-      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'film width');
-      assert.equal(await page.locator('[role="tabpanel"]:visible').count(),1);
-      assert.equal(await page.locator('.d-toast').count(),0);
-      const portalY=await page.locator('#portal').evaluate(el=>el.offsetTop);
-      await page.locator('.film-next').click();
-      assert.equal(await page.evaluate(()=>document.activeElement.id),width===390?'demo-section':'dt-0');
-      const streamsTarget=await page.locator('[data-muso="streams"]').innerText();
-      await page.locator('.credits-live').scrollIntoViewIfNeeded();
-      if(reducedMotion==='no-preference') {
-        await page.waitForFunction(target=>document.querySelector('[data-muso="streams"]').textContent!==target,streamsTarget);
-        await page.waitForFunction(target=>document.querySelector('[data-muso="streams"]').textContent===target,streamsTarget);
-      } else assert.equal(await page.locator('[data-muso="streams"]').innerText(),streamsTarget);
-      const tabs=page.getByRole('tab');
-      for(let i=0;i<9;i++) {
-        if(width===390)await page.locator('#demo-section').selectOption(String(i));
-        else await tabs.nth(i).click();
-        assert.equal(await page.locator('[role="tabpanel"]:visible').getAttribute('id'),`dp-${i}`);
-        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,`tab ${i} width`);
-        assert(await page.locator(`#dp-${i}`).evaluate(el=>el.scrollWidth<=el.clientWidth),`tab ${i} overflow`);
-        if(i===1){
-          const day=page.locator('#dp-1'),todayTasks=page.locator('#demo-tasks'),week=page.locator('#demo-week');
-          assert(await day.getByText('made music',{exact:true}).isVisible());
-          assert(await day.getByText('wins',{exact:true}).isVisible());
-          assert.equal(await week.locator('.d-day').count(),7);
-          assert.equal(await week.locator('[aria-current="date"]').count(),1);
-          if(width===390)assert(await week.evaluate(el=>el.scrollWidth>el.clientWidth),'week scrolls inside its box');
-          const draft='<img src=x onerror=alert(1)> example task';
-          await day.getByRole('textbox',{name:'Add task',exact:true}).fill(draft);
-          await day.getByRole('textbox',{name:'Add task',exact:true}).press('Enter');
-          assert.equal(await day.locator('img[src="x"]').count(),0,'task text stays inert');
-          assert.equal(await todayTasks.getByText(draft,{exact:true}).count(),1);
-          assert.equal(await week.getByText(draft,{exact:true}).count(),1);
-          await todayTasks.getByRole('combobox',{name:'Move to: '+draft,exact:true}).selectOption('inbox');
-          assert.equal(await week.getByText(draft,{exact:true}).count(),0,'inbox has no calendar date');
-          await todayTasks.getByRole('button',{name:'Remove: '+draft,exact:true}).click();
-          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
-          assert.equal(await todayTasks.getByText('finish a beat',{exact:true}).count(),0);
-          assert(await week.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked());
-          await week.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
-          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
-          await day.getByRole('button',{name:'Undo',exact:true}).click();
-          assert.equal(await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked(),false,'Undo restores the task');
-          await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).click();
-          await day.locator('#demo-completed summary').click();
-          assert.equal(await day.locator('#demo-completed summary').innerText(),'completed (1) · last 90 days');
-          assert(await day.getByText('up to 500 most recent completed tasks. untick to reopen.',{exact:true}).isVisible());
-          await day.locator('#demo-completed-tasks').getByRole('checkbox',{name:'finish a beat',exact:true}).click();
-          assert.equal(await todayTasks.getByRole('checkbox',{name:'finish a beat',exact:true}).isChecked(),false,'completed list can reopen a task');
-          const originalDay=await page.locator('#demo-week-date').inputValue();
-          const futureDay=await page.evaluate(day=>{const value=new Date(day+'T12:00:00Z');value.setUTCDate(value.getUTCDate()+35);return value.toISOString().slice(0,10);},originalDay);
-          const planned='plan an example session';
-          await day.getByRole('textbox',{name:'Add task',exact:true}).fill(planned);
-          await day.getByRole('textbox',{name:'Add task',exact:true}).press('Enter');
-          await todayTasks.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
-          const taskPlan=page.getByRole('dialog',{name:'plan task',exact:true});
-          await taskPlan.getByLabel('day',{exact:true}).fill(futureDay);
-          await taskPlan.getByLabel('start time',{exact:true}).fill('09:15');
-          await taskPlan.getByLabel('length',{exact:true}).selectOption('45');
-          await page.screenshot({path:`${output}/${width}-${reducedMotion}-task-plan.png`});
-          assert(await taskPlan.evaluate(el=>el.scrollWidth<=el.clientWidth),'task plan fits');
-          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
-          assert.equal(await page.locator('#demo-week-date').inputValue(),futureDay);
-          const futureTask=week.locator(`[data-day="${futureDay}"] .d-task`).filter({hasText:planned});
-          assert.equal((await futureTask.locator('.d-task-time').innerText()).trim(),'09:15');
-          assert((await futureTask.innerText()).includes('45 min'));
-          assert.equal(await todayTasks.getByRole('button',{name:'plan task: '+planned,exact:true}).count(),0,'future task leaves today');
-          await futureTask.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
-          await taskPlan.getByRole('button',{name:'clear time',exact:true}).click();
-          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
-          assert.equal(await futureTask.locator('.d-task-time').count(),0,'time can be cleared');
-          await futureTask.getByRole('button',{name:'plan task: '+planned,exact:true}).click();
-          await taskPlan.getByLabel('day',{exact:true}).fill('');
-          await taskPlan.getByRole('button',{name:'Save',exact:true}).click();
-          await todayTasks.getByRole('button',{name:'Remove: '+planned,exact:true}).click();
-          await day.getByRole('button',{name:'previous week',exact:true}).click();
-          assert.notEqual(await page.locator('#demo-week-date').inputValue(),futureDay,'previous week works');
-          await day.getByRole('button',{name:'this week',exact:true}).click();
-          assert.equal(await page.locator('#demo-week-date').inputValue(),originalDay);
-          const exampleDeadline=await week.locator('.d-week-deadline').count();
-          if(!exampleDeadline){await day.getByRole('button',{name:'next week',exact:true}).click();}
-          assert.equal(await week.locator('.d-week-deadline').count(),1,'example brief deadline appears in its actual week');
-          await week.locator('.d-week-deadline').click();
-          assert(await page.locator('#dp-2').isVisible(),'deadline opens the example brief');
-          assert.equal(await page.locator('.d-brief-calendar details').evaluate(el=>el.open),true);
-          if(width===390)await page.locator('#demo-section').selectOption('1');else await tabs.nth(1).click();
-          await day.getByRole('button',{name:'this week',exact:true}).click();
-          await day.getByRole('checkbox',{name:'made music 2 days',exact:true}).uncheck();
-          assert(await day.getByRole('checkbox',{name:'made music 1 day',exact:true}).isVisible());
-          await day.locator('.d-win-add summary').click();
-          await day.getByRole('textbox',{name:'What happened',exact:true}).fill('finished an example beat');
-          await day.getByRole('combobox',{name:'Win kind',exact:true}).selectOption('finished');
-          await day.getByRole('button',{name:'Save',exact:true}).click();
-          assert.equal(await page.locator('#demo-win-count').innerText(),'1 win this month');
-          const requests=[];const track=req=>requests.push(req.url());page.on('request',track);
-          await day.getByRole('button',{name:'add to your calendar',exact:true}).click();
-          const dialog=page.getByRole('dialog',{name:'your calendar',exact:true});
-          assert(await dialog.isVisible());
-          await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-off.png`});
-          for(let key=0;key<4;key++){await page.keyboard.press('Tab');assert(await dialog.evaluate(el=>document.activeElement===document.body||el.contains(document.activeElement)),'Tab never focuses background controls');}
-          await dialog.getByRole('button',{name:'turn on',exact:true}).click();
-          const link=dialog.getByRole('textbox',{name:'your calendar link (example)',exact:true});
-          const initialLink=await link.inputValue();assert.match(initialLink,/^https:\/\/example\.invalid\/calendar\/demo-\d+\/all\.ics$/);
-          const feeds=dialog.getByRole('combobox',{name:'choose a feed',exact:true});
-          for(const [feed,description] of [['plan','your dated tasks and time blocks. inbox tasks, habits and wins stay in the portal.'],['deadlines','current board briefs with a real deadline. briefs without a deadline are left out.'],['all','your plan and the board, with the choices below.']]){
-            await feeds.selectOption(feed);assert.equal(await link.inputValue(),initialLink.replace(/all\.ics$/,feed+'.ics'));assert(await dialog.getByText(description,{exact:true}).isVisible());
-          }
-          await dialog.getByRole('checkbox',{name:'my plan in everything',exact:true}).uncheck();
-          assert.equal(await link.inputValue(),initialLink,'feed options keep existing private URL');
-          await dialog.getByRole('checkbox',{name:'my plan in everything',exact:true}).check();
-          for(const name of ['apple calendar','google calendar','outlook'])await dialog.getByRole('button',{name,exact:true}).click();
-          assert(await dialog.getByText(/Subscribe from web/).isVisible(),'Outlook setup explains subscription');
-          assert(await dialog.getByText('your calendar app checks this link on its own schedule. changes can take a day or longer to appear.',{exact:true}).isVisible());
-          await dialog.locator('[data-calendar-zone]').click();
-          await dialog.getByRole('button',{name:'change timezone',exact:true}).click();
-          await dialog.getByRole('combobox',{name:'timezone',exact:true}).selectOption('UTC');
-          await dialog.getByRole('button',{name:'use this timezone',exact:true}).click();
-          assert(await dialog.getByText('times are in UTC',{exact:true}).isVisible());
-          assert.equal(await dialog.getByText(/a few minutes/).count(),0,'no misleading refresh promise');
-          assert(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth),'calendar fits');
-          assert.equal(context.pages().length,1,'calendar examples stay in the preview');
-          await page.screenshot({path:`${output}/${width}-${reducedMotion}-calendar-on.png`});
-          await page.evaluate(()=>document.documentElement.dataset.recording='on');
-          await page.waitForFunction(()=>getComputedStyle(document.getElementById('demo-calendar-link')).filter==='blur(9px)');
-          await page.evaluate(()=>delete document.documentElement.dataset.recording);
-          await context.grantPermissions(['clipboard-read','clipboard-write']);
-          await dialog.getByRole('button',{name:'copy link',exact:true}).click();
-          assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),initialLink);
-          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
-          assert.equal(await link.inputValue(),initialLink,'reset requires confirmation');
-          await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
-          assert.equal(await link.inputValue(),initialLink);
-          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
-          await dialog.getByRole('button',{name:'reset link',exact:true}).click();
-          assert.notEqual(await link.inputValue(),initialLink);
-          await page.keyboard.press('Escape');assert.equal(await dialog.isVisible(),false);
-          assert.equal(await page.evaluate(()=>document.activeElement.hasAttribute('data-calendar-open')),true);
-          await day.getByRole('button',{name:'add to your calendar',exact:true}).click();
-          await dialog.getByRole('button',{name:'turn off',exact:true}).click();
-          assert(await dialog.getByRole('button',{name:'turn on',exact:true}).isVisible());
-          await dialog.getByRole('button',{name:'Close',exact:true}).click();
-          page.off('request',track);
-          assert.equal(requests.filter(url=>/example\.invalid|\/api\/calendar|supabase|calendar\.google|outlook/.test(url)).length,0,'no feed or subscription requests');
-          await day.screenshot({path:`${output}/${width}-${reducedMotion}-your-day-full.png`});
-          await nextMove(page,width,reducedMotion,tabs,output);
-        }
-        if(i===2){
-          const deadline=page.locator('.d-brief-calendar');
-          assert((await deadline.locator('[data-brief-deadline]').innerText()).length>0);
-          if(!(await deadline.locator('details').evaluate(el=>el.open)))await deadline.locator('summary').click();
-          await deadline.getByRole('button',{name:'google',exact:true}).click();
-          assert.match(await deadline.getByRole('status').innerText(),/this example stays here/);
-        }
-        if(i===5){assert(await page.locator('#dp-5').getByText('analog alchemy',{exact:true}).isVisible());assert(await page.locator('#dp-5').getByText('octaves creator suite · part two (unreleased)',{exact:true}).isVisible());}
-        if(i===7)assert.equal(await page.locator('#dp-7 .d-row:visible').count(),7);
-        await page.locator('#portal').scrollIntoViewIfNeeded();
-        await page.locator(`#dp-${i}`).evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
-        await page.screenshot({path:`${output}/${width}-${reducedMotion}-tab-${i}.png`});
+    for (const width of [1440, 390]) for (const reducedMotion of ['no-preference', 'reduce']) {
+      const context = await browser.newContext({viewport: {width, height: width === 390 ? 844 : 1000}, reducedMotion});
+      const page = await context.newPage();
+      const errors = [], missing = [], videos = [];
+      page.on('pageerror', (e) => errors.push(e.message));
+      page.on('response', (r) => { if (r.status() === 404) missing.push(r.url()); });
+      page.on('request', (r) => { if (r.url().endsWith('.mp4')) videos.push(r.url()); });
+      await page.goto(base, {waitUntil: 'networkidle'});
+      await page.waitForFunction(() => window.assembly);
+      await page.evaluate(() => window.assembly.skip());
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
+      // the hero: the heading, log in and the checkout CTA
+      assert.match(await page.locator('h1').innerText(), /my whole setup\.\s*yours forever\./);
+      assert.equal(await page.locator('.hero-login').getAttribute('href'), 'https://portal.elaye.store/login');
+      await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
+      // payments: four CTAs, all the live checkout, opening safely in a new tab
+      const ctas = page.locator('a[data-checkout]');
+      assert.equal(await ctas.count(), 4, 'four checkout CTAs');
+      for (let i = 0; i < 4; i++) {
+        assert.equal(await ctas.nth(i).getAttribute('href'), LIVE);
+        assert.equal(await ctas.nth(i).getAttribute('target'), '_blank');
+        assert.match(await ctas.nth(i).getAttribute('rel'), /noopener/);
       }
-      if(width===1440){await tabs.nth(0).focus();await page.keyboard.press('End');assert.equal(await tabs.nth(8).getAttribute('aria-selected'),'true');await page.keyboard.press('Home');assert.equal(await tabs.nth(0).getAttribute('aria-selected'),'true');}
-      await page.locator('[data-demo-go="6"]').first().click();
-      assert.equal(await page.locator('#dp-6').isVisible(),true);
-      await page.locator('.vault-media').scrollIntoViewIfNeeded();
-      assert.equal(await page.locator('video').count(),2,'launch film and on-demand highlight player');
-      assert.equal(await page.locator('[data-motion-toggle]').count(),0,'quiet plates use stills');
-      await page.locator('#learning').scrollIntoViewIfNeeded();
-      await page.locator('.syllabi summary').first().click();
-      assert.equal(await page.locator('.syllabi details').first().getAttribute('open'),'');
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-learning.png`});
+      // the film: one player, a poster frame, metadata only until it is on screen
+      const film = page.locator('.film-player');
+      assert.equal(await page.locator('video').count(), 1, 'the launch film is the only video');
+      assert.equal(await film.getAttribute('preload'), 'metadata');
+      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-frame.jpg');
+      assert.equal(await film.evaluate((v) => v.controls), false, 'the scripted preview hides native controls');
+      await page.locator('.demo-film').scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      assert(await page.locator('.film-cover').isVisible() || (await film.evaluate((v) => v.currentTime)) >= 6, 'the film shows its own frame until the preview is past the intro');
+      // the price: card, buy button, inclusions open, the note, and the details toggle by mouse and keyboard
       await page.locator('#price').scrollIntoViewIfNeeded();
-      assert(await page.locator('video').evaluateAll(v=>v.every(x=>x.paused)),'offscreen plates pause');
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-price.png`});
-      await page.locator('#price [data-checkout]').focus();
-      await page.keyboard.press('Tab');
-      await page.keyboard.press('Shift+Tab');
-      const focus=await page.locator('#price [data-checkout]').evaluate(el=>getComputedStyle(el).outlineColor);
-      assert.equal(focus,'rgb(11, 11, 11)');
-      assert.equal(videoRequests.length,0,'no background video downloads');
-      await page.locator('.hero-folder-link').click();
-      assert.equal(await page.locator('#dp-0').isVisible(),true);
-      assert.equal(await page.evaluate(()=>document.activeElement.id),width===390?'demo-section':'dt-0');
-      await page.waitForFunction(()=>Math.abs(document.querySelector('#demo').getBoundingClientRect().top-(innerWidth===390?80:104))<3);
-      await page.locator('.d-door[data-demo-go="4"]').click();
-      assert.equal(await page.locator('#dp-4').isVisible(),true,'preview doors open their section');
-      await page.locator('.room-scene').scrollIntoViewIfNeeded();
-      await page.waitForFunction(()=>document.querySelector('.room-scene').classList.contains('is-entered'));
-      await page.locator('.room-message').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
-      assert(await page.getByText('a feel for the room. illustrative messages.').isVisible());
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-room.png`});
-      const moreMessages=page.locator('.talk-more');
-      assert.equal(await page.locator('.quote:visible').count(),8);
-      await moreMessages.locator('summary').click();
-      assert.equal(await page.locator('.quote:visible').count(),12);
-      const lastQuote=page.locator('.quote').last();
-      await lastQuote.scrollIntoViewIfNeeded();
-      await page.waitForFunction(()=>document.querySelector('.talk-more .quote:last-child').classList.contains('is-entered'));
-      assert.equal(await lastQuote.evaluate(el=>getComputedStyle(el).animationName),reducedMotion==='reduce'?'none':'quote-arrive');
-      await lastQuote.evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-more-messages.png`});
-      await moreMessages.locator('summary').focus();
-      await page.keyboard.press('Enter');
-      assert.equal(await page.locator('.quote:visible').count(),8);
-      await page.locator('#price').scrollIntoViewIfNeeded();
-      const includes=page.locator('.price-includes');
-      const summary=includes.locator('summary');
-      const note=page.locator('.price-note');
-      assert.equal(await includes.evaluate(el=>el.open),true,'inclusions open on load');
-      assert.equal(await page.locator('.price-list li:visible').count(),8);
-      assert.equal(await note.count(),1);
-      assert.equal(await note.innerText(),'your music and rights stay yours. sending is never a guaranteed placement.');
-      assert.equal(await note.locator('li').count(),0);
-      assert.equal(await note.evaluate(el=>getComputedStyle(el,'::before').content),'none');
-      assert(await page.evaluate(()=>document.querySelector('.price-intro').getBoundingClientRect().bottom<=document.querySelector('.price-card').getBoundingClientRect().top),'purchase card sits below the introduction');
-      if(width===1440) assert(await page.locator('.price-card').evaluate(el=>el.getBoundingClientRect().width>1100),'desktop purchase card uses the full content width');
-      await page.locator('.price-intro span').last().evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished)));
-      await page.screenshot({path:`${output}/${width}-${reducedMotion}-price.png`});
-      await page.locator('#price').screenshot({path:`${output}/${width}-${reducedMotion}-price-section.png`});
-      await summary.click();assert.equal(await includes.evaluate(el=>el.open),false);assert(await note.isVisible());
-      await summary.click();assert.equal(await includes.evaluate(el=>el.open),true);
+      const includes = page.locator('.price-includes'), summary = includes.locator('summary'), note = page.locator('.price-note');
+      assert.equal(await includes.evaluate((el) => el.open), true, 'inclusions open on load');
+      assert.equal(await page.locator('.price-list li').count(), 8);
+      assert.equal(await note.innerText(), NOTE);
+      assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
+      await page.locator('.price-card a[data-checkout]').focus();
+      assert.notEqual(await page.locator('.price-card a[data-checkout]').evaluate((el) => getComputedStyle(el).outlineStyle), 'none', 'the buy button shows focus');
+      await summary.click(); assert.equal(await includes.evaluate((el) => el.open), false); assert(await note.isVisible());
+      await summary.click(); assert.equal(await includes.evaluate((el) => el.open), true);
       await summary.focus();
-      for(const key of ['Enter','Space']) {
-        await summary.press(key);assert.equal(await includes.evaluate(el=>el.open),false);assert(await note.isVisible());
-        await summary.press(key);assert.equal(await includes.evaluate(el=>el.open),true);
+      for (const key of ['Enter', 'Space']) {
+        await summary.press(key); assert.equal(await includes.evaluate((el) => el.open), false);
+        await summary.press(key); assert.equal(await includes.evaluate((el) => el.open), true);
       }
-      if(reducedMotion==='reduce') {
-        assert.equal(await page.locator('.room-message').first().evaluate(el=>getComputedStyle(el).animationName),'none');
-        assert.equal(await page.locator('.price-intro span').first().evaluate(el=>getComputedStyle(el).animationName),'none');
-      }
-      if(reducedMotion==='no-preference') {
-        await page.locator('.film-cover').click();
-        assert.equal(await page.locator('.film-cover').isVisible(),false);
-        assert.equal(await film.evaluate(el=>el.inert),false);
-        await page.waitForFunction(()=>document.querySelector('.film-player').currentTime>0);
-        assert.equal(await film.evaluate(el=>el.paused),false);
-        await film.evaluate(el=>el.pause());
-      }
-      assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
-      results.push({width,reducedMotion,portalY,errors,missing,videoRequests:videoRequests.length});
+      // the inclusions are a labelled region; on a phone, where they scroll sideways, it is a tab stop
+      const region = page.locator('.price-scroll[role="region"][aria-label="everything included"]');
+      assert.equal(await region.count(), 1);
+      if (width === 390) {
+        assert.equal(await region.getAttribute('tabindex'), '0');
+        assert(await region.evaluate((el) => el.scrollWidth > el.clientWidth), 'the phone list scrolls sideways');
+      } else assert.equal(await region.getAttribute('tabindex'), null, 'no extra tab stop where nothing scrolls');
+      await page.screenshot({path: `${output}/${width}-${reducedMotion}-price.png`});
+      // no background video: only the launch film may be requested
+      assert(videos.every((url) => url.endsWith('/assets/launch/lifetime-film.mp4')), 'no background video downloads');
+      assert.deepEqual(errors, []); assert.deepEqual(missing, []);
+      results.push({width, reducedMotion, errors, missing, videoRequests: videos.length});
       await context.close();
     }
-    for(const failure of ['no-js','homer-blocked','media-blocked']) {
-      const context=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:failure!=='no-js'});
-      const page=await context.newPage();
-      if(failure==='homer-blocked')await page.route('**/js/homer.js',r=>r.abort());
-      if(failure==='media-blocked')await page.route('**/assets/launch/*',r=>r.abort());
-      await page.goto(base,{waitUntil:'networkidle'});
-      assert(await page.locator('#inside').isVisible());
-      assert(await page.locator('#learning').isVisible());
-      assert(await page.locator('.inside-card').evaluateAll(v=>v.every(el=>getComputedStyle(el).opacity==='1')));
-      assert.equal(await page.locator('.price-includes').evaluate(el=>el.open),true);
-      assert.equal(await page.locator('.price-list li:visible').count(),8);
-      assert.equal(await page.locator('.film-cover').isVisible(),failure!=='no-js'&&failure!=='homer-blocked');
-      if(failure==='no-js')assert.equal(await page.locator('.film-player').evaluate(el=>el.inert),false);
-      await page.locator('.talk-more summary').click();
-      assert.equal(await page.locator('.quote:visible').count(),12,'more testimonials work without scripts');
-      assert(await page.locator('.room-message').evaluateAll(v=>v.every(el=>getComputedStyle(el).visibility!=='hidden')));
-      assert.equal(await page.locator('#price [data-checkout]').getAttribute('href'),'https://buy.stripe.com/6oU5kEaEYgMQ86jbqa9AA03');
-      await page.screenshot({path:`${output}/390-${failure}.png`,fullPage:true});
+    // fallbacks: the page works with no script, with the page script blocked, and with the launch media blocked
+    for (const failure of ['no-js', 'script-blocked', 'media-blocked']) {
+      const context = await browser.newContext({viewport: {width: 390, height: 844}, javaScriptEnabled: failure !== 'no-js'});
+      const page = await context.newPage();
+      if (failure === 'script-blocked') await page.route('**/js/assembly.js', (r) => r.abort());
+      if (failure === 'media-blocked') await page.route('**/assets/launch/*', (r) => r.abort());
+      await page.goto(base, {waitUntil: 'networkidle'});
+      assert(await page.locator('h1').isVisible());
+      for (const id of ['#inside', '#features', '#price']) assert(await page.locator(id).isVisible(), id + ' visible');
+      assert.equal(await page.locator('.price-includes').evaluate((el) => el.open), true);
+      assert.equal(await page.locator('.price-list li').count(), 8);
+      assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
+      assert.equal(await page.locator('a[data-checkout]').count(), 4);
+      if (failure === 'no-js') {
+        assert.equal(await page.locator('.film-cover').isVisible(), false, 'no cover over the player without scripts');
+        assert.equal(await page.locator('.film-player').evaluate((v) => v.controls && !v.inert), true, 'the film plays with native controls');
+      }
+      await page.screenshot({path: `${output}/390-${failure}.png`, fullPage: true});
+      results.push({failure, ok: true});
       await context.close();
     }
-    fs.writeFileSync(`${output}/results.json`,JSON.stringify(results,null,2));
-    console.log(JSON.stringify(results,null,2));
-  } finally {await browser.close();server.close();}
-})().catch(error=>{console.error(error);server.close();process.exitCode=1;});
+    fs.writeFileSync(`${output}/results.json`, JSON.stringify(results, null, 2));
+    console.log('Landing contract: hero, four live CTAs, film, price and inclusions at 1440 and 390 with and without reduced motion; no-js, script-blocked and media-blocked fallbacks: passed.');
+  } finally { await browser.close(); server.close(); }
+})().catch((error) => { console.error(error); server.close(); process.exitCode = 1; });

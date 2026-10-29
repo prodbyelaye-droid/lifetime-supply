@@ -13,30 +13,34 @@ assert.equal(getOffer(PRICE_CHANGE, 'https://example.com').checkoutUrl, 'https:/
 assert.equal(getOffer(PRICE_CHANGE, 'javascript:alert(1)').checkoutUrl, 'https://instagram.com/elxyee');
 const next = 'https://buy.stripe.com/Verified699TestLink'; // fixture, never served
 assert.equal(getOffer(PRICE_CHANGE, next).checkoutUrl, next);
-const before = render(PRICE_CHANGE - 1);
-const after = render(PRICE_CHANGE, next);
-const waiting = render(PRICE_CHANGE);
-for (const html of [before, after, waiting]) {
+// The assembly embeds the verified current live offer. Legacy schedule helpers
+// above remain tested, but cannot replace the assembled template's live links.
+const fs = require('node:fs');
+const template = fs.readFileSync('index.html', 'utf8');
+const liveCheckout = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
+for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE, Date.now()]) {
+  const html = render(now, next);
+  assert.equal(html, template, 'snapshot must survive historical transition logic');
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.offers.priceCurrency, 'USD');
-  assert(html.includes('$' + schema.offers.price.split('.')[0] + ' <span class="currency">USD'));
+  assert.equal(Number(schema.offers.price), 699);
+  assert.equal(schema.offers.url, liveCheckout);
   const checkouts = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map(x => x[1]);
   assert.equal(checkouts.length, 4);
-  assert(checkouts.every(url => url === schema.offers.url));
+  assert(checkouts.every(url => url === liveCheckout));
+  assert(html.includes('$699 USD. one payment, yours forever.'));
+  assert(html.includes('https://instagram.com/elxyee'));
+  assert(!html.includes('$599'));
+  assert(!html.includes('offer-refresh-at'));
 }
-const cardLine = html => html.match(/<p class="price-sub">([^<]*)<\/p>/)[1];
-assert.equal(cardLine(before), 'until sunday 11 october 2026, 8 pm AEDT. then $699 USD.');
-assert.equal(cardLine(after), '$699 USD. one payment, yours forever.');
-assert.equal(cardLine(waiting), '$699 USD. one payment, yours forever. checkout is updating. DM me for access.');
-assert.equal(before.split('$599 USD until sunday 11 october 2026 at 8 pm AEDT, then $699 USD').length - 1, 2, 'hero and FAQ keep their dated wording');
-for (const html of [before, after, waiting]) {
-  assert(html.includes('<details class="price-includes" open>'));
-  assert.equal((html.match(/class="dm-line price-note"/g) || []).length, 1);
-  for (const retired of ['all future updates', 'manual tracking', 'with you for the long run', 'placements are never guaranteed']) assert(!html.includes(retired), retired);
+const handler = require('../api/landing');
+for (const method of ['GET', 'HEAD', 'POST']) {
+  const result = {headers:{}};
+  const res = {setHeader(k,v){result.headers[k]=v;},status(n){result.status=n;return this;},send(body){result.body=body;},end(){result.ended=true;}};
+  handler({method},res);
+  assert.equal(result.status, method==='POST'?405:200);
+  if(method==='GET')assert.equal(result.body,template);
+  if(method==='HEAD')assert.equal(result.body,'');
+  if(method==='POST')assert.equal(result.headers.Allow,'GET, HEAD');
 }
-assert(!after.includes(CHECKOUT_599));
-assert(!after.includes('$599'));
-assert(!waiting.includes(CHECKOUT_599));
-assert.equal((waiting.match(/data-checkout[^>]*>DM for lifetime access/g) || []).length, 4);
-assert(!waiting.includes('offer-refresh-at'));
-console.log('Offer boundary, currency, schema, all CTA URLs and missing-link fallback: passed.');
+console.log('Legacy helper boundaries, assembled live offer, schema, four CTAs and HTTP methods: passed.');

@@ -4,6 +4,9 @@ const {getOffer, CHECKOUT_599, PRICE_LINE} = require('../lib/offer');
 const template = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf8');
 
 function render(now, checkout699) {
+  // The assembly contains the verified, rendered live offer. Only run the
+  // historical Oct 11 transition on templates that still contain its token.
+  if (!template.includes(CHECKOUT_599)) return template;
   const offer = getOffer(now, checkout699);
   // Only the card omits the repeated current amount. Raised-price copy stays intact.
   const cardPriceLine = offer.priceLine.replace(/^\$\d+ USD until (.+) at (.+), then (.+)\. one payment\.$/, 'until $1, $2. then $3.');

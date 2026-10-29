@@ -13,3 +13,22 @@ untitled.jpg
 
 # macOS noise
 .DS_Store
+
+# macOS AppleDouble files
+._*
+
+# Review output, masters and scratch (landing assembly, 30 Oct): evidence lives in the wiki outbox and on the SSD
+evidence/
+REPORT.md
+*.log
+.logo-cmp/
+# capture and review scripts stay local; the page check and the blot sheet are kept
+scripts/*
+!scripts/check.cjs
+!scripts/blot2-sheet.html
+
+# assets/grad links to the element lab outside the repo (only the unpicked ?deep=150 still uses it)
+assets/grad
+# unused by the page (kept locally)
+assets/assembly/ig-avatar.png
+assets/assembly/wallet-motion.js
