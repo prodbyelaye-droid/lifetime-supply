@@ -123,7 +123,8 @@ class Blot {
     this.simple = this.kind === 'stop' || this.kind === 'accent';
     this.drop = opts.drop ?? !(this.shape === 'original' && this.simple);
     this.rot = (this.seed * 2.39) % (Math.PI * 2); this.aspect = 1 + 0.06 * Math.sin(this.seed * 3.1);
-    this.clock = CLOCK[clockN++ % CLOCK.length];
+    const auto = CLOCK[clockN++ % CLOCK.length]; // every blot takes its slot, so a set clock doesn't move the others
+    this.clock = opts.clock ?? auto;
     this.hopAt = -10; this.visible = true;
     const id = 'b2-' + uid++, c = colourways[this.colour];
     const svg = document.createElementNS(NS, 'svg');
@@ -266,7 +267,7 @@ export function mount(el, opts = {}) {
 export function mountAll(root = document) {
   return [...root.querySelectorAll('[data-blot2]')].map((el) => {
     const d = el.dataset;
-    return mount(el, {kind: d.blot2, colour: d.colour, size: d.size ? +d.size : undefined, seed: d.seed ? +d.seed : undefined,
+    return mount(el, {kind: d.blot2, colour: d.colour, size: d.size ? +d.size : undefined, seed: d.seed ? +d.seed : undefined, clock: d.clock ? +d.clock : undefined,
       drop: d.drop ? d.drop !== 'false' : undefined, autoHop: 'hop' in d, hopOnHover: 'hop' in d});
   });
 }

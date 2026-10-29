@@ -16,6 +16,9 @@ setHero(LANDING.hero);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 // 012: Deep is Codex's grad-183 by default; ?deep=sabo keeps 010's Sabo material (it must leave before the material
 // system collects its hosts).
+// 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
+// fails Gatekeeper); the links stay as they are.
+if(new URLSearchParams(location.search).get('downloads')==='hidden')document.getElementById('portal').hidden=true;
 const deepMode=new URLSearchParams(location.search).get('deep');
 if(deepMode!=='sabo')document.querySelector('.deep-sabo')?.remove();
 // 016: the Sabo material (and its 2 MB of Three) loads only when a host is on the page (?deep=sabo); the default page
@@ -34,23 +37,23 @@ const opening=createOpening(reduced,new URLSearchParams(location.search).get('pi
 // box its own GRADCODE bloom from a corner.
 createFeatures(new URLSearchParams(location.search).get('boxes')==='bloom'?'bloom':'restraint',new URLSearchParams(location.search).get('vault')==='bloom'?'bloom':'arch');
 drawBlend(document.querySelector('.blend10'));
-// 012: the download panel on 34's own glow (150's violet into magenta); the closing call on 192's frosted field.
+// 012, 019: the download panel on 34's own glow, turned to 150's violet; the closing call on 192's frosted field.
+// Closing call options (task 009, 019): ?close=a|b|c|192 (192 is option d), default b; read before its field is drawn.
+{const v=new URLSearchParams(location.search).get('close');if(['a','b','c','d','192'].includes(v))document.querySelector('.close-call').dataset.variant=v==='192'?'d':v;if(v==='c')document.querySelector('.close-blot').dataset.colour='magenta';}
 drawDownload34(document.querySelector('.portal-arch'));drawClose192(document.querySelector('.close-call'));
 // The film: full width by default; ?demo=window previews row 12's rounded glowing window.
 const demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');
 // Stats odometer, 34's liquid arch, and the How-it-works variant (?how=191).
 const sections=createSections(reduced,new URLSearchParams(location.search).get('how')||'off');
-// Closing call options (task 009): ?close=a|b|c, default b.
 {const q=new URLSearchParams(location.search);if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';if(q.get('band')==='text')document.documentElement.dataset.band='text';if(q.get('footblot')==='magenta')document.querySelector('.footer-blob').dataset.colour='magenta';
  // 011: the original blot edge is the default; ?blot=lumps keeps 006's smooth lumps. The walkthrough links sit under the
  // film (his 19:34 "under the text in the walkthrough"); ?links=hero keeps them under the price.
  if(q.get('blot')==='lumps'){setShape('lumps');document.documentElement.dataset.blot='lumps';}
  // 013: the white blot on the flood is 160 px on a phone (200 px from 700 up).
  if(innerWidth<700)document.querySelector('.flood-rider')?.setAttribute('data-size','160');
- // 014: the deep tile's white blot is 120 px on a phone, so it sits whole inside the tile.
- if(innerWidth<700)document.querySelector('.deep-b2')?.setAttribute('data-size','120');
+ // 014, 019: the deep tile's white blot is 100 px on a phone, so it sits whole on the green, clear of the sky and the logo.
+ if(innerWidth<700)document.querySelector('.deep-b2')?.setAttribute('data-size','100');
  if(q.get('links')!=='hero'){const m=document.querySelector('.hero-more'),d=document.querySelector('.demo');if(m&&d){m.classList.add('demo-links');d.append(m);}}}
-{const v=new URLSearchParams(location.search).get('close');if(['a','b','c'].includes(v))document.querySelector('.close-call').dataset.variant=v;}
 let blotsMounted=false;
 const fine=matchMedia('(hover: hover) and (pointer: fine)');
 const gsap=window.gsap;
@@ -92,7 +95,6 @@ addLoop(document.querySelector('.inside'),gsap.to('.product',{y:-10,duration:5.2
 // silhouettes move independently so the outer contour changes without path repaint.
 // Task 005: 183R "barely moves" -> the white blot travels a slow loop across the field while it glows and morphs.
 addLoop(document.querySelector('.deep-wrap'),gsap.timeline({repeat:-1,defaults:{ease:'sine.inOut',duration:3.2}}).to('.deep-symbol',{x:90,y:-46,rotation:10,scale:1.08}).to('.deep-symbol',{x:20,y:40,rotation:-6,scale:.94}).to('.deep-symbol',{x:-80,y:-20,rotation:8,scale:1.05}).to('.deep-symbol',{x:0,y:0,rotation:0,scale:1}));
-if(new URLSearchParams(location.search).get('deep')==='150')root.dataset.deep='150';
 function syncMotion(){
   const stopped=paused||reduced.matches||document.hidden||manual;
   if(stopped)root.dataset.motionPaused='true';else delete root.dataset.motionPaused;

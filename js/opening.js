@@ -26,9 +26,9 @@ function glyph(name, colour, px) {
   el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" width="${w * px}" height="${h * px}" fill="${colour}" shape-rendering="crispEdges">${rects}</svg>`;
   return el;
 }
-// Side blobs down the page: [section, side, colourway, size]. Each a different colour; orange only well below the hero.
+// Side blobs down the page: [section, side, colourway, size]. 019: the price blob is 183's green (critic 015), not orange.
 const SIDES = [['#inside', 'left', 'green', 170], ['#flow', 'right', 'magenta', 190], ['#stats', 'left', 'teal', 150], ['#features', 'right', 'violet', 200],
-  ['#portal', 'left', 'rose', 160], ['#steps', 'right', 'sky', 170], ['#price', 'left', 'coral', 180], ['.questions', 'right', 'pink', 150]];
+  ['#portal', 'left', 'rose', 160], ['#steps', 'right', 'sky', 170], ['#price', 'left', 'green', 180], ['.questions', 'right', 'pink', 150]];
 
 export function createOpening(reduced, mode = 'off') {
   const opening = document.querySelector('.opening'), hero = opening.querySelector('.hero');
@@ -42,7 +42,7 @@ export function createOpening(reduced, mode = 'off') {
   const sideLayer = document.createElement('div');
   sideLayer.className = 'side-layer'; sideLayer.setAttribute('aria-hidden', 'true');
   document.body.append(sideLayer);
-  const sides = SIDES.map(([sel, side, colour, size], i) => {
+  const sides = SIDES.filter(([sel]) => !document.querySelector(sel)?.closest('[hidden]')).map(([sel, side, colour, size], i) => {
     const el = document.createElement('span');
     el.className = 'sb'; el.dataset.blot2 = 'side'; el.dataset.colour = colour; el.dataset.size = size; el.dataset.seed = (i * 1.37 + 0.5).toFixed(2);
     sideLayer.append(el);

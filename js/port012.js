@@ -1,29 +1,31 @@
 // Landing task 012 (manager's checks on 008 and 009): two colour fields ported, not pictured.
 // Downloads (row 34; 17:47 "That gradient with the effects on the gradient, perfect. The arched colorway with the white
-// on the edges"): 34's own V glow, drawn from its measured profile (below) as a smooth field in one liked deep family,
-// 150's violet in tints from white running into 150's magenta at the deepest point, with 34's dot grid over the glow.
-// Light and airy, no bands, no sampling seams.
+// on the edges"): 34's own arched glow, drawn from its measured field (below) as a smooth field turned to 150's violet,
+// with 34's dot grid over the glow.
 // Closing, option b (row 192; 23:40 "and then boom"): 192's closing panel (originals/192, 2000 px) measured on a
 // 40 x 18 grid (below), its hue and light variation carried across the deep set, drawn back smooth, then frosted at
 // 192's own grain (a fine 2 to 4 px scatter), so white words sit on a lit, iridescent field.
 // Option a's glyph form takes the same material.
 import {drawGrid} from './blend10.js';
-// 34's measured profile (015; the sampled grid left vertical shafts): the V's left edge runs from u .05 at v .5 to u .32
-// at the foot (mirrored about u .52); L* down its centre falls from 95 above v .2 to 59 at the foot, lighter toward the
-// V's edges, white outside it. Depth then maps to 150's violet and magenta; the top 40% fades to white.
-const W34 = [251, 250, 254], V34 = [106, 0, 216], M34 = [182, 1, 225];
+import {GRID192D} from './grid192d.js';
+// 34's measured field (019, critic 015 and rule 6; 34's own panel in GRAD/compare-034, L* through a 6 px blur): down the
+// centre (u .547) L* falls from 94 at the top to 57 at the foot, so the colour starts at the top; the V's arms run out
+// from a half width of .23 at the foot by .72 of the height, toward the upper corners, white (L* 97) outside them; inside,
+// lightness rises toward the arms as (distance / half width)^2.2. Colour is 34's own chroma and hue at each lightness,
+// with the hue turned +30.5 so the foot lands on 150's violet (h 312) and the lighter tones lean blue as 34's do.
 function glow34(u, v) {
-  const cu = 0.52, w = v >= 0.5 ? 0.47 - 0.56 * (v - 0.5) : 0.47 + 0.6 * (0.5 - v), dx = Math.abs(u - cu);
-  const s = (a, b, x) => { const k = Math.min(1, Math.max(0, (x - a) / (b - a))); return k * k * (3 - 2 * k); };
-  const inside = 1 - s(-0.12, 0.09, dx - w);
-  const Lc = 95 - 36 * Math.pow(Math.min(1, Math.max(0, (v - 0.2) / 0.8)), 1.2);
-  const Lx = Lc + (97 - Lc) * 0.35 * Math.pow(Math.min(1, dx / Math.max(w, 0.01)), 2);
-  const L = 97 - (97 - Lx) * inside;
-  return Math.max(0, Math.min(1, ((97 - L) / 38) * s(0.3, 0.55, v)));
+  const Lc = ((17.98 * v - 44.53) * v - 12.62) * v + 94.66;
+  const r = Math.abs(u - 0.547) / Math.max(0.234 + 0.72 * (0.98 - v), 0.01);
+  const x = (97 - (Lc + (97 - Lc) * Math.pow(r, 2.2))) / 1.2;
+  return 97 - 1.2 * (x > 30 ? x : Math.log1p(Math.exp(x)));
 }
-function ramp34(t) {
-  const mix = (a, b, k) => a.map((x, i) => x + (b[i] - x) * k);
-  return t < 0.75 ? mix(W34, V34, Math.pow(t / 0.75, 1.35)) : mix(V34, M34, (t - 0.75) / 0.25);
+function ramp34(L) {
+  const C = Math.max(0, (-0.0067 * L - 0.3473) * L + 101.7855), h = ((0.0246 * L - 4.8383) * L + 478.67 + 30.5) * Math.PI / 180;
+  const fy = (L + 16) / 116, fx = fy + C * Math.cos(h) / 500, fz = fy - C * Math.sin(h) / 200;
+  const inv = t => t > 0.206897 ? t * t * t : (t - 16 / 116) / 7.787;
+  const X = 0.95047 * inv(fx), Y = inv(fy), Z = 1.08883 * inv(fz);
+  return [3.2406 * X - 1.5372 * Y - 0.4986 * Z, -0.9689 * X + 1.8758 * Y + 0.0415 * Z, 0.0557 * X - 0.204 * Y + 1.057 * Z]
+    .map(c => 255 * Math.min(1, Math.max(0, c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055)));
 }
 // 015: 192's own variation on a 40 x 18 grid (text masked, filled along rows): each cell's hue rank and lightness rank
 // (0 to 1), smoothed over about two cells so the colours run in 192's broad diagonal bands. Hue rank runs through the deep set in equal shares, green, teal, violet, magenta, blending between
@@ -93,21 +95,29 @@ export function drawDownload34(panel) {
     <radialGradient id="dl34-r" cx=".5" cy="1" r=".62"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
     <mask id="dl34-m"><rect width="100%" height="100%" fill="url(#dl34-r)"/></mask></defs><rect width="100%" height="100%" fill="url(#dl34-p)" mask="url(#dl34-m)"/></svg>`);
 }
-// 192's frosted glass: every pixel takes its colour from a neighbour up to 3 px away, with a fine light grain
-function frosted(W, H) {
-  const base = document.createElement('canvas'); drawGrid(base, grid192(), W, H);
+// 192's frost as 192 builds it (019, critic 015): the field is pebbled into ragged cells of 2 to 4 px, and each cell takes
+// its colour from a few px to about 30 px away (sd 7 px, a quarter of them sd 15), so every colour boundary shreds over
+// 20 to 40 px rather than blurring, with stray specks beyond it, and a fine light grain. Two slow sines bend the source first, so no straight grid edge survives (the rounded square).
+function frosted(W, H, grid) {
+  const base = document.createElement('canvas'); drawGrid(base, grid, W, H);
   const src = base.getContext('2d').getImageData(0, 0, W, H), out = new ImageData(W, H), rand = rng(192);
+  const cells = (n) => { const of = new Int32Array(n); let k = 0; for (let i = 0; i < n; k++) { const w = 2 + Math.floor(rand() * 3); for (let j = 0; j < w && i < n; j++) of[i++] = k; } return [of, k]; };
+  const [colOf, nc] = cells(W), [rowOf, nr] = cells(H), sd = () => (rand() + rand() + rand() - 1.5) * (rand() < 0.25 ? 30 : 14);
+  const dx = Float32Array.from({length: nc * nr}, sd), dy = Float32Array.from({length: nc * nr}, sd), j = () => Math.floor(rand() * 3) - 1;
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    const sx = Math.min(W - 1, Math.max(0, x + Math.round((rand() - 0.5) * 6))), sy = Math.min(H - 1, Math.max(0, y + Math.round((rand() - 0.5) * 6)));
-    const o = (y * W + x) * 4, s = (sy * W + sx) * 4, g = 1 + (rand() - 0.5) * 0.1;
-    for (let k = 0; k < 3; k++) out.data[o + k] = Math.min(255, src.data[s + k] * g);
+    const k = rowOf[Math.min(H - 1, Math.max(0, y + j()))] * nc + colOf[Math.min(W - 1, Math.max(0, x + j()))]; // ragged pebbles, not squares
+    const wx = 34 * Math.sin(y / 61 + 1.3) + 18 * Math.sin((x + y) / 97), wy = 22 * Math.sin(x / 73 + 0.4) + 12 * Math.sin((x - y) / 89);
+    const sx = Math.min(W - 1, Math.max(0, Math.round(x + wx + dx[k]))), sy = Math.min(H - 1, Math.max(0, Math.round(y + wy + dy[k])));
+    const o = (y * W + x) * 4, s = (sy * W + sx) * 4, g = 1 + (rand() - 0.5) * 0.06;
+    for (let c = 0; c < 3; c++) out.data[o + c] = Math.min(255, src.data[s + c] * g);
     out.data[o + 3] = 255;
   }
   const c = document.createElement('canvas'); c.width = W; c.height = H; c.getContext('2d').putImageData(out, 0, 0);
   return c;
 }
 export function drawClose192(section) {
-  const c = frosted(1200, 560); c.className = 'close192'; c.setAttribute('aria-hidden', 'true');
+  // option d is 192 as it is (its own colours); a and b carry 192's variation across the deep set
+  const c = frosted(1200, 560, section.dataset.variant === 'd' ? GRID192D : grid192()); c.className = 'close192'; c.setAttribute('aria-hidden', 'true');
   section.prepend(c);
   // option a: the glyph form on the same material
   const a = section.querySelector('.close-a-art'), shape = a && a.querySelector('.ca-1');

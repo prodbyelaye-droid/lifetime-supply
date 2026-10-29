@@ -250,16 +250,13 @@ html[data-motion-paused] .pf-flower,html[data-motion-paused] .pf-lines{animation
 /* Task 005 · Deep (183R: "that gradient, I love it. Logo bottom left: I love it."): 183's landscape tile rebuilt as
    shaped light from the 60fps master (originals/183): cyan sky, olive-gold foliage left, deep green hills right, a pale
    mint ground and orange flower dots, each a soft-edged form in the master's own colours, each layer drifting on its
-   own beat. No video, no blur. GRAD 150 is a variant (?deep=150). */
+   own beat. No video, no blur. (GRAD 150, once ?deep=150, left in task 019.) */
 .deep-art{position:absolute;inset:0;width:100%;height:100%}
 .deep-art g{animation:dp-drift 20s ease-in-out infinite alternate}
 .deep-art .dp-far{animation-duration:26s}.deep-art .dp-right{animation-duration:17s;animation-delay:-4s}.deep-art .dp-left{animation-duration:22s;animation-delay:-9s}.deep-art .dp-flowers{animation-duration:14s;animation-delay:-2s}
 @keyframes dp-drift{from{transform:translate(0,0)}to{transform:translate(-18px,8px)}}
 html[data-motion-paused] .deep-art g{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.deep-art g{animation:none}}
-.deep-150{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
-html[data-deep="150"] .deep-art{display:none}
-html[data-deep="150"] .deep-150{display:block}
 .deep-field .deep-wordmark{z-index:2}
 /* Task 005 · Footer: no placeholder (the pfp frame is gone until his picture arrives); row 002's halftone band rebuilt at
    the original's size, in its own strip under the footer text. */
@@ -639,7 +636,6 @@ html[data-band="text"] .band-text{display:flex}
 .room-tile{display:flex;flex-direction:column;gap:3px;padding:10px;border-radius:10px;background:#f6f6f7;min-width:0}
 .room-tile b{font-size:13px;font-weight:600;color:#151517}
 .room-tile span{font-size:12px;line-height:1.4;color:#5d6066}
-.cover-tile img{width:56px;height:56px;border-radius:6px;margin-bottom:4px}
 @media(max-width:900px){.chat178{min-height:0}.c178-chat{margin-left:0;padding-bottom:24px}.c178-files{position:relative;right:auto;top:auto;margin:-24px 0 0 auto;width:min(470px,94%)}}
 @media(max-width:700px){.c178-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.room-tile b{font-size:15px}.room-tile span{font-size:15px}.c178-ask,.c178-reply{font-size:15px}}
 /* Task 015 · Closing b: 192's field flipped vertically so a deep band sits behind the words (the small line at 5.6:1
@@ -649,3 +645,29 @@ html[data-band="text"] .band-text{display:flex}
    look is unchanged: the region takes the sideways scroll and snap the list had. */
 @media(max-width:700px){.price-stage .price-scroll{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.price-stage .price-list{overflow:visible;scroll-snap-type:none;padding-bottom:0}}
 .price-scroll:focus-visible{outline:2px solid #151517;outline-offset:4px;border-radius:14px}
+/* Task 019 · Deep (critic 015, rule 6): the mirror and the 1.25x scale are undone. The 183 module is framed the way
+   183's own tile frames it: a crop of the module (x 732, y 276, 560 wide, at the tile's aspect) with the sky in the top
+   fifth and the green body below, the module's ochre patch outside the tile, L* median 68 (183's tile: 77). No disc. */
+.deep-field>.gc-183{transform:none}
+.deep-field>.gc-183 canvas{transform-origin:0 0;transform:scale(2.3143) translate(-56.48%,-35.11%)}
+@media(max-width:700px){.deep-field>.gc-183{transform:none}.deep-field>.gc-183 canvas{transform-origin:0 0;transform:scale(2.3143) translate(-56.48%,-35.11%)}}
+/* the white blot fully on the green body, well below the sky, clear of the logo */
+.deep-field .deep-symbol{left:60%;top:57%}
+@media(max-width:700px){.deep-field .deep-symbol{left:46%;top:63%}}
+/* no disc: the white blot sits crisp on the green, without the soft white halo behind it (rule 5) */
+.deep-symbol:before{display:none}
+/* Task 019 · Downloads: "log in" in ink #14161a on 34's restored profile */
+.portal-arch .dl-login{color:#14161a;text-decoration-color:#14161a99}
+/* Task 019 · How it works (critic 015): the six rooms 3 x 2 with no empty slot; tile copy 13 px in body ink; the three
+   step cells white with ink, no tints */
+.c178-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.room-tile b,.room-tile span{color:var(--ink)}.room-tile span{font-size:13px}
+.steps-section .art-0,.steps-section .art-1,.steps-section .art-2{background:#fff}
+@media(max-width:700px){.c178-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.room-tile span{font-size:15px}}
+/* Task 019 · Closing: option d (?close=192), 192 as it is: its own light frosted glass, ink words, no blot */
+.close-call[data-variant="d"] .close192{display:block;transform:none}
+.close-call[data-variant="d"] .close-inner{color:#151517}
+.close-call[data-variant="d"] .close-cta{background:#151517;color:#fff}
+.close-call[data-variant="d"] .close-blot{display:none!important}
+/* the closing field is cropped, never squeezed: at 390 a stretched canvas ran 192's green bands under the white words */
+.close-call .close192{object-fit:cover}

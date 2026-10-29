@@ -84,7 +84,7 @@ void main(){
 }`;
 
 export function createFlood(opening, measureSpots, reduced) {
-  const canvas = document.createElement('canvas');
+  const canvas = document.createElement('canvas'), rider = document.querySelector('.flood-rider');
   canvas.className = 'flood';
   canvas.setAttribute('aria-hidden', 'true');
   opening.prepend(canvas);
@@ -161,6 +161,9 @@ export function createFlood(opening, measureSpots, reduced) {
     // Exit (015): as soon as the band's lower edge enters the frame it breaks into its blots: the goo lets go, the
     // centre blots shrink first and each slides toward its nearest side blob, so the white opens between rounded blots.
     const raw = clamp((sy + Vh - bot + 80) / (Vh * 0.6), 0, 1), q = smooth(raw), qb = smooth(clamp(raw * 2.5, 0, 1));
+    // 019 (critic 015): the white blot riding the flood shrinks and fades from 1.75 s of the exit clip (raw .15, measured)
+    // and is gone by 2.0 s (raw .215), before the white opens beside it.
+    if (rider) { const f = smooth(clamp((raw - 0.15) / 0.065, 0, 1)); rider.style.opacity = f ? String(1 - f) : ''; rider.style.transform = f ? `scale(${1 - 0.6 * f})` : ''; }
     const B = new Float32Array(N * 4), L = new Float32Array(N * 4);
     plan.forEach((b, i) => {
       // the first blots grow from the hero's edge blots' places, after those have scaled away

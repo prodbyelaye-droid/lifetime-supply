@@ -3,7 +3,8 @@
  *   node scripts/apply-picks.cjs <picks.json> [siteDir]
  * siteDir defaults to the repo this script lives in. For every key in picks.json the pick becomes the default (set in
  * the markup where the page reads it), the ?switch is removed, and the unpicked option's markup, CSS, JS and assets are
- * deleted. Always: ?deep=150, ?demo=window and the hero pixel glyphs are removed and ?how=191 is locked off; ?qa=1 stays.
+ * deleted. Always: ?demo=window and the hero pixel glyphs are removed and ?how=191 is locked off; ?qa=1 stays (?deep=150
+ * left the page in task 019).
  * A key missing from picks.json leaves that switch exactly as it is (the script says so).
  * Every edit is anchored: if an expected piece of code is not found exactly once, the script stops before writing
  * anything, so a later change to the page can never be half-applied. Copy picks (band text, footer lines) are not here. */
@@ -11,7 +12,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const OPTIONS = {flood: ['material', '183'], blot: ['original', 'lumps'], boxes: ['white', 'bloom'], vault: ['arch', 'bloom'], deep: ['183', 'sabo'],
-  close: ['a', 'b', 'c'], pricetype: ['ink', 'white'], band: ['empty', 'text'], footblot: ['green', 'magenta'], links: ['film', 'hero']};
+  close: ['a', 'b', 'c', 'd'], pricetype: ['ink', 'white'], band: ['empty', 'text'], footblot: ['green', 'magenta'], links: ['film', 'hero'],
+  downloads: ['hidden', 'shown']};
 
 const [picksFile, siteArg] = process.argv.slice(2);
 if (!picksFile) { console.error('usage: node scripts/apply-picks.cjs <picks.json> [siteDir]'); process.exit(2); }
@@ -64,10 +66,6 @@ function cssFilter(css, test) {
 const dropCss = (why, ...needles) => cssTests.push({why, test: (sel) => needles.some((n) => sel.includes(n))});
 
 // ================= always =================
-// ?deep=150 (not among his picks; it relied on the uncommitted assets/grad link)
-editRe('index.html', /<img class="deep-150"[^>]*>/, '', 'remove the ?deep=150 still');
-edit('js/assembly.js', "if(new URLSearchParams(location.search).get('deep')==='150')root.dataset.deep='150';\n", '', 'remove the ?deep=150 switch');
-dropCss('?deep=150 rules', '.deep-150', '[data-deep="150"]');
 // ?demo=window (the full-bleed film is approved)
 edit('js/assembly.js', "// The film: full width by default; ?demo=window previews row 12's rounded glowing window.\nconst demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');",
   "// The film: full width, not boxed (X13).\nconst demo=createDemo(reduced,'full');", 'remove the ?demo=window switch');
@@ -114,10 +112,12 @@ if (boxes || vault) {
 if (boxes === 'white') {
   for (const [name, mod] of [['g010', '010'], ['g044', '044'], ['g145', '145'], ['g037', '037']]) {
     edit('js/features.js', `import {mount as ${name}} from './gradcode/grad-${mod}.js';\n`, '', `boxes: drop the ${mod} bloom module`);
-    drop(`js/gradcode/grad-${mod}.js`, 'boxes: white (only "how i did it" keeps its 183 bloom)');
+    drop(`js/gradcode/grad-${mod}.js`, 'boxes: white with ink (colour only in the vault)');
   }
+  for (const [name, mod] of [['g183', '183'], ['g189', '189']])
+    edit('js/features.js', `import {mount as ${name}} from './gradcode/grad-${mod}.js';\n`, '', `boxes: features no longer imports ${mod} (the module stays for its own section)`);
   edit('js/features.js', "const BOXES = [['f-how', 'how', g183, 'tr', 'green'], ['f-kit', 'kit', g044, 'tr'], ['f-board', 'board', g037, 'tr'], ['f-room', 'room', g189, 'tr'],\n  ['f-month', 'month', g010, 'tr'], ['f-forever', 'forever', g145, 'tr']];",
-    "const BOXES = [['f-how', 'how', g183, 'tr', 'green'], ['f-kit', 'kit', null, 'tr'], ['f-board', 'board', null, 'tr'], ['f-room', 'room', null, 'tr'],\n  ['f-month', 'month', null, 'tr'], ['f-forever', 'forever', null, 'tr']];", 'boxes: white with ink');
+    "const BOXES = [['f-how', 'how', null, 'tr'], ['f-kit', 'kit', null, 'tr'], ['f-board', 'board', null, 'tr'], ['f-room', 'room', null, 'tr'],\n  ['f-month', 'month', null, 'tr'], ['f-forever', 'forever', null, 'tr']];", 'boxes: white with ink');
 }
 // deep: 183 | sabo
 const deep = pick('deep');
@@ -129,17 +129,32 @@ if (deep === '183') {
   for (const f of ['js/material.js', 'js/palettes.js', 'assets/assembly/three.core.js', 'assets/assembly/three.module.js', 'assets/assembly/THREE-LICENSE.txt', 'assets/assembly/material-still.jpg']) drop(f, 'deep: 183 (no Sabo material, no Three)');
 }
 if (deep === 'sabo') dropCss('deep: the 183 field offset (the tile is Sabo)', '.deep-field>.gc-183');
-// close: a | b | c
+// close: a | b | c | d (d is 192 as it is, ?close=192)
 const close = pick('close');
 if (close) {
-  edit('js/assembly.js', "{const v=new URLSearchParams(location.search).get('close');if(['a','b','c'].includes(v))document.querySelector('.close-call').dataset.variant=v;}\n", '', 'close: remove the switch');
+  edit('js/assembly.js', "{const v=new URLSearchParams(location.search).get('close');if(['a','b','c','d','192'].includes(v))document.querySelector('.close-call').dataset.variant=v==='192'?'d':v;if(v==='c')document.querySelector('.close-blot').dataset.colour='magenta';}\n", '', 'close: remove the switch');
   edit('index.html', 'class="close-call" id="close" data-section="close" data-variant="b"', `class="close-call" id="close" data-section="close" data-variant="${close}"`, `close: option ${close}`);
   editRe('index.html', /<svg class="close-b-art"[\s\S]*?<\/svg>/, '', 'close: remove the retired flat-circle art');
   dropCss('close: retired flat-circle art', '.close-b-art', '.cb-');
-  for (const o of ['a', 'b', 'c'].filter((x) => x !== close)) dropCss(`close: option ${o} rules`, `.close-call[data-variant="${o}"]`);
+  for (const o of ['a', 'b', 'c', 'd'].filter((x) => x !== close)) dropCss(`close: option ${o} rules`, `.close-call[data-variant="${o}"]`);
   if (close !== 'a') { editRe('index.html', /<svg class="close-a-art"[\s\S]*?<\/svg>/, '', 'close: remove option a art'); dropCss('close: option a art', '.close-a-art', '.ca-'); }
-  if (close === 'c') edit('js/assembly.js', 'drawClose192(document.querySelector(\'.close-call\'));', '', 'close: c needs no 192 field');
+  if (close === 'c') {
+    edit('index.html', '<span class="close-blot" data-blot2="feature" data-colour="white"', '<span class="close-blot" data-blot2="feature" data-colour="magenta"', 'close: c keeps a coloured blot on its white card');
+    edit('js/assembly.js', 'drawClose192(document.querySelector(\'.close-call\'));', '', 'close: c needs no 192 field');
+  }
+  if (close !== 'd') {
+    edit('js/port012.js', "import {GRID192D} from './grid192d.js';\n", '', 'close: no 192 colours (option d) to import');
+    drop('js/grid192d.js', `close: ${close} (192's own colours are option d)`);
+    edit('js/port012.js', "section.dataset.variant === 'd' ? GRID192D : grid192()", 'grid192()', `close: ${close} draws the deep set`);
+  } else {
+    cut('js/port012.js', "// 015: 192's own variation on a 40 x 18 grid", "function rng(seed)", 'close: d needs no deep-set ranks (HUE192, LIT192, SET192)');
+    edit('js/port012.js', "section.dataset.variant === 'd' ? GRID192D : grid192()", 'GRID192D', 'close: d draws 192 as it is');
+  }
 }
+// downloads: hidden | shown (019; Codex 012: v1.0.0 has the cleanup bug and 1.0.1 fails Gatekeeper). The links stay.
+const downloads = pick('downloads');
+if (downloads) edit('js/assembly.js', "// 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1\n// fails Gatekeeper); the links stay as they are.\nif(new URLSearchParams(location.search).get('downloads')==='hidden')document.getElementById('portal').hidden=true;\n", '', 'downloads: remove the switch');
+if (downloads === 'hidden') edit('index.html', '<section class="portal-section" id="portal" data-section="portal"', '<section class="portal-section" id="portal" data-section="portal" hidden', 'downloads: the section is hidden (links unchanged)');
 // pricetype: ink | white
 const pricetype = pick('pricetype');
 if (pricetype) edit('js/assembly.js', "if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';", '', 'pricetype: remove the switch');
@@ -168,7 +183,7 @@ if (htmlAttrs.length) edit('index.html', '<html lang="en">', `<html lang="en" ${
 // comments on the switch wiring follow the picks (module headers keep their history)
 edit('js/assembly.js', "// Stats odometer, 34's liquid arch, and the How-it-works variant (?how=191).", "// Stats odometer and 34's liquid arch.", 'comment: ?how=191 is gone');
 if (boxes && vault) edit('js/assembly.js', "// Features boxes (012): A, white with ink and colour only in the vault and one more (default); ?boxes=bloom gives each\n// box its own GRADCODE bloom from a corner.", `// Features (012): boxes ${boxes === 'bloom' ? 'each with a GRADCODE bloom' : 'white with ink'}, the vault ${vault === 'bloom' ? 'as a bloom into white' : 'with 155\'s arch'} (his picks).`, 'comment: features as picked');
-if (close) edit('js/assembly.js', "// Closing call options (task 009): ?close=a|b|c, default b.", `// The closing call is option ${close} (his pick, task 009).`, 'comment: closing as picked');
+if (close) edit('js/assembly.js', "// Closing call options (task 009, 019): ?close=a|b|c|192 (192 is option d), default b; read before its field is drawn.", `// The closing call is option ${close} (his pick, task 009).`, 'comment: closing as picked');
 if (blot && links) edit('js/assembly.js', ` // 011: the original blot edge is the default; ?blot=lumps keeps 006's smooth lumps. The walkthrough links sit under the\n // film (his 19:34 "under the text in the walkthrough"); ?links=hero keeps them under the price.`, ` // 011: the ${blot === 'lumps' ? 'smooth lumps' : 'original blot edge'} and the walkthrough links ${links === 'film' ? 'under the film' : 'under the price'} (his picks).`, 'comment: blot and links as picked');
 if (deep) {
   edit('js/assembly.js', "// 012: Deep is Codex's grad-183 by default; ?deep=sabo keeps 010's Sabo material (it must leave before the material\n// system collects its hosts).", `// Deep (012): ${deep === '183' ? "Codex's grad-183" : "010's Sabo material"} (his pick).`, 'comment: deep as picked');
