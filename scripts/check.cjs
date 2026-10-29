@@ -1,8 +1,11 @@
 const {chromium}=require('/Users/elaye/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const fs=require('fs'),assert=require('node:assert/strict');
-// CHECK_URL points the check at another copy of the site (task 018); run it from the worktree (it reads evidence/source).
+// CHECK_URL points the check at another copy of the site (task 018). It needs the untracked live-page fixture
+// evidence/source/live.html (CHECK_FIXTURE names another copy) and writes its results to CHECK_OUT (task 022).
 const BASE=(process.env.CHECK_URL||'http://127.0.0.1:8129').replace(/\/$/,'');
-const out='/Users/elaye/.codex/visualizations/2026/10/29/01a186e3-7a77-7911-acf2-a9fab85e9b3e/landing-assembly';
+const out=process.env.CHECK_OUT||'/Users/elaye/.codex/visualizations/2026/10/29/01a186e3-7a77-7911-acf2-a9fab85e9b3e/landing-assembly';fs.mkdirSync(out,{recursive:true});
+const FIXTURE=process.env.CHECK_FIXTURE||'evidence/source/live.html';
+if(!fs.existsSync(FIXTURE)){console.error(`check.cjs: the live-page fixture ${FIXTURE} is missing; it is untracked, so copy it from the worktree's evidence/source or set CHECK_FIXTURE`);process.exit(2);}
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'chrome'}),results={viewports:[],checks:[],errors:[],copy:[]};
  const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage();
@@ -24,7 +27,7 @@ const out='/Users/elaye/.codex/visualizations/2026/10/29/01a186e3-7a77-7911-acf2
  }
  await page.setViewportSize({width:1440,height:900});await page.goto(BASE);await page.waitForFunction(()=>window.ready);await page.evaluate(()=>{assembly.skip();document.body.style.zoom='2';});results.zoom=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth}));
  // compare rendered page's text chunks with the captured live source; report unmatched, never silently rewrite.
- const live=await context.newPage();await live.setContent(fs.readFileSync('evidence/source/live.html','utf8'));const liveText=await live.evaluate(()=>document.body.innerText.replace(/\s+/g,' ').trim());
+ const live=await context.newPage();await live.setContent(fs.readFileSync(FIXTURE,'utf8'));const liveText=await live.evaluate(()=>document.body.innerText.replace(/\s+/g,' ').trim());
  results.copy=await page.evaluate(()=>[...document.querySelectorAll('h1,h2,h3,p,summary,.numbers span,.step-art span')].filter(e=>!e.classList.contains('copy-needed')).map(e=>e.innerText.replace(/\s+/g,' ').trim()).filter(Boolean));results.unmatchedCopy=results.copy.filter(t=>!liveText.includes(t));
  results.urls=await page.locator('a[href]').evaluateAll(as=>as.map(a=>a.getAttribute('href')).filter(x=>/stripe|instagram/.test(x)));assert(results.urls.filter(x=>x.includes('stripe')).every(x=>x==='https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04'));assert.equal(results.urls.filter(x=>x.includes('stripe')).length,4);
  results.anchorFailures=await page.locator('a[href^="#"]').evaluateAll(as=>as.filter(a=>!document.getElementById(a.getAttribute('href').slice(1))).map(a=>a.outerHTML));
