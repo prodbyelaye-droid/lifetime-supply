@@ -13,14 +13,20 @@ import {GRID192D} from './grid192d.js';
 // from a half width of .23 at the foot by .72 of the height, toward the upper corners, white (L* 97) outside them; inside,
 // lightness rises toward the arms as (distance / half width)^2.2. Colour is 34's own chroma and hue at each lightness,
 // with the hue turned +30.5 so the foot lands on 150's violet (h 312) and the lighter tones lean blue as 34's do.
+// 021: his "no colors" (23:56) on 34's pale depth: below the buttons the centre deepens to L* 35 at the foot, running
+// from 150's violet into its magenta (h 321, C* 95), the depth 015 had, on 34's arched shape.
 function glow34(u, v) {
-  const Lc = ((17.98 * v - 44.53) * v - 12.62) * v + 94.66;
+  // 021 (critic 019): below the buttons the foot deepens toward 015's approved foot, centre L* about 35 at the bottom
+  const k = Math.min(1, Math.max(0, (v - 0.6) / 0.4)), Lc = ((17.98 * v - 44.53) * v - 12.62) * v + 94.66 - 21 * k * k * (3 - 2 * k);
   const r = Math.abs(u - 0.547) / Math.max(0.234 + 0.72 * (0.98 - v), 0.01);
   const x = (97 - (Lc + (97 - Lc) * Math.pow(r, 2.2))) / 1.2;
   return 97 - 1.2 * (x > 30 ? x : Math.log1p(Math.exp(x)));
 }
 function ramp34(L) {
-  const C = Math.max(0, (-0.0067 * L - 0.3473) * L + 101.7855), h = ((0.0246 * L - 4.8383) * L + 478.67 + 30.5) * Math.PI / 180;
+  // below 34's own foot (L* 57) the colour runs on toward 015's foot: 150's violet into its magenta, C* up to 95
+  // (34's chroma and hue fits hold over its measured range, L* 56.5 to 97, so they are read there)
+  const d = Math.min(1, Math.max(0, (57 - L) / 22)), Lf = Math.max(56.5, L);
+  const C = Math.max(0, (-0.0067 * Lf - 0.3473) * Lf + 101.7855) + 34 * d, h = (((0.0246 * Lf - 4.8383) * Lf + 478.67 + 30.5) + 9 * d) * Math.PI / 180;
   const fy = (L + 16) / 116, fx = fy + C * Math.cos(h) / 500, fz = fy - C * Math.sin(h) / 200;
   const inv = t => t > 0.206897 ? t * t * t : (t - 16 / 116) / 7.787;
   const X = 0.95047 * inv(fx), Y = inv(fy), Z = 1.08883 * inv(fz);

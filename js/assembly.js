@@ -17,8 +17,8 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 // 012: Deep is Codex's grad-183 by default; ?deep=sabo keeps 010's Sabo material (it must leave before the material
 // system collects its hosts).
 // 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
-// fails Gatekeeper); the links stay as they are.
-if(new URLSearchParams(location.search).get('downloads')==='hidden')document.getElementById('portal').hidden=true;
+// fails Gatekeeper); the download links stay as they are, and the header's "the portal" goes to the portal itself (021).
+if(new URLSearchParams(location.search).get('downloads')==='hidden'){document.getElementById('portal').hidden=true;document.querySelector('a[href="#portal"]').href='https://portal.elaye.store';}
 const deepMode=new URLSearchParams(location.search).get('deep');
 if(deepMode!=='sabo')document.querySelector('.deep-sabo')?.remove();
 // 016: the Sabo material (and its 2 MB of Three) loads only when a host is on the page (?deep=sabo); the default page

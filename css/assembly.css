@@ -673,3 +673,12 @@ html[data-band="text"] .band-text{display:flex}
 .close-call .close192{object-fit:cover}
 /* Task 020 · the how-it-works mini card keeps its 200 px width when the launch-week note is longer: the note wraps */
 .mini-pay .mini-note{max-width:164px;text-align:center}
+/* Task 021 · Stats: the odometer's own spans keep the figure's size at every width (the phone caption rule set them to
+   15 px), so each digit window is exactly one line of the figure and the settled state shows only the number */
+.stats-section .numbers .odo>span,.stats-section .numbers .odo .odo-col{font-size:inherit;color:inherit;margin:0;max-width:none;line-height:1}
+.stats-section .numbers .odo .odo-d{overflow:hidden;height:1em;contain:paint}
+/* Task 021 · the vault's 155 sparkles: when motion is paused they rest lit, not frozen in a blink's off phase */
+html[data-motion-paused] .feature-art .pix rect{animation:none!important;opacity:1}
+/* Task 021 · band text: "© 2026 elaye" sits beside "lifetime supply" on the band's solid black, not out on the lavender
+   halftone edge where the difference blend turned it olive */
+.band-text{justify-content:flex-start;gap:28px}

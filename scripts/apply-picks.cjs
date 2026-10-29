@@ -153,8 +153,11 @@ if (close) {
 }
 // downloads: hidden | shown (019; Codex 012: v1.0.0 has the cleanup bug and 1.0.1 fails Gatekeeper). The links stay.
 const downloads = pick('downloads');
-if (downloads) edit('js/assembly.js', "// 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1\n// fails Gatekeeper); the links stay as they are.\nif(new URLSearchParams(location.search).get('downloads')==='hidden')document.getElementById('portal').hidden=true;\n", '', 'downloads: remove the switch');
-if (downloads === 'hidden') edit('index.html', '<section class="portal-section" id="portal" data-section="portal"', '<section class="portal-section" id="portal" data-section="portal" hidden', 'downloads: the section is hidden (links unchanged)');
+if (downloads) edit('js/assembly.js', "// 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1\n// fails Gatekeeper); the download links stay as they are, and the header's \"the portal\" goes to the portal itself (021).\nif(new URLSearchParams(location.search).get('downloads')==='hidden'){document.getElementById('portal').hidden=true;document.querySelector('a[href=\"#portal\"]').href='https://portal.elaye.store';}\n", '', 'downloads: remove the switch');
+if (downloads === 'hidden') {
+  edit('index.html', '<section class="portal-section" id="portal" data-section="portal"', '<section class="portal-section" id="portal" data-section="portal" hidden', 'downloads: the section is hidden (download links unchanged)');
+  edit('index.html', '<a href="#portal">the portal</a>', '<a href="https://portal.elaye.store">the portal</a>', 'downloads: the header\'s "the portal" goes to the portal sign-in, not the hidden section');
+}
 // pricetype: ink | white
 const pricetype = pick('pricetype');
 if (pricetype) edit('js/assembly.js', "if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';", '', 'pricetype: remove the switch');
