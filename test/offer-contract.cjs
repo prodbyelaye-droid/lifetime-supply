@@ -1,6 +1,6 @@
 /* The live checkout is pinned in the template. api/landing.js returns index.html unchanged once it no longer carries
- * the Oct 11 $599 token, so LIFETIME_CHECKOUT_699_URL cannot change the CTAs any more. To swap the sale link at GO,
- * edit the four data-checkout hrefs and the JSON-LD offers.url in index.html, then update LIVE below. */
+ * the Oct 11 $599 token, so LIFETIME_CHECKOUT_699_URL cannot change the CTAs any more. To change the offer or its
+ * link, run scripts/set-offer.cjs (--launch or --standard, task 020): it sets the template and LIVE below together. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');

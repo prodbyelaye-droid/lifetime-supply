@@ -27,6 +27,7 @@ scripts/*
 !scripts/check.cjs
 !scripts/blot2-sheet.html
 !scripts/apply-picks.cjs
+!scripts/set-offer.cjs
 
 # assets/grad links to the element lab outside the repo (only the unpicked ?deep=150 still uses it)
 assets/grad

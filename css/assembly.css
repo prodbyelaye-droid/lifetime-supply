@@ -671,3 +671,5 @@ html[data-band="text"] .band-text{display:flex}
 .close-call[data-variant="d"] .close-blot{display:none!important}
 /* the closing field is cropped, never squeezed: at 390 a stretched canvas ran 192's green bands under the white words */
 .close-call .close192{object-fit:cover}
+/* Task 020 · the how-it-works mini card keeps its 200 px width when the launch-week note is longer: the note wraps */
+.mini-pay .mini-note{max-width:164px;text-align:center}
