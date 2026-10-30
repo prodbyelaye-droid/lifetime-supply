@@ -92,7 +92,7 @@ export function createHeroDesign(reduced) {
       const label = userPaused ? 'play motion' : 'pause motion';
       button.setAttribute('aria-label', label);
       button.title = label;
-      button.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true" width="18" height="18">${userPaused ? '<path d="M6 3.5 16 10 6 16.5Z" fill="currentColor"/>' : '<rect x="5" y="4" width="3" height="12" rx=".7" fill="currentColor"/><rect x="12" y="4" width="3" height="12" rx=".7" fill="currentColor"/>'}</svg><span>${label}</span>`;
+      button.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true" width="18" height="18">${userPaused ? '<path d="M6 3.5 16 10 6 16.5Z" fill="currentColor"/>' : '<rect x="5" y="4" width="3" height="12" rx=".7" fill="currentColor"/><rect x="12" y="4" width="3" height="12" rx=".7" fill="currentColor"/>'}</svg><span>${userPaused ? 'play' : 'pause'}<span class="mt-long"> motion</span></span>`;
       gradient?.setPaused(stopped);
     },
     renderAt(t) { gradient?.renderAt(t); },

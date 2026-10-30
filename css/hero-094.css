@@ -11,7 +11,9 @@
 .opening .site-nav .header-login:hover { text-decoration:underline; text-underline-offset:4px; }
 .opening .site-nav .motion-toggle { margin-left:-20px; }
 .hero-computer { padding:24px 48px 80px; position:relative; z-index:2; }
-.computer-device { width:min(1060px,100%); margin:auto; }
+/* 138 (critic 136 §2.2): the window is scaled less. At 1235px and up the portal picture shows at 1:1 (1192 css px), so the
+   mini-cards read at their drawn size; under that, index.html swaps in a picture shot at a narrower portal width. */
+.computer-device { width:min(1222px,100%); margin:auto; }
 html[data-landing-layout] .hero-computer .portal-preview { display:block; width:100%; margin:0; border:1px solid #c2ccd2; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 24px 64px -26px #16527f55,0 3px 10px #14334d12; }
 .computer-titlebar { display:flex; align-items:center; justify-content:space-between; height:36px; padding:0 16px; background:#f4f7fa; }
 .traffic-lights { display:flex; gap:6px; width:64px; }
@@ -73,11 +75,21 @@ html[data-landing-layout] .hero-computer .portal-preview { display:block; width:
  .hero-computer .portal-tab { flex:1; font-size:12px; padding:10px 6px; }
  .hero-computer .portal-panels { padding:10px; }
  .hero-computer .portal-panel img { aspect-ratio:390/780; }
- /* 107 (§1.10): the window crops mid-tile on a phone; a 24px fade finishes the bottom inner edge */
- .hero-computer .portal-panels { position:relative; }
- .hero-computer .portal-panels::after { content:''; position:absolute; left:0; right:0; bottom:0; height:24px; background:linear-gradient(#fff0,#fff); pointer-events:none; z-index:3; }
+ /* 120 (critic 118 §4.2): the 24px CSS fade is gone. Each picture now ends on whole rows, with the next row under its own soft fade (baked in, as 113's vignettes). */
  .demo-secondary { padding:30px 16px; }
 }
+/* 138 (critic 136 §2.4): the pause control says what it does. A quiet pill, "pause motion" / "play motion" (one width for both, so nothing shifts on a toggle), with the
+   120 hairline (#c9d2d9) and a 12px ink icon. The pill is drawn 32px tall inside a 44px tap area; ink focus ring. */
+.opening .site-nav .motion-toggle { position:relative; width:auto; height:44px; min-width:132px; justify-content:center; padding:0 14px 0 12px; gap:7px; border:0; border-radius:999px; background:transparent; box-shadow:none; color:#151517; font-size:14px; line-height:1; white-space:nowrap; }
+.opening .site-nav .motion-toggle::after { content:''; position:absolute; inset:6px 0; border:1px solid #c9d2d9; border-radius:999px; background:#fff; transition:border-color 160ms ease; }
+.opening .site-nav .motion-toggle:hover::after { border-color:#8d99a3; }
+.opening .site-nav .motion-toggle svg { position:relative; z-index:1; width:12px; height:12px; flex:none; }
+.opening .site-nav .motion-toggle span { position:relative; z-index:1; width:auto; height:auto; overflow:visible; clip-path:none; }
+.opening .site-nav .motion-toggle:focus-visible { outline:none; }
+.opening .site-nav .motion-toggle:focus-visible::after { box-shadow:0 0 0 2px #fff,0 0 0 4px #151517; }
+@media(max-width:700px) { .opening .site-nav .motion-toggle { font-size:13px; padding:0 12px 0 10px; gap:6px; min-width:122px; } }
+/* 138: under 430px the pill says "pause" / "play" so it keeps the logo row (its accessible name stays "pause motion") */
+@media(max-width:429px) { .opening .site-nav .motion-toggle { min-width:77px; } .opening .site-nav .motion-toggle .mt-long { display:none; } .opening .site-nav .header-login { padding-inline:6px; } }
 @media(max-width:359px) { .opening .site-nav .wordmark,.opening .site-nav .wordmark img { width:125px; } }
 @media(forced-colors:active) {
  .opening .workflow-text { background:none!important; color:CanvasText!important; }
