@@ -19,7 +19,7 @@ body{background:#fff;color:var(--flow-ink)}
 .deep-field::before{content:'';position:absolute;inset:0;background:#bee9fc var(--flow-field) center/cover;mask-image:linear-gradient(transparent,#000 18%,#000 77%,transparent);border-radius:50% 50% 45% 45%/12% 12% 12% 12%;pointer-events:none}
 .deep-field>.gc,.deep-field>.deep-sabo,.deep-field::after{display:none}
 .deep-symbol{z-index:1;opacity:1;filter:none}
-.flow-deep-blot{display:block;width:110px;height:135px;background:url('../assets/flow-v1/deep-189.svg') center/contain no-repeat}
+.flow-deep-blot{display:block;width:110px;height:135px;background:url('../assets/hero-076/eyeless/deep-189.svg') center/contain no-repeat}
 .deep-wordmark{filter:none;width:210px;height:auto;bottom:72px}
 .stats-shell{border:0;color:var(--flow-ink)}
 .stats-line,.numbers strong{color:var(--flow-blue);background:none;-webkit-text-fill-color:currentColor}

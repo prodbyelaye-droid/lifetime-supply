@@ -58,11 +58,17 @@ export function createOpening(reduced, mode = 'off') {
     const act = copy.querySelector('.actions').getBoundingClientRect();
     const phone = W < 700, H = h.height;
     // Edge spots [x, y, size, scroll depth]: out in the margins on desktop; above and below the copy on a phone.
+    // 076: the first spot holds the one character (hero-design.js), so it is the largest; the 86 and 72 swap places.
     const spots = phone
       // 107 (critic 106 §1.9): no blot in the CTA's rows on a phone. One sits above each end of the headline, one low
       // in the left margin, clear of the price line by 40px.
-      ? [[38, text.t - 32, 36, 0.18], [30, text.b + 58, 34, 0.1], [W - 42, text.t - 44, 38, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
-      : [[W * 0.075, H * 0.36, 72, 0.16], [W * 0.91, H * 0.58, 62, 0.28], [W * 0.87, H * 0.86, 86, 0.1], [W * 0.15, H * 0.82, 42, 0.32], [W * 0.035, H * 0.64, 40, 0.22]];
+      ? [[40, text.t - 36, 44, 0.18], [30, text.b + 58, 34, 0.1], [W - 42, text.t - 44, 38, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
+      : [[W * 0.075, H * 0.36, 86, 0.16], [W * 0.91, H * 0.58, 62, 0.28], [W * 0.87, H * 0.86, 72, 0.1], [W * 0.15, H * 0.82, 42, 0.32], [W * 0.035, H * 0.64, 40, 0.22]];
+    // 076: on a narrow desktop (768–1023) the 86 px character would touch the headline's first letter; it shrinks to keep
+    // 40 px clear of it (the drawn body reaches about 0.6 × its spot size from the centre), never below 56 px.
+    if (!phone) spots[0][2] = Math.round(Math.min(86, Math.max(56, (h1.left - o.left - 40 - spots[0][0]) / 0.6)));
+    // and, if it is still too close at 56, it moves toward the page edge (never closer than 12 px to it)
+    if (!phone) spots[0][0] = Math.max(spots[0][2] * 0.62 + 12, Math.min(spots[0][0], h1.left - o.left - 40 - spots[0][2] * 0.6));
     const pxs = phone
       ? [[text.l + 74, text.t - 46], [text.r - 30, text.t - 40], [text.l + 8, text.b + 24]]
       : [[h1.left - o.left - 70, h1.top - o.top + 14], [h1.right - o.left + 26, h1.top - o.top - 6], [act.left - o.left - 96, act.top - o.top + 14]];
