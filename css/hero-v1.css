@@ -1,0 +1,47 @@
+/* cdesign 007: two heights, one owner-picked palette. Source 030 V1 and 203 dome. */
+:root{--hero-block-height:540px}
+.opening{overflow:hidden}
+html[data-hero-height=b]{--hero-block-height:600px}
+.opening .hero{min-height:var(--hero-block-height);height:auto;background:transparent!important;overflow:visible!important}
+.opening .site-nav{padding:20px 48px;gap:40px}
+.site-nav .wordmark{display:flex;align-items:center;width:180px;min-height:52px;flex-shrink:0}
+.site-nav .wordmark img{display:block;width:180px;height:auto}
+.site-nav nav{margin-left:20px}
+.site-nav .motion-toggle{border-color:#707070;box-shadow:none}
+.opening .hero-copy{justify-content:center;max-width:900px;padding:8px 24px 44px;margin-inline:auto}
+.opening .hero h1{font-size:80px;line-height:.99;letter-spacing:-.055em;color:#151517}
+.opening .hero-word{color:#151517;background:none}
+.opening .hero-copy>p{color:#333;max-width:540px;margin-top:20px}
+.opening .hero .actions{margin-top:24px}
+.opening .hero-copy>.price-line{color:#333;margin-top:18px}
+.hero-gradient-203{inset:0;z-index:-1;background:#c9ecfd url('../assets/hero-v1/V1-field.webp') center/100% 100% no-repeat;mask-image:linear-gradient(#000 0%,#000 66%,transparent 100%)}
+.hero-gradient-203::before{content:'';position:absolute;inset:0 0 auto;height:var(--hero-block-height);background:var(--hero-white-dome);mask-image:linear-gradient(#000 60%,transparent 100%)}
+.opening .flood,.opening .flood-rider{visibility:hidden}
+.opening .demo{padding:80px 48px 112px;background:none}
+.opening .demo-film,.opening .demo[data-variant=window] .demo-film{width:min(1100px,100%);margin-inline:auto;border-radius:24px;box-shadow:none;background:#fff}
+.opening .demo-film::before,.opening .demo-film::after{content:none}
+.opening .demo-links{margin:24px auto 0;color:#151517;max-width:500px}
+.opening .demo-links a{color:#151517;background:#fff;padding:9px 16px;border:1px solid #707070;border-radius:999px;min-height:44px;display:inline-flex;align-items:center}
+/* This task covers the hero and the hand-off. Lower page assembly remains for 010. */
+@media(max-width:1000px){.opening .site-nav{padding-inline:24px;gap:24px}.site-nav nav{gap:20px;margin-left:0}.opening .hero h1{font-size:70px}}
+@media(max-width:700px){
+ :root{--hero-block-height:560px}html[data-hero-height=b]{--hero-block-height:620px}
+ .opening .site-nav{padding:12px 20px 8px;gap:8px;flex-wrap:wrap}
+ .site-nav .wordmark,.site-nav .wordmark img{width:150px}.site-nav .wordmark{min-height:46px}
+ .site-nav nav{order:3;flex-basis:100%;justify-content:center;gap:24px;font-size:13px}
+ .site-nav .motion-toggle{margin-left:auto}
+ .opening .hero-copy{padding:36px 20px 64px}
+ .opening .hero h1{font-size:clamp(38px,11.1vw,64px);line-height:1.03;letter-spacing:-.055em}
+ .opening .hero-copy>p{font-size:15px;line-height:1.5;max-width:350px;margin-top:20px}
+ .opening .hero-copy>.price-line{font-size:12px;margin-top:18px}
+ .opening .hero .actions{margin-top:22px;gap:20px}
+ .opening .demo{padding:80px 16px 72px}
+ .opening .demo-film,.opening .demo[data-variant=window] .demo-film{border-radius:16px}
+ .hero-gradient-203{background-size:auto 100%}
+ .opening .demo-links{gap:12px;margin-top:20px;font-size:13px}
+ .opening .demo-links a{padding-inline:14px}
+}
+@media(max-width:359px){.opening .hero-copy{padding-inline:16px}.opening .hero h1{font-size:36px}.opening .hero-copy>p{font-size:14px}}
+
+@media(max-width:700px){.site-nav .wordmark{order:0}.site-nav .motion-toggle{order:1}.site-nav nav{order:2}}
+.hero-stop[data-colour=magenta] .b2-pose :is(path,rect){fill:#5439D6}

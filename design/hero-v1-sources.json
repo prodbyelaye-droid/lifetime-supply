@@ -1,0 +1,55 @@
+{
+  "field": "030 V1-field.webp byte-identical",
+  "logo": "031 refined A header ink byte-identical",
+  "silhouettes": "030 accents 221,150,212,223,183; first closed subpath unchanged",
+  "eyes": {
+    "basis": "Round 1 4.5 \u00d7 1.8 units; scale eye pair by 1.15",
+    "mapping": "256-unit asset rendered into 90 units of the inherited 100-unit blot SVG",
+    "asset_rect_width": 14.72,
+    "asset_rect_height": 5.888
+  },
+  "height": {
+    "a": {
+      "desktop": 540,
+      "phone": 560
+    },
+    "b": {
+      "desktop": 600,
+      "phone": 620
+    }
+  },
+  "files": {
+    "film-poster.svg": {
+      "sha256": "9b814b87c3bf7aa4f39ee82083e5bd95f7bca76c1876df84b132f3843447fbfc",
+      "bytes": 154438
+    },
+    "accent-212.svg": {
+      "sha256": "a63ac512f1ace1b2ef5cde0b21d14ebb9454811bc3310de5758d66e4a69d1c4b",
+      "bytes": 1366
+    },
+    "accent-183.svg": {
+      "sha256": "ada982ce7caccf9e36fd59c69930e10329666e5411d785f193b953eda3ecc5c8",
+      "bytes": 1367
+    },
+    "accent-223.svg": {
+      "sha256": "f55d2aa42fe2548ed4379cc66fb66f3bccc370f194ed7c8c58d60453c4e028b5",
+      "bytes": 1365
+    },
+    "accent-221.svg": {
+      "sha256": "0ce492ff478eb5771b02499a10603af19f4f9ca7d7145e4144f91afe300a5479",
+      "bytes": 1363
+    },
+    "logo-A-header-ink.svg": {
+      "sha256": "4e6e57e3746bc2e0da41f8be73904702b022c9ae5584a26838e804a6f911e9ed",
+      "bytes": 50118
+    },
+    "accent-150.svg": {
+      "sha256": "d3457de66e6ed0cc072907db11aaeaaa08653b21c17511cd4e719704b82695af",
+      "bytes": 1366
+    },
+    "V1-field.webp": {
+      "sha256": "2a3f666ddbc35c15356344e4919d8915c519accd23f70298958e1146f23d7691",
+      "bytes": 115500
+    }
+  }
+}

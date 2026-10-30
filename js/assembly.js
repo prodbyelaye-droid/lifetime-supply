@@ -1,12 +1,10 @@
+import {createHeroDesign} from './hero-design.js';
 import {LANDING} from './landing-config.js';
 import {createGrads} from './grad.js';
-import {mountGradcode} from './gradcode-mount.js';
-import {drawDownload34,drawClose192} from './port012.js';
 // The one shared cartoon blot (task 003; Elaye 00:24 "they need to be like fucking cartoonish"). The PENS blot.js is retired.
 import {mountAll,manualClock,renderAt as blotAt,setPaused as pauseBlots,setShape} from './blot2.js';
 import {createOpening} from './opening.js';
-import {createFeatures} from './features.js';
-import {drawBlend} from './blend10.js';
+import {createFeatures} from './evervault-features.js';
 import {createDemo} from './demo.js';
 import {createSections} from './sections008.js';
 import {setPaused as pauseFields,renderAt as fieldsAt,resume as resumeFields} from './lightfield.js';
@@ -30,17 +28,18 @@ if(document.querySelector('[data-material]'))import('./material.js').then(({crea
 // 016: the inclusions scroll sideways only on a phone; only then is their labelled region a tab stop
 {const sc=document.querySelector('.price-scroll');const fit=()=>{if(!sc)return;sc.scrollWidth>sc.clientWidth+1?sc.setAttribute('tabindex','0'):sc.removeAttribute('tabindex');};fit();addEventListener('resize',fit);}
 const grads=createGrads(reduced);
-const gradcode=mountGradcode(deepMode);
+// 010: V1 is an exact static asset; replaced fields no longer allocate hidden WebGL contexts.
+const gradcode={renderAt(){},setPaused(){}};
 // 155's pixel symbols are a variant (task 004): LANDING.pixels, or ?pixels=on|face to preview.
 const opening=createOpening(reduced,new URLSearchParams(location.search).get('pixels')||LANDING.pixels);
 // Features boxes (012): A, white with ink and colour only in the vault and one more (default); ?boxes=bloom gives each
 // box its own GRADCODE bloom from a corner.
 createFeatures(new URLSearchParams(location.search).get('boxes')==='bloom'?'bloom':'restraint',new URLSearchParams(location.search).get('vault')==='bloom'?'bloom':'arch');
-drawBlend(document.querySelector('.blend10'));
+// 010: the split card uses the approved V1 asset in CSS.
 // 012, 019: the download panel on 34's own glow, turned to 150's violet; the closing call on 192's frosted field.
 // Closing call options (task 009, 019): ?close=a|b|c|192 (192 is option d), default b; read before its field is drawn.
 {const v=new URLSearchParams(location.search).get('close');if(['a','b','c','d','192'].includes(v))document.querySelector('.close-call').dataset.variant=v==='192'?'d':v;if(v==='c')document.querySelector('.close-blot').dataset.colour='magenta';}
-drawDownload34(document.querySelector('.portal-arch'));drawClose192(document.querySelector('.close-call'));
+// 010: white download section; the close uses 030's V1 glow asset.
 // The film: full width by default; ?demo=window previews row 12's rounded glowing window.
 const demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');
 // Stats odometer, 34's liquid arch, and the How-it-works variant (?how=191).
@@ -83,6 +82,7 @@ function startIntro(){
 const alreadyVisited=sessionStorage.getItem('landing-assembly-intro');
 // Task 001: the opener stays off. Its pet blot is gone and its 145 flood was the blue gradient Elaye rejected (00:23); a new opening comes with the later gradient task.
 void alreadyVisited;finishIntro();
+const heroDesign=createHeroDesign(reduced);
 document.querySelector('.intro-skip').addEventListener('click',()=>{intro.pause();finishIntro();});
 document.addEventListener('keydown',e=>{root.dataset.keyboard='true';if(e.key==='Escape'&&!opener.hidden){intro.pause();finishIntro();}});
 document.addEventListener('pointerdown',()=>delete root.dataset.keyboard,{passive:true});
@@ -103,6 +103,7 @@ function syncMotion(){
   grads.setPaused(paused||document.hidden);gradcode.setPaused(paused||document.hidden);
   pauseBlots(paused||document.hidden);pauseFields(paused||document.hidden);demo.setPaused(paused||document.hidden);sections.setPaused(paused||document.hidden);opening.setPaused(paused||document.hidden);
   if(reduced.matches){intro.pause();finishIntro();for(const animations of loops.values())for(const a of animations)a.progress(0).pause();}
+  heroDesign.sync(stopped,paused);
   wakeDecorations();
 }
 const observer=new IntersectionObserver(entries=>{for(const e of entries){e.target.classList.toggle('in-view',e.isIntersecting);if(e.isIntersecting)visible.add(e.target);else visible.delete(e.target);}syncMotion();},{threshold:0});
@@ -161,11 +162,11 @@ if(!reduced.matches&&'IntersectionObserver' in window){
   reveal.observe(featureGrid);
 }
 window.assembly={material,intro,setHero,skip:finishIntro,
-  renderAt(t,{opener:showIntro=false}={}){manual=true;cancelAnimationFrame(decorationRaf);decorationRaf=0;material.renderAt(t);gradcode.renderAt(t);manualClock(true);blotAt(t);fieldsAt(t);opening.renderAt(t);sections.renderAt(t);const seeked=grads.renderAt(t);for(const animations of loops.values())for(const a of animations)a.totalTime(t).pause();drawWave(t);drawLines();
+  renderAt(t,{opener:showIntro=false}={}){manual=true;heroDesign.renderAt(t);cancelAnimationFrame(decorationRaf);decorationRaf=0;material.renderAt(t);gradcode.renderAt(t);manualClock(true);blotAt(t);fieldsAt(t);opening.renderAt(t);sections.renderAt(t);const seeked=grads.renderAt(t);for(const animations of loops.values())for(const a of animations)a.totalTime(t).pause();drawWave(t);drawLines();
     if(showIntro){startIntro();intro.pause(t);clearTimeout(failSafe);}else{intro.pause();finishIntro();}syncMotion();return seeked;},
-  resume(){manual=false;material.resume();grads.resume();opening.resume();resumeFields();manualClock(false);syncMotion();},
-  stats:()=>material.stats()
+  resume(){manual=false;heroDesign.resume();material.resume();grads.resume();opening.resume();resumeFields();manualClock(false);syncMotion();},
+  stats:()=>({...material.stats(),heroDesign:heroDesign.stats()})
 };
-window.addEventListener('pagehide',()=>{motionPreferenceEvents?.removeEventListener('change',syncMotion);intro.pause();finishIntro();observer.disconnect();cancelAnimationFrame(decorationRaf);material.dispose();for(const animations of loops.values())for(const a of animations)a.kill();},{once:true});
+window.addEventListener('pagehide',()=>{motionPreferenceEvents?.removeEventListener('change',syncMotion);intro.pause();finishIntro();observer.disconnect();cancelAnimationFrame(decorationRaf);material.dispose();heroDesign.dispose();for(const animations of loops.values())for(const a of animations)a.kill();},{once:true});
 window.ready=true;
 if(['localhost','127.0.0.1','[::1]'].includes(location.hostname)&&new URLSearchParams(location.search).get('qa')==='1')import('./assembly-qa.js');

@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
       const context = await browser.newContext({viewport: {width, height: width === 1440 ? 1000 : 844}, reducedMotion: 'no-preference'});
       const page = await context.newPage(), errors = [];
       page.on('pageerror', (e) => errors.push(e.message));
-      await page.goto(base, {waitUntil: 'networkidle'});
+      await page.goto(base, {waitUntil: 'domcontentloaded'});
       await page.waitForFunction(() => window.assembly); await page.evaluate(() => window.assembly.skip());
       const film = page.locator('.film-player');
       // "watch the demo": the film from the start, with sound and controls
@@ -56,10 +56,10 @@ const server = http.createServer((req, res) => {
       const context = await browser.newContext({viewport: {width: 390, height: 844}, javaScriptEnabled: mode !== 'no-js'}), page = await context.newPage();
       if (mode === 'script-blocked') await page.route('**/js/demo.js', (r) => r.abort());
       if (mode === 'video-blocked') await page.route('**/assets/launch/*.mp4', (r) => r.abort());
-      await page.goto(base, {waitUntil: 'networkidle'});
+      await page.goto(base, {waitUntil: 'domcontentloaded'});
       const film = page.locator('.film-player');
       assert.equal(await film.count(), 1);
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-frame.jpg');
+      assert.equal(await film.getAttribute('poster'), 'assets/hero-v1/film-poster.svg');
       if (mode === 'no-js') {
         assert.equal(await film.evaluate((v) => v.controls), true, 'native controls without scripts');
         assert.equal(await page.locator('.film-cover').isVisible(), false);

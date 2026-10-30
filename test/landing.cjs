@@ -38,7 +38,7 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       page.on('pageerror', (e) => errors.push(e.message));
       page.on('response', (r) => { if (r.status() === 404) missing.push(r.url()); });
       page.on('request', (r) => { if (r.url().endsWith('.mp4')) videos.push(r.url()); });
-      await page.goto(base, {waitUntil: 'networkidle'});
+      await page.goto(base, {waitUntil: 'domcontentloaded'});
       await page.waitForFunction(() => window.assembly);
       await page.evaluate(() => window.assembly.skip());
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
@@ -58,7 +58,7 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       const film = page.locator('.film-player');
       assert.equal(await page.locator('video').count(), 1, 'the launch film is the only video');
       assert.equal(await film.getAttribute('preload'), 'metadata');
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-frame.jpg');
+      assert.equal(await film.getAttribute('poster'), 'assets/hero-v1/film-poster.svg');
       assert.equal(await film.evaluate((v) => v.controls), false, 'the scripted preview hides native controls');
       await page.locator('.demo-film').scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
@@ -99,7 +99,7 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       const page = await context.newPage();
       if (failure === 'script-blocked') await page.route('**/js/assembly.js', (r) => r.abort());
       if (failure === 'media-blocked') await page.route('**/assets/launch/*', (r) => r.abort());
-      await page.goto(base, {waitUntil: 'networkidle'});
+      await page.goto(base, {waitUntil: 'domcontentloaded'});
       assert(await page.locator('h1').isVisible());
       for (const id of ['#inside', '#features', '#price']) assert(await page.locator(id).isVisible(), id + ' visible');
       assert.equal(await page.locator('.price-includes').evaluate((el) => el.open), true);

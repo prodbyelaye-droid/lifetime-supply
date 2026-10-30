@@ -60,8 +60,8 @@ export function createOpening(reduced, mode = 'off') {
     const phone = W < 700, H = h.height;
     // Edge spots [x, y, size, scroll depth]: out in the margins on desktop; above and below the copy on a phone.
     const spots = phone
-      ? [[W - 44, text.t - 62, 44, 0.18], [36, text.t - 40, 34, 0.1], [W - 48, text.b + 52, 50, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
-      : [[W * 0.07, H * 0.38, 92, 0.16], [W * 0.91, H * 0.22, 56, 0.28], [W * 0.915, H * 0.66, 120, 0.1], [W * 0.13, H * 0.79, 44, 0.32], [W * 0.8, H * 0.92, 66, 0.22]];
+      ? [[38, text.t - 32, 36, 0.18], [34, text.b + 40, 34, 0.1], [W - 35, text.b + 42, 42, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
+      : [[W * 0.075, H * 0.36, 72, 0.16], [W * 0.91, H * 0.58, 62, 0.28], [W * 0.87, H * 0.86, 86, 0.1], [W * 0.15, H * 0.82, 42, 0.32], [W * 0.035, H * 0.64, 40, 0.22]];
     const pxs = phone
       ? [[text.l + 74, text.t - 46], [text.r - 30, text.t - 40], [text.l + 8, text.b + 24]]
       : [[h1.left - o.left - 70, h1.top - o.top + 14], [h1.right - o.left + 26, h1.top - o.top - 6], [act.left - o.left - 96, act.top - o.top + 14]];
