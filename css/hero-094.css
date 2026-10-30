@@ -81,8 +81,9 @@ html[data-landing-layout] .hero-computer .portal-preview { display:block; width:
 /* 138 (critic 136 §2.4): the pause control says what it does. A quiet pill, "pause motion" / "play motion" (one width for both, so nothing shifts on a toggle), with the
    120 hairline (#c9d2d9) and a 12px ink icon. The pill is drawn 32px tall inside a 44px tap area; ink focus ring. */
 .opening .site-nav .motion-toggle { position:relative; width:auto; height:44px; min-width:132px; justify-content:center; padding:0 14px 0 12px; gap:7px; border:0; border-radius:999px; background:transparent; box-shadow:none; color:#151517; font-size:14px; line-height:1; white-space:nowrap; }
-.opening .site-nav .motion-toggle::after { content:''; position:absolute; inset:6px 0; border:1px solid #c9d2d9; border-radius:999px; background:#fff; transition:border-color 160ms ease; }
-.opening .site-nav .motion-toggle:hover::after { border-color:#8d99a3; }
+/* 158 (critic 155 §3.5): no border at rest, so it never out-weighs "log in" in the CTA slot: icon + words, with the hairline and white fill only on hover. */
+.opening .site-nav .motion-toggle::after { content:''; position:absolute; inset:6px 0; border:1px solid transparent; border-radius:999px; background:transparent; transition:border-color 160ms ease, background-color 160ms ease; }
+.opening .site-nav .motion-toggle:hover::after { border-color:#c9d2d9; background:#fff; }
 .opening .site-nav .motion-toggle svg { position:relative; z-index:1; width:12px; height:12px; flex:none; }
 .opening .site-nav .motion-toggle span { position:relative; z-index:1; width:auto; height:auto; overflow:visible; clip-path:none; }
 .opening .site-nav .motion-toggle:focus-visible { outline:none; }
