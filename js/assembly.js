@@ -46,7 +46,7 @@ createFeatures(new URLSearchParams(location.search).get('boxes')==='bloom'?'bloo
 const demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');
 // Stats odometer, 34's liquid arch, and the How-it-works variant (?how=191).
 const sections=createSections(reduced,new URLSearchParams(location.search).get('how')||'off');
-{const q=new URLSearchParams(location.search);if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';if(q.get('band')==='text')document.documentElement.dataset.band='text';if(q.get('footblot')==='magenta')document.querySelector('.footer-blob').dataset.colour='magenta';
+{const q=new URLSearchParams(location.search);if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';if(q.get('band')==='text')document.documentElement.dataset.band='text';
  // 011: the original blot edge is the default; ?blot=lumps keeps 006's smooth lumps. The walkthrough links sit under the
  // film (his 19:34 "under the text in the walkthrough"); ?links=hero keeps them under the price.
  if(q.get('blot')==='lumps'){setShape('lumps');document.documentElement.dataset.blot='lumps';}
@@ -126,34 +126,14 @@ toggle.addEventListener('click',()=>profile(links.hidden));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!links.hidden){profile(false);toggle.focus();}});
 document.addEventListener('click',e=>{if(!e.target.closest('.profile-nav'))profile(false);});
 
-// The cursor-follow light is removed (22:39). The row 020 logo lines still react to the pointer.
-let lineMouse={x:-1000,y:-1000};
-footer.addEventListener('pointermove',e=>{if(!fine.matches||paused||reduced.matches)return;const l=lines.getBoundingClientRect();lineMouse={x:e.clientX-l.left,y:e.clientY-l.top};},{passive:true});
-footer.addEventListener('pointerleave',()=>{lineMouse={x:-1000,y:-1000};});
-
-// Row 011 strands are static, as before Fix round 1; the blots that travelled on them are removed (22:39).
-// Row 002 halftone equation ported, recoloured from 034. Canvas redraw is bounded to footer.
-const wave=document.querySelector('.footer-wave'),wc=wave.getContext('2d');
-// Task 005: row 002's halftone band at the original's scale (its own strip under the footer, ~42% of a screen):
-// fine ink dots (5 px grid) sized by a slow flowing field, so the shape reads as the original's moving wave.
-function drawWave(t){const w=wave.clientWidth,h=wave.clientHeight,d=Math.min(2,devicePixelRatio||1);if(wave.width!==Math.round(w*d)||wave.height!==Math.round(h*d)){wave.width=Math.round(w*d);wave.height=Math.round(h*d);}wc.setTransform(d,0,0,d,0,0);wc.clearRect(0,0,w,h);wc.fillStyle='#151517';
- // task 010: the dot screen runs at 45 degrees, like row 002's
- const c=Math.SQRT1_2,step=5,R=Math.hypot(w,h)/2+step,cx=w/2,cy=h/2;
- for(let u=-R;u<R;u+=step)for(let v=-R;v<R;v+=step){const x=cx+(u-v)*c,y=cy+(u+v)*c;if(x<-4||y<-4||x>w+4||y>h+4)continue;const nx=x/w,ny=y/h,field=Math.sin(nx*5.2+t*.22+Math.sin(ny*3.1+t*.13)*1.4)+.8*Math.cos(ny*4.4-nx*2.3-t*.17)+.3*Math.sin(nx*11-ny*6+t*.3),q=Math.max(0,Math.min(1,(field+.15)*.9+.5)),q2=q*q*(3-2*q),vv=q2*q2*(3-2*q2),r=3.1*vv;if(r>.2){wc.beginPath();wc.arc(x,y,r,0,Math.PI*2);wc.fill();}}
-}
-// Row 020 sampled vertical-line logo, retains its original scatter/reassemble method.
-const lines=document.querySelector('#logo-lines'),lc=lines.getContext('2d'),logo=new Image();let points=[];
-logo.src='assets/assembly/blot.png';
-logo.onload=()=>{const off=document.createElement('canvas');off.width=200;off.height=160;const c=off.getContext('2d');c.drawImage(logo,20,0,160,160);const data=c.getImageData(0,0,200,160).data;
- for(let x=0;x<200;x+=5){let start=-1;for(let y=0;y<=160;y++){const a=y<160?data[(y*200+x)*4+3]:0;if(a>90&&start<0)start=y;if(a<=90&&start>=0){points.push({x:x+30,y:start+10,h:y-start,dx:0,dy:0});start=-1;}}}drawLines();};
-function drawLines(){if(!lines.clientWidth)return;if(lines.width!==260||lines.height!==180){lines.width=260;lines.height=180;}lc.clearRect(0,0,260,180);lc.strokeStyle='#14161a';lc.lineCap='round';lc.lineWidth=3;
- const localX=lineMouse.x,localY=lineMouse.y;
- for(const [i,p] of points.entries()){const d=Math.hypot(p.x-localX,p.y+p.h/2-localY),force=paused||reduced.matches?0:Math.max(0,1-d/150);p.dx+=(Math.cos(i*2.1)*force*35-p.dx)*.13;p.dy+=(Math.sin(i*1.3)*force*30-p.dy)*.13;lc.beginPath();lc.moveTo(p.x+p.dx,p.y+p.dy);lc.lineTo(p.x+p.dx,p.y+p.dy+p.h);lc.stroke();}
-}
-let decorationRaf=0,decorationTime=0,lastFrame=0,previous=performance.now();
-function decorate(now){decorationRaf=0;if(manual||paused||reduced.matches||document.hidden)return;const dt=Math.min(.1,(now-previous)/1000);previous=now;decorationTime+=dt;if(now-lastFrame>33){if(visible.has(footer)){drawWave(decorationTime);drawLines();}lastFrame=now;}if(visible.has(footer))decorationRaf=requestAnimationFrame(decorate);}
-function wakeDecorations(){if(!decorationRaf&&!manual&&!paused&&!reduced.matches&&!document.hidden&&visible.has(footer)){previous=performance.now();decorationRaf=requestAnimationFrame(decorate);}}
-drawWave(0);
+// opus 100: the footer is static (bright gradient lettering on a light field, 008 A layout).
+// The retired halftone wave and line-logo canvases no longer run; the capture hooks stay inert.
+let decorationRaf=0;
+function wakeDecorations(){}
+function drawWave(){}
+function drawLines(){}
+// ?footer=B: white letters with a sheen on the V1 field. ?footer-line=1: the optional striped line blot.
+{const q=new URLSearchParams(location.search),f=document.querySelector('.ls-footer');if(f){if(q.get('footer')==='B')f.dataset.footerOption='B';if(q.get('footer-line')==='1')f.querySelector('.footer-line-blot')?.removeAttribute('hidden');}}
 const featureGrid=document.querySelector('.feature-grid');
 if(!reduced.matches&&'IntersectionObserver' in window){
   const boxes=featureGrid.querySelectorAll('.feature'),heads=document.querySelectorAll('.features header>*');
