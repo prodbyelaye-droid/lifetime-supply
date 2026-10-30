@@ -10,3 +10,5 @@
 - Existing hero blot palette remains: petal `#FC82CB`, orchid `#EB7BEF`, saffron `#FCD16E`, periwinkle `#7C85F5`, coral `#FFBDA6`, mint `#3CE7B9`. No new mascot shape or eye system is introduced.
 - GO-094 (31 October 2026 00:35 Sydney) selects window A + gradient heading A for the overnight completion. Owner review remains open. Alternatives: `?frame=laptop`, `?heading=b` and `?heading=c`.
 - The former lower portal/download section is removed as requested; no installers are newly advertised. The original launch film remains once, after the first feature section. Its bytes and playback controls are unchanged.
+
+- **102 (31 Oct, critic 101 §1):** heading B (brush) and C (script) and frame B (laptop) are dropped from the build; `workflow-script.svg` and `js/hero-094-options.js` are removed (they stay in commit `9fac750`). Heading A now uses the one gradient from STANDING 18: `#0564A8 → #2F52B0 → #1C6592`. The window pictures moved to `assets/hero-102/` (see its PROVENANCE); `assets/fernand-073/` is no longer referenced by the page.
