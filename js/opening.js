@@ -74,6 +74,13 @@ export function createOpening(reduced, mode = 'off') {
     if (!phone) spots[0][2] = Math.round(Math.min(86, Math.max(56, (h1.left - o.left - 40 - spots[0][0]) / 0.6)));
     // and, if it is still too close at 56, it moves toward the page edge (129: its drawn edge never inside the 20 px gutter)
     if (!phone) spots[0][0] = Math.max(spots[0][2] * 0.62 + 26, Math.min(spots[0][0], h1.left - o.left - 40 - spots[0][2] * 0.6));
+    // 129: when the margin can't hold the 56 px character 40 px clear of the headline with its edge outside the 20 px
+    // gutter (about 768 wide, where it sat 6 px from "my"), it moves down beside the headline's shorter last line,
+    // centred in the margin there and low enough to clear the first line's descenders.
+    if (!phone && h1.left - o.left - 40 - 56 * 0.6 < 56 * 0.62 + 26) {
+      const last = lines.reduce((a, b) => (b.top > a.top ? b : a));
+      spots[0] = [Math.max(56 * 0.62 + 26, (last.left - o.left) / 2), last.top - o.top + last.height * 0.7, 56, 0.16];
+    }
     // 129: the lilac splat sits on the line from the character to the pink splat, 80 % of the way along; if the copy
     // reaches it there, it slides further down the same line (never past 92 %) until its edge is 40 px clear of the copy.
     if (!phone) {
