@@ -16,8 +16,9 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 // system collects its hosts).
 // 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
 // fails Gatekeeper); the download links stay as they are, and the header's "the portal" goes to the portal itself (021).
-if(new URLSearchParams(location.search).get('downloads')==='hidden'){document.getElementById('portal').hidden=true;const portalLink=document.querySelector('a[href="#portal"]');if(portalLink)portalLink.href='https://portal.elaye.store';}
-if(new URLSearchParams(location.search).get('downloads')==='preview')document.getElementById('portal').hidden=false;
+const installerSection=document.querySelector('[data-launch-gate="installers"]');
+if(installerSection && new URLSearchParams(location.search).get('downloads')==='hidden')installerSection.hidden=true;
+if(installerSection && new URLSearchParams(location.search).get('downloads')==='preview')installerSection.hidden=false;
 const deepMode=new URLSearchParams(location.search).get('deep');
 if(deepMode!=='sabo')document.querySelector('.deep-sabo')?.remove();
 // 016: the Sabo material (and its 2 MB of Three) loads only when a host is on the page (?deep=sabo); the default page
@@ -98,6 +99,7 @@ addLoop(document.querySelector('.inside'),gsap.to('.product',{y:-10,duration:5.2
 addLoop(document.querySelector('.deep-wrap'),gsap.timeline({repeat:-1,defaults:{ease:'sine.inOut',duration:3.2}}).to('.deep-symbol',{x:90,y:-46,rotation:10,scale:1.08}).to('.deep-symbol',{x:20,y:40,rotation:-6,scale:.94}).to('.deep-symbol',{x:-80,y:-20,rotation:8,scale:1.05}).to('.deep-symbol',{x:0,y:0,rotation:0,scale:1}));
 function syncMotion(){
   const stopped=paused||reduced.matches||document.hidden||manual;
+  root.classList.toggle("motion-paused",stopped);
   if(stopped)root.dataset.motionPaused='true';else delete root.dataset.motionPaused;
   for(const [section,animations] of loops)for(const a of animations){if(!stopped&&visible.has(section))a.resume();else a.pause();}
   material.setPaused(paused||document.hidden);

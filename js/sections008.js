@@ -19,7 +19,10 @@ export function createSections(reduced, howVariant = 'off') {
   document.querySelectorAll('.odo').forEach((el) => reduced.matches ? el.classList.add('is-rolled') : io.observe(el));
 
   // 34's arch: three coloured bands rising from the bottom centre, their edges swaying slowly like liquid
-  const svg = document.querySelector('.arch34'), bands = ['.a34-c', '.a34-b', '.a34-a'].map((s) => svg.querySelector(s));
+  const svg = document.querySelector('.arch34');
+  // 094 moves the portal into the hero; the gated download arch can be absent.
+  if (!svg) return {setPaused() {}, renderAt() {}};
+  const bands = ['.a34-c', '.a34-b', '.a34-a'].map((s) => svg.querySelector(s));
   const shape = (t, k, w, h) => {
     const sway = (x) => Math.sin(t * 0.5 + k * 1.7 + x * 3.1) * 14 + Math.sin(t * 0.31 + k + x * 5.3) * 8;
     const cx = 600 + Math.sin(t * 0.23 + k) * 30, top = 520 - h, l = cx - w, r = cx + w;

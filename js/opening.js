@@ -118,8 +118,10 @@ export function createOpening(reduced, mode = 'off') {
       el.style.transform = `translate(${(x - s / 2 + sway + off.x).toFixed(1)}px,${(y - s / 2 + bob + par + sink + off.y).toFixed(1)}px) scale(${g.toFixed(3)})`;
       el.style.visibility = g < 0.01 ? 'hidden' : '';
     });
-    const r = film.getBoundingClientRect(), f = smooth(clamp((innerHeight - r.top) / (innerHeight * 0.75), 0, 1));
-    film.style.transform = `translateY(${((1 - f) * -110).toFixed(1)}px)`; // task 010: full bleed at rest, no inset while it comes down
+    if (film) {
+      const r = film.getBoundingClientRect(), f = smooth(clamp((innerHeight - r.top) / (innerHeight * 0.75), 0, 1));
+      film.style.transform = `translateY(${((1 - f) * -110).toFixed(1)}px)`;
+    } // task 010: full bleed at rest, no inset while it comes down
     const mid = sy + innerHeight / 2;
     sides.forEach((s, i) => {
       if (s.y === undefined) return;

@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
       // the hero: the heading, log in and the checkout CTA
       assert.match(await page.locator('h1').innerText(), /my whole workflow\.\s*day and night\./);
-      assert.equal(await page.locator('.hero-login').getAttribute('href'), 'https://portal.elaye.store/login');
+      assert.equal(await page.locator('.header-login').getAttribute('href'), 'https://portal.elaye.store/login');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
       // payments: four CTAs, all the live checkout, opening safely in a new tab
       const ctas = page.locator('a[data-checkout]');

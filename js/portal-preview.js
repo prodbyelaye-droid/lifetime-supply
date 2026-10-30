@@ -2,6 +2,8 @@
 (() => {
   const root = document.querySelector('.portal-preview');
   if (!root) return;
+  // A laptop keeps a desktop screen at every viewport width.
+  if (document.documentElement.dataset.heroFrame === 'laptop') root.querySelectorAll('picture source').forEach(source => source.media = 'not all');
   const tabs = [...root.querySelectorAll('[role="tab"]')];
   const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
   if (!tabs.length || panels.some(panel => !panel)) return;
