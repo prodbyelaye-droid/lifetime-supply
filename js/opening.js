@@ -62,13 +62,27 @@ export function createOpening(reduced, mode = 'off') {
     const spots = phone
       // 107 (critic 106 §1.9): no blot in the CTA's rows on a phone. One sits above each end of the headline, one low
       // in the left margin, clear of the price line by 40px.
-      ? [[40, text.t - 36, 44, 0.18], [30, text.b + 58, 34, 0.1], [W - 42, text.t - 44, 38, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
-      : [[W * 0.075, H * 0.36, 86, 0.16], [W * 0.91, H * 0.58, 62, 0.28], [W * 0.87, H * 0.86, 72, 0.1], [W * 0.15, H * 0.82, 42, 0.32], [W * 0.035, H * 0.64, 40, 0.22]];
+      // 129 (critic 127 #2.3): every phone blot's drawn edge stays ≥ 20 px inside the screen (the body reaches ~0.6 × its
+      // size from the centre); the character grows to 52 px so its eyes read.
+      ? [[60, text.t - 42, 52, 0.18], [44, text.b + 58, 34, 0.1], [W - 48, text.t - 44, 38, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
+      // 129 (critic 127 #2.4–2.5): the character and the two right-side splats share one descending diagonal (set below),
+      // 86 → 72 → 60 px on one scroll depth so the line holds while the page scrolls. The sun sits low on the left at 60 px;
+      // the mint is off the hero (it vanished on the field).
+      : [[W * 0.075, H * 0.36, 86, 0.16], [0, 0, 72, 0.16], [W * 0.9, H * 0.86, 60, 0.16], [W * 0.15, H * 0.82, 60, 0.32], [-999, 0, 1, 0]];
     // 076: on a narrow desktop (768–1023) the 86 px character would touch the headline's first letter; it shrinks to keep
     // 40 px clear of it (the drawn body reaches about 0.6 × its spot size from the centre), never below 56 px.
     if (!phone) spots[0][2] = Math.round(Math.min(86, Math.max(56, (h1.left - o.left - 40 - spots[0][0]) / 0.6)));
-    // and, if it is still too close at 56, it moves toward the page edge (never closer than 12 px to it)
-    if (!phone) spots[0][0] = Math.max(spots[0][2] * 0.62 + 12, Math.min(spots[0][0], h1.left - o.left - 40 - spots[0][2] * 0.6));
+    // and, if it is still too close at 56, it moves toward the page edge (129: its drawn edge never inside the 20 px gutter)
+    if (!phone) spots[0][0] = Math.max(spots[0][2] * 0.62 + 26, Math.min(spots[0][0], h1.left - o.left - 40 - spots[0][2] * 0.6));
+    // 129: the lilac splat sits on the line from the character to the pink splat, 80 % of the way along; if the copy
+    // reaches it there, it slides further down the same line (never past 92 %) until its edge is 40 px clear of the copy.
+    if (!phone) {
+      const [cx, cy] = spots[0], [px, py] = spots[2], reach = spots[1][2] * 0.6;
+      const rows = kids.map((k) => ({t: k.top - o.top, b: k.bottom - o.top, r: k.right - o.left}));
+      const clearAt = (x, y) => rows.every((k) => y + reach < k.t - 12 || y - reach > k.b + 12 || x - reach > k.r + 40);
+      let t = 0.8; while (t < 0.92 && !clearAt(cx + (px - cx) * t, cy + (py - cy) * t)) t += 0.01;
+      spots[1][0] = cx + (px - cx) * t; spots[1][1] = cy + (py - cy) * t;
+    }
     const pxs = phone
       ? [[text.l + 74, text.t - 46], [text.r - 30, text.t - 40], [text.l + 8, text.b + 24]]
       : [[h1.left - o.left - 70, h1.top - o.top + 14], [h1.right - o.left + 26, h1.top - o.top - 6], [act.left - o.left - 96, act.top - o.top + 14]];

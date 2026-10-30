@@ -11,6 +11,8 @@
   const list = root.querySelector('[role="tablist"]');
   const ink = root.querySelector('.tab-ink');
   let current = 0;
+  const crumb = root.querySelector('.hw-now');
+  let crumbTimer = 0;
   const place = () => {
     if (!ink) return;
     const tab = tabs[current];
@@ -30,6 +32,12 @@
     });
     // 107: the out-then-in fade runs only on a real change, never on the first paint
     if (previous !== index) root.dataset.switch = '';
+    // 129: the bar's crumb names the open tab; on a change it fades out (90 ms), swaps, then fades back in, in place
+    if (crumb && previous !== index) {
+      const label = tabs[index].textContent.trim();
+      clearTimeout(crumbTimer); crumb.classList.add('is-out');
+      crumbTimer = setTimeout(() => { crumb.textContent = label; crumb.classList.remove('is-out'); }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 90);
+    }
     place();
     if (focus) tabs[index].focus({preventScroll:true});
   };
