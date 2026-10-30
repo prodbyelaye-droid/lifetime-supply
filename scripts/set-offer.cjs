@@ -3,7 +3,7 @@
  *   node scripts/set-offer.cjs --launch --link <stripe-url> [siteDir]     US$349 until Fri 6 Nov (midnight Sydney), then US$699
  *   node scripts/set-offer.cjs --standard --link <stripe-url> [siteDir]   US$699 (today: https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04)
  * It sets everything in GO-STEPS (c) at once: the four data-checkout hrefs, the JSON-LD offers.url, price and
- * priceValidUntil, the five visible prices and the launch-week lines, and the test constants that pin them (LIVE,
+ * priceValidUntil, the three visible prices and the launch-week lines, and the test constants that pin them (LIVE,
  * liveCheckout, the price assertions, check.cjs's link). Each place has a standard and a launch form; the script reads the
  * current state and link from the JSON-LD, and every edit must match exactly once, all in memory, before anything is
  * written. So --standard after --launch gives the original files back byte for byte. Wording: his 29 Oct terms, in the
@@ -29,8 +29,6 @@ const SLOTS = [
   ['index.html', '<span class="mini-price">$699 <small>USD</small></span>', '<span class="mini-price">$349 <small>USD</small></span>', 1],
   ['index.html', '<span class="mini-note">one payment, in for life.</span>', '<span class="mini-note">this launch week, then $699. one payment, in for life.</span>', 1],
   ['index.html', '<div class="pixel" data-price="">$699 <span class="currency">USD</span></div>', '<div class="pixel" data-price="">$349 <span class="currency">USD</span></div>', 1],
-  ['index.html', '<p class="price-sub">$699 USD. one payment, yours forever.</p>', '<p class="price-sub">launch week until fri 6 nov, midnight sydney. then $699. one payment, yours forever.</p>', 1],
-  ['index.html', '<p>$699 USD. one payment, yours forever.</p><a class="close-cta"', '<p>$349 USD this launch week, then $699. one payment, yours forever.</p><a class="close-cta"', 1],
   ['test/offer-contract.cjs', "const LIVE = '{L}';", "const LIVE = '{L}';", 1],
   ['test/offer-contract.cjs', '  assert.equal(Number(schema.offers.price), 699);\n', "  assert.equal(Number(schema.offers.price), 349);\n  assert.equal(schema.offers.priceValidUntil, '2026-11-06');\n", 1],
   ['test/offer.cjs', "const liveCheckout = '{L}';", "const liveCheckout = '{L}';", 1],

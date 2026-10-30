@@ -58,26 +58,28 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       const film = page.locator('.film-player');
       assert.equal(await page.locator('video').count(), 1, 'the launch film is the only video');
       assert.equal(await film.getAttribute('preload'), 'metadata');
-      assert.equal(await film.getAttribute('poster'), 'assets/hero-v1/film-poster.svg');
+      assert.equal(await film.getAttribute('poster'), 'assets/polish-063/portal-home.png');
       assert.equal(await film.evaluate((v) => v.controls), false, 'the scripted preview hides native controls');
       await page.locator('.demo-film').scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
       assert(await page.locator('.film-cover').isVisible() || (await film.evaluate((v) => v.currentTime)) >= 6, 'the film shows its own frame until the preview is past the intro');
       // the price: card, buy button, inclusions open, the note, and the details toggle by mouse and keyboard
       await page.locator('#price').scrollIntoViewIfNeeded();
-      const includes = page.locator('.price-includes'), summary = includes.locator('summary'), note = page.locator('.price-note');
-      assert.equal(await includes.evaluate((el) => el.open), true, 'inclusions open on load');
+      const includes = page.locator('.price-includes'), note = page.locator('.price-note');
+      const faq = page.locator('.faq details').first(), summary = faq.locator('summary');
+      assert(await includes.isVisible(), 'inclusions permanently visible');
+      assert.equal(await includes.locator('summary').count(), 0, 'no unnecessary inclusions disclosure');
       assert.equal(await page.locator('.price-list li').count(), 8);
       assert.equal(await note.innerText(), NOTE);
       assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
       await page.locator('.price-card a[data-checkout]').focus();
       assert.notEqual(await page.locator('.price-card a[data-checkout]').evaluate((el) => getComputedStyle(el).outlineStyle), 'none', 'the buy button shows focus');
-      await summary.click(); assert.equal(await includes.evaluate((el) => el.open), false); assert(await note.isVisible());
-      await summary.click(); assert.equal(await includes.evaluate((el) => el.open), true);
-      await summary.focus();
       for (const key of ['Enter', 'Space']) {
-        await summary.press(key); assert.equal(await includes.evaluate((el) => el.open), false);
-        await summary.press(key); assert.equal(await includes.evaluate((el) => el.open), true);
+        await summary.focus(); await summary.press(key); await page.waitForTimeout(550);
+        assert.equal(await faq.evaluate((el) => el.open), true);
+        await summary.press(key); await page.waitForTimeout(550);
+        assert.equal(await faq.evaluate((el) => el.open), false);
+        assert(await includes.isVisible(), 'FAQ state cannot hide included items');
       }
       // the inclusions are a labelled region; on a phone, where they scroll sideways, it is a tab stop
       const region = page.locator('.price-scroll[role="region"][aria-label="everything included"]');
@@ -102,7 +104,7 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       await page.goto(base, {waitUntil: 'domcontentloaded'});
       assert(await page.locator('h1').isVisible());
       for (const id of ['#inside', '#features', '#price']) assert(await page.locator(id).isVisible(), id + ' visible');
-      assert.equal(await page.locator('.price-includes').evaluate((el) => el.open), true);
+      assert(await page.locator('.price-includes').isVisible());
       assert.equal(await page.locator('.price-list li').count(), 8);
       assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
       assert.equal(await page.locator('a[data-checkout]').count(), 4);
