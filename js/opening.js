@@ -64,11 +64,16 @@ export function createOpening(reduced, mode = 'off') {
       // in the left margin, clear of the price line by 40px.
       // 129 (critic 127 #2.3): every phone blot's drawn edge stays ≥ 20 px inside the screen (the body reaches ~0.6 × its
       // size from the centre); the character grows to 52 px so its eyes read.
-      ? [[60, text.t - 42, 52, 0.18], [44, text.b + 58, 34, 0.1], [W - 48, text.t - 44, 38, 0.26], [-999, 0, 1, 0], [-999, 0, 1, 0]]
+      // 147 (critic 144 §4.2, 4.4, 4.6): two blots on a phone, on one deliberate diagonal: the character above the headline's
+      // left end at 0.85 × (44 px) with 16 px more room under it, and the lilac splat low on the right, clear of the price
+      // line. The pink splat beside the logo row is gone (STANDING 8).
+      ? [[56, text.t - 54, 44, 0.18], [W - 48, text.b + 58, 34, 0.1], [-999, 0, 1, 0], [-999, 0, 1, 0], [-999, 0, 1, 0]]
       // 129 (critic 127 #2.4–2.5): the character and the two right-side splats share one descending diagonal (set below),
       // 86 → 72 → 60 px on one scroll depth so the line holds while the page scrolls. The sun sits low on the left at 60 px;
       // the mint is off the hero (it vanished on the field).
-      : [[W * 0.075, H * 0.36, 86, 0.16], [0, 0, 72, 0.16], [W * 0.9, H * 0.86, 60, 0.16], [W * 0.15, H * 0.82, 60, 0.32], [-999, 0, 1, 0]];
+      // 147 (critic 144 §4.4): four blots read as confetti. Two now: the character high on the left and the lilac splat
+      // mirrored low on the right, level with the call to action (set below). Pink and sun are off the hero.
+      : [[W * 0.075, H * 0.36, 86, 0.16], [0, 0, 72, 0.16], [-999, 0, 1, 0], [-999, 0, 1, 0], [-999, 0, 1, 0]];
     // 076: on a narrow desktop (768–1023) the 86 px character would touch the headline's first letter; it shrinks to keep
     // 40 px clear of it (the drawn body reaches about 0.6 × its spot size from the centre), never below 56 px.
     if (!phone) spots[0][2] = Math.round(Math.min(86, Math.max(56, (h1.left - o.left - 40 - spots[0][0]) / 0.6)));
@@ -81,14 +86,15 @@ export function createOpening(reduced, mode = 'off') {
       const last = lines.reduce((a, b) => (b.top > a.top ? b : a));
       spots[0] = [Math.max(56 * 0.62 + 26, (last.left - o.left) / 2), last.top - o.top + last.height * 0.7, 56, 0.16];
     }
-    // 129: the lilac splat sits on the line from the character to the pink splat, 80 % of the way along; if the copy
-    // reaches it there, it slides further down the same line (never past 92 %) until its edge is 40 px clear of the copy.
+    // 147: the lilac splat mirrors the character across the page's centre line, level with the call to action. If the
+    // copy reaches it there, it moves outward until its edge is 40 px clear, never closer than 26 px to the page edge.
     if (!phone) {
-      const [cx, cy] = spots[0], [px, py] = spots[2], reach = spots[1][2] * 0.6;
+      const reach = spots[1][2] * 0.6, y = act.top - o.top + act.height / 2;
       const rows = kids.map((k) => ({t: k.top - o.top, b: k.bottom - o.top, r: k.right - o.left}));
-      const clearAt = (x, y) => rows.every((k) => y + reach < k.t - 12 || y - reach > k.b + 12 || x - reach > k.r + 40);
-      let t = 0.8; while (t < 0.92 && !clearAt(cx + (px - cx) * t, cy + (py - cy) * t)) t += 0.01;
-      spots[1][0] = cx + (px - cx) * t; spots[1][1] = cy + (py - cy) * t;
+      const clear = (x) => rows.every((k) => y + reach < k.t - 12 || y - reach > k.b + 12 || x - reach > k.r + 40);
+      let x = Math.max(W - spots[0][0], W * 0.82); const edge = W - spots[1][2] * 0.62 - 26;
+      while (x < edge && !clear(x)) x += 2;
+      spots[1][0] = Math.min(x, edge); spots[1][1] = y;
     }
     const pxs = phone
       ? [[text.l + 74, text.t - 46], [text.r - 30, text.t - 40], [text.l + 8, text.b + 24]]
