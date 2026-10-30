@@ -16,7 +16,8 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 // system collects its hosts).
 // 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
 // fails Gatekeeper); the download links stay as they are, and the header's "the portal" goes to the portal itself (021).
-if(new URLSearchParams(location.search).get('downloads')==='hidden'){document.getElementById('portal').hidden=true;document.querySelector('a[href="#portal"]').href='https://portal.elaye.store';}
+if(new URLSearchParams(location.search).get('downloads')==='hidden'){document.getElementById('portal').hidden=true;const portalLink=document.querySelector('a[href="#portal"]');if(portalLink)portalLink.href='https://portal.elaye.store';}
+if(new URLSearchParams(location.search).get('downloads')==='preview')document.getElementById('portal').hidden=false;
 const deepMode=new URLSearchParams(location.search).get('deep');
 if(deepMode!=='sabo')document.querySelector('.deep-sabo')?.remove();
 // 016: the Sabo material (and its 2 MB of Three) loads only when a host is on the page (?deep=sabo); the default page
@@ -38,7 +39,7 @@ createFeatures(new URLSearchParams(location.search).get('boxes')==='bloom'?'bloo
 // 010: the split card uses the approved V1 asset in CSS.
 // 012, 019: the download panel on 34's own glow, turned to 150's violet; the closing call on 192's frosted field.
 // Closing call options (task 009, 019): ?close=a|b|c|192 (192 is option d), default b; read before its field is drawn.
-{const v=new URLSearchParams(location.search).get('close');if(['a','b','c','d','192'].includes(v))document.querySelector('.close-call').dataset.variant=v==='192'?'d':v;if(v==='c')document.querySelector('.close-blot').dataset.colour='magenta';}
+{const v=new URLSearchParams(location.search).get('close');if(['a','b','c','d','192'].includes(v))document.querySelector('.close-call').dataset.variant=v==='192'?'d':v;if(v==='c'){const blot=document.querySelector('.close-blot');if(blot)blot.dataset.colour='magenta';}}
 // 010: white download section; the close uses 030's V1 glow asset.
 // The film: full width by default; ?demo=window previews row 12's rounded glowing window.
 const demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');

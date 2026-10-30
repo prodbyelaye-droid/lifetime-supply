@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {'Content-Type': types[path.extname(file)] || 'application/octet-stream'});
   fs.createReadStream(file).pipe(res);
 });
-const NOTE = 'your music and rights stay yours. sending is never a guaranteed placement.';
 (async () => {
   server.listen(0, '127.0.0.1');
   await new Promise((resolve) => server.once('listening', resolve));
@@ -43,7 +42,7 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       await page.evaluate(() => window.assembly.skip());
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
       // the hero: the heading, log in and the checkout CTA
-      assert.match(await page.locator('h1').innerText(), /my whole setup\.\s*yours forever\./);
+      assert.match(await page.locator('h1').innerText(), /my whole workflow\.\s*day and night\./);
       assert.equal(await page.locator('.hero-login').getAttribute('href'), 'https://portal.elaye.store/login');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
       // payments: four CTAs, all the live checkout, opening safely in a new tab
@@ -65,12 +64,12 @@ const NOTE = 'your music and rights stay yours. sending is never a guaranteed pl
       assert(await page.locator('.film-cover').isVisible() || (await film.evaluate((v) => v.currentTime)) >= 6, 'the film shows its own frame until the preview is past the intro');
       // the price: card, buy button, inclusions open, the note, and the details toggle by mouse and keyboard
       await page.locator('#price').scrollIntoViewIfNeeded();
-      const includes = page.locator('.price-includes'), note = page.locator('.price-note');
+      const includes = page.locator('.price-includes');
       const faq = page.locator('.faq details').first(), summary = faq.locator('summary');
       assert(await includes.isVisible(), 'inclusions permanently visible');
       assert.equal(await includes.locator('summary').count(), 0, 'no unnecessary inclusions disclosure');
       assert.equal(await page.locator('.price-list li').count(), 8);
-      assert.equal(await note.innerText(), NOTE);
+      assert.equal(await page.locator('.price-note').count(), 0, 'unsolicited disclaimer removed by copy 082');
       assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
       await page.locator('.price-card a[data-checkout]').focus();
       assert.notEqual(await page.locator('.price-card a[data-checkout]').evaluate((el) => getComputedStyle(el).outlineStyle), 'none', 'the buy button shows focus');

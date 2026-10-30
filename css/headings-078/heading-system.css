@@ -1,0 +1,6 @@
+/* 078 B / static / exact 030 V1 + body contours from 059 A. */
+.ls-heading-b{color:#151517;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Roboto,sans-serif;font-size:clamp(42px,6.25vw,90px);font-weight:500;line-height:.98;letter-spacing:-.03em;text-align:center;margin:0;text-wrap:balance;overflow-wrap:anywhere}
+.ls-heading-b__line{display:block}.ls-heading-b__accent{display:inline-block;width:1.04em;height:.78em;margin-left:.12em;vertical-align:-.04em;background:url("assets/V1-field.webp") center/cover no-repeat;-webkit-mask:var(--ls-heading-shape) center/contain no-repeat;mask:var(--ls-heading-shape) center/contain no-repeat}
+.ls-heading-b--long{font-size:clamp(42px,5vw,72px)}.ls-heading-b--step{font-size:clamp(32px,3.194444vw,46px);line-height:1.06;text-align:left}.ls-heading-b--compact{font-size:clamp(28px,2.5vw,36px);line-height:1.08;text-align:left}
+@media(max-width:700px){.ls-heading-b,.ls-heading-b--long{font-size:42px}.ls-heading-b--step{font-size:32px}.ls-heading-b--compact{font-size:28px}}
+@media(max-width:359px){.ls-heading-b,.ls-heading-b--long{font-size:36px}.ls-heading-b--step{font-size:30px}.ls-heading-b--compact{font-size:26px}}

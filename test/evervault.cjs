@@ -50,7 +50,7 @@ const base = process.env.TEST_URL || 'http://127.0.0.1:8914';
       assert.equal(await surface.locator('.ev-noise p').textContent(),paused,'site pause freezes scrambling');
       const link=page.locator('.f-board a');await link.focus();
       assert.equal(await link.evaluate(e=>e===document.activeElement),true);
-      assert.equal(await link.getAttribute('href'),'#steps');
+      assert.equal(await link.getAttribute('href'),'#flow');
       assert.deepEqual(errors,[]);console.log(`PASS Evervault ${width}: pointer, idle, reduced motion, pause, keyboard, overflow, JS errors`);
       await context.close();
     }
