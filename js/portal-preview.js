@@ -1,6 +1,7 @@
 /* 073: progressively enhanced product tabs.
-   102 (critic 101 §1.6): the pictures crossfade in place (180ms, css/hero-094.css) and one tab shape
-   slides under the labels (200ms). Nothing else moves. Without this script all three pictures stay listed. */
+   102 (critic 101 §1.6): one tab shape slides under the labels (200ms).
+   107 (critic 106 §1.1): the old picture fades out (90ms), then the new one fades in (160ms), in place; never both
+   at once (css/hero-094.css). Nothing else moves. Without this script all three pictures stay listed. */
 (() => {
   const root = document.querySelector('.portal-preview');
   if (!root) return;
@@ -27,6 +28,8 @@
       panels[i].classList.toggle('is-active', i === index);
       panels[i].classList.toggle('is-leaving', i === previous && i !== index);
     });
+    // 107: the out-then-in fade runs only on a real change, never on the first paint
+    if (previous !== index) root.dataset.switch = '';
     place();
     if (focus) tabs[index].focus({preventScroll:true});
   };

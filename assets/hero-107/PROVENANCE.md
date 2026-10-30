@@ -1,0 +1,9 @@
+# Hero window pictures (opus 107, 31 Oct 2026)
+
+- Source: the same real 075 portal as 102 (`el/75-portal-layout-236` at `d5d394c`, its own build) on cportal 075's fixture (synthetic member "Alex"; no production data). Same crop rule as 102 (first heading 24 css px from the left and top; desktop 1192x836, phone 390x780), 1x and 2x WebP.
+- Everything 102 changed on the page is still changed (see `../hero-102/PROVENANCE.md`). Critic 106 §1 adds, again on the page before each shot, never in pixels:
+  - Guides: "read the guide ↗" in ink #151517 (was warm brown #6F5248); the 01-05 number chips cool neutral #F1F5F8 with #41474D numbers (was cream #FFFAF8 / brown).
+  - Vault: "3,500+" in ink, "samples" in the one gradient (#0564A8 → #2F52B0 → #1C6592); icon tiles V1 tint #EAF5FC with #0564A8 icons (was lilac #F5F5FE / indigo #4D5298); the "new" chip sits inline after "open the full vault" in V1 tint #E3F2FB / #0B5A8F; solos + starters keeps his first two sentences only ("…sound nothing like the original."), so both cards hold two lines and their buttons share a line.
+  - Home: all eight mini-cards one height and left-aligned; kits rows carry values from the kits page (Members Only Kit V1 · new, Octaves Creator Suite · 7 kits, Analog Alchemy · one-shots; Part Two is left off so no row wraps); guides rows numbered 01-03 as on the guides page; your day shows the fixture member's own plan (3 to do, 4 tasks, 3 habits); submissions get a status dot and the fixture member's count per status (new 1, in review 0, sent to artist 1, placed 1); the room's lines become left-aligned rows.
+  - Portal footer links lowercase (copy 05), where the vault crop shows them.
+- Scripts and full-size masters: `/Users/elaye/Desktop/wiki/membership-portal/builds/outbox/opus/107/` (`harness/shots.cjs`, `harness/encode.cjs`, `panels/`).
