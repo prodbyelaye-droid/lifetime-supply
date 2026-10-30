@@ -1,0 +1,17 @@
+{
+  "base": "d2b7748444603af8c5f1c852ed30501fb22d57b9",
+  "context_checkpoint": "9b7a64a",
+  "context": "Exact delivered cdesign 010 landing-implementation.patch (includes 007), no change to shared worktree",
+  "field_source": "/Users/elaye/Desktop/wiki/membership-portal/builds/outbox/codex-design/30-asset-sheet-round-2-blue/assets/V1-field.webp",
+  "field_sha256": "2a3f666ddbc35c15356344e4919d8915c519accd23f70298958e1146f23d7691",
+  "render_treatment": "V1 unchanged on disk; B additional layer .92 opacity with transparent elliptical edges over shared field",
+  "shape_source": "Existing 203 radial/dome hand-off; no new blot silhouette or dot renderer",
+  "choices": {
+    "A": "No separate flood, default",
+    "B": "Short static flood; query flood=short; stages start middle full"
+  },
+  "precedence": "GO-plan 17:35 V1 + STANDING override old 183/green, watercolor, no-eyes and three-theme asks",
+  "hero": "locked 540 desktop / 560 phone",
+  "motion": "Opus; no new animation implemented",
+  "new_blot_colours": []
+}

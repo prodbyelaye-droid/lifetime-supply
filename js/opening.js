@@ -2,9 +2,8 @@
 // small cartoon blots around the page edges in many deep colours (no orange), never behind or touching the text, and
 // interactive (180: "Just as long as it comes across as interactive"; 22:39: "The dot ... is just sitting there"):
 // they lean away from the cursor, hop when it reaches them and drift at their own depth as you scroll. Then the
-// scroll takes them into the page-filling colour (flood.js), the film comes down onto it, and side blobs carry on
+// film comes down onto the hero field, and side blobs carry on
 // down the page edges (20:41: "just around the sides"). Nothing is pinned.
-import {createFlood} from './flood.js';
 import {blotFor} from './blot2.js';
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), smooth = (k) => k * k * (3 - 2 * k);
 // 155's pixel symbols (the sparkle cross and the x-diamond, from the 2160 px original) and a pixel blot alluding to
@@ -83,8 +82,9 @@ export function createOpening(reduced, mode = 'off') {
     edges.forEach((b, i) => { b.dataset.size = spots[i][2]; b.style.setProperty('--b2', spots[i][2] + 'px'); });
   }
   measure();
-  const flood = createFlood(opening, () => { const g = geo || (measure(), geo), o = opening.getBoundingClientRect(), f = film.getBoundingClientRect();
-    return {spots: g.spots.map((s) => [s[0], s[1]]), textBottom: g.textBottom, filmTop: f.top - o.top - parseFloat(film.style.transform.split('translateY(')[1] || 0), filmBottom: f.bottom - o.top}; }, reduced);
+  // clanding 012: the rejected dot flood is retired, including its hidden WebGL work.
+  // A has no separate flood. B is a static, opt-in V1 field (flood-choice.js/CSS).
+  // New scroll swelling belongs to Opus; existing hero and film motion is preserved.
 
   const pointer = {x: -9999, y: -9999};
   addEventListener('pointermove', (e) => { pointer.x = e.clientX; pointer.y = e.clientY + scrollY; wake(); }, {passive: true});
@@ -103,7 +103,7 @@ export function createOpening(reduced, mode = 'off') {
   const hops = edges.map(() => ({at: -9}));
   function draw() {
     if (!geo) measure();
-    const k = flood.progress(), t = reduced.matches ? 0 : time, sy = scrollY;
+    const t = reduced.matches ? 0 : time, sy = scrollY;
     edges.forEach((el, i) => {
       const [x, y, s, depth] = geo.spots[i], b = blotFor(el);
       const bob = 0, sway = 0; // 011: the idle wobble lives in blot2 (6 to 10 px, 2 to 4 degrees, 6 to 9 s per blot)
@@ -134,8 +134,8 @@ export function createOpening(reduced, mode = 'off') {
   new ResizeObserver(() => { geo = null; draw(); }).observe(document.body);
   draw(); wake();
   return {
-    setPaused(v) { paused = v; flood.setPaused(v); wake(); },
-    renderAt(t) { manual = true; time = t; geo = null; draw(); flood.renderAt(t); },
-    resume() { manual = false; flood.resume(); wake(); },
+    setPaused(v) { paused = v; wake(); },
+    renderAt(t) { manual = true; time = t; geo = null; draw(); },
+    resume() { manual = false; wake(); },
   };
 }
