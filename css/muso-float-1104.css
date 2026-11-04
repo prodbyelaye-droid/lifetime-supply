@@ -1,0 +1,38 @@
+/* Muso cover float 1104 (Elaye 15:59; mechanism after the danielpetho "parallax floating" preview, visual only).
+   Album covers of his placements float behind the #founder muso.ai proof at different depths, low contrast, so the
+   streams numbers stay the hero. The layer exists only when tools/muso-covers-1104.cjs found 6+ covers in
+   assets/muso-covers-1104/; with none, nothing here matches and #founder is unchanged. js/muso-float-1104.js moves the
+   covers (pointer + scroll on desktop, a gentle scroll drift on touch); at rest, under reduced motion and with the
+   header "pause motion" they sit still in these slots. */
+#founder:has(> .mf1104){position:relative;isolation:isolate}
+#founder > .mf1104{position:absolute;top:0;bottom:0;left:50%;width:calc(100vw - 20px);transform:translateX(-50%);z-index:-1;overflow:hidden;pointer-events:none}
+#founder .mf1104__item{position:absolute;left:var(--x);top:var(--y);width:calc(var(--s) * 1px);aspect-ratio:1;opacity:var(--o,.14)}
+#founder .mf1104__item img{display:block;width:100%;height:100%;object-fit:cover;border-radius:6px;filter:saturate(.7)}
+#founder .mf1104[data-mf-ready] .mf1104__item{will-change:transform}
+/* slots: x, y (% of the section), size (px at 1440), opacity; nearer (deeper) covers are larger and a little stronger.
+   Kept off the streams figures and the "heard on" logo row; 1-6 are spread over the section first. */
+#founder .mf1104__item[data-slot="1"]{--x:1%;--y:6%;--s:150;--o:.2}
+#founder .mf1104__item[data-slot="2"]{--x:90%;--y:8%;--s:132;--o:.2}
+#founder .mf1104__item[data-slot="3"]{--x:2%;--y:66%;--s:120;--o:.17}
+#founder .mf1104__item[data-slot="4"]{--x:92%;--y:60%;--s:150;--o:.2}
+#founder .mf1104__item[data-slot="5"]{--x:54%;--y:26%;--s:116}
+#founder .mf1104__item[data-slot="6"]{--x:47%;--y:60%;--s:96}
+#founder .mf1104__item[data-slot="7"]{--x:24%;--y:1%;--s:84;--o:.11}
+#founder .mf1104__item[data-slot="8"]{--x:66%;--y:3%;--s:104;--o:.17}
+#founder .mf1104__item[data-slot="9"]{--x:3%;--y:44%;--s:96;--o:.12}
+#founder .mf1104__item[data-slot="10"]{--x:84%;--y:94%;--s:100}
+#founder .mf1104__item[data-slot="11"]{--x:36%;--y:95%;--s:76;--o:.11}
+#founder .mf1104__item[data-slot="12"]{--x:72%;--y:58%;--s:72;--o:.11}
+/* phone: one column with no free margin, so at most six covers: off the edges, beside the portrait and in the gap
+   right of "heard on.", never on the streams figures */
+@media (max-width:767px){
+  #founder .mf1104__item{width:calc(var(--s) * .55px)}
+  #founder .mf1104__item img{border-radius:4px}
+  #founder .mf1104__item:is([data-slot="5"],[data-slot="6"],[data-slot="7"],[data-slot="8"],[data-slot="11"],[data-slot="12"]){display:none}
+  #founder .mf1104__item[data-slot="1"]{--x:-9%;--y:1%}
+  #founder .mf1104__item[data-slot="2"]{--x:86%;--y:12%}
+  #founder .mf1104__item[data-slot="3"]{--x:78%;--y:79%}
+  #founder .mf1104__item[data-slot="4"]{--x:76%;--y:44%}
+  #founder .mf1104__item[data-slot="9"]{--x:6%;--y:36%}
+  #founder .mf1104__item[data-slot="10"]{--x:88%;--y:24%}
+}

@@ -28,7 +28,7 @@ for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE, Date.now()]) {
   const checkouts = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map(x => x[1]);
   assert.equal(checkouts.length, 4);
   assert(checkouts.every(url => url === liveCheckout));
-  assert(html.includes('$699 USD. one payment, yours forever.'));
+  assert(html.includes('$699 USD. one payment. everything i add next is yours too.'));
   assert(html.includes('https://instagram.com/elxyee'));
   assert(!html.includes('$599'));
   assert(!html.includes('offer-refresh-at'));

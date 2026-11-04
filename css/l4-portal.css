@@ -1,0 +1,38 @@
+/* LANDING4 (5 Nov): the hero window is the portal itself (js/l4-portal.js + js/l4-portal-data.js), from captures of the
+   signed-off portal at 1440x1010. Same window, same 14 px white inset as the pictures it replaces (css/hero-094.css). */
+.hero-computer .l4-panels { display:block; }
+.l4-stage { position:relative; width:100%; aspect-ratio:1440/1010; overflow:hidden; background:#fff; isolation:isolate; contain:layout paint; }
+.l4-view, .l4-screen { position:absolute; inset:0; }
+.l4-screen { background:#fff; }
+.l4-screen[data-theme="dark"] { background:#111; }
+.l4-screen img, .l4-menu img { display:block; max-width:none; -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+.l4-full { position:absolute; inset:0; width:100%; height:100%; }
+.l4-part { position:absolute; }
+.l4-scroll { position:absolute; overflow:hidden; scrollbar-width:none; overscroll-behavior:auto; }
+.l4-scroll::-webkit-scrollbar { display:none; }
+.l4-stage[data-live] .l4-scroll { overflow-y:auto; }
+.l4-body { width:100%; height:auto; }
+.l4-menu { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.l4-menu[hidden] { display:none; }
+.l4-hots { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.l4-hot { position:absolute; margin:0; padding:0; border:0; border-radius:10px; background:transparent; pointer-events:auto; cursor:pointer; -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; }
+.l4-hot:focus { outline:none; }
+.l4-hot:focus-visible { outline:2px solid #151517; outline-offset:2px; }
+.l4-stage[data-theme="dark"] .l4-hot:focus-visible { outline-color:#fff; }
+.l4-live { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+.l4-pills, .l4-pills[hidden] { display:none; }
+/* phone: the window scales down with everything in it; its sidebar is too small to tap, so the pages sit under it as the
+   window's own pill track (css/hero-147.css: inset #e7ecf0 track, white pill with the 1 px #858585 edge) */
+@media (max-width:700px) {
+  .l4-pills:not([hidden]) { display:flex; gap:2px; width:100%; box-sizing:border-box; margin:12px 0 0; padding:4px; border-radius:999px; background:#e7ecf0; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; }
+  .l4-pills::-webkit-scrollbar { display:none; }
+  .l4-pill { flex:0 0 auto; height:32px; margin:0; padding:0 14px; border:0; border-radius:999px; background:transparent; color:#41474d; font:inherit; font-size:12.5px; font-weight:500; line-height:1; white-space:nowrap; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .l4-pill[aria-current="page"] { color:#151517; background:#fff; box-shadow:inset 0 0 0 1px #858585,0 6px 14px -8px rgba(11,11,11,.35); }
+  .l4-pill-theme { color:#151517; margin-right:6px; }
+  .l4-pill-theme[aria-pressed="true"] { color:#fff; background:#151517; }
+  .l4-pill:focus-visible { outline:2px solid #151517; outline-offset:-2px; }
+}
+@media (forced-colors:active) {
+  .l4-hot:focus-visible { outline-color:Highlight; }
+  .l4-pill[aria-current="page"], .l4-pill-theme[aria-pressed="true"] { border:2px solid Highlight; }
+}

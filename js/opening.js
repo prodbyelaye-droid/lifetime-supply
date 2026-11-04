@@ -119,7 +119,7 @@ export function createOpening(reduced, mode = 'off') {
   measure();
   // clanding 012: the rejected dot flood is retired, including its hidden WebGL work.
   // A has no separate flood. B is a static, opt-in V1 field (flood-choice.js/CSS).
-  // New scroll swelling belongs to Opus; existing hero and film motion is preserved.
+  // New scroll swelling belongs to the motion lane; existing hero and film motion is preserved.
 
   const pointer = {x: -9999, y: -9999};
   addEventListener('pointermove', (e) => { pointer.x = e.clientX; pointer.y = e.clientY + scrollY; wake(); }, {passive: true});

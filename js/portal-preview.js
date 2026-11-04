@@ -26,7 +26,11 @@
     tabs.forEach((tab, i) => {
       tab.setAttribute('aria-selected', String(i === index));
       tab.tabIndex = i === index ? 0 : -1;
+      // Keep the shared grid and the outgoing 90ms fade, but expose only the selected panel.
       panels[i].hidden = false;
+      panels[i].inert = i !== index;
+      panels[i].setAttribute('aria-hidden', String(i !== index));
+      panels[i].tabIndex = i === index ? 0 : -1;
       panels[i].classList.toggle('is-active', i === index);
       panels[i].classList.toggle('is-leaving', i === previous && i !== index);
     });

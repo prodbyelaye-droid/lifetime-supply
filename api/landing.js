@@ -1,16 +1,20 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {getOffer, CHECKOUT_599, PRICE_LINE} = require('../lib/offer');
+const downloads = require('../js/desktop-downloads');
 const template = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf8');
 
 function render(now, checkout699) {
+  // Copy check 4 Nov (row 2, Elaye 18:56): the hero says "in one app" only once the desktop downloads are published.
+  const gatedTemplate = downloads.applyToTemplate(template)
+    .replace('<span data-app-line>in one place</span>', downloads.enabled ? '<span data-app-line>in one app</span>' : '<span data-app-line>in one place</span>');
   // The assembly contains the verified, rendered live offer. Only run the
   // historical Oct 11 transition on templates that still contain its token.
-  if (!template.includes(CHECKOUT_599)) return template;
+  if (!gatedTemplate.includes(CHECKOUT_599)) return gatedTemplate;
   const offer = getOffer(now, checkout699);
   // Only the card omits the repeated current amount. Raised-price copy stays intact.
   const cardPriceLine = offer.priceLine.replace(/^\$\d+ USD until (.+) at (.+), then (.+)\. one payment\.$/, 'until $1, $2. then $3.');
-  let html = template
+  let html = gatedTemplate
     .replaceAll(CHECKOUT_599, offer.checkoutUrl)
     .replaceAll('"price": "599.00"', '"price": "' + offer.price + '.00"')
     .replaceAll('$599 <span class="currency">USD</span>', '$' + offer.price + ' <span class="currency">USD</span>')

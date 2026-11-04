@@ -1,0 +1,84 @@
+/* L1 · 4 Nov 2026 · landing fixes from the reference cross-check (rows 7, 11, 12, 32, 34, 40, 42) and the copy check.
+   Loaded last. Colours: the portal's sky tokens (same values as room-accents-059.css) and the landing's V1 sky set only. */
+:root { --ls-sky-base:#11B1F8; --ls-sky-text:#075985; }
+
+/* Row 7 · the typed logo, as on the portal: SF Pro 600, -0.01em, live text, no blot. ~23 px on screen like the
+   portal rail (28.6 css px at 0.8 zoom); 20 px on a phone like /desktop. */
+html body .site-nav a.wordmark.wordmark--typed { width:auto; min-width:0; min-height:52px; display:inline-flex; align-items:center; text-decoration:none; color:#151517; }
+.site-nav .wordmark--typed .ls-typed {
+  display:block; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  font-weight:600; font-size:23px; letter-spacing:-.01em; line-height:1; white-space:nowrap; font-feature-settings:"liga" 0,"calt" 0; color:#151517;
+}
+@media (max-width:700px) { html body .site-nav a.wordmark.wordmark--typed { min-height:44px; } .site-nav .wordmark--typed .ls-typed { font-size:20px; } }
+@media (max-width:359px) { .site-nav .wordmark--typed .ls-typed { font-size:18px; } }
+
+/* Row 32 + motion audit A2 #3 · the hero keeps one blot: the original sky character (first host). The splats are off. */
+.opening-blots .ob:not(:first-child) { visibility:hidden !important; }
+
+/* Row 12 · the film window: a light sky rim (TwelveLabs ref) instead of the grey drop shadow; no permanent layer. */
+html body #demo .demo-film, html body .opening #demo .demo-film {
+  box-shadow:0 0 0 1px rgba(17,177,248,.32), 0 0 0 5px rgba(190,233,252,.42), 0 0 24px rgba(60,195,254,.16);
+  will-change:auto;
+}
+
+/* Row 12 / X13 · the studio film already plays muted on screen; its control is quiet text, not a play pill. */
+#deep .studio-film-controls { margin-top:6px; }
+#deep .studio-film-toggle {
+  min-height:44px; padding:8px 2px; border:0; border-radius:6px; background:none; color:#5d646c; font-size:12px;
+  text-decoration:underline; text-decoration-color:rgba(93,100,108,.35); text-underline-offset:4px;
+}
+@media (hover:hover) and (pointer:fine) { #deep .studio-film-toggle:not(:disabled):hover { color:#151517; } }
+
+/* Row 11 · the curves come back behind "a day in my workflow." with tiles travelling along them (js/flow-travellers-1104.js). */
+.flow:has(.day96) .curves { display:block; opacity:.7; }
+/* the lines and tiles stay in the heading zone, clear of the timeline copy */
+html body .flow:has(.day96) .curves { -webkit-mask-image:linear-gradient(#000 0, #000 26%, transparent 44%); mask-image:linear-gradient(#000 0, #000 26%, transparent 44%); }
+.flow-tile { stroke:#fff; stroke-width:1.5; }
+.flow-tile--a { fill:#BEE9FC; }
+.flow-tile--b { fill:#8DDCFD; }
+.flow-tile--c { fill:var(--ls-sky-base); fill-opacity:.55; }
+@media (forced-colors:active) { .flow .travellers { display:none; } }
+
+/* Elaye 18:19 · the shiny "every day." and the moving stats title stay, recoloured from navy/black to sky.
+   Same guards, same lifecycle (both stop painting off screen: the run attribute / paused play-state). */
+@media screen and (prefers-reduced-motion:no-preference) {
+  @supports ((-webkit-background-clip:text) or (background-clip:text)) {
+    html body #flow [data-shiny-272][data-shiny-272-live] {
+      color:rgba(7,89,133,.8);
+      background-image:linear-gradient(to right,transparent 0%,var(--ls-sky-base) 50%,transparent 100%);
+    }
+  }
+}
+html body #stats-title .ls-aurora-text { color:var(--ls-sky-text); }
+@supports (background-image: linear-gradient(135deg in srgb, #000, #fff)) and ((background-clip: text) or (-webkit-background-clip: text)) {
+  html body #stats-title .ls-aurora-text {
+    background-image:linear-gradient(135deg in srgb, var(--ls-sky-text), color-mix(in srgb, var(--ls-sky-text) 45%, var(--ls-sky-base)), var(--ls-sky-text), color-mix(in srgb, var(--ls-sky-text) 70%, var(--ls-sky-base)), var(--ls-sky-text));
+  }
+}
+@media (forced-colors:active) { html body #stats-title .ls-aurora-text { background:none; color:CanvasText; } }
+
+/* Row 42 / X30 · "tell me what you're stuck on": fine iridescent parallel lines (inspora 3-2), sky-tinted, the band's
+   one colour moment. The lines fade out under the copy and the form; the form itself is unchanged. */
+.contact-section { position:relative; isolation:isolate; overflow:hidden; }
+.contact-ribbon {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 30% 44% at 50% 50%, transparent 0 48%, #000 100%);
+          mask-image:radial-gradient(ellipse 30% 44% at 50% 50%, transparent 0 48%, #000 100%);
+}
+html body .contact-section .contact-stage { position:relative; background:transparent; }
+@media (max-width:700px) {
+  .contact-ribbon { object-position:6% 50%;
+    -webkit-mask-image:linear-gradient(rgba(0,0,0,.4) 0, rgba(0,0,0,.4) 58%, #000 86%);
+            mask-image:linear-gradient(rgba(0,0,0,.4) 0, rgba(0,0,0,.4) 58%, #000 86%); }
+}
+@media (forced-colors:active) { .contact-ribbon { display:none; } }
+
+/* Row 40 · his own photo in the instagram tab (supplied file, re-encoded small). */
+.profile-nav .tab-pfp { display:block; flex:none; width:36px; height:36px; border-radius:10px; object-fit:cover; }
+
+/* Copy check row 3 · the first line under "everything included." */
+.price-stage .price-own { margin:0 0 20px; max-width:560px; font-size:16px; line-height:1.5; color:#41474d; text-wrap:pretty; }
+
+/* Elaye 19:11 · the plaques line in the founder block, every plaque styled the same. */
+#founder .fs1101-plaques { display:flex; flex-wrap:wrap; gap:4px 14px; margin:18px 0 0; font-size:15px; line-height:1.4; font-weight:600; letter-spacing:-.005em; color:#151517; }
+@media (max-width:700px) { #founder .fs1101-plaques { font-size:14px; margin-top:14px; } }

@@ -1,0 +1,71 @@
+/* Aurora Text, adapted from https://magicui.design/r/aurora-text.json.
+   Original gradient path; transform-free text, SF inherited, graphite/blue.
+   MIT License — Copyright (c) Magic UI
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE. */
+
+#stats-title .ls-aurora-text {
+  display: inline-block;
+  color: #20354c;
+  transform: none;
+}
+
+@supports (background-image: linear-gradient(135deg in srgb, #000, #fff)) and ((background-clip: text) or (-webkit-background-clip: text)) {
+  #stats-title .ls-aurora-text {
+    background-image: linear-gradient(135deg in srgb, #20354c, #546478, #075abb, #334f71, #20354c);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: ls-landing-aurora 12s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  #stats-title .ls-aurora-text[data-aurora-visible] {
+    animation-play-state: running;
+  }
+}
+
+@keyframes ls-landing-aurora {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+}
+
+/* Existing page motion control remains authoritative, including QA/manual pause. */
+html[data-motion-paused] #stats-title .ls-aurora-text {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #stats-title .ls-aurora-text {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  #stats-title .ls-aurora-text {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+    transform: none;
+  }
+}

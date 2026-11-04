@@ -1,0 +1,16 @@
+/* Placement A keeps the existing deep section width, gutters and corner treatment. */
+#deep .studio-film-scene { height:auto; aspect-ratio:16 / 9; background:none; }
+#deep .studio-film-scene::before,
+#deep .studio-film-scene::after { display:none; }
+#deep .studio-film-poster,
+#deep .studio-film-video { display:block; width:100%; height:100%; object-fit:contain; }
+#deep .studio-film-video { position:absolute; inset:0; opacity:0; }
+#deep[data-film-frame] .studio-film-video { opacity:1; }
+#deep .studio-film-controls { width:min(1200px,100%); margin:12px auto 0; text-align:right; }
+#deep .studio-film-controls:has([hidden]) { display:none; }
+#deep .studio-film-toggle { min-width:44px; min-height:44px; padding:8px 16px; border:1px solid #707070; border-radius:999px; background:#fff; color:#151517; font:inherit; font-size:13px; cursor:pointer; }
+#deep .studio-film-toggle:focus-visible { outline:3px solid #151517; outline-offset:4px; }
+#deep .studio-film-toggle:disabled { cursor:default; }
+
+/* Keep the existing 7px focus outline inside narrow viewports. */
+@media(max-width:700px){#deep .studio-film-controls{padding-inline:8px;}}

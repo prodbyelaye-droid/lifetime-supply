@@ -1,0 +1,9 @@
+{
+  "note": "088 heard-on strip. Files are the brands' marks, unchanged except where listed; shown in one ink through a CSS mask. Credits: Elaye, 30 Oct 2026 23:02.",
+  "fortnite.png": {"from": "https://commons.wikimedia.org/wiki/File:Fortnite.png", "origin": "extracted from https://www.epicgames.com/fortnite/", "changes": "none"},
+  "adidas.svg": {"from": "https://commons.wikimedia.org/wiki/File:Adidas_Logo.svg", "origin": "SVG of the original logo from adidas.com", "changes": "viewBox=\"4 9 718 485\" added so it scales as a mask"},
+  "netflix.svg": {"from": "https://commons.wikimedia.org/wiki/File:Netflix_2015_logo.svg", "origin": "extracted from netflix.com", "changes": "none"},
+  "prime-video.svg": {"from": "https://commons.wikimedia.org/wiki/File:Prime_Video_logo_(2024).svg", "origin": "amazon.com", "changes": "none"},
+  "coca-cola.svg": {"from": "https://commons.wikimedia.org/wiki/File:Coca-Cola_logo.svg", "origin": "coca-cola.com; the same file Simple Icons 16.36.0 cites for its cocacola icon", "changes": "none"},
+  "riaa.png": {"from": "https://www.riaa.com/wp-content/uploads/2016/01/riaaLogo_512x512.png", "origin": "riaa.com (official)", "changes": "white made transparent (alpha = inverse luminance), 512 to 256 px"}
+}

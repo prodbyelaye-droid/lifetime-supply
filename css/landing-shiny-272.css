@@ -1,0 +1,80 @@
+/* 272: Magic UI Animated Shiny Text on the existing end-of-workflow phrase 'every day.' in #flow.
+   Source: magicui.design/docs/components/animated-shiny-text (registry/magicui/animated-shiny-text.tsx plus its
+   shiny-text keyframes), MIT License, Copyright (c) Magic UI; the full notice is at the end of this file.
+   Kept from source: --shiny-width 100px; background-size var(--shiny-width) 100%; no-repeat; background-clip:text;
+   band transparent, black/80 at 50%, transparent, to the right; 8s infinite at the default ease; keyframes
+   0%,90%,100% at calc(-100% - var(--shiny-width)) 0 and 30%,60% at calc(100% + var(--shiny-width)) 0; and the
+   source's 70% ink alpha, so the band shows through the glyphs exactly as much as in the source.
+   Not imported: the outer mx-auto/max-w-md (the span stays inline in the unchanged paragraph, font, size and
+   spacing), the demo badge, the dark variants, and the source transition declaration (its 'infinite' token makes
+   it invalid CSS, so browsers already drop it).
+   Light-backing ink: the source light ink, neutral-600 at 70%, composites to about #868686 on white (about 3.65:1).
+   Here the neutral is this section's own ink #151517 at the same 70%: about rgb(91 91 93) on the #fff backing,
+   about 6.76:1. The band only darkens it (about rgb(30 30 31), about 16.6:1 at its centre), so 6.76:1 is the
+   worst case of the cycle.
+   Parked (offscreen, hidden tab, html[data-motion-paused]) the background rests at the keyframes' own 0% value,
+   band off the left edge, instead of the source 0 0, which the source never shows because its animation never
+   stops; re-entry restarts the cycle at 0%.
+   Static, i.e. the current inherited ink and no background: without JS or IntersectionObserver (no
+   data-shiny-272-live), without background-clip:text, in print, with reduced motion and in forced colors.
+   Paint only: no layout, transform or content change; the phrase stays one text node. */
+
+@media screen and (prefers-reduced-motion:no-preference){
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    #flow [data-shiny-272][data-shiny-272-live]{
+      --shiny-width:100px;
+      color:rgba(21,21,23,.7);
+      background-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.8) 50%,transparent 100%);
+      background-repeat:no-repeat;
+      background-size:var(--shiny-width) 100%;
+      background-position:calc(-100% - var(--shiny-width)) 0;
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+    html:not([data-motion-paused]) #flow [data-shiny-272][data-shiny-272-live][data-shiny-272-run]{
+      animation:ls-shiny-272 8s infinite;
+    }
+  }
+}
+
+@keyframes ls-shiny-272{
+  0%,90%,100%{background-position:calc(-100% - var(--shiny-width)) 0}
+  30%,60%{background-position:calc(100% + var(--shiny-width)) 0}
+}
+
+/* forced colors: system ink, no clipped background, no motion */
+@media (forced-colors:active){
+  html #flow [data-shiny-272][data-shiny-272-live],
+  html:not([data-motion-paused]) #flow [data-shiny-272][data-shiny-272-live][data-shiny-272-run]{
+    color:inherit;
+    background:none;
+    -webkit-background-clip:border-box;
+    background-clip:border-box;
+    animation:none;
+  }
+}
+
+/* Magic UI animated-shiny-text is used under this notice:
+
+MIT License
+
+Copyright (c) Magic UI
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/

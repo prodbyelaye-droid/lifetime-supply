@@ -1,3 +1,4 @@
+import {createStudioFilm} from './studio-film-1101.js';
 import {createHeroDesign} from './hero-design.js';
 import {LANDING} from './landing-config.js';
 import {createGrads} from './grad.js';
@@ -12,9 +13,9 @@ const hero=document.querySelector('.hero');
 function setHero(value){if(!['cloud','full'].includes(value))throw new Error('Unknown hero treatment');hero.dataset.hero=value;}
 setHero(LANDING.hero);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-// 012: Deep is Codex's grad-183 by default; ?deep=sabo keeps 010's Sabo material (it must leave before the material
+// 012: Deep is the grad-183 module by default; ?deep=sabo keeps 010's Sabo material (it must leave before the material
 // system collects its hosts).
-// 019: ?downloads=hidden hides the download section (Codex 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
+// 019: ?downloads=hidden hides the download section (unit 012: the GitHub v1.0.0 build has the cleanup bug, and 1.0.1
 // fails Gatekeeper); the download links stay as they are, and the header's "the portal" goes to the portal itself (021).
 const installerSection=document.querySelector('[data-launch-gate="installers"]');
 if(installerSection && new URLSearchParams(location.search).get('downloads')==='hidden')installerSection.hidden=true;
@@ -44,6 +45,7 @@ createFeatures(new URLSearchParams(location.search).get('boxes')==='bloom'?'bloo
 // 010: white download section; the close uses 030's V1 glow asset.
 // The film: full width by default; ?demo=window previews row 12's rounded glowing window.
 const demo=createDemo(reduced,new URLSearchParams(location.search).get('demo')||'full');
+const studioFilm=createStudioFilm(reduced);
 // Stats odometer, 34's liquid arch, and the How-it-works variant (?how=191).
 const sections=createSections(reduced,new URLSearchParams(location.search).get('how')||'off');
 {const q=new URLSearchParams(location.search);if(q.get('pricetype')==='white')document.documentElement.dataset.pricetype='white';if(q.get('band')==='text')document.documentElement.dataset.band='text';
@@ -96,12 +98,14 @@ addLoop(document.querySelector('.inside'),gsap.to('.product',{y:-10,duration:5.2
 // 183R source scale/rotation, slowed to a continuous breath; overlapping original
 // silhouettes move independently so the outer contour changes without path repaint.
 // Task 005: 183R "barely moves" -> the white blot travels a slow loop across the field while it glows and morphs.
-addLoop(document.querySelector('.deep-wrap'),gsap.timeline({repeat:-1,defaults:{ease:'sine.inOut',duration:3.2}}).to('.deep-symbol',{x:90,y:-46,rotation:10,scale:1.08}).to('.deep-symbol',{x:20,y:40,rotation:-6,scale:.94}).to('.deep-symbol',{x:-80,y:-20,rotation:8,scale:1.05}).to('.deep-symbol',{x:0,y:0,rotation:0,scale:1}));
+if(document.querySelector('.deep-symbol'))addLoop(document.querySelector('.deep-wrap'),gsap.timeline({repeat:-1,defaults:{ease:'sine.inOut',duration:3.2}}).to('.deep-symbol',{x:90,y:-46,rotation:10,scale:1.08}).to('.deep-symbol',{x:20,y:40,rotation:-6,scale:.94}).to('.deep-symbol',{x:-80,y:-20,rotation:8,scale:1.05}).to('.deep-symbol',{x:0,y:0,rotation:0,scale:1}));
 function syncMotion(){
   const stopped=paused||reduced.matches||document.hidden||manual;
   root.classList.toggle("motion-paused",stopped);
+  window.day96?.setPaused(stopped);
   if(stopped)root.dataset.motionPaused='true';else delete root.dataset.motionPaused;
   for(const [section,animations] of loops)for(const a of animations){if(!stopped&&visible.has(section))a.resume();else a.pause();}
+  studioFilm.setPaused(paused||manual);
   material.setPaused(paused||document.hidden);
   grads.setPaused(paused||document.hidden);gradcode.setPaused(paused||document.hidden);
   pauseBlots(paused||document.hidden);pauseFields(paused||document.hidden);demo.setPaused(paused||document.hidden);sections.setPaused(paused||document.hidden);opening.setPaused(paused||document.hidden);
@@ -111,6 +115,16 @@ function syncMotion(){
 }
 const observer=new IntersectionObserver(entries=>{for(const e of entries){e.target.classList.toggle('in-view',e.isIntersecting);if(e.isIntersecting)visible.add(e.target);else visible.delete(e.target);}syncMotion();},{threshold:0});
 for(const section of document.querySelectorAll('[data-section]'))observer.observe(section);
+// Config172: use the measured source's pixel speeds with our real text widths.
+// No-JS/font-load fallback stays static and horizontally browsable.
+const configMore=document.querySelector('#more.config-more');
+document.fonts.ready.then(()=>{
+  for(const row of configMore?.querySelectorAll('.config-more__row')||[]){
+    const width=row.querySelector('.config-more__set').getBoundingClientRect().width;
+    row.style.setProperty('--duration',`${width/Number(row.dataset.speed)}s`);
+  }
+  configMore?.classList.add('config-more--ready');
+});
 const motionButton=document.querySelector('#motion-toggle');
 motionButton.addEventListener('click',()=>{paused=!paused;motionButton.setAttribute('aria-pressed',String(paused));motionButton.textContent=paused?'play motion':'pause motion';syncMotion();});
 // Subscribe after the first paint as well as checking the initial preference.
@@ -119,14 +133,9 @@ let motionPreferenceEvents;
 requestAnimationFrame(()=>{motionPreferenceEvents=matchMedia('(prefers-reduced-motion: reduce)');motionPreferenceEvents.addEventListener('change',syncMotion);syncMotion();});
 document.addEventListener('visibilitychange',syncMotion);
 
-// Row 040 profile navigation: semantic disclosure, no width animation.
-const toggle=document.querySelector('#profile-toggle'),links=document.querySelector('#profile-links');
-function profile(open){links.hidden=!open;if(open&&!reduced.matches)gsap.from('#profile-links a',{x:-14,opacity:0,duration:.32,stagger:.05,ease:'power3.out',overwrite:true});toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Hide profile links':'Show profile links');}
-toggle.addEventListener('click',()=>profile(links.hidden));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!links.hidden){profile(false);toggle.focus();}});
-document.addEventListener('click',e=>{if(!e.target.closest('.profile-nav'))profile(false);});
 
-// opus 100: the footer is static (bright gradient lettering on a light field, 008 A layout).
+
+// unit 100: the footer is static (bright gradient lettering on a light field, 008 A layout).
 // The retired halftone wave and line-logo canvases no longer run; the capture hooks stay inert.
 let decorationRaf=0;
 function wakeDecorations(){}
@@ -150,6 +159,6 @@ window.assembly={material,intro,setHero,skip:finishIntro,
   resume(){manual=false;heroDesign.resume();material.resume();grads.resume();opening.resume();resumeFields();manualClock(false);syncMotion();},
   stats:()=>({...material.stats(),heroDesign:heroDesign.stats()})
 };
-window.addEventListener('pagehide',()=>{motionPreferenceEvents?.removeEventListener('change',syncMotion);intro.pause();finishIntro();observer.disconnect();cancelAnimationFrame(decorationRaf);material.dispose();heroDesign.dispose();for(const animations of loops.values())for(const a of animations)a.kill();},{once:true});
+window.addEventListener('pagehide',()=>{motionPreferenceEvents?.removeEventListener('change',syncMotion);intro.pause();finishIntro();observer.disconnect();cancelAnimationFrame(decorationRaf);material.dispose();heroDesign.dispose();studioFilm.dispose();for(const animations of loops.values())for(const a of animations)a.kill();},{once:true});
 window.ready=true;
 if(['localhost','127.0.0.1','[::1]'].includes(location.hostname)&&new URLSearchParams(location.search).get('qa')==='1')import('./assembly-qa.js');

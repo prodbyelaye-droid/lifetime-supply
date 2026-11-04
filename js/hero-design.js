@@ -3,7 +3,7 @@ import {createHeroGradient} from './hero-gradient-203.js';
 import {OUTLINE, SPLATS, COLOURS, EYE} from './hero-076-cast.js';
 
 const NS = 'http://www.w3.org/2000/svg';
-// opus 089 eyes.ts A, in the outline's 256 box, at openness o (1 open, 0 shut). Open is exactly eyePaths('A'); closing
+// unit 089 eyes.ts A, in the outline's 256 box, at openness o (1 open, 0 shut). Open is exactly eyePaths('A'); closing
 // follows the shader: the eye flattens to a hairline that sags 0.16 R into a lid, never a flat dash.
 const wobble = (w, a, ph) => 1 + w * (0.5 * Math.sin(3 * a + ph) + 0.3 * Math.sin(5 * a + 2.1 * ph) + 0.2 * Math.sin(4 * a - ph));
 function eyePath(i, o) {
@@ -40,14 +40,14 @@ export function createHeroDesign(reduced) {
   const option = 'c';
   document.documentElement.dataset.heroHeight = query.get('heroHeight') === 'b' ? 'b' : 'a';
   document.documentElement.dataset.heroDesign = option;
-  // opus 076 (pick 21 = B, his 21:38; critic 066 #4): exactly one blot has a face, the hero character, drawn with the
-  // portal blot's own outline and opus 089's painted round eyes (pick 32 A). Every other hero blot is an eyeless colour
+  // unit 076 (pick 21 = B, his 21:38; critic 066 #4): exactly one blot has a face, the hero character, drawn with the
+  // portal blot's own outline and unit 089's painted round eyes (pick 32 A). Every other hero blot is an eyeless colour
   // splat: lopsided, one drip, one notch (066 #7). Colours: 059 A with 069's shifts; never all six side by side.
   // Dev switch (not for production): ?hero-face=lilac draws the character in the periwinkle-to-lilac accent.
   const face = query.get('hero-face') === 'lilac' ? 'lilac' : 'v1';
   const cast = [
     {face: true, colour: face},
-    {splat: 'b', colour: face === 'lilac' ? 'coral' : 'lilac'},
+    {splat: 'b', colour: 'v1'}, // L1 4 Nov (row 32; owner 14:28 + 14:52): sky only, and hidden by css/l1-1104.css so one sky blot stays
     {splat: 'a', colour: 'pink'},
     {splat: 'c', colour: 'sun'},
     {splat: 'd', colour: 'mint'},

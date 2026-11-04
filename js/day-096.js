@@ -1,4 +1,4 @@
-// opus 096 · "a day in my workflow": the line fills in V1 as you scroll, and a small eyeless blot rides its tip.
+// unit 096 · "a day in my workflow": the line fills in V1 as you scroll, and a small eyeless blot rides its tip.
 // The tip sits where the sticky labels sit (the anchor), so the blot holds its place beside the label while the line
 // grows under it; each step's dot stays on the line and turns solid when the tip passes it (Origin UI). The blot follows the tip with a short critically damped
 // lag measured in real milliseconds (no per-frame steps), so a jump in scroll glides instead of zapping (STANDING 5),
@@ -18,6 +18,7 @@
   }
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = document.documentElement.classList.contains('motion-paused') || document.hidden;
   let geo = null, y = null, v = 0, last = 0, raf = 0, target = 0, raw = 0;
 
   // natural (unstuck) dot centre and the furthest a sticky dot can travel, both in .day96-body coordinates
@@ -62,6 +63,7 @@
 
   function frame(now) {
     raf = 0;
+    if (paused || reduce.matches) return;
     const dt = Math.min(Math.max(now - last, 0), 64); last = now;
     target = aim();
     if (y === null) { y = target; v = 0; }
@@ -74,17 +76,36 @@
     paint(y);
     if (y !== target || v !== 0) raf = requestAnimationFrame(frame);
   }
-  const kick = () => { if (!raf && geo) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+  const kick = () => { if (!paused && !reduce.matches && !raf && geo) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+
+  function stop() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0; v = 0; last = 0;
+  }
+
+  function setPaused(value) {
+    if (paused === !!value) return;
+    paused = !!value;
+    if (paused) stop();
+    else if (reduce.matches) full();
+    else kick();
+  }
 
   function full() { // reduced motion (and no JS): the line is simply full, every step reached, the blot rests at the end
+    stop();
     root.classList.add('is-live');
     v = 0; y = geo.t1 - geo.t0; raw = Infinity; paint(y);
   }
 
   function start() {
+    stop();
     measure();
     if (reduce.matches) return full();
     root.classList.add('is-live');
+    if (paused) {
+      if (y === null) { y = aim(); paint(y); }
+      return;
+    }
     y = null; kick();
   }
 
@@ -95,5 +116,5 @@
   reduce.addEventListener?.('change', start);
   document.fonts?.ready.then(re);
   start();
-  window.day96 = {measure, aim, get y() { return y; }};
+  window.day96 = {measure, aim, setPaused, get y() { return y; }};
 })();

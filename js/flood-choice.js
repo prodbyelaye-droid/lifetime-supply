@@ -1,6 +1,6 @@
 // clanding 012: A is the default, with no separate flood section.
 // Review-only alternative: ?flood=short&floodStage=start|middle|full.
-// Static states only. Timing and scroll swelling are reserved for Opus.
+// Static states only. Timing and scroll swelling are reserved for the motion lane.
 (() => {
   const query = new URLSearchParams(location.search);
   if (query.get('flood') !== 'short') return;

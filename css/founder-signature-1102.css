@@ -1,0 +1,8 @@
+/* Only the new signature placement. Existing founder rules are frozen separately. */
+#founder .fs1102-signature { margin:24px 0 0; font-size:48px; line-height:1; color:inherit; min-height:1.15em; }
+#founder .fs1102-signature svg { display:block; max-width:100%; }
+@media(max-width:700px) { #founder .fs1102-signature { font-size:36px; } }
+@media(prefers-reduced-motion:reduce) {
+  #founder .fs1102-signature [data-ink-fill] { opacity:1!important; transition:none!important; }
+  #founder .fs1102-signature [data-ink-stroke] { stroke-dashoffset:0!important; transition:none!important; }
+}

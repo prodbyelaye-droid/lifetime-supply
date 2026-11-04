@@ -1,0 +1,35 @@
+/* Blot videos 1104. Elaye 14:53 / 15:08 / 15:09: his clips of the blot doing producer moments PLAY on the landing,
+   each where it means something. Two mechanics, no new colours:
+   .bv-box  a small autoplaying clip placed beside the copy it belongs to (sticky with the day96 label).
+   .bv-bg   a clip behind a whole (small) section under a black overlay at reduced opacity; text goes white.
+   The <video> poster is the clip's own first frame, only for the moment before play and under reduced motion.
+   js/blot-video-1104.js attaches the sources near the viewport, plays in view and pauses off screen. */
+
+.bv-video{display:block;width:100%;height:100%;object-fit:cover;background:#000;pointer-events:none}
+
+/* (b) small box: a quiet 16:9 window, same hairline and radius language as the portal stills around it */
+.bv-box{position:relative;width:100%;max-width:240px;aspect-ratio:16/9;margin:0;overflow:hidden;border-radius:12px;background:#000;
+  box-shadow:0 0 0 1px rgba(21,21,23,.08),0 12px 32px -18px rgba(21,21,23,.35)}
+.bv-box .bv-video{position:absolute;inset:0}
+.day96-when:has(.bv-box){flex-direction:column;gap:24px}
+@media (max-width:760px){
+  .day96-when:has(.bv-box){flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+  .bv-box{max-width:148px;border-radius:10px;flex:none}
+}
+
+/* (a) section background: the clip, then black at reduced opacity, then the section's own content */
+.bv-host{position:relative;isolation:isolate}
+.bv-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;background:#000;pointer-events:none;border-radius:inherit}
+.bv-bg .bv-video{position:absolute;inset:0}
+.bv-bg::after{content:'';position:absolute;inset:0;background:#000;opacity:var(--bv-dim,.62)}
+
+/* the closing band: "locked into my complete workflow. forever." over the workflow clip */
+body #main #close.close-call.bv-dark{background:#000;color:#fff;min-height:clamp(420px,38vw,560px);display:grid;place-items:center}
+body #main #close.close-call.bv-dark .close-inner,
+body #main #close.close-call.bv-dark .ls-heading-b{color:#fff}
+body #main #close.close-call.bv-dark .close-cta{background:#fff;color:#151517;border-color:#fff}
+body #main #close.close-call.bv-dark .close-cta:focus-visible{outline-color:#fff}
+#close .bv-bg .bv-video{object-position:50% 40%}
+@media (max-width:700px){body #main #close.close-call.bv-dark{min-height:440px}}
+
+@media (forced-colors:active){.bv-box,.bv-bg{display:none}}

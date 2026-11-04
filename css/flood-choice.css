@@ -1,6 +1,6 @@
 /* clanding 012. Current GO-plan 17:35: exact 030 V1 field, row-203 rounded
    hand-off, no dots or separate blot. A keeps the locked 007/010 opening.
-   B occupies less than one viewport and offers three STATIC states for Opus. */
+   B occupies less than one viewport and offers three STATIC states for the motion lane. */
 .flood-short{display:none}
 html[data-flood-choice=short] .flood-short{
   display:block;position:relative;isolation:isolate;overflow:hidden;

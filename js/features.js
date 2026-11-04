@@ -6,7 +6,7 @@
 // construction: fine grain, the white glitter arch rising from the foot, three crisp white pixel sparkles at 155's
 // size, and the original ragged white blot (blot2). No MP4 (X28), no disc, no cartoon cloud.
 // The other six boxes: no header strips. A (default, restraint): white with ink, colour only in the vault (019, critic
-// 015: "how i did it" lost its 183 bloom, which repeated the deep tile). B (?boxes=bloom): each gets its own soft bloom of a different liked gradient (Codex's GRADCODE modules,
+// 015: "how i did it" lost its 183 bloom, which repeated the deep tile). B (?boxes=bloom): each gets its own soft bloom of a different liked gradient (the GRADCODE modules,
 // deep variant) rising from one corner and shading into white like 145, about 180 px, no hard edge.
 // Glyphs: one custom set on 183's agent-symbol construction (solid, symmetric unions of circles: the six-petal
 // flower, the hourglass, the gear with a hole, the ring), 60 px, in ink (white reaches only 2.8:1 on the vault).

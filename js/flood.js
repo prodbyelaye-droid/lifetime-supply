@@ -108,7 +108,7 @@ export function createFlood(opening, measureSpots, reduced) {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
   gl.uniform1i(U('uProf'), 0);
-  // ?flood=183 (B): the same blot shapes filled with Codex's GRADCODE grad-183.js (deep variant), 183's soft painted
+  // ?flood=183 (B): the same blot shapes filled with the GRADCODE grad-183.js (deep variant), 183's soft painted
   // light, drawn by hand into an offscreen canvas at the flood's clock and read as a texture.
   let grad = null;
   const gradTex = gl.createTexture(), mode183 = new URLSearchParams(location.search).get('flood') === '183';

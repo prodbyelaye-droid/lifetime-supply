@@ -1,4 +1,4 @@
-/* opus 096 · "a day in my workflow" as a scroll timeline.
+/* unit 096 · "a day in my workflow" as a scroll timeline.
    Layout: Aceternity Timeline (ui.aceternity.com/components/timeline): a sticky time label on the left with a dot on a
    thin line, and a line that fills as you scroll. Markup and type: Origin UI Timeline (coss.com/origin/timeline, MIT):
    ring dots, reached steps solid. Stripe Atlas "how it works": one accent only, on the numbers and ticks.
@@ -85,4 +85,21 @@ body .flow-copy.day96 .day96-tomorrow{margin:96px 0 0 calc(var(--d96-col) + 24px
 @media (forced-colors:active){
   .day96-track,.day96-fill{background:CanvasText}
   .day96-step.is-reached .day96-dot,.day96:not(.is-live) .day96-dot{background:Highlight}
+}
+
+/* 1102: exact current01dec7e8 Briefs capture, 2027x1429 image pixels.
+   IAB zoom left unused canvas outside the upper-left1440x1000 portal view.
+   Crop only in the existing16:10 frame; image bytes and timeline geometry are untouched.
+   The lower100px of the portal view is below this existing frame's crop. */
+.day96-current-briefs-frame{aspect-ratio:16/10;overflow:hidden;border-radius:13px;background:#fff;box-shadow:0 0 0 1px #e1e7ed}
+.day96-still .day96-current-briefs-frame img{width:140.7638888889%;max-width:none;height:auto;aspect-ratio:auto;object-fit:initial;border-radius:0;box-shadow:none}
+@media (max-width:760px){.day96-current-briefs-frame{border-radius:11px}}
+
+/* 1102: exact current Today images in the existing16:10 workflow frame.
+   Desktop source(540,200,2280,1425); actual390 phone checklist source(22,428,334,208.75). */
+.day96-current-day-frame{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;border-radius:13px;background:#fff;box-shadow:0 0 0 1px #e1e7ed}
+.day96-still .day96-current-day-frame img{position:absolute;left:0;top:0;display:block;width:126.315789473684%;max-width:none;height:auto;aspect-ratio:auto;object-fit:initial;border-radius:0;box-shadow:none;transform:translate(-18.750000000000%,-11.614401858304%)}
+@media(max-width:760px){
+  .day96-current-day-frame{border-radius:11px}
+  .day96-still .day96-current-day-frame img{width:116.766467065868%;transform:translate(-5.641025641026%,-50.710900473934%)}
 }

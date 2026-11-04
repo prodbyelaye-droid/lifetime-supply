@@ -1,0 +1,28 @@
+# L1 4 Nov (critic b23 F3/F14): working material is not served. Nothing in index.html, css, js, api or lib loads these.
+/design
+/docs
+/tools
+/test
+/scripts
+# unused asset that carried a provenance manifest (no reference anywhere in index.html, css, js)
+/assets/assembly/blot.png
+# never ship the blot video sources (only the encoded clips are used)
+/assets/blot-1104/src
+# mirrored from .gitignore, in case the CLI reads only this file
+.claude/
+frames/
+evidence/
+.logo-cmp/
+SKILL.md
+SKILL (1).md
+REPORT.md
+*.log
+.DS_Store
+._*
+assets/grad
+assets/assembly/ig-avatar.png
+assets/assembly/wallet-motion.js
+# L1 (critic F17): working notes and unused files with tool names in them; none is loaded by the page
+PROVENANCE.md
+/js/next-move.js
+/css/homer.css

@@ -1,4 +1,4 @@
-/* opus 076 · one face per screen (pick 21 = B; critic 066 #4). The hero character (js/hero-design.js) is the only blot
+/* unit 076 · one face per screen (pick 21 = B; critic 066 #4). The hero character (js/hero-design.js) is the only blot
    with a face. The chat card's avatar drops its painted slit eyes (colour-flow.css 107): a blot with a face answering
    "what's new today?" reads as an AI assistant (STANDING 16), and it would be a second, orchid character. */
 .chat-blot::after { content: none; }

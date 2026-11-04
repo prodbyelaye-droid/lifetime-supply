@@ -1,4 +1,4 @@
-// Landing 012 (manager 03:26): Codex's GRADCODE ports replace the colour fields 010 had to leave out. Each module is a
+// Landing 012 (manager 03:26): the GRADCODE ports replace the colour fields 010 had to leave out. Each module is a
 // colour field measured from the original (GRADCODE/manifest.json: Gaussian colour stops, no image, video or blur),
 // mounted in its deep variant (deep 1.25): price = grad-189 (189 original-01), deep = grad-183 (183 original.mp4;
 // ?deep=sabo keeps 010's Sabo material for him to compare), footer = grad-005 (the 005 footer original; it replaces

@@ -1,4 +1,4 @@
-/* opus 147 · hero one character, polish round 2 (critic 144 §4). */
+/* unit 147 · hero one character, polish round 2 (critic 144 §4). */
 
 /* §4.3 · the window's tabs are the portal's own pill tabs (Your Day's track: one inset track, a white pill with a 3:1
    control edge sliding under the labels), not a browser-style boxed tab with a blue top border. The track sits under
@@ -25,3 +25,10 @@
 /* §4.6 · on a phone the character had about 30 px over "my whole". The headline drops 20 px and the character is 0.85 ×
    (44 px), set between the nav row and the headline, so it has about 16 px more air under it. */
 @media (max-width:699px) { .opening .hero-copy h1 { margin-top:20px; } }
+
+/* Reduced motion keeps tab selection immediate, including the out-then-in panel fade. */
+@media (prefers-reduced-motion:reduce) {
+  .hero-computer [data-enhanced][data-switch] .portal-panel.is-active,
+  .hero-computer [data-enhanced][data-switch] .portal-panel.is-leaving,
+  .hero-computer [data-enhanced] .portal-tab { transition:none; }
+}
