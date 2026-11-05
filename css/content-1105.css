@@ -1,0 +1,26 @@
+/* content-1105: structure only for the new and moved copy, so it reads before the page system and the price rebuild land.
+   Sizes, colour and motion for these blocks belong to those two builds. */
+.portal-cue { position:relative; z-index:2; margin:0; padding:24px 24px 0; text-align:center; font-size:17px; font-weight:500; line-height:1.4; color:#151517; }
+.board-legend { box-sizing:border-box; max-width:688px; margin:0 auto; padding:0 24px 96px; }
+.board-legend > p { margin:20px 0 0; font-size:17px; line-height:1.55; color:#3c4048; }
+.board-legend__list { margin:24px 0 0; padding:0; list-style:none; font-size:15px; line-height:1.5; color:#3c4048; }
+.board-legend__list li { padding:12px 0; border-top:1px solid #e2e8f0; }
+.board-legend__list b { font-weight:600; color:#151517; }
+
+#price .price-worth, #price .price-faq { margin-top:24px; padding:36px 40px; border-radius:16px; background:rgba(255,255,255,.94); text-align:left; }
+#price .price-worth .ls-heading-b--compact { font-size:32px !important; }
+#price .price-worth p { margin:12px 0 0; max-width:60ch; font-size:16px; line-height:1.55; color:#3c4048; }
+#price .price-worth h3 + p { margin-top:16px; }
+#price .price-faq .faq { max-width:none; margin:0; }
+#price .price-faq .faq-answer p { max-width:60ch; }
+@media (max-width:700px) {
+  #price .price-worth, #price .price-faq { padding:24px 20px; }
+  #price .price-worth .ls-heading-b--compact { font-size:24px !important; }
+}
+
+/* the questions split out of #price into their own section: the same rules they had in there */
+#price.closing-section { padding-bottom:0; }
+#questions.closing-section { padding-top:0; }
+#questions .questions { max-width:576px; width:100%; margin-inline:auto; text-align:center; }
+#questions .questions .faq { text-align:left; max-width:640px; margin:40px auto 0; }
+#questions .dm-line { margin:32px 0 0; font-size:14px; line-height:1.5; }
