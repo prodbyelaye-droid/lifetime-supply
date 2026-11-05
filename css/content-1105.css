@@ -37,7 +37,10 @@ body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:2; margin:24px 0
 .stats-chips li { padding:6px 12px; border:1px solid #d7e0e6; border-radius:999px; font-size:14px; line-height:1.4; color:#3c4048; }
 
 /* the close's small line */
-.close-note { margin:14px 0 0; font-size:14px; line-height:1.4; color:#fff; }
+#close .close-inner .close-note { margin:14px 0 0; font-size:14px; line-height:1.4; color:#fff; }
+
+/* step 1's button stays on one line now the mini card has no second line */
+#steps .mini-pay .step-cta { white-space:nowrap; }
 
 /* artists: the side line sits right of the heading, under it when there is no room */
 #trusted .tr1104__head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 32px; }
