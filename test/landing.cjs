@@ -61,13 +61,13 @@ const server = http.createServer((req, res) => {
       await page.evaluate(() => window.assembly.skip());
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
       // the hero: the heading, log in and the checkout CTA
-      assert.match(await page.locator('h1').innerText(), /my whole workflow\.\s*day and night\./);
+      assert.match(await page.locator('h1').innerText(), /the whole setup i run my career from\./);
       assert.equal(await page.locator('.header-login').getAttribute('href'), 'https://portal.elaye.store/login');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
-      // payments: four CTAs, all the live checkout, opening safely in a new tab
+      // payments: three checkout CTAs (hero, step 1, buy card; the close links to #price), all the live checkout, opening safely in a new tab
       const ctas = page.locator('a[data-checkout]');
-      assert.equal(await ctas.count(), 4, 'four checkout CTAs');
-      for (let i = 0; i < 4; i++) {
+      assert.equal(await ctas.count(), 3, 'three checkout CTAs');
+      for (let i = 0; i < 3; i++) {
         assert.equal(await ctas.nth(i).getAttribute('href'), LIVE);
         assert.equal(await ctas.nth(i).getAttribute('target'), '_blank');
         assert.match(await ctas.nth(i).getAttribute('rel'), /noopener/);

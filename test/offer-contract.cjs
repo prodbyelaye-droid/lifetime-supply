@@ -9,7 +9,7 @@ const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
 const template = fs.readFileSync('index.html', 'utf8');
 function pinned(html) {
   const ctas = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map((m) => m[1]);
-  assert.deepEqual(ctas, [LIVE, LIVE, LIVE, LIVE], 'four CTAs, all the live checkout');
+  assert.deepEqual(ctas, [LIVE, LIVE, LIVE], 'three checkout CTAs, all the live checkout');
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.offers.url, LIVE);
   assert.equal(Number(schema.offers.price), 699);
@@ -25,4 +25,4 @@ assert.equal(res.code, 200);
 assert.equal(res.body, template, 'the served page is the template');
 pinned(res.body);
 assert(!res.body.includes('EnvOverrideMustNotApply'), 'the env var does not reach the page');
-console.log('Offer contract: the template pins the four CTAs and the JSON-LD price; LIFETIME_CHECKOUT_699_URL does not apply.');
+console.log('Offer contract: the template pins the three checkout CTAs and the JSON-LD price; LIFETIME_CHECKOUT_699_URL does not apply.');
