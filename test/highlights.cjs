@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
       await page.goto(base, {waitUntil: 'domcontentloaded'});
       const film = page.locator('.film-player');
       assert.equal(await film.count(), 1);
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster.jpg');
+      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster-1105.jpg');
       if (mode === 'no-js') {
         assert.equal(await film.evaluate((v) => v.controls), true, 'native controls without scripts');
         assert.equal(await page.locator('.film-cover').isVisible(), false);

@@ -85,7 +85,7 @@ const server = http.createServer((req, res) => {
         assert(v.sources.length === 2 && v.sources.every((src) => /^assets\/blot-1104\/bv-[a-z]+-\d+\.(webm|mp4)$/.test(src)), v.id + ' sources');
       }
       assert.equal(await film.getAttribute('preload'), 'metadata');
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster.jpg');
+      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster-1105.jpg');
       assert.equal(await film.evaluate((v) => v.controls), false, 'the scripted preview hides native controls');
       await page.locator('.demo-film').scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
