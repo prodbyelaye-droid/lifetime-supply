@@ -18,12 +18,12 @@ const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
 const BLOT_VIDEOS = ['bv-keys', 'bv-workflow']; // page order
 // the trusted-by strip (Elaye, 4 Nov 15:50-16:03, photos 17:17): his exact heading and his 33 artists in his order, each
 // with his photo. Never YSN Fab.
-const TRUSTED_HEADING = 'trusted by hundreds of the biggest industry artists in the whole game.';
+const TRUSTED_HEADING = "artists i've produced for.";
 const TRUSTED = ['Lil Durk', 'Tory Lanez', 'Yung Bleu', 'Antonio Brown', 'Toosii', 'Yungeen Ace', 'Glokknine', 'Jim Jones',
   'YFN Lucci', 'D Savage', 'Smiley', 'Foolio', 'DC The Don', 'A-Reece', 'Nasty C', 'YK Osiris', 'Lil Poppa', 'CJ',
   'Too $hort', 'ONEFOUR', 'Jai Waetford', 'Moneyman', 'OMB Peezy', 'KCAMP', 'Omeretta', 'Ann Marie',
   'Derez Deshon', 'FCG Heem', 'K-Trap', 'Kidszn', 'Krispylife Kidd', 'Slatt Zy', 'SSG Splurge'];
-const TRUSTED_MORE = 'not counting the unreleased artists in the vault...';
+const TRUSTED_MORE = 'not counting the unreleased artists in the vault.';
 const MEME_ALT = 'meme: me carrying a giant backpack labelled unreleased music';
 const trustedMore = async (page) => ({text: (await page.locator('#trusted .tr1104__more').textContent()).replace(/\s+/g, ' ').trim(), alt: await page.locator('#trusted .tr1104__more img.tr1104__meme').getAttribute('alt')});
 const NO_YSN = /ysn[\s_-]*fab/i;
@@ -61,7 +61,7 @@ const server = http.createServer((req, res) => {
       await page.evaluate(() => window.assembly.skip());
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'page width');
       // the hero: the heading, log in and the checkout CTA
-      assert.match(await page.locator('h1').innerText(), /the whole setup i run my career from\./);
+      assert.match(await page.locator('h1').innerText(), /the whole setup\s*i run my career from\./);
       assert.equal(await page.locator('.header-login').getAttribute('href'), 'https://portal.elaye.store/login');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
       // payments: three checkout CTAs (hero, step 1, buy card; the close links to #price), all the live checkout, opening safely in a new tab
@@ -112,8 +112,8 @@ const server = http.createServer((req, res) => {
       await strip.scrollIntoViewIfNeeded();
       await page.waitForTimeout(400);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width, 'no side scroll at the strip');
-      const overlap = await page.evaluate(() => document.querySelector('#founder .fs1101-label').getBoundingClientRect().top - document.querySelector('#trusted').getBoundingClientRect().bottom);
-      assert(overlap >= 0, 'the founder block below does not run onto the strip (' + overlap + ')');
+      const overlap = await page.evaluate(() => document.querySelector('#trusted').getBoundingClientRect().top - document.querySelector('#founder').getBoundingClientRect().bottom);
+      assert(overlap >= 0, 'the strip sits after the founder block, clear of it (' + overlap + ')');
       const tracks = page.locator('#trusted .tr1104__track');
       const shift = () => tracks.evaluateAll((ts) => ts.map((t) => new DOMMatrix(getComputedStyle(t).transform).m41));
       await page.waitForFunction(() => [...document.querySelectorAll('#trusted .tr1104__set:not([aria-hidden="true"]) img, #trusted .tr1104__meme')].every((i) => i.complete && i.naturalWidth > 0), null, {timeout: 8000});

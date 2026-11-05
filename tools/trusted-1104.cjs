@@ -13,19 +13,19 @@ const ROOT = path.join(__dirname, '..');
 const HTML = path.join(ROOT, 'index.html');
 const DIR = 'assets/trusted-1104';
 // Elaye 15:58, exact: "trusted by hundreds of the biggest industry artists in the whole game." (two display lines)
-const HEADING = ['trusted by hundreds of the biggest', 'industry artists in the whole game.'];
+const HEADING = ["artists i've produced for."]; // 5 Nov plan section 11 (4-0, away from the price; his 15:58 line is retired)
 const ARTISTS = ['Lil Durk', 'Tory Lanez', 'Yung Bleu', 'Antonio Brown', 'Toosii', 'Yungeen Ace', 'Glokknine', 'Jim Jones',
   'YFN Lucci', 'D Savage', 'Smiley', 'Foolio', 'DC The Don', 'A-Reece', 'Nasty C', 'YK Osiris', 'Lil Poppa', 'CJ',
   'Too $hort', 'ONEFOUR', 'Jai Waetford', 'Moneyman', 'OMB Peezy', 'KCAMP', 'Omeretta', 'Ann Marie',
   'Derez Deshon', 'FCG Heem', 'K-Trap', 'Kidszn', 'Krispylife Kidd', 'Slatt Zy', 'SSG Splurge'];
 const ROWS = 3;
 const SLUG = {'Too $hort': 'too-short'}; // names whose spelling does not make a clean file name
-const MORE = 'not counting the unreleased artists in the vault...'; // Elaye 16:18, as he wrote it
+const MORE = 'not counting the unreleased artists in the vault.'; // 5 Nov plan section 11: right of the heading
 const MEME = {file: `assets/trusted-1104/unreleased-music-meme.webp`, alt: 'meme: me carrying a giant backpack labelled unreleased music', w: 128, h: 161};
 const START = '<!-- trusted-1104:start -->', END = '<!-- trusted-1104:end -->';
 // just above the founder block (#founder in its sticky reveal track). Not after it: on a phone #founder's content is taller
 // than its sticky 100vh box and runs past the track's end, which would sit on this heading.
-const ANCHOR = '<div data-reveal274-track>\n<section class="founder-selected wrap" id="founder"';
+const ANCHOR = '<section class="producer-wall" id="why-producers-choose"'; // after why i built it (plan order 10 -> 11)
 const CSS = '<link rel="stylesheet" href="css/trusted-1104.css">', CSS_AFTER = '<link rel="stylesheet" href="css/blot-video-1104.css">';
 const JS = '<script src="js/trusted-1104.js" defer></script>', JS_AFTER = '<script src="js/blot-video-1104.js" defer></script>';
 if (ARTISTS.some((a) => /ysn\s*fab/i.test(a))) throw new Error('never YSN Fab');
@@ -50,8 +50,8 @@ const row = (list, i) => {
   return `<div class="tr1104__row" data-dir="${i % 2 ? 'right' : 'left'}" tabindex="0" role="region" aria-label="artists, row ${i + 1} of ${ROWS}"><div class="tr1104__track"><ul class="tr1104__set">${set}</ul><ul class="tr1104__set" aria-hidden="true">${set}</ul></div></div>`;
 };
 const meme = fs.existsSync(path.join(ROOT, MEME.file)) ? `<img class="tr1104__meme" src="${MEME.file}" alt="${esc(MEME.alt)}" width="${MEME.w}" height="${MEME.h}" loading="lazy" decoding="async">` : '';
-const more = `<p class="tr1104__more wrap">${meme}<span>${esc(MORE)}</span></p>`;
-const block = `${START}\n<section class="tr1104" id="trusted" aria-labelledby="trusted-title"><div class="tr1104__head wrap"><h2 id="trusted-title" class="ls-heading-b ls-heading-b--step">${HEADING.map((l) => `<span class="ls-heading-b__line">${esc(l)}</span>`).join(' ')}</h2></div><div class="tr1104__rows">${rows.map(row).join('')}</div>${more}</section>\n${END}`;
+const more = `<p class="tr1104__more">${meme}<span>${esc(MORE)}</span></p>`;
+const block = `${START}\n<section class="tr1104" id="trusted" aria-labelledby="trusted-title"><div class="tr1104__head wrap"><h2 id="trusted-title" class="ls-heading-b ls-heading-b--step">${HEADING.map((l) => `<span class="ls-heading-b__line">${esc(l)}</span>`).join(' ')}</h2>${more}</div><div class="tr1104__rows">${rows.map(row).join('')}</div></section>\n${END}`;
 const html = fs.readFileSync(HTML, 'utf8');
 let next = html;
 if (next.includes(START)) { // take the old block out (wherever it is), then place it again
