@@ -32,7 +32,7 @@
     item.querySelector('summary').addEventListener('click', event => {
       event.preventDefault();
       const opening = item.dataset.expanded === 'false' || (!item.open && item.dataset.expanded !== 'true');
-      if (opening) items.filter(other => other !== item && other.open).forEach(other => setOpen(other, false));
+      if (opening) items.filter(other => other !== item && other.open && other.closest('.faq') === item.closest('.faq')).forEach(other => setOpen(other, false));
       setOpen(item, opening);
     });
   });
