@@ -214,7 +214,7 @@ html body #main #features.main-value .mv-depth b { font-weight: 600; color: #151
 /* ---------- and so much more: three thin rows, left, right, left, ends faded, pause on hover ---------- */
 html body #main #more .config-more__header { padding: 0 0 16px; max-width: none; }
 html body #main #more h2 > span { display: inline; }
-html body #main #more .config-more__rows { display: grid; gap: 2px; width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); margin-inline: auto; }
+html body #main #more .config-more__rows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); margin-inline: auto; }
 html body #main #more .config-more__row { height: 34px; padding: 3px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); }
 html body #main #more .config-more__set { gap: 8px; padding-inline-end: 8px; }
 html body #main #more .config-more__chip { height: 26px; padding: 4px 12px; font-size: var(--sys-micro); line-height: 18px; }
@@ -358,7 +358,7 @@ html body #main #trusted .tr1104__name { margin-top: 4px; font-size: var(--sys-m
   html body #main #trusted .tr1104__row { -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
   html body #main #trusted .tr1104__set { gap: 10px; padding-right: 10px; }
   html body #main #trusted .tr1104__tile { width: 80px; }
-  html body #main #trusted .tr1104__name { font-size: 12px; letter-spacing: -.01em; }
+  html body #main #trusted .tr1104__name { font-size: 12px; letter-spacing: -.01em; overflow: visible; text-overflow: clip; }
 }
 @media (prefers-reduced-motion: reduce) {
   html body #main #more .config-more__row, html body #main #trusted .tr1104__row { -webkit-mask-image: none; mask-image: none; }
