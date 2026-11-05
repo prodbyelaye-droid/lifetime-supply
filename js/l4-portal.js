@@ -5,7 +5,7 @@
    (confetti.ts) and home's text and blots coming in with the portal's own entrances (ls-route-in .24 s cubic-bezier(.23,1,.32,1); h2-card-in .24 s cubic-bezier(.22,1,.36,1),
    30 ms apart), cut from the home capture so nothing extra loads. One cue at a time: log in, then the briefs, then dark mode.
    The sidebar, and whatever a page offers inside it, swap screens with a quick crossfade; the theme switch flips the window with the portal's circular reveal (ref 270:
-   a circle clip from the switch, 400 ms ease-in-out). The sidebar blob's eyes follow the pointer (brand-blot.tsx). The landing itself stays light.
+   his 21st.dev Animated Theme Toggler: a circle clip from the switch, 700 ms ease-in-out). The sidebar blob's eyes follow the pointer (brand-blot.tsx). The landing itself stays light.
    Short auto-play once in view: light, dark, light, on the sign-in screen only. Reduced motion or "pause motion": no auto-play, instant swaps.
    Phone: pill rows under the window, the pages and then what the current page offers. */
 (() => {
@@ -111,7 +111,7 @@
   const show = async (p, t, how, from) => {
     if (!D.pages[p]) return;
     if (st.busy) { st.queued = [p, t, how, from]; return; }
-    st.busy = true; if (st.menu) { st.menu = false; menuLayer.hidden = true; menuLayer.textContent = ''; }
+    st.busy = true; st.flipping = how === 'reveal'; if (st.menu) { st.menu = false; menuLayer.hidden = true; menuLayer.textContent = ''; }
     const old = view.querySelector('.l4-screen.is-on'), osc = old && old.querySelector('.l4-scroll');
     const keep = how === 'reveal' && old && old.dataset.page === p && osc ? osc.scrollTop / osc.clientWidth : 0;
     await ready(p, t);
@@ -125,24 +125,40 @@
       if (how === 'reveal') {
         const w = stage.clientWidth, h = stage.clientHeight, o = from ? [from[0] * w / D.W, from[1] * h / D.H] : [w / 2, h / 2];
         const r = Math.hypot(Math.max(o[0], w - o[0]), Math.max(o[1], h - o[1]));
-        const opt = { duration: 400, easing: 'ease-in-out' };
+        const opt = { duration: 700, easing: 'ease-in-out' };
         a = s.animate({ clipPath: [`circle(0px at ${o[0]}px ${o[1]}px)`, `circle(${r}px at ${o[0]}px ${o[1]}px)`] }, opt);
         // the same circle carries on across the title bar, so the flip reads as one reveal over the whole window
         if (bar.dataset.l4Bar !== t) {
-          const bh = bar.offsetHeight, y = o[1] + bh, R = Math.hypot(Math.max(o[0], w - o[0]), Math.max(y, bh - y));
-          ghost = bar.cloneNode(true); ghost.classList.add('l4-bar-ghost'); ghost.dataset.l4Bar = t; ghost.setAttribute('aria-hidden', 'true'); ghost.inert = true; ghost.style.top = `${bar.offsetTop}px`; preview.append(ghost);
-          ghost.animate({ clipPath: [`circle(0px at ${o[0]}px ${y}px)`, `circle(${R}px at ${o[0]}px ${y}px)`] }, opt);
+          ghost = [bar, macbar].filter(Boolean).map((el) => {
+            const g = el.cloneNode(true), y = o[1] + (stage.getBoundingClientRect().top - el.getBoundingClientRect().top), R = Math.hypot(Math.max(o[0], w - o[0]), Math.max(y, el.offsetHeight - y));
+            g.classList.add('l4-bar-ghost'); g.dataset.l4Bar = t; g.setAttribute('aria-hidden', 'true'); g.inert = true; g.style.top = `${el.offsetTop}px`; preview.append(g);
+            g.animate({ clipPath: [`circle(0px at ${o[0]}px ${y}px)`, `circle(${R}px at ${o[0]}px ${y}px)`] }, opt);
+            return g;
+          });
         }
       } else if (how !== 'first') a = s.animate({ opacity: [0, 1] }, { duration: 180, easing: 'cubic-bezier(0,0,.2,1)' });
     }
-    preview.dataset.l4Theme = t;
+    preview.dataset.l4Theme = t; icon(t);
     if (a) await a.finished.catch(() => {});
-    bar.dataset.l4Bar = t; if (ghost) ghost.remove();
+    bar.dataset.l4Bar = t; if (macbar) macbar.dataset.l4Bar = t; if (ghost) ghost.forEach((g) => g.remove());
     view.querySelectorAll('.l4-screen:not(.is-on)').forEach((x) => x.remove());
-    st.busy = false;
+    st.busy = false; st.flipping = false;
     if (st.queued) { const q = st.queued; st.queued = null; show(...q); }
   };
   const flip = (r) => show(st.page, other(), 'reveal', mid(r));
+  // the switch's icon, as his ref animates it: the old one fades out (.33 s), then the new one comes in from 55% and 25 degrees (.33 s). Framer Motion's default ease-in-out
+  const ics = { light: tgl.querySelector('.l4-moon'), dark: tgl.querySelector('.l4-sun') }; let shown = 'light', iconRun = 0;
+  const icon = (t) => {
+    if (t === shown) return; const from = ics[shown], to = ics[t], run = ++iconRun; shown = t;
+    Object.values(ics).forEach((e) => e.getAnimations().forEach((x) => x.cancel()));
+    const settle = () => { Object.values(ics).forEach((e) => e.classList.toggle('is-on', e === to)); };
+    if (held()) return settle();
+    from.classList.add('is-on'); to.classList.remove('is-on');
+    from.animate({ opacity: [1, 0] }, { duration: 330, easing: 'ease-in-out', fill: 'forwards' }).finished.then(() => {
+      if (run !== iconRun) return; from.getAnimations().forEach((x) => x.cancel()); settle();
+      to.animate({ opacity: [0, 1], transform: [`scale(.55) rotate(${t === 'dark' ? 25 : -25}deg)`, 'none'] }, { duration: 330, easing: 'ease-in-out' });
+    }, () => {});
+  };
   // the title-bar switch sits above the stage: its centre in the capture's px (y is negative, the circle starts up in the bar)
   const barPoint = () => { const a = tgl.getBoundingClientRect(), b = stage.getBoundingClientRect(); return [(a.left + a.width / 2 - b.left) / b.width * D.W, (a.top + a.height / 2 - b.top) / b.height * D.H]; };
   const themeOrigin = () => { const P = D.pages[st.page]; if (P.full) return P.toggle && P.toggle[st.theme]; const M = D.menu && D.menu[st.theme]; return M && M.summary; };
@@ -243,7 +259,7 @@
   const flowDark = (wait) => { clearTimeout(st.flowT); cueBriefs.removeAttribute('data-on'); if (st.flow === 'done') return; st.flow = 'dark'; if (st.darkTried) return flowEnd(); st.flowT = setTimeout(() => { hint.setAttribute('data-on', ''); st.flowT = setTimeout(flowEnd, 9000); }, wait); };
   const flowStart = () => { if (st.flow) return; st.flow = 'briefs'; st.flowT = setTimeout(() => { cueBriefs.dataset.live = '1'; placeBriefsCue(); const b = pills && pills.querySelector('[data-go="briefs"]'); if (b && pills.offsetParent && pills.scrollWidth > pills.clientWidth) pills.scrollTo({ left: Math.max(0, b.offsetLeft - 48), behavior: held() ? 'auto' : 'smooth' }); st.flowT = setTimeout(() => flowDark(0), 7000); }, held() ? 0 : 900); };
   const arrive = (p) => { if (st.flow === 'briefs' && D.pages[p].nav === 'briefs') flowDark(700); else if (p === 'login' && st.flow && st.flow !== 'done') flowEnd(); };
-  tgl.addEventListener('click', () => { touch(); st.darkTried = true; if (st.flow === 'dark') flowEnd(); show(st.page, other(), 'reveal', barPoint()); });
+  tgl.addEventListener('click', () => { touch(); if (st.flipping) return; st.darkTried = true; if (st.flow === 'dark') flowEnd(); show(st.page, other(), 'reveal', barPoint()); });   // a click during a flip is ignored, as in the portal
   // ---- first sign-in: the portal's own hello splash, then the streamers, home's text and blots
   let engineP = null;
   const engine = () => (engineP = engineP || new Promise((res, rej) => { if (window.L4Blot) return res(window.L4Blot); const s = document.createElement('script'); s.src = 'js/l4-portal-hello.js'; s.onload = () => res(window.L4Blot); s.onerror = rej; document.head.append(s); }));

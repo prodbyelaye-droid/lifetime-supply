@@ -40,19 +40,21 @@
 
 /* ---- window-v2 (5 Nov, owner 12:46 + 15:15) ---- */
 /* the size: you see the whole thing and use the whole thing. About 70% of the viewport's height, so the line above it and the next section's heading both show.
-   Height = (width - 2) / 1.6 + 66 (the Mac bar 28, the title bar 36, 2 of border). The hotspots are % of the stage, so they scale with it */
-body .computer-device { width:min(1222px,100%,calc((70vh - 66px) * 1.6 + 2px)); width:min(1222px,100%,calc((70svh - 66px) * 1.6 + 2px)); }
-html[data-landing-layout] .hero-computer .portal-preview { position:relative; background:transparent; transition:border-color .4s ease-in-out; }
+   Height = (width - 2) / 1.6 + 70 (the Mac bar 28, the title bar 40, 2 of border). The hotspots are % of the stage, so they scale with it */
+body .computer-device { width:min(1222px,100%,calc((70vh - 70px) * 1.6 + 2px)); width:min(1222px,100%,calc((70svh - 70px) * 1.6 + 2px)); }
+html[data-landing-layout] .hero-computer .portal-preview { position:relative; background:transparent; transition:border-color .7s ease-in-out; }
 html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] { border-color:#2c2c30; }
-.hero-computer .portal-panels.l4-panels { padding:0; transition:background-color .4s ease-in-out; }
+.hero-computer .portal-panels.l4-panels { padding:0; transition:background-color .7s ease-in-out; }
 .hero-computer .portal-preview[data-l4-theme="dark"] .portal-panels.l4-panels { background:#101010; }
-.computer-titlebar { height:36px; }
+.computer-titlebar { height:40px; padding-right:8px; }
 /* the Mac's menu bar across the top (ref: 21st.dev MacOS Menu Bar). Dark is its own rgba(40,40,40,.65) + hairline; light is the same bar in light grey */
-.l4-macbar { display:flex; align-items:center; gap:14px; height:28px; padding:0 12px 0 14px; color:#1d1d1f; background:rgba(238,240,243,.74); -webkit-backdrop-filter:blur(18px) saturate(1.2); backdrop-filter:blur(18px) saturate(1.2); box-shadow:inset 0 -1px 0 rgba(17,18,22,.08),inset 0 1px 0 rgba(255,255,255,.5); font-size:13px; line-height:1; white-space:nowrap; -webkit-user-select:none; user-select:none; transition:background-color .4s ease-in-out,color .4s ease-in-out; }
-.portal-preview[data-l4-theme="dark"] .l4-macbar { color:#fff; background:rgba(40,40,42,.88); box-shadow:inset 0 -1px 0 rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.12); }
+.l4-macbar { display:flex; align-items:center; gap:14px; height:28px; padding:0 12px 0 14px; color:#1d1d1f; background:rgba(238,240,243,.74); -webkit-backdrop-filter:blur(18px) saturate(1.2); backdrop-filter:blur(18px) saturate(1.2); box-shadow:inset 0 -1px 0 rgba(17,18,22,.08),inset 0 1px 0 rgba(255,255,255,.5); font-size:13px; line-height:1; white-space:nowrap; -webkit-user-select:none; user-select:none; }
+.l4-macbar[data-l4-bar="dark"] { color:#fff; background:rgba(40,40,42,.88); box-shadow:inset 0 -1px 0 rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.12); }
+.l4-macbar.l4-bar-ghost { -webkit-backdrop-filter:none; backdrop-filter:none; background:#eef0f3; }
+.l4-macbar.l4-bar-ghost[data-l4-bar="dark"] { background:#2a2a2c; }
 .l4-macbar button { margin:0; padding:0 7px; height:24px; border:0; border-radius:5px; background:transparent; color:inherit; font:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent; }
 .l4-macbar button[aria-expanded="true"] { background:rgba(17,18,22,.1); }
-.portal-preview[data-l4-theme="dark"] .l4-macbar button[aria-expanded="true"] { background:rgba(255,255,255,.16); }
+.l4-macbar[data-l4-bar="dark"] button[aria-expanded="true"] { background:rgba(255,255,255,.16); }
 .l4-macbar button:focus { outline:none; }
 .l4-macbar button:focus-visible { outline:2px solid currentColor; outline-offset:-1px; }
 @media (hover:hover) and (pointer:fine) { .l4-macbar button:hover { opacity:.8; } }
@@ -75,25 +77,24 @@ html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] {
 .l4-drop button:focus-visible { background:rgba(17,18,22,.08); }
 .portal-preview[data-l4-theme="dark"] .l4-drop button:focus-visible { background:rgba(255,255,255,.12); }
 @media (hover:hover) and (pointer:fine) { .l4-drop button:not([aria-disabled="true"]):hover { background:rgba(17,18,22,.08); } .portal-preview[data-l4-theme="dark"] .l4-drop button:not([aria-disabled="true"]):hover { background:rgba(255,255,255,.12); } }
-/* the switch in the title bar, in the search field's own material; the portal's sun and moon (theme-toggle.tsx) */
-.l4-theme { position:relative; flex:none; display:inline-grid; place-items:center; width:30px; height:26px; margin:0; padding:0; border:0; border-radius:7px; background:#fff; color:#151517; box-shadow:inset 0 0 0 1px #e1e4e8,0 1px 2px rgba(16,24,40,.04); cursor:pointer; -webkit-tap-highlight-color:transparent; transition:transform 160ms cubic-bezier(.23,1,.32,1); }
-.l4-theme::after { content:""; position:absolute; inset:-9px -7px; }
-.l4-theme:active { transform:scale(.97); }
-.l4-theme svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.l4-theme .l4-sun, .computer-titlebar[data-l4-bar="dark"] .l4-moon { display:none; }
-.computer-titlebar[data-l4-bar="dark"] .l4-sun { display:block; }
+/* the switch in the title bar: his ref, 21st.dev Animated Theme Toggler, as it is. Bare, round, 40 x 40 (p-2 + a 24 px icon), black moon, white sun, no fill, no hover.
+   The one addition: a focus ring for keyboard users (the ref has none); a mouse never sees it */
+.l4-theme { position:relative; z-index:3; flex:none; display:flex; align-items:center; justify-content:center; width:40px; height:40px; margin:0; padding:8px; border:0; border-radius:999px; background:transparent; color:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.l4-ic { position:absolute; inset:8px; display:block; opacity:0; visibility:hidden; }
+.l4-ic.is-on { opacity:1; visibility:visible; }
+.l4-ic svg { display:block; width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.l4-moon { color:#000; }
+.l4-sun { color:#fff; }
 .l4-theme:focus { outline:none; }
-.l4-theme:focus-visible { outline:2px solid #151517; outline-offset:2px; }
-@media (hover:hover) and (pointer:fine) { .l4-theme:hover { background:#f4f7fa; } }
+.l4-theme:focus-visible { outline:2px solid #151517; outline-offset:-3px; }
+.l4-bar-ghost .l4-theme { visibility:hidden; }
 .computer-titlebar[data-l4-bar="dark"] { background:#1a1a1c; color:#a1a1aa; }
 .computer-titlebar[data-l4-bar="dark"] .hw-crumbs b { color:#fafafa; }
 .computer-titlebar[data-l4-bar="dark"] .hw-chev { stroke:#6b6b73; }
 .computer-titlebar[data-l4-bar="dark"] .hw-find { background:#232326; color:#a1a1aa; box-shadow:inset 0 0 0 1px #35353b; }
-.computer-titlebar[data-l4-bar="dark"] .hw-find kbd { background:#2b2b2f; border-color:#3a3a40; color:#a1a1aa; }
-.computer-titlebar[data-l4-bar="dark"] .l4-theme { background:#232326; color:#fafafa; box-shadow:inset 0 0 0 1px #35353b; }
 .computer-titlebar[data-l4-bar="dark"] .l4-theme:focus-visible { outline-color:#fff; }
-@media (hover:hover) and (pointer:fine) { .computer-titlebar[data-l4-bar="dark"] .l4-theme:hover { background:#2b2b2f; } }
-.l4-bar-ghost { position:absolute; left:0; width:100%; z-index:2; pointer-events:none; }
+.computer-titlebar[data-l4-bar="dark"] .hw-find kbd { background:#2b2b2f; border-color:#3a3a40; color:#a1a1aa; }
+.l4-bar-ghost { position:absolute; left:0; width:100%; z-index:2; pointer-events:none; box-sizing:border-box; }
 /* the pointer labels, one at a time. Transitions, so they retarget if a visitor is quick; ink like the portal's own black button, white in dark */
 .l4-tip { position:absolute; z-index:5; margin:0; padding:8px 12px; border-radius:10px; background:#151517; color:#fff; font-size:13px; line-height:1.35; font-weight:500; letter-spacing:-.003em; text-align:left; pointer-events:none; box-shadow:0 10px 24px -12px rgba(11,11,11,.5); opacity:0; visibility:hidden; transform:translateY(6px); transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s; }
 .l4-tip[data-on] { opacity:1; visibility:visible; transform:none; transition:opacity .32s cubic-bezier(.22,1,.36,1),transform .32s cubic-bezier(.22,1,.36,1); }
@@ -103,8 +104,8 @@ html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] {
 .l4-cue::after { left:-4px; top:50%; margin-top:-5px; }
 .l4-cue2 { left:var(--cx); top:var(--cy); translate:0 -50%; white-space:nowrap; }
 .l4-cue2::after { left:-4px; top:50%; margin-top:-5px; }
-.l4-hint { right:8px; top:70px; z-index:6; white-space:nowrap; }
-.l4-hint::after { right:16px; top:-4px; }
+.l4-hint { right:8px; top:74px; z-index:6; white-space:nowrap; }
+.l4-hint::after { right:15px; top:-4px; }
 .l4-stage[data-page="login"] .l4-hot[data-k^="go-"] { border-radius:24px; }
 /* the sidebar blob, drawn over its own picture so the eyes can follow the pointer (brand-blot.css) */
 .l4-blob { position:absolute; z-index:1; pointer-events:none; }
@@ -123,14 +124,13 @@ html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] {
   .l4-mac-menus, .l4-mac-right svg { display:none; }
   .l4-apple { pointer-events:none; }
   .l4-apple svg { width:11px; height:14px; }
-  .l4-theme { width:28px; height:28px; }
-  .l4-theme::after { inset:-8px; }
+  .l4-theme::after { content:""; position:absolute; inset:-2px; }
   .computer-titlebar[data-l4-bar="dark"] .hw-find { background:transparent; box-shadow:none; }
   .l4-tip { padding:6px 10px; font-size:12px; }
   .l4-cue { left:50%; top:var(--py); translate:-50% 0; width:188px; max-width:calc(100% - 24px); text-align:center; }
   .l4-cue::after { left:50%; top:-4px; margin:0 0 0 -5px; }
-  .l4-hint { right:6px; top:68px; }
-  .l4-hint::after { right:9px; }
+  .l4-hint { right:6px; top:72px; }
+  .l4-hint::after { right:15px; }
 }
 @media (hover:hover) and (pointer:fine) {
   .l4-hot:hover { background:rgba(17,18,22,.05); }
@@ -173,7 +173,7 @@ html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] {
 .cf-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:6; pointer-events:none; }
 @media (prefers-reduced-motion:reduce) {
   .l4-tip, .l4-tip[data-on] { transform:none; transition:opacity .16s ease,visibility 0s linear .16s; }
-  .l4-theme, .l4-bh, .l4-bh .bh-go, .l4-bh .bs-slot canvas, .l4-blob-eyes { transition:none; }
+  .l4-bh, .l4-bh .bh-go, .l4-bh .bs-slot canvas, .l4-blob-eyes { transition:none; }
   .l4-bh.is-in :is(.bh-title,.bh-line,.bh-go) { animation:none; }
 }
 html[data-motion-paused] .l4-tip, html[data-motion-paused] .l4-bh { transition:none; }
