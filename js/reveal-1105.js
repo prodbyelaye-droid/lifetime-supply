@@ -13,15 +13,15 @@
     {items: '#demo > .demo-film, #demo > .film-caption, #demo > .demo-links'},
     {items: '.portal-cue'},
     {items: '#how-the-board-works > h2, #how-the-board-works > p, #how-the-board-works > ul'},
-    {items: '#inside-title, #inside .split-copy div > p, #inside .inside-kits, #inside .blend'},
+    {items: '#inside-title, #inside .split-copy > div > p, #inside .inside-kits, #inside .blend'},
     {items: '#flow .day96-head > *'},
     {items: '#flow .day96-label, #flow .day96-what > h3, #flow .day96-what > p, #flow .day96-what > figure'},
     {items: '#stats-title, #stats .l2-stats__lead, #stats .stats-chips > li'},
     {items: '#features .mv-group'},
     {items: '#more-title, #more .config-more__rows'},
-    {items: '#founder .fs1101-label, #founder-title, #founder .fs1101-plaques, #founder .fs1101-line, #founder .fs1102-signature, #founder .fs1101-photo, #founder .fs1101-proof, #founder .fs1101-heard'},
+    {items: '#founder .fs1105-card, #founder .fs1101-heard'},
     {items: '#trusted-title, #trusted .tr1104__more, #trusted .tr1104__rows'},
-    {items: '#producer-wall-title, .producer-wall__intro > p, .producer-quote'},
+    {items: '#producer-wall-title, .producer-wall__intro > p, .producer-wall__grid'}, // the whole window: its quotes loop inside it
     {items: '#download-title, .dl17-copy > p, .dl17-row, .dl17-copy > .dl-login'},
     {items: '#steps-title'},
     {items: '#steps .step-grid > article', stagger: 180}, // his 1, 2, 3 land one by one
