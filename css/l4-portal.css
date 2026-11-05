@@ -36,3 +36,101 @@
   .l4-hot:focus-visible { outline-color:Highlight; }
   .l4-pill[aria-current="page"], .l4-pill-theme[aria-pressed="true"] { border:2px solid Highlight; }
 }
+
+/* ---- window-v2 (5 Nov, owner 12:46) ---- */
+/* A. it fits the screen with its title bar and the sidebar foot both showing (audit S6); the hotspots are % of the stage, so they scale with it */
+body .computer-device { width:min(1222px,100%,calc((100vh - 64px) * 1.33)); width:min(1222px,100%,calc((100svh - 64px) * 1.33)); }
+.hero-computer .portal-preview { position:relative; transition:border-color .4s ease-in-out; }
+html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] { border-color:#2c2c30; background:#101010; }
+/* the 14 px inset goes dark with the rest, so dark mode has no white frame round it */
+.hero-computer .portal-panels.l4-panels { transition:background-color .4s ease-in-out; }
+.hero-computer .portal-preview[data-l4-theme="dark"] .portal-panels.l4-panels { background:#101010; }
+/* B. the switch in the title bar, in the search field's own material; the portal's sun and moon (theme-toggle.tsx) */
+.l4-theme { position:relative; flex:none; display:inline-grid; place-items:center; width:30px; height:26px; margin:0; padding:0; border:0; border-radius:7px; background:#fff; color:#151517; box-shadow:inset 0 0 0 1px #e1e4e8,0 1px 2px rgba(16,24,40,.04); cursor:pointer; -webkit-tap-highlight-color:transparent; transition:transform 160ms cubic-bezier(.23,1,.32,1); }
+.l4-theme::after { content:""; position:absolute; inset:-9px -7px; }
+.l4-theme:active { transform:scale(.97); }
+.l4-theme svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.l4-theme .l4-sun, .computer-titlebar[data-l4-bar="dark"] .l4-moon { display:none; }
+.computer-titlebar[data-l4-bar="dark"] .l4-sun { display:block; }
+.l4-theme:focus { outline:none; }
+.l4-theme:focus-visible { outline:2px solid #151517; outline-offset:2px; }
+@media (hover:hover) and (pointer:fine) { .l4-theme:hover { background:#f4f7fa; } }
+.computer-titlebar[data-l4-bar="dark"] { background:#1a1a1c; color:#a1a1aa; }
+.computer-titlebar[data-l4-bar="dark"] .hw-crumbs b { color:#fafafa; }
+.computer-titlebar[data-l4-bar="dark"] .hw-chev { stroke:#6b6b73; }
+.computer-titlebar[data-l4-bar="dark"] .hw-find { background:#232326; color:#a1a1aa; box-shadow:inset 0 0 0 1px #35353b; }
+.computer-titlebar[data-l4-bar="dark"] .hw-find kbd { background:#2b2b2f; border-color:#3a3a40; color:#a1a1aa; }
+.computer-titlebar[data-l4-bar="dark"] .l4-theme { background:#232326; color:#fafafa; box-shadow:inset 0 0 0 1px #35353b; }
+.computer-titlebar[data-l4-bar="dark"] .l4-theme:focus-visible { outline-color:#fff; }
+@media (hover:hover) and (pointer:fine) { .computer-titlebar[data-l4-bar="dark"] .l4-theme:hover { background:#2b2b2f; } }
+.l4-bar-ghost { position:absolute; left:0; top:0; width:100%; z-index:2; pointer-events:none; }
+/* B. the pointer labels. Transitions, so they retarget if a visitor is quick; ink like the portal's own black button, white in dark */
+.l4-tip { position:absolute; z-index:5; margin:0; padding:8px 12px; border-radius:10px; background:#151517; color:#fff; font-size:13px; line-height:1.35; font-weight:500; letter-spacing:-.003em; text-align:left; pointer-events:none; box-shadow:0 10px 24px -12px rgba(11,11,11,.5); opacity:0; visibility:hidden; transform:translateY(6px); transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s; }
+.l4-tip[data-on] { opacity:1; visibility:visible; transform:none; transition:opacity .32s cubic-bezier(.22,1,.36,1),transform .32s cubic-bezier(.22,1,.36,1); }
+.l4-tip::after { content:""; position:absolute; width:10px; height:10px; border-radius:2px; background:inherit; transform:rotate(45deg); }
+.l4-stage[data-theme="dark"] .l4-tip, .portal-preview[data-l4-theme="dark"] .l4-hint { background:#fafafa; color:#101010; }
+/* by "log in" (its right edge is x 880, its middle y 605 of the 1440 x 1010 capture) */
+.l4-cue { left:calc(892 / 1440 * 100%); top:calc(605 / 1010 * 100%); translate:0 -50%; width:max-content; max-width:min(216px,calc(100% - 892 / 1440 * 100% - 10px)); text-wrap:balance; }
+.l4-cue::after { left:-4px; top:50%; margin-top:-5px; }
+/* under the switch */
+.l4-hint { right:8px; top:46px; z-index:6; white-space:nowrap; }
+.l4-hint::after { right:16px; top:-4px; }
+/* the log-in button on a phone: the picture is 11 px tall there, the target isn't */
+.l4-stage[data-page="login"] .l4-hot[data-k^="go-"] { border-radius:24px; }
+@media (max-width:700px) {
+  .l4-stage[data-page="login"] .l4-hot[data-k^="go-"]::before { content:""; position:absolute; inset:-17px -8px; }
+  .l4-theme { width:28px; height:28px; }
+  .l4-theme::after { inset:-8px; }
+  .computer-titlebar[data-l4-bar="dark"] .hw-find { background:transparent; box-shadow:none; }
+  .l4-tip { padding:6px 10px; font-size:12px; }
+  .l4-cue { left:50%; top:calc(668 / 1010 * 100%); translate:-50% 0; width:188px; max-width:calc(100% - 24px); text-align:center; }
+  .l4-cue::after { left:50%; top:-4px; margin:0 0 0 -5px; }
+  .l4-hint { right:6px; top:42px; }
+  .l4-hint::after { right:9px; }
+}
+@media (hover:hover) and (pointer:fine) {
+  .l4-hot:hover { background:rgba(17,18,22,.05); }
+  .l4-stage[data-theme="dark"] .l4-hot:hover { background:rgba(255,255,255,.07); }
+}
+/* C. first sign-in: the portal's hello splash (components/assembly/blot/blot.css), drawn at the capture's 1440 and scaled with the window */
+.l4-bh { position:absolute; left:0; top:0; z-index:3; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; transform-origin:0 0; overflow:hidden; background:#E6F7FF; color:#111; transition:opacity .32s ease,visibility 0s linear .32s; }
+.l4-bh.is-leaving { opacity:0; visibility:hidden; pointer-events:none; }
+.l4-bh:focus { outline:none; }
+.l4-bh .bh-field { position:absolute; inset:-10%; background:radial-gradient(45% 40% at 22% 88%,rgba(17,177,248,.75),rgba(17,177,248,0) 70%),radial-gradient(50% 45% at 82% 80%,rgba(60,195,254,.7),rgba(60,195,254,0) 70%),radial-gradient(60% 50% at 60% 8%,rgba(141,220,253,.8),rgba(141,220,253,0) 70%),linear-gradient(180deg,#E3F6FF,#F4FBFF 50%,#CBEEFE); }
+.l4-bh .bh-logo { position:absolute; left:22.78px; top:22.83px; font-size:22.89px; font-weight:600; letter-spacing:-.01em; line-height:1; white-space:nowrap; color:#0b0b0b; }
+.l4-bh .bs-slot { position:relative; flex:none; width:240px; height:240px; }
+.l4-bh .bs-slot canvas { display:block; width:100%; height:100%; opacity:0; transition:opacity .2s ease; }
+.l4-bh .bs-slot[data-live="1"] canvas { opacity:1; }
+.l4-bh .bs-slot .bs-still { position:absolute; inset:0; width:100%; height:100%; }
+.l4-bh .bs-slot[data-still="1"] canvas { display:none; }
+.l4-bh .bh-title { position:relative; margin:-26px 0 8px; font-size:40px; font-weight:700; letter-spacing:-.035em; line-height:1.05; color:#111; }
+.l4-bh .bh-line { position:relative; margin:0; font-size:15px; line-height:1.5; color:#526070; }
+.l4-bh .bh-go { position:relative; flex:none; min-width:200px; height:50px; margin:28px 0 0; padding:0 28px; border:0; border-radius:999px; background:#111; color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.14); font:inherit; font-size:16px; font-weight:500; line-height:1; letter-spacing:-.01em; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:box-shadow .15s ease,transform .12s cubic-bezier(.2,0,0,1); }
+.l4-bh .bh-go:active { transform:scale(.97); }
+.l4-bh .bh-go:focus { outline:none; }
+.l4-bh .bh-go:focus-visible { outline:2px solid #111; outline-offset:3px; }
+@media (hover:hover) and (pointer:fine) { .l4-bh .bh-go:hover { box-shadow:inset 0 1px 0 rgba(255,255,255,.26); } }
+.l4-stage[data-theme="dark"] .l4-bh .bh-go { background:#f4f3ee; color:#111; box-shadow:inset 0 1px 0 rgba(255,255,255,.5); }
+.l4-stage[data-theme="dark"] .l4-bh .bh-go:focus-visible { outline-color:#111; }
+@keyframes l4-bh-rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.l4-bh.is-in .bh-title, .l4-bh.is-in .bh-line, .l4-bh.is-in .bh-go { animation:l4-bh-rise .32s cubic-bezier(.22,1,.36,1) both; }
+.l4-bh.is-in .bh-line { animation-delay:70ms; }
+.l4-bh.is-in .bh-go { animation-delay:140ms; }
+/* the same pop-up when the window is phone-small: drawn at 520 wide so the words stay readable */
+.l4-bh.is-small { border-radius:18px; }
+.l4-bh.is-small .bh-logo { left:18px; top:16px; font-size:21px; }
+.l4-bh.is-small .bs-slot { width:128px; height:128px; }
+.l4-bh.is-small .bh-title { margin:-12px 0 4px; font-size:36px; }
+.l4-bh.is-small .bh-line { font-size:18px; }
+.l4-bh.is-small .bh-go { height:52px; margin-top:14px; font-size:19px; }
+.l4-bh.is-small .bh-go::before { content:""; position:absolute; inset:-9px 0; }
+/* C. home's text and blots, cut from the home capture while they come in */
+.l4-first { position:absolute; left:0; top:0; width:100%; pointer-events:none; }
+.l4-cut { position:absolute; background-repeat:no-repeat; }
+@media (prefers-reduced-motion:reduce) {
+  .l4-tip, .l4-tip[data-on] { transform:none; transition:opacity .16s ease,visibility 0s linear .16s; }
+  .l4-theme, .l4-bh, .l4-bh .bh-go, .l4-bh .bs-slot canvas { transition:none; }
+  .l4-bh.is-in :is(.bh-title,.bh-line,.bh-go) { animation:none; }
+}
+html[data-motion-paused] .l4-tip, html[data-motion-paused] .l4-bh { transition:none; }
+@media (forced-colors:active) { .l4-tip { border:1px solid CanvasText; } .l4-theme:focus-visible { outline-color:Highlight; } }
