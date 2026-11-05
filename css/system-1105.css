@@ -3,9 +3,9 @@
    content 1120, media about half. Colours, cards and components stay as signed off; only size and rhythm change here.
    The window block (#portal, .computer-device internals, l4 files) is not styled here apart from the audit S6 width. */
 :root {
-  --sys-h1: clamp(44px, calc(33.6px + 2.667vw), 72px);
-  --sys-h2: clamp(32px, calc(26.06px + 1.524vw), 48px);
-  --sys-h3: clamp(20px, calc(18.51px + .381vw), 24px);
+  --sys-h1: clamp(44px, calc(33.597px + 2.667vw), 72px);
+  --sys-h2: clamp(32px, calc(26.055px + 1.524vw), 48px);
+  --sys-h3: clamp(20px, calc(18.514px + .381vw), 24px);
   --sys-body: 17px;
   --sys-small: 14px;
   --sys-micro: 13px;
