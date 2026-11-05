@@ -57,6 +57,8 @@ html body #main #features.main-value { width: min(var(--sys-max), calc(100% - 2 
 /* ---------- hero ---------- */
 html body .opening .hero { min-height: 0; }
 html body .opening .hero .hero-copy { max-width: var(--sys-max); padding: 8px 24px var(--sys-half); }
+/* the header script shortens this button on a narrow phone; it takes that width from the start, so the row never shifts */
+@media (max-width: 429px) { html body .opening .site-nav .motion-toggle { width: 77px; white-space: nowrap; overflow: hidden; } }
 html body .opening .hero h1 {
   margin-top: 0;
   font-size: var(--sys-h1) !important;
@@ -124,6 +126,7 @@ html body #main #inside .ten-card { width: min(320px, 88%); padding: 0; text-ali
 html body #main #inside .ten-row { padding: 8px 14px; }
 html body #main #inside .ten-row p { font-size: var(--sys-small); }
 html body #main #inside .ten-row small { font-size: var(--sys-micro); }
+html body #main #inside:not(.in-view) .blend10 { animation-play-state: paused; } /* its drift kept running off screen */
 @media (max-width: 560px) {
   html body #main #inside .split { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "covers" "blend"; padding: 24px 20px; gap: 16px; }
 }
@@ -310,15 +313,18 @@ html.motion-paused #founder .mf1104__item, html.motion-paused #founder .mf1104__
   html body #main #founder .fs1101-photo img { max-height: 190px; }
   #founder .mf1104__item:is([data-slot="3"], [data-slot="6"]) { display: none; }
 }
-@media (max-width: 767px) { html body #main #founder.founder-selected { --cw: 500px; --ck: .42; } }
+@media (max-width: 767px) {
+  html body #main #founder.founder-selected { --cw: 500px; --ck: .42; }
+  #founder .mf1104__item:is([data-slot="5"], [data-slot="7"], [data-slot="8"]) { display: block; } /* css/muso-float-1104.css hides these on a phone */
+}
 @media (max-width: 700px) {
   html body #main #founder.founder-selected { --cw: 100%; --ck: 1; --band: 76px; --heard-h: 93px; }
   html body #main #founder > .mf1104 { left: 0; width: 100%; transform: none; }
-  html body #main #founder .fs1105-card { width: 100%; margin-block: var(--band); grid-template-columns: minmax(0, 1fr) 92px; grid-template-areas: "label label" "title title" "plaques photo" "line photo" "sig photo" "proof proof"; padding: 20px; gap: 0 14px; border-radius: 20px; }
+  html body #main #founder .fs1105-card { width: 100%; margin-block: var(--band); grid-template-columns: minmax(0, 1fr) 92px; grid-template-areas: "label label" "title title" "plaques photo" "line photo" "sig photo" "proof proof"; grid-template-rows: auto auto min-content min-content 1fr auto; padding: 20px; gap: 0 14px; border-radius: 20px; }
   html body #main #founder .fs1101-story { display: contents; }
   html body #main #founder .fs1101-label { grid-area: label; }
   html body #main #founder #founder-title { grid-area: title; margin-bottom: 10px; }
-  html body #main #founder .fs1101-plaques { grid-area: plaques; margin-top: 0; gap: 2px 10px; font-size: var(--sys-micro); }
+  html body #main #founder .fs1101-plaques { grid-area: plaques; align-content: flex-start; margin-top: 0; gap: 2px 10px; font-size: var(--sys-micro); }
   html body #main #founder .fs1101-line { grid-area: line; margin-top: 8px; }
   html body #main #founder .fs1102-signature { grid-area: sig; }
   html body #main #founder .fs1101-photo { grid-area: photo; grid-row: auto; max-width: none; }
@@ -332,7 +338,6 @@ html.motion-paused #founder .mf1104__item, html.motion-paused #founder .mf1104__
   #founder .mf1104__item { --s: 50 !important; }
   #founder .mf1104__item:is([data-slot="1"], [data-slot="2"], [data-slot="3"], [data-slot="4"]) { --yf: 0 !important; }
   #founder .mf1104__item:is([data-slot="5"], [data-slot="6"], [data-slot="7"], [data-slot="8"]) { --yf: 1 !important; }
-  #founder .mf1104__item { display: block; }
   #founder .mf1104__item:is([data-slot="3"], [data-slot="6"]) { display: block; }
   #founder .mf1104__item:is([data-slot="1"], [data-slot="5"]) { left: 8%; }
   #founder .mf1104__item:is([data-slot="3"], [data-slot="7"]) { left: 32%; }
