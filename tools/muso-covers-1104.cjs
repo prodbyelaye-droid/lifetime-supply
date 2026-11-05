@@ -5,7 +5,7 @@
  *   node tools/muso-covers-1104.cjs          writes the layer into index.html (or takes it out)
  *   node tools/muso-covers-1104.cjs --check  exits 1 if index.html is not what this script would write
  * The layer is written only when 6 or more covers are present (the first 12 by file name are used). With fewer,
- * #founder is left exactly as it was. Motion lives in js/muso-float-1104.js, placement in css/muso-float-1104.css. */
+ * #founder is left exactly as it was. Motion and placement live in css/system-1105.css (the sine drift around the founder card, 5 Nov); the old script stays on disk, unloaded. */
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -18,7 +18,6 @@ const DEPTH = [1.3, 1.4, 1.0, 1.2, 0.9, 0.7, 0.5, 1.1, 0.6, 0.8, 0.4, 0.5];
 const START = '<!-- muso-covers-1104:start -->', END = '<!-- muso-covers-1104:end -->';
 const ANCHOR = '<section class="founder-selected wrap" id="founder" data-section="founder" aria-labelledby="founder-title">\n';
 const CSS = '<link rel="stylesheet" href="css/muso-float-1104.css">', CSS_AFTER = '<link rel="stylesheet" href="css/blot-video-1104.css">';
-const JS = '<script src="js/muso-float-1104.js" defer></script>', JS_AFTER = '<script src="js/blot-video-1104.js" defer></script>';
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 function covers() {
   const dir = path.join(ROOT, DIR);
@@ -48,7 +47,7 @@ if (require.main === module) {
     let e = b + END.length; if (next[e] === '\n') e++;
     next = next.slice(0, a) + block + next.slice(e);
   } else if (on) next = next.replace(ANCHOR, ANCHOR + block);
-  for (const [tag, after] of [[CSS, CSS_AFTER], [JS, JS_AFTER]]) {
+  for (const [tag, after] of [[CSS, CSS_AFTER]]) {
     if (next.includes(tag)) continue;
     if (next.split(after).length !== 2) throw new Error('cannot place ' + tag);
     next = next.replace(after, after + '\n' + tag);

@@ -85,11 +85,11 @@ const server = http.createServer((req, res) => {
         assert(v.sources.length === 2 && v.sources.every((src) => /^assets\/blot-1104\/bv-[a-z]+-\d+\.(webm|mp4)$/.test(src)), v.id + ' sources');
       }
       assert.equal(await film.getAttribute('preload'), 'metadata');
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster.jpg');
+      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster-1105.jpg');
       assert.equal(await film.evaluate((v) => v.controls), false, 'the scripted preview hides native controls');
-      await page.locator('.demo-film').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(300);
-      assert(await page.locator('.film-cover').isVisible() || (await film.evaluate((v) => v.currentTime)) >= 6, 'the film shows its own frame until the preview is past the intro');
+      // the film is out for now (Elaye 5 Nov 15:18, the new trailer posts tonight): the block stays in the markup, hidden, one attribute from coming back
+      assert.equal(await page.locator('#demo').getAttribute('hidden'), '', 'the film block carries the hidden attribute');
+      assert.equal(await page.locator('#demo').isVisible(), false, 'the film block does not show');
       // the trusted-by strip: one section, the exact heading, 33 unique names in three rows of 11, a photo on every tile,
       // the line under the rows with his meme, no YSN Fab anywhere
       const strip = page.locator('#trusted');

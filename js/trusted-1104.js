@@ -5,7 +5,7 @@
 (() => {
   const section = document.querySelector('#trusted');
   if (!section || !('IntersectionObserver' in window)) return;
-  const SPEED = 30; // px per second
+  const SPEED = 40; // px per second
   const measure = () => {
     for (const row of section.querySelectorAll('.tr1104__row')) {
       const set = row.querySelector('.tr1104__set');

@@ -32,14 +32,9 @@ const server = http.createServer((req, res) => {
       page.on('pageerror', (e) => errors.push(e.message));
       await page.goto(base, {waitUntil: 'domcontentloaded'});
       await page.waitForFunction(() => window.assembly); await page.evaluate(() => window.assembly.skip());
-      const film = page.locator('.film-player');
-      // "watch the demo": the film from the start, with sound and controls
-      await page.locator('.watch-demo').first().click();
-      await page.waitForFunction(() => { const v = document.querySelector('.film-player'); return !v.paused && v.currentTime > 0; }, null, {timeout: 15000});
-      assert.deepEqual(await film.evaluate((v) => [v.muted, v.controls, v.currentTime < 5]), [false, true, true]);
-      assert.equal(await page.locator('.film-cover').isVisible(), false);
-      await page.screenshot({path: `${output}/${width}-watch.png`});
-      await film.evaluate((v) => v.pause());
+      // the film is out for now (Elaye 5 Nov 15:18): nothing to click until #demo loses its hidden attribute
+      assert.equal(await page.locator('#demo').isVisible(), false, 'the film block does not show');
+      assert.equal(await page.locator('.watch-demo').first().isVisible(), false, 'no watch link while the film is out');
       // the phone inclusions: a labelled region that scrolls from the keyboard
       if (width === 390) {
         const region = page.locator('.price-scroll');
@@ -59,11 +54,9 @@ const server = http.createServer((req, res) => {
       await page.goto(base, {waitUntil: 'domcontentloaded'});
       const film = page.locator('.film-player');
       assert.equal(await film.count(), 1);
-      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster.jpg');
-      if (mode === 'no-js') {
-        assert.equal(await film.evaluate((v) => v.controls), true, 'native controls without scripts');
-        assert.equal(await page.locator('.film-cover').isVisible(), false);
-      } else assert(await page.locator('.film-cover').isVisible() || await film.evaluate((v) => v.controls), 'the frame shows, or the player can be used');
+      assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster-1105.jpg');
+      if (mode === 'no-js') assert.equal(await film.evaluate((v) => v.controls), true, 'native controls without scripts');
+      assert.equal(await page.locator('#demo').isVisible(), false, 'the film block stays hidden in every fallback');
       assert.equal(await film.locator('a[href="assets/launch/lifetime-film.mp4"]').count(), 1, 'a direct link for browsers without video');
       console.log('PASS fallback ' + mode); await context.close();
     }
