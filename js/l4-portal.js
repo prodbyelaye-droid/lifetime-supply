@@ -4,8 +4,8 @@
    .32 s, cubic-bezier(.22,1,.36,1), 70 ms apart; leaves with a .32 s fade; the real blot engine, js/l4-portal-hello.js, loaded only when it's needed), then the streamers
    (confetti.ts) and home's text and blots coming in with the portal's own entrances (ls-route-in .24 s cubic-bezier(.23,1,.32,1); h2-card-in .24 s cubic-bezier(.22,1,.36,1),
    30 ms apart), cut from the home capture so nothing extra loads. One cue at a time: log in, then the briefs, then dark mode.
-   The sidebar, and whatever a page offers inside it, swap screens with a quick crossfade; the theme switch flips the window with the portal's circular reveal (ref 270:
-   his 21st.dev Animated Theme Toggler: a circle clip from the switch, 700 ms ease-in-out). The sidebar blob's eyes follow the pointer (brand-blot.tsx). The landing itself stays light.
+   The sidebar, and whatever a page offers inside it, swap screens with a quick crossfade; the theme switch flips the window with the portal's circular reveal (a circle clip from the switch,
+   700 ms ease-in-out). The sidebar blob's eyes follow the pointer (brand-blot.tsx). The landing itself stays light.
    Short auto-play once in view: light, dark, light, on the sign-in screen only. Reduced motion or "pause motion": no auto-play, instant swaps.
    Phone: pill rows under the window, the pages and then what the current page offers. */
 (() => {
@@ -305,7 +305,6 @@
     const fb = el.querySelector('button'); (kb ? fb : el).focus({ preventScroll: true });
   };
   const enter = () => { touch(); if (st.greeted) return show('home', st.theme, 'fade'); st.greeted = true; ready('home', st.theme); hello(); };
-  // ---- the Mac's menu bar across the top of the window (ref: 21st.dev MacOS Menu Bar: the look, the dropdown, a live clock). The menus do what's real in the window
   const clock = macbar && macbar.querySelector('.l4-mac-clock');
   if (clock) { const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }); }; tick(); setInterval(tick, 30000); document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); }); }
   if (macbar) {
