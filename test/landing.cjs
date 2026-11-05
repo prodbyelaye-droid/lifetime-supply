@@ -207,7 +207,7 @@ const server = http.createServer((req, res) => {
       assert(await page.locator('.price-includes').isVisible());
       assert.equal(await page.locator('.price-list li').count(), 9);
       assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
-      assert.equal(await page.locator('a[data-checkout]').count(), 4);
+      assert.equal(await page.locator('a[data-checkout]').count(), 3);
       assert(await page.locator('#trusted').isVisible(), '#trusted visible');
       assert.equal((await page.locator('#trusted-title').textContent()).replace(/\s+/g, ' ').trim(), TRUSTED_HEADING);
       assert.deepEqual(await trustedNames(page), TRUSTED, 'the strip lists all 33 without the marquee');
@@ -221,6 +221,6 @@ const server = http.createServer((req, res) => {
       await context.close();
     }
     fs.writeFileSync(`${output}/results.json`, JSON.stringify(results, null, 2));
-    console.log('Landing contract: hero, four live CTAs, film, price and inclusions at 1440 and 390 with and without reduced motion; no-js, script-blocked and media-blocked fallbacks: passed.');
+    console.log('Landing contract: hero, three live checkout CTAs, film, price and inclusions at 1440 and 390 with and without reduced motion; no-js, script-blocked and media-blocked fallbacks: passed.');
   } finally { await browser.close(); server.close(); }
 })().catch((error) => { console.error(error); server.close(); process.exitCode = 1; });
