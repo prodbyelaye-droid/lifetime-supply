@@ -24,3 +24,10 @@
 #questions .questions { max-width:576px; width:100%; margin-inline:auto; text-align:center; }
 #questions .questions .faq { text-align:left; max-width:640px; margin:40px auto 0; }
 #questions .dm-line { margin:32px 0 0; font-size:14px; line-height:1.5; }
+
+/* the day's end line: small, right of the last step where there is room, under it where there is not */
+body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:2; margin:24px 0 0; max-width:600px; font-size:14px; line-height:1.45; }
+@media (min-width:1101px) {
+  .day96-step:last-child { grid-template-columns:var(--d96-col) minmax(0,680px) minmax(140px,1fr); }
+  body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:3; align-self:start; margin:4px 0 0 24px; max-width:220px; }
+}
