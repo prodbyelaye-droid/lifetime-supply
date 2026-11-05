@@ -8,7 +8,7 @@
 .board-legend__list b { font-weight:600; color:#151517; }
 
 #price .price-worth, #price .price-faq { margin-top:24px; padding:36px 40px; border-radius:16px; background:rgba(255,255,255,.94); text-align:left; }
-#price .price-worth .ls-heading-b--compact { font-size:32px !important; }
+#price .price-worth .ls-heading-b--compact { font-size:32px !important; word-spacing:.1em; }
 #price .price-worth p { margin:12px 0 0; max-width:60ch; font-size:16px; line-height:1.55; color:#3c4048; }
 #price .price-worth h3 + p { margin-top:16px; }
 #price .price-faq .faq { max-width:none; margin:0; }
