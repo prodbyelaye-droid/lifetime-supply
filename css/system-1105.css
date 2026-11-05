@@ -1,0 +1,207 @@
+/* page-system-1105: one size system for the whole page. Loaded last.
+   Tokens from the 5 Nov plan: h1 72/44, h2 48/32, h3 24/20, body 17/16 at 62ch, small 13-14, section gap 96/56,
+   content 1120, media about half. Colours, cards and components stay as signed off; only size and rhythm change here.
+   The window block (#portal, .computer-device internals, l4 files) is not styled here apart from the audit S6 width. */
+:root {
+  --sys-h1: clamp(44px, calc(33.6px + 2.667vw), 72px);
+  --sys-h2: clamp(32px, calc(26.06px + 1.524vw), 48px);
+  --sys-h3: clamp(20px, calc(18.51px + .381vw), 24px);
+  --sys-body: 17px;
+  --sys-small: 14px;
+  --sys-micro: 13px;
+  --sys-gap: clamp(56px, calc(41.14px + 3.81vw), 96px);
+  --sys-half: calc(var(--sys-gap) / 2);
+  --sys-max: 1120px;
+  --sys-gutter: 48px;
+  --sys-measure: 62ch;
+  --sys-film: 608px;
+  --sys-day: 520px;
+  --sys-ease: cubic-bezier(.16, 1, .3, 1);
+}
+@media (max-width: 1000px) { :root { --sys-gutter: 32px; } }
+@media (max-width: 700px) { :root { --sys-body: 16px; --sys-gutter: 20px; } }
+
+/* ---------- type ---------- */
+html body #main section:not(#portal) h2 {
+  font-size: var(--sys-h2) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.035em !important;
+  max-width: none;
+}
+html body #main section:not(#portal) h3 {
+  font-size: var(--sys-h3) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.02em !important;
+}
+html body #main :is(.board-legend > p, .split-copy p, .day96-head > p, .day96-what > p, .l2-stats__lead, .mv-copy p, .dl17-copy > p:not(.dl17-once), .producer-wall__intro > p, .fs1101-line) {
+  font-size: var(--sys-body) !important;
+  line-height: 1.5 !important;
+  max-width: var(--sys-measure);
+}
+
+/* ---------- rhythm: one gap between every section (half above, half below) ---------- */
+html body #main :is(#inside, #flow, #stats, #features, #more, #founder, #trusted, #why-producers-choose, #download, #steps, #price, #questions, #contact) {
+  padding-block: var(--sys-half) !important;
+}
+html body #main #close { margin-block: var(--sys-half) !important; }
+html body #main .wrap, html body #main .dl17-stage, html body #main .flow-copy.day96 {
+  max-width: var(--sys-max);
+  width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter)));
+}
+html body #main #features.main-value { width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); }
+
+/* ---------- hero ---------- */
+html body .opening .hero { min-height: 0; }
+html body .opening .hero .hero-copy { max-width: var(--sys-max); padding: 8px 24px var(--sys-half); }
+html body .opening .hero h1 {
+  margin-top: 0;
+  font-size: var(--sys-h1) !important;
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+html body .opening .hero-copy > p { max-width: var(--sys-measure); font-size: var(--sys-body); line-height: 1.5; margin-top: 16px; }
+html body .opening .hero .actions { margin-top: 20px; }
+@media (max-width: 700px) {
+  /* the character sits between the nav and the headline (js/opening.js places it from the headline's top) */
+  html body .opening .hero .hero-copy { padding: 56px 20px var(--sys-half); }
+  html body .opening .hero h1 { line-height: 1.03; letter-spacing: -.055em; }
+}
+html body .opening .hero-copy > .price-line { font-size: var(--sys-small); line-height: 1.4; margin-top: 14px; }
+
+/* ---------- the film: 16:9, about half its old height, centred ---------- */
+html body .opening #demo { padding: var(--sys-half) var(--sys-gutter); background: none; }
+html body .opening #demo .demo-film { width: min(var(--sys-film), 100%); aspect-ratio: 16 / 9; margin-inline: auto; border-radius: 16px; }
+html body #demo .film-player, html body #demo .film-cover { object-fit: cover; }
+/* js/opening.js pushes the film up to 110 px with the scroll, over the price line; it stays put now, whatever that script writes */
+html:not(.r1105) body #demo .demo-film, html.r1105 body #demo .demo-film.r1105-in { transform: none !important; }
+html body #demo .film-caption { margin: 14px auto 0; font-size: var(--sys-small); line-height: 1.4; }
+html body .opening #demo .demo-links { margin: 8px auto 0; }
+
+/* ---------- the window: the audit S6 fit (same rule as css/l4-portal.css on the window branch), and the cue above it ---------- */
+body .computer-device { width: min(1222px, 100%, calc((100svh - 64px) * 1.33)); }
+html body .portal-cue { padding: var(--sys-half) 24px 0; font-size: var(--sys-body); }
+
+/* ---------- how the board works: #portal keeps its own bottom padding (80, phone 48), the legend takes up the difference ---------- */
+html body #main #how-the-board-works {
+  max-width: calc(var(--sys-measure) + 48px);
+  margin-top: calc(var(--sys-gap) - 80px);
+  padding: 0 24px var(--sys-half);
+  font-size: var(--sys-body);
+}
+html body #main #how-the-board-works > p { margin: 16px 0 0; }
+html body #main #how-the-board-works .board-legend__list { margin-top: 16px; font-size: var(--sys-small); }
+html body #main #how-the-board-works .board-legend__list li { padding: 10px 0; }
+@media (max-width: 700px) { html body #main #how-the-board-works { margin-top: calc(var(--sys-gap) - 48px); } }
+
+/* ---------- everything. day one.: the card without its fixed height ---------- */
+html body #main #inside.band { min-height: 0; padding-inline: var(--sys-gutter); }
+html body #main #inside .split { width: min(880px, 100%); min-height: 0; }
+html body #main #inside .split-copy { padding: 32px; gap: 20px; }
+html body #main #inside .split-copy div > p { margin: 12px 0 0; }
+html body #main #inside .inside-kits img { width: 64px; height: 64px; }
+html body #main #inside .ten-row p { font-size: var(--sys-small); }
+
+/* ---------- a day in my workflow: type, gaps and image width only ---------- */
+html body .flow:has(.day96) { --d96-col: 200px; --d96-dy: 38px; --d96-anchor: 96px; }
+html body .flow-copy.day96 .day96-head > p { margin-top: 12px; }
+/* the curves keep to the empty side of the heading now the section is shorter */
+html body .flow:has(.day96) .curves {
+  -webkit-mask-image: linear-gradient(#000, transparent 300px), linear-gradient(90deg, transparent 50%, #000 72%);
+  mask-image: linear-gradient(#000, transparent 300px), linear-gradient(90deg, transparent 50%, #000 72%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+html body .day96-body { margin-top: 40px; }
+html body .day96-step { padding-bottom: 48px; }
+html body .day96-step:last-child { grid-template-columns: var(--d96-col) minmax(0, 560px) minmax(140px, 1fr); }
+html body .day96-time { font-size: var(--sys-h3); letter-spacing: -.02em; }
+html body .day96-what { max-width: 560px; padding-top: 0; }
+html body .flow-copy.day96 .day96-what > p { margin-top: 10px; }
+html body .day96-still { margin-top: 16px; padding: 6px; max-width: var(--sys-day); border-radius: 16px; }
+html body .day96-still img, html body .day96-current-briefs-frame, html body .day96-current-day-frame { border-radius: 11px; }
+@media (max-width: 760px) {
+  html body .day96-step { padding-bottom: 40px; }
+  html body .day96-when { margin-bottom: 10px; }
+  html body .flow-copy.day96 .day96-tomorrow { margin-left: 40px; }
+}
+
+/* ---------- 6,000+ files ---------- */
+html body #main .stats-section .stats-shell { max-width: var(--sys-max); }
+html body #main .stats-section .stats-shell > .ls-heading-b { margin-bottom: 0; }
+html body #main #stats .l2-stats__lead { margin-top: 12px; }
+html body #main #stats .stats-chips { margin-top: 16px; }
+
+/* ---------- the eight boxes: shots at half their old height ---------- */
+html body #main #features.main-value .mv-grid { gap: 32px 24px; }
+html body #main #features.main-value .mv-art { aspect-ratio: auto; height: 196px; }
+html body #main #features.main-value .mv-copy { padding-top: 12px; }
+html body #main #features.main-value .mv-title { margin-bottom: 6px; }
+@media (max-width: 700px) {
+  html body #main #features.main-value .mv-grid { gap: 24px; }
+  html body #main #features.main-value .mv-art { height: 150px; }
+}
+
+/* ---------- and so much more ---------- */
+html body #main #more .config-more__header { padding: 0 0 20px; max-width: none; }
+html body #main #more h2 > span { display: inline; }
+
+/* ---------- why i built it: type and media only ---------- */
+html body #main #founder.founder-selected { row-gap: 20px; column-gap: 40px; }
+html body #main #founder .fs1101-photo img { max-height: 320px; }
+html body #main #founder .fs1101-label { margin-bottom: 10px; }
+html body #main #founder .fs1101-line { margin-top: 12px; }
+html body #main #founder .fs1101-streams b { font-size: var(--sys-h2); }
+html body #main #founder .fs1101-streams span { font-size: var(--sys-body); }
+html body #main #founder .fs1101-date { margin-top: 6px; }
+
+/* ---------- artists: smaller tiles; the marquee itself comes with step 3 ---------- */
+html body #main #trusted .tr1104__head { margin-bottom: 24px; }
+html body #main #trusted .tr1104__rows { gap: 12px; }
+html body #main #trusted .tr1104__tile { width: 112px; }
+html body #main #trusted .tr1104__name { margin-top: 6px; font-size: var(--sys-micro); line-height: 1.3; }
+
+/* ---------- why producers choose ---------- */
+html body #main .producer-wall__intro { margin-bottom: 32px; }
+html body #main .producer-wall__intro > p { margin-top: 12px; }
+html body #main .producer-wall__grid { width: min(100%, var(--sys-max)); gap: 16px; }
+html body #main .producer-wall__column { gap: 12px; }
+html body #main .producer-quote { padding: 18px 20px; }
+html body #main .producer-quote blockquote p { font-size: var(--sys-small); line-height: 1.5; }
+
+/* ---------- the app: half the panel, and room for the descenders under the gradient text ---------- */
+html body #main .dl17-stage { min-height: 0; }
+html body #main .dl17-copy { padding: 48px 24px; }
+html body #main .dl17-copy > p { margin-top: 14px; }
+html body #main .dl17-row { margin-top: 20px; }
+html body #main #download-title .dl17-word { display: inline-block; padding-bottom: .16em; margin-bottom: -.16em; }
+
+/* ---------- in three steps ---------- */
+html body #main #steps header { margin-bottom: 24px; }
+html body #main #steps .step-copy { padding: 20px; }
+html body #main #steps .step-art { height: 132px; padding: 12px; }
+body .step-art .mini-pay .step-cta { white-space: nowrap; padding-inline: 16px; }
+
+/* ---------- audit fixes that are only tokens ---------- */
+@media (min-width: 701px) and (max-width: 1000px) { body .price-stage .price-grid { grid-template-columns: minmax(0, 1fr); } } /* M2 */
+#price .price-list .vs-text { max-width: 62ch; } /* N2 */
+@media (min-width: 701px) and (max-width: 1023px) { /* S5 */
+  #founder .fs1101-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #founder .fs1101-row li { flex-direction: column; align-items: flex-start; gap: 2px; }
+  #founder .fs1101-row li + li { margin-left: 0; padding-left: 14px; }
+}
+
+/* ---------- motion: js/reveal-1105.js sets html.r1105 before first paint, never under reduced motion ---------- */
+@keyframes r1105-load { from { opacity: 0; transform: translateY(14px); filter: blur(10px); } }
+@keyframes r1105-load-blot { from { opacity: 0; filter: blur(10px); } }
+@media screen {
+  html.r1105 .hero-copy > * { animation: r1105-load 650ms var(--sys-ease) backwards; }
+  html.r1105 .hero-copy > :nth-child(2) { animation-delay: 83ms; }
+  html.r1105 .hero-copy > :nth-child(3) { animation-delay: 166ms; }
+  html.r1105 .hero-copy > :nth-child(4) { animation-delay: 250ms; }
+  html.r1105 .opening-blots .ob:first-child { animation: r1105-load-blot 900ms var(--sys-ease) backwards; }
+  html.r1105 .r1105-in:not(.r1105-done) {
+    transition: opacity 650ms var(--sys-ease), transform 650ms var(--sys-ease), filter 650ms var(--sys-ease) !important;
+    transition-delay: var(--r1105-d, 0ms) !important;
+  }
+}
