@@ -429,6 +429,99 @@ function runScene(host, blots, tick, still) {
     wake();
     return () => { stopped = true; cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener("visibilitychange", wake); blots.forEach((b) => b.dispose()); };
 }
+const PALETTE = [COLOURS.v1.sky0, COLOURS.v1.sky1, ...Object.values(COLOURS.accents)];
+function blotPath() {
+    const n = 10, h = [2, 3, 4].map(k => [k, Math.random() * 0.14, Math.random() * Math.PI * 2]);
+    const pts = Array.from({ length: n }, (_, i) => {
+        const t = (2 * Math.PI * i) / n, r = 5 * (1 + h.reduce((s, [k, a, p]) => s + a * Math.cos(k * t + p), 0));
+        return [r * Math.cos(t), r * Math.sin(t)];
+    });
+    const p = new Path2D();
+    p.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 0; i < n; i++) {
+        const [p0, p1, p2, p3] = [pts[(i + n - 1) % n], pts[i], pts[(i + 1) % n], pts[(i + 2) % n]];
+        p.bezierCurveTo(p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6, p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6, p2[0], p2[1]);
+    }
+    p.closePath();
+    return p;
+}
+const SHOTS = [
+    { share: 0.25, spread: 26, startVelocity: 55 },
+    { share: 0.2, spread: 60 },
+    { share: 0.35, spread: 100, decay: 0.91, scalar: 0.8 },
+    { share: 0.1, spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 },
+    { share: 0.1, spread: 120, startVelocity: 45 },
+];
+function burst({ host, scale = 1, count = 200, originX = 0.5, originY = 0.7, now = () => performance.now() } = {}) {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches)
+        return () => { };
+    const canvas = document.createElement("canvas");
+    canvas.className = "cf-canvas";
+    canvas.setAttribute("aria-hidden", "true");
+    host.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+        canvas.remove();
+        return () => { };
+    }
+    const box = host.getBoundingClientRect(), w = box.width / scale, h = box.height / scale, dpr = Math.min(devicePixelRatio || 1, 2) * scale;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const pieces = [];
+    for (const s of SHOTS) {
+        const v = s.startVelocity ?? 45, spread = (s.spread * Math.PI) / 180;
+        for (let i = 0; i < Math.floor(count * s.share); i++)
+            pieces.push({
+                x: w * originX, y: h * originY,
+                velocity: v * 0.5 + Math.random() * v,
+                angle: -Math.PI / 2 + (0.5 * spread - Math.random() * spread),
+                decay: s.decay ?? 0.9, gravity: 3, scalar: s.scalar ?? 1,
+                wobble: Math.random() * 10, wobbleSpeed: Math.min(0.11, Math.random() * 0.1 + 0.05),
+                tilt: (Math.random() * 0.5 + 0.25) * Math.PI, tick: 0, ticks: 200,
+                colour: PALETTE[Math.floor(Math.random() * PALETTE.length)], path: blotPath(),
+            });
+    }
+    const step = (p) => {
+        p.x += Math.cos(p.angle) * p.velocity;
+        p.y += Math.sin(p.angle) * p.velocity + p.gravity;
+        p.velocity *= p.decay;
+        p.wobble += p.wobbleSpeed;
+        p.tilt += 0.1;
+        p.tick++;
+    };
+    const draw = (p) => {
+        const sx = Math.abs(Math.cos(p.wobble)) * p.scalar + 0.08, sy = Math.abs(Math.sin(p.wobble)) * p.scalar + 0.08;
+        const rot = (Math.PI / 10) * p.wobble, c = Math.cos(rot), s = Math.sin(rot);
+        ctx.setTransform(dpr * c * sx, dpr * s * sx, -dpr * s * sy, dpr * c * sy, dpr * p.x, dpr * p.y);
+        ctx.globalAlpha = 1 - p.tick / p.ticks;
+        ctx.fillStyle = p.colour;
+        ctx.fill(p.path);
+    };
+    const t0 = now();
+    let ticks = 0, raf = 0;
+    const frame = () => {
+        const due = Math.floor(((now() - t0) / 1000) * 60);
+        while (ticks < due) {
+            pieces.forEach(step);
+            ticks++;
+        }
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let live = 0;
+        for (const p of pieces)
+            if (p.tick < p.ticks && p.y < h + 40) {
+                draw(p);
+                live++;
+            }
+        if (live)
+            raf = requestAnimationFrame(frame);
+        else
+            canvas.remove();
+    };
+    raf = requestAnimationFrame(frame);
+    return () => { cancelAnimationFrame(raf); canvas.remove(); };
+}
 
-window.L4Blot={Blot,blotField,rand,runScene,SPLASH_FILL,EYE_SCALE,BLOT_PATH,EYE_SVG_RECTS};
+window.L4Blot={Blot,blotField,rand,runScene,SPLASH_FILL,EYE_SCALE,BLOT_PATH,EYE_SVG_RECTS,burst};
 })();
