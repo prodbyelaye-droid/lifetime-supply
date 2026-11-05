@@ -44,6 +44,10 @@ html body #main :is(#inside, #flow, #stats, #features, #more, #founder, #trusted
   padding-block: var(--sys-half) !important;
 }
 html body #main #close { margin-block: var(--sys-half) !important; }
+/* the outer edges of the blocks the price build owns, so the gaps hold until it lands */
+html body #main #questions .questions { padding-block: 0; }
+html body #main #contact .contact-stage { padding-block: 0; }
+html body #main #contact { padding-bottom: calc(var(--sys-gap) - 12px) !important; } /* #footer keeps its own 12 px margin */
 html body #main .wrap, html body #main .dl17-stage, html body #main .flow-copy.day96 {
   max-width: var(--sys-max);
   width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter)));
