@@ -155,7 +155,7 @@ html body .day96-still { grid-column: 2; grid-row: 1 / span 4; margin: 0; paddin
 html body .day96-still .day96-shot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; border-radius: 10px; box-shadow: 0 0 0 1px #e1e7ed; background: #fff; }
 html body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column: 2; justify-self: end; align-self: start; margin: 12px 0 0; max-width: none; font-size: var(--sys-small); line-height: 1.4; text-align: right; }
 html body .day96-when .bv-box { max-width: 112px; }
-@media (max-width: 1000px) {
+@media (max-width: 1230px) {
   html body .day96-what { display: block; }
   html body .day96-still { margin-top: 12px; max-width: var(--sys-day); }
 }
