@@ -1,11 +1,13 @@
-/* price-1105: "pay once. it never stops." on the portal's login field. Loaded after system-1105.
-   The field is the portal's own paint, one to one: app/desktop/entry-field.css `.ls-entry-field`, which is what /login shows.
-   It has no CSS stops and no drift: a colour under one image at one position (the same file, sha256 2a3f666d...).
+/* price-1105: "pay once. it never stops." on the portal's login field, deepened (his call on check 1).
+   The field is the portal's own image at its own position and size (app/desktop/entry-field.css `.ls-entry-field`, the file /login
+   shows, sha256 2a3f666d...), multiplied by --p-deep. --p-deep is chosen from every pixel of the file: the palest one still gives
+   white 4.72:1, so reading lines hold 4.5:1 and headings 3:1 wherever they land, at any width, with any question open.
    White text only, green ticks, the buy box the one card. Phone and tablet rules are at the end. */
 html body #main #price {
-  --p-tick: #1a6450;            /* the verified tick's green: portal --ls-mint-text, components/app/code-card.css */
+  --p-deep: #3581bc;
+  --p-tick: #3ce7b9;            /* the verified tick's green on a dark ground: portal --ls-mint-base, components/app/code-card.css */
+  --p-tick-on: #162236;         /* its check, portal --ls-mint-on-base */
   --p-hair: rgba(255, 255, 255, .3);
-  --p-lift: 0 1px 1px rgba(2, 84, 145, .38), 0 1px 12px rgba(2, 84, 145, .3); /* a shade of the field's own deep blue under the white */
   --p-inset: 12px;              /* the close and the footer sit on the same edge (audit S3) */
   padding-inline: 0;
   background: #fff;
@@ -14,7 +16,8 @@ html body #main #price {
 html body #main #price > .wrap { width: auto; max-width: none; margin-inline: var(--p-inset); }
 
 html body #main #price .price-stage {
-  background: #bee9fc url("../assets/flow-v1/V1-field.webp") 50% 40% / cover no-repeat; /* portal login, exact */
+  background: var(--p-deep) url("../assets/flow-v1/V1-field.webp") 50% 40% / cover no-repeat; /* portal login's image, position and size */
+  background-blend-mode: multiply;
   border-radius: 24px;
   padding: 56px max(48px, calc((100% - var(--sys-max)) / 2)) 64px;
   color: #fff;
@@ -26,7 +29,7 @@ html body #main #price :is(h2, h3, h2 span, h3 span, p, b, li, summary, summary 
   -webkit-text-fill-color: #fff;
   background: none;
 }
-html body #main #price :is(h2, h3, p, li, summary) { text-shadow: var(--p-lift); }
+html body #main #price :is(h2, h3, p, li, summary) { text-shadow: none; }
 
 /* ---------- the first screen: heading, the buy box, the stack ---------- */
 html body #main #price .price-grid {
@@ -36,7 +39,7 @@ html body #main #price .price-grid {
   align-items: start;
 }
 html body #main #price .price-intro { text-align: start; }
-html body #main #price .price-intro > h2 { margin: 0; text-align: start; font-weight: 700; text-shadow: 0 1px 1px rgba(2, 84, 145, .42), 0 2px 22px rgba(2, 84, 145, .34); }
+html body #main #price .price-intro > h2 { margin: 0; text-align: start; font-weight: 600; }
 html body #main #price .price-intro > h2 .ls-heading-b__line { display: block; }
 html body #main #price .price-intro > p {
   margin: 16px 0 0;
@@ -48,15 +51,15 @@ html body #main #price .price-intro > p {
 }
 
 /* the buy box: the one card (ref 189, the Conduit glass card as built: frosted, 1 px inset hairline, 20 px corners, white text).
-   The tint is the field's own deep blue so the white holds on this paler ground. */
+   A shade darker than the field it sits on, so it lifts off it and the white holds. */
 html body #main #price .price-stage .price-card {
   padding: 28px;
   border: 0;
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0) 42%), rgba(1, 100, 180, .84);
-  -webkit-backdrop-filter: blur(40px) saturate(1.4);
-  backdrop-filter: blur(40px) saturate(1.4);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .38), inset 0 1px 0 rgba(255, 255, 255, .28), 0 24px 56px -28px rgba(2, 70, 125, .6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, 0) 45%), rgba(2, 44, 92, .42);
+  -webkit-backdrop-filter: blur(40px) saturate(1.3);
+  backdrop-filter: blur(40px) saturate(1.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3), inset 0 1px 0 rgba(255, 255, 255, .22), 0 24px 56px -28px rgba(1, 34, 72, .7);
   color: #fff;
 }
 html body #main #price .price-card .price-offer [data-price] {
@@ -173,7 +176,7 @@ html body #main #price .price-list .vs-check {
   stroke: none;
 }
 html body #main #price .price-list .vs-check circle { fill: var(--p-tick); stroke: none; r: 10px; }
-html body #main #price .price-list .vs-check path { fill: none; stroke: #fff; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+html body #main #price .price-list .vs-check path { fill: none; stroke: var(--p-tick-on); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 html body #main #price .price-list li .lead { grid-column: 2; display: block; font-size: 16px; line-height: 1.35; font-weight: 700; letter-spacing: -.01em; }
 html body #main #price .price-list .vs-text { grid-column: 2; display: block; max-width: 62ch; font-size: 15px; line-height: 1.4; font-weight: 500; text-wrap: pretty; }
 html body #main #price .price-list .vs-why { display: block; margin-top: 2px; font-weight: 500; }
@@ -212,7 +215,7 @@ html body #main #price .price-faq .faq details { border-bottom: 1px solid var(--
 html body #main #price .price-faq .faq details:first-child { border-top: 1px solid var(--p-hair); }
 html body #main #price .price-faq .faq summary { font-size: 17px; line-height: 1.35; font-weight: 600; cursor: pointer; }
 html body #main #price .price-faq .faq summary:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 6px; }
-html body #main #price .price-faq .faq-chevron { color: #fff; filter: drop-shadow(0 1px 2px rgba(2, 84, 145, .4)); }
+html body #main #price .price-faq .faq-chevron { color: #fff; }
 html body #main #price .price-faq .faq-answer p {
   max-width: 62ch;
   font-size: 16px;
@@ -250,13 +253,9 @@ html body #main #price .price-faq .faq-answer p {
   html body #main #price .price-faq .faq summary { font-size: 16px; }
 }
 
-/* someone who asked for more contrast gets a solid ground under the white, and no frosting */
-@media (prefers-contrast: more) {
-  html body #main #price .price-stage { background: #035c9e; }
-  html body #main #price :is(h2, h3, p, li, summary) { text-shadow: none; }
-}
+/* no frosting for anyone who asked for less of it */
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-  html body #main #price .price-stage .price-card { background: #035c9e; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html body #main #price .price-stage .price-card { background: #0a3f78; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 @media (hover: hover) and (pointer: fine) {
   html body #main #price .price-faq .faq summary:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
