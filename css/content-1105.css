@@ -31,3 +31,7 @@ body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:2; margin:24px 0
   .day96-step:last-child { grid-template-columns:var(--d96-col) minmax(0,680px) minmax(140px,1fr); }
   body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:3; align-self:start; margin:4px 0 0 24px; max-width:220px; }
 }
+
+/* the counter section's four chips */
+.stats-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:24px auto 0; padding:0; list-style:none; }
+.stats-chips li { padding:6px 12px; border:1px solid #d7e0e6; border-radius:999px; font-size:14px; line-height:1.4; color:#3c4048; }
