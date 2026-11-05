@@ -35,14 +35,11 @@ const server = http.createServer((req, res) => {
       // the film is out for now (Elaye 5 Nov 15:18): nothing to click until #demo loses its hidden attribute
       assert.equal(await page.locator('#demo').isVisible(), false, 'the film block does not show');
       assert.equal(await page.locator('.watch-demo').first().isVisible(), false, 'no watch link while the film is out');
-      // the phone inclusions: a labelled region that scrolls from the keyboard
+      // the phone inclusions: a labelled region, every line showing, nothing to scroll sideways
       if (width === 390) {
         const region = page.locator('.price-scroll');
-        await region.scrollIntoViewIfNeeded(); await region.focus();
-        assert.equal(await page.evaluate(() => document.activeElement.getAttribute('aria-label')), 'everything included');
-        const before = await region.evaluate((el) => el.scrollLeft);
-        await page.keyboard.press('ArrowRight'); await page.waitForTimeout(400);
-        assert(await region.evaluate((el) => el.scrollLeft) > before, 'arrow keys scroll the inclusions');
+        assert.equal(await region.getAttribute('aria-label'), 'everything included');
+        assert.equal(await region.evaluate((el) => el.scrollWidth > el.clientWidth + 1), false, 'no sideways scroll');
       }
       assert.deepEqual(errors, []); console.log(`PASS film and keyboard ${width}`);
       await context.close();

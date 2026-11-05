@@ -26,10 +26,10 @@
     {items: '#steps-title'},
     {items: '#steps .step-grid > article', stagger: 180}, // his 1, 2, 3 land one by one
     {items: '#price-h, #price .price-intro > p, #price .price-card, #price .price-includes, #price .price-worth, #price .price-faq'},
-    {items: '#questions-title, #questions .faq > details, #questions .dm-line'},
+    {items: '#questions-title, #questions .faq details, #questions .dm-line'},
     {items: '#close-title, #close .close-cta, #close .close-note'},
     {items: '#contact .contact-stage > *'},
-    {items: '#footer .footer-top, #footer .footer-bottom'},
+    {items: '#footer .footer-top, #footer .footer-word, #footer .footer-bottom'},
   ];
 
   const root = document.documentElement;

@@ -20,21 +20,19 @@
     if (cancel) move(item, drag.x, drag.y);
     if (item.button.hasPointerCapture(drag.id)) item.button.releasePointerCapture(drag.id);
   }
-  // Exact approved design coordinates, scaled uniformly with the live scene.
-  const rests = {
-    desktop: {width:1344, points:[[1150,8,150]]}, // unit L2: one brand blot, resting on the wordmark's end
-    phone: {width:342, points:[[268,0,66]]}
-  };
+  // Rests on the end of the wordmark, sized from its type, so it holds at any width (one brand blot, unit L2).
+  const word = scene.querySelector('.footer-word');
   function layout() {
-    const design = innerWidth > 700 ? rests.desktop : rests.phone;
-    const scale = scene.clientWidth / design.width;
-    blobs.forEach((item, i) => {
+    const type = parseFloat(getComputedStyle(word).fontSize), range = document.createRange();
+    range.selectNodeContents(word);
+    const end = range.getBoundingClientRect().right - scene.getBoundingClientRect().left;
+    const size = Math.round(type * (innerWidth > 700 ? .72 : .9));
+    blobs.forEach(item => {
       release(item, true);
-      const [x,y,size] = design.points[i];
-      item.button.style.setProperty('--size',size*scale+'px');
-      item.restX = x*scale;
-      item.restY = y*scale;
-      move(item,item.moved ? item.x : item.restX,item.moved ? item.y : item.restY);
+      item.button.style.setProperty('--size', size + 'px');
+      item.restX = end - size * .16;
+      item.restY = Math.max(2, (scene.clientHeight - size) * .3);
+      move(item, item.moved ? item.x : item.restX, item.moved ? item.y : item.restY);
       item.button.dataset.ready = '';
     });
   }

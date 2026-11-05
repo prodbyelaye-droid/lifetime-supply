@@ -1,0 +1,306 @@
+/* price-1105: "pay once. it never stops." on the portal's login field, deepened (his call on check 1).
+   The field is the portal's own image at its own position and size (app/desktop/entry-field.css `.ls-entry-field`, the file /login
+   shows, sha256 2a3f666d...), multiplied by --p-deep. --p-deep is chosen from every pixel of the file: the palest one still gives
+   white 4.72:1, so reading lines hold 4.5:1 and headings 3:1 wherever they land, at any width, with any question open.
+   White text only, green ticks, the buy box the one card. Phone and tablet rules are at the end. */
+html body { --edge: 12px; } /* the panels' one edge: this field, the close and the footer (audit S3) */
+@media (max-width: 700px) { html body { --edge: 6px; } }
+
+html body #main #price {
+  --p-deep: #3581bc;
+  --p-tick: #3ce7b9;            /* the verified tick's green on a dark ground: portal --ls-mint-base, components/app/code-card.css */
+  --p-tick-on: #162236;         /* its check, portal --ls-mint-on-base */
+  --p-hair: rgba(255, 255, 255, .3);
+  padding-inline: 0;
+  background: #fff;
+  color: #fff;
+}
+html body #main #price > .wrap { width: auto; max-width: none; margin-inline: var(--edge); }
+
+html body #main #price .price-stage {
+  background: var(--p-deep) url("../assets/flow-v1/V1-field.webp") 50% 40% / cover no-repeat; /* portal login's image, position and size */
+  background-blend-mode: multiply;
+  border-radius: 24px;
+  padding: 56px max(48px, calc((100% - var(--sys-max)) / 2)) 64px;
+  color: #fff;
+}
+
+/* white, everywhere on the field */
+html body #main #price :is(h2, h3, h2 span, h3 span, p, b, li, summary, summary span, .vs-text, .vs-why, .lead, .price-own, .pixel, .currency, .price-summary) {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  background: none;
+}
+html body #main #price :is(h2, h3, p, li, summary) { text-shadow: none; }
+
+/* ---------- the first screen: heading, the buy box, the stack ---------- */
+html body #main #price .price-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 56px;
+  align-items: start;
+}
+html body #main #price .price-intro { text-align: start; }
+html body #main #price .price-intro > h2 { margin: 0; text-align: start; font-weight: 600; }
+html body #main #price .price-intro > h2 .ls-heading-b__line { display: block; }
+html body #main #price .price-intro > p {
+  margin: 16px 0 0;
+  max-width: 52ch;
+  font-size: var(--sys-body);
+  line-height: 1.5;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+/* the buy box: the one card (ref 189, the Conduit glass card as built: frosted, 1 px inset hairline, 20 px corners, white text).
+   A shade darker than the field it sits on, so it lifts off it and the white holds. */
+html body #main #price .price-stage .price-card {
+  padding: 28px;
+  border: 0;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, 0) 45%), rgba(2, 44, 92, .42);
+  -webkit-backdrop-filter: blur(40px) saturate(1.3);
+  backdrop-filter: blur(40px) saturate(1.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3), inset 0 1px 0 rgba(255, 255, 255, .22), 0 24px 56px -28px rgba(1, 34, 72, .7);
+  color: #fff;
+}
+html body #main #price .price-card .price-offer [data-price] {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-variant-numeric: tabular-nums;
+}
+html body #main #price .price-card .currency { font-size: 20px; font-weight: 500; letter-spacing: 0; }
+html body #main #price .price-card .price-buy {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 18px;
+  font-size: 16px;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  transition: transform 160ms cubic-bezier(.23, 1, .32, 1);
+}
+html body #main #price .price-card .price-buy:active { transform: scale(.97); }
+html body #main #price .price-card .price-buy:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+html body #main #price .price-card .price-summary {
+  margin: 14px 0 0;
+  max-width: none;
+  font-size: var(--sys-small);
+  line-height: 1.45;
+  font-weight: 500;
+  text-wrap: pretty;
+  text-shadow: none;
+}
+
+/* everything included: nine lines, three across, at a glance */
+html body #main #price .price-includes {
+  margin: 36px 0 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+html body #main #price .price-includes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 36px;
+  align-items: start;
+}
+html body #main #price .price-includes > .price-own { grid-column: 2 / -1; }
+html body #main #price .price-includes > .price-scroll { grid-column: 1 / -1; }
+html body #main #price .price-includes .ls-heading-b--compact,
+html body #main #price .price-worth .ls-heading-b--compact {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  font-size: var(--sys-h3) !important;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  word-spacing: normal;
+  text-align: start;
+}
+html body #main #price .price-includes .price-own {
+  margin: 3px 0 0;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+html body #main #price .price-stage .price-scroll { overflow: visible; margin: 0; padding: 0; }
+html body #main #price .price-stage .price-list {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  gap: 18px 36px;
+  width: auto;
+  min-width: 0;
+  margin: 20px 0 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+html body #main #price .price-stage .price-list li {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 10px;
+  align-items: start;
+  align-content: start;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  scroll-snap-align: none;
+  font-size: 15px;
+  line-height: 1.4;
+}
+html body #main #price .price-list .vs-check {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  fill: none;
+  stroke: none;
+}
+html body #main #price .price-list .vs-check circle { fill: var(--p-tick); stroke: none; r: 10px; }
+html body #main #price .price-list .vs-check path { fill: none; stroke: var(--p-tick-on); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+html body #main #price .price-list li .lead { grid-column: 2; display: block; font-size: 16px; line-height: 1.35; font-weight: 700; letter-spacing: -.01em; }
+html body #main #price .price-list .vs-text { grid-column: 2; display: block; max-width: 62ch; font-size: 15px; line-height: 1.4; font-weight: 500; text-wrap: pretty; }
+html body #main #price .price-list .vs-why { display: block; margin-top: 2px; font-weight: 500; }
+
+/* ---------- is it worth it, then the four questions, side by side on the field ---------- */
+html body #main #price .price-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--p-hair);
+}
+html body #main #price .price-worth,
+html body #main #price .price-faq {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  text-align: start;
+}
+html body #main #price .price-worth p {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-size: var(--sys-body);
+  line-height: 1.5;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+html body #main #price .price-worth h3 + p { margin-top: 16px; }
+
+html body #main #price .price-faq .faq { max-width: none; margin: 0; text-align: start; }
+html body #main #price .price-faq .faq details { border-bottom: 1px solid var(--p-hair); }
+html body #main #price .price-faq .faq details:first-child { border-top: 1px solid var(--p-hair); }
+html body #main #price .price-faq .faq summary { font-size: 17px; line-height: 1.35; font-weight: 600; cursor: pointer; }
+html body #main #price .price-faq .faq summary:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 6px; }
+html body #main #price .price-faq .faq-chevron { color: #fff; }
+html body #main #price .price-faq .faq-answer p {
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+/* ---------- what stops fitting, where it stops ---------- */
+@media (max-width: 1100px) {
+  html body #main #price .price-stage .price-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; }
+  html body #main #price .price-includes { display: block; }
+  html body #main #price .price-includes > .price-own { margin-top: 6px; }
+  html body #main #price .price-grid { grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; }
+}
+@media (max-width: 1000px) { /* M2: the buy box takes the whole line, one line each for the price and the button */
+  html body #main #price .price-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  html body #main #price .price-intro > p { max-width: 62ch; }
+  html body #main #price .price-lower { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+@media (max-width: 700px) {
+  html body #main #price .price-stage { padding: 40px 18px 44px; border-radius: 20px; }
+  html body #main #price .price-card .price-offer [data-price] { font-size: 52px; }
+  html body #main #price .price-stage .price-card { padding: 22px; }
+  html body #main #price .price-includes { margin-top: 32px; }
+  html body #main #price .price-stage .price-list { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 16px !important; }
+  /* the tick holds the left edge; lead, line and payoff run on as one short read, so nine items stay under a screen and a half */
+  html body #main #price .price-stage .price-list li { display: block !important; position: relative; padding: 0 0 0 30px !important; }
+  html body #main #price .price-list .vs-check { position: absolute; inset-inline-start: 0; top: 0; margin: 0; }
+  html body #main #price .price-list li .lead { display: inline; font-size: 15px; }
+  html body #main #price .price-list .vs-text { display: inline; }
+  html body #main #price .price-list .vs-why { display: inline; margin: 0; }
+  html body #main #price .price-lower { margin-top: 36px; padding-top: 32px; }
+  html body #main #price .price-faq .faq summary { font-size: 16px; }
+}
+
+/* no frosting for anyone who asked for less of it */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  html body #main #price .price-stage .price-card { background: #0a3f78; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (hover: hover) and (pointer: fine) {
+  html body #main #price .price-faq .faq summary:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+}
+
+/* ---------- questions: two columns from 701 px, the top line in the V1 gradient (ref 235), not a centred stack ---------- */
+html body #main #questions .questions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: calc(100% - 2 * var(--sys-gutter));
+  max-width: var(--sys-max);
+  margin-inline: auto;
+  text-align: start;
+}
+html body #main #questions .questions > h2 { order: 0; margin: 0; text-align: start; font-size: var(--sys-h2) !important; }
+html body #main #questions .questions::before { /* the same stops as ever, now in the flow under the heading */
+  content: '';
+  order: 1;
+  position: static;
+  z-index: auto;
+  display: block;
+  inset: auto;
+  height: 3px;
+  margin-top: 16px;
+  border-radius: 999px;
+}
+html body #main #questions .questions .faq {
+  order: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  align-items: start;
+  max-width: none;
+  margin: 8px 0 0;
+  text-align: start;
+}
+html body #main #questions .faq-column { min-width: 0; }
+html body #main #questions .faq summary { font-size: 17px; line-height: 1.35; font-weight: 500; cursor: pointer; }
+html body #main #questions .faq-answer p { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--flow-ink, #151517); text-wrap: pretty; }
+html body #main #questions .dm-line { order: 3; margin: 24px 0 0; max-width: 62ch; font-size: var(--sys-small); line-height: 1.45; text-align: start; }
+@media (max-width: 700px) {
+  html body #main #questions .questions .faq { grid-template-columns: minmax(0, 1fr); }
+  html body #main #questions .faq summary { font-size: 16px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  html body #main #questions .faq summary:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+}

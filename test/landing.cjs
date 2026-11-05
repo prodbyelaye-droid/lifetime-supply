@@ -171,13 +171,11 @@ const server = http.createServer((req, res) => {
         assert.equal(await faq.evaluate((el) => el.open), false);
         assert(await includes.isVisible(), 'FAQ state cannot hide included items');
       }
-      // the inclusions are a labelled region; on a phone, where they scroll sideways, it is a tab stop
+      // the inclusions are a labelled region; nothing scrolls sideways at any width, so it is never a tab stop
       const region = page.locator('.price-scroll[role="region"][aria-label="everything included"]');
       assert.equal(await region.count(), 1);
-      if (width === 390) {
-        assert.equal(await region.getAttribute('tabindex'), '0');
-        assert(await region.evaluate((el) => el.scrollWidth > el.clientWidth), 'the phone list scrolls sideways');
-      } else assert.equal(await region.getAttribute('tabindex'), null, 'no extra tab stop where nothing scrolls');
+      assert.equal(await region.getAttribute('tabindex'), null, 'no extra tab stop where nothing scrolls');
+      assert.equal(await region.evaluate((el) => el.scrollWidth > el.clientWidth + 1), false, 'every included line shows without a sideways scroll');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-price.png`});
       // the blot clips play once on screen (two reads of currentTime differ), and never load under reduced motion
       await page.locator('#close').scrollIntoViewIfNeeded();
