@@ -73,6 +73,6 @@ html body #main .ms1106 .ms-more:focus-visible { outline: 2px solid #151517; out
 /* Elaye 6 Nov 19:44: "we got one" with his sticker beside the heading; 19:46 mobile app coming soon under the download buttons */
 html body #main .ms1106 .ms-head { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
 html body #main .ms1106 .ms-head h2 { margin: 0; }
-html body #main .ms1106 .ms-sticker { width: auto; height: 48px; transform: rotate(-3deg); }
+html body #main .ms1106 .ms-sticker { width: auto; height: 40px; }
 html body #main .dl17 .dl17-copy > p.dl17-soon { margin: 12px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
 @media (max-width: 700px) { html body #main .ms1106 .ms-sticker { height: 36px; } }
