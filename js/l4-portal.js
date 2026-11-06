@@ -162,7 +162,9 @@
   // the title-bar switch sits above the stage: its centre in the capture's px (y is negative, the circle starts up in the bar)
   const barPoint = () => { const a = tgl.getBoundingClientRect(), b = stage.getBoundingClientRect(); return [(a.left + a.width / 2 - b.left) / b.width * D.W, (a.top + a.height / 2 - b.top) / b.height * D.H]; };
   const themeOrigin = () => { const P = D.pages[st.page]; if (P.full) return P.toggle && P.toggle[st.theme]; const M = D.menu && D.menu[st.theme]; return M && M.summary; };
-  const go = (p) => { if (st.hello) return; if (st.page === 'login') enter(); else if (p === 'login') show('login', st.theme, 'fade'); else if (p !== st.page) show(p, st.theme, 'fade'); };
+  // launch 6 Nov (Elaye): Business is coming soon in the live portal, so here it opens a coming-soon panel over the page instead of the old business screens
+  const soon = (on) => { const el = root.querySelector('.l4-soon'); if (!el) return; el.hidden = !on; if (on) { cueBrief(false); say.textContent = 'business: coming soon'; } };
+  const go = (p) => { if (st.hello) return; if (st.page === 'login') return enter(); if (p && p.indexOf('business') === 0) return soon(true); soon(false); if (p === 'login') show('login', st.theme, 'fade'); else if (p !== st.page) show(p, st.theme, 'fade'); };
   // ---- the title-card film in the mentorship slot: the blot, his title. One clickable video
   const playVideo = () => {
     const P = D.pages[st.page], layer = view.querySelector('.l4-screen.is-on .l4-bodyhots'); if (!P.player || !layer) return;
@@ -249,6 +251,7 @@
   if (LOG) { cue.style.setProperty('--cx', pct(LOG.r[0] + LOG.r[2] + 12, D.W)); cue.style.setProperty('--cy', pct(LOG.r[1] + LOG.r[3] / 2, D.H)); }
   if (CARD) cue.style.setProperty('--py', pct(CARD[1] + CARD[3] + 8, D.H));
   const cueBriefs = tip('l4-cue2', 'check out the briefs.', stage), hint = tip('l4-hint', 'try dark mode.', preview);
+  { const el = div('l4-soon'); el.hidden = true; el.innerHTML = '<div class="l4-soon-card"><p class="l4-soon-k">business</p><p class="l4-soon-t">coming soon.</p><p class="l4-soon-l">invoices, clients, splits and placements in one place. we\'re finishing it now.</p></div>'; stage.append(el); }
   function placeBriefsCue() {
     const P = D.pages[st.page], h = !P.full && navHots(P).find((x) => x.go === 'briefs');
     if (st.flow !== 'briefs' || st.hello) { cueBriefs.removeAttribute('data-on'); return; }
@@ -258,7 +261,20 @@
   const flowEnd = () => { clearTimeout(st.flowT); st.flow = 'done'; cueBriefs.removeAttribute('data-on'); hint.removeAttribute('data-on'); };
   const flowDark = (wait) => { clearTimeout(st.flowT); cueBriefs.removeAttribute('data-on'); if (st.flow === 'done') return; st.flow = 'dark'; if (st.darkTried || st.theme === 'dark') return flowEnd(); st.flowT = setTimeout(() => { hint.setAttribute('data-on', ''); st.flowT = setTimeout(flowEnd, 9000); }, wait); };
   const flowStart = () => { if (st.flow) return; st.flow = 'briefs'; st.flowT = setTimeout(() => { cueBriefs.dataset.live = '1'; placeBriefsCue(); const b = pills && pills.querySelector('[data-go="briefs"]'); if (b && pills.offsetParent && pills.scrollWidth > pills.clientWidth) pills.scrollTo({ left: Math.max(0, b.offsetLeft - 48), behavior: held() ? 'auto' : 'smooth' }); st.flowT = setTimeout(() => flowDark(0), 7000); }, held() ? 0 : 900); };
-  const arrive = (p) => { if (st.flow === 'briefs' && D.pages[p].nav === 'briefs') flowDark(700); else if (p === 'login' && st.flow && st.flow !== 'done') flowEnd(); };
+  // launch 6 Nov (Elaye): on the briefs page, a pop-up says to click a brief, since that is how you send a beat; it goes once a brief is opened
+  const cueB = tip('l4-cue3', "click a brief to open it. that's where you send your beat.", stage);
+  const B1 = ((D.pages.briefs || {}).body || []).find((x) => String(x.go).indexOf('brief-') === 0);
+  if (B1) { cueB.style.setProperty('--cx', pct(D.pages.briefs.x0 + B1.r[0], D.W)); cueB.style.setProperty('--cy', pct(B1.r[1], D.H)); }
+  function cueBrief(on) {
+    if (!on) { cueB.removeAttribute('data-on'); return; }
+    if (st.briefOpened || !B1) return; cueB.setAttribute('data-on', '');
+    const sc = view.querySelector('.l4-screen.is-on .l4-scroll'); if (sc) sc.addEventListener('scroll', () => { if (sc.scrollTop > 24) cueB.removeAttribute('data-on'); }, { passive: true });
+  }
+  const arrive = (p) => {
+    if (p.indexOf('brief-') === 0) st.briefOpened = true;
+    cueBrief(p === 'briefs');
+    if (st.flow === 'briefs' && D.pages[p].nav === 'briefs') flowDark(st.briefOpened ? 700 : 6000); else if (p === 'login' && st.flow && st.flow !== 'done') flowEnd();
+  };
   tgl.addEventListener('click', () => { touch(); if (st.flipping) return; st.darkTried = true; if (st.flow === 'dark') flowEnd(); show(st.page, other(), 'reveal', barPoint()); });   // a click during a flip is ignored, as in the portal
   // ---- first sign-in: the portal's own hello splash, then the streamers, home's text and blots
   let engineP = null;
