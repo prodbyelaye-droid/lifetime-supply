@@ -1,0 +1,8 @@
+/* Elaye 6 Nov 12:59: the closing band drops the blot clip behind it; the copy sits on white, and the workflow clip plays as a
+   small box beside "05 night" like the "02 day" clip (blot-video-1104 .bv-box). */
+html body #main #close.close-call.close-white{background:#fff;color:#151517;min-height:0}
+html body #main #close.close-white :is(.close-a-art,.close-b-art){display:none}
+html body #main #close.close-white :is(.close-inner,.ls-heading-b){color:#151517}
+html body #main #close.close-white .close-inner .close-note{color:#5d646c}
+html body #main #close.close-white .close-cta{background:#151517;color:#fff;border-color:#151517}
+#flow [data-bv="workflow"] .bv-video{object-position:50% 40%}
