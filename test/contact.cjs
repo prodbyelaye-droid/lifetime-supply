@@ -61,12 +61,12 @@ test('invalid and long input never navigates and remains editable',()=>{
 test('HTML retains noJS mailto, native required validation, visible copy fallback and honest action',()=>{
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
   const section=html.match(/<section class="contact-section"[\s\S]*?<\/section>/)[0];
-  assert.match(section,/<form class="ask" data-contact-mailto action="mailto:elxyee@gmail.com" method="get"/);
+  assert.match(section,/<form class="ask" data-contact-mailto action="mailto:hi@elaye.store" method="get"/);
   assert.match(section,/<textarea[^>]+ required /);assert(!section.includes('maxlength='),'no silent truncation');
   assert(section.includes('>open email app</button>'));assert(!section.includes('>send it</button>'));
   assert(section.includes('nothing is sent from this page.'));
   assert(section.includes('if your email app does not open or the draft is incomplete'));
-  assert(section.includes('href="mailto:elxyee@gmail.com">elxyee@gmail.com</a>'));
+  assert(section.includes('href="mailto:hi@elaye.store">hi@elaye.store</a>'));
   assert(section.includes('aria-describedby="contact-help contact-status"'));
   assert(section.includes('role="status" aria-live="polite" hidden'));
   assert(html.includes('</section><script src="js/contact-mailto.js" defer></script>'));

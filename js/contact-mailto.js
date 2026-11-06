@@ -1,7 +1,7 @@
 /* Local email-app handoff only: no network send, receipt, storage or draft reset. */
 (function (root) {
   'use strict';
-  const RECIPIENT = 'elxyee@gmail.com';
+  const RECIPIENT = 'hi@elaye.store';
   const SUBJECT = 'Lifetime Supply question';
   // Email-client URL limits vary. Longer drafts use the always-visible copy fallback.
   const MAX_URL_LENGTH = 1800;

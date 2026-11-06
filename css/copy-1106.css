@@ -1,0 +1,40 @@
+/* copy-1106: Elaye 6 Nov 18:08, the copy-and-links pass. The hero's hear link, hear the kits, the update board,
+   the price notes and legal links, and the folded download help. Ink only: no blue and no grey text. */
+html body #main .hero .hero-hear { margin: 10px 0 0; font-size: var(--sys-small, 14px); line-height: 1.4; }
+html body #main .hero .hero-hear a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+html body #main #price .price-note { margin: 8px 0 0; font-size: var(--sys-small, 14px); line-height: 1.45; color: inherit; }
+html body #main #price .price-legal { margin: 14px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
+html body #main #price .price-legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+html body #main #hear.hear-kits,
+html body #main #updates.updates-1106 { width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 72px var(--sys-gutter, 20px) 24px; box-sizing: border-box; text-align: center; color: #151517; }
+html body #main #updates.updates-1106 { padding-bottom: 56px; }
+html body #main #hear .hk-lede,
+html body #main #updates .up-lede { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
+html body #main #hear .hk-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; margin-top: 28px; text-align: left; }
+html body #main #hear .hk-card { display: flex; flex-direction: column; gap: 14px; min-height: 124px; padding: 18px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px #1515171a; }
+html body #main #hear .hk-name { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 600; letter-spacing: -.01em; }
+html body #main #hear .hk-play { align-self: flex-start; margin-top: auto; padding: 10px 16px; border: 0; border-radius: 999px; background: #151517; color: #fff; font: inherit; font-size: 14px; line-height: 1; cursor: pointer; }
+html body #main #hear .hk-play:focus-visible { outline: 2px solid #151517; outline-offset: 3px; }
+html body #main #hear .hk-frame { display: block; width: 100%; height: 300px; margin-top: auto; border: 0; border-radius: 10px; }
+
+html body #main #updates .up-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; text-align: left; }
+html body #main #updates .up-col { padding: 28px 30px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px #1515171a; }
+html body #main #updates .up-col h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; font-size: 13px; line-height: 1; font-weight: 600; letter-spacing: .02em; }
+html body #main #updates .up-col h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #151517; }
+html body #main #updates .up-col + .up-col h3::before { background: transparent; box-shadow: inset 0 0 0 1.5px #151517; }
+html body #main #updates .up-col ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+html body #main #updates .up-col li { font-size: 14.5px; line-height: 1.45; }
+html body #main #updates .up-col li b { font-weight: 600; }
+
+html body #main .dl17 .dl17-help { margin-top: 18px; font-size: var(--sys-micro, 12px); line-height: 1.45; }
+html body #main .dl17 .dl17-help summary { display: inline; list-style: none; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+html body #main .dl17 .dl17-help summary::-webkit-details-marker { display: none; }
+html body #main .dl17 .dl17-help .dl17-once { margin: 8px 0 0; }
+
+@media (max-width: 700px) {
+  html body #main #hear.hear-kits, html body #main #updates.updates-1106 { padding-top: 48px; }
+  html body #main #hear .hk-row, html body #main #updates .up-cols { grid-template-columns: 1fr; }
+  html body #main #updates .up-col { padding: 22px 20px; }
+}

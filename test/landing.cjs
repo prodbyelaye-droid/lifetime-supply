@@ -64,10 +64,11 @@ const server = http.createServer((req, res) => {
       assert.match(await page.locator('h1').innerText(), /the whole setup\s*i run my career from\./);
       assert.equal(await page.locator('.header-login').getAttribute('href'), 'https://portal.elaye.store/login');
       await page.screenshot({path: `${output}/${width}-${reducedMotion}-hero.png`});
-      // payments: three checkout CTAs (hero, step 1, buy card; the close links to #price), all the live checkout, opening safely in a new tab
+      // payments: one checkout CTA, the buy card (Elaye 6 Nov 18:08: hero, step 1 and the close link to #price), opening safely in a new tab
       const ctas = page.locator('a[data-checkout]');
-      assert.equal(await ctas.count(), 3, 'three checkout CTAs');
-      for (let i = 0; i < 3; i++) {
+      assert.equal(await ctas.count(), 1, 'one checkout CTA');
+      assert.equal(await page.locator('.hero-cta').getAttribute('href'), '#price');
+      for (let i = 0; i < 1; i++) {
         assert.equal(await ctas.nth(i).getAttribute('href'), LIVE);
         assert.equal(await ctas.nth(i).getAttribute('target'), '_blank');
         assert.match(await ctas.nth(i).getAttribute('rel'), /noopener/);
@@ -205,7 +206,7 @@ const server = http.createServer((req, res) => {
       assert(await page.locator('.price-includes').isVisible());
       assert.equal(await page.locator('.price-list li').count(), 9);
       assert.equal(await page.locator('.price-card a[data-checkout]').getAttribute('href'), LIVE);
-      assert.equal(await page.locator('a[data-checkout]').count(), 3);
+      assert.equal(await page.locator('a[data-checkout]').count(), 1);
       assert(await page.locator('#trusted').isVisible(), '#trusted visible');
       assert.equal((await page.locator('#trusted-title').textContent()).replace(/\s+/g, ' ').trim(), TRUSTED_HEADING);
       assert.deepEqual(await trustedNames(page), TRUSTED, 'the strip lists all 33 without the marquee');
