@@ -109,6 +109,8 @@
   };
   // ---- page / theme changes
   const show = async (p, t, how, from) => {
+    if (String(p).indexOf('business') === 0) { if (st.page !== 'login') soon(true); return; }   // launch 6 Nov: business is coming soon
+    if (!(how === 'reveal' && p === st.page)) soon(false);
     if (!D.pages[p]) return;
     if (st.busy) { st.queued = [p, t, how, from]; return; }
     st.busy = true; st.flipping = how === 'reveal'; if (st.menu) { st.menu = false; menuLayer.hidden = true; menuLayer.textContent = ''; }
