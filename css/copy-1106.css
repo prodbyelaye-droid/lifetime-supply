@@ -53,24 +53,19 @@ html body #main .dl17 .dl17-help .dl17-once { margin: 8px 0 0; }
   html body #main #updates .up-col { padding: 22px 20px; }
 }
 
-/* Elaye 6 Nov 18:29: the testimonials wall takes every message from the IG highlight (59 in all) and a taller window. */
-html body #main .producer-wall__grid.pw-live { height: 560px; }
-@media (max-width: 700px) { html body #main .producer-wall__grid.pw-live { height: 480px; } }
 
-/* we got one: the placement messages as threads, names blacked out where the originals hid them. Ink only. */
-html body #main #we-got-one.wg1106 { width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 56px var(--sys-gutter, 20px) 40px; box-sizing: border-box; text-align: center; color: #151517; }
-html body #main #we-got-one .wg-lede { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
-html body #main #we-got-one .wg-threads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 860px; margin: 28px auto 0; align-items: start; text-align: left; }
-html body #main #we-got-one .wg-thread { display: flex; flex-direction: column; gap: 6px; padding: 22px 18px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px #1515171a; }
-html body #main #we-got-one .wg-b { max-width: 80%; margin: 0; padding: 8px 13px; border-radius: 18px; font-size: 14.5px; line-height: 1.35; overflow-wrap: anywhere; }
-html body #main #we-got-one .wg-them { align-self: flex-start; background: #ededee; color: #151517; border-bottom-left-radius: 6px; }
-html body #main #we-got-one .wg-me { align-self: flex-end; background: #151517; color: #fff; border-bottom-right-radius: 6px; }
-html body #main #we-got-one .wg-them + .wg-me, html body #main #we-got-one .wg-me + .wg-them { margin-top: 8px; }
-html body #main #we-got-one .wg-audio { display: inline-flex; align-items: center; gap: 8px; }
-html body #main #we-got-one .wg-note { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 6px; background: #fff; color: #151517; font-size: 14px; }
-html body #main #we-got-one .wg-them .wg-note { background: #151517; color: #fff; }
-html body #main #we-got-one .wg-redact { display: inline-block; width: var(--w, 5em); height: .95em; vertical-align: -.12em; border-radius: 9px 6px 10px 5px; background: currentColor; transform: rotate(-1.5deg); }
+/* Elaye 6 Nov 19:04: the members' own screenshots, names and faces blurred. "what our members say" and "we got one". */
+html body #main .ms1106 { width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 56px var(--sys-gutter, 20px) 24px; box-sizing: border-box; text-align: center; color: #151517; }
+html body #main .ms1106 .ms-lede { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
+html body #main .ms1106 .ms-grid { columns: 3 260px; column-gap: 12px; margin-top: 28px; text-align: left; }
+html body #main .ms1106 .ms-grid--got { columns: 3 260px; }
+html body #main .ms1106 .ms-shot { break-inside: avoid; margin: 0 0 12px; border-radius: 14px; overflow: hidden; background: #0b0b0c; box-shadow: 0 0 0 1px #1515171a; }
+html body #main .ms1106 .ms-shot img { display: block; width: 100%; height: auto; }
+html body #main .ms1106 .ms-grid.is-collapsed { max-height: 1180px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+html body #main .ms1106 .ms-more { margin-top: 18px; padding: 12px 20px; border: 0; border-radius: 999px; background: #151517; color: #fff; font: inherit; font-size: 14px; line-height: 1; cursor: pointer; }
+html body #main .ms1106 .ms-more:focus-visible { outline: 2px solid #151517; outline-offset: 3px; }
 @media (max-width: 700px) {
-  html body #main #we-got-one.wg1106 { padding-top: 40px; }
-  html body #main #we-got-one .wg-threads { grid-template-columns: 1fr; }
+  html body #main .ms1106 { padding-top: 40px; }
+  html body #main .ms1106 .ms-grid { columns: 1; }
+  html body #main .ms1106 .ms-grid.is-collapsed { max-height: 1500px; }
 }
