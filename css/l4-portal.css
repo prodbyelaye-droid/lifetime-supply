@@ -41,7 +41,7 @@
 /* ---- window-v2 (5 Nov, owner 12:46 + 15:15) ---- */
 /* the size: you see the whole thing and use the whole thing. About 70% of the viewport's height, so the line above it and the next section's heading both show.
    Height = (width - 2) / 1.6 + 70 (the Mac bar 28, the title bar 40, 2 of border). The hotspots are % of the stage, so they scale with it */
-body .computer-device { width:min(1222px,100%,calc((70vh - 70px) * 1.6 + 2px)); width:min(1222px,100%,calc((70svh - 70px) * 1.6 + 2px)); }
+body .computer-device { width:min(1222px,100%,calc((82vh - 70px) * 1.6 + 2px)); width:min(1222px,100%,calc((82svh - 70px) * 1.6 + 2px)); }
 html[data-landing-layout] .hero-computer .portal-preview { position:relative; background:transparent; transition:border-color .7s ease-in-out; }
 html[data-landing-layout] .hero-computer .portal-preview[data-l4-theme="dark"] { border-color:#2c2c30; }
 .hero-computer .portal-panels.l4-panels { padding:0; transition:background-color .7s ease-in-out; }
