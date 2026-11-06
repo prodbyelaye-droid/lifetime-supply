@@ -76,3 +76,7 @@ html body #main .ms1106 .ms-head h2 { margin: 0; }
 html body #main .ms1106 .ms-sticker { width: auto; height: 40px; }
 html body #main .dl17 .dl17-copy > p.dl17-soon { margin: 12px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
 @media (max-width: 700px) { html body #main .ms1106 .ms-sticker { height: 36px; } }
+
+/* Elaye 6 Nov 20:32: the add-on link in the price card; on a phone the hero blob sits clear of the nav */
+html body #main #price .price-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 700px) { html body .opening-blots .ob.b2-box { scale: .6; translate: 0 34px; } }
