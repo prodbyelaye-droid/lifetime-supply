@@ -50,7 +50,7 @@ THE SOFTWARE.
       ? '<details class="dl17-help"><summary>opening it the first time</summary><p class="dl17-once"><span>your computer asks once. on mac, open anyway in privacy &amp; security.</span> <span>on windows, more info, then run anyway.</span></p></details>'
       : '';
     return '<div class="dl17-copy">' + heading + description +
-      '<div class="dl17-row">' + buttons + '</div>' + help +
+      '<div class="dl17-row">' + buttons + '</div>' + (enabled ? '<p class="dl17-soon">mobile app coming soon.</p>' : '') + help +
       '<a class="dl-login" href="https://portal.elaye.store/login">log in</a></div>';
   }
   function applyToTemplate(html) {
