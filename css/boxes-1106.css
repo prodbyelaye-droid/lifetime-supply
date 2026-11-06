@@ -1,0 +1,6 @@
+/* Elaye 6 Nov 13:07: "i dont like the covers with the blue border… remove the border". The eight boxes lose the sky frame:
+   the shot or clip fills the box, with only a hairline. Members-only drops plays the unused blot clip (the desk/mixer one). */
+html body #main #features.main-value .mv-art{background:transparent;border-radius:10px;overflow:hidden}
+html body #main #features.main-value .mv-art .rest-field{display:none}
+html body #main #features.main-value .mv-art .board-window{inset:0;border-radius:10px;box-shadow:inset 0 0 0 1px #1515171a;overflow:hidden}
+html body #main #features.main-value .mv-art video.mv-shot{object-fit:cover;object-position:50% 50%;background:#000}
