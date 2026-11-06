@@ -109,8 +109,6 @@
   };
   // ---- page / theme changes
   const show = async (p, t, how, from) => {
-    if (String(p).indexOf('business') === 0) { if (st.page !== 'login') soon(true); return; }   // launch 6 Nov: business is coming soon
-    if (!(how === 'reveal' && p === st.page)) soon(false);
     if (!D.pages[p]) return;
     if (st.busy) { st.queued = [p, t, how, from]; return; }
     st.busy = true; st.flipping = how === 'reveal'; if (st.menu) { st.menu = false; menuLayer.hidden = true; menuLayer.textContent = ''; }
@@ -164,9 +162,7 @@
   // the title-bar switch sits above the stage: its centre in the capture's px (y is negative, the circle starts up in the bar)
   const barPoint = () => { const a = tgl.getBoundingClientRect(), b = stage.getBoundingClientRect(); return [(a.left + a.width / 2 - b.left) / b.width * D.W, (a.top + a.height / 2 - b.top) / b.height * D.H]; };
   const themeOrigin = () => { const P = D.pages[st.page]; if (P.full) return P.toggle && P.toggle[st.theme]; const M = D.menu && D.menu[st.theme]; return M && M.summary; };
-  // launch 6 Nov (Elaye): Business is coming soon in the live portal, so here it opens a coming-soon panel over the page instead of the old business screens
-  const soon = (on) => { const el = root.querySelector('.l4-soon'); if (!el) return; el.hidden = !on; if (on) { cueBrief(false); say.textContent = 'business: coming soon'; } };
-  const go = (p) => { if (st.hello) return; if (st.page === 'login') return enter(); if (p && p.indexOf('business') === 0) return soon(true); soon(false); if (p === 'login') show('login', st.theme, 'fade'); else if (p !== st.page) show(p, st.theme, 'fade'); };
+  const go = (p) => { if (st.hello) return; if (st.page === 'login') enter(); else if (p === 'login') show('login', st.theme, 'fade'); else if (p !== st.page) show(p, st.theme, 'fade'); };
   // ---- the title-card film in the mentorship slot: the blot, his title. One clickable video
   const playVideo = () => {
     const P = D.pages[st.page], layer = view.querySelector('.l4-screen.is-on .l4-bodyhots'); if (!P.player || !layer) return;
@@ -253,7 +249,6 @@
   if (LOG) { cue.style.setProperty('--cx', pct(LOG.r[0] + LOG.r[2] + 12, D.W)); cue.style.setProperty('--cy', pct(LOG.r[1] + LOG.r[3] / 2, D.H)); }
   if (CARD) cue.style.setProperty('--py', pct(CARD[1] + CARD[3] + 8, D.H));
   const cueBriefs = tip('l4-cue2', 'check out the briefs.', stage), hint = tip('l4-hint', 'try dark mode.', preview);
-  { const el = div('l4-soon'); el.hidden = true; el.innerHTML = '<div class="l4-soon-card"><p class="l4-soon-k">business</p><p class="l4-soon-t">coming soon.</p><p class="l4-soon-l">invoices, clients, splits and placements in one place. we\'re finishing it now.</p></div>'; stage.append(el); }
   function placeBriefsCue() {
     const P = D.pages[st.page], h = !P.full && navHots(P).find((x) => x.go === 'briefs');
     if (st.flow !== 'briefs' || st.hello) { cueBriefs.removeAttribute('data-on'); return; }
