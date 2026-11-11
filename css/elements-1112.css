@@ -142,3 +142,38 @@ html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:focus-visible { 
   html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login) { transition: none !important; }
   html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):active { transform: none; }
 }
+
+/* ---------- el-E4 · the composer with an action (out/el-E4/final/SPEC.md, e4-fields.css) ----------
+   landing contact: the field family's box (corner 20, white, a 1 px ring at 25 % black, 42 % on hover, 1.5 px ink while
+   typing), padding 5 5 5 24, words 16/24 with 8 px above and below so the empty box is 50 tall, growing to six lines.
+   "tell me what you're stuck on." rests inside in the label grey until there are words (the label's own words, unchanged).
+   "open email app" is E1's md pill (40) inside on the right, on the bottom line. Error: the ring and the line under it in
+   the error red. Phones under 560: the pill goes full width under the words, inside the same box (E1: full width on phone). */
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask {
+  position: relative !important; box-sizing: border-box !important; display: flex !important; flex-direction: row !important; align-items: flex-end !important; gap: 8px !important;
+  min-height: 50px !important; padding: 5px 5px 5px 24px !important; border-radius: 20px !important;
+  background: #FFFFFF !important; border: 0 !important; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25) !important;
+  transition: box-shadow .22s cubic-bezier(.22, 1, .36, 1);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .42) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:focus-within { box-shadow: inset 0 0 0 1.5px #141414 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:has(textarea[aria-invalid="true"]) { box-shadow: inset 0 0 0 1.5px #A3122A !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea {
+  flex: 1 1 auto !important; min-width: 0 !important; box-sizing: border-box !important; min-height: 40px !important; max-height: 160px !important;
+  padding: 8px 0 !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important;
+  font: 400 16px/24px var(--brand-font-text) !important; letter-spacing: 0; color: #141414 !important; caret-color: #141414;
+  outline: none !important; box-shadow: none !important; resize: none !important; field-sizing: content; overflow-y: auto;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label {
+  position: absolute !important; left: 24px; top: 13px; width: auto !important; height: auto !important; overflow: visible !important; clip-path: none !important;
+  margin: 0; font: 400 16px/24px var(--brand-font-text); color: #6B6B6B; white-space: nowrap; pointer-events: none; transition: opacity .16s ease;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:has(textarea:not(:placeholder-shown)) .ask-label { opacity: 0; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { flex: none !important; align-self: flex-end !important; margin: 0 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A; }
+@media (max-width: 559px) {
+  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { flex-wrap: wrap !important; padding: 5px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea { flex-basis: 100% !important; padding: 8px 19px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) { html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask, html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { transition: none; } }
