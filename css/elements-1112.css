@@ -227,3 +227,18 @@ html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
    Members on public surfaces stay blurred as they are (the texts and dms, the hero window, the demo). */
 html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__mark { display: none !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__byline { gap: 0 !important; margin-bottom: 8px !important; }
+
+/* ---------- el-E8 · figures (out/el-finish/el-E8/final/SPEC.md, el-E8-figures.css; critic 05:58: yes) ----------
+   row 304's "275 kWh": every figure regular (400), the ink of its line (white on the sky), never blue, never bold;
+   tabular where figures sit in a column. Albert Sans on the landing (critic 04:17), the same ratios.
+   In place, CSS only: the founder card's streams figure and its three counts, the price, the steps mock's price,
+   and the day-in-my-workflow step numbers (cobalt 600 before: ink, regular). Headlines that hold a figure
+   ("6,000+ files today.") keep the headline weight; the bold lead-ins of the feature lists are list structure. */
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > b { font-weight: 400 !important; letter-spacing: -.045em !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row b { font-weight: 400 !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #price .pixel[data-price] { font-weight: 400 !important; letter-spacing: -.045em !important; font-variant-numeric: lining-nums tabular-nums; }
+html:not(#e-a):not(#e-b):not(#e-c) body .mini-pay .mini-price { font-weight: 400 !important; letter-spacing: -.03em; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #flow .day96-num { font-weight: 400 !important; color: #090909 !important; -webkit-text-fill-color: #090909; font-variant-numeric: lining-nums tabular-nums; }
+/* the unit is part of the figure, in the same ink and weight (304): "streams", "video views", "shazams", "credits" */
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > span { font-weight: 400 !important; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row li { color: #090909 !important; font-weight: 400 !important; }
