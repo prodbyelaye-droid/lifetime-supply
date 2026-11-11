@@ -23,6 +23,9 @@
     return {url};
   }
   function bind(form, input, status, openEmail) {
+    // With the script, the form's own error line speaks for it: no browser bubble. Without the script the
+    // textarea's native required check still guards the mailto (the attribute stays in the HTML).
+    form.noValidate = true;
     function announce(message) {
       status.textContent = message;
       status.hidden = false;
@@ -40,7 +43,7 @@
         input.setCustomValidity(result.error);
         input.setAttribute('aria-invalid', 'true');
         announce(result.error);
-        input.reportValidity();
+        if (typeof input.focus === 'function') input.focus();
         return;
       }
       input.setCustomValidity('');

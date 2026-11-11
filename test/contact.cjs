@@ -11,12 +11,12 @@ function fixture(message, open = () => {}) {
     addEventListener(name, fn) {listeners['input:'+name] = fn;},
     setCustomValidity(text) {this.validationMessage=text;},
     setAttribute(k,v) {attrs[k]=v;},removeAttribute(k) {delete attrs[k];},
-    reportValidity() {this.reported++;},
+    reportValidity() {this.reported++;},focused:0,focus() {this.focused++;},
   };
-  const form={addEventListener(name,fn){listeners['form:'+name]=fn;}};
+  const form={noValidate:false,addEventListener(name,fn){listeners['form:'+name]=fn;}};
   const status={textContent:'',hidden:true};
   bind(form,input,status,open);
-  return {input,status,attrs,submit(){let prevented=false;listeners['form:submit']({preventDefault(){prevented=true;}});assert(prevented);},edit(value){input.value=value;listeners['input:input']();}};
+  return {form,input,status,attrs,submit(){let prevented=false;listeners['form:submit']({preventDefault(){prevented=true;}});assert(prevented);},edit(value){input.value=value;listeners['input:input']();}};
 }
 test('empty, whitespace, control and malformed Unicode input do not create handoff URLs',()=>{
   for(const body of ['', '  \n\t ', '\u0000hello', 'hello\u007f', '\ud800']) {
@@ -53,7 +53,9 @@ test('invalid and long input never navigates and remains editable',()=>{
   for(const body of ['   ','message\u0000','x'.repeat(10000)]) {
     let calls=0;const state=fixture(body,()=>calls++);state.submit();
     assert.equal(calls,0);assert.equal(state.input.value,body);assert(state.status.textContent);
-    assert.equal(state.attrs['aria-invalid'],'true');assert.equal(state.input.reported,1);
+    // the form's own error line, not the browser's bubble: no reportValidity, focus back to the box
+    assert.equal(state.attrs['aria-invalid'],'true');assert.equal(state.input.reported,0);assert.equal(state.input.focused,1);
+    assert.equal(state.form.noValidate,true);assert.equal(state.input.validationMessage,state.status.textContent);
     state.edit('fixed question');assert.equal(state.input.validationMessage,'');assert.equal(state.attrs['aria-invalid'],undefined);
     assert.equal(state.status.hidden,true);state.submit();assert.equal(calls,1);
   }
@@ -62,7 +64,7 @@ test('HTML retains noJS mailto, native required validation, visible copy fallbac
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
   const section=html.match(/<section class="contact-section"[\s\S]*?<\/section>/)[0];
   assert.match(section,/<form class="ask" data-contact-mailto action="mailto:hi@elaye.store" method="get"/);
-  assert.match(section,/<textarea[^>]+ required /);assert(!section.includes('maxlength='),'no silent truncation');
+  assert.match(section,/<textarea[^>]+ required /);assert(!/<form[^>]*novalidate/i.test(section),'without the script the native required check stays');assert(!section.includes('maxlength='),'no silent truncation');
   assert(section.includes('>open email app</button>'));assert(!section.includes('>send it</button>'));
   assert(section.includes('nothing is sent from this page.'));
   assert(section.includes('if your email app does not open or the draft is incomplete'));

@@ -166,6 +166,13 @@ html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea {
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { left: 0; top: 0; }
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { flex: none !important; align-self: flex-end !important; margin: 0 !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A !important; font: 400 13px/18px var(--brand-font-text) !important; }
+/* the error line sits directly under the box, lined up with the words (24 px in, as the words sit in the box); the note
+   follows it. The handoff line keeps its place under the note. (critic 09:41: the form's own error line, no browser bubble) */
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > #contact-help { order: 2; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > #contact-status { order: 3; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > .ask:has(textarea[aria-invalid="true"]) ~ #contact-status {
+  order: 1; box-sizing: border-box; width: min(620px, 100%) !important; max-width: none !important; margin: 8px auto 0 !important; padding: 0 24px !important; text-align: left !important;
+}
 @media (max-width: 559px) {
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { flex-wrap: wrap !important; padding: 5px !important; }
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea { flex-basis: 100% !important; padding: 8px 19px !important; }
