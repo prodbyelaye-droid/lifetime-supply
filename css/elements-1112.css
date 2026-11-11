@@ -162,6 +162,8 @@ html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea {
   font: 400 16px/24px var(--brand-font-text) !important; letter-spacing: 0; color: #141414 !important; caret-color: #141414;
   outline: none !important; box-shadow: none !important; resize: none !important; field-sizing: content; overflow-y: auto;
 }
+/* the label is read, not drawn (production's visually hidden rule); pinned to the box's top left so it sits over the white field */
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { left: 0; top: 0; }
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { flex: none !important; align-self: flex-end !important; margin: 0 !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A !important; font: 400 13px/18px var(--brand-font-text) !important; }
 @media (max-width: 559px) {
