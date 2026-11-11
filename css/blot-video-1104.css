@@ -9,7 +9,7 @@
 
 /* (b) small box: a quiet 16:9 window, same hairline and radius language as the portal stills around it */
 .bv-box{position:relative;width:100%;max-width:240px;aspect-ratio:16/9;margin:0;overflow:hidden;border-radius:12px;background:#000;
-  box-shadow:0 0 0 1px rgba(21,21,23,.08),0 12px 32px -18px rgba(21,21,23,.35)}
+  box-shadow:0 0 0 1px rgba(var(--brand-ink-rgb),.08),0 12px 32px -18px rgba(var(--brand-ink-rgb),.35)}
 .bv-box .bv-video{position:absolute;inset:0}
 .day96-when:has(.bv-box){flex-direction:column;gap:24px}
 @media (max-width:760px){
@@ -27,7 +27,7 @@
 body #main #close.close-call.bv-dark{background:#000;color:#fff;min-height:clamp(420px,38vw,560px);display:grid;place-items:center}
 body #main #close.close-call.bv-dark .close-inner,
 body #main #close.close-call.bv-dark .ls-heading-b{color:#fff}
-body #main #close.close-call.bv-dark .close-cta{background:#fff;color:#151517;border-color:#fff}
+body #main #close.close-call.bv-dark .close-cta{background:#fff;color:var(--brand-ink);border-color:#fff}
 body #main #close.close-call.bv-dark .close-cta:focus-visible{outline-color:#fff}
 #close .bv-bg .bv-video{object-position:50% 40%}
 @media (max-width:700px){body #main #close.close-call.bv-dark{min-height:440px}}

@@ -23,7 +23,7 @@
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
     #flow [data-shiny-272][data-shiny-272-live]{
       --shiny-width:100px;
-      color:rgba(21,21,23,.7);
+      color:rgba(var(--brand-ink-rgb),.7);
       background-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.8) 50%,transparent 100%);
       background-repeat:no-repeat;
       background-size:var(--shiny-width) 100%;

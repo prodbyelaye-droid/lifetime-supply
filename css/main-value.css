@@ -1,8 +1,8 @@
 /* One ref174 composition: two columns, existing artwork above visible copy.
    Every rule is confined to the isolated #features replacement. */
 #features.main-value {
-  color: #151517;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, Roboto, sans-serif;
+  color: var(--brand-ink);
+  font-family: var(--brand-font-text);
   padding-block: 32px 60px;
 }
 #features.main-value .mv-grid {
@@ -29,7 +29,7 @@
   overflow: hidden;
   isolation: isolate;
   border-radius: 12px;
-  background: #bee9fc;
+  background: var(--brand-sky-1);
 }
 #features.main-value .mv-art .rest-field {
   background-image: url('../assets/flow-v1/V1-field.webp');
@@ -44,7 +44,7 @@
 #features.main-value .mv-copy { padding: 20px 2px 0; }
 #features.main-value .mv-title {
   margin: 0 0 14px;
-  color: #151517;
+  color: var(--brand-ink);
   font-size: 30px;
   font-weight: 500;
   letter-spacing: -.03em;
@@ -64,7 +64,7 @@
 #features.main-value .mv-entry { margin-top: 20px; }
 #features.main-value .mv-entry h4 {
   margin: 0 0 5px;
-  color: #151517;
+  color: var(--brand-ink);
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -.02em;
@@ -81,7 +81,7 @@
   border-color: #dedfe2;
 }
 #features.main-value .text-link:focus-visible {
-  outline: 2px solid #0054fd;
+  outline: 2px solid var(--brand-sky-2);
   outline-offset: 4px;
 }
 #features.main-value .split-white { padding-left: 28px; }

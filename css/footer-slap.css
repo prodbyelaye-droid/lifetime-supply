@@ -1,5 +1,5 @@
 /* Exact L08 repair2 component port. All selectors stay inside the existing footer. */
-#footer.ls-footer{color-scheme:light;--ink:#172736;--cream:#f5f3ed;--blue:#c2dfed;--focus:#163fa8;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Roboto,sans-serif;color:var(--ink);font-size:16px;font-weight:400;line-height:normal;letter-spacing:normal;text-align:left}
+#footer.ls-footer{color-scheme:light;--ink:var(--brand-navy-2);--cream:#f5f3ed;--blue:var(--brand-sky-50);--focus:var(--brand-sky-51);font-family:var(--brand-font-text);color:var(--ink);font-size:16px;font-weight:400;line-height:normal;letter-spacing:normal;text-align:left}
 #footer.ls-footer *,#footer.ls-footer *::before,#footer.ls-footer *::after{box-sizing:border-box}
 #footer.ls-footer button,#footer.ls-footer a{-webkit-tap-highlight-color:transparent}
 #footer.ls-footer button{font:inherit}
@@ -10,7 +10,7 @@
 #footer.ls-footer .footer-top{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:48px;align-items:start}
 #footer.ls-footer .footer-line{font-size:clamp(24px,2.4vw,34px);font-weight:500;line-height:1.06;letter-spacing:-.045em}
 #footer.ls-footer .profile-nav{position:relative;display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:100%}
-#footer.ls-footer .tab{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;gap:10px;border:1px solid #17273645;border-radius:999px;background:transparent;color:inherit;text-decoration:none;font-size:15px;cursor:pointer}
+#footer.ls-footer .tab{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;gap:10px;border:1px solid var(--brand-navy-2-a45);border-radius:999px;background:transparent;color:inherit;text-decoration:none;font-size:15px;cursor:pointer}
 #footer.ls-footer .tab:hover{background:#f5f3ed80}
 #footer.ls-footer .tab-ig{width:18px;height:18px;flex:none}
 #footer.ls-footer .tab-toggle{gap:8px}
@@ -37,13 +37,13 @@
 #footer.ls-footer .blob-one{--size:clamp(78px,12vw,164px)}
 #footer.ls-footer .blob-two{--size:clamp(70px,9.5vw,132px)}
 #footer.ls-footer .blob-three{--size:clamp(82px,13vw,178px)}
-#footer.ls-footer .blob-art{display:block;width:100%;height:100%;pointer-events:none;transform-origin:50% 85%;filter:grayscale(1) brightness(1.2) drop-shadow(0 4px 2px #17273615)}
-#footer.ls-footer .blob-two .blob-art{filter:drop-shadow(0 2px 1px #17273610)}
-#footer.ls-footer .blob-three .blob-art{filter:grayscale(1) brightness(1.3) drop-shadow(0 4px 2px #17273615)}
+#footer.ls-footer .blob-art{display:block;width:100%;height:100%;pointer-events:none;transform-origin:50% 85%;filter:grayscale(1) brightness(1.2) drop-shadow(0 4px 2px var(--brand-navy-2-a15))}
+#footer.ls-footer .blob-two .blob-art{filter:drop-shadow(0 2px 1px var(--brand-navy-2-a10))}
+#footer.ls-footer .blob-three .blob-art{filter:grayscale(1) brightness(1.3) drop-shadow(0 4px 2px var(--brand-navy-2-a15))}
 #footer.ls-footer .footer-scene.is-settling .blob-art{animation:footer-slap-settle 500ms cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--delay)}
 #footer.ls-footer .footer-scene.is-settling .blob.is-touched .blob-art{animation:none}
 @keyframes footer-slap-settle{from{transform:translateY(-12px) rotate(-5deg)}to{transform:translateY(0) rotate(0)}}
-#footer.ls-footer .footer-bottom{border-top:1px solid #17273632;padding-top:20px;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+#footer.ls-footer .footer-bottom{border-top:1px solid var(--brand-navy-2-a32);padding-top:20px;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 #footer.ls-footer .copyright{font-size:13px}
 #footer.ls-footer .footer-signature{display:flex;align-items:center;gap:28px}
 #footer.ls-footer .locked-logo{display:block;width:142px;height:auto}

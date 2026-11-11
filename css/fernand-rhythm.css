@@ -25,15 +25,15 @@ body .portal-copy>p { max-width:600px; margin-inline:auto; }
 html[data-landing-layout="b"] .portal-preview { display:block; width:min(1120px,100%); margin:48px auto 0; }
 html[data-landing-layout="b"] .portal-copy { width:100%; max-width:none; padding-inline:24px; }
 .portal-tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 0 24px; }
-.portal-tab { appearance:none; min-height:48px; padding:12px 24px; background:#fff; color:#151517; border:1px solid #707070; border-radius:999px; font:inherit; font-size:15px; font-weight:500; line-height:21px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:none; }
-.portal-tab[aria-selected="true"] { background:#151517; color:#fff; border-color:#151517; }
-.portal-tab:focus-visible { outline:3px solid #151517; outline-offset:4px; }
-.portal-panels { padding:24px; border-radius:24px; background:#C9ECFD var(--flow-field) center/cover; }
+.portal-tab { appearance:none; min-height:48px; padding:12px 24px; background:#fff; color:var(--brand-ink); border:1px solid #707070; border-radius:999px; font:inherit; font-size:15px; font-weight:500; line-height:21px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:none; }
+.portal-tab[aria-selected="true"] { background:var(--brand-ink); color:#fff; border-color:var(--brand-ink); }
+.portal-tab:focus-visible { outline:3px solid var(--brand-ink); outline-offset:4px; }
+.portal-panels { padding:24px; border-radius:24px; background:var(--brand-sky-3) var(--flow-field) center/cover; }
 .portal-panel { margin:0; }
 .portal-panel[hidden] { display:none; }
 .portal-panel picture { display:block; background:#fff; border:1px solid #dedfe2; border-radius:12px; overflow:hidden; }
 .portal-panel img { display:block; width:100%; height:auto; aspect-ratio:1192 / 836; object-fit:contain; object-position:top; }
-.portal-panel figcaption { margin-top:24px; color:#151517; font-size:16px; line-height:26px; text-align:center; }
+.portal-panel figcaption { margin-top:24px; color:var(--brand-ink); font-size:16px; line-height:26px; text-align:center; }
 .portal-preview:not([data-enhanced]) .portal-tabs { display:none; }
 .portal-preview:not([data-enhanced]) .portal-panel + .portal-panel { margin-top:48px; }
 html[data-landing-layout="b"] .portal-copy .dl-row { margin-top:32px; }

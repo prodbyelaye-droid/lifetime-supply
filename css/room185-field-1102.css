@@ -1,7 +1,7 @@
 /* Room185: source-led hold-segment adaptation; see SOURCE-CONTEXT.json.
    Existing frame, glyph geometry, five-vessel layout and title stay intact. */
 #features.main-value .f-room .rest-field {
-  background: #bee9fc;
+  background: var(--brand-sky-1);
   overflow: hidden;
 }
 #features.main-value .f-room .room185-field {
@@ -22,33 +22,33 @@
   pointer-events: none;
 }
 #features.main-value .f-room .room185-field[data-field="mint"] {
-  --room185-paint: radial-gradient(ellipse 12% 15.5% at center, #3ce7b985 0%, #3ce7b900 100%);
+  --room185-paint: radial-gradient(ellipse 12% 15.5% at center, var(--brand-green-2-a85) 0%, var(--brand-green-2-a00) 100%);
   transform: translate(13.38%, 16.94%);
 }
 #features.main-value .f-room .room185-field[data-field="warm"] {
-  --room185-paint: radial-gradient(ellipse 18.5% 33% at center, #ffbda6cc 0%, #fcd16e45 52%, #fcd16e00 100%);
+  --room185-paint: radial-gradient(ellipse 18.5% 33% at center, var(--brand-warm-6-acc) 0%, var(--brand-warm-2-a45) 52%, var(--brand-warm-2-a00) 100%);
   transform: translate(36.38%, 30.27%);
 }
 #features.main-value .f-room .room185-field[data-field="pink"] {
-  --room185-paint: radial-gradient(ellipse 18.5% 32.5% at center, #fc82cb7a 0%, #fc82cb00 100%);
+  --room185-paint: radial-gradient(ellipse 18.5% 32.5% at center, var(--brand-rose-1-a7a) 0%, var(--brand-rose-1-a00) 100%);
   transform: translate(39.39%, 53.32%);
 }
 #features.main-value .f-room .room185-field[data-field="blue"] {
-  --room185-paint: radial-gradient(ellipse 33.5% 38% at center, #7c85f578 0%, #11b1f835 55%, #11b1f800 100%);
+  --room185-paint: radial-gradient(ellipse 33.5% 38% at center, var(--brand-blue-1-a78) 0%, var(--brand-sky-4-a35) 55%, var(--brand-sky-4-a00) 100%);
   transform: translate(53.69%, 38.98%);
 }
 /* Source: one stronger blue anchor, followed by blue/mint/lilac/warm vessels.
    059/V1 substitutions are deliberate; source brand icons are never imported. */
-#features.main-value .f-room .liquid-five > span { position: relative; background: #11b1f8; }
-#features.main-value .f-room .liquid-five > span:nth-child(2) { background: #8ddcfd; }
-#features.main-value .f-room .liquid-five > span:nth-child(3) { background: #3ce7b9; }
-#features.main-value .f-room .liquid-five > span:nth-child(4) { background: #c4c8fa; }
-#features.main-value .f-room .liquid-five > span:nth-child(5) { background: #fcd16e; }
+#features.main-value .f-room .liquid-five > span { position: relative; background: var(--brand-sky-4); }
+#features.main-value .f-room .liquid-five > span:nth-child(2) { background: var(--brand-sky-5); }
+#features.main-value .f-room .liquid-five > span:nth-child(3) { background: var(--brand-green-2); }
+#features.main-value .f-room .liquid-five > span:nth-child(4) { background: var(--brand-blue-2); }
+#features.main-value .f-room .liquid-five > span:nth-child(5) { background: var(--brand-warm-2); }
 /* Original owned SVGs used as masks, preserving pixel geometry. Source185's
    light-vessel/dark-symbol relationship maps to existing 059 ink #162236. */
 #features.main-value .f-room .liquid-five > span:not(:first-child) > img { opacity: 0; }
 #features.main-value .f-room .liquid-five > span:not(:first-child)::after {
-  content: ''; position: absolute; inset: 23.5%; background: #162236;
+  content: ''; position: absolute; inset: 23.5%; background: var(--brand-navy-1);
   mask: var(--room185-glyph) center / contain no-repeat;
   -webkit-mask: var(--room185-glyph) center / contain no-repeat;
 }

@@ -82,8 +82,8 @@ const server = http.createServer((req, res) => {
       assert.deepEqual(await page.locator('video.bv-video').evaluateAll((vs) => vs.map((v) => v.id)), BLOT_VIDEOS, 'exactly the whitelisted blot clips');
       for (const v of await page.locator('video.bv-video').evaluateAll((vs) => vs.map((v) => ({id: v.id, muted: v.muted, loop: v.loop, inline: v.playsInline, auto: v.autoplay, preload: v.preload, controls: v.controls, hidden: v.getAttribute('aria-hidden'), poster: v.getAttribute('poster'), sources: [...v.querySelectorAll('source')].map((s) => s.dataset.src)})))) {
         assert(v.muted && v.loop && v.inline && v.auto && !v.controls && v.hidden === 'true' && v.preload === 'none', v.id + ' is a silent decorative loop');
-        assert.match(v.poster, /^assets\/blot-1104\/bv-[a-z]+-\d+-poster\.jpg$/, v.id + ' poster');
-        assert(v.sources.length === 2 && v.sources.every((src) => /^assets\/blot-1104\/bv-[a-z]+-\d+\.(webm|mp4)$/.test(src)), v.id + ' sources');
+        assert.match(v.poster, /^brand\/current\/blot-video\/bv-[a-z]+-\d+-poster\.jpg$/, v.id + ' poster');
+        assert(v.sources.length === 2 && v.sources.every((src) => /^brand\/current\/blot-video\/bv-[a-z]+-\d+\.(webm|mp4)$/.test(src)), v.id + ' sources');
       }
       assert.equal(await film.getAttribute('preload'), 'metadata');
       assert.equal(await film.getAttribute('poster'), 'assets/launch/lifetime-film-poster-1105.jpg');
@@ -187,9 +187,9 @@ const server = http.createServer((req, res) => {
       else assert(t2 > t1, 'the closing blot clip is playing');
       // no other video: only the launch film, the studio film and the whitelisted blot clips may be requested
       const allowedVideo = (url) => url.endsWith('/assets/launch/lifetime-film.mp4') || url.endsWith('/assets/studio-1101/studio-mixer-review.mp4') ||
-        /\/assets\/blot-1104\/bv-(keys|workflow)-\d+\.(webm|mp4)$/.test(new URL(url).pathname);
+        /\/brand\/current\/blot-video\/bv-(keys|workflow)-\d+\.(webm|mp4)$/.test(new URL(url).pathname);
       assert(videos.every(allowedVideo), 'no unlisted video downloads');
-      if (reducedMotion === 'reduce') assert(!videos.some((url) => url.includes('/assets/blot-1104/')), 'no blot clip downloads under reduced motion');
+      if (reducedMotion === 'reduce') assert(!videos.some((url) => url.includes('/brand/current/blot-video/')), 'no blot clip downloads under reduced motion');
       assert.deepEqual(errors, []); assert.deepEqual(missing, []);
       results.push({width, reducedMotion, errors, missing, videoRequests: videos.length});
       await context.close();

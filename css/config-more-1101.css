@@ -6,7 +6,7 @@ body .more-section.config-more {
   margin:0;
   width:100%;
   overflow:hidden;
-  color:#151517;
+  color:var(--brand-ink);
   background:#fff;
   text-align:center;
 }
@@ -18,7 +18,7 @@ body #main .config-more h2.ls-heading-b {
   line-height:64px;
   letter-spacing:-.05em;
   font-weight:500;
-  color:#151517;
+  color:var(--brand-ink);
 }
 .config-more h2 > span { display:block; }
 .config-more__rows { width:100%; }
@@ -27,7 +27,7 @@ body #main .config-more h2.ls-heading-b {
   scrollbar-width:none; outline-offset:-2px;
 }
 .config-more__row::-webkit-scrollbar { display:none; }
-.config-more__row:focus-visible { outline:2px solid #151517; }
+.config-more__row:focus-visible { outline:2px solid var(--brand-ink); }
 .config-more__track { display:flex; width:max-content; }
 .config-more__set {
   display:flex; flex:none; width:max-content; gap:10px;
@@ -36,7 +36,7 @@ body #main .config-more h2.ls-heading-b {
 .config-more__chip {
   display:block; flex:none; white-space:nowrap;
   height:30px; margin:0; padding:5px 15px;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Roboto,sans-serif;
+  font-family:var(--brand-font-text);
   font-size:16px; font-weight:400; line-height:20px; letter-spacing:normal;
   color:rgba(20,20,32,.6); background:#fff; border:0; border-radius:5px;
   box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);

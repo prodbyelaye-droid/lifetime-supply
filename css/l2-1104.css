@@ -19,7 +19,7 @@ html body .ls-heading-b[data-heading="questions"] { font-size:clamp(40px,5.15vw,
 /* ---------- #deep: the portal, 1:1 ---------- */
 #deep.l2-deep { padding:24px 24px 0 !important; min-height:0 !important; height:auto !important; background:none !important; overflow:visible !important; }
 #deep .l2-window { margin:0 auto; max-width:1344px; border-radius:20px; overflow:hidden; background:#fff;
-  box-shadow:0 0 0 1px rgba(17,18,20,.08), 0 30px 60px -36px rgba(7,89,133,.28), 0 12px 24px -18px rgba(17,18,20,.12); }
+  box-shadow:0 0 0 1px rgba(17,18,20,.08), 0 30px 60px -36px rgba(var(--brand-sky-55-rgb),.28), 0 12px 24px -18px rgba(17,18,20,.12); }
 #deep .l2-window img { display:block; width:100%; height:auto; }
 
 /* ---------- #stats: dot map (ref 171), 5 in one row ---------- */
@@ -29,7 +29,7 @@ html body .ls-heading-b[data-heading="questions"] { font-size:clamp(40px,5.15vw,
 #stats .l2-dots__item { padding:24px 24px 26px; border-radius:16px; background:#fff; box-shadow:0 0 0 1px var(--l2-line); }
 #stats .l2-dots__map { display:block; width:100%; height:auto; overflow:visible; }
 #stats .l2-dots__map circle { fill:var(--l2-dot); }
-#stats .l2-dots__map .t1 { fill:var(--ls-sky-base); } #stats .l2-dots__map .t2 { fill:#5fcbfa; } #stats .l2-dots__map .t3 { fill:#a9e2fc; }
+#stats .l2-dots__map .t1 { fill:var(--ls-sky-base); } #stats .l2-dots__map .t2 { fill:var(--brand-sky-20); } #stats .l2-dots__map .t3 { fill:var(--brand-sky-56); }
 #stats .l2-dots__map .ring { fill:none; stroke:var(--ls-sky-base); stroke-width:1.5; }
 #stats .l2-dots__n { margin:22px 0 0; font-size:52px; line-height:1; font-weight:600; letter-spacing:-.045em; color:var(--l2-ink); font-variant-numeric:tabular-nums; }
 #stats .l2-dots__n strong { font-weight:inherit; }
@@ -43,7 +43,7 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
 /* ---------- #price: the value stack ---------- */
 @media (min-width:701px) {
   #price .price-includes { margin-top:56px; padding:36px 40px 20px; border-radius:16px; background:rgba(255,255,255,.94);
-    box-shadow:0 0 0 1px rgba(255,255,255,.7), 0 24px 48px -32px rgba(7,89,133,.35); }
+    box-shadow:0 0 0 1px rgba(255,255,255,.7), 0 24px 48px -32px rgba(var(--brand-sky-55-rgb),.35); }
   #price .price-includes .ls-heading-b--compact { font-size:32px !important; }
   #price .price-includes .price-own { margin:10px 0 0; max-width:60ch; color:var(--l2-muted); font-size:16px; }
   #price .price-stage .price-scroll { overflow:visible; }
@@ -58,7 +58,7 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
   #price .price-list .vs-why { display:block; margin-top:4px; color:var(--ls-sky-text); font-weight:500; }
 }
 #price .price-list .vs-check { width:20px; height:20px; fill:none; stroke:var(--ls-sky-text); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
-#price .price-list .vs-check circle { stroke:rgba(7,89,133,.28); }
+#price .price-list .vs-check circle { stroke:rgba(var(--brand-sky-55-rgb),.28); }
 @media (max-width:700px) {
   #price .price-list .vs-check { display:block; margin-bottom:10px; }
   #price .price-list .vs-why { display:block; margin-top:6px; color:var(--ls-sky-text); font-weight:500; }
@@ -67,7 +67,7 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
 /* ---------- FAQ (ref 235): centred, the top line in the site gradient ---------- */
 #price .questions { text-align:center; }
 #price .l2-faq-top { display:inline-block; margin:0 0 14px; font-size:16px; font-weight:600; letter-spacing:-.01em;
-  background:linear-gradient(90deg,var(--ls-sky-text),var(--ls-sky-base) 55%,#5fcbfa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  background:linear-gradient(90deg,var(--ls-sky-text),var(--ls-sky-base) 55%,var(--brand-sky-20)); -webkit-background-clip:text; background-clip:text; color:transparent; }
 #price .questions .faq { text-align:left; max-width:640px; margin:40px auto 0; }
 
 /* ---------- footer: brand colours (the sky banner), the brand blot ---------- */
@@ -77,7 +77,7 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
 #footer .footer-links a, #footer .copyright, #footer .elaye { color:#05131b !important; }
 #footer .footer-bottom { border-top-color:rgba(5,19,27,.22) !important; }
 #footer .footer-signature .locked-logo { filter:brightness(0); opacity:.9; }
-#footer .footer-word.l2-word { margin:0; padding-top:120px; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;
+#footer .footer-word.l2-word { margin:0; padding-top:120px; font-family:var(--brand-font-display);
   font-weight:600; font-size:clamp(64px,14.6vw,212px); line-height:.86; letter-spacing:-.058em; color:#fff; white-space:nowrap; text-transform:none; }
 #footer .blob-one .blob-art { filter:none !important; }
 

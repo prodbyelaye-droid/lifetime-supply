@@ -2,8 +2,8 @@
  * by js/desktop-downloads.js; historical URL review switches are not shipped. */
 
 .dl17 {
-  --dl17-ink:#151517; --dl17-body:#41474d;
-  --v1-50:#C9ECFD; --v1-45:#BEE9FC; --v1-30:#8DDCFD; --v1-20:#3CC3FE; --v1-10:#11B1F8;
+  --dl17-ink:var(--brand-ink); --dl17-body:#41474d;
+  --v1-50:var(--brand-sky-3); --v1-45:var(--brand-sky-1); --v1-30:var(--brand-sky-5); --v1-20:var(--brand-sky-9); --v1-10:var(--brand-sky-4);
   position:relative; isolation:isolate; padding-block:60px; overflow-x:clip;
 }
 .dl17-stage {
@@ -17,7 +17,7 @@
   padding:96px 24px 120px; max-width:640px;
 }
 .dl17 .ls-heading-b { color:var(--dl17-ink); }
-.dl17-word { background:linear-gradient(112deg,#0564a8 0%,#2f52b0 50%,#1c6592 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.dl17-word { background:linear-gradient(112deg,var(--brand-sky-10) 0%,var(--brand-sky-16) 50%,var(--brand-sky-17) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .dl17-copy > p { margin:22px 0 0; color:var(--dl17-body); font-size:17px; line-height:1.5; max-width:30em; }
 .dl17-copy > p > span { display:block; width:fit-content; max-width:100%; margin-inline:auto; text-wrap:balance; }
 .dl17-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
@@ -30,16 +30,16 @@
 
 /* ---------- A · our arch in V1 ---------- */
 .dl17[data-dl="a"] .dl17-stage {
-  background:linear-gradient(180deg, #EEF9FF 0%, #E2F5FE 34%, #D3F0FE 58%, #C9ECFD 100%);
-  box-shadow:inset 0 0 0 1px rgba(17,177,248,.10);
+  background:linear-gradient(180deg, #EEF9FF 0%, #E2F5FE 34%, var(--brand-sky-52) 58%, var(--brand-sky-3) 100%);
+  box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.10);
 }
 .dl17[data-dl="a"] .dl17-arch, .dl17[data-dl="a"] .dl17-dots, .dl17[data-dl="a"] .dl17-edge { display:block; position:absolute; }
 .dl17-arch {
   inset:0;
   background:
-    radial-gradient(ellipse 34% 52% at 50% 104%, var(--v1-10) 0%, rgba(17,177,248,.86) 30%, rgba(17,177,248,0) 100%),
-    radial-gradient(ellipse 52% 78% at 50% 108%, var(--v1-20) 0%, rgba(60,195,254,.78) 40%, rgba(60,195,254,0) 100%),
-    radial-gradient(ellipse 72% 96% at 50% 112%, var(--v1-30) 0%, rgba(141,220,253,.70) 50%, rgba(141,220,253,0) 100%);
+    radial-gradient(ellipse 34% 52% at 50% 104%, var(--v1-10) 0%, rgba(var(--brand-sky-4-rgb),.86) 30%, rgba(var(--brand-sky-4-rgb),0) 100%),
+    radial-gradient(ellipse 52% 78% at 50% 108%, var(--v1-20) 0%, rgba(var(--brand-sky-9-rgb),.78) 40%, rgba(var(--brand-sky-9-rgb),0) 100%),
+    radial-gradient(ellipse 72% 96% at 50% 112%, var(--v1-30) 0%, rgba(var(--brand-sky-5-rgb),.70) 50%, rgba(var(--brand-sky-5-rgb),0) 100%);
 }
 /* "the arched colourway with the white on the edges": two white sweeps rise from the lower corners */
 /* each sweep is the corner of a big white ellipse; a 5 px feather keeps the edge soft but drawn, as in our original */
@@ -58,8 +58,8 @@
 /* the splats sit outside the panel, bleeding off the page edges as in our original */
 .dl17-side { display:none; position:absolute; z-index:0; pointer-events:none; }
 .dl17[data-dl="a"] .dl17-side { display:block; }
-.dl17-side--l { width:132px; left:-58px; top:calc(60px + 34%); fill:#FC82CB; }
-.dl17-side--r { width:118px; right:-50px; bottom:20px; fill:#7C85F5; }
+.dl17-side--l { width:132px; left:-58px; top:calc(60px + 34%); fill:var(--brand-rose-1); }
+.dl17-side--r { width:118px; right:-50px; bottom:20px; fill:var(--brand-blue-1); }
 
 /* ---------- B · Mojo's white field, our splats bleeding off it ---------- */
 .dl17[data-dl="b"] .dl17-stage { background:#F5FAFD; }
@@ -79,13 +79,13 @@
   background:
     repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0 3px, rgba(255,255,255,.16) 3px 4px),
     linear-gradient(128deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 32%, rgba(255,255,255,0) 62%, rgba(255,255,255,.4) 100%),
-    conic-gradient(from 210deg at 50% 50%, #BEE9FC 0deg, #8DDCFD 40deg, #F7C8E6 78deg, #C9ECFD 112deg, #3CC3FE 150deg, #C4C8FA 196deg, #BFF5E6 236deg, #8DDCFD 276deg, #FEE6B8 310deg, #BEE9FC 360deg);
-  box-shadow:inset 0 0 0 1px rgba(17,177,248,.28), 0 -1px 0 rgba(255,255,255,.9);
+    conic-gradient(from 210deg at 50% 50%, var(--brand-sky-1) 0deg, var(--brand-sky-5) 40deg, var(--brand-rose-11) 78deg, var(--brand-sky-3) 112deg, var(--brand-sky-9) 150deg, var(--brand-blue-2) 196deg, var(--brand-green-9) 236deg, var(--brand-sky-5) 276deg, var(--brand-warm-10) 310deg, var(--brand-sky-1) 360deg);
+  box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.28), 0 -1px 0 rgba(255,255,255,.9);
 }
 .dl17-hub {
   position:absolute; inset:36%; border-radius:50%;
-  background:radial-gradient(circle, #fff 0 22%, #DDF3FE 22% 25%, #fff 25% 58%, rgba(255,255,255,.55) 58% 100%);
-  box-shadow:inset 0 0 0 1px rgba(17,177,248,.30), 0 0 0 6px rgba(255,255,255,.35);
+  background:radial-gradient(circle, #fff 0 22%, var(--brand-sky-53) 22% 25%, #fff 25% 58%, rgba(255,255,255,.55) 58% 100%);
+  box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.30), 0 0 0 6px rgba(255,255,255,.35);
 }
 
 @media (min-width:701px) and (max-width:1180px) {
@@ -108,9 +108,9 @@
   .dl17-row { align-items:center; }
   .dl17 .dl-btn { width:100%; max-width:280px; min-width:0; }
   .dl17-arch { background:
-    radial-gradient(ellipse 70% 30% at 50% 104%, var(--v1-10) 0%, rgba(17,177,248,.86) 30%, rgba(17,177,248,0) 100%),
-    radial-gradient(ellipse 95% 46% at 50% 106%, var(--v1-20) 0%, rgba(60,195,254,.78) 40%, rgba(60,195,254,0) 100%),
-    radial-gradient(ellipse 130% 62% at 50% 110%, var(--v1-30) 0%, rgba(141,220,253,.7) 50%, rgba(141,220,253,0) 100%); }
+    radial-gradient(ellipse 70% 30% at 50% 104%, var(--v1-10) 0%, rgba(var(--brand-sky-4-rgb),.86) 30%, rgba(var(--brand-sky-4-rgb),0) 100%),
+    radial-gradient(ellipse 95% 46% at 50% 106%, var(--v1-20) 0%, rgba(var(--brand-sky-9-rgb),.78) 40%, rgba(var(--brand-sky-9-rgb),0) 100%),
+    radial-gradient(ellipse 130% 62% at 50% 110%, var(--v1-30) 0%, rgba(var(--brand-sky-5-rgb),.7) 50%, rgba(var(--brand-sky-5-rgb),0) 100%); }
   .dl17-edge { filter:blur(3px); }
   .dl17-edge--l { background:radial-gradient(ellipse 40% 34% at -6% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }
   .dl17-edge--r { background:radial-gradient(ellipse 40% 34% at 106% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }

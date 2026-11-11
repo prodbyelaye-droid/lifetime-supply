@@ -1,14 +1,14 @@
 /* Sources and exact allocation: docs/colour-review.md. Only ?colour=A|B|C opts into this study. */
-html[data-colour-review] { --review-blue:#0a5ff8; }
+html[data-colour-review] { --review-blue:var(--brand-sky-7); }
 html[data-colour-review] .ob { background:center/contain no-repeat; }
-html[data-colour-review] .ob:nth-child(1) { background-image:url('../assets/colour-review/blot-183.webp'); }
-html[data-colour-review] .ob:nth-child(2) { background-image:url('../assets/colour-review/blot-037.webp'); }
-html[data-colour-review] .ob:nth-child(3) { background-image:url('../assets/colour-review/blot-150.webp'); }
-html[data-colour-review] .ob:nth-child(4) { background-image:url('../assets/colour-review/blot-189.webp'); }
-html[data-colour-review] .ob:nth-child(5) { background-image:url('../assets/colour-review/blot-037.webp'); }
+html[data-colour-review] .ob:nth-child(1) { background-image:url('../brand/current/blot/colour-review/blot-183.webp'); }
+html[data-colour-review] .ob:nth-child(2) { background-image:url('../brand/current/blot/colour-review/blot-037.webp'); }
+html[data-colour-review] .ob:nth-child(3) { background-image:url('../brand/current/blot/colour-review/blot-150.webp'); }
+html[data-colour-review] .ob:nth-child(4) { background-image:url('../brand/current/blot/colour-review/blot-189.webp'); }
+html[data-colour-review] .ob:nth-child(5) { background-image:url('../brand/current/blot/colour-review/blot-037.webp'); }
 html[data-colour-review] .ob .b2-svg { visibility:hidden; }
 html[data-colour-review] .b2-drop { display:none; }
-html[data-colour-review] :is(.deep-b2,.vault-b2,.flood-rider) { background:url('../assets/colour-review/blot-canonical.webp') center/contain no-repeat; filter:grayscale(1) brightness(5); }
+html[data-colour-review] :is(.deep-b2,.vault-b2,.flood-rider) { background:url('../brand/current/blot/colour-review/blot-canonical.webp') center/contain no-repeat; filter:grayscale(1) brightness(5); }
 html[data-colour-review] :is(.deep-b2,.vault-b2,.flood-rider) .b2-svg { visibility:hidden; }
 html[data-colour-review] .side-layer { visibility:hidden; }
 html[data-colour-review] .key, html[data-colour-review] .stats-line,
@@ -25,11 +25,11 @@ html:is([data-colour-review=A],[data-colour-review=C]) .deep-b2 { opacity:.18; }
 html:is([data-colour-review=A],[data-colour-review=C]) .band { background:#f5f5f5; }
 html:is([data-colour-review=A],[data-colour-review=C]) :is(.curves,.stats-chain,.chat-head) { filter:grayscale(1); }
 html:is([data-colour-review=A],[data-colour-review=C]) .deep-field::after { filter:grayscale(1); }
-html[data-colour-review] .close-call { background:#66234f url('../assets/colour-review/field-037.webp') center/cover; }
+html[data-colour-review] .close-call { background:var(--brand-rose-7) url('../assets/colour-review/field-037.webp') center/cover; }
 html[data-colour-review] .close-call :is(.close192,.close-b-art,.close-blot) { visibility:hidden; }
 html[data-colour-review] .close-inner { color:#fff; }
-html[data-colour-review] .close-cta { background:#fff; color:#151517; }
-html[data-colour-review] .footer-blob { background:url('../assets/colour-review/blot-150.webp') center/contain no-repeat; }
+html[data-colour-review] .close-cta { background:#fff; color:var(--brand-ink); }
+html[data-colour-review] .footer-blob { background:url('../brand/current/blot/colour-review/blot-150.webp') center/contain no-repeat; }
 html[data-colour-review] .footer-blob .b2-svg { visibility:hidden; }
 html[data-colour-review] .questions::before { background:none; }
 /* B: one source field per whole section. Nested artwork is neutral, so no section repeats a source field. */
@@ -43,21 +43,21 @@ html[data-colour-review=B] :is(.deep-field,.portal-arch,.price-stage,.stats-shel
 html[data-colour-review=B] :is(.features.wrap,.steps-section.wrap) { width:100%; padding-inline:max(48px,calc((100% - 1200px)/2)); }
 html[data-colour-review=B] :is(.flow-copy,.deep-field) { color:#fff; }
 html[data-colour-review=B] .flow-copy p { color:#fff; }
-html[data-colour-review=B] .flow-copy { background:#081a2ab8; border-radius:24px; padding:36px; }
+html[data-colour-review=B] .flow-copy { background:var(--brand-navy-5-ab8); border-radius:24px; padding:36px; }
 html[data-colour-review=B] .more-section { color:#fff; }
-html[data-colour-review=B] .more-track span { background:#ffffffed; color:#151517; }
-html[data-colour-review=B] .portal-arch .dl-login { color:#151517; text-decoration-color:#15151780; }
+html[data-colour-review=B] .more-track span { background:#ffffffed; color:var(--brand-ink); }
+html[data-colour-review=B] .portal-arch .dl-login { color:var(--brand-ink); text-decoration-color:var(--brand-ink-a80); }
 html[data-colour-review=B] .demo-links,
 html[data-colour-review=B] .demo-links a { color:#fff; }
 html[data-colour-review=B] .demo-film::before,
 html[data-colour-review=B] .demo-film::after { background:none; }
 html[data-colour-review=B] .questions { background:#ffffffed; border-radius:24px; padding:40px; }
-html[data-colour-review=B] .close-call[data-variant] .close-inner { color:#151517; }
-html[data-colour-review=B] .close-call[data-variant] .close-cta { background:#151517; color:#fff; }
+html[data-colour-review=B] .close-call[data-variant] .close-inner { color:var(--brand-ink); }
+html[data-colour-review=B] .close-call[data-variant] .close-cta { background:var(--brand-ink); color:#fff; }
 /* The existing 189 card is the white-on-colour treatment; its opaque-enough tint keeps copy legible. */
-html[data-colour-review] .price-stage .price-card { background:#321f45d9; color:#fff; }
+html[data-colour-review] .price-stage .price-card { background:var(--brand-violet-6-ad9); color:#fff; }
 html[data-colour-review] .price-stage .price-card :is(.pixel,.price-sub,.price-summary) { color:#fff; }
-html[data-colour-review] .price-stage .price-buy { background:#fff; color:#151517; }
+html[data-colour-review] .price-stage .price-buy { background:#fff; color:var(--brand-ink); }
 html[data-colour-review] .price-stage .price-list li { background:#ffffffe6; }
 /* C: the same placement as A, with a source-blue state at the point of interaction (145 / 184). */
 html[data-colour-review=C] :is(a,button,summary,input,textarea):focus-visible { outline:3px solid var(--review-blue); outline-offset:4px; }

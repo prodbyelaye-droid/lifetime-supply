@@ -32,13 +32,13 @@
   display: inline;
   font: inherit;
   letter-spacing: inherit;
-  color: #20354c;
+  color: var(--brand-navy-3);
 }
 
 @supports (background-image: linear-gradient(to right, #000, #fff)) and ((background-clip: text) or (-webkit-background-clip: text)) {
   #inside [data-gradient-273] {
-    background-image: linear-gradient(to right, #20354c, #075abb, #20354c);
-    background-image: linear-gradient(to right in oklab, #20354c, #075abb, #20354c);
+    background-image: linear-gradient(to right, var(--brand-navy-3), var(--brand-sky-19), var(--brand-navy-3));
+    background-image: linear-gradient(to right in oklab, var(--brand-navy-3), var(--brand-sky-19), var(--brand-navy-3));
     background-size: 300% 100%;
     background-position: 0% 0;
     background-repeat: repeat;

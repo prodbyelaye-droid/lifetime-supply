@@ -1,31 +1,31 @@
 /* cdesign 010. Exact task-030 V1 files; task-007 opening geometry stays; STANDING 13 recolours accents.
    Current GO-plan supersedes the audit's six separate colour families.
    White is the ground; 145/189 field, 145 footer band, colour only in blots. */
-:root{--flow-ink:#151517;--flow-muted:#41474d;--flow-blue:#164a7a;--flow-field:url('../assets/flow-v1/V1-field.webp')}
+:root{--flow-ink:var(--brand-ink);--flow-muted:#41474d;--flow-blue:var(--brand-sky-42);--flow-field:url('../assets/flow-v1/V1-field.webp')}
 body{background:#fff;color:var(--flow-ink)}
 .side-layer{display:none}
 .inside.band,.flow,.stats-section,.more-section,.portal-section,.steps-section,.closing-section,.contact-section{background:#fff;color:var(--flow-ink)}
 .inside .band,.inside .split-copy,.inside .product,.stats-shell,.questions,.contact-stage,.chat178,.c178-chat,.c178-files,.room-tile,.step{background:#fff}
-.inside .blend{background:#bee9fc var(--flow-field) center/cover;border-radius:0 24px 24px 0}
+.inside .blend{background:var(--brand-sky-1) var(--flow-field) center/cover;border-radius:0 24px 24px 0}
 .inside .blend10{visibility:hidden}
 .inside .key{color:var(--flow-ink);background:none}
 .inside .split{border:1px solid #dedfe2;overflow:hidden;border-radius:24px}
 .inside .product{color:var(--flow-ink);border-color:#d4e3ec}
 .flow-copy{background:none;color:var(--flow-ink)}
 .flow-copy p{color:var(--flow-muted)}
-.flow .tracks{stroke:#8ddcfd}
+.flow .tracks{stroke:var(--brand-sky-5)}
 .deep-wrap{padding:40px 0;background:#fff}
 .deep-field{position:relative;overflow:hidden;background:#fff;height:460px;border-radius:0}
-.deep-field::before{content:'';position:absolute;inset:0;background:#bee9fc var(--flow-field) center/cover;mask-image:linear-gradient(transparent,#000 18%,#000 77%,transparent);border-radius:50% 50% 45% 45%/12% 12% 12% 12%;pointer-events:none}
+.deep-field::before{content:'';position:absolute;inset:0;background:var(--brand-sky-1) var(--flow-field) center/cover;mask-image:linear-gradient(transparent,#000 18%,#000 77%,transparent);border-radius:50% 50% 45% 45%/12% 12% 12% 12%;pointer-events:none}
 .deep-field>.gc,.deep-field>.deep-sabo,.deep-field::after{display:none}
 .deep-symbol{z-index:1;opacity:1;filter:none}
-.flow-deep-blot{display:block;width:110px;height:135px;background:url('../assets/hero-076/eyeless/deep-189.svg') center/contain no-repeat}
+.flow-deep-blot{display:block;width:110px;height:135px;background:url('../brand/current/blot/deep-189.svg') center/contain no-repeat}
 .deep-wordmark{filter:none;width:210px;height:auto;bottom:72px}
 .stats-shell{border:0;color:var(--flow-ink)}
 .stats-line,.numbers strong{color:var(--flow-blue);background:none;-webkit-text-fill-color:currentColor}
 .stats-label,.numbers span,.stats-copy p,.stats-chain li{color:var(--flow-muted)}
 .stats-chain li{background:#fff;border-color:#dedfe2;box-shadow:none}
-.chain-dot{background:#076af3!important}
+.chain-dot{background:var(--brand-sky-43)!important}
 .more-section::before,.more-section::after{background:#fff}
 .more-section h2{color:var(--flow-ink)}
 .more-track span{background:#fff;color:var(--flow-ink);border:1px solid #b7bdc5;box-shadow:none}
@@ -39,12 +39,12 @@ body{background:#fff;color:var(--flow-ink)}
 .step-num,.c178-avatar{background:#fff;color:var(--flow-blue)}
 .c178-tabs{background:#fff;border-color:#dedfe2;color:var(--flow-muted)}
 .price-stage{isolation:isolate;overflow:hidden;background:#fff;color:var(--flow-ink);border-radius:0}
-.price-stage::before{content:'';position:absolute;z-index:-1;inset:0;background:#bee9fc var(--flow-field) center/100% 100%;mask-image:linear-gradient(transparent,#000 16%,#000 80%,transparent);border-radius:50% 50% 40% 40%/6% 6% 6% 6%;pointer-events:none}
+.price-stage::before{content:'';position:absolute;z-index:-1;inset:0;background:var(--brand-sky-1) var(--flow-field) center/100% 100%;mask-image:linear-gradient(transparent,#000 16%,#000 80%,transparent);border-radius:50% 50% 40% 40%/6% 6% 6% 6%;pointer-events:none}
 .price-stage::after,.price-stage>.gc,.price-stage>.pf-grain,.price-field{display:none}
-.price-stage .price-card{background:#fffffff2;color:var(--flow-ink);border:1px solid #d1e4f0;box-shadow:none;backdrop-filter:none}
+.price-stage .price-card{background:#fffffff2;color:var(--flow-ink);border:1px solid var(--brand-sky-15);box-shadow:none;backdrop-filter:none}
 .price-stage .price-card :is(.pixel,.price-sub,.price-summary,.price-big,.price-amount,.price-currency){color:var(--flow-ink)}
 .price-stage .price-buy{background:var(--flow-ink);color:#fff;border-color:var(--flow-ink);box-shadow:none}
-.price-stage .price-list li{background:#ffffffed;color:var(--flow-ink);border-color:#d1e4f0}
+.price-stage .price-list li{background:#ffffffed;color:var(--flow-ink);border-color:var(--brand-sky-15)}
 .price-stage .price-list li p,.price-note,.price-stage .price-copy p{color:var(--flow-muted)}
 .price-stage .key,.price-stage h2{color:var(--flow-ink);background:none}
 .questions{border:0;border-radius:0;color:var(--flow-ink)}
@@ -65,16 +65,16 @@ body{background:#fff;color:var(--flow-ink)}
 .footer-word h2{width:100%;margin:0}
 .flow-footer-logo{display:block;width:min(1050px,94%);height:auto}
 .footer-top,.footer-bottom,.footer-bottom a,.footer-top a,.footer-top p{color:var(--flow-ink)}
-.footer-bottom{background:transparent;border-color:#58b7e5}
+.footer-bottom{background:transparent;border-color:var(--brand-sky-44)}
 .footer .tab{background:#fff;color:var(--flow-ink);border-color:#707070}
 .footer #profile-links{background:#fff;color:var(--flow-ink)}
 .footer .newsletter{color:var(--flow-ink)}
 /* Preserve 034's seven compositions and interaction, now in the picked V1.
    039's complete arch/texture fits its native ratio, including the white foot. */
-.ev-features{--feature-gradient:linear-gradient(130deg,#c9ecfd,#8ddcfd 48%,#11b1f8)}
+.ev-features{--feature-gradient:linear-gradient(130deg,var(--brand-sky-3),var(--brand-sky-5) 48%,var(--brand-sky-4))}
 .ev-features .rest-field{background-image:var(--flow-field)}
 .ev-features .liquid-five span{background-image:var(--flow-field)}
-.ev-features .pair-panels i:last-child:not(.cover-two){background:#bee9fc var(--flow-field) center/cover}
+.ev-features .pair-panels i:last-child:not(.cover-two){background:var(--brand-sky-1) var(--flow-field) center/cover}
 .ev-features .feature-grid .feature .ev-art{height:auto;aspect-ratio:810/660}
 .ev-features .f-vault .arch-art{object-fit:contain}
 .ev-features .f-vault .card-blot{top:10%;left:9%;bottom:auto;right:auto;width:15%;height:auto}
@@ -101,7 +101,7 @@ body{background:#fff;color:var(--flow-ink)}
 .steps-section .step-login{color:#fff}
 
 /* STANDING 13: our own accent hues. The V1 field and locked logo remain exact. */
-.hero-stop[data-colour=magenta] .b2-pose :is(path,rect){fill:#7C85F5}
+.hero-stop[data-colour=magenta] .b2-pose :is(path,rect){fill:var(--brand-blue-1)}
 .chat-blot{position:relative}
-.chat-blot .b2-pose :is(path,rect){fill:#D778F5}
+.chat-blot .b2-pose :is(path,rect){fill:var(--brand-violet-7)}
 .chat-blot::after{content:"";position:absolute;left:29%;top:38%;width:14%;height:6%;border-radius:4px;background:#fff;box-shadow:9px 0 #fff}

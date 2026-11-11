@@ -3,7 +3,7 @@
    thin line, and a line that fills as you scroll. Markup and type: Origin UI Timeline (coss.com/origin/timeline, MIT):
    ring dots, reached steps solid. Stripe Atlas "how it works": one accent only, on the numbers and ticks.
    Ours: V1 Sky line fill, a small eyeless blot riding the line's tip, real portal stills, copy 02 §4 word for word. */
-.flow:has(.day96){--d96-ink:#151517;--d96-muted:#5b636c;--d96-body:#41474d;--d96-accent:#0564a8;--d96-tick:#0a8de6;
+.flow:has(.day96){--d96-ink:var(--brand-ink);--d96-muted:#5b636c;--d96-body:#41474d;--d96-accent:var(--brand-sky-10);--d96-tick:var(--brand-sky-48);
   --d96-track:#e3e8ee;--d96-line-x:20px;--d96-col:340px;--d96-anchor:max(120px,24vh);--d96-dot:16px;--d96-rider:28px;--d96-dy:49px;
   overflow:clip;display:block;min-height:0}
 .flow:has(.day96) .curves{display:none}
@@ -28,8 +28,8 @@ body .flow-copy.day96 .day96-head>p{margin:24px 0 0;max-width:560px;font-size:20
 .day96-step.is-reached .day96-dot{background:var(--d96-tick);box-shadow:inset 0 0 0 2px var(--d96-tick)}
 .day96-step.is-reached .day96-dot svg{opacity:1}
 body .flow-copy.day96 .day96-label{margin:0;display:flex;flex-direction:column;gap:10px}
-.day96-num{font:600 14px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Roboto,sans-serif;letter-spacing:.04em;color:var(--d96-accent);font-variant-numeric:tabular-nums;padding-top:2px}
-.day96-time{font:500 48px/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,Roboto,sans-serif;letter-spacing:-.035em;color:var(--d96-muted);transition:color .3s ease}
+.day96-num{font:600 14px/1 var(--brand-font-text);letter-spacing:.04em;color:var(--d96-accent);font-variant-numeric:tabular-nums;padding-top:2px}
+.day96-time{font:500 48px/1 var(--brand-font-display-wide);letter-spacing:-.035em;color:var(--d96-muted);transition:color .3s ease}
 .day96-step.is-reached .day96-time{color:var(--d96-ink)}
 .day96[data-label=num] .day96-num{display:none}
 .day96[data-label=num] .day96-time{font-variant-numeric:tabular-nums}
@@ -45,7 +45,7 @@ body .flow-copy.day96 .day96-what>p{margin:20px 0 0;max-width:600px;font-size:18
 /* the line: grey track, V1 fill from the top (scaleY, no layout), and the rider at the tip */
 .day96-track{position:absolute;left:calc(var(--d96-line-x) - 1px);top:var(--d96-t0,var(--d96-dy));height:var(--d96-len,calc(100% - var(--d96-dy)));width:2px;border-radius:2px;background:var(--d96-track);pointer-events:none}
 .day96-fill{position:absolute;inset:0;border-radius:inherit;transform-origin:50% 0;transform:scaleY(var(--d96-p,1));
-  background:linear-gradient(180deg,#bde9fd 0,#8ddcfd 22%,#3cc3fe 62%,#11b1f8 100%);will-change:transform}
+  background:linear-gradient(180deg,var(--brand-sky-49) 0,var(--brand-sky-5) 22%,var(--brand-sky-9) 62%,var(--brand-sky-4) 100%);will-change:transform}
 .day96-rider{position:absolute;z-index:3;left:50%;top:0;width:var(--d96-rider);height:var(--d96-rider);margin:calc(var(--d96-rider) / -2) 0 0 calc(var(--d96-rider) / -2);
   transform:translate3d(0,var(--d96-y,0px),0);will-change:transform;display:none}
 .day96-rider svg{display:block;width:100%;height:100%;transform:scale(var(--d96-sx,1),var(--d96-sy,1));transform-origin:50% 50%}

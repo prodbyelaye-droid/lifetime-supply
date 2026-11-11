@@ -7,7 +7,7 @@ html[data-flood-choice=short] .flood-short{
   height:min(440px,70svh);background:transparent;pointer-events:none;
 }
 .flood-short-field{
-  position:absolute;inset:0;background:#bee9fc url('../assets/flow-v1/V1-field.webp') center/100% 100% no-repeat;
+  position:absolute;inset:0;background:var(--brand-sky-1) url('../assets/flow-v1/V1-field.webp') center/100% 100% no-repeat;
   opacity:.92;
   mask-image:radial-gradient(ellipse 72% 50% at 50% 50%,#000 35%,#000c 60%,transparent 100%);
   transform-origin:50% 50%;

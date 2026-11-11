@@ -2,7 +2,7 @@
    the shot or clip fills the box, with only a hairline. Members-only drops plays the unused blot clip (the desk/mixer one). */
 html body #main #features.main-value .mv-art{background:transparent;border-radius:10px;overflow:hidden}
 html body #main #features.main-value .mv-art .rest-field{display:none}
-html body #main #features.main-value .mv-art .board-window{inset:0;border-radius:10px;box-shadow:inset 0 0 0 1px #1515171a;overflow:hidden}
+html body #main #features.main-value .mv-art .board-window{inset:0;border-radius:10px;box-shadow:inset 0 0 0 1px var(--brand-ink-a1a);overflow:hidden}
 html body #main #features.main-value .mv-art video.mv-shot{object-fit:cover;object-position:50% 50%;background:#000}
 
 /* Elaye 6 Nov 15:07: the download block's "log in" sat on top of the buttons; give it room */

@@ -7,9 +7,9 @@ html body { --edge: 12px; } /* the panels' one edge: this field, the close and t
 @media (max-width: 700px) { html body { --edge: 6px; } }
 
 html body #main #price {
-  --p-deep: #3581bc;
-  --p-tick: #3ce7b9;            /* the verified tick's green on a dark ground: portal --ls-mint-base, components/app/code-card.css */
-  --p-tick-on: #162236;         /* its check, portal --ls-mint-on-base */
+  --p-deep: var(--brand-sky-58);
+  --p-tick: var(--brand-green-2);            /* the verified tick's green on a dark ground: portal --ls-mint-base, components/app/code-card.css */
+  --p-tick-on: var(--brand-navy-1);         /* its check, portal --ls-mint-on-base */
   --p-hair: rgba(255, 255, 255, .3);
   padding-inline: 0;
   background: #fff;
@@ -256,7 +256,7 @@ html body #main #price .price-faq .faq-answer p {
 
 /* no frosting for anyone who asked for less of it */
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-  html body #main #price .price-stage .price-card { background: #0a3f78; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html body #main #price .price-stage .price-card { background: var(--brand-sky-59); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 @media (hover: hover) and (pointer: fine) {
   html body #main #price .price-faq .faq summary:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -295,7 +295,7 @@ html body #main #questions .questions .faq {
 }
 html body #main #questions .faq-column { min-width: 0; }
 html body #main #questions .faq summary { font-size: 17px; line-height: 1.35; font-weight: 500; cursor: pointer; }
-html body #main #questions .faq-answer p { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--flow-ink, #151517); text-wrap: pretty; }
+html body #main #questions .faq-answer p { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--flow-ink, var(--brand-ink)); text-wrap: pretty; }
 html body #main #questions .dm-line { order: 3; margin: 24px 0 0; max-width: 62ch; font-size: var(--sys-small); line-height: 1.45; text-align: start; }
 @media (max-width: 700px) {
   html body #main #questions .questions .faq { grid-template-columns: minmax(0, 1fr); }

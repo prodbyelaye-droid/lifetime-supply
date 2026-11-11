@@ -195,15 +195,15 @@ html body #main #stats .stats-chips li { padding: 4px 10px; font-size: var(--sys
 
 /* ---------- the eight boxes: four across, two on a phone; a zoomed-in shot, one line and its real depth ---------- */
 html body #main #features.main-value .mv-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; }
-html body #main #features.main-value .mv-art { aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 10px; background: #bee9fc; }
-html body #main #features.main-value .mv-art .board-window { position: absolute; inset: 9px 9px 0; border: 0; border-radius: 7px 7px 0 0; background: #fff; box-shadow: 0 8px 18px #0054fd18; }
+html body #main #features.main-value .mv-art { aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 10px; background: var(--brand-sky-1); }
+html body #main #features.main-value .mv-art .board-window { position: absolute; inset: 9px 9px 0; border: 0; border-radius: 7px 7px 0 0; background: #fff; box-shadow: 0 8px 18px var(--brand-sky-2-a18); }
 html body #main #features.main-value .mv-shot { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 html body #main #features.main-value .mv-copy { padding: 10px 1px 0; }
 html body #main #features.main-value .mv-title { margin: 0 0 4px; }
 html body #main #features.main-value .mv-copy p { font-size: var(--sys-small); line-height: 1.45; }
 html body #main #features.main-value .mv-depth { margin: 8px 0 0; padding: 0; list-style: none; font-size: var(--sys-micro); line-height: 1.35; color: #5d646c; }
-html body #main #features.main-value .mv-depth li { padding: 5px 0; border-top: 1px solid #1515171a; }
-html body #main #features.main-value .mv-depth b { font-weight: 600; color: #151517; font-variant-numeric: tabular-nums; }
+html body #main #features.main-value .mv-depth li { padding: 5px 0; border-top: 1px solid var(--brand-ink-a1a); }
+html body #main #features.main-value .mv-depth b { font-weight: 600; color: var(--brand-ink); font-variant-numeric: tabular-nums; }
 @media (max-width: 1000px) { html body #main #features.main-value .mv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) {
   html body #main #features.main-value .mv-grid { gap: 20px 12px; }
@@ -282,7 +282,7 @@ html body #main #founder .fs1105-card, html body #main #founder .fs1101-heard { 
   animation: mf1105-x var(--tx, 7s) cubic-bezier(.37, 0, .63, 1) infinite alternate;
   animation-play-state: paused;
 }
-#founder .mf1104__item img { filter: none; border-radius: 8px; box-shadow: 0 10px 24px #16324a22; animation: mf1105-y var(--ty, 6s) cubic-bezier(.37, 0, .63, 1) infinite alternate; animation-play-state: paused; }
+#founder .mf1104__item img { filter: none; border-radius: 8px; box-shadow: 0 10px 24px var(--brand-navy-8-a22); animation: mf1105-y var(--ty, 6s) cubic-bezier(.37, 0, .63, 1) infinite alternate; animation-play-state: paused; }
 #founder.in-view .mf1104__item, #founder.in-view .mf1104__item img { animation-play-state: running; }
 html.motion-paused #founder .mf1104__item, html.motion-paused #founder .mf1104__item img { animation-play-state: paused; }
 /* sine, 10-16 s per cover there and back, 10 px either way and 2 degrees */

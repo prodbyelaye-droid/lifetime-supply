@@ -1,6 +1,6 @@
 /* clanding 063: critic 060/061 repairs. 030 V1 and 031 A remain source-exact.
    Accent ramps: 059 A. Geometry follows the delivered page and named critiques. */
-:root { --polish-ink:#151517; --polish-muted:#41474d; --polish-radius:20px; }
+:root { --polish-ink:var(--brand-ink); --polish-muted:#41474d; --polish-radius:20px; }
 p,.numbers span,.price-includes summary { text-wrap:pretty; }
 h1,h2 { text-wrap:balance; }
 .headline-stop { color:var(--ls-periwinkle-text); font:inherit; vertical-align:baseline; }
@@ -45,7 +45,7 @@ body :is(a,button,summary,textarea,[tabindex]):focus-visible { outline:3px solid
 .steps-section { padding-block:32px 64px; }
 /* 009's ink CTA + 189's glass hierarchy, on the exact 030 field; no pattern overlay. */
 .closing-section { padding-top:64px; }
-#price .price-stage { border-radius:40px; padding:56px 48px 40px; background:#c9ecfd var(--flow-field) center/cover; }
+#price .price-stage { border-radius:40px; padding:56px 48px 40px; background:var(--brand-sky-3) var(--flow-field) center/cover; }
 #price .price-stage::before,#price .price-stage::after,#price .price-field,#price .pf-grain { display:none; }
 #price .price-stage .price-grid .display { letter-spacing:-.035em; line-height:1.04; }
 #price .price-stage .price-card,#price .price-stage .price-list li { border-radius:var(--polish-radius); background:#fff; border:1px solid #ffffffb3; box-shadow:none; color:var(--polish-ink); }
@@ -125,13 +125,13 @@ body :is(a,button,summary,textarea,[tabindex]):focus-visible { outline:3px solid
 #price .price-includes h3 { font-size:15px; font-weight:500; line-height:1.5; letter-spacing:0; max-width:36ch; text-wrap:balance; margin-bottom:16px; }
 #price .price-summary { max-width:none; text-wrap:balance; }
 .questions { width:100%; max-width:576px; padding:80px 0 60px; }
-.questions::before { display:block; inset:64px 0 auto; height:3px; background:linear-gradient(90deg,#C9ECFD,#8DDCFD,#3CC3FE,#11B1F8); border-radius:999px; mask-image:none; pointer-events:none; }
+.questions::before { display:block; inset:64px 0 auto; height:3px; background:linear-gradient(90deg,var(--brand-sky-3),var(--brand-sky-5),var(--brand-sky-9),var(--brand-sky-4)); border-radius:999px; mask-image:none; pointer-events:none; }
 .questions h2 { font-size:30px; font-weight:600; line-height:36px; letter-spacing:0; text-align:center; margin:0 0 32px; }
 .faq { display:block; }
 .faq details { padding:16px 0; border-top:0; border-bottom:1px solid #e2e8f0; }
 .faq summary { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0; min-height:24px; font-size:16px; font-weight:500; line-height:24px; }
 .faq summary::after { content:none; }
-.faq-chevron { flex:none; color:#1d293d; transition:transform 500ms ease-in-out; }
+.faq-chevron { flex:none; color:var(--brand-navy-6); transition:transform 500ms ease-in-out; }
 .faq details[open] .faq-chevron { transform:rotate(180deg); }
 .faq details[data-expanded="false"] .faq-chevron { transform:rotate(0); }
 .faq-answer { overflow:hidden; }

@@ -1,5 +1,5 @@
 /* Owner-approved I12 product captures; the surrounding inventory stays live DOM. */
-#features.main-value .mv-guides-art{container-type:inline-size;background:#bee9fc url('../assets/flow-v1/V1-field.webp') center/cover no-repeat}
+#features.main-value .mv-guides-art{container-type:inline-size;background:var(--brand-sky-1) url('../assets/flow-v1/V1-field.webp') center/cover no-repeat}
 #features.main-value .approved-guide-window{position:absolute;left:24px;top:28px;width:calc(100% - 48px);height:calc(25px + (100cqw - 48px)*600/1185);border:1px solid #d7dce2;border-radius:8px;background:#fff;box-sizing:border-box}
 #features.main-value .approved-guide-bar{position:absolute;inset:0 0 auto;height:25px;border-bottom:1px solid #e0e4e8;display:flex;align-items:center;justify-content:center;color:#616974;font-size:10px;font-weight:500;line-height:1}
 #features.main-value .approved-guide-dots{position:absolute;left:8px;display:flex;gap:4.4px}

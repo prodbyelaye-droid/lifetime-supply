@@ -1,13 +1,13 @@
 /* L1 · 4 Nov 2026 · landing fixes from the reference cross-check (rows 7, 11, 12, 32, 34, 40, 42) and the copy check.
    Loaded last. Colours: the portal's sky tokens (same values as room-accents-059.css) and the landing's V1 sky set only. */
-:root { --ls-sky-base:#11B1F8; --ls-sky-text:#075985; }
+:root { --ls-sky-base:var(--brand-sky-4); --ls-sky-text:var(--brand-sky-55); }
 
 /* Row 7 · the typed logo, as on the portal: SF Pro 600, -0.01em, live text, no blot. ~23 px on screen like the
    portal rail (28.6 css px at 0.8 zoom); 20 px on a phone like /desktop. */
-html body .site-nav a.wordmark.wordmark--typed { width:auto; min-width:0; min-height:52px; display:inline-flex; align-items:center; text-decoration:none; color:#151517; }
+html body .site-nav a.wordmark.wordmark--typed { width:auto; min-width:0; min-height:52px; display:inline-flex; align-items:center; text-decoration:none; color:var(--brand-ink); }
 .site-nav .wordmark--typed .ls-typed {
-  display:block; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
-  font-weight:600; font-size:23px; letter-spacing:-.01em; line-height:1; white-space:nowrap; font-feature-settings:"liga" 0,"calt" 0; color:#151517;
+  display:block; font-family:var(--brand-font-text-wide);
+  font-weight:600; font-size:23px; letter-spacing:-.01em; line-height:1; white-space:nowrap; font-feature-settings:"liga" 0,"calt" 0; color:var(--brand-ink);
 }
 @media (max-width:700px) { html body .site-nav a.wordmark.wordmark--typed { min-height:44px; } .site-nav .wordmark--typed .ls-typed { font-size:20px; } }
 @media (max-width:359px) { .site-nav .wordmark--typed .ls-typed { font-size:18px; } }
@@ -17,7 +17,7 @@ html body .site-nav a.wordmark.wordmark--typed { width:auto; min-width:0; min-he
 
 /* Row 12 · the film window: a light sky rim (TwelveLabs ref) instead of the grey drop shadow; no permanent layer. */
 html body #demo .demo-film, html body .opening #demo .demo-film {
-  box-shadow:0 0 0 1px rgba(17,177,248,.32), 0 0 0 5px rgba(190,233,252,.42), 0 0 24px rgba(60,195,254,.16);
+  box-shadow:0 0 0 1px rgba(var(--brand-sky-4-rgb),.32), 0 0 0 5px rgba(var(--brand-sky-1-rgb),.42), 0 0 24px rgba(var(--brand-sky-9-rgb),.16);
   will-change:auto;
 }
 
@@ -27,15 +27,15 @@ html body #demo .demo-film, html body .opening #demo .demo-film {
   min-height:44px; padding:8px 2px; border:0; border-radius:6px; background:none; color:#5d646c; font-size:12px;
   text-decoration:underline; text-decoration-color:rgba(93,100,108,.35); text-underline-offset:4px;
 }
-@media (hover:hover) and (pointer:fine) { #deep .studio-film-toggle:not(:disabled):hover { color:#151517; } }
+@media (hover:hover) and (pointer:fine) { #deep .studio-film-toggle:not(:disabled):hover { color:var(--brand-ink); } }
 
 /* Row 11 · the curves come back behind "a day in my workflow." with tiles travelling along them (js/flow-travellers-1104.js). */
 .flow:has(.day96) .curves { display:block; opacity:.7; }
 /* the lines and tiles stay in the heading zone, clear of the timeline copy */
 html body .flow:has(.day96) .curves { -webkit-mask-image:linear-gradient(#000 0, #000 26%, transparent 44%); mask-image:linear-gradient(#000 0, #000 26%, transparent 44%); }
 .flow-tile { stroke:#fff; stroke-width:1.5; }
-.flow-tile--a { fill:#BEE9FC; }
-.flow-tile--b { fill:#8DDCFD; }
+.flow-tile--a { fill:var(--brand-sky-1); }
+.flow-tile--b { fill:var(--brand-sky-5); }
 .flow-tile--c { fill:var(--ls-sky-base); fill-opacity:.55; }
 @media (forced-colors:active) { .flow .travellers { display:none; } }
 
@@ -44,7 +44,7 @@ html body .flow:has(.day96) .curves { -webkit-mask-image:linear-gradient(#000 0,
 @media screen and (prefers-reduced-motion:no-preference) {
   @supports ((-webkit-background-clip:text) or (background-clip:text)) {
     html body #flow [data-shiny-272][data-shiny-272-live] {
-      color:rgba(7,89,133,.8);
+      color:rgba(var(--brand-sky-55-rgb),.8);
       background-image:linear-gradient(to right,transparent 0%,var(--ls-sky-base) 50%,transparent 100%);
     }
   }
@@ -80,5 +80,5 @@ html body .contact-section .contact-stage { position:relative; background:transp
 .price-stage .price-own { margin:0 0 20px; max-width:560px; font-size:16px; line-height:1.5; color:#41474d; text-wrap:pretty; }
 
 /* Elaye 19:11 · the plaques line in the founder block, every plaque styled the same. */
-#founder .fs1101-plaques { display:flex; flex-wrap:wrap; gap:4px 14px; margin:18px 0 0; font-size:15px; line-height:1.4; font-weight:600; letter-spacing:-.005em; color:#151517; }
+#founder .fs1101-plaques { display:flex; flex-wrap:wrap; gap:4px 14px; margin:18px 0 0; font-size:15px; line-height:1.4; font-weight:600; letter-spacing:-.005em; color:var(--brand-ink); }
 @media (max-width:700px) { #founder .fs1101-plaques { font-size:14px; margin-top:14px; } }
