@@ -51,10 +51,11 @@ html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login{order:3;margin:0!impo
 html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login:hover{border-color:rgba(17,17,17,.36)!important;background:#FAFAFA!important}
 html .hero.hero-b .header-login:focus-visible,html .hero.hero-b .motion-toggle:focus-visible{outline:2px solid #111111;outline-offset:3px}
 
-html .hero.hero-b .hero-copy{position:absolute!important;left:56px;top:184px;bottom:24px;width:640px;margin:0!important;padding:0!important;max-width:600px!important;
+html .hero.hero-b .hero-copy{position:absolute!important;left:56px;top:184px;bottom:24px;width:min(640px,calc(100vw - min(692px,48.06vw) - 120px));margin:0!important;padding:0!important;max-width:600px!important;
   min-height:0;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left!important;transform:none!important;opacity:1}
 html .hero.hero-b #hero-title{margin:0!important;white-space:nowrap;text-align:left!important;font-size:66px!important;line-height:66px!important;font-weight:500!important;
   letter-spacing:-.04em!important;color:var(--rd-ink)!important;max-width:none;width:auto}
+@media (max-width:1439px) and (min-width:1201px){html .hero.hero-b #hero-title{font-size:4.583vw!important;line-height:4.583vw!important}}
 html .hero.hero-b .hero-copy>p{margin:auto 0 0!important;max-width:540px!important;text-align:left!important;font-size:17px!important;line-height:26px!important;color:var(--rd-ink)!important;letter-spacing:-.003em}
 html .hero.hero-b .hero-actions{margin:36px 0 0!important;justify-content:flex-start!important;display:flex}
 html .hero.hero-b .hero-down{display:inline-flex;align-items:center;gap:.55em;height:50px;padding:0 28px;border-radius:999px;box-sizing:border-box;
@@ -69,7 +70,7 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 /* the sky panel (set 2 warm, critic 03:06), the window edge (row 298, 22 %) and the window, cut by the panel's right and bottom edges */
-.hero-panel{position:absolute;right:24px;top:88px;width:692px;height:788px;border-radius:var(--rd-panel-r);overflow:hidden;
+.hero-panel{position:absolute;right:24px;top:88px;width:min(692px,48.06vw);height:788px;border-radius:var(--rd-panel-r);overflow:hidden;
   background:var(--rd-sky-solid) url('../brand/current/sky/landing-hero-panel.webp') center bottom/cover no-repeat;isolation:isolate}
 .hero-front{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;pointer-events:none;z-index:2}
 .hero-band{position:absolute;z-index:1;left:var(--rd-inset);top:var(--rd-inset);padding:var(--rd-band-w);border-radius:var(--rd-band-r);background:var(--rd-band);width:1000px}
@@ -128,7 +129,7 @@ html #portal .computer-device>.portal-preview{border-radius:9px!important;overfl
   html #portal .computer-device{width:calc(100% - 40px)!important;padding:6px!important;border-radius:14px}
 }
 
-@media (max-width:1200px) and (min-width:701px){
+@media (max-width:1200px) and (min-width:961px){
   html .hero.hero-b>.site-nav{padding-left:40px!important}
   html .hero.hero-b .site-nav nav{margin-left:36px!important;gap:20px}
   html .hero.hero-b .hero-copy{left:40px;width:calc(100vw - 48vw - 88px)}
@@ -136,7 +137,7 @@ html #portal .computer-device>.portal-preview{border-radius:9px!important;overfl
   .hero-panel{width:48vw}
   .hero-band{left:64px;top:72px}
 }
-@media (max-width:700px){
+@media (max-width:960px){
   html .hero.hero-b{display:flex!important;flex-direction:column;height:auto!important;padding:0 16px 16px!important}
   html .hero.hero-b>.site-nav{position:relative!important;height:auto;min-height:64px;flex-wrap:wrap;padding:calc(10px + env(safe-area-inset-top)) 0 0!important;row-gap:0}
   html .hero.hero-b .site-nav nav{order:5;flex-basis:100%;margin:0!important;gap:22px}
@@ -148,9 +149,8 @@ html #portal .computer-device>.portal-preview{border-radius:9px!important;overfl
   html .hero.hero-b #hero-title{white-space:normal;margin:36px 0 0!important;font-size:42px!important;line-height:44px!important;letter-spacing:-.035em!important}
   html .hero.hero-b .hero-copy>p{margin:24px 0 0!important;font-size:16px!important;line-height:24px!important}
   html .hero.hero-b .hero-actions{margin:28px 0 0!important;width:100%}
-  html .hero.hero-b .hero-down{height:48px;width:100%;justify-content:center}
-  .hero-panel{position:relative;right:auto;top:auto;width:100%;height:440px;margin-top:28px}
-  .hero-band{left:40px;top:40px;transform:scale(.6);transform-origin:0 0}
+  .hero-panel{position:relative;right:auto;top:auto;width:100%;height:auto;aspect-ratio:692/788;margin-top:28px}
+  .hero-band{left:64px;top:64px;transform:scale(.92);transform-origin:0 0}
 }
 
 /* ---------- the demo portal (interactive section): mark C in place of every blob ---------- */
@@ -227,3 +227,8 @@ html .producer-wall::before{display:none!important}   /* the V1 mesh (a soft was
 html canvas.blend10{display:none!important}   /* the soft glow behind the flagship card (a wash); the card keeps its hairline */
 html #inside .blend::before{display:none!important}   /* the V1 wash behind the flagship card goes */
 html body #main #inside .ten-card{box-shadow:0 1px 2px rgba(0,0,0,.03),0 6px 24px -6px rgba(0,0,0,.06)!important;border-color:#EFEFEF!important;background:#FFFFFF!important}   /* components A card (291) */
+
+@media (max-width:700px){
+  html .hero.hero-b .hero-down{height:48px;width:100%;justify-content:center}
+  .hero-band{left:40px;top:40px;transform:scale(.6)}
+}
