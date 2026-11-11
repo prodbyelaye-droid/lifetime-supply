@@ -68,9 +68,10 @@ html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outlin
    pause icon at 16 in the icon grey, the quiet fill on hover. Nav words are .ls-nav-link (500 15/22 ink, underline on hover).
    t21 download: log in is the outline lg (48); "opening it the first time" is a link. steps: the mock bar's log in, outline md.
    links (t22, t24): ink, never blue, a 1 px underline 3 px under, the line at 35 % until hover; on the sky, white at 60 %.
-   t23 footer: .ls-nav-link on the sky, white 500 15/22, no underline until hover, 24 apart. Focus: 2 px ring, 2 px gap, cobalt. */
+   t23 footer: .ls-nav-link on the sky, white 500 15/22, no underline until hover, 24 apart. Focus: one ink ring for the page, as E1 (critic slice fix 4): 2 px #111, offset 3 on buttons, 2 on words; white on the sky.
+   The pause control is in the page as the script draws it (icon, "pause", " motion" from 900 px up), so nothing swaps after load (fix 5). */
 :root { --e2-ink: #141414; --e2-icon: #6E6E73; --e2-quiet: #F0F0F0; --e2-quiet-hover: #E8E8E8; --e2-outline-hover: #F3F3F3; --e2-outline-pressed: #E8E8E8;
-  --e2-focus: #1D46AE; --e2-line: rgba(20, 20, 20, .35); --e2-ease-out: cubic-bezier(.22, 1, .36, 1); --e2-ease: cubic-bezier(.28, 1.4, .36, 1);
+  --e2-focus: #111111; --e2-line: rgba(20, 20, 20, .35); --e2-ease-out: cubic-bezier(.22, 1, .36, 1); --e2-ease: cubic-bezier(.28, 1.4, .36, 1);
   --e2-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='4' width='4' height='16' rx='1'/%3E%3Crect x='6' y='4' width='4' height='16' rx='1'/%3E%3C/svg%3E");
   --e2-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 20 12 6 21 6 3'/%3E%3C/svg%3E"); }
 
@@ -98,19 +99,15 @@ html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle {
   background: transparent !important; transition: background-color .16s var(--e2-ease-out), transform .2s var(--e2-ease);
 }
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle span { font: inherit !important; color: inherit !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle::before,
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle[aria-pressed=true]::before {
-  content: '' !important; width: 16px !important; height: 16px !important; flex: none; border: 0 !important; border-radius: 0 !important;
-  background: var(--e2-icon) !important; -webkit-mask: var(--e2-pause) center / 16px 16px no-repeat; mask: var(--e2-pause) center / 16px 16px no-repeat;
-}
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle[aria-pressed=true]::before { -webkit-mask-image: var(--e2-play); mask-image: var(--e2-play); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle::before { content: none !important; display: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle svg { width: 16px !important; height: 16px !important; flex: none; color: var(--e2-icon); transition: color .16s var(--e2-ease-out); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover svg { color: var(--e2-ink); }
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover { background: var(--e2-quiet) !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover::before { background: var(--e2-ink) !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:active { background: var(--e2-quiet-hover) !important; transform: scale(.98); }
 
 /* focus for the outline and plain buttons */
 html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):focus-visible {
-  outline: none !important; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--e2-focus) !important;
+  outline: 2px solid var(--e2-focus) !important; outline-offset: 3px !important; box-shadow: none !important;
 }
 @media (max-width: 700px) {
   html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle { padding: 0 12px 0 10px !important; margin-right: 4px !important; font-size: 14px !important; }
