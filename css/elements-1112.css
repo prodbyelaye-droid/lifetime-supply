@@ -220,3 +220,10 @@ html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
 @media (prefers-reduced-motion: reduce) {
   html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip, html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on] { transform: none; transition: opacity .16s ease, visibility 0s linear .16s !important; }
 }
+
+/* ---------- el-E17 · member identity on the landing (out/el-E17/final/SPEC.md, "who shows as what") ----------
+   "landing quotes: no avatar, the words and his source line only" (why producers choose). The mark that stood in each
+   quote's avatar spot goes; the byline keeps "producer" and his source line ("on the portal", "on the sounds"...).
+   Members on public surfaces stay blurred as they are (the texts and dms, the hero window, the demo). */
+html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__mark { display: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__byline { gap: 0 !important; margin-bottom: 8px !important; }
