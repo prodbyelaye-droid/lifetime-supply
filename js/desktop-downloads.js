@@ -39,7 +39,7 @@ THE SOFTWARE.
       ? `<a class="dl-btn" href="${urls[key]}">${icons[key]}download for ${label}</a>`
       : `<button class="dl-btn" type="button" disabled aria-disabled="true">${icons[key]}download for ${label}</button>`).join('');
     const description = enabled
-      ? '<p><span>lifetime supply for mac and windows.</span> <span>it also works in your browser, no download needed.</span></p>'
+      ? '<p><span>lifetime supply for mac and windows.</span> <span>it also works in your browser, no download needed.</span> it sits right next to your daw.</p>'
       : '<p class="download-status"><span>downloads are not available yet.</span> <span>use the portal in your browser.</span></p>';
     // Copy check 4 Nov (row 1, Elaye 18:56): the live heading; until publication the current one stays.
     const heading = enabled
@@ -47,7 +47,7 @@ THE SOFTWARE.
       : "<h2 id=\"download-title\" class=\"ls-heading-b ls-heading-b--long\" data-heading=\"download\"><span class=\"ls-heading-b__line\">the portal,</span><span class=\"ls-heading-b__line\">as an <span class=\"dl17-word\">app</span>.</span></h2>";
     // Elaye 6 Nov 18:08 (audit): the open-anyway steps stay, folded under the buttons instead of in the pitch.
     const help = enabled
-      ? '<details class="dl17-help"><summary>opening it the first time</summary><p class="dl17-once"><span>your computer asks once. on mac, open anyway in privacy &amp; security.</span> <span>on windows, more info, then run anyway.</span></p></details>'
+      ? '<details class="dl17-help"><summary>opening it the first time</summary><p class="dl17-once"><span>your computer asks once. on mac, open anyway in privacy &amp; security.</span> <span>on windows, more info, then run anyway.</span> on mac, move it to applications first.</p></details>'
       : '';
     return '<div class="dl17-copy">' + heading + description +
       '<div class="dl17-row">' + buttons + '</div>' + (enabled ? '<p class="dl17-soon">mobile app coming soon.</p>' : '') + help +
