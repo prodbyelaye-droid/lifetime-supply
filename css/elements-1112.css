@@ -146,9 +146,10 @@ html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:focus-visible { 
 /* ---------- el-E4 · the composer with an action (out/el-E4/final/SPEC.md, e4-fields.css) ----------
    landing contact: the field family's box (corner 20, white, a 1 px ring at 25 % black, 42 % on hover, 1.5 px ink while
    typing), padding 5 5 5 24, words 16/24 with 8 px above and below so the empty box is 50 tall, growing to six lines.
-   "tell me what you're stuck on." rests inside in the label grey until there are words (the label's own words, unchanged).
-   "open email app" is E1's md pill (40) inside on the right, on the bottom line. Error: the ring and the line under it in
-   the error red. Phones under 560: the pill goes full width under the words, inside the same box (E1: full width on phone). */
+   The form's label "tell me what you're stuck on." stays for screen readers only (critic slice fix 1: drawn, it repeated the
+   headline); the box rests empty, as the live page does. "open email app" is E1's md pill (40) inside on the right, on the
+   bottom line. Error: the ring 1.5 px in E4's error red and the script's own line (#contact-status) in the error red, 13/18.
+   Phones under 560: the pill goes full width under the words, inside the same box (E1: full width on phone). */
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask {
   position: relative !important; box-sizing: border-box !important; display: flex !important; flex-direction: row !important; align-items: flex-end !important; gap: 8px !important;
   min-height: 50px !important; padding: 5px 5px 5px 24px !important; border-radius: 20px !important;
@@ -164,19 +165,14 @@ html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea {
   font: 400 16px/24px var(--brand-font-text) !important; letter-spacing: 0; color: #141414 !important; caret-color: #141414;
   outline: none !important; box-shadow: none !important; resize: none !important; field-sizing: content; overflow-y: auto;
 }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label {
-  position: absolute !important; left: 24px; top: 13px; width: auto !important; height: auto !important; overflow: visible !important; clip-path: none !important;
-  margin: 0; font: 400 16px/24px var(--brand-font-text); color: #6B6B6B; white-space: nowrap; pointer-events: none; transition: opacity .16s ease;
-}
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:has(textarea:not(:placeholder-shown)) .ask-label { opacity: 0; }
 html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { flex: none !important; align-self: flex-end !important; margin: 0 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A; }
+html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A !important; font: 400 13px/18px var(--brand-font-text) !important; }
 @media (max-width: 559px) {
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { flex-wrap: wrap !important; padding: 5px !important; }
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea { flex-basis: 100% !important; padding: 8px 19px !important; }
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { width: 100% !important; }
 }
-@media (prefers-reduced-motion: reduce) { html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask, html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { transition: none; } }
 
 /* ---------- el-E6 · tooltips: the portal demo's cues (out/el-E6/final/SPEC.md, tooltip) ----------
    one tooltip: #1C1C1C, white 500 13/18, padding 6 10, corner 8, 291's top light and a short soft shadow; in 4 px and
