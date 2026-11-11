@@ -62,3 +62,83 @@ html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outlin
   html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy) { transition: none !important; }
   html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy):active { transform: none; }
 }
+
+/* ---------- el-E2 · secondary, quiet and plain buttons, links (out/el-E2/final/SPEC.md) ----------
+   t20 nav: log in is the outline md (302: 36 tall, 20 sides, 1 px ink ring on the page); pause motion is plain md with the
+   pause icon at 16 in the icon grey, the quiet fill on hover. Nav words are .ls-nav-link (500 15/22 ink, underline on hover).
+   t21 download: log in is the outline lg (48); "opening it the first time" is a link. steps: the mock bar's log in, outline md.
+   links (t22, t24): ink, never blue, a 1 px underline 3 px under, the line at 35 % until hover; on the sky, white at 60 %.
+   t23 footer: .ls-nav-link on the sky, white 500 15/22, no underline until hover, 24 apart. Focus: 2 px ring, 2 px gap, cobalt. */
+:root { --e2-ink: #141414; --e2-icon: #6E6E73; --e2-quiet: #F0F0F0; --e2-quiet-hover: #E8E8E8; --e2-outline-hover: #F3F3F3; --e2-outline-pressed: #E8E8E8;
+  --e2-focus: #1D46AE; --e2-line: rgba(20, 20, 20, .35); --e2-ease-out: cubic-bezier(.22, 1, .36, 1); --e2-ease: cubic-bezier(.28, 1.4, .36, 1);
+  --e2-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='4' width='4' height='16' rx='1'/%3E%3Crect x='6' y='4' width='4' height='16' rx='1'/%3E%3C/svg%3E");
+  --e2-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 20 12 6 21 6 3'/%3E%3C/svg%3E"); }
+
+/* nav words */
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a { font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: var(--e2-ink) !important; text-decoration: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:hover { text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:focus-visible { outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
+
+/* outline: log in (nav md 36, download lg 48, the steps mock md 36) */
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login) {
+  box-sizing: border-box !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  height: 36px !important; min-height: 36px !important; padding: 0 20px !important; border-radius: 999px !important;
+  font: 500 15px/1 var(--brand-font-text) !important; letter-spacing: -.02em !important; color: var(--e2-ink) !important; -webkit-text-fill-color: var(--e2-ink);
+  text-decoration: none !important; background: #FFFFFF !important; border: 1px solid var(--e2-ink) !important; box-shadow: none !important;
+  transition: background-color .16s var(--e2-ease-out), transform .2s var(--e2-ease) !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #download .dl17-copy .dl-login { height: 48px !important; min-height: 48px !important; padding: 0 22px !important; font-size: 16px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):hover { background: var(--e2-outline-hover) !important; border-color: var(--e2-ink) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):active { background: var(--e2-outline-pressed) !important; transform: scale(.98); }
+
+/* plain: pause motion, the pause icon (16, 1.5 stroke) in the icon grey */
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle {
+  box-sizing: border-box; height: 36px !important; min-height: 36px !important; padding: 0 20px 0 16px !important; margin-right: 8px !important; gap: 8px !important;
+  border-radius: 999px !important; font: 500 15px/1 var(--brand-font-text) !important; letter-spacing: -.02em; color: var(--e2-ink) !important;
+  background: transparent !important; transition: background-color .16s var(--e2-ease-out), transform .2s var(--e2-ease);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle span { font: inherit !important; color: inherit !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle::before,
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle[aria-pressed=true]::before {
+  content: '' !important; width: 16px !important; height: 16px !important; flex: none; border: 0 !important; border-radius: 0 !important;
+  background: var(--e2-icon) !important; -webkit-mask: var(--e2-pause) center / 16px 16px no-repeat; mask: var(--e2-pause) center / 16px 16px no-repeat;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle[aria-pressed=true]::before { -webkit-mask-image: var(--e2-play); mask-image: var(--e2-play); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover { background: var(--e2-quiet) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover::before { background: var(--e2-ink) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:active { background: var(--e2-quiet-hover) !important; transform: scale(.98); }
+
+/* focus for the outline and plain buttons */
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):focus-visible {
+  outline: none !important; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--e2-focus) !important;
+}
+@media (max-width: 700px) {
+  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle { padding: 0 12px 0 10px !important; margin-right: 4px !important; font-size: 14px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .header-login { padding: 0 16px !important; font-size: 14px !important; }
+}
+
+/* links: ink, a 1 px line 3 px under, at 35 % until hover */
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])) {
+  text-decoration-line: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important;
+  text-decoration-color: var(--e2-line) !important; transition: text-decoration-color .16s var(--e2-ease-out);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])):hover { text-decoration-color: currentColor !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])):focus-visible { outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
+/* on the sky: the price band's licence, terms, privacy, refund policy */
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a {
+  color: #FFFFFF !important; text-decoration-line: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important;
+  text-decoration-color: rgba(255, 255, 255, .60) !important; transition: text-decoration-color .16s var(--e2-ease-out);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a:hover { text-decoration-color: #FFFFFF !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; border-radius: 4px; }
+
+/* footer on the sky: nav links, white, no underline until hover */
+html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links { column-gap: 24px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a { min-width: 0 !important; font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: #FFFFFF !important; text-decoration: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:hover { text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; text-decoration-color: #FFFFFF !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login) { transition: none !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):active { transform: none; }
+}
