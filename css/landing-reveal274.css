@@ -32,7 +32,7 @@
   -webkit-user-select:none;
   user-select:none;
 }
-[data-reveal274-on] [data-text-reveal-274] .r274-f { color:#151517; opacity:var(--r274-o,1); }
+[data-reveal274-on] [data-text-reveal-274] .r274-f { color:#090909; opacity:var(--r274-o,1); }
 html[data-motion-paused] [data-reveal274-on] [data-text-reveal-274] .r274-f { opacity:1; }
 html[data-motion-paused] [data-reveal274-on] [data-text-reveal-274] .r274-b { display:none; }
 @media print, (prefers-reduced-motion:reduce), (forced-colors:active) {

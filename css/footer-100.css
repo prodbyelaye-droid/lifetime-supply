@@ -4,9 +4,9 @@
    solid fallback). Every stop holds 3:1 or better against the field (WCAG large text), measured from pixels.
    B (?footer=B): the V1 field, letters white with a soft sheen. */
 .ls-footer{
- --ft-ink:#151517;
- /* Lifetime: V1 sky (#11B1F8 deepened to 3:1) → 059 periwinkle (#7C85F5, deepened) → lilac (059 orchid #EB7BEF, deepened) */
- --ft-life:linear-gradient(100deg,#0A8DE6 0%,#6B74F2 55%,#A35BEA 100%);
+ --ft-ink:#090909;
+ /* Lifetime: V1 sky (#50A0E7 deepened to 3:1) → 059 periwinkle (#4A86D8, deepened) → lilac (059 orchid #EB7BEF, deepened) */
+ --ft-life:linear-gradient(100deg,#3976C4 0%,#3771C8 55%,#A35BEA 100%);
  /* Supply: 059 petal (#FC82CB, deepened) → saffron (#FCD16E, deepened to a warm saffron-orange that holds 3:1) */
  --ft-supply:linear-gradient(100deg,#E8479E 0%,#E5546A 52%,#DB6A0B 100%);
  position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;
@@ -20,9 +20,9 @@
 /* A field: white → palest sky, a soft V1 wash only at the foot. */
 .ls-footer::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
  background:
-  radial-gradient(70% 34% at 22% 104%,#BEE9FC 0%,#BEE9FCb3 38%,#BEE9FC00 72%),
-  radial-gradient(64% 30% at 84% 106%,#C9ECFD 0%,#C9ECFD99 40%,#C9ECFD00 74%),
-  linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 22%,#FAFDFF 52%,#F1F9FE 78%,#E6F5FE 100%)}
+  radial-gradient(70% 34% at 22% 104%,#96CFF5 0%,#BEE9FCb3 38%,#BEE9FC00 72%),
+  radial-gradient(64% 30% at 84% 106%,#E0F0FC 0%,#C9ECFD99 40%,#C9ECFD00 74%),
+  linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 22%,#FAFDFF 52%,#F1F9FE 78%,#E8F5FE 100%)}
 
 /* Top row: the line, then 008's @elxyee tab and the + links toggle (063 pill system, row 040 disclosure). */
 .ls-footer .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
@@ -52,7 +52,7 @@
 .ls-footer .footer-line-blot[hidden]{display:none}
 
 /* Bottom: links, copyright, newsletter, the locked logo and the small ELAYE. */
-.ls-footer .footer-bottom{display:grid;grid-template-columns:1fr auto;gap:20px 30px;margin-top:65px;padding-top:25px;border-top:1px solid #9CCDE6;font-size:14px;line-height:1.5;background:none}
+.ls-footer .footer-bottom{display:grid;grid-template-columns:1fr auto;gap:20px 30px;margin-top:65px;padding-top:25px;border-top:1px solid #8BBCE1;font-size:14px;line-height:1.5;background:none}
 .ls-footer .footer-bottom nav{display:flex;gap:25px;flex-wrap:wrap;align-items:center}
 .ls-footer .footer-bottom nav a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:flex-start;font-size:inherit;text-decoration:none}
 .ls-footer .footer-bottom nav a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -66,17 +66,17 @@
 /* B: the field as colour, the letters as light. */
 .ls-footer[data-footer-option="B"]::before{background:#fff url("../assets/footer-100/V1-footer.webp") center bottom/100% 100% no-repeat;
  -webkit-mask-image:linear-gradient(transparent,#000 28%);mask-image:linear-gradient(transparent,#000 28%)}
-.ls-footer[data-footer-option="B"] .footer-bottom{border-top-color:#5896B3}
+.ls-footer[data-footer-option="B"] .footer-bottom{border-top-color:#547EB2}
 @supports (background-clip:text) or (-webkit-background-clip:text){
- .ls-footer[data-footer-option="B"] .word{background-image:linear-gradient(100deg,#FFFFFF 0%,#EEF9FF 38%,#FFFFFF 56%,#F3EFFF 100%)}
+ .ls-footer[data-footer-option="B"] .word{background-image:linear-gradient(100deg,#FFFFFF 0%,#EFF9FF 38%,#FFFFFF 56%,#F3EFFF 100%)}
 }
 .ls-footer[data-footer-option="B"] .footer-word h2{color:#fff}
 
 @media(max-width:700px){
  .ls-footer{min-height:0;padding:44px 24px 36px}
  .ls-footer::before{background:
-  radial-gradient(120% 22% at 20% 104%,#BEE9FC 0%,#BEE9FCb3 40%,#BEE9FC00 75%),
-  linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 26%,#F8FCFF 56%,#EEF8FE 80%,#E3F4FD 100%)}
+  radial-gradient(120% 22% at 20% 104%,#96CFF5 0%,#BEE9FCb3 40%,#BEE9FC00 75%),
+  linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 26%,#F8FCFF 56%,#EFF8FE 80%,#E4F3FD 100%)}
  .ls-footer[data-footer-option="B"]::before{background-size:100% 75%}
  .ls-footer .footer-top{flex-direction:column;gap:28px}
  .ls-footer .footer-line{font-size:20px}

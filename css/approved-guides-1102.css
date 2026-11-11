@@ -1,9 +1,9 @@
 /* Owner-approved I12 product captures; the surrounding inventory stays live DOM. */
 #features.main-value .mv-guides-art{container-type:inline-size;background:var(--brand-sky-1) url('../assets/flow-v1/V1-field.webp') center/cover no-repeat}
 #features.main-value .approved-guide-window{position:absolute;left:24px;top:28px;width:calc(100% - 48px);height:calc(25px + (100cqw - 48px)*600/1185);border:1px solid #d7dce2;border-radius:8px;background:#fff;box-sizing:border-box}
-#features.main-value .approved-guide-bar{position:absolute;inset:0 0 auto;height:25px;border-bottom:1px solid #e0e4e8;display:flex;align-items:center;justify-content:center;color:#616974;font-size:10px;font-weight:500;line-height:1}
+#features.main-value .approved-guide-bar{position:absolute;inset:0 0 auto;height:25px;border-bottom:1px solid #e0e4e8;display:flex;align-items:center;justify-content:center;color:#546072;font-size:10px;font-weight:500;line-height:1}
 #features.main-value .approved-guide-dots{position:absolute;left:8px;display:flex;gap:4.4px}
-#features.main-value .approved-guide-dots i{display:block;width:4.6px;height:4.6px;border-radius:50%;background:#c0c8d0}
+#features.main-value .approved-guide-dots i{display:block;width:4.6px;height:4.6px;border-radius:50%;background:#bdc7d0}
 #features.main-value .approved-guide-shot{position:absolute;left:0;top:24px;display:block;width:100%;height:calc((100cqw - 48px)*600/1185);max-width:none;object-fit:fill}
 @media(max-width:700px){
  #features.main-value .approved-guide-window{left:10.285714cqw;top:2.857143cqw;width:79.428571cqw;height:61.351429cqw}

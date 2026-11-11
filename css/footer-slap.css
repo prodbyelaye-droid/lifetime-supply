@@ -88,7 +88,7 @@
 #footer.ls-footer{--blue:#edf2f5;margin-top:12px;padding-bottom:6px}
 #footer.ls-footer .footer-top,#footer.ls-footer .footer-top p,#footer.ls-footer .footer-top a,#footer.ls-footer .footer-bottom,#footer.ls-footer .footer-bottom a{color:var(--ink)}
 #footer.ls-footer .footer-top{min-height:112px}
-#footer.ls-footer .tab{border-color:#b8c1c8}
+#footer.ls-footer .tab{border-color:#b5bfc8}
 #footer.ls-footer .footer-scene{margin-top:44px;padding:0;aspect-ratio:1344/652}
 #footer.ls-footer .footer-word{position:absolute;inset:0;width:100%;height:100%;max-width:none}
 #footer.ls-footer .footer-lettering{display:block;width:100%;height:100%;overflow:visible;fill:currentColor}

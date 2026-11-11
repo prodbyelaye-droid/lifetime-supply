@@ -1,7 +1,7 @@
 /* cdesign 010. Exact task-030 V1 files; task-007 opening geometry stays; STANDING 13 recolours accents.
    Current GO-plan supersedes the audit's six separate colour families.
    White is the ground; 145/189 field, 145 footer band, colour only in blots. */
-:root{--flow-ink:var(--brand-ink);--flow-muted:#41474d;--flow-blue:var(--brand-sky-42);--flow-field:url('../assets/flow-v1/V1-field.webp')}
+:root{--flow-ink:var(--brand-ink);--flow-muted:#40464d;--flow-blue:var(--brand-sky-42);--flow-field:url('../assets/flow-v1/V1-field.webp')}
 body{background:#fff;color:var(--flow-ink)}
 .side-layer{display:none}
 .inside.band,.flow,.stats-section,.more-section,.portal-section,.steps-section,.closing-section,.contact-section{background:#fff;color:var(--flow-ink)}
@@ -10,7 +10,7 @@ body{background:#fff;color:var(--flow-ink)}
 .inside .blend10{visibility:hidden}
 .inside .key{color:var(--flow-ink);background:none}
 .inside .split{border:1px solid #dedfe2;overflow:hidden;border-radius:24px}
-.inside .product{color:var(--flow-ink);border-color:#d4e3ec}
+.inside .product{color:var(--flow-ink);border-color:#c3dae8}
 .flow-copy{background:none;color:var(--flow-ink)}
 .flow-copy p{color:var(--flow-muted)}
 .flow .tracks{stroke:var(--brand-sky-5)}
@@ -28,7 +28,7 @@ body{background:#fff;color:var(--flow-ink)}
 .chain-dot{background:var(--brand-sky-43)!important}
 .more-section::before,.more-section::after{background:#fff}
 .more-section h2{color:var(--flow-ink)}
-.more-track span{background:#fff;color:var(--flow-ink);border:1px solid #b7bdc5;box-shadow:none}
+.more-track span{background:#fff;color:var(--flow-ink);border:1px solid #b5bcc5;box-shadow:none}
 .portal-arch{background:#fff;color:var(--flow-ink)}
 .portal-arch>.arch34,.portal-arch>canvas,.portal-arch::before,.portal-arch::after{display:none}
 .portal-copy,.portal-copy h2,.portal-copy p,.portal-arch .dl-login{color:var(--flow-ink)}

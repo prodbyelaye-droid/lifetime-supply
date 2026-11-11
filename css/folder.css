@@ -28,13 +28,13 @@
     /* Blue, the default. The shadow tone is a triplet so one alpha ramp
        serves every shadow on the object. */
     --folder-shadow: 11, 45, 64;
-    --folder-back-top: #3b8cc0;
+    --folder-back-top: #4371b0;
     --folder-back-bottom: var(--blue-700);
     --folder-sheet-face: var(--white);
-    --folder-sheet-tint: #d3e3ec;
-    --folder-front-top: #8dcdea;
-    --folder-front-mid: #5fb3dc;
-    --folder-front-bottom: #45a1c3;
+    --folder-sheet-tint: #c0d9e8;
+    --folder-front-top: #81b8e4;
+    --folder-front-mid: #61a0d9;
+    --folder-front-bottom: #5488c3;
     --folder-front-edge: rgba(255, 255, 255, 0.85);
 
     position: relative;

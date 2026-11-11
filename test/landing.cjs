@@ -67,7 +67,9 @@ const server = http.createServer((req, res) => {
       // payments: one checkout CTA, the buy card (Elaye 6 Nov 18:08: hero, step 1 and the close link to #price), opening safely in a new tab
       const ctas = page.locator('a[data-checkout]');
       assert.equal(await ctas.count(), 1, 'one checkout CTA');
-      assert.equal(await page.locator('.hero-cta').getAttribute('href'), '#price');
+      // hero B (Elaye 12 Nov 01:52): no get lifetime access in the hero; one control down to the interactive portal
+      assert.equal(await page.locator('.hero-cta').count(), 0);
+      assert.equal(await page.locator('.hero-down').getAttribute('href'), '#portal');
       for (let i = 0; i < 1; i++) {
         assert.equal(await ctas.nth(i).getAttribute('href'), LIVE);
         assert.equal(await ctas.nth(i).getAttribute('target'), '_blank');

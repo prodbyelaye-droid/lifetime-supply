@@ -75,7 +75,7 @@ function vaultArt(panel, arch = true) {
     <g fill="#fff" class="pix">${pix('plus', W * 0.7, H * 0.16, 5)}${pix('plus', W * 0.7 - 34, H * 0.16 + 26, 5)}${pix('x', W * 0.7 + 18, H * 0.16 + 34, 5)}</g></svg>`;
   panel.prepend(field, grain);
   panel.insertAdjacentHTML('beforeend', svg);
-  panel.insertAdjacentHTML('beforeend', glyph('g-vault', 'vault', '#151517')); // ink: white tops out at 2.8:1 on the deepened field
+  panel.insertAdjacentHTML('beforeend', glyph('g-vault', 'vault', '#090909')); // ink: white tops out at 2.8:1 on the deepened field
 }
 // Each box: [class, glyph, bloom module, corner]
 const BOXES = [['f-how', 'how', g183, 'tr', 'green'], ['f-kit', 'kit', g044, 'tr'], ['f-board', 'board', g037, 'tr'], ['f-room', 'room', g189, 'tr'],
@@ -118,7 +118,7 @@ export function createFeatures(variant = 'restraint', vault = 'arch') {
   vaultArt(section.querySelector('.f-vault .feature-art'), vault !== 'bloom');
   for (const [cls, name, mod, corner, pick] of BOXES) {
     const box = section.querySelector('.' + cls), panel = box.querySelector('.feature-art');
-    panel.insertAdjacentHTML('afterbegin', glyph(`g-${name}`, name, '#151517'));
+    panel.insertAdjacentHTML('afterbegin', glyph(`g-${name}`, name, '#090909'));
     if (variant === 'bloom') { box.classList.add('has-bloom'); bloom(box, mod, corner, pick); }
   }
 }

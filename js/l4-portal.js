@@ -41,9 +41,11 @@
   // ---- the sidebar blob: the same flat blot, drawn over its own picture so its eyes can follow the pointer (brand-blot.tsx: 1.5 px at most, easing to 0 within 48 px)
   const BLOT = 'M 113.000 17.000 C 119.970 15.640 120.240 15.640 125.000 17.000 C 129.760 18.360 135.390 23.300 141.000 25.000 C 146.610 26.700 146.950 21.900 158.000 27.000 C 169.050 32.100 193.760 45.480 206.000 55.000 C 218.240 64.520 224.050 73.650 230.000 83.000 C 235.950 92.350 238.790 99.800 241.000 110.000 C 243.210 120.200 244.870 132.290 243.000 143.000 C 241.130 153.710 240.200 159.910 230.000 173.000 C 219.800 186.090 196.600 208.950 183.000 220.000 C 169.400 231.050 165.130 236.130 150.000 238.000 C 134.870 239.870 108.620 234.570 94.000 231.000 C 79.380 227.430 72.330 221.930 64.000 217.000 C 55.670 212.070 49.590 207.780 45.000 202.000 C 40.410 196.220 40.910 188.780 37.000 183.000 C 33.090 177.220 24.550 174.800 22.000 168.000 C 19.450 161.200 23.530 150.140 22.000 143.000 C 20.470 135.860 12.320 136.370 13.000 126.000 C 13.680 115.630 20.050 92.370 26.000 82.000 C 31.950 71.630 42.900 70.780 48.000 65.000 C 53.100 59.220 49.880 54.800 56.000 48.000 C 62.120 41.200 74.310 30.270 84.000 25.000 C 93.690 19.730 106.030 18.360 113.000 17.000 Z';
   const VB = '12.96 15.98 230.85 222.41';
+  // 12 Nov redesign: the blob beside the name is gone (painted out of the pictures). Critic P12: never the mark trailing the
+  // name, so the sidebar shows the name alone, as his 4 Nov call (the logo is plain typed "lifetime supply").
   const blob = (r) => {
-    const s = box(div('l4-blob'), r); s.setAttribute('aria-hidden', 'true');
-    s.innerHTML = `<svg viewBox="${VB}" focusable="false"><path d="${BLOT}"/></svg><svg class="l4-blob-eyes" viewBox="${VB}" focusable="false"><rect x="101.4" y="65" width="18.2" height="19.7" rx="9.1" ry="9.85"/><rect x="136.4" y="65" width="18.2" height="19.7" rx="9.1" ry="9.85"/></svg>`;
+    const s = box(div('l4-blob l4-mark'), r); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = `<svg viewBox="-456 -300 912 600" focusable="false"><path d="M-57.732 283.449 A355.000 355.000 0 0 1 -148.880 181.861 A182.000 182.000 0 1 1 27.236 0.000 A127.000 127.000 0 0 0 118.383 121.301 A300.000 300.000 0 1 0 -57.732 283.449 Z"/><path d="M57.732 -283.449 A355.000 355.000 0 0 1 148.880 -181.861 A182.000 182.000 0 1 1 -27.236 0.000 A127.000 127.000 0 0 0 -118.383 -121.301 A300.000 300.000 0 1 0 57.732 -283.449 Z"/></svg>`;
     return s;
   };
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -53,7 +55,7 @@
       const e = view.querySelector('.l4-screen.is-on .l4-blob'); if (!e) return;
       const r = e.getBoundingClientRect(); if (!r.width || r.bottom < 0 || r.top > innerHeight) return;
       const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height * 0.265), d = Math.hypot(dx, dy), k = d < 0.5 ? 0 : (1.5 * Math.min(1, d / 48)) / d;
-      e.querySelector('.l4-blob-eyes').style.transform = `translate(${(dx * k).toFixed(2)}px,${(dy * k).toFixed(2)}px)`;
+      (e.querySelector('.l4-blob-eyes')||{style:{}}).style.transform = `translate(${(dx * k).toFixed(2)}px,${(dy * k).toFixed(2)}px)`;
     };
     addEventListener('pointermove', (ev) => { if (ev.pointerType === 'touch') return; px = ev.clientX; py = ev.clientY; if (!raf) raf = requestAnimationFrame(aim); }, { passive: true });
   }
@@ -66,7 +68,7 @@
     const layer = div('l4-bodyhots'); layer.style.aspectRatio = `${bw} / ${P.bh[t]}`; sc.append(layer);
     s.append(sc, box(pic(`${P.nav}-${t}-side`, 'l4-part'), [0, 0, P.x0, D.H]));
     if (P.top > 0) s.append(box(pic(`${p}-${t}-top`, 'l4-part'), [P.x0, 0, bw, P.top]));
-    const N = D.nav[P.nav]; if (N && N.blot) s.append(blob(N.blot));
+    const N = D.nav[P.nav]; void N; void blob;
     return s;
   };
   // ---- first sign-in: home's text and blots, cut from the home capture (no extra pictures), waiting under the pop-up
@@ -287,14 +289,8 @@
     const still = (E) => { if (!E || slot.querySelector('svg')) return; slot.dataset.still = '1'; slot.insertAdjacentHTML('beforeend', `<svg class="bs-still" viewBox="0 0 256 256"><g transform="translate(128 128) scale(.7) translate(-128 -128)"><path d="${E.BLOT_PATH}" fill="${E.SPLASH_FILL}"/>${E.EYE_SVG_RECTS.map((r) => `<rect x="${r.x}" y="${r.y}" width="${r.width}" height="${r.height}" rx="${r.rx}" ry="${r.ry}" fill="#fff"/>`).join('')}</g></svg>`); };
     // the blot starts once the pop-up's own fade has run, so its first frame never stalls the fade; it comes in softly (.2 s)
     const after = (v) => new Promise((r) => setTimeout(() => r(v), held() ? 0 : 200));
-    engine().then((E) => E.blotField().then(after).then((f) => {
-      if (gone) return;
-      const b = new E.Blot(canvas, f, { seed: 1, fill: E.SPLASH_FILL, wink: 'loop', size: 0.95, floatAmp: 0.012, eyeScale: E.EYE_SCALE.splash, still: held() }, E.rand());
-      if (b.dead) return still(E);
-      b.nextBlink = 1e9; stop = E.runScene(el, [b], () => {}, held()); slot.dataset.live = '1';
-      // "pause motion" pressed while it's up: the flat blot holds still
-      mo = new MutationObserver(() => { if (held() && stop) { stop(); stop = null; still(E); mo.disconnect(); } }); mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-motion-paused'] });
-    })).catch(() => {});
+    // 12 Nov redesign: the splash shows mark C, still (no blot engine, no blob)
+    slot.dataset.still = '1'; slot.insertAdjacentHTML('beforeend', `<svg class="bs-still bs-mark" viewBox="-456 -300 912 600" aria-hidden="true"><path d="M-57.732 283.449 A355.000 355.000 0 0 1 -148.880 181.861 A182.000 182.000 0 1 1 27.236 0.000 A127.000 127.000 0 0 0 118.383 121.301 A300.000 300.000 0 1 0 -57.732 283.449 Z"/><path d="M57.732 -283.449 A355.000 355.000 0 0 1 148.880 -181.861 A182.000 182.000 0 1 1 -27.236 0.000 A127.000 127.000 0 0 0 -118.383 -121.301 A300.000 300.000 0 1 0 57.732 -283.449 Z"/></svg>`); void after; void engine;
     const close = async () => {
       if (closing) return; closing = true;
       const inside = el.contains(document.activeElement);

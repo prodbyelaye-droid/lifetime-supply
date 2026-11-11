@@ -5,9 +5,9 @@
    the background with transparent fill, animation gradient 8s linear infinite,
    keyframes to { background-position: 300% 0 } (seamless repeat). Interpolated in
    oklab where supported (Tailwind v4 default), plain sRGB gradient otherwise.
-   Identity adaptation: from/to #20354c, via #075abb (existing Aurora stops); no
+   Identity adaptation: from/to #152345, via #1741af (existing Aurora stops); no
    demo orange/purple, no badge. 16px/500 paragraph type is inherited; no
-   transforms. Solid #20354c fallback without gradient text clipping. Static
+   transforms. Solid #152345 fallback without gradient text clipping. Static
    until js/landing-gradient273.js marks it visible; static without JS, under
    reduced motion, forced colors and html[data-motion-paused].
    MIT License

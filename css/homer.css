@@ -40,7 +40,7 @@
 }
 
 :root {
-  --ink: #0b0b0b;
+  --ink: #090909;
   --ink-hover: #1b1b1b;
   --secondary: #595959;          /* 7.0:1 on white */
   --meta: #666666;               /* 5.7:1 on white */
@@ -54,7 +54,7 @@
   --guide-strong: rgba(11, 11, 11, 0.18);
   --gold: #f5c242;
   --led: #dfae30;
-  --band: #0b0b0b;
+  --band: #090909;
   --band-card: #141414;
   --band-text: #f4f3ee;
   --band-muted: #a0a0a0;
@@ -67,11 +67,11 @@
   /* the portal's folder object reads these (css/folder.css, paint fixed) */
   --ink-900: #131210;
   --bone-50: #faf8f3;
-  --blue-700: #2a70a0;
+  --blue-700: #304e8f;
   --white: #ffffff;
   --gold-400: #f5c242;
   --text-base: 15px;
-  --text-primary: #0b0b0b;
+  --text-primary: #090909;
 
   color-scheme: light;
 }
@@ -593,10 +593,10 @@ html.motion .show .folder-front::before {
   html.motion .show .folder {
     --gf: clamp(0, calc((var(--gold, 0) - 0.86) * 12), 1);
     --folder-sheet-face: color-mix(in srgb, #ffffff, #fbf6e8 calc(var(--gold, 0) * 100%));
-    --folder-sheet-tint: color-mix(in srgb, #d3e3ec, #d9cba4 calc(var(--gold, 0) * 100%));
+    --folder-sheet-tint: color-mix(in srgb, #c0d9e8, #d9cba4 calc(var(--gold, 0) * 100%));
   }
   html.motion .show .folder-fillet {
-    background: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0) calc(12px * var(--s)), color-mix(in srgb, #3b8cc0, #8a6a1e calc(var(--gf) * 100%)) calc(12.6px * var(--s)));
+    background: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0) calc(12px * var(--s)), color-mix(in srgb, #4371b0, #8a6a1e calc(var(--gf) * 100%)) calc(12.6px * var(--s)));
   }
 }
 /* the lock: the shackle snaps up and swings open, then the broken lock
@@ -2670,7 +2670,7 @@ body {
   max-width: 400px;
   padding: 10px 8px 10px 16px;
   border-radius: 14px;
-  background: #0b0b0b;
+  background: #090909;
   color: #f4f3ee;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
 }
@@ -2710,7 +2710,7 @@ body {
   border: 0;
   border-radius: 999px;
   background: #f4f3ee;
-  color: #0b0b0b;
+  color: #090909;
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;

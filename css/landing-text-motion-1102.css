@@ -19,13 +19,13 @@
 
 #stats-title .ls-aurora-text {
   display: inline-block;
-  color: #20354c;
+  color: #152345;
   transform: none;
 }
 
 @supports (background-image: linear-gradient(135deg in srgb, #000, #fff)) and ((background-clip: text) or (-webkit-background-clip: text)) {
   #stats-title .ls-aurora-text {
-    background-image: linear-gradient(135deg in srgb, #20354c, #546478, #075abb, #334f71, #20354c);
+    background-image: linear-gradient(135deg in srgb, #152345, #385081, #1741af, #253761, #152345);
     background-size: 200% auto;
     background-position: 0% 50%;
     background-clip: text;

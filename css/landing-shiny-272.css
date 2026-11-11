@@ -9,7 +9,7 @@
    spacing), the demo badge, the dark variants, and the source transition declaration (its 'infinite' token makes
    it invalid CSS, so browsers already drop it).
    Light-backing ink: the source light ink, neutral-600 at 70%, composites to about #868686 on white (about 3.65:1).
-   Here the neutral is this section's own ink #151517 at the same 70%: about rgb(91 91 93) on the #fff backing,
+   Here the neutral is this section's own ink #090909 at the same 70%: about rgb(91 91 93) on the #fff backing,
    about 6.76:1. The band only darkens it (about rgb(30 30 31), about 16.6:1 at its centre), so 6.76:1 is the
    worst case of the cycle.
    Parked (offscreen, hidden tab, html[data-motion-paused]) the background rests at the keyframes' own 0% value,

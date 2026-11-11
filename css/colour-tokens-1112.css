@@ -1,0 +1,260 @@
+/* Lifetime Supply · colour tokens · system c (deep cobalt, warm clouds, crisp rims)
+   His pick, Thu 12 Nov 01:52: "C - We must read high quality and premium."
+   With it (audit pass 2, his 8 Oct words "I really don't like that blue color on the text"): headline type stays one ink colour.
+   Colour lives in the sky, not in the type. No coloured or gradient words anywhere (ai-signs T2, T7).
+   Every value is measured from his references: sky = row 301 profile, clouds = rows 290 and 300, neutrals = rows 290, 298,
+   night = real black and the row 297 feralui "ink sky" greys. Numbers: out/colour/work/measure.json.
+   Gradients, the window edge and the button sheen are the gradients chat's (out/gradients/final/gradients.css); the sky images
+   are the sky chats' (stipple, b). These tokens are the colours under and around them. */
+
+:root {
+  --ls-sky-1: #112E84;   /* 301 at 2.5 %: the top. white words sit here */
+  --ls-sky-2: #1D46AE;   /* 301 at 22.5 % */
+  --ls-sky-3: #2F6CCF;   /* 301 at 42.5 %: the lowest white words may go */
+  --ls-sky-4: #50A0E7;   /* 301 at 62.5 %: ink words only from here down */
+  --ls-sky-5: #6BB9EF;   /* 301 at 72.5 % */
+  --ls-sky-6: #96CFF5;   /* 301 at 77.5 %: the pale sky just above the clouds; the pale ground for ink words */
+  --ls-cloud-shade-2: #A9C9E0; /* 300 cloud cluster: bases, deepest shade */
+  --ls-cloud-shade: #DAE4E9;   /* 290 cool shade (53 % of 290's cloud area) */
+  --ls-cloud-light: #F3F1E8;   /* 290 warm lit side (24 %) */
+  --ls-cloud-top: #FFFFFF;     /* white, the brightest tops only */
+  --ls-ink: #090909;         /* 298 headline ink (302 #00000B): every word on paper, one colour per line */
+  --ls-paper: #FFFFFF;       /* 290 page under the sky */
+  --ls-fog: #F3F3F3;         /* 290 second pill: quiet surfaces, second buttons */
+  --ls-meta: #6F6F6F;        /* 290 small print: dates, counts, captions only; never a headline or body line */
+  --ls-pill: #000000;        /* 290 sign-in pill: the primary button ground (the components chat's sheen sits on it) */
+  --ls-on-sky: #FFFFFF;      /* words on the sky, top half only (sky-1 to sky-3) */
+  --ls-accent-fill: #50A0E7; /* sky-4: small filled marks only (today, progress, selected), with ink words on them */
+  --ls-accent-fill-ink: var(--ls-ink);  /* words on the accent fill are ink (7.1:1), never white (2.8:1) */
+  --ls-link: var(--ls-ink);             /* links are ink, underlined: no blue words */
+  --ls-focus: var(--ls-ink);            /* 2 px focus ring on paper; on the sky use --ls-on-sky */
+  /* CSS sky, for anything that cannot be the painted image (loading colour, tiny tiles). Same stops as the images. */
+  --ls-sky-c: linear-gradient(180deg, var(--ls-sky-1) 0%, var(--ls-sky-2) 25%, var(--ls-sky-3) 50%, var(--ls-sky-4) 75%, var(--ls-sky-5) 90%, var(--ls-sky-6) 100%);
+}
+
+@supports (background: linear-gradient(180deg in oklab, #000 0%, #fff 100%)) {
+  :root { --ls-sky-c: linear-gradient(180deg in oklab, var(--ls-sky-1) 0%, var(--ls-sky-2) 25%, var(--ls-sky-3) 50%, var(--ls-sky-4) 75%, var(--ls-sky-5) 90%, var(--ls-sky-6) 100%); }
+}
+
+/* Dark mode: the portal and the desktop app only (the landing is light only, his 29 Oct call).
+   Everything sky blue turns grey and white (his 4 Nov call); grain on the grey (5 Nov); real black, no navy (X27). */
+[data-theme="dark"] {
+  --ls-sky-1: #000000; /* the dark ground: real black (292 ground L* 0) */
+  --ls-sky-2: #000000;
+  --ls-sky-3: #0B0B0C; /* raised surfaces */
+  --ls-sky-4: #1F2023; /* graphite: second buttons, quiet surfaces */
+  --ls-sky-5: #2F3136;
+  --ls-sky-6: #55585E; /* 297 feralui ink sky: night sky low, never words */
+  --ls-cloud-shade-2: #55585E; /* 297 feralui ink sky: night sky low, never words */
+  --ls-cloud-shade: #8E9094; /* 297 ink sky: secondary words on black */
+  --ls-cloud-light: #C4C6C9; /* 297 ink sky: night cloud shade */
+  --ls-cloud-top: #F2F2F0; /* 297 ink sky: night cloud tops; the dark accent fill */
+  --ls-ink: #FFFFFF;
+  --ls-paper: #000000; /* the dark ground: real black (292 ground L* 0) */
+  --ls-fog: #1F2023; /* graphite: second buttons, quiet surfaces */
+  --ls-meta: #8E9094; /* 297 ink sky: secondary words on black */
+  --ls-pill: #FFFFFF;
+  --ls-on-sky: #FFFFFF;
+  --ls-accent-fill: #F2F2F0; /* 297 ink sky: night cloud tops; the dark accent fill */
+}
+
+/* Texture (rows 293, 294, 289; his 5 Nov call for grain on the dark grey):
+   the painted sky images carry their own particles: add NO grain over them (sky chat).
+   Grain goes only on dark-mode grey surfaces, weighted to where tones change; never a flat noise layer over a page (ai-signs C7). */
+[data-theme="dark"] .ls-grain { position: relative; isolation: isolate; }
+[data-theme="dark"] .ls-grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: url(texture-grain-256.png); mix-blend-mode: soft-light; opacity: .5; }
+/* Where a sky meets the page it ends in a dither edge, never a fade (rows 294, 301). */
+.ls-sky-dither-edge { -webkit-mask: url(texture-dither-edge.png) bottom / 100% 96px no-repeat, linear-gradient(#000, #000) top / 100% calc(100% - 95px) no-repeat;
+  mask: url(texture-dither-edge.png) bottom / 100% 96px no-repeat, linear-gradient(#000, #000) top / 100% calc(100% - 95px) no-repeat; }
+
+/* ======================================================================================================
+   DROP-IN for the live portal (components/assembly/room-accents-059.css, app/globals.css) and the live landing
+   (css/blot-palette.css, css/assembly.css). Load this file LAST. Both sites carry the same room-accent families
+   (--ls-<family>-08 / 20 / 45 / base / deep / text, with on- pairs) and the --room-* aliases point at them.
+   Under c every family takes the ONE sky accent: no pink (petal), violet (orchid, periwinkle), orange (coral),
+   yellow (saffron) or green (mint) anywhere (X4, his no-rainbow and no-green calls; colour lives in the sky).
+   ====================================================================================================== */
+:root:root {
+  --ls-ink: #090909;      /* was #162236 (navy-leaning, X27): 298 ink */
+  --ls-on-ink: #FFFFFF;
+  --ls-nav: #090909;      /* was #4D5662: nav words are ink (290, 302) */
+  --ink: #090909;         /* landing css/assembly.css, was #151517 */
+  --ice: #E0F0FC;         /* landing, was #bde8fd: 301 cloud band */
+  --cream: #FFFFFF;       /* landing, was #fbe9d4: the page is paper (290) */
+  --ls-sky-08: #F6F9FD; /* computed 8 % tint */
+  --ls-sky-on-08: #090909;
+  --ls-sky-20: #E0F0FC; /* 301 cloud band (82.5 %) */
+  --ls-sky-on-20: #090909;
+  --ls-sky-45: #96CFF5; /* sky-6, 301 at 77.5 % */
+  --ls-sky-on-45: #090909;
+  --ls-sky-base: #50A0E7; /* sky-4, 301 at 62.5 % */
+  --ls-sky-on-base: #090909;
+  --ls-sky-deep: #1D46AE; /* sky-2, 301 at 22.5 % */
+  --ls-sky-on-deep: #FFFFFF;
+  --ls-sky-text: #090909; /* ink: no blue words (his pick with c) */
+  --ls-sky-text-on-v1: #090909;
+  --ls-periwinkle-08: #F6F9FD;
+  --ls-periwinkle-on-08: #090909;
+  --ls-periwinkle-20: #E0F0FC;
+  --ls-periwinkle-on-20: #090909;
+  --ls-periwinkle-45: #96CFF5;
+  --ls-periwinkle-on-45: #090909;
+  --ls-periwinkle-base: #50A0E7;
+  --ls-periwinkle-on-base: #090909;
+  --ls-periwinkle-deep: #1D46AE;
+  --ls-periwinkle-on-deep: #FFFFFF;
+  --ls-periwinkle-text: #090909;
+  --ls-periwinkle-text-on-v1: #090909;
+  --ls-petal-08: #F6F9FD;
+  --ls-petal-on-08: #090909;
+  --ls-petal-20: #E0F0FC;
+  --ls-petal-on-20: #090909;
+  --ls-petal-45: #96CFF5;
+  --ls-petal-on-45: #090909;
+  --ls-petal-base: #50A0E7;
+  --ls-petal-on-base: #090909;
+  --ls-petal-deep: #1D46AE;
+  --ls-petal-on-deep: #FFFFFF;
+  --ls-petal-text: #090909;
+  --ls-petal-text-on-v1: #090909;
+  --ls-orchid-08: #F6F9FD;
+  --ls-orchid-on-08: #090909;
+  --ls-orchid-20: #E0F0FC;
+  --ls-orchid-on-20: #090909;
+  --ls-orchid-45: #96CFF5;
+  --ls-orchid-on-45: #090909;
+  --ls-orchid-base: #50A0E7;
+  --ls-orchid-on-base: #090909;
+  --ls-orchid-deep: #1D46AE;
+  --ls-orchid-on-deep: #FFFFFF;
+  --ls-orchid-text: #090909;
+  --ls-orchid-text-on-v1: #090909;
+  --ls-coral-08: #F6F9FD;
+  --ls-coral-on-08: #090909;
+  --ls-coral-20: #E0F0FC;
+  --ls-coral-on-20: #090909;
+  --ls-coral-45: #96CFF5;
+  --ls-coral-on-45: #090909;
+  --ls-coral-base: #50A0E7;
+  --ls-coral-on-base: #090909;
+  --ls-coral-deep: #1D46AE;
+  --ls-coral-on-deep: #FFFFFF;
+  --ls-coral-text: #090909;
+  --ls-coral-text-on-v1: #090909;
+  --ls-saffron-08: #F6F9FD;
+  --ls-saffron-on-08: #090909;
+  --ls-saffron-20: #E0F0FC;
+  --ls-saffron-on-20: #090909;
+  --ls-saffron-45: #96CFF5;
+  --ls-saffron-on-45: #090909;
+  --ls-saffron-base: #50A0E7;
+  --ls-saffron-on-base: #090909;
+  --ls-saffron-deep: #1D46AE;
+  --ls-saffron-on-deep: #FFFFFF;
+  --ls-saffron-text: #090909;
+  --ls-saffron-text-on-v1: #090909;
+  --ls-mint-08: #F6F9FD;
+  --ls-mint-on-08: #090909;
+  --ls-mint-20: #E0F0FC;
+  --ls-mint-on-20: #090909;
+  --ls-mint-45: #96CFF5;
+  --ls-mint-on-45: #090909;
+  --ls-mint-base: #50A0E7;
+  --ls-mint-on-base: #090909;
+  --ls-mint-deep: #1D46AE;
+  --ls-mint-on-deep: #FFFFFF;
+  --ls-mint-text: #090909;
+  --ls-mint-text-on-v1: #090909;
+}
+
+/* dark: the portal and the desktop app only. everything sky blue turns grey and white (4 Nov). */
+html[data-theme="dark"]:root {
+  --ls-ink: #FFFFFF;
+  --ls-on-ink: #000000;
+  --ls-nav: #FFFFFF;
+  --ls-sky-08: rgba(255, 255, 255, 0.06);
+  --ls-sky-on-08: #FFFFFF;
+  --ls-sky-20: rgba(255, 255, 255, 0.10);
+  --ls-sky-on-20: #FFFFFF;
+  --ls-sky-45: rgba(255, 255, 255, 0.24);
+  --ls-sky-on-45: #FFFFFF;
+  --ls-sky-base: #F2F2F0;
+  --ls-sky-on-base: #000000;
+  --ls-sky-deep: #C4C6C9;
+  --ls-sky-on-deep: #000000;
+  --ls-sky-text: #FFFFFF;
+  --ls-sky-text-on-v1: #FFFFFF;
+  --ls-periwinkle-08: rgba(255, 255, 255, 0.06);
+  --ls-periwinkle-on-08: #FFFFFF;
+  --ls-periwinkle-20: rgba(255, 255, 255, 0.10);
+  --ls-periwinkle-on-20: #FFFFFF;
+  --ls-periwinkle-45: rgba(255, 255, 255, 0.24);
+  --ls-periwinkle-on-45: #FFFFFF;
+  --ls-periwinkle-base: #F2F2F0;
+  --ls-periwinkle-on-base: #000000;
+  --ls-periwinkle-deep: #C4C6C9;
+  --ls-periwinkle-on-deep: #000000;
+  --ls-periwinkle-text: #FFFFFF;
+  --ls-periwinkle-text-on-v1: #FFFFFF;
+  --ls-petal-08: rgba(255, 255, 255, 0.06);
+  --ls-petal-on-08: #FFFFFF;
+  --ls-petal-20: rgba(255, 255, 255, 0.10);
+  --ls-petal-on-20: #FFFFFF;
+  --ls-petal-45: rgba(255, 255, 255, 0.24);
+  --ls-petal-on-45: #FFFFFF;
+  --ls-petal-base: #F2F2F0;
+  --ls-petal-on-base: #000000;
+  --ls-petal-deep: #C4C6C9;
+  --ls-petal-on-deep: #000000;
+  --ls-petal-text: #FFFFFF;
+  --ls-petal-text-on-v1: #FFFFFF;
+  --ls-orchid-08: rgba(255, 255, 255, 0.06);
+  --ls-orchid-on-08: #FFFFFF;
+  --ls-orchid-20: rgba(255, 255, 255, 0.10);
+  --ls-orchid-on-20: #FFFFFF;
+  --ls-orchid-45: rgba(255, 255, 255, 0.24);
+  --ls-orchid-on-45: #FFFFFF;
+  --ls-orchid-base: #F2F2F0;
+  --ls-orchid-on-base: #000000;
+  --ls-orchid-deep: #C4C6C9;
+  --ls-orchid-on-deep: #000000;
+  --ls-orchid-text: #FFFFFF;
+  --ls-orchid-text-on-v1: #FFFFFF;
+  --ls-coral-08: rgba(255, 255, 255, 0.06);
+  --ls-coral-on-08: #FFFFFF;
+  --ls-coral-20: rgba(255, 255, 255, 0.10);
+  --ls-coral-on-20: #FFFFFF;
+  --ls-coral-45: rgba(255, 255, 255, 0.24);
+  --ls-coral-on-45: #FFFFFF;
+  --ls-coral-base: #F2F2F0;
+  --ls-coral-on-base: #000000;
+  --ls-coral-deep: #C4C6C9;
+  --ls-coral-on-deep: #000000;
+  --ls-coral-text: #FFFFFF;
+  --ls-coral-text-on-v1: #FFFFFF;
+  --ls-saffron-08: rgba(255, 255, 255, 0.06);
+  --ls-saffron-on-08: #FFFFFF;
+  --ls-saffron-20: rgba(255, 255, 255, 0.10);
+  --ls-saffron-on-20: #FFFFFF;
+  --ls-saffron-45: rgba(255, 255, 255, 0.24);
+  --ls-saffron-on-45: #FFFFFF;
+  --ls-saffron-base: #F2F2F0;
+  --ls-saffron-on-base: #000000;
+  --ls-saffron-deep: #C4C6C9;
+  --ls-saffron-on-deep: #000000;
+  --ls-saffron-text: #FFFFFF;
+  --ls-saffron-text-on-v1: #FFFFFF;
+  --ls-mint-08: rgba(255, 255, 255, 0.06);
+  --ls-mint-on-08: #FFFFFF;
+  --ls-mint-20: rgba(255, 255, 255, 0.10);
+  --ls-mint-on-20: #FFFFFF;
+  --ls-mint-45: rgba(255, 255, 255, 0.24);
+  --ls-mint-on-45: #FFFFFF;
+  --ls-mint-base: #F2F2F0;
+  --ls-mint-on-base: #000000;
+  --ls-mint-deep: #C4C6C9;
+  --ls-mint-on-deep: #000000;
+  --ls-mint-text: #FFFFFF;
+  --ls-mint-text-on-v1: #FFFFFF;
+}

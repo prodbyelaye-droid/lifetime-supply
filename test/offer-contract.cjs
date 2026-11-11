@@ -10,7 +10,10 @@ const template = fs.readFileSync('index.html', 'utf8');
 function pinned(html) {
   const ctas = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map((m) => m[1]);
   assert.deepEqual(ctas, [LIVE], 'one checkout CTA, the buy card (Elaye 6 Nov 18:08: the hero and step 1 go to #price first)');
-  assert(html.includes('<a class="hero-cta" href="#price">get lifetime access</a>'));
+  // hero B (Elaye 12 Nov 01:52): "No get lifetime access button on the hero too, something to point it down towards the interactive
+  // portal section". The hero's one control goes to the demo; the checkout stays the one buy card.
+  assert(!html.includes('class="hero-cta"'), 'no get lifetime access in the hero');
+  assert(html.includes('<a class="hero-down" href="#portal">click around the portal'));
   assert(html.includes('<a class="step-cta" href="#price">get lifetime access</a>'));
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.offers.url, LIVE);

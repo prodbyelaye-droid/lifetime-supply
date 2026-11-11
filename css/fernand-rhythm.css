@@ -64,5 +64,5 @@ html[data-landing-layout="b"] .portal-copy .dl-row { margin-top:32px; }
  .portal-panels { background:Canvas; border:1px solid CanvasText; }
 }
 
-.portal-copy>p.portal-install-note { font-size:13px; line-height:20px; max-width:65ch; margin-top:24px; color:#41474d; }
+.portal-copy>p.portal-install-note { font-size:13px; line-height:20px; max-width:65ch; margin-top:24px; color:#40464d; }
 .portal-copy>p.portal-phone { margin-block:24px; }

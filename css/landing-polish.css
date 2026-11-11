@@ -1,6 +1,6 @@
 /* clanding 063: critic 060/061 repairs. 030 V1 and 031 A remain source-exact.
    Accent ramps: 059 A. Geometry follows the delivered page and named critiques. */
-:root { --polish-ink:var(--brand-ink); --polish-muted:#41474d; --polish-radius:20px; }
+:root { --polish-ink:var(--brand-ink); --polish-muted:#40464d; --polish-radius:20px; }
 p,.numbers span,.price-includes summary { text-wrap:pretty; }
 h1,h2 { text-wrap:balance; }
 .headline-stop { color:var(--ls-periwinkle-text); font:inherit; vertical-align:baseline; }
@@ -101,7 +101,7 @@ body :is(a,button,summary,textarea,[tabindex]):focus-visible { outline:3px solid
  #price .price-stage { padding:40px 16px; border-radius:0; }
  #price .price-stage .price-card { padding:24px; }
  #price .price-stage .price-grid .display { font-size:clamp(36px,10.5vw,52px); letter-spacing:-.035em; }
- #price .price-scroll { margin-inline:-16px; padding-inline:16px; padding-bottom:12px; overflow-x:auto; scroll-padding-inline:16px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#41474d transparent; }
+ #price .price-scroll { margin-inline:-16px; padding-inline:16px; padding-bottom:12px; overflow-x:auto; scroll-padding-inline:16px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#40464d transparent; }
  #price .price-stage .price-list { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:calc(100vw - 88px); grid-auto-rows:1fr; gap:16px; padding-right:16px; width:max-content; min-width:100%; }
  #price .price-stage .price-list li { width:calc(100vw - 88px); scroll-snap-align:start; padding:20px; }
  .questions { width:calc(100% - 32px); padding-top:56px; }
@@ -135,7 +135,7 @@ body :is(a,button,summary,textarea,[tabindex]):focus-visible { outline:3px solid
 .faq details[open] .faq-chevron { transform:rotate(180deg); }
 .faq details[data-expanded="false"] .faq-chevron { transform:rotate(0); }
 .faq-answer { overflow:hidden; }
-.faq-answer p { padding:16px 0 0; margin:0; max-width:448px; font-size:14px; line-height:20px; color:#525e70; }
+.faq-answer p { padding:16px 0 0; margin:0; max-width:448px; font-size:14px; line-height:20px; color:#374b76; }
 @media(max-width:767px) { .questions { padding-inline:16px; } .questions::before { left:16px; right:16px; } }
 @media(prefers-reduced-motion:reduce) { .faq-chevron { transition:none; } }
 /* Put the reference's 16px row padding on the semantic hit target. */

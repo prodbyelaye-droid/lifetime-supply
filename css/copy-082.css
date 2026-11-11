@@ -10,15 +10,15 @@ body #main .ls-heading-b--step { font-size:clamp(32px,3.194444vw,46px);line-heig
 body #main .ls-heading-b--compact { font-size:clamp(28px,2.5vw,36px);line-height:1.08;text-align:left; }
 body #main .ls-heading-b .ls-heading-b__line {display:block;color:inherit;font:inherit;letter-spacing:inherit;background:none;}
 body #main .ls-heading-b .ls-heading-b__accent {display:inline-block;width:1.04em;height:.78em;margin:0 0 0 .12em;vertical-align:-.04em;}
-.film-caption {margin:24px auto 0;text-align:center;font-size:16px;line-height:1.6;color:#41474d;}
+.film-caption {margin:24px auto 0;text-align:center;font-size:16px;line-height:1.6;color:#40464d;}
 body .split-copy .ls-heading-b,body .stats-copy .ls-heading-b {text-align:left;}
 body .split-copy p {max-width:540px;}
 body .flow {padding-inline:48px;}
 body .flow-copy {width:100%;max-width:1120px;margin:auto;}
-body .flow-copy>p {max-width:640px;margin:28px auto 0;color:#41474d;}
+body .flow-copy>p {max-width:640px;margin:28px auto 0;color:#40464d;}
 body .workflow-steps {list-style:none;margin:48px auto 0;padding:0;max-width:880px;text-align:left;}
 body .workflow-steps li {padding:36px 0;border-top:1px solid #d7dce1;}
-body .workflow-steps p {font-size:18px;line-height:1.6;color:#41474d;max-width:760px;margin:20px 0 0;}
+body .workflow-steps p {font-size:18px;line-height:1.6;color:#40464d;max-width:760px;margin:20px 0 0;}
 body .flow-copy .workflow-tomorrow {margin-top:32px;font-size:20px;color:var(--brand-ink);}
 body .flow .curves {height:600px;pointer-events:none;}
 body .stats-copy .stats-line {margin-top:32px;}
@@ -28,26 +28,26 @@ body .feature-copy p {line-height:1.6;}
 body .split-white strong {font-size:clamp(36px,4vw,64px);letter-spacing:-.05em;}
 body .lesson-stack i {white-space:normal;line-height:1.4;}
 body .more-section {padding-inline:48px;overflow:visible;}
-.section-line {max-width:640px;margin:28px auto 0;text-align:center;font-size:18px;line-height:1.6;color:#41474d;}
+.section-line {max-width:640px;margin:28px auto 0;text-align:center;font-size:18px;line-height:1.6;color:#40464d;}
 .value-groups {max-width:1120px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:40px;row-gap:48px;text-align:left;}
 .value-group {min-width:0;}
 .value-group ul {margin:24px 0 0;padding-left:20px;}
-.value-group li {color:#41474d;font-size:16px;line-height:1.6;margin:0 0 12px;padding-left:4px;overflow-wrap:anywhere;}
+.value-group li {color:#40464d;font-size:16px;line-height:1.6;margin:0 0 12px;padding-left:4px;overflow-wrap:anywhere;}
 body .founder-copy {padding-block:60px;text-align:center;max-width:880px;}
 .founder-copy p:first-child {font-size:clamp(28px,3.2vw,46px);font-weight:500;line-height:1.1;letter-spacing:-.03em;color:var(--brand-ink);}
-.founder-copy p+p {font-size:18px;line-height:1.6;color:#41474d;margin:24px auto 0;}
+.founder-copy p+p {font-size:18px;line-height:1.6;color:#40464d;margin:24px auto 0;}
 .workflow-start-title {margin-bottom:48px;}
 body .step-copy {align-items:flex-start;}
 body .step-copy h3 {margin-bottom:16px;}
 body .step-copy>div {min-width:0;}
 body .producer-wall__intro {max-width:1120px;}
 body .producer-wall__intro>img {display:none;}
-body .producer-wall__intro>p {margin:28px auto 0;color:#41474d;}
+body .producer-wall__intro>p {margin:28px auto 0;color:#40464d;}
 body .price-intro {max-width:none;}
 body .price-intro>p {max-width:640px;margin:28px auto 0;}
 body #price-includes-label {margin-bottom:24px;}
 body .questions>h2 {margin-bottom:32px;}
-body .contact-stage>p {max-width:640px;margin:28px auto 32px;line-height:1.6;color:#41474d;}
+body .contact-stage>p {max-width:640px;margin:28px auto 32px;line-height:1.6;color:#40464d;}
 body .close-call .close-inner {max-width:1120px;margin:auto;display:flex;flex-direction:column;align-items:center;gap:32px;}
 body .close-call .close-cta {margin-top:0;flex-shrink:0;}
 @media(max-width:1000px){.value-groups{grid-template-columns:repeat(2,minmax(0,1fr));}}

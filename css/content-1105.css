@@ -2,14 +2,14 @@
    Sizes, colour and motion for these blocks belong to those two builds. */
 .portal-cue { position:relative; z-index:2; margin:0; padding:24px 24px 0; text-align:center; font-size:17px; font-weight:500; line-height:1.4; color:var(--brand-ink); }
 .board-legend { box-sizing:border-box; max-width:688px; margin:0 auto; padding:0 24px 96px; }
-.board-legend > p { margin:20px 0 0; font-size:17px; line-height:1.55; color:#3c4048; }
-.board-legend__list { margin:24px 0 0; padding:0; list-style:none; font-size:15px; line-height:1.5; color:#3c4048; }
+.board-legend > p { margin:20px 0 0; font-size:17px; line-height:1.55; color:#393e47; }
+.board-legend__list { margin:24px 0 0; padding:0; list-style:none; font-size:15px; line-height:1.5; color:#393e47; }
 .board-legend__list li { padding:12px 0; border-top:1px solid #e2e8f0; }
 .board-legend__list b { font-weight:600; color:var(--brand-ink); }
 
 #price .price-worth, #price .price-faq { margin-top:24px; padding:36px 40px; border-radius:16px; background:rgba(255,255,255,.94); text-align:left; }
 #price .price-worth .ls-heading-b--compact { font-size:32px !important; word-spacing:.1em; }
-#price .price-worth p { margin:12px 0 0; max-width:60ch; font-size:16px; line-height:1.55; color:#3c4048; }
+#price .price-worth p { margin:12px 0 0; max-width:60ch; font-size:16px; line-height:1.55; color:#393e47; }
 #price .price-worth h3 + p { margin-top:16px; }
 #price .price-faq .faq { max-width:none; margin:0; }
 #price .price-faq .faq-answer p { max-width:60ch; }
@@ -34,7 +34,7 @@ body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column:2; margin:24px 0
 
 /* the counter section's four chips */
 .stats-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:24px auto 0; padding:0; list-style:none; }
-.stats-chips li { padding:6px 12px; border:1px solid #d7e0e6; border-radius:999px; font-size:14px; line-height:1.4; color:#3c4048; }
+.stats-chips li { padding:6px 12px; border:1px solid #d6dfe6; border-radius:999px; font-size:14px; line-height:1.4; color:#393e47; }
 
 /* the close's small line */
 #close .close-inner .close-note { margin:14px 0 0; font-size:14px; line-height:1.4; color:#fff; }

@@ -16,7 +16,7 @@ const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 // body, partner (the material's second family), shade: blot2's deep colourways
 // in page order (013, no mud): green, teal, violet, magenta, each with its neighbour as partner, so violet and magenta
 // never meet green
-const ORDER = [['#2f7d3a', '#0f8f86', '#1d5626'], ['#0f8f86', '#2f7d3a', '#0a6660'], ['#6a00d8', '#b601e1', '#4a0098'], ['#b601e1', '#6a00d8', '#8300a3']];
+const ORDER = [['#2f7d3a', '#3f66a2', '#1d5626'], ['#3f66a2', '#2f7d3a', '#29437e'], ['#6a00d8', '#b601e1', '#4a0098'], ['#b601e1', '#6a00d8', '#8300a3']];
 const LUMPS = [[0.13, 0.07, 0.03], [0.16, 0.05, 0.05], [0.09, 0.12, 0.02], [0.12, 0.09, 0.06]];
 const N = 16;
 // 013: the material's own light, ported at the MAThelp panel's level (p95 L* about 75): its highlight ramp in raw light

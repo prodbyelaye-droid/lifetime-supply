@@ -1,6 +1,6 @@
 /* unit L2 (4 Nov): heading system, the portal 1:1 in #deep, the stats dot map, the price value stack, the FAQ top line,
    and the footer in the brand colours. Loaded last. Existing sky tokens only. */
-:root { --l2-ink:#111214; --l2-quiet:#8e9299; --l2-muted:#5b6068; --l2-line:rgba(17,18,20,.08); --l2-dot:#e4e8ec;
+:root { --l2-ink:#111214; --l2-quiet:#8e9299; --l2-muted:#585e69; --l2-line:rgba(17,18,20,.08); --l2-dot:#e4e8ec;
         --l2-ease:cubic-bezier(.22,1,.36,1); --l2-spring:cubic-bezier(.34,1.32,.5,1); }
 
 /* ---------- heading system (refs 240 + 168): one face, weight 600, tight; a quiet second voice ---------- */
@@ -54,7 +54,7 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
   #price .price-stage .price-list li::before { content:none !important; }
   #price .price-stage .price-list li .lead { font-size:17px; font-weight:600; letter-spacing:-.01em; color:var(--l2-ink); }
   #price .price-list .vs-check { align-self:start; margin-top:2px; }
-  #price .price-list .vs-text { font-size:15px; line-height:1.55; color:#3c4048; }
+  #price .price-list .vs-text { font-size:15px; line-height:1.55; color:#393e47; }
   #price .price-list .vs-why { display:block; margin-top:4px; color:var(--ls-sky-text); font-weight:500; }
 }
 #price .price-list .vs-check { width:20px; height:20px; fill:none; stroke:var(--ls-sky-text); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
@@ -71,10 +71,10 @@ html.l2-js #stats .l2-dots .ring { transition:opacity .4s var(--l2-ease) .95s; }
 #price .questions .faq { text-align:left; max-width:640px; margin:40px auto 0; }
 
 /* ---------- footer: brand colours (the sky banner), the brand blot ---------- */
-#footer.ls-footer { background:var(--ls-sky-base) !important; color:#05131b; }
+#footer.ls-footer { background:var(--ls-sky-base) !important; color:#020c1d; }
 #footer.ls-footer::before, #footer.ls-footer::after { display:none !important; }
-#footer .footer-line { color:#05131b; font-weight:600; letter-spacing:-.035em; }
-#footer .footer-links a, #footer .copyright, #footer .elaye { color:#05131b !important; }
+#footer .footer-line { color:#020c1d; font-weight:600; letter-spacing:-.035em; }
+#footer .footer-links a, #footer .copyright, #footer .elaye { color:#020c1d !important; }
 #footer .footer-bottom { border-top-color:rgba(5,19,27,.22) !important; }
 #footer .footer-signature .locked-logo { filter:brightness(0); opacity:.9; }
 #footer .footer-word.l2-word { margin:0; padding-top:120px; font-family:var(--brand-font-display);

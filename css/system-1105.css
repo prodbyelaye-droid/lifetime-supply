@@ -201,7 +201,7 @@ html body #main #features.main-value .mv-shot { display: block; width: 100%; hei
 html body #main #features.main-value .mv-copy { padding: 10px 1px 0; }
 html body #main #features.main-value .mv-title { margin: 0 0 4px; }
 html body #main #features.main-value .mv-copy p { font-size: var(--sys-small); line-height: 1.45; }
-html body #main #features.main-value .mv-depth { margin: 8px 0 0; padding: 0; list-style: none; font-size: var(--sys-micro); line-height: 1.35; color: #5d646c; }
+html body #main #features.main-value .mv-depth { margin: 8px 0 0; padding: 0; list-style: none; font-size: var(--sys-micro); line-height: 1.35; color: #58616d; }
 html body #main #features.main-value .mv-depth li { padding: 5px 0; border-top: 1px solid var(--brand-ink-a1a); }
 html body #main #features.main-value .mv-depth b { font-weight: 600; color: var(--brand-ink); font-variant-numeric: tabular-nums; }
 @media (max-width: 1000px) { html body #main #features.main-value .mv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

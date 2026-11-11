@@ -1,7 +1,7 @@
 /* Row 173 / Mintlify: centred introduction, three content-height columns,
    40px identity slot, 28px card inset. Task 056: approved 030 V1 field and accents.
    No motion; full quotes remain readable, with no fading mask. */
-.producer-wall { --wall-ink:#20252a; --wall-muted:#505a63; --wall-blue:var(--brand-sky-46);
+.producer-wall { --wall-ink:#20252a; --wall-muted:#465363; --wall-blue:var(--brand-sky-46);
   --wall-line:#e7edf1; position:relative; background:#fff; color:var(--wall-ink);
   padding:76px 24px 96px; isolation:isolate; font-family:var(--brand-font-text); }
 /* The exact V1 mesh, with white edge fades. No added blur, texture or motion. */

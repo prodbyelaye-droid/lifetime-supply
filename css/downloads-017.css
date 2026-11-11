@@ -2,7 +2,7 @@
  * by js/desktop-downloads.js; historical URL review switches are not shipped. */
 
 .dl17 {
-  --dl17-ink:var(--brand-ink); --dl17-body:#41474d;
+  --dl17-ink:var(--brand-ink); --dl17-body:#40464d;
   --v1-50:var(--brand-sky-3); --v1-45:var(--brand-sky-1); --v1-30:var(--brand-sky-5); --v1-20:var(--brand-sky-9); --v1-10:var(--brand-sky-4);
   position:relative; isolation:isolate; padding-block:60px; overflow-x:clip;
 }
@@ -30,7 +30,7 @@
 
 /* ---------- A · our arch in V1 ---------- */
 .dl17[data-dl="a"] .dl17-stage {
-  background:linear-gradient(180deg, #EEF9FF 0%, #E2F5FE 34%, var(--brand-sky-52) 58%, var(--brand-sky-3) 100%);
+  background:linear-gradient(180deg, #EFF9FF 0%, #E5F4FE 34%, var(--brand-sky-52) 58%, var(--brand-sky-3) 100%);
   box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.10);
 }
 .dl17[data-dl="a"] .dl17-arch, .dl17[data-dl="a"] .dl17-dots, .dl17[data-dl="a"] .dl17-edge { display:block; position:absolute; }
@@ -72,7 +72,7 @@
 .dl17[data-dl="b"] .dl17-copy { padding-top:118px; }
 
 /* ---------- C · the disc, kept light ---------- */
-.dl17[data-dl="c"] .dl17-stage { background:linear-gradient(180deg,#F8FCFF 0%,#F1F9FE 55%,#E6F5FE 100%); min-height:840px; }
+.dl17[data-dl="c"] .dl17-stage { background:linear-gradient(180deg,#F8FCFF 0%,#F1F9FE 55%,#E8F5FE 100%); min-height:840px; }
 .dl17[data-dl="c"] .dl17-disc { display:block; }
 .dl17-disc {
   position:absolute; width:640px; aspect-ratio:1; left:50%; bottom:-300px; transform:translateX(-50%); border-radius:50%;

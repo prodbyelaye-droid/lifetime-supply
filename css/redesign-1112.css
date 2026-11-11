@@ -1,0 +1,229 @@
+/* Redesign, Thu 12 Nov 2026 (landing build lane E, overnight). Loaded last. Design only: no copy, link, offer or data change
+   beyond his picks. Sources (brand sprint, his picks in out/PICKS.md):
+   - hero B, split ("B - No get lifetime access button on the hero too, something to point it down towards the interactive
+     portal section", 01:52): out/landing round-1 frame "B · split" (Figma 7:41), audit fixes (log in and pause motion in the
+     nav row, the caption out of the panel). The italic word waits for the type redo (type stays production).
+   - sky b, stipple ("b", 01:20): out/sky/final/stipple/web/landing-hero-panel-1200x1500.
+   - the window's edge 22 % (02:06): out/gradients/final/gradients.css (band 11, radius 20, window radius 9, inset 100, panel 15).
+   - components A, ink and sheen (01:52): out/components (spec-A, 291 measured; primary pill per gradients.css row 291).
+   - colour c (01:52): css/brand-tokens.css; card filters in colour c, white cards ("keep sleek white cards for all", 02:02),
+     el-E10 SPEC tag shades.
+   - mark C, linked loops, heavy (02:06): out/mark/final (small master inline below 64 px). The blob appears nowhere. */
+
+:root{
+  --rd-ink:#111111; --rd-meta:#6E6E73; --rd-hair:#EDEDED; --rd-quiet:#F0F0F0; --rd-panel:#FBFBFB;
+  --rd-c-deep:#112E84; --rd-c-1:#1D46AE; --rd-c-2:#2F6CCF; --rd-c-3:#50A0E7; --rd-c-4:#6BB9EF;
+  --rd-c-shade:#A9C9E0; --rd-c-cool:#DAE4E9; --rd-c-light:#E2F0FB; --rd-c-lit:#F3F1E8;
+  --rd-sky-solid:#1B51B7;
+  --rd-band:rgba(255,255,255,.22); --rd-band-w:11px; --rd-band-r:20px; --rd-win-r:9px; --rd-inset:100px; --rd-panel-r:15px;
+  --rd-btn-bg:linear-gradient(180deg,#363636 0%,#181818 100%); --rd-btn-rim:#252628;
+  --rd-btn-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10);
+  --rd-btn2-bg:linear-gradient(180deg,#FFFFFF 0%,#FBFBFB 45%,#FBFBFB 100%);
+}
+
+/* ---------- the mark ---------- */
+.ls-mark{display:inline-block;flex:none;fill:currentColor;width:auto;height:1em;aspect-ratio:912/600;overflow:visible}
+
+/* ---------- the opening: white, no wash, no blobs ---------- */
+html .opening .hero-gradient-203,html .opening .opening-blots,html .opening .ob,html .flood-short{display:none!important}
+html .opening{background:#FFFFFF!important}
+
+/* ---------- hero B (out/landing/final/SPEC.md v1, 03:04): nav on white across the page, the panel below it ---------- */
+html .hero.hero-b{display:block!important;position:relative;height:900px!important;min-height:0!important;padding:0!important;box-sizing:border-box;overflow:visible;isolation:isolate;background:#FFFFFF}
+html .hero.hero-b>.site-nav{position:absolute!important;top:0;left:0;right:0;height:88px;padding:0 24px 0 56px!important;margin:0;gap:0;
+  display:flex;align-items:center;z-index:6;background:#FFFFFF!important;box-shadow:none!important;border:0!important}
+html .hero.hero-b .wordmark{display:inline-flex!important;align-items:center;gap:10px;height:44px;color:var(--rd-ink);text-decoration:none}
+html .hero.hero-b .wordmark .ls-mark{width:30px;height:20px}
+html .hero.hero-b .wordmark .ls-typed{font-weight:600;font-size:20px;letter-spacing:-.022em;color:var(--rd-ink)}
+html .hero.hero-b .site-nav nav{margin-left:76px!important;display:flex;gap:30px}
+html .hero.hero-b .site-nav nav a{font-size:16px;color:var(--rd-ink);padding:0;min-height:44px;display:flex;align-items:center;text-decoration:none;letter-spacing:-.005em}
+html .hero.hero-b .site-nav nav a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+/* pause motion, then log in: row 302's outlined pill (critic E2 (1)), both ink on white */
+html .hero.hero-b .motion-toggle{order:2;margin-left:auto!important;margin-right:26px!important;color:var(--rd-ink)!important;text-decoration:none!important;font-size:15px!important;
+  min-height:44px;padding:0!important;background:none!important;border:0!important;display:inline-flex;align-items:center;gap:8px}
+html .hero.hero-b .motion-toggle span{color:var(--rd-ink)!important;font-size:15px!important}
+html .hero.hero-b .motion-toggle::before{content:'';width:7.4px;height:10px;flex:none;background:linear-gradient(90deg,var(--rd-ink) 0 2.4px,transparent 2.4px 5px,var(--rd-ink) 5px 7.4px);border-radius:1px}
+html .hero.hero-b .motion-toggle[aria-pressed=true]::before{width:0;height:0;background:none;border-left:9px solid var(--rd-ink);border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
+html .hero.hero-b .motion-toggle::after{display:none!important}
+html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login{order:3;margin:0!important;height:38px;min-height:38px;padding:0 18px!important;display:inline-flex;align-items:center;
+  border-radius:999px;font:500 15px/1 var(--brand-font-text);color:var(--rd-ink)!important;text-decoration:none!important;background:transparent!important;
+  border:1px solid rgba(17,17,17,.18)!important;box-shadow:none!important}
+html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login:hover{border-color:rgba(17,17,17,.36)!important;background:#FAFAFA!important}
+html .hero.hero-b .header-login:focus-visible,html .hero.hero-b .motion-toggle:focus-visible{outline:2px solid #111111;outline-offset:3px}
+
+html .hero.hero-b .hero-copy{position:absolute!important;left:56px;top:184px;bottom:24px;width:640px;margin:0!important;padding:0!important;max-width:600px!important;
+  min-height:0;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left!important;transform:none!important;opacity:1}
+html .hero.hero-b #hero-title{margin:0!important;white-space:nowrap;text-align:left!important;font-size:66px!important;line-height:66px!important;font-weight:500!important;
+  letter-spacing:-.04em!important;color:var(--rd-ink)!important;max-width:none;width:auto}
+html .hero.hero-b .hero-copy>p{margin:auto 0 0!important;max-width:540px!important;text-align:left!important;font-size:17px!important;line-height:26px!important;color:var(--rd-ink)!important;letter-spacing:-.003em}
+html .hero.hero-b .hero-actions{margin:36px 0 0!important;justify-content:flex-start!important;display:flex}
+html .hero.hero-b .hero-down{display:inline-flex;align-items:center;gap:.55em;height:50px;padding:0 28px;border-radius:999px;box-sizing:border-box;
+  font:500 16px/1 var(--brand-font-text);color:#FFFFFF!important;text-decoration:none!important;letter-spacing:-.01em;
+  background:linear-gradient(180deg,#2E2E2E 0%,#111111 100%);border:1px solid #1B1C1F;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.14),0 1px 2px rgba(0,0,0,.06);
+  transition:box-shadow .16s cubic-bezier(.22,1,.36,1),transform .2s cubic-bezier(.28,1.4,.36,1)}
+html .hero.hero-b .hero-down:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 1px 1px rgba(0,0,0,.14),0 2px 5px -1px rgba(0,0,0,.12)}
+html .hero.hero-b .hero-down:active{background:#111111;transform:scale(.97)}
+html .hero.hero-b .hero-down:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.hero-down__arrow{width:16px;height:16px;flex:none}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* the sky panel (set 2 warm, critic 03:06), the window edge (row 298, 22 %) and the window, cut by the panel's right and bottom edges */
+.hero-panel{position:absolute;right:24px;top:88px;width:692px;height:788px;border-radius:var(--rd-panel-r);overflow:hidden;
+  background:var(--rd-sky-solid) url('../brand/current/sky/landing-hero-panel.webp') center bottom/cover no-repeat;isolation:isolate}
+.hero-front{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;pointer-events:none;z-index:2}
+.hero-band{position:absolute;z-index:1;left:var(--rd-inset);top:var(--rd-inset);padding:var(--rd-band-w);border-radius:var(--rd-band-r);background:var(--rd-band);width:1000px}
+.hero-window{border-radius:var(--rd-win-r);overflow:hidden;background:#FFFFFF;height:900px;display:flex;flex-direction:column;color:var(--rd-ink);
+  font-family:var(--brand-font-text);text-align:left;-webkit-font-smoothing:antialiased}
+.hw-bar{height:30px;flex:none;display:flex;align-items:center;gap:15px;padding:0 14px;background:#FBFBFB;border-bottom:1px solid var(--rd-hair);font-size:12.5px;color:var(--rd-ink)}
+.hw-bar .ls-mark{height:10px}
+.hw-bar b{font-weight:600}
+.hw-body{flex:1;display:flex;min-height:0}
+.hw-side{width:196px;flex:none;background:var(--rd-panel);border-right:1px solid var(--rd-hair);padding:18px 12px;display:flex;flex-direction:column;gap:2px}
+.hw-brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;letter-spacing:-.01em;padding:0 8px 18px;margin-bottom:10px;border-bottom:1px solid var(--rd-hair)}
+.hw-brand .ls-mark{height:11px}
+.hw-group{margin:12px 0 4px;padding:0 8px;font-size:11.5px;color:var(--rd-meta)}
+.hw-item{display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:8px;font-size:13.5px;color:var(--rd-ink)}
+.hw-item svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:round;stroke-linecap:round}
+.hw-item.is-on{background:var(--rd-quiet);font-weight:600}
+.hw-main{flex:1;min-width:0;padding:16px 28px}
+.hw-crumb{height:34px;display:flex;align-items:center;border-bottom:1px solid var(--rd-hair);margin:0 -28px 26px;padding:0 0 12px 28px}
+.hw-crumb-pill{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--rd-hair);font-size:13px}
+.hw-crumb-pill svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.3}
+.hw-crumb-pill i{font-style:normal;color:var(--rd-meta)}
+.hw-h{margin:0;font-size:22px;font-weight:600;letter-spacing:-.015em}
+.hw-sub{margin:8px 0 0;font-size:13.5px;line-height:19px;max-width:420px}
+.hw-meta{margin:8px 0 0;font-size:12.5px;color:var(--rd-meta)}
+.hw-chiprow{display:flex;gap:6px;margin:24px 0 18px}
+.hw-chip{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:8px;background:var(--rd-quiet);font-size:13px;font-weight:500}
+.hw-chip{border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(9,9,9,.12)}
+.hw-chip:first-child{color:#FFFFFF;background:#1D46AE;box-shadow:none} /* P7: the filter that is on fills with its lane's shade */
+.hw-sheet{border:1px solid #E8E8EA;border-radius:16px;overflow:hidden;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.hw-sheet-h{display:flex;align-items:center;gap:14px;min-height:46px;padding:12px 16px;background:#F3F3F3;border-bottom:1px solid #EFEFEF;font-size:15px;font-weight:600}
+.hw-sheet-line{font-weight:400;font-size:12.5px;color:var(--rd-meta)}
+.hw-grid{display:grid;grid-template-columns:repeat(3,200px)}
+.hw-tile{display:flex;flex-direction:column;padding:14px;min-height:118px;border-right:1px solid #EFEFEF;border-bottom:1px solid #EFEFEF}
+.hw-blur{display:block;border-radius:4px;background:#1414141f;filter:blur(2.4px)}
+.hw-blur--name{height:12px;width:72%;margin-top:3px}
+.hw-blur--lane{height:9px;width:54%;margin-top:12px;background:#14141414}
+.hw-when{margin-top:8px;font-size:11.5px;color:var(--rd-meta)}
+.hw-chips{margin-top:auto;padding-top:12px;display:flex;gap:6px}
+.hw-tag{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:6px;font-size:11.5px;font-weight:500;background:#1D46AE;color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(9,9,9,.08)} /* colour c final urgency ramp: urgent sky-2 */
+.hw-tier{display:inline-flex;height:20px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(20,20,20,.14);font-size:11.5px;font-weight:500}
+.hw-tier>span{display:inline-flex;align-items:center;padding:0 7px}
+.hw-tier>.k{color:var(--rd-meta);font-weight:400;box-shadow:inset -1px 0 0 rgba(20,20,20,.14)}
+
+/* the interactive portal below: on white now, the caption above it (out of the panel) */
+html .opening>.portal-cue{padding:104px 56px 0!important;margin:0!important;max-width:none;text-align:left!important;font:400 18px/27px var(--brand-font-text)!important;color:var(--rd-ink)!important}
+html .opening>.portal-cue{max-width:calc(760px + 112px)}
+/* the stage: its own picture of the sky (row 303 "interactive portal w background"), the demo window centred in the 22 % edge.
+   Nothing in front of it: every part of the demo stays clickable. */
+html #portal.hero-computer{margin:24px 24px 0!important;padding:92px 0 0!important;height:900px;box-sizing:border-box;border-radius:15px;overflow:hidden;
+  background:#1B51B7 url('../brand/current/sky/portal-stage.webp') center bottom/cover no-repeat!important}
+html #portal .computer-device{padding:11px!important;border-radius:20px;background:rgba(255,255,255,.22)!important;box-shadow:none!important;width:min(1104px,calc(100% - 96px))!important;max-width:none!important;margin:0 auto!important;box-sizing:content-box}
+html #portal .computer-device>.portal-preview{border-radius:9px!important;overflow:hidden;box-shadow:none!important}
+@media (max-width:700px){
+  html .opening>.portal-cue{padding:56px 16px 0!important;font-size:16px!important;line-height:24px!important}
+  html #portal.hero-computer{margin:20px 16px 0!important;padding:20px 0!important;height:auto;min-height:268px}
+  html #portal .computer-device{width:calc(100% - 40px)!important;padding:6px!important;border-radius:14px}
+}
+
+@media (max-width:1200px) and (min-width:701px){
+  html .hero.hero-b>.site-nav{padding-left:40px!important}
+  html .hero.hero-b .site-nav nav{margin-left:36px!important;gap:20px}
+  html .hero.hero-b .hero-copy{left:40px;width:calc(100vw - 48vw - 88px)}
+  html .hero.hero-b #hero-title{font-size:48px!important;line-height:50px!important;white-space:normal}
+  .hero-panel{width:48vw}
+  .hero-band{left:64px;top:72px}
+}
+@media (max-width:700px){
+  html .hero.hero-b{display:flex!important;flex-direction:column;height:auto!important;padding:0 16px 16px!important}
+  html .hero.hero-b>.site-nav{position:relative!important;height:auto;min-height:64px;flex-wrap:wrap;padding:calc(10px + env(safe-area-inset-top)) 0 0!important;row-gap:0}
+  html .hero.hero-b .site-nav nav{order:5;flex-basis:100%;margin:0!important;gap:22px}
+  html .hero.hero-b .wordmark .ls-typed{font-size:18px}
+  html .hero.hero-b .motion-toggle{margin-right:14px!important;font-size:14px!important}
+  html .hero.hero-b .motion-toggle span{font-size:14px!important}
+  html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login{height:36px;min-height:36px;padding:0 15px!important;font-size:14px}
+  html .hero.hero-b .hero-copy{position:relative!important;left:auto;top:auto;bottom:auto;width:auto;max-width:none!important}
+  html .hero.hero-b #hero-title{white-space:normal;margin:36px 0 0!important;font-size:42px!important;line-height:44px!important;letter-spacing:-.035em!important}
+  html .hero.hero-b .hero-copy>p{margin:24px 0 0!important;font-size:16px!important;line-height:24px!important}
+  html .hero.hero-b .hero-actions{margin:28px 0 0!important;width:100%}
+  html .hero.hero-b .hero-down{height:48px;width:100%;justify-content:center}
+  .hero-panel{position:relative;right:auto;top:auto;width:100%;height:440px;margin-top:28px}
+  .hero-band{left:40px;top:40px;transform:scale(.6);transform-origin:0 0}
+}
+
+/* ---------- the demo portal (interactive section): mark C in place of every blob ---------- */
+html .l4-apple svg{width:16px!important;height:auto!important;aspect-ratio:912/600}
+html .l4-apple svg path{fill:#111111!important}
+html .l4-macbar[data-l4-bar="dark"] .l4-apple svg path{fill:#FFFFFF!important}
+html .l4-macbar:not([data-l4-bar="dark"]){background:#F6F6F7!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:inset 0 -1px 0 rgba(0,0,0,.07)!important}
+.l4-bh .bs-slot .bs-mark{inset:auto;left:20%;top:30%;width:60%;height:40%}
+.l4-bh .bs-slot .bs-mark path{fill:#111111}
+
+/* ---------- the stat line: the mark lands where the ∞ landed ("symbolises infinite, or infinity", his 23:13 words for the mark) ---------- */
+html [data-counter-1105] .c1105-sign::before{content:''!important;display:inline-block;width:1.06em;height:.7em;vertical-align:-.02em;background:currentColor;
+  -webkit-mask:url('../brand/current/mark/mark.svg') center/contain no-repeat;mask:url('../brand/current/mark/mark.svg') center/contain no-repeat}
+
+/* ---------- download: the app tile in the blob's place; no pixel finish here (critic P5); "app" in ink (colour-c-remap-landing.css) ---------- */
+html .dl17 .dl17-blot,html .dl17 .dl17-side{display:none!important}
+html .dl17[data-dl]{position:relative}
+html .dl17[data-dl]::after{content:'';position:absolute;right:max(24px,calc(50% - 560px + 40px));bottom:40px;width:112px;height:112px;border-radius:22.5%;
+  background:url('../brand/current/mark/app-tile-sky-512.png') center/cover no-repeat;box-shadow:0 1px 14px rgba(18,58,156,.08);pointer-events:none}
+@media (max-width:900px){html .dl17[data-dl]::after{display:none}}
+
+/* ---------- footer: the painted sky (set 2 warm, open sky only), white words, the mark as the full stop; no draggable character ---------- */
+html #footer.ls-footer{background:#1B51B7 url('../brand/current/sky/footer-sky.webp') center top/cover no-repeat!important;color:#FFFFFF!important}
+html #footer.ls-footer .footer-line,html #footer.ls-footer .footer-links a,html #footer.ls-footer .copyright,html #footer.ls-footer .footer-word{color:#FFFFFF!important;background:none!important}
+html:not(#ls-a):not(#ls-b):not(#ls-c) body #footer.ls-footer :is(.footer-line,.footer-links a,.copyright,.footer-word){-webkit-text-fill-color:currentColor}
+html #footer.ls-footer .blob,html #footer.ls-footer #blob-help{display:none!important}
+html #footer.ls-footer .footer-word::after{content:'';display:inline-block;width:calc(.33em * 1.52);height:.33em;margin-left:.06em;vertical-align:-.005em;background:#FFFFFF;
+  -webkit-mask:url('../brand/current/mark/mark.svg') center/contain no-repeat;mask:url('../brand/current/mark/mark.svg') center/contain no-repeat}
+
+/* ---------- components A: every "get lifetime access" is the ink pill (291); buttons-1112.css carries the rest ---------- */
+html:not(#ls-a):not(#ls-b) body :is(.price-buy,.close-cta,.step-cta){background:linear-gradient(180deg,#363636 0%,#181818 100%)!important;border:1px solid #252628!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10)!important;color:#FFFFFF!important;border-radius:999px!important}
+html:not(#ls-a):not(#ls-b) body :is(.price-buy,.close-cta,.step-cta):hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.12),0 2px 5px -1px rgba(0,0,0,.12)!important}
+html:not(#ls-a):not(#ls-b) body :is(.price-buy,.close-cta,.step-cta):active{background:#181818!important;transform:scale(.97)}
+html:not(#ls-a):not(#ls-b) body :is(.price-buy,.close-cta,.step-cta):focus-visible{outline:2px solid #111111;outline-offset:3px}
+
+/* ---------- price (el-E16 A, critic 03:06): the promise and the price in white on the painted sky (set 2 warm, open sky), the sky meets
+   white by colour c's dither edge, the fine print in ink on white below; the glass and the haze go; layout and words as live ---------- */
+html #price .price-stage{background:#FFFFFF!important;position:relative}
+html #price .price-stage::before{display:none!important}
+html #price .price-stage{overflow:hidden}
+/* the band sits behind the price grid and runs to the stage's edges (the stage clips it), so it ends under the card at every width */
+html body #main #price .price-grid{position:relative;isolation:isolate}
+html body #main #price .price-grid::before{content:'';position:absolute;z-index:-1;left:-50vw;right:-50vw;top:-240px;bottom:-96px;
+  background:#1B51B7 url('../brand/current/sky/price-band.webp') center top/cover no-repeat;
+  -webkit-mask:url('texture-dither-edge.png') bottom/1440px 48px repeat-x,linear-gradient(#000,#000) top/100% calc(100% - 47px) no-repeat;
+  mask:url('texture-dither-edge.png') bottom/1440px 48px repeat-x,linear-gradient(#000,#000) top/100% calc(100% - 47px) no-repeat}
+html #price .price-stage>*{position:relative;z-index:1}
+html body #main #price .price-includes{margin-top:140px!important}
+html #price .price-card{background:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important;border-color:rgba(255,255,255,.22)!important}
+html body #main #price :is(.price-includes,.price-lower),html body #main #price :is(.price-includes,.price-lower) :is(h2,h3,p,summary,span,a,li,div,b,strong){color:#111111!important}
+html:not(#ls-a):not(#ls-b) body #main #price :is(.price-includes,.price-lower) :is(h2,h3,p,summary,span,a,li,div,b,strong){-webkit-text-fill-color:currentColor}
+html body #main #price :is(.price-includes,.price-lower) :is(details,summary,.price-faq,hr,div){border-color:rgba(9,9,9,.12)!important}
+html body #main #price{--p-tick:#1D46AE;--p-tick-on:#FFFFFF}
+html:not(#ls-a):not(#ls-b) body #main #price .price-card .price-buy{-webkit-text-fill-color:#141414}
+html:not(#ls-a):not(#ls-b) body #price .price-buy{color:#141414!important;border:0!important;background:linear-gradient(180deg,#FFFFFF 0%,#FBFBFB 45%,#F3F3F3 100%)!important;
+  box-shadow:0 1px 2px rgba(6,22,64,.28),0 8px 20px -6px rgba(6,22,64,.30)!important}
+html:not(#ls-a):not(#ls-b) body #price .price-buy:hover{background:#FFFFFF!important;box-shadow:0 1px 2px rgba(6,22,64,.30),0 10px 24px -6px rgba(6,22,64,.34)!important}
+html:not(#ls-a):not(#ls-b) body #price .price-buy:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}
+@media (max-width:700px){html #portal.hero-computer{margin-bottom:24px!important}}
+html #portal.hero-computer{margin-bottom:32px!important}
+
+/* ---------- one ink colour for words (colour c final, section 10: no coloured, gradient or glowing words) ---------- */
+html body #main .ls-gradient-273{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;animation:none!important;color:inherit!important}
+html:not(#ls-a):not(#ls-b) body #main .ls-gradient-273{-webkit-text-fill-color:currentColor}
+html body #main .config-more__chip .config-more__pre{color:#6F6F6F!important}   /* meta grey, 5.0:1 on paper (was #8a8a8a, 3.45:1) */
+
+/* the demo's hello splash: on paper, the mark and the words, no wash ("i dont like the super soft look") */
+html .l4-bh .bh-field{background:#FFFFFF!important}
+html .l4-screen[data-theme="dark"] .l4-bh .bh-field,html .l4-bh[data-theme="dark"] .bh-field{background:#000000!important}
+/* the control lands with the caption in view */
+html #portal{scroll-margin-top:150px}
+html .producer-wall::before{display:none!important}   /* the V1 mesh (a soft wash) goes; white page, white cards with their hairline */
+html canvas.blend10{display:none!important}   /* the soft glow behind the flagship card (a wash); the card keeps its hairline */
+html #inside .blend::before{display:none!important}   /* the V1 wash behind the flagship card goes */
+html body #main #inside .ten-card{box-shadow:0 1px 2px rgba(0,0,0,.03),0 6px 24px -6px rgba(0,0,0,.06)!important;border-color:#EFEFEF!important;background:#FFFFFF!important}   /* components A card (291) */

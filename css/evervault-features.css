@@ -19,7 +19,7 @@
 .arch-art{width:100%;height:100%;object-fit:cover}
 .pixel-trio{position:absolute;top:19%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:9px}
 .pixel-trio img{width:18px;height:18px}.pixel-trio img:nth-child(2){width:29px;height:29px}
-.split-white{position:absolute;inset:0 46% 0 0;background:#fff;box-shadow:1px 0 #dce6ed}
+.split-white{position:absolute;inset:0 46% 0 0;background:#fff;box-shadow:1px 0 #dbe6ed}
 .lesson-stack{position:absolute;left:34%;top:26%;width:52%;height:49%;display:grid;gap:8px}
 .lesson-stack i{background:#fff;border:1px solid var(--brand-sky-35);border-radius:5px;box-shadow:0 8px 16px var(--brand-sky-2-a0e)}
 .lesson-stack i:nth-child(1){transform:translateX(-12px)}.lesson-stack i:nth-child(3){transform:translateX(12px)}
@@ -44,10 +44,10 @@
 .ev-features[data-effect=B] .ev-surface[data-active] .fx-pixels,.ev-features[data-effect=B] .feature:focus-within .fx-pixels,.ev-features[data-effect=C] .ev-surface[data-active] .fx-liquid,.ev-features[data-effect=C] .feature:focus-within .fx-liquid,.ev-features[data-effect=D] .ev-surface[data-active] .fx-glass,.ev-features[data-effect=D] .feature:focus-within .fx-glass{opacity:1}
 .card-blot{position:absolute;bottom:12px;right:13px;width:39px;height:39px;pointer-events:none}
 .ev-features .feature-grid .feature .feature-copy{display:block;flex:1;margin-top:17px;padding:0 4px 4px}
-.ev-features .feature-grid .feature h3.ev-title{position:relative;display:block;width:auto;height:auto;margin:0 0 9px;color:#121820;font-size:23px;font-weight:600;line-height:1.15;letter-spacing:-.7px;text-align:left;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+.ev-features .feature-grid .feature h3.ev-title{position:relative;display:block;width:auto;height:auto;margin:0 0 9px;color:#0e1520;font-size:23px;font-weight:600;line-height:1.15;letter-spacing:-.7px;text-align:left;overflow-wrap:normal;word-break:normal;text-wrap:balance}
 .ev-title:before{content:none}.ev-title .key{background:none;color:inherit;white-space:nowrap}.f-how .ev-title{white-space:nowrap}
-.ev-features .feature-copy p{margin:0;font-size:14px;line-height:1.5;font-weight:400;color:#354050;max-width:45ch}
-.ev-features .feature-copy .text-link{display:inline-block;font-size:14px;min-height:44px;padding-block:12px;margin-top:4px;color:#131b25}
+.ev-features .feature-copy p{margin:0;font-size:14px;line-height:1.5;font-weight:400;color:#222e49;max-width:45ch}
+.ev-features .feature-copy .text-link{display:inline-block;font-size:14px;min-height:44px;padding-block:12px;margin-top:4px;color:#0c1525}
 .ev-features .feature-copy a:focus-visible{outline:2px solid var(--brand-sky-2);outline-offset:4px;border-radius:2px}
 .ev-features .feature-grid .f-kit .kit-row{margin-top:16px;padding:0}.ev-features .kit-row img{width:52px;height:52px}
 @media(max-width:1100px) and (min-width:701px){.ev-features .feature-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.ev-features .feature-grid .feature:nth-child(n){grid-column:span 2}.ev-features .feature-grid .feature:first-child{grid-column:span 6;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}.ev-features .feature-grid .feature:first-child .feature-copy{margin:0}.ev-features .feature-grid .feature h3.ev-title{font-size:21px}}
@@ -60,7 +60,7 @@
 html[data-colour-review] .ev-features{background:#fff}html[data-colour-review] .ev-features .ev-art{filter:none}
 
 /* Product content in the reference frames is real existing material, never loading placeholders. */
-.split-white{display:flex;flex-direction:column;justify-content:center;padding-left:16px}.split-white strong{font-size:42px;font-weight:500;letter-spacing:-2px;line-height:1;color:#121820}.split-white span{font-size:12px;color:#354050}
+.split-white{display:flex;flex-direction:column;justify-content:center;padding-left:16px}.split-white strong{font-size:42px;font-weight:500;letter-spacing:-2px;line-height:1;color:#0e1520}.split-white span{font-size:12px;color:#222e49}
 .lesson-stack{left:45%;width:50%;top:27%;height:48%}.lesson-stack i{display:flex;align-items:center;padding:0 9px;font:500 9px/1.15 var(--brand-font-text-short);color:var(--brand-navy-4)}
 .pair-panels i.cover-one{background:#fff url('../assets/assembly/octaves.png') center/cover}.pair-panels i.cover-two{background:#fff url('../assets/assembly/octaves-two.png') center/cover}
 .board-cols{gap:5px;padding:10px 7px}.board-cols i{background:#fff;height:76%;font-style:normal;padding:8px 5px;min-width:0}.board-cols i:nth-child(2){margin-top:9px}.board-cols i:nth-child(3){margin-top:18px}.board-cols b{font-size:9px;line-height:1.2;display:block;font-weight:600;color:var(--brand-navy-4)}.board-cols span{font-size:8px;line-height:1.3;display:block;color:var(--brand-sky-41);margin-top:8px}

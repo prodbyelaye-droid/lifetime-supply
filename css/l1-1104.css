@@ -24,7 +24,7 @@ html body #demo .demo-film, html body .opening #demo .demo-film {
 /* Row 12 / X13 · the studio film already plays muted on screen; its control is quiet text, not a play pill. */
 #deep .studio-film-controls { margin-top:6px; }
 #deep .studio-film-toggle {
-  min-height:44px; padding:8px 2px; border:0; border-radius:6px; background:none; color:#5d646c; font-size:12px;
+  min-height:44px; padding:8px 2px; border:0; border-radius:6px; background:none; color:#58616d; font-size:12px;
   text-decoration:underline; text-decoration-color:rgba(93,100,108,.35); text-underline-offset:4px;
 }
 @media (hover:hover) and (pointer:fine) { #deep .studio-film-toggle:not(:disabled):hover { color:var(--brand-ink); } }
@@ -77,7 +77,7 @@ html body .contact-section .contact-stage { position:relative; background:transp
 .profile-nav .tab-pfp { display:block; flex:none; width:36px; height:36px; border-radius:10px; object-fit:cover; }
 
 /* Copy check row 3 · the first line under "everything included." */
-.price-stage .price-own { margin:0 0 20px; max-width:560px; font-size:16px; line-height:1.5; color:#41474d; text-wrap:pretty; }
+.price-stage .price-own { margin:0 0 20px; max-width:560px; font-size:16px; line-height:1.5; color:#40464d; text-wrap:pretty; }
 
 /* Elaye 19:11 · the plaques line in the founder block, every plaque styled the same. */
 #founder .fs1101-plaques { display:flex; flex-wrap:wrap; gap:4px 14px; margin:18px 0 0; font-size:15px; line-height:1.4; font-weight:600; letter-spacing:-.005em; color:var(--brand-ink); }
