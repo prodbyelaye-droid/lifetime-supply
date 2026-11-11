@@ -14,6 +14,10 @@
       "dest": "/brand/current/apple-touch-icon.png"
     },
     {
+      "src": "^/assets/launch/lifetime-share-1106\\.jpg$",
+      "dest": "/brand/current/og/lifetime-share-1106.jpg"
+    },
+    {
       "src": "^/$",
       "dest": "/api/landing"
     },
