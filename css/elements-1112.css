@@ -1,0 +1,64 @@
+/* element finals on the landing · Thu 12 Nov 2026
+   One section per element final (out/el-E1 to E18, final/), each in its own commit. Loaded last, after colour-c-remap-landing.css.
+   Selectors carry three ids through :not() so they win over the stacked landing files; !important only where the rule it
+   replaces already uses it. Face: type D, Albert Sans (PICKS 04:17), through --brand-font-text. */
+
+/* ---------- el-E1 · primary button (out/el-E1/final/primary-button.css) ----------
+   ink on white: the ramp #2E2E2E to #111111, rim #1B1C1F, the 1 px light line under the rim (291).
+   white on the sky (the price band): 16's white pill with the sky's deep blue ring and shadow.
+   sizes: lg 48 (50 from 1024 wide) with 26 / 28 sides, label 16; md 40 with 22 sides, label 15.
+   label 500, -0.02em (type D: "Medium 500 at -0.02em for headlines, the name and buttons"). */
+:root {
+  --e1-ink-top: #2E2E2E; --e1-ink: #111111; --e1-rim: #1B1C1F;
+  --e1-light: rgba(255, 255, 255, .15); --e1-light-hover: rgba(255, 255, 255, .26);
+  --e1-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 1px 2px rgba(0, 0, 0, .06);
+  --e1-white: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%);
+  --e1-white-hover: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 50%, #FAFAFA 91%, #FFFFFF 100%);
+  --e1-ease: cubic-bezier(.28, 1.4, .36, 1); --e1-ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.ms-more, .step-cta, .hero-cta), html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask button { --h: 40px; --px: 22px; --fs: 15px; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button) {
+  box-sizing: border-box !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: .45em !important;
+  height: var(--h) !important; min-height: var(--h) !important; padding: 0 var(--px) !important; border-radius: 999px !important;
+  font: 500 var(--fs)/1 var(--brand-font-text) !important; letter-spacing: -.02em !important; white-space: nowrap; text-decoration: none !important;
+  color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF;
+  background: linear-gradient(180deg, var(--e1-ink-top) 0%, var(--e1-ink) 100%) !important;
+  border: 1px solid var(--e1-rim) !important;
+  box-shadow: inset 0 1px 0 var(--e1-light), var(--e1-shadow) !important;
+  transition: box-shadow .16s var(--e1-ease-out), background-color .16s var(--e1-ease-out), transform .2s var(--e1-ease) !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta) { --h: 48px; --px: 26px; --fs: 16px; }
+@media (min-width: 1024px) { html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta) { --h: 50px; --px: 28px; } }
+html:not(#e-a):not(#e-b):not(#e-c) body .dl-btn > svg { width: 1.07em !important; height: 1.07em !important; flex: none; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):hover {
+  background: linear-gradient(180deg, var(--e1-ink-top) 0%, var(--e1-ink) 100%) !important;
+  box-shadow: inset 0 1px 0 var(--e1-light-hover), 0 1px 1px rgba(0, 0, 0, .22), 0 2px 5px -1px rgba(0, 0, 0, .14) !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):active {
+  background: var(--e1-ink) !important; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .45), 0 .5px 1px rgba(0, 0, 0, .14) !important; transform: scale(.97);
+}
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):focus-visible { outline: 2px solid #111111 !important; outline-offset: 3px !important; }
+
+/* white on the sky: the price band's "get lifetime access" (el-E16 A) */
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy {
+  box-sizing: border-box !important; height: 48px !important; min-height: 48px !important; padding: 0 26px !important; border-radius: 999px !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  font: 500 16px/1 var(--brand-font-text) !important; letter-spacing: -.02em !important;
+  color: #111111 !important; -webkit-text-fill-color: #111111;
+  background: var(--e1-white) padding-box !important;
+  border: 1px solid rgba(8, 26, 74, .40) !important;
+  box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF, 0 1px 2px rgba(8, 26, 74, .40), 0 2px 6px -1px rgba(8, 26, 74, .25) !important;
+  transition: box-shadow .16s var(--e1-ease-out), transform .2s var(--e1-ease) !important;
+}
+@media (min-width: 1024px) { html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy { height: 50px !important; min-height: 50px !important; padding: 0 28px !important; } }
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:hover {
+  background: var(--e1-white-hover) padding-box !important;
+  box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF, 0 2px 4px rgba(8, 26, 74, .40), 0 3px 8px -2px rgba(8, 26, 74, .30) !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:active { background: #EFEFEF padding-box !important; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .12) !important; transform: scale(.97); }
+html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outline: 2px solid #FFFFFF !important; outline-offset: 3px !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy) { transition: none !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy):active { transform: none; }
+}
