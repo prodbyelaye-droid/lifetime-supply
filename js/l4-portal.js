@@ -169,7 +169,7 @@
   const playVideo = () => {
     const P = D.pages[st.page], layer = view.querySelector('.l4-screen.is-on .l4-bodyhots'); if (!P.player || !layer) return;
     let v = layer.querySelector('video');
-    if (!v) { const bw = D.W - P.x0, bh = P.bh[st.theme], [x, y, w, h] = P.player; v = document.createElement('video'); v.className = 'l4-video'; v.src = `${D.base}mentorship-title-card.mp4`; v.controls = true; v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('aria-label', 'how to get placements as a blob 2026'); v.style.cssText = `left:${x / bw * 100}%;top:${y / bh * 100}%;width:${w / bw * 100}%;height:${h / bh * 100}%`; v.addEventListener('ended', () => v.remove()); layer.append(v); }
+    if (!v) { const bw = D.W - P.x0, bh = P.bh[st.theme], [x, y, w, h] = P.player; v = document.createElement('video'); v.className = 'l4-video'; v.src = `${D.base}mentorship-title-card.mp4`; v.controls = true; v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('aria-label', 'the mentorship title card'); v.style.cssText = `left:${x / bw * 100}%;top:${y / bh * 100}%;width:${w / bw * 100}%;height:${h / bh * 100}%`; v.addEventListener('ended', () => v.remove()); layer.append(v); }
     const pl = v.play(); if (pl && pl.catch) pl.catch(() => {});
     v.focus({ preventScroll: true });
     const sc = layer.closest('.l4-scroll'); if (sc && sc.scrollTop > 0) sc.scrollTop = 0;
@@ -208,7 +208,7 @@
       if (layer && !P.full) {
         const bw = D.W - P.x0, bh = P.bh[t], put = (b, r) => { b.style.left = pct(r[0], bw); b.style.top = pct(r[1], bh); b.style.width = pct(r[2], bw); b.style.height = pct(r[3], bh); layer.append(b); };
         (P.body || []).forEach((h, i) => put(make(`b-${h.go}-${i}`, `open ${D.sub[h.go] || label(h.go)}`, () => show(h.go, t, 'fade'), { pre: () => ready(h.go, t) }), h.r));
-        if (P.player) put(make('video', 'play the video: how to get placements as a blob 2026', playVideo), P.player);
+        if (P.player) put(make('video', 'play the mentorship title card', playVideo), P.player);
       }
     }
     if (fk) { const f = stage.querySelector(`[data-k="${fk}"]`) || (fk.startsWith('go-') && hots.querySelector(`[data-k^="go-${fk.split('-').slice(1, -1).join('-')}-"]`)) || hots.querySelector('[aria-current]'); if (f) f.focus({ preventScroll: true }); }

@@ -260,3 +260,5 @@ html #portal .portal-preview,html #portal .portal-preview *{font-family:-apple-s
 /* phone: "heard on." clear of the cover row (critic 04:50, round 3). The covers' lower row is anchored above the heard-on block,
    whose height on a phone (logos on two rows) is more than the 112 px it was set for; only the covers move */
 @media (max-width:700px){html body #main #founder.founder-selected{--heard-h:152px}}
+/* round 5: the sidebar name is a way home, not a row: no grey patch behind "lifetime supply" under the pointer (critic r4 fix 1) */
+@media (hover:hover) and (pointer:fine){html .l4-stage:not([data-page="login"]) .l4-hot[data-k="go-home-0"]:hover{background:transparent}}
