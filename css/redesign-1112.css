@@ -29,7 +29,11 @@ html .opening .hero-gradient-203,html .opening .opening-blots,html .opening .ob,
 html .opening{background:#FFFFFF!important}
 
 /* ---------- hero B (out/landing/final/SPEC.md v1, 03:04): nav on white across the page, the panel below it ---------- */
-html .hero.hero-b{display:block!important;position:relative;height:900px!important;min-height:0!important;padding:0!important;box-sizing:border-box;overflow:visible;isolation:isolate;background:#FFFFFF}
+/* critic round 1, fix 1: the hero follows the screen's height so the control stays in the first screen on a laptop;
+   at 1440 x 900 nothing moves (panel 788, control foot at 876) */
+:root{--rd-ph:clamp(560px,calc(100vh - 112px),788px);--rd-copy-top:clamp(120px,calc(100vh - 716px),184px)}
+@supports (height:100svh){:root{--rd-ph:clamp(560px,calc(100svh - 112px),788px);--rd-copy-top:clamp(120px,calc(100svh - 716px),184px)}}
+html .hero.hero-b{display:block!important;position:relative;height:calc(88px + var(--rd-ph) + 24px)!important;min-height:0!important;padding:0!important;box-sizing:border-box;overflow:visible;isolation:isolate;background:#FFFFFF}
 html .hero.hero-b>.site-nav{position:absolute!important;top:0;left:0;right:0;height:88px;padding:0 24px 0 56px!important;margin:0;gap:0;
   display:flex;align-items:center;z-index:6;background:#FFFFFF!important;box-shadow:none!important;border:0!important}
 html .hero.hero-b .wordmark{display:inline-flex!important;align-items:center;gap:10px;height:44px;color:var(--rd-ink);text-decoration:none}
@@ -51,7 +55,7 @@ html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login{order:3;margin:0!impo
 html:not(#ls-a):not(#ls-b) body .hero.hero-b .header-login:hover{border-color:rgba(17,17,17,.36)!important;background:#FAFAFA!important}
 html .hero.hero-b .header-login:focus-visible,html .hero.hero-b .motion-toggle:focus-visible{outline:2px solid #111111;outline-offset:3px}
 
-html .hero.hero-b .hero-copy{position:absolute!important;left:56px;top:184px;bottom:24px;width:min(640px,calc(100vw - min(692px,48.06vw) - 120px));margin:0!important;padding:0!important;max-width:600px!important;
+html .hero.hero-b .hero-copy{position:absolute!important;left:56px;top:var(--rd-copy-top);bottom:24px;width:min(640px,calc(100vw - min(692px,48.06vw) - 120px));margin:0!important;padding:0!important;max-width:600px!important;
   min-height:0;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:flex-start;text-align:left!important;transform:none!important;opacity:1}
 html .hero.hero-b #hero-title{margin:0!important;white-space:nowrap;text-align:left!important;font-size:66px!important;line-height:66px!important;font-weight:500!important;
   letter-spacing:-.04em!important;color:var(--rd-ink)!important;max-width:none;width:auto}
@@ -70,7 +74,7 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 /* the sky panel (set 2 warm, critic 03:06), the window edge (row 298, 22 %) and the window, cut by the panel's right and bottom edges */
-.hero-panel{position:absolute;right:24px;top:88px;width:min(692px,48.06vw);height:788px;border-radius:var(--rd-panel-r);overflow:hidden;
+.hero-panel{position:absolute;right:24px;top:88px;width:min(692px,48.06vw);height:var(--rd-ph);border-radius:var(--rd-panel-r);overflow:hidden;
   background:var(--rd-sky-solid) url('../brand/current/sky/landing-hero-panel.webp') center bottom/cover no-repeat;isolation:isolate}
 .hero-front{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;pointer-events:none;z-index:2}
 .hero-band{position:absolute;z-index:1;left:var(--rd-inset);top:var(--rd-inset);padding:var(--rd-band-w);border-radius:var(--rd-band-r);background:var(--rd-band);width:1000px}
