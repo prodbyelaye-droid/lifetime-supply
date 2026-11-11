@@ -224,7 +224,17 @@ html body #main .config-more__chip .config-more__pre{color:#6F6F6F!important}   
 
 /* the demo's hello splash: on paper, the mark and the words, no wash ("i dont like the super soft look") */
 html .l4-bh .bh-field{background:#FFFFFF!important}
-html .l4-screen[data-theme="dark"] .l4-bh .bh-field,html .l4-bh[data-theme="dark"] .bh-field{background:#000000!important}
+/* round 4: the hello after log in follows the demo's theme (the dark rule above never matched: the splash sits in the stage, not a screen).
+   light: white, ink words, E1's ink pill; dark: real black (X27), white words, E1's white pill; the line under "hi there" in the meta grey */
+html .l4-bh .bh-line{color:#6E6E73}
+html .l4-bh .bh-go{background:linear-gradient(180deg,#2E2E2E 0%,#111111 100%);border:1px solid #1B1C1F;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.14),0 1px 2px rgba(0,0,0,.06)}
+html .l4-stage[data-theme="dark"] .l4-bh{background:#000000!important;color:#FFFFFF}
+html .l4-stage[data-theme="dark"] .l4-bh .bh-field{background:#000000!important}
+html .l4-stage[data-theme="dark"] .l4-bh :is(.bh-logo,.bh-title){color:#FFFFFF}
+html .l4-stage[data-theme="dark"] .l4-bh .bh-line{color:#8E8E93}
+html .l4-stage[data-theme="dark"] .l4-bh .bs-slot .bs-mark path{fill:#FFFFFF}
+html .l4-stage[data-theme="dark"] .l4-bh .bh-go{background:linear-gradient(180deg,#FFFFFF 0%,#F9F9F9 10%,#F9F9F9 87%,#F7F7F7 91%,#FFFFFF 100%);color:#111111;border:1px solid rgba(0,0,0,.55);box-shadow:inset 0 1px 0 #FFFFFF,inset 0 -1px 0 #FFFFFF,0 1px 2px rgba(0,0,0,.45)}
+html .l4-stage[data-theme="dark"] .l4-bh .bh-go:focus-visible{outline-color:#FFFFFF}
 /* the control lands with the caption in view */
 html #portal{scroll-margin-top:150px}
 html .producer-wall::before{display:none!important}   /* the V1 mesh (a soft wash) goes; white page, white cards with their hairline */

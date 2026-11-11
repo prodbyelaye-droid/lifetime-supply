@@ -201,7 +201,7 @@
       add('menu', M.summary, 'close the account menu', () => closeMenu(true), { expanded: true });
     } else {
       navHots(P).forEach((h, i) => { const hb = add(`go-${h.go}-${i}`, h.r, st.page === 'login' ? 'log in to the portal' : `open ${label(h.go)}`,
-        () => (st.page === 'login' ? enter() : h.go === st.page ? null : show(h.go, t, 'fade')), { cur: h.go === st.page && !P.full, pre: () => { ready(h.go, t); if (st.page === 'login' && !st.greeted) engine().then((E) => E.blotField()).catch(() => {}); } });
+        () => (st.page === 'login' ? enter() : h.go === st.page ? null : show(h.go, t, 'fade')), { cur: h.go === st.page && !P.full, pre: () => { ready(h.go, t); } });   // 12 Nov redesign: no blot engine to warm up (the splash is the still mark)
         if (hb && st.page === 'login') hb.setAttribute('aria-describedby', cue.id); });
       if (P.toggle) add('theme', P.toggle[t], `switch the portal to ${other()} mode`, () => { st.darkTried = true; flip(P.toggle[t]); }, { pre: () => ready(st.page, other()) });
       else if (!P.full && D.menu && D.menu[t]) add('menu', D.menu[t].summary, 'open the account menu (theme switch inside)', (e) => openMenu(e.detail === 0), { expanded: false, pre: () => fetchImg(`menu-${t}`) });
@@ -304,7 +304,7 @@
       if (held()) { fade(); end(); flowStart(); return; }
       el.classList.add('is-leaving');   // the splash's own leave: .32 s, in place
       // the portal's first-visit burst (confetti.ts), over the window; the same physics, scaled to the window
-      engine().then((E) => { if (!held() && E.burst) E.burst({ host: stage, scale: Math.max(stage.clientWidth / 1440, 0.42) }); }).catch(() => {});
+      // 12 Nov redesign: the first-visit burst threw blot-shaped confetti in the old accent colours; retired with the blob
       setTimeout(fade, 200); setTimeout(end, 340); flowStart();
     };
     el.querySelector('button').addEventListener('click', close);
