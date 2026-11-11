@@ -69,7 +69,7 @@ html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outlin
    t21 download: log in is the outline lg (48); "opening it the first time" is a link. steps: the mock bar's log in, outline md.
    links (t22, t24): ink, never blue, a 1 px underline 3 px under, the line at 35 % until hover; on the sky, white at 60 %.
    t23 footer: .ls-nav-link on the sky, white 500 15/22, no underline until hover, 24 apart. Focus: one ink ring for the page, as E1 (critic slice fix 4): 2 px #111, offset 3 on buttons, 2 on words; white on the sky.
-   The pause control is in the page as the script draws it (icon, "pause", " motion" from 900 px up), so nothing swaps after load (fix 5). */
+   The pause control is in the page as the script draws it (icon, "pause", " motion" from 430 px up), so nothing swaps after load (fix 5). */
 :root { --e2-ink: #141414; --e2-icon: #6E6E73; --e2-quiet: #F0F0F0; --e2-quiet-hover: #E8E8E8; --e2-outline-hover: #F3F3F3; --e2-outline-pressed: #E8E8E8;
   --e2-focus: #111111; --e2-line: rgba(20, 20, 20, .35); --e2-ease-out: cubic-bezier(.22, 1, .36, 1); --e2-ease: cubic-bezier(.28, 1.4, .36, 1);
   --e2-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='4' width='4' height='16' rx='1'/%3E%3Crect x='6' y='4' width='4' height='16' rx='1'/%3E%3C/svg%3E");
@@ -204,6 +204,9 @@ html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
   clip-path: path('M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z');
 }
 @media (max-width: 700px) {
+  /* phones keep the demo's own cue size (12 px, the 188 px cue width), so each cue holds its two lines and sits whole
+     inside the demo screen (critic slice fix 3: at 13/18 the first cue wrapped to three lines and the screen's edge cut it) */
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip { font-size: 12px !important; line-height: 16px !important; padding: 6px 10px !important; }
   /* on phones the log in cue sits under its target, so its arrow points up from the middle */
   html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue::after {
     width: 10px !important; height: 5px !important; top: -4.5px !important; left: 50% !important; margin: 0 0 0 -5px !important;
