@@ -236,3 +236,17 @@ html body #main #inside .ten-card{box-shadow:0 1px 2px rgba(0,0,0,.03),0 6px 24p
   html .hero.hero-b .hero-down{height:48px;width:100%;justify-content:center}
   .hero-band{left:40px;top:40px;transform:scale(.6)}
 }
+
+/* ---------- type D, Albert Sans (round 3; out/type-exact/final/landing-type-swap.css): the hero holds on two lines ---------- */
+html .hero.hero-b #hero-title{font-size:64px!important;line-height:66px!important;letter-spacing:-.02em!important}
+@media (max-width:1439px) and (min-width:1201px){html .hero.hero-b #hero-title{font-size:4.45vw!important;line-height:4.6vw!important}}
+html .hero.hero-b #hero-title .hero-accent{font-family:inherit;font-style:italic;font-weight:500;font-size:1em;letter-spacing:inherit}
+html .hero.hero-b .wordmark .ls-typed{font-weight:500!important;letter-spacing:-.01em!important}
+/* the hero window is the portal, whose interface keeps the system face tonight (critic 04:17) */
+.hero-window{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif}
+@media (max-width:960px){html .hero.hero-b #hero-title{font-size:44px!important;line-height:46px!important}}
+@media (max-width:700px){html .hero.hero-b #hero-title{font-size:38px!important;line-height:40px!important}}
+html #portal .portal-preview,html #portal .portal-preview *{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif}   /* the demo is the portal: its interface keeps the system face tonight */
+/* phone: "heard on." clear of the cover row (critic 04:50, round 3). The covers' lower row is anchored above the heard-on block,
+   whose height on a phone (logos on two rows) is more than the 112 px it was set for; only the covers move */
+@media (max-width:700px){html body #main #founder.founder-selected{--heard-h:152px}}
