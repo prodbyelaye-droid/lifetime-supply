@@ -216,10 +216,13 @@ html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
   /* phones keep the demo's own cue size (12 px, the 188 px cue width), so each cue holds its two lines and sits whole
      inside the demo screen (critic slice fix 3: at 13/18 the first cue wrapped to three lines and the screen's edge cut it) */
   html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip { font-size: 12px !important; line-height: 16px !important; padding: 6px 10px !important; }
-  /* on phones the log in cue sits under its target, so its arrow points up from the middle */
+  /* demo recapture: the demo's sign-in is the portal's own sign-in B, its form at the foot of the screen. On phones the
+     log in cue sat under the form and the screen's edge cut it; it sits just above the form instead, its arrow pointing
+     down from the middle (--pyt: the form's top, set by js/l4-portal.js) */
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-stage .l4-cue { top: var(--pyt, var(--py)); translate: -50% -100%; }
   html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue::after {
-    width: 10px !important; height: 5px !important; top: -4.5px !important; left: 50% !important; margin: 0 0 0 -5px !important;
-    clip-path: path('M0 5 L4.2 0.8 Q5 0 5.8 0.8 L10 5 Z');
+    width: 10px !important; height: 5px !important; bottom: -4.5px !important; top: auto !important; left: 50% !important; margin: 0 0 0 -5px !important;
+    clip-path: path('M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z');
   }
 }
 @media (prefers-reduced-motion: reduce) {

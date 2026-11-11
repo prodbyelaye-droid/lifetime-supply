@@ -249,7 +249,7 @@
   const cue = tip('l4-cue', "click log in to look around. it's a demo, nothing is sent.", stage); cue.id = 'l4-cue';
   const LOG = (D.pages.login.hots || [])[0], CARD = D.pages.login.card;
   if (LOG) { cue.style.setProperty('--cx', pct(LOG.r[0] + LOG.r[2] + 12, D.W)); cue.style.setProperty('--cy', pct(LOG.r[1] + LOG.r[3] / 2, D.H)); }
-  if (CARD) cue.style.setProperty('--py', pct(CARD[1] + CARD[3] + 8, D.H));
+  if (CARD) { cue.style.setProperty('--py', pct(CARD[1] + CARD[3] + 8, D.H)); cue.style.setProperty('--pyt', pct(CARD[1] - 8, D.H)); }   // 12 Nov: --pyt, just above the sign-in form (phones)
   const cueBriefs = tip('l4-cue2', 'check out the briefs.', stage), hint = tip('l4-hint', 'try dark mode.', preview);
   function placeBriefsCue() {
     const P = D.pages[st.page], h = !P.full && navHots(P).find((x) => x.go === 'briefs');
