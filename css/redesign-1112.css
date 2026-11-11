@@ -262,3 +262,7 @@ html #portal .portal-preview,html #portal .portal-preview *{font-family:-apple-s
 @media (max-width:700px){html body #main #founder.founder-selected{--heard-h:152px}}
 /* round 5: the sidebar name is a way home, not a row: no grey patch behind "lifetime supply" under the pointer (critic r4 fix 1) */
 @media (hover:hover) and (pointer:fine){html .l4-stage:not([data-page="login"]) .l4-hot[data-k="go-home-0"]:hover{background:transparent}}
+/* round 6: the timeline's tip was the old character's outline (a squashing blob path); it is a plain round dot now,
+   the size and colour of the step dots, no tick (critic r5) */
+html body .flow:has(.day96){--d96-rider:var(--d96-dot)}
+html body .flow-copy.day96 .day96-rider{border-radius:50%;background:var(--d96-tick)}
