@@ -177,3 +177,46 @@ html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid=
   html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { width: 100% !important; }
 }
 @media (prefers-reduced-motion: reduce) { html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask, html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { transition: none; } }
+
+/* ---------- el-E6 · tooltips: the portal demo's cues (out/el-E6/final/SPEC.md, tooltip) ----------
+   one tooltip: #1C1C1C, white 500 13/18, padding 6 10, corner 8, 291's top light and a short soft shadow; in 4 px and
+   fade over .16 s on the house ease, out over .12 s, no scale. Dark keeps a dark tooltip (#262626, a 12 % white edge)
+   instead of flipping to near white. The demo cues keep their arrows: 10 x 5 with a rounded tip, overlapping the body by
+   .5 px (left of "check out the briefs." and the log in cue, under "try dark mode.", above "click a brief to open it..."). */
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip {
+  padding: 6px 10px !important; border-radius: 8px !important; background: #1C1C1C !important; color: #FFFFFF !important;
+  font-size: 13px !important; line-height: 18px !important; font-weight: 500 !important; letter-spacing: -.003em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 1px 2px rgba(0, 0, 0, .12), 0 4px 12px -2px rgba(0, 0, 0, .16) !important;
+  transform: translateY(4px); transition: opacity .12s ease, transform .12s ease, visibility 0s linear .12s !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on] { transform: none; transition: opacity .16s cubic-bezier(.22, 1, .36, 1), transform .16s cubic-bezier(.22, 1, .36, 1) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-stage[data-theme="dark"] .l4-tip, .portal-preview[data-l4-theme="dark"] .l4-hint) {
+  background: #262626 !important; color: #FFFFFF !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), inset 0 0 0 .5px rgba(255, 255, 255, .12), 0 1px 2px rgba(0, 0, 0, .12), 0 4px 12px -2px rgba(0, 0, 0, .16) !important;
+}
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip::after { transform: none !important; border-radius: 0 !important; background: inherit !important; margin: 0 !important; }
+/* pointing left, centred on the line */
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-cue, .l4-cue2)::after {
+  width: 5px !important; height: 10px !important; left: -4.5px !important; top: 50% !important; bottom: auto !important; right: auto !important; margin-top: -5px !important;
+  clip-path: path('M5 0 L0.8 4.2 Q0 5 0.8 5.8 L5 10 Z');
+}
+/* pointing up: "try dark mode." (15 px from its right) */
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-hint::after {
+  width: 10px !important; height: 5px !important; top: -4.5px !important; right: 15px !important; left: auto !important; bottom: auto !important;
+  clip-path: path('M0 5 L4.2 0.8 Q5 0 5.8 0.8 L10 5 Z');
+}
+/* pointing down: "click a brief to open it..." (18 px from its left) */
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
+  width: 10px !important; height: 5px !important; bottom: -4.5px !important; left: 18px !important; top: auto !important; right: auto !important;
+  clip-path: path('M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z');
+}
+@media (max-width: 700px) {
+  /* on phones the log in cue sits under its target, so its arrow points up from the middle */
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue::after {
+    width: 10px !important; height: 5px !important; top: -4.5px !important; left: 50% !important; margin: 0 0 0 -5px !important;
+    clip-path: path('M0 5 L4.2 0.8 Q5 0 5.8 0.8 L10 5 Z');
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip, html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on] { transform: none; transition: opacity .16s ease, visibility 0s linear .16s !important; }
+}
