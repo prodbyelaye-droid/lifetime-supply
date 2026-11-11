@@ -243,3 +243,6 @@ Not moved, because they are not files (code-drawn marks, swap in place):
 - `--brand-warm-6-acc` (1): css/room185-field-1102.css:29 `#ffbda6cc`
 - `--brand-warm-8` (1): css/blot-palette.css:34 `#FEEABE`
 - `--brand-warm-9` (1): css/blot-palette.css:41 `#40351C`
+
+## Exception (12 Nov, 00:53): `css/hero-094.css` keeps its 12 colour literals
+Tokenising them changed 24 pixels by 1 colour step at the portal window's edges when a menu-bar menu (File, Edit, View, Window, Help) is open (backdrop-filter repaint over the window's shadow). Production against itself showed 0, so it was the seam; the file is back to its `1e9e175` text. Swap its colours in place (same values as the tokens: the `.portal-preview` frame shadows and the hero-094 sky tints).
