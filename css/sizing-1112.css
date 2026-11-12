@@ -77,3 +77,13 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
   html body #portal .computer-device{width:min(960px,calc(100% - 96px))!important}
   html body .opening>.portal-cue{padding:72px 0 0 var(--edge)!important}
 }
+
+/* row 4 · #price: the band holds about 250 px of cloud under the button, and the gaps inside the section sit under the section seam */
+@media (min-width:701px){
+  #price .l8-band{height:auto;min-height:620px}
+  #price .l8-incl,#price .l8-worth{margin-top:112px}
+}
+@media (max-width:700px){
+  #price .l8-band{height:auto;min-height:840px}
+  #price .l8-incl,#price .l8-worth{margin-top:72px}
+}
