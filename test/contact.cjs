@@ -62,7 +62,7 @@ test('invalid and long input never navigates and remains editable',()=>{
 });
 test('HTML retains noJS mailto, native required validation, visible copy fallback and honest action',()=>{
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
-  const section=html.match(/<section class="contact-section"[\s\S]*?<\/section>/)[0];
+  const section=html.match(/<section class="ls-contact"[\s\S]*?<\/section>/)[0]; // redesign 1112: L10 contact
   assert.match(section,/<form class="ask" data-contact-mailto action="mailto:hi@elaye.store" method="get"/);
   assert.match(section,/<textarea[^>]+ required /);assert(!/<form[^>]*novalidate/i.test(section),'without the script the native required check stays');assert(!section.includes('maxlength='),'no silent truncation');
   assert(section.includes('>open email app</button>'));assert(!section.includes('>send it</button>'));

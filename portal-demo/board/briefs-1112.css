@@ -1,0 +1,327 @@
+/* Lifetime Supply · briefs audit · proposal CSS · Thu 12 Nov 2026 · briefs-audit chat
+   A PROPOSAL for his morning pick. Not in tonight's release.
+   Sits on top of his picks: el-E10 B (one white sheet per section, colour only in the tag), el-E7 C tags, colour c, components A.
+   Every block names its source: a ledger row, his words, a sprint final, or production (3930dac). "no reference" where there is none.
+   Sizes are on-screen px at 1440 (what he sees). Inside the portal's desktop shell (zoom .8, .accent-ui.p75) write each px value
+   divided by .8, as briefs.css does with calc(Npx / var(--home-zoom, 1)). */
+
+/* ───────────────────────────── 0 · tokens ───────────────────────────── */
+:root {
+  --bf-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Public Sans", system-ui, sans-serif; /* the portal keeps the system face (critic, 03:39); Public Sans is only the stand-in where SF Pro is missing */
+  --bf-ink: #090909;            /* colour c final: one ink (audit A5) */
+  --bf-meta: #6F6F6F;           /* colour c final: dates, counts, captions only */
+  --bf-page: #FFFFFF;           /* his 27 Sep call: white for light mode */
+  --bf-sheet: #FFFFFF;          /* E10 B */
+  --bf-head: #FAFAFA;           /* E10 B: 298 header band */
+  --bf-hover: #F7F7F8;          /* E10 B */
+  --bf-press: #F0F0F0;          /* E10 B: 291 quiet */
+  --bf-count: #F0F0F0;          /* E10 B: 303 count chip */
+  --bf-rim: #E8E8EA;            /* E10 B: sheet and card edge */
+  --bf-rule: #EFEFEF;           /* E10 B: cell rules; 291 card edge */
+  --bf-frame: rgba(9, 9, 9, .16);   /* E7 outline tag rim */
+  --bf-panel: #FBFBFB;          /* components A: 291 sidebar; 303's tinted side panels */
+  --bf-quiet: #F0F0F0;          /* components A */
+  --bf-quiet-hover: #E8E8E8;    /* components A */
+  --bf-focus: #090909;          /* components A: 2 px ink ring, offset 3 (his 26 Oct call) */
+  --bf-field-ring: rgba(0, 0, 0, .25);   /* E4: row 24 measured */
+  --bf-field-label: #6B6B6B;    /* E4: row 24 resting label */
+  --bf-shadow-card: 0 1px 1px rgba(0, 0, 0, .04), 0 2px 10px rgba(0, 0, 0, .05);  /* components A: 291 card fall-off */
+  --bf-shadow-menu: 0 0 0 1px rgba(255, 255, 255, .9), 0 2px 6px rgba(0, 0, 0, .04), 0 12px 32px -8px rgba(0, 0, 0, .12); /* components A: 291 menu */
+  /* the tag shades: el-E7 C (the critic's pick for him, 03:06; his 03:02 "should match our brand asset colouring") */
+  --tone-urgent: #1C47AE; --tone-urgent-ink: #FFFFFF; --tone-urgent-rim: transparent;
+  --tone-hot: #2F6CCF;    --tone-hot-ink: #FFFFFF;    --tone-hot-rim: transparent;
+  --tone-warm: #B3D9FF;   --tone-warm-ink: #090909;   --tone-warm-rim: transparent;
+  --tone-cold: #E6F2FF;   --tone-cold-ink: #090909;   --tone-cold-rim: rgba(28, 71, 174, .14);
+  --tone-picked: #090909; --tone-picked-ink: #FFFFFF; --tone-picked-rim: transparent;
+  --hx-empty: #EFEFEF; --hx-other: #D9D9D9;
+  --bf-ease: cubic-bezier(.22, 1, .36, 1);   /* components A: row 54 */
+}
+[data-theme="dark"] {           /* real black (X27); everything sky blue turns grey and white (his 4 Nov 22:03) */
+  --bf-ink: #FFFFFF; --bf-meta: #8E9094; --bf-page: #000000;
+  --bf-sheet: #0F0F0F; --bf-head: #121212; --bf-hover: #161616; --bf-press: #1C1C1C; --bf-count: #232323;
+  --bf-rim: rgba(255, 255, 255, .09); --bf-rule: #1E1E1E; --bf-frame: rgba(255, 255, 255, .22);
+  --bf-panel: #0B0B0B; --bf-quiet: #202020; --bf-quiet-hover: #262626; --bf-focus: #FFFFFF;
+  --bf-field-ring: rgba(255, 255, 255, .22); --bf-field-label: #A1A1A6;
+  --bf-shadow-card: inset 0 1px 0 rgba(255, 255, 255, .06);
+  --bf-shadow-menu: inset 0 1px 0 rgba(255, 255, 255, .06), 0 12px 32px -8px rgba(0, 0, 0, .7);
+  --tone-urgent: #B4B4BA; --tone-urgent-ink: #000000;
+  --tone-hot: #6E6E75;    --tone-hot-ink: #FFFFFF;
+  --tone-warm: #3A3A3F;   --tone-warm-ink: #F4F4F6;
+  --tone-cold: #26262A;   --tone-cold-ink: #F4F4F6; --tone-cold-rim: rgba(255, 255, 255, .10);
+  --tone-picked: #FFFFFF; --tone-picked-ink: #000000;
+  --hx-empty: rgba(255, 255, 255, .06); --hx-other: #2A2A2A;
+}
+
+/* ───────────────────────────── 1 · shared small parts ───────────────────────────── */
+.bf, .bf * { box-sizing: border-box; }
+.bf { font-family: var(--bf-font); color: var(--bf-ink); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; text-transform: lowercase; } /* the portal's lowercase (his 5 Nov 22:31) */
+:where(.bf) a { color: inherit; }
+:where(.bf) :where(p, h1, h2, h3, dl, dt, dd, ul, ol) { margin: 0; }
+.bf :focus-visible { outline: 2px solid var(--bf-focus); outline-offset: 3px; }
+
+/* the one tag (el-E7): sm on tiles and rows, md on the brief page */
+.tag { display: inline-flex; align-items: center; flex: none; height: 20px; padding: 0 8px; border-radius: 5px; white-space: nowrap;
+  font: 500 11.5px/1 var(--bf-font); color: var(--bf-ink); }
+.tag--md { height: 24px; padding: 0 10px; border-radius: 6px; font-size: 13px; }
+.tag[data-tone] { background: var(--tg); color: var(--tg-ink); box-shadow: inset 0 0 0 1px var(--tg-rim); }
+.tag[data-tone="urgent"] { --tg: var(--tone-urgent); --tg-ink: var(--tone-urgent-ink); --tg-rim: var(--tone-urgent-rim); }
+.tag[data-tone="hot"]    { --tg: var(--tone-hot);    --tg-ink: var(--tone-hot-ink);    --tg-rim: var(--tone-hot-rim); }
+.tag[data-tone="warm"]   { --tg: var(--tone-warm);   --tg-ink: var(--tone-warm-ink);   --tg-rim: var(--tone-warm-rim); }
+.tag[data-tone="cold"]   { --tg: var(--tone-cold);   --tg-ink: var(--tone-cold-ink);   --tg-rim: var(--tone-cold-rim); }
+.tag[data-tone="picked"] { --tg: var(--tone-picked); --tg-ink: var(--tone-picked-ink); --tg-rim: var(--tone-picked-rim); }
+.tag--outline { box-shadow: inset 0 0 0 1px var(--bf-frame); }                          /* E7: framed words (references, closes soon, new) */
+.tag--quiet { background: var(--bf-quiet); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06); }   /* E7: in review, sent to artist */
+[data-theme="dark"] .tag--quiet { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .10); }
+.tag--ink { background: var(--bf-ink); color: var(--bf-page); }                          /* E7: placed */
+/* the tier badge (E10 B; his 4 Nov 13:52 segmented ref; 19:11 "Direct: there's not even a thing around that") */
+.tier { display: inline-flex; align-items: stretch; flex: none; height: 20px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--bf-frame);
+  font: 500 11.5px/1 var(--bf-font); white-space: nowrap; }
+.tier > span { display: inline-flex; align-items: center; padding: 0 6px; }
+.tier > .k { color: var(--bf-meta); font-weight: 400; box-shadow: inset -1px 0 0 var(--bf-frame); }
+.count { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 6px;
+  background: var(--bf-count); font: 500 12px/1 var(--bf-font); font-variant-numeric: tabular-nums; color: var(--bf-ink); }   /* E10 B: 303 "Tasks 4" */
+.lnk { color: var(--bf-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--bf-ink) 35%, transparent); }          /* E2: links in ink with a fine underline, no blue */
+.lnk:hover { text-decoration-color: currentColor; }
+
+/* recording mode (his 11 Nov admin call) and the landing demo: names, lanes, asks, audience and via blur; nothing moves */
+[data-rec] [data-sensitive] { filter: blur(4.2px); }                                    /* E10 B's value */
+
+/* ───────────────────────────── 2 · the board top ───────────────────────────── */
+.bd-top { display: grid; grid-template-columns: minmax(0, 1fr) 290px; grid-template-rows: auto 1fr; column-gap: 32px; }
+.bd-intro { grid-column: 1; grid-row: 1; max-width: 448px; }
+.bd-h1 { margin: 0; font: 600 28px/32px var(--bf-font); letter-spacing: -0.02em; }                 /* production .bf-h1 as seen */
+.bd-dek { margin: 13px 0 0; font: 400 15px/22px var(--bf-font); color: var(--bf-ink); }            /* ink: body copy is never grey (ai-signs T3) */
+.bd-meta { margin: 13px 0 0; font: 400 13px/18px var(--bf-font); color: var(--bf-meta); display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.bd-meta .lnk { font: 500 13px/18px var(--bf-font); }
+.bd-map { grid-column: 2; grid-row: 1 / span 2; }
+.bd-anchors { grid-column: 1; grid-row: 2; align-self: end; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+/* the five jump pills: today's capsule (his 02:02 "keep ... tweak the card filters to our colour scheme"; critic P7).
+   The pill of the section in view fills with its lane's shade (P7: "the filter that is on"). */
+.bd-pill { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--bf-quiet);
+  font: 500 14px/1 var(--bf-font); color: var(--bf-ink); text-decoration: none; transition: background-color .16s var(--bf-ease); }
+.bd-pill:hover { background: var(--bf-quiet-hover); }
+.bd-pill[aria-current="true"] { background: var(--tg); color: var(--tg-ink); box-shadow: inset 0 0 0 1px var(--tg-rim); }
+.bd-pill[data-tone="urgent"] { --tg: var(--tone-urgent); --tg-ink: var(--tone-urgent-ink); --tg-rim: var(--tone-urgent-rim); }
+.bd-pill[data-tone="hot"]    { --tg: var(--tone-hot);    --tg-ink: var(--tone-hot-ink);    --tg-rim: var(--tone-hot-rim); }
+.bd-pill[data-tone="warm"]   { --tg: var(--tone-warm);   --tg-ink: var(--tone-warm-ink);   --tg-rim: var(--tone-warm-rim); }
+.bd-pill[data-tone="cold"]   { --tg: var(--tone-cold);   --tg-ink: var(--tone-cold-ink);   --tg-rim: var(--tone-cold-rim); }
+.bd-pill[data-tone="picked"] { --tg: var(--tone-picked); --tg-ink: var(--tone-picked-ink); --tg-rim: var(--tone-picked-rim); }
+
+/* the map card: production's, untouched in layout (his 29 Oct ref, the Mebius "Budget overview" card); only drawn here so the frame is whole */
+.hx-card { padding: 19px; border: 1px solid var(--bf-rim); border-radius: 13px; background: var(--bf-sheet); }
+.hx-title { margin: 0; font: 600 16px/1.3 var(--bf-font); letter-spacing: -0.01em; }
+.hx-sub { margin: 4px 0 0; display: flex; align-items: center; font: 400 12px/1.4 var(--bf-font); color: var(--bf-meta); }
+.hx-sub b { font-weight: 500; color: var(--bf-ink); }
+.hx-sub b::before { content: ""; display: inline-block; width: 1px; height: 10px; margin: 0 8px; background: var(--bf-rim); vertical-align: -1px; }
+.hx { display: block; width: 112px; height: auto; margin: 13px auto 0; }      /* as seen in tonight's build at 1440 */
+.hx path { fill: var(--hx-empty); }
+.hx path[data-tone="urgent"] { fill: var(--tone-urgent); } .hx path[data-tone="hot"] { fill: var(--tone-hot); }
+.hx path[data-tone="warm"] { fill: var(--tone-warm); } .hx path[data-tone="cold"] { fill: var(--tone-cold); } .hx path[data-tone="picked"] { fill: var(--tone-picked); }
+.hx path[data-level="2"] { fill-opacity: .88; } .hx path[data-level="1"] { fill-opacity: .76; } .hx path[data-level="0"] { fill-opacity: .64; }
+.hx-key { display: flex; margin-top: 13px; }
+.hx-k { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 4px; text-decoration: none; }
+.hx-k + .hx-k { border-left: 1px solid var(--bf-rule); }
+.hx-word { display: inline-flex; align-items: center; gap: 6px; font: 400 12px/1.4 var(--bf-font); color: var(--bf-meta); white-space: nowrap; }
+.hx-dash { width: 12px; height: 4px; border-radius: 2px; background: var(--tg, var(--hx-other)); box-shadow: inset 0 0 0 1px var(--tg-rim, transparent); }
+.hx-k[data-tone="urgent"] { --tg: var(--tone-urgent); } .hx-k[data-tone="hot"] { --tg: var(--tone-hot); } .hx-k[data-tone="warm"] { --tg: var(--tone-warm); }
+.hx-k[data-tone="cold"] { --tg: var(--tone-cold); --tg-rim: var(--tone-cold-rim); } .hx-k[data-tone="picked"] { --tg: var(--tone-picked); }
+.hx-n { font: 650 18px/1.25 var(--bf-font); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+
+/* "how the board works": a text link beside "updated"; it opens his own landing words in a menu panel (291; el-E6) */
+.how { position: relative; display: inline-block; }
+.how-pop { position: absolute; z-index: 5; left: 0; top: calc(100% + 8px); width: 392px; padding: 16px 18px; border-radius: 16px; background: var(--bf-sheet);
+  border: 1px solid var(--bf-rule); box-shadow: var(--bf-shadow-menu); text-align: left; }
+[data-theme="dark"] .how-pop { background: #181818; border-color: rgba(255, 255, 255, .08); }
+.how-pop p { margin: 0; font: 400 14px/21px var(--bf-font); color: var(--bf-ink); }
+.how-pop dl { margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--bf-rule); display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; align-items: baseline; }
+.how-pop dt { margin: 0; } .how-pop dd { margin: 0; font: 400 13px/19px var(--bf-font); color: var(--bf-ink); }
+
+/* ───────────────────────────── 3 · the board: one sheet per section (el-E10 B, his 03:02 pick) ───────────────────────────── */
+.bd { container-type: inline-size; --bd-across: 5; --bd-cell-w: calc((100cqw - 2px) / var(--bd-across));
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; margin-top: 28px; }
+@media (max-width: 1199.98px) { .bd { --bd-across: 3; } }
+@media (max-width: 899.98px)  { .bd { --bd-across: 2; } }
+@media (max-width: 599.98px)  { .bd { --bd-across: 1; } }
+.sheet { --cols: min(var(--bd-across), var(--n)); width: calc(var(--cols) * var(--bd-cell-w) + 2px); max-width: 100%;
+  background: var(--bf-sheet); border: 1px solid var(--bf-rim); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0, 0, 0, .03); scroll-margin-top: 68px; }
+[data-theme="dark"] .sheet { box-shadow: none; }
+.sheet-h { display: flex; flex-wrap: wrap; align-items: center; min-height: 52px; padding: 15px 18px; background: var(--bf-head); border-bottom: 1px solid var(--bf-rule); }
+.sheet-word { margin: 0; font: 600 16px/20px var(--bf-font); letter-spacing: -0.01em; }
+.sheet-h .count { margin-left: 8px; }
+/* the lane's own line, word for word from "how the board works" on the landing. In INK (the audit's one loss on E10 B: grey is for metadata only, T3) */
+.sheet-line { margin: 0 0 0 auto; padding-left: 16px; font: 400 13px/18px var(--bf-font); color: var(--bf-ink); }
+.sheet.is-narrow .sheet-line { display: none; }   /* under 5 briefs there is no room beside the word: the line lives in "how the board works" (E10 B wrapped it under the word, which made a one-brief sheet mostly header) */
+.sheet-grid { display: grid; grid-template-columns: repeat(var(--cols), var(--bd-cell-w)); margin: 0 -1px -1px 0; padding: 0; list-style: none; }
+.sheet-grid > li { display: flex; min-width: 0; container-type: inline-size; }                    /* a row stretches to its tallest tile (production .bf-sec-slot) */
+
+/* the tile, reworked inside E10 B's cell. Reading order for a producer deciding fast:
+   lane and date on one line (289's card head: the kind on the left, the age on the right), the artist, what they are after (303's task row: title, then two lines), the tags at the foot (E10 B). */
+.tile { position: relative; display: flex; flex-direction: column; flex: 1 1 auto; width: 100%; min-width: 0; padding: 14px 16px 16px; background: var(--bf-sheet);
+  border-right: 1px solid var(--bf-rule); border-bottom: 1px solid var(--bf-rule); color: var(--bf-ink); text-decoration: none;
+  transition: background-color .15s ease; }
+@media (hover: hover) and (pointer: fine) { .tile:hover { background: var(--bf-hover); } }
+.tile.is-hover { background: var(--bf-hover); }
+.tile:active, .tile.is-press { background: var(--bf-press); }
+.tile:focus-visible, .tile.is-focus { outline: none; box-shadow: inset 0 0 0 2px var(--bf-focus); z-index: 1; }
+.tile-head { display: flex; align-items: baseline; gap: 10px; min-width: 0; font: 400 12px/16px var(--bf-font); }
+.tile-lane { flex: 1 1 auto; min-width: 0; margin: 0; font-weight: 500; color: var(--bf-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* the lane is what a producer scans for, so ink, not grey */
+.tile-when { flex: none; margin: 0 0 0 auto; color: var(--bf-meta); font-variant-numeric: tabular-nums; white-space: nowrap; }  /* "closes nov 14", else "posted 2 days ago": production's rule, kept */
+.tile-when.is-soon { color: var(--bf-ink); font-weight: 500; }                    /* production .is-soon (deadline within 7 days), kept */
+@container (max-width: 279.98px) {                                                /* five across (a 223 px tile): the short forms, so nothing wraps or cuts */
+  .tile-when .pre { display: none; }                                              /* the age alone, as 289's "3hr"; "posted 2 days ago" in full wherever the tile is wider */
+  .tier > .k { display: none; }                                                   /* "direct" in its frame (his 5 Nov 19:11: "there's not even a thing around that"); "tier | direct" wherever the tile is wider */
+}
+.tile-name { margin: 8px 0 0; font: 600 15px/20px var(--bf-font); letter-spacing: -0.006em; color: var(--bf-ink);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }           /* E10 B: 303 title 15 */
+.tile-ask { margin: 5px 0 0; font: 400 13px/18px var(--bf-font); color: var(--bf-ink);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }                                    /* the brief's notes: production hides them whenever a lane is set */
+.tile-aud { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 2px 10px; font: 400 12px/16px var(--bf-font); color: var(--bf-meta); }
+.tile-aud b { font-weight: 600; color: var(--bf-ink); font-variant-numeric: tabular-nums; }                                         /* production .bf-audience */
+.tile-chips { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-width: 0; }  /* E10 B: pinned to the foot so a row lines up */
+.tile-via, .tile-refs { font: 400 11.5px/20px var(--bf-font); color: var(--bf-meta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.tile-refs { padding-left: 3px; }                                                 /* "references" as a quiet word after the chips (E7's text finish): a third chip never fits five across */
+.tile-mine { margin-left: auto; }                                                 /* NO REFERENCE (his call): the member's own state, right end of the chips row */
+@media (prefers-reduced-motion: reduce) { .tile, .bd-pill { transition: none; } }
+
+/* ───────────────────────────── 4 · the brief page: 303's contact view, one to one ───────────────────────────── */
+/* 303: a header panel (who, one line under, actions on the right), then three columns: labelled facts, the content, the side panel. */
+.bp-back { display: inline-flex; align-items: center; gap: 6px; font: 500 13px/18px var(--bf-font); color: var(--bf-ink); text-decoration: none; }
+.bp-back:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bp-head { margin-top: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 20px 22px;
+  background: var(--bf-sheet); border: 1px solid var(--bf-rim); border-radius: 16px; }                      /* 303 header panel */
+.bp-name { margin: 0; font: 600 28px/32px var(--bf-font); letter-spacing: -0.02em; overflow-wrap: anywhere; }   /* 303 name; production .bf-h1 as seen */
+.bp-sub { margin: 10px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 15px/20px var(--bf-font); color: var(--bf-ink); } /* E7: the shade tag, then the lane as plain text */
+.bp-when { margin-left: 6px; font: 400 14px/20px var(--bf-font); color: var(--bf-meta); font-variant-numeric: tabular-nums; }   /* the tile's own rule: "closes nov 14", else "posted 2 days ago" */
+.bp-when.is-soon { color: var(--bf-ink); font-weight: 500; }
+.bp-actions { flex: none; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
+.bp-cols { margin-top: 16px; display: grid; grid-template-columns: 280px minmax(0, 1fr) 336px; gap: 16px; align-items: start; }
+.bp-col { display: grid; gap: 16px; min-width: 0; }
+/* the facts: 303's "Contact information" and "About": a label in medium ink, the value under it */
+.bp-facts { margin: 0; padding: 6px 18px; background: var(--bf-panel); border: 1px solid var(--bf-rule); border-radius: 16px; }
+.fact { padding: 13px 0; }
+.fact + .fact { border-top: 1px solid var(--bf-rule); }
+.fact dt { margin: 0; display: flex; align-items: center; gap: 8px; font: 500 13px/18px var(--bf-font); color: var(--bf-ink); }
+.fact dd { margin: 4px 0 0; font: 400 14px/20px var(--bf-font); color: var(--bf-ink); }
+.fact dd.is-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.fact .cal { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 4px; font: 400 13px/18px var(--bf-font); color: var(--bf-meta); }
+.fact .cal > span { flex-basis: 100%; } /* production AddToCalendar: "add to calendar" apple, google, outlook */
+/* a white card in the middle column (303's "Activity" and "Tasks" cards: title left, count right) */
+.bp-card { padding: 18px; background: var(--bf-sheet); border: 1px solid var(--bf-rim); border-radius: 16px; min-width: 0; }
+.bp-card-h { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; }
+.bp-card-h h2 { margin: 0; font: 600 17px/22px var(--bf-font); letter-spacing: -0.01em; }
+.bp-card-h .n { margin-left: auto; font: 400 13px/18px var(--bf-font); color: var(--bf-meta); font-variant-numeric: tabular-nums; }   /* 303 "4 Total" */
+.bp-ask { margin: 0; font: 400 15px/23px var(--bf-font); color: var(--bf-ink); white-space: pre-line; }
+.bp-ask + .lnk { display: inline-block; margin-top: 12px; font: 500 14px/20px var(--bf-font); }
+.ref-list { display: grid; gap: 12px; }
+.ref-p { margin: 0; font: 400 14px/21px var(--bf-font); }
+.ref-embed { height: 152px; border-radius: 14px; border: 1px solid var(--bf-rule); background: var(--bf-quiet); overflow: hidden; }   /* production .bf-embed: radius 14, a hairline, no shadow */
+.ref-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--bf-rule); text-decoration: none; } /* production ReferenceCard (.row.bf-ref) */
+.ref-row > div { min-width: 0; flex: 1; }
+.ref-cap { margin: 0; font: 500 14px/20px var(--bf-font); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ref-host { margin: 0; font: 400 12.5px/18px var(--bf-font); color: var(--bf-meta); }
+.ref-open { flex: none; font: 500 13px/18px var(--bf-font); }
+/* the send panel: the page's one card that floats (it stays in view while the brief scrolls) */
+.bp-send { position: sticky; top: 16px; padding: 18px; background: var(--bf-sheet); border: 1px solid var(--bf-rim); border-radius: 16px; box-shadow: var(--bf-shadow-card); }
+.bp-send h2 { margin: 0; font: 600 17px/22px var(--bf-font); letter-spacing: -0.01em; }
+.bp-send-line { margin: 6px 0 14px; font: 400 14px/20px var(--bf-font); color: var(--bf-ink); }
+.send-form { display: grid; gap: 10px; }
+/* fields: el-E4 md (row 24: the label is the placeholder, lifts to the top edge when focused or filled) */
+.fld { position: relative; }
+.fld-box { display: flex; align-items: center; height: 44px; padding: 0 16px; border-radius: 16px; background: var(--bf-sheet); box-shadow: inset 0 0 0 1px var(--bf-field-ring);
+  font: 400 15px/22px var(--bf-font); color: var(--bf-ink); }
+.fld-box.is-empty { color: var(--bf-field-label); }
+.fld-box svg { margin-left: auto; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; color: var(--bf-meta); }
+.fld-lift { position: absolute; left: 12px; top: -7px; padding: 0 5px; background: var(--bf-sheet); font: 400 11.5px/14px var(--bf-font); color: var(--bf-field-label); }
+.fld--area .fld-box { align-items: flex-start; height: 62px; padding: 11px 16px; }
+.fld-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fld-lbl { margin: 2px 0 -4px; font: 500 13px/18px var(--bf-font); color: var(--bf-ink); }                    /* 303 label */
+/* upload or link: components A's switch (291's light and dark switch) */
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; height: 36px; padding: 3px; border-radius: 999px; background: var(--bf-quiet); }
+.seg > span { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font: 500 14px/1 var(--bf-font); color: #5A5A5A; }
+.seg > span[aria-selected="true"] { background: var(--bf-sheet); color: var(--bf-ink); }
+[data-theme="dark"] .seg { background: #181818; } [data-theme="dark"] .seg > span { color: #9A9A9A; }
+[data-theme="dark"] .seg > span[aria-selected="true"] { background: #2E2E2E; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), inset 0 1px 0 rgba(255, 255, 255, .08); }
+/* the drop zone at row 23's own size (bencho: a small box, the icon tile, one line, one small line) */
+.drop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 100px; padding: 12px; border-radius: 16px;
+  background: var(--bf-panel); box-shadow: inset 0 0 0 1px var(--bf-rule); text-align: center; }
+.drop-ico { display: grid; place-items: center; width: 28px; height: 28px; margin-bottom: 4px; border-radius: 8px; background: var(--bf-quiet); }
+.drop-ico svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.drop-t { margin: 0; font: 500 14px/20px var(--bf-font); }
+.drop-s { margin: 0; font: 400 12.5px/18px var(--bf-font); color: var(--bf-meta); }
+/* type: five chips instead of a drop-down (303's keyword chips; row 252 "for tags": the check on the chosen one) */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 11px; border-radius: 8px; background: var(--bf-quiet); font: 500 13px/1 var(--bf-font); color: var(--bf-ink); }
+.chip[aria-pressed="true"] { color: #FFFFFF; background: linear-gradient(180deg, #363636 0%, #181818 100%); box-shadow: inset 0 0 0 1px #252628, inset 0 1px 0 rgba(255, 255, 255, .13), 0 1px 1px rgba(0, 0, 0, .10); }
+[data-theme="dark"] .chip[aria-pressed="true"] { color: #111111; background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .55); }
+.chip svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+/* the bpm wake slider (row 21, his pick): thin bars, no thumb, the value read out beside it */
+.wake { display: flex; align-items: center; gap: 10px; height: 22px; }
+.wake-bars { flex: 1; height: 16px; background: repeating-linear-gradient(90deg, var(--bf-ink) 0 2px, transparent 2px 7px); opacity: .22; }
+/* the submit pill: components A's primary (291's ink pill; row 16's wave runs inside it after the click) */
+.pill { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent;
+  font: 500 15px/1 var(--bf-font); letter-spacing: -0.01em; white-space: nowrap; text-decoration: none; }
+.pill--sm { height: 32px; padding: 0 16px; font-size: 14px; }
+.pill--block { display: flex; width: 100%; }
+.pill--primary { color: #FFFFFF; background: linear-gradient(180deg, #363636 0%, #181818 100%); border-color: #252628;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 1px 1px rgba(0, 0, 0, .10), 0 1px 3px rgba(0, 0, 0, .10); }
+.pill--secondary { color: var(--bf-ink); background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); border-color: rgba(0, 0, 0, .08); box-shadow: 0 1px 2px rgba(0, 0, 0, .06); }
+.pill--quiet { color: var(--bf-ink); background: var(--bf-quiet); }
+.pill.only-phone { display: none; }                                    /* the header's own submit pill shows on a phone only, where the form is a scroll away */
+.pill[aria-disabled="true"] { color: #A1A1A1; background: #ECECEC; border-color: #ECECEC; box-shadow: none; }      /* components A: disabled goes flat, never 40 % opacity */
+[data-theme="dark"] .pill--primary { color: #111111; background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); background-clip: padding-box;
+  border-color: rgba(0, 0, 0, .55); box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF, 0 1px 2px rgba(0, 0, 0, .45); }
+[data-theme="dark"] .pill--secondary { color: #FFFFFF; background: linear-gradient(180deg, #2A2A2A 0%, #171717 100%); border-color: rgba(255, 255, 255, .08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 1px 2px rgba(0, 0, 0, .6); }
+[data-theme="dark"] .pill[aria-disabled="true"] { color: #666666; background: #1F1F1F; border-color: #1F1F1F; box-shadow: none; }
+.send-note { margin: 2px 0 0; font: 400 13px/19px var(--bf-font); color: var(--bf-ink); }
+/* what happens after: production's four stops (pipeline-track.tsx), shown before the send, all still ahead */
+.track { display: grid; grid-template-columns: 1fr 1fr 1.25fr .8fr; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--bf-rule); }
+.track > span { display: block; padding-top: 8px; border-top: 2px solid var(--bf-count); font: 400 11px/15px var(--bf-font); color: var(--bf-meta); white-space: nowrap; }
+.track > span.is-on { border-top-color: var(--bf-ink); color: var(--bf-ink); font-weight: 500; }
+/* your sends on this brief: the submissions page's own stepper (row 253, his "submissions" ref) */
+.sent-h { margin: 0; font: 400 13px/18px var(--bf-font); color: var(--bf-meta); }
+.steps { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 0; }
+.steps li { position: relative; display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding-bottom: 14px; font: 400 14px/20px var(--bf-font); color: var(--bf-meta); }
+.steps li:last-child { padding-bottom: 0; }
+.steps li::before { content: ""; position: absolute; left: 10.5px; top: 22px; bottom: 0; width: 1px; background: var(--bf-rim); }
+.steps li:last-child::before { display: none; }
+.steps .dot { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--bf-count); font: 500 11.5px/1 var(--bf-font); color: var(--bf-meta); font-variant-numeric: tabular-nums; }
+.steps li.is-now { color: var(--bf-ink); } .steps li.is-now .dot { background: var(--bf-ink); color: var(--bf-page); }      /* 253: the current step numbered in ink */
+.steps li.is-now b { font-weight: 600; }
+.steps small { display: block; font: 400 13px/19px var(--bf-font); color: var(--bf-ink); }                    /* a sentence, so ink (ai-signs T3) */
+
+/* ───────────────────────────── 5 · the brief as a row (home card, your day, search) ───────────────────────────── */
+/* 298's table row and 291's favourites: the name in ink on the left, real metadata on the right, a hairline between rows, no dots between words */
+.brow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: center; padding: 7px 0; text-decoration: none; color: var(--bf-ink); }
+.brow + .brow { border-top: 1px solid var(--bf-rule); }
+.brow-name { grid-column: 1 / -1; margin: 0; font: 600 12.5px/16px var(--bf-font); letter-spacing: -0.005em; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }                    /* the whole name, on two lines if it needs them: never cut mid-word with "…" (ai-signs K5) */
+.brow-lane { margin: 0; font: 400 12px/16px var(--bf-font); color: var(--bf-meta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brow .tag { height: 16px; padding: 0 6px; border-radius: 4px; font-size: 10.5px; }
+.brow-foot { display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--bf-rule); font: 400 12px/16px var(--bf-font); color: var(--bf-meta); font-variant-numeric: tabular-nums; }
+.brow--wide { grid-template-columns: minmax(0, 1fr) auto auto; gap: 0 14px; padding: 12px 0; }
+.brow--wide .brow-name { grid-column: 1; font: 600 15px/20px var(--bf-font); display: block; }
+.brow--wide .brow-lane { grid-column: 1; grid-row: 2; font-size: 13px; line-height: 18px; }
+.brow--wide .brow-when { grid-row: 1 / span 2; font: 400 13px/18px var(--bf-font); color: var(--bf-meta); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.brow--wide .brow-when.is-soon { color: var(--bf-ink); font-weight: 500; }
+.brow--wide .tag { grid-row: 1 / span 2; height: 20px; padding: 0 8px; border-radius: 5px; font-size: 11.5px; }
+
+/* ───────────────────────────── 6 · phone (under 760: no shell zoom, the same on-screen sizes) ───────────────────────────── */
+@media (max-width: 759.98px) {
+  .bd-page { display: flex; flex-direction: column; }
+  .bd-top { display: contents; }
+  .bd-intro { order: 1; max-width: none; }
+  .bd-anchors { order: 2; align-self: stretch; margin-top: 16px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .bd { order: 3; margin-top: 16px; gap: 12px; }
+  .bd-map { order: 4; margin-top: 20px; }                    /* NO REFERENCE (his call): on a phone the briefs come before the map, so the first brief is on the first screen */
+  .sheet-line, .sheet.is-narrow .sheet-line { display: block; flex-basis: 100%; margin: 6px 0 0; padding-left: 0; }   /* one sheet per row on a phone: the line always fits under the word (E10 B) */
+  .how-pop { width: calc(100vw - 32px); }
+  .bp-head { flex-direction: column; gap: 14px; padding: 16px; }
+  .bp-name { font-size: 24px; line-height: 28px; }
+  .bp-actions { justify-content: flex-start; }
+  .pill.only-phone { display: inline-flex; }
+  .bp-cols { grid-template-columns: minmax(0, 1fr); }
+  .bp-col--mid { order: 1; } .bp-col--facts { order: 2; } .bp-col--send { order: 3; }   /* what they are after first, then the facts, then the form */
+  .bp-send { position: static; }
+  .fld-box { font-size: 16px; }                              /* iOS never zooms (E4) */
+}

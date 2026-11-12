@@ -1,4 +1,6 @@
-/* redesign 2 (12 Nov): the old page's shared class rules that reach into the new sections.
-   The id rules for the replaced sections were deleted from the old files; these few are class rules the
-   kept sections still need (.wrap on #members-say, #we-got-one), so they are reset here for the new markup only. */
-html body #main #flow > .wrap { width: auto; max-width: none; margin-inline: 0; }
+
+
+
+.ls-hero .win .r2-app { overflow: hidden; }
+.ls-hero .win .r2-app__frame { position: absolute; left: 0; top: 0; width: 1440px; height: 1400px; border: 0; transform-origin: 0 0; transform: scale(var(--r2-s, .735)); pointer-events: none; background: #fff; }
+@media (max-width: 700px) { .ls-hero .win .r2-app__frame { --r2-s: .528; } }

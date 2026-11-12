@@ -2,7 +2,7 @@
 (function (root) {
   'use strict';
   const RECIPIENT = 'hi@elaye.store';
-  const SUBJECT = 'Lifetime Supply question';
+  const SUBJECT = 'lifetime supply question';
   // Email-client URL limits vary. Longer drafts use the always-visible copy fallback.
   const MAX_URL_LENGTH = 1800;
   const HANDOFF = 'your email app may open with this draft. review it and send it there. your message stays here until you leave this page.';

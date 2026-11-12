@@ -31,16 +31,13 @@ const server = http.createServer((req, res) => {
       const page = await context.newPage(), errors = [];
       page.on('pageerror', (e) => errors.push(e.message));
       await page.goto(base, {waitUntil: 'domcontentloaded'});
-      await page.waitForFunction(() => window.assembly); await page.evaluate(() => window.assembly.skip());
+      await page.waitForLoadState('load'); // redesign 1112: no assembly.js (the old hero's script) any more
       // the film is out for now (Elaye 5 Nov 15:18): nothing to click until #demo loses its hidden attribute
       assert.equal(await page.locator('#demo').isVisible(), false, 'the film block does not show');
       assert.equal(await page.locator('.watch-demo').first().isVisible(), false, 'no watch link while the film is out');
       // the phone inclusions: a labelled region, every line showing, nothing to scroll sideways
-      if (width === 390) {
-        const region = page.locator('.price-scroll');
-        assert.equal(await region.getAttribute('aria-label'), 'everything included');
-        assert.equal(await region.evaluate((el) => el.scrollWidth > el.clientWidth + 1), false, 'no sideways scroll');
-      }
+      // redesign 1112: the inclusions are L8's list; the whole page has no sideways scroll
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, 'no sideways scroll');
       assert.deepEqual(errors, []); console.log(`PASS film and keyboard ${width}`);
       await context.close();
     }

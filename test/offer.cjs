@@ -28,7 +28,7 @@ for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE, Date.now()]) {
   const checkouts = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map(x => x[1]);
   assert.equal(checkouts.length, 1);
   assert(checkouts.every(url => url === liveCheckout));
-  assert(html.includes('$699 <span class="currency">usd</span>'));
+  assert(html.includes('<div class="l8-price" data-price=""><span class="l8-price__n">$699</span><span class="l8-price__u">usd</span></div>'), 'redesign 1112: the price band');
   assert(html.includes('https://instagram.com/elxyee'));
   assert(!html.includes('$599'));
   assert(!html.includes('offer-refresh-at'));

@@ -94,14 +94,14 @@
   function closeLinks(returnFocus) {
     links.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Show profile links');
+    toggle.setAttribute('aria-label', 'show profile links');
     if (returnFocus) toggle.focus({preventScroll:true});
   }
   toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     links.hidden = expanded;
     toggle.setAttribute('aria-expanded', String(!expanded));
-    toggle.setAttribute('aria-label', expanded ? 'Show profile links' : 'Hide profile links');
+    toggle.setAttribute('aria-label', expanded ? 'show profile links' : 'hide profile links');
   });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !links.hidden) closeLinks(links.contains(document.activeElement));

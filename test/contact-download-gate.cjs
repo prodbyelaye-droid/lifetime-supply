@@ -12,12 +12,13 @@ const block = /<!-- desktop-downloads:start -->([\s\S]*?)<!-- desktop-downloads:
 function check(html, enabled) {
   const links = [...html.matchAll(/href="([^"]*lifetime-supply-desktop[^"]*)"/g)].map(m => m[1]);
   assert.deepEqual(links, enabled ? expected : []);
-  for (const label of ['mac', 'windows']) assert(html.includes('download for ' + label));
+  // redesign 1112 (L7): the live block sets 'download for' small over the platform name
+  for (const label of ['mac', 'windows']) assert(html.includes(enabled ? '<small>download for</small><b>' + label + '</b>' : 'download for ' + label));
   assert(!html.includes('v1.0.0/'));
   assert(!html.includes('v1.0.1/'), 'L1 4 Nov: v1.0.2 only');
   assert(!html.includes('/releases/latest/'));
-  assert(html.includes('href="https://portal.elaye.store/login"'));
   if (!enabled) {
+    assert(html.includes('href="https://portal.elaye.store/login"'));
     assert(!html.includes('github.com'), 'no installer URL in unavailable markup');
     assert.equal((html.match(/disabled aria-disabled="true"/g) || []).length, 2);
     assert(html.includes('downloads are not available yet.'));
@@ -32,7 +33,7 @@ function check(html, enabled) {
     assert(!html.includes('downloads are not available yet.'));
     assert(!html.includes('aria-disabled="true"'));
     assert(html.includes('lifetime supply for mac and windows.'));
-    assert(html.includes('the whole setup.</span>'), 'copy check row 1 heading when live');
+    assert(html.includes('the whole setup.<br>now an <em>app</em>.'), 'copy check row 1 heading when live (L7 markup)');
     assert(html.includes('open anyway in privacy &amp; security.'), 'L1: the one-time open-anyway line in the live state');
   }
 }
@@ -97,18 +98,16 @@ test('missing browser gate retains safe static fallback; JS corrects stale enabl
   const query = '?downloads=preview&desktopDownloads=true&dl=a&dlplace=under&dlphone=1';
   assert.equal(dynamic(gate('true'), fallback, query), fallback);
 });
-test('section is fixed B between founder and steps without historical review hooks or phone teaser', () => {
+test('redesign 1112: the download section is L7, after founder and before the price band, no historical hooks', () => {
   const html = read('index.html');
-  const section = html.match(/<section class="dl17"[\s\S]*?<\/section>/)[0];
+  const section = html.match(/<section class="l7-dl"[\s\S]*?<\/section>/)[0];
   assert.equal((html.match(/id="download"/g) || []).length, 1);
-  assert(section.includes('data-dl="b"'));
   assert(!section.includes('data-launch-gate'));
   assert(!html.includes('data-downloads="shown"'));
   assert(!section.includes('phone app soon'));
   assert(html.indexOf('id="founder"') < html.indexOf('id="download"'));
   assert(html.indexOf('id="download"') < html.indexOf('id="steps"'));
-  assert(html.indexOf('js/desktop-downloads.js') < html.indexOf('js/downloads-017.js'));
-  assert(!/URLSearchParams|localStorage|sessionStorage/.test(read('js/downloads-017.js')));
+  assert(!html.includes('js/downloads-017.js'), 'nothing rewrites the block in the browser');
 });
 test('missing or duplicate publication blocks fail closed', () => {
   assert.throws(() => gate().applyToTemplate(''), /Expected one/);

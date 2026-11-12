@@ -246,7 +246,7 @@
   }
   // ---- one cue at a time: log in, then the briefs, then dark mode
   const tip = (cls, text, host) => { const p = document.createElement('p'); p.className = `l4-tip ${cls}`; p.textContent = text; host.append(p); return p; };
-  const cue = tip('l4-cue', "click log in to look around. it's a demo, nothing is sent.", stage); cue.id = 'l4-cue';
+  const cue = tip('l4-cue', "click log in to look around. it's a demo, so nothing is sent.", stage); cue.id = 'l4-cue';
   const LOG = (D.pages.login.hots || [])[0], CARD = D.pages.login.card;
   if (LOG) { cue.style.setProperty('--cx', pct(LOG.r[0] + LOG.r[2] + 12, D.W)); cue.style.setProperty('--cy', pct(LOG.r[1] + LOG.r[3] / 2, D.H)); }
   if (CARD) { cue.style.setProperty('--py', pct(CARD[1] + CARD[3] + 8, D.H)); cue.style.setProperty('--pyt', pct(CARD[1] - 8, D.H)); }   // 12 Nov: --pyt, just above the sign-in form (phones)
@@ -281,7 +281,7 @@
   const hello = () => {
     const el = div('l4-bh'), kb = document.activeElement && hots.contains(document.activeElement);
     el.setAttribute('role', 'dialog'); el.setAttribute('aria-labelledby', 'l4-bh-title'); el.tabIndex = -1;
-    el.innerHTML = '<div class="bh-field" aria-hidden="true"></div><span class="bh-logo">lifetime supply</span><div class="bs-slot" aria-hidden="true"><canvas></canvas></div><h2 id="l4-bh-title" class="bh-title">hi there</h2><p class="bh-line">your board is ready.</p><button type="button" class="bh-go">let’s go</button>';
+    el.innerHTML = '<div class="bh-field" aria-hidden="true"></div><span class="bh-logo">lifetime supply</span><div class="bs-slot" aria-hidden="true"><canvas></canvas></div><h2 id="l4-bh-title" class="bh-title">hi there</h2><p class="bh-line">it\'s a demo, so nothing is sent.</p><button type="button" class="bh-go">click around</button>';
     const fit = () => { const w = stage.clientWidth, h = stage.clientHeight, small = w < 600, k = small ? w / 520 : w / D.W; el.classList.toggle('is-small', small); el.style.width = `${w / k}px`; el.style.height = `${h / k}px`; el.style.transform = `scale(${k})`; };
     fit(); const ro = 'ResizeObserver' in window ? new ResizeObserver(fit) : null; if (ro) ro.observe(stage);
     let stop = null, gone = false, closing = false, mo = null;
@@ -309,7 +309,7 @@
     };
     el.querySelector('button').addEventListener('click', close);
     st.hello = { close }; stage.dataset.hello = ''; stage.insertBefore(el, hots); paint(true);
-    if (say) say.textContent = 'hi there. your board is ready.';
+    if (say) say.textContent = 'hi there. it\'s a demo, so nothing is sent.';
     if (!held()) { el.classList.add('is-in'); el.animate({ opacity: [0, 1] }, { duration: 180, easing: 'cubic-bezier(0,0,.2,1)' }); }
     const fb = el.querySelector('button'); (kb ? fb : el).focus({ preventScroll: true });
   };
@@ -317,7 +317,7 @@
   const clock = macbar && macbar.querySelector('.l4-mac-clock');
   if (clock) { const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }); }; tick(); setInterval(tick, 30000); document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); }); }
   if (macbar) {
-    const off = (t, s) => ({ t, s, off: true }), sep = { sep: true }, logout = { t: 'Log Out', fn: () => go('login'), when: () => st.page !== 'login' };
+    const off = (t, s) => ({ t, s, off: true }), sep = { sep: true }, logout = { t: 'log out', fn: () => go('login'), when: () => st.page !== 'login' };
     const MENUS = {
       apple: () => [off('About This Mac'), sep, off('Sleep'), off('Restart...'), off('Shut Down...'), sep, logout],
       File: () => [off('New Window', '⌘N'), off('Close Window', '⌘W'), sep, logout],
