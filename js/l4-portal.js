@@ -81,10 +81,11 @@
       e.style.cssText = `left:${x / bw * 100}%;top:${y / bh * 100}%;width:${w / bw * 100}%;height:${h / bh * 100}%;background-image:url("${u}");background-size:${bw / w * 100}% ${bh / h * 100}%;background-position:${x / (bw - w || 1) * 100}% ${y / (bh - h || 1) * 100}%`;
       wrap.append(e); return e; };
     const pad = (r, p) => [Math.max(0, r[0] - p), Math.max(0, r[1] - p), r[2] + 2 * p, r[3] + 2 * p];
-    const tiles = F.tiles.map((r) => pad(r, 2)), hd = [tiles[0][0], F.head[1] - 8, tiles[3][0] + tiles[3][2] - tiles[0][0], F.head[3] + 16];
-    const last = tiles[7], lo = last[1] + last[3], hi = last[0] + last[2];
+    // the redesigned home (P1): a header and six blocks in three columns, so the edges come from all the tiles, not fixed ones
+    const tiles = F.tiles.map((r) => pad(r, 2)), x0 = Math.min(...tiles.map((r) => r[0])), hi = Math.max(...tiles.map((r) => r[0] + r[2])), lo = Math.max(...tiles.map((r) => r[1] + r[3]));
+    const hd = [x0, F.head[1] - 8, hi - x0, F.head[3] + 16];
     // what never fades: the page's top bar, its edges and whatever sits below the tiles
-    cut([0, 0, bw, hd[1]]); cut([0, hd[1], tiles[0][0], lo - hd[1]]); cut([hi, hd[1], bw - hi, lo - hd[1]]); cut([0, lo, bw, bh - lo]);
+    cut([0, 0, bw, hd[1]]); cut([0, hd[1], x0, lo - hd[1]]); cut([hi, hd[1], bw - hi, lo - hd[1]]); cut([0, lo, bw, bh - lo]);
     const head = cut(hd), cards = tiles.map(cut); [head, ...cards].forEach((e) => { e.style.opacity = '0'; });
     b.style.visibility = 'hidden'; sc.append(wrap);
     return () => {
