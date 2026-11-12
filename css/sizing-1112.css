@@ -151,3 +151,7 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
 
 /* row 10 · #flow: the intro on the same measure as the page's other leads (columns 1 to 6) */
 @media (min-width:701px){#flow .ls-lead{max-width:644px}}
+
+/* row 12 · #download: the store pills sit just above the 50 px buy button instead of well over it; the app icon one step down */
+#download .l7-store{height:56px}
+@media (min-width:701px){#download .l7-dl__icon{width:96px;height:96px}}
