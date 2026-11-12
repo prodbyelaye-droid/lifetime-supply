@@ -1,19 +1,17 @@
-/* clanding 012. Current GO-plan 17:35: exact 030 V1 field, row-203 rounded
-   hand-off, no dots or separate blot. A keeps the locked 007/010 opening.
-   B occupies less than one viewport and offers three STATIC states for the motion lane. */
-.flood-short{display:none}
-html[data-flood-choice=short] .flood-short{
+
+.flood-short:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){display:none}
+html[data-flood-choice=short] .flood-short:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   display:block;position:relative;isolation:isolate;overflow:hidden;
   height:min(440px,70svh);background:transparent;pointer-events:none;
 }
-.flood-short-field{
-  position:absolute;inset:0;background:var(--brand-sky-1) url('../assets/flow-v1/V1-field.webp') center/100% 100% no-repeat;
+.flood-short-field:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
+  position:absolute;inset:0;background:var(--brand-sky-1) url("../assets/flow-v1/V1-field.webp") center/100% 100% no-repeat;
   opacity:.92;
   mask-image:radial-gradient(ellipse 72% 50% at 50% 50%,#000 35%,#000c 60%,transparent 100%);
   transform-origin:50% 50%;
 }
-html[data-flood-stage=start] .flood-short-field{transform:scale(.24,.52)}
-html[data-flood-stage=middle] .flood-short-field{transform:scale(.68,.85)}
-/* The shared hero field continues underneath; the extra field has transparent edges. */
-@media(max-width:700px){html[data-flood-choice=short] .flood-short{height:min(340px,60svh)}}
-@media(forced-colors:active){html[data-flood-choice=short] .flood-short{display:none}}
+html[data-flood-stage=start] .flood-short-field:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){transform:scale(.24,.52)}
+html[data-flood-stage=middle] .flood-short-field:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){transform:scale(.68,.85)}
+
+@media(max-width:700px){html[data-flood-choice=short] .flood-short:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){height:min(340px,60svh)}}
+@media(forced-colors:active){html[data-flood-choice=short] .flood-short:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){display:none}}

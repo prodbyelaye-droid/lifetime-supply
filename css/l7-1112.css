@@ -1,0 +1,112 @@
+/* L7 · giving back. (#giveaways) + the whole setup. now an app. (#download)
+   Redesign run Thu 12 Nov 2026, agent D4; fix pass F2 14:40 AEDT (ai-signs 2 H1 and rows 1, 4, 5, 7; audit 2 rows 1, 5, 6). Every value names its reference; "no reference" where none does.
+   GRID AND TYPE: L1's, posted 13:32 in out/L1-hero/STATUS.md (64 margins, 12 columns, 24 gutters, 1312 content; Albert Sans scale). */
+:root {
+  --font-brand: "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --ls-ink: #090909; --ls-paper: #FFFFFF; --ls-fog: #F3F3F3; --ls-meta: #6F6F6F; --ls-hair: #E4E4E6;
+  --ls-cloud-light: #F3F1E8;     /* colour c warm cloud: the 244 off-white field */
+  --grid-margin: 64px; --grid-gutter: 24px; --section-pad: 128px;                 /* L1 13:32 */
+  --t-h2: 500 56px/58px var(--font-brand);
+  --t-h4: 500 22px/28px var(--font-brand);
+  --t-lead: 400 20px/29px var(--font-brand);
+  --t-body: 400 18px/27px var(--font-brand);
+  --t-small: 400 15px/22px var(--font-brand);
+  --t-label: 500 13px/18px var(--font-brand);
+}
+/* scoped reset: the live page owns html and body; these sections carry their own box model, ink and reading face */
+:where(.l7-sec, .l7-sec *, .l7-dl, .l7-dl *) { box-sizing: border-box; margin: 0; padding: 0; }
+.l7-sec, .l7-dl { background-color: var(--ls-paper); color: var(--ls-ink); font: var(--t-body); -webkit-font-smoothing: antialiased; }
+:where(.l7-sec a, .l7-dl a) { color: inherit; }
+
+.l7-g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); max-width: 1312px; column-gap: var(--grid-gutter); }
+.l7-h2 { font: var(--t-h2); letter-spacing: -0.02em; }
+.l7-h2 em { font-style: italic; } /* type D: its own Medium Italic for the one word (live marks "app" with .dl17-word) */
+.l7-lede { font: var(--t-lead); }
+.l7-sec { padding: var(--section-pad) var(--grid-margin); position: relative; }
+/* ---------- giving back. ---------- */
+.l7-gb-top { align-items: end; }
+.l7-gb-top .l7-h2 { grid-column: 1 / span 5; }
+.l7-gb-top .l7-gb-intro { grid-column: 7 / span 6; }
+.l7-gb-for { font: 500 20px/29px var(--font-brand); } /* the live label's words, now the intro's first line (ai-signs T1: nothing small above the headline) */
+/* L1: text beside, from column 7 */
+.l7-gb-cards { margin-top: 64px; align-items: stretch; } /* L1: intro to surface 64 */
+.l7-gb-card { grid-column: span 6; background: var(--ls-fog); } /* 295: square cards on a quiet grey, picture on top, words under */
+.l7-gb-pic { position: relative; height: 560px; overflow: hidden; background: #fff; }
+.l7-gb-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.l7-gb-touche { background: #A8A396; } /* A1 13:4x fix: one treatment for both objects; the touché render is cut out, so it sits on the strat photo's own wall tone (sampled mid wall #A9A497) */
+.l7-gb-touche img { object-fit: contain; object-position: 50% 62%; padding: 24px 20px; } /* the controller at the guitar's scale in its frame, on one plain ground */
+.l7-gb-strat img { object-position: 50% 30%; }
+.l7-gb-words { padding: 28px 32px 32px; }
+.l7-gb-name { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.l7-gb-name h3 { font: var(--t-h4); letter-spacing: -0.01em; }
+.l7-gb-name span { font: var(--t-small); color: var(--ls-meta); } /* 291: name in ink, its metadata to the right in grey ("Company") */
+.l7-gb-words p { margin-top: 10px; max-width: 520px; }
+.l7-gb-state { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--ls-hair); }
+.l7-gb-state p { margin: 0; font: var(--t-small); }
+.l7-gb-state .l7-gb-tag { margin-bottom: 4px; font: 400 13px/18px var(--font-brand); color: var(--ls-meta); } /* the words that sat on the photographs (veto X1), now the status row's first line, small grey metadata (289: nothing on the picture; 291: metadata in grey) */
+.l7-gb-foot { margin-top: 48px; font: var(--t-lead); }
+/* option B: words beside the picture (295 card 4 "the right expert, a booking away"; 289 words beside a photo) */
+.l7-gb-rows { margin-top: 72px; }
+.l7-gb-row { align-items: center; padding: 0 0 48px; }
+.l7-gb-row + .l7-gb-row { padding-top: 48px; border-top: 1px solid var(--ls-hair); }
+.l7-gb-row .l7-gb-pic { grid-column: 1 / span 6; height: 520px; }
+.l7-gb-row .l7-gb-words { grid-column: 8 / span 5; padding: 0; }
+.l7-gb-row .l7-gb-name h3 { font: 500 36px/40px var(--font-brand); letter-spacing: -0.02em; } /* L1 h3 */
+/* ---------- the whole setup. now an app. (244 mojo call to action, 1:1; 34 aside: the window under the call, cut by the frame) ---------- */
+.l7-dl { background: var(--ls-cloud-light); padding: var(--section-pad) var(--grid-margin) 0; overflow: hidden; text-align: center; } /* 244: off-white field, centred */
+.l7-dl__icon { width: 112px; height: 112px; display: block; margin: 0 auto 24px; } /* the icon file carries its own plate, rim and shadow (mark chat's master); 112 box = 94 px tile */
+/* the picked app icon (sky, clouds, shine); 34 puts the product mark first */
+.l7-dl .l7-h2 { max-width: 760px; margin: 0 auto; }
+.l7-dl__p { max-width: 600px; margin: 24px auto 0; font: var(--t-lead); } /* 244: one line under the headline */
+.l7-dl__row { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+.l7-store { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 28px 0 22px; border-radius: 999px; text-decoration: none; text-align: left; color: #fff;
+  background: linear-gradient(180deg, #363636 0%, #181818 100%); border: 1px solid #252628;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.13), inset 0 -1px 0 rgba(255,255,255,.04), 0 1px 1px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.10); } /* 244: black pills about 64 tall, icon left, two lines; components A final (E0 fix lines 40 to 44, measured on 291) */
+.l7-store svg { width: 24px; height: 24px; flex: none; }
+.l7-store span { display: flex; flex-direction: column; gap: 3px; }
+.l7-store small { font: 400 12px/1 var(--font-brand); letter-spacing: 0; } /* 244 "Download on the" */
+.l7-store b { font: 500 21px/1 var(--font-brand); letter-spacing: -0.01em; } /* 244 "App Store" */
+.l7-dl__meta { position: relative; display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: 6px 24px; margin-top: 20px; font: var(--t-small); }
+/* audit 2 #5 (244: nothing under the buttons but one line): version, his "mobile app coming soon." and the first-time fold on one line; log in lives in the nav */
+.l7-dl__meta .l7-v { color: var(--ls-meta); } /* real metadata (ai-signs T3 allows) */
+.l7-dl__help { font: var(--t-small); }
+.l7-dl__help summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.l7-dl__help summary::-webkit-details-marker { display: none; }
+.l7-dl__help svg { width: 14px; height: 14px; }
+.l7-win { width: 1120px; max-width: 100%; margin: 72px auto 0; height: 470px; border-radius: 14px 14px 0 0; overflow: hidden; background: #fff; text-align: left;
+  box-shadow: 0 0 0 1px rgba(9,9,9,.10), 0 1px 3px rgba(9,9,9,.10); } /* 34: the app window under the call, cut by the section's edge (298 too); 291: a 1 px rim and a tight shadow, no bloom (ai-signs 2 row 5) */
+.l7-win__bar { height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-bottom: 1px solid var(--ls-hair); background: var(--ls-fog); }
+.l7-win__bar i { width: 12px; height: 12px; border-radius: 999px; background: rgba(9,9,9,.14); } /* the mac window's buttons as an inactive window shows them: grey (no green, his 29 Oct rule) */
+.l7-win img { display: block; width: 100%; height: auto; }
+/* ---------- states (el-E1 primary-button.css; el-E2 quiet; "derived" = worked out from them) ---------- */
+.l7-store { transition: box-shadow .16s cubic-bezier(.22,1,.36,1), background-color .16s cubic-bezier(.22,1,.36,1), transform .2s cubic-bezier(.28,1.4,.36,1); } /* row 54 bencho eases (el-E1) */
+.l7-store:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.26), 0 1px 1px rgba(0,0,0,.22), 0 2px 5px -1px rgba(0,0,0,.14); } /* el-E1 */
+.l7-store:active { background: #181818; box-shadow: inset 0 1px 2px rgba(0,0,0,.45), 0 .5px 1px rgba(0,0,0,.14); transform: scale(.97); } /* el-E1 */
+.l7-store:focus-visible, .l7-dl__help summary:focus-visible { outline: 2px solid var(--ls-ink); outline-offset: 3px; } /* his 26 Oct call (el-E1) */
+.l7-dl__help[open] summary svg { transform: rotate(180deg); } /* the live fold opens in place */
+.l7-dl__help p { position: absolute; left: 50%; top: calc(100% + 10px); width: 640px; transform: translateX(-50%); font: var(--t-small); text-align: center; } /* open: the live sentences, centred under the line (two lines at 640; the window sits 72 under) */
+@media (prefers-reduced-motion: reduce) {
+.l7-store { transition: none; }
+.l7-store:active { transform: none; }
+}
+@media (max-width: 700px) {
+:root { --grid-margin: 24px; --grid-gutter: 16px; --section-pad: 72px; --t-h2: 500 34px/36px var(--font-brand); --t-h4: 500 20px/26px var(--font-brand); --t-lead: 400 18px/27px var(--font-brand); --t-body: 400 17px/26px var(--font-brand); }
+.l7-g { display: block; }
+.l7-gb-top .l7-gb-intro { margin-top: 20px; }
+.l7-gb-for { font: 500 18px/27px var(--font-brand); }
+.l7-gb-cards { margin-top: 40px; }
+.l7-gb-card + .l7-gb-card { margin-top: 16px; }
+.l7-gb-pic, .l7-gb-row .l7-gb-pic { height: 340px; }
+.l7-gb-words { padding: 22px 20px 24px; }
+.l7-gb-rows { margin-top: 40px; }
+.l7-gb-row .l7-gb-words { margin-top: 22px; }
+.l7-gb-row .l7-gb-name h3 { font: 500 26px/30px var(--font-brand); }
+.l7-gb-name { flex-direction: column; gap: 4px; }
+.l7-dl__icon { width: 88px; height: 88px; margin-bottom: 16px; }
+.l7-dl__row { flex-direction: column; align-items: stretch; gap: 12px; }
+.l7-store { justify-content: center; }
+.l7-dl__meta { flex-direction: column; align-items: center; gap: 6px; }
+.l7-dl__help p { position: static; width: auto; max-width: 342px; margin: 10px auto 0; transform: none; }
+.l7-win { margin: 48px -24px 0 0; width: auto; max-width: none; height: 260px; border-radius: 12px 0 0 0; }
+.l7-win img { width: 760px; max-width: none; } /* cut by the right edge too at 390 */
+}

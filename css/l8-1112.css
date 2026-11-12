@@ -1,0 +1,172 @@
+/* L8 · pay once. it never stops. (#price, #steps folded in) + the update board. (#updates)
+   Redesign run Thu 12 Nov 2026, agent D4. Every value names its reference; "no reference" where none does.
+   GRID AND TYPE: L1's, posted 13:32 in out/L1-hero/STATUS.md (64 margins, 12 columns, 24 gutters, 1312 content; Albert Sans scale).
+   Two element values stay as their finals: the $699 figure (el-E16: 136 regular, row 304 "275 kWh") and the fine print 14/20 (el-E16). */
+:root {
+  /* type D (his 13:03: "we will keep d"), as tokens so a swap is one change */
+  --font-brand: "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif; /* L1 token; type D */
+  /* colour c (SPRINT/out/colour/final/colour-tokens.css) */
+  --ls-ink: #090909; --ls-paper: #FFFFFF; --ls-fog: #F3F3F3; --ls-meta: #6F6F6F;
+  --ls-hair: #E8E8E8;            /* 02:12 round hair; 181 rules measured #EAEAEA */
+  --ls-sky-1: #112E84; --ls-sky-2: #1D46AE;
+  --ls-cloud-light: #F3F1E8; --ls-cloud-shade: #DAE4E9; --ls-cold: #E6F2FF;
+  /* grid: L1 13:32 */
+  --grid-margin: 64px; --grid-gutter: 24px; --section-pad: 128px;
+  /* type scale: L1 13:32 (names mapped: --t-lead = L1 --t-lead) */
+  --t-h2: 500 56px/58px var(--font-brand);
+  --t-h3: 500 36px/40px var(--font-brand);
+  --t-h4: 500 22px/28px var(--font-brand);   /* also 181's step titles, about 22 at 1440 */
+  --t-lead: 400 20px/29px var(--font-brand);    /* 302 paragraph */
+  --t-body: 400 18px/27px var(--font-brand);
+  --t-small: 400 15px/22px var(--font-brand);
+  --t-fine: 400 14px/20px var(--font-brand);    /* el-E16 fine print (not in L1's scale; element final) */
+}
+/* scoped reset: the live page owns html and body; these sections carry their own box model, ink and reading face */
+:where(.l8-sec, .l8-sec *) { box-sizing: border-box; margin: 0; padding: 0; }
+.l8-sec { background-color: var(--ls-paper); color: var(--ls-ink); font: var(--t-body); -webkit-font-smoothing: antialiased; }
+:where(.l8-sec a) { color: inherit; }
+
+.l8-g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); max-width: 1312px; column-gap: var(--grid-gutter); }
+.l8-h2 { font: var(--t-h2); letter-spacing: -0.02em; }
+.l8-h3 { font: var(--t-h3); letter-spacing: -0.02em; }
+.l8-h4 { font: var(--t-h4); letter-spacing: -0.01em; }
+.l8-lede { font: var(--t-lead); letter-spacing: -0.005em; }
+.l8-sec { padding: var(--section-pad) var(--grid-margin); position: relative; }
+/* ---------- row 1: in three steps. (181 time.fyi "get started in three steps", 1:1 construction) ---------- */
+.l8-steps-h { grid-column: 1 / span 6; }
+.l8-steps { margin: 40px calc(-1 * var(--grid-margin)) 0; border-top: 1px solid var(--ls-hair); border-bottom: 1px solid var(--ls-hair); } /* 181: the rule runs to both page edges */
+.l8-steps__in { margin: 0 var(--grid-margin); display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--ls-hair); border-right: 1px solid var(--ls-hair); } /* 181: frame lines on the content edge */
+.l8-step { display: flex; flex-direction: column; border-left: 1px solid var(--ls-hair); }
+.l8-step:first-child { border-left: 0; }
+.l8-step__copy { display: grid; grid-template-columns: 28px 1fr; column-gap: 14px; padding: 36px 32px 40px; min-height: 168px; } /* 181: padding about 36, disc to title 14 */
+.l8-step__n { width: 28px; height: 28px; border-radius: 999px; background: var(--ls-ink); color: #fff; font: 500 14px/28px var(--font-brand); text-align: center; } /* 181: ink disc, white numeral */
+.l8-step__t { font: var(--t-h4); letter-spacing: -0.01em; padding-top: 0; align-self: center; }
+.l8-step__p { grid-column: 2; margin-top: 8px; font: var(--t-body); max-width: 330px; } /* ink, not 181's grey (ai-signs T3) */
+.l8-step__art { height: 232px; display: flex; align-items: center; justify-content: center; } /* 181: a tinted panel under each step with one real piece of the product */
+.l8-step:nth-child(1) .l8-step__art { background: var(--ls-cold); } /* colour c cold #E6F2FF (E7 C) in place of 181's lavender */
+.l8-step:nth-child(2) .l8-step__art { background: #EDF1F3; } /* colour c cloud shade #DAE4E9 at 50 % on white, in place of 181's mint */
+.l8-step:nth-child(3) .l8-step__art { background: var(--ls-cloud-light); } /* colour c warm cloud #F3F1E8, in place of 181's peach */
+.l8-mini { background: #fff; border: 1px solid #E6E6E6; border-radius: 16px; box-shadow: 0 1px 2px rgba(9,9,9,.06), 0 6px 16px -8px rgba(9,9,9,.14); } /* 181 card: 1 px edge, tight shadow */
+.l8-mini-pay { display: flex; align-items: center; gap: 20px; padding: 18px 18px 18px 22px; }
+.l8-mini-pay__price { display: flex; align-items: baseline; gap: 5px; font: 400 32px/32px var(--font-brand); letter-spacing: -0.03em; font-variant-numeric: lining-nums; } /* E16 size M */
+.l8-mini-pay__price small { font: 500 14px/1 var(--font-brand); letter-spacing: 0; }
+.l8-mini-login { display: flex; align-items: center; gap: 14px; padding: 14px 14px 14px 18px; }
+.l8-lockup { display: flex; align-items: center; gap: 8px; font: 500 16px/1 var(--font-brand); letter-spacing: -0.02em; } /* the lockup: mark before the name (29 Oct) */
+.l8-lockup svg { width: 30px; height: 20px; }
+.l8-mini-kit { width: 132px; height: 132px; border-radius: 8px; display: block; box-shadow: 0 1px 2px rgba(9,9,9,.10), 0 10px 22px -10px rgba(9,9,9,.35); } /* live step 3 cover; 181's shadow */
+/* buttons: el-E1 primary (ink on white; white on the sky) and el-E2 quiet (302 outline pill for log in) */
+.l8-btn { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 22px; border-radius: 999px; white-space: nowrap; text-decoration: none;
+  font: 500 15px/1 var(--font-brand); letter-spacing: -.01em; color: #fff;
+  background: linear-gradient(180deg, #2E2E2E 0%, #111111 100%); border: 1px solid #1B1C1F;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.14), 0 1px 2px rgba(0,0,0,.06); }
+.l8-btn--sm { height: 32px; padding: 0 16px; font-size: 14px; }
+.l8-btn--lg { height: 50px; padding: 0 28px; font-size: 16px; }
+.l8-btn--white { color: #111; border: 0; background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.45); } /* el-E1 white, row 16 */
+.l8-btn--line { color: var(--ls-ink); background: transparent; border: 1px solid var(--ls-ink); box-shadow: none; } /* el-E2 (1): row 302's outline "Log in" */
+/* ---------- row 2: the price band (el-E16 A, the sky band; picked 03:06) ---------- */
+.l8-band { margin: 96px calc(-1 * var(--grid-margin)) 0; height: 740px; padding: 88px var(--grid-margin) 0;
+  background: var(--ls-sky-2) url("../assets/r2-1112/L8/price-sky-A-band-2832x1440@2x.webp") 50% 100% / cover no-repeat; color: #fff; } /* E16 A: own render seed 41 (X24), square, full bleed (302) */
+.l8-band .l8-h2 { grid-column: 1 / span 6; color: #fff; }
+.l8-band__intro { grid-column: 1 / span 5; }
+.l8-band__intro p { margin-top: 32px; max-width: 470px; font: var(--t-lead); letter-spacing: -0.005em; }
+.l8-band__buy { grid-column: 7 / span 6; padding-top: 0; }
+.l8-price { display: flex; align-items: baseline; gap: 12px; } /* 304 "275 kWh": unit on the number's baseline */
+.l8-price__n { font: 400 136px/0.84 var(--font-brand); letter-spacing: -0.035em; font-variant-numeric: lining-nums; } /* E16: 7.6x the body (ai-signs T8) */
+.l8-price__u { font: 500 30px/1 var(--font-brand); }
+.l8-band__note { margin-top: 28px; max-width: 470px; font: var(--t-body); } /* E16 note 18/27 = L1 body */
+.l8-band__buy .l8-btn { margin-top: 32px; }
+.l8-fine { margin-top: 48px; }
+.l8-fine__col { grid-column: span 4; }
+.l8-fine p { font: var(--t-fine); margin: 0 0 14px; max-width: 380px; }
+.l8-fine p.l8-lead { font: 500 15px/22px var(--font-brand); } /* E16 A: "no subscription..." leads the fine print, medium */
+.l8-legal { display: flex; gap: 18px; flex-wrap: wrap; font: var(--t-fine); }
+.l8-legal a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; } /* el-E2 (4): links in ink, fine underline; the live " · " separators go (ai-signs T6) */
+/* ---------- row 3: everything included. (289 poster: big words, then small body set in columns; 02:12 round .defs) ---------- */
+.l8-incl { margin-top: 160px; row-gap: 0; }
+.l8-incl .l8-h3 { grid-column: 1 / span 4; }
+.l8-incl .l8-lede { grid-column: 5 / span 6; padding-top: 4px; }
+.l8-incl__list { grid-column: 1 / -1; margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--grid-gutter); row-gap: 40px; list-style: none; }
+.l8-incl__list li { border-top: 1px solid var(--ls-hair); padding-top: 20px; font: var(--t-body); max-width: 400px; }
+.l8-incl__list b { display: block; font: 500 18px/27px var(--font-brand); margin-bottom: 2px; }
+.l8-incl__list .l8-why { display: block; margin-top: 6px; } /* the live second sentence, kept on its own line, same ink */
+/* ---------- row 4: $699 is a lot right now. is it worth it? (302: headline left, paragraph to read; 289 columns) ---------- */
+.l8-worth { margin-top: 160px; align-items: start; }
+.l8-worth .l8-h3 { grid-column: 1 / span 5; position: sticky; top: 96px; }
+.l8-worth__p { grid-column: 7 / span 6; }
+.l8-worth__p p { font: var(--t-lead); letter-spacing: -0.005em; margin-bottom: 18px; max-width: 600px; }
+.l8-worth__p p:last-child { margin-bottom: 0; } /* assembly seam check 14:4x: the section ends on the grid's 128, not 128 + 18 */
+/* ---------- #updates: the update board. (row 278: "call it update board"; 289 poster columns, option A) ---------- */
+.l8-up-top { align-items: end; }
+.l8-up-top .l8-h2 { grid-column: 1 / span 6; }
+.l8-up-top .l8-lede { grid-column: 7 / span 6; max-width: 560px; }
+.l8-up-cols { margin-top: 80px; }
+.l8-up-col { grid-column: span 6; }
+.l8-up-col h3 { font: var(--t-h4); letter-spacing: -0.01em; padding-bottom: 18px; border-bottom: 1px solid var(--ls-ink); } /* one ink rule under each list's name (289's column heads; 304's kiosk divisions) */
+.l8-up-list { list-style: none; columns: 2; column-gap: var(--grid-gutter); margin-top: 0; }
+.l8-up-list li { break-inside: avoid; border-bottom: 1px solid var(--ls-hair); padding: 14px 0 16px; font: var(--t-small); }
+.l8-up-list b { font-weight: 500; }
+/* ---------- option B: the update board as two sheets (el-E10 B, "one white sheet per lane", his 03:02 pick for the board) ---------- */
+.l8-sheets { margin-top: 72px; align-items: start; }
+.l8-sheet { grid-column: span 6; background: #fff; border: 1px solid #E8E8EA; border-radius: 16px; overflow: hidden; } /* E10 B: rim #E8E8EA, radius 16 (303 panel) */
+.l8-sheet__h { display: flex; align-items: center; height: 56px; padding: 0 22px; background: #FAFAFA; border-bottom: 1px solid #EFEFEF; font: 500 17px/22px var(--font-brand); letter-spacing: -0.01em; } /* E10 B head band */
+.l8-sheet ul { list-style: none; }
+.l8-sheet li { display: grid; grid-template-columns: 168px 1fr; column-gap: 16px; padding: 14px 22px 15px; border-top: 1px solid #EFEFEF; font: var(--t-small); } /* E11 table row: name column, then the words */
+.l8-sheet li:first-child { border-top: 0; }
+.l8-sheet li b { font-weight: 500; }
+/* ---------- option B steps: no numbers (ai-signs T6), same 181 frame ---------- */
+.l8-nonum .l8-step__copy { grid-template-columns: 1fr; }
+.l8-nonum .l8-step__n { display: none; }
+.l8-nonum .l8-step__p { grid-column: 1; }
+/* ---------- phone, 390 (02:12 round: 72 / 24; E16 phone) ---------- */
+/* ---------- states (el-E1 primary-button.css; el-E2 quiet; "derived" = worked out from them) ---------- */
+.l8-btn { transition: box-shadow .16s cubic-bezier(.22,1,.36,1), background-color .16s cubic-bezier(.22,1,.36,1), transform .2s cubic-bezier(.28,1.4,.36,1); } /* row 54 bencho eases (el-E1) */
+.l8-btn:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.26), 0 1px 1px rgba(0,0,0,.22), 0 2px 5px -1px rgba(0,0,0,.14); } /* el-E1: one ink, the light line lifts */
+.l8-btn:active { background: #111111; box-shadow: inset 0 1px 2px rgba(0,0,0,.45), 0 .5px 1px rgba(0,0,0,.14); transform: scale(.97); } /* el-E1 pressed */
+.l8-btn:focus-visible { outline: 2px solid #111111; outline-offset: 3px; } /* his 26 Oct call: 2 px ring, offset 3 (el-E1) */
+.l8-btn--white:hover { background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 50%, #FAFAFA 91%, #FFFFFF 100%); box-shadow: 0 0 0 1px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.45); } /* el-E1 white hover */
+.l8-btn--white:active { background: #F1F1F1; transform: scale(.97); } /* derived */
+.l8-btn--white:focus-visible { outline-color: #FFFFFF; } /* on the sky: white ring (el-E16 A) */
+.l8-btn--line:hover { background: rgba(9,9,9,.05); } /* derived (el-E2 quiet hover) */
+.l8-btn--line:active { background: rgba(9,9,9,.09); transform: scale(.97); } /* derived */
+.l8-legal a:hover { text-decoration-thickness: 2px; } /* derived */
+.l8-legal a:focus-visible { outline: 2px solid #111111; outline-offset: 2px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) {
+.l8-btn { transition: none; }
+.l8-btn:active, .l8-btn--white:active, .l8-btn--line:active { transform: none; }
+}
+@media (max-width: 700px) {
+:root { --grid-margin: 24px; --grid-gutter: 16px; --section-pad: 72px; --t-h2: 500 34px/36px var(--font-brand); --t-h3: 500 26px/30px var(--font-brand); --t-h4: 500 20px/26px var(--font-brand); --t-lead: 400 18px/27px var(--font-brand); --t-body: 400 17px/26px var(--font-brand); } /* L1 390 */
+.l8-g { display: block; }
+.l8-steps { margin-top: 28px; }
+.l8-steps__in { grid-template-columns: 1fr; border-left: 0; border-right: 0; margin: 0; }
+.l8-step { border-left: 0; border-top: 1px solid var(--ls-hair); }
+.l8-step:first-child { border-top: 0; }
+.l8-step__copy { padding: 24px 24px 24px; min-height: 0; }
+.l8-step__art { height: 176px; }
+.l8-band { height: auto; min-height: 1000px; margin-top: 64px; padding: 56px var(--grid-margin) 0; background-position: 40% 100%; background-size: auto 640px; background-color: #0D3291; } /* E16 phone: clouds under the button; the fill is the render's own top row (#0D3291) so there is no seam */
+.l8-band__intro p { margin-top: 20px; }
+.l8-band__buy { margin-top: 44px; }
+.l8-price__n { font-size: 96px; }
+.l8-price__u { font-size: 22px; }
+.l8-price { gap: 8px; }
+.l8-band__note { font-size: 17px; line-height: 25px; }
+.l8-band__note br { display: none; }
+.l8-band__buy .l8-btn { display: flex; width: 100%; margin-top: 28px; }
+.l8-fine { margin-top: 36px; }
+.l8-fine__col + .l8-fine__col { margin-top: 0; }
+.l8-incl { margin-top: 88px; }
+.l8-incl .l8-lede { margin-top: 16px; }
+.l8-incl__list { grid-template-columns: 1fr; row-gap: 24px; margin-top: 36px; }
+.l8-worth { margin-top: 88px; }
+.l8-worth .l8-h3 { position: static; }
+.l8-worth__p { margin-top: 20px; }
+.l8-up-top .l8-lede { margin-top: 20px; }
+.l8-up-cols { margin-top: 48px; }
+.l8-up-col + .l8-up-col { margin-top: 48px; }
+.l8-up-list { columns: 1; }
+.l8-sheets { margin-top: 40px; }
+.l8-sheet + .l8-sheet { margin-top: 20px; }
+.l8-sheet li { grid-template-columns: 1fr; row-gap: 2px; padding: 12px 16px 13px; }
+.l8-sheet__h { padding: 0 16px; }
+}

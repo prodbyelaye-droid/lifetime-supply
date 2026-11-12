@@ -19,7 +19,7 @@
     const end = opening ? Math.max(300, answer.scrollHeight) : 0;
     const animation = answer.animate([
       { maxHeight: from === 'none' ? Math.max(300, answer.scrollHeight) + 'px' : from, paddingTop:padding, opacity, transform },
-      { maxHeight:end + 'px', paddingTop:opening ? '16px' : '0px', opacity:opening ? 1 : 0, transform:opening ? 'translateY(0)' : 'translateY(-8px)' }
+      { maxHeight:end + 'px', paddingTop:'0px', opacity:opening ? 1 : 0, transform:opening ? 'translateY(0)' : 'translateY(-8px)' }
     ], { duration:500, easing:'ease-in-out', fill:'both' });
     running.set(item, animation);
     animation.onfinish = () => {

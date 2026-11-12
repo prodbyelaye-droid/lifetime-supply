@@ -1,52 +1,51 @@
-/* Selected Downloads B from unit 017 / 975ea08. Publication is controlled only
- * by js/desktop-downloads.js; historical URL review switches are not shipped. */
 
-.dl17 {
+
+.dl17:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --dl17-ink:var(--brand-ink); --dl17-body:#40464d;
   --v1-50:var(--brand-sky-3); --v1-45:var(--brand-sky-1); --v1-30:var(--brand-sky-5); --v1-20:var(--brand-sky-9); --v1-10:var(--brand-sky-4);
   position:relative; isolation:isolate; padding-block:60px; overflow-x:clip;
 }
-.dl17-stage {
+.dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   position:relative; width:min(1200px, calc(100% - 80px)); margin:0 auto; min-height:600px;
   border-radius:28px; overflow:hidden; display:grid; place-items:start center;
 }
-.dl17-art { position:absolute; inset:0; z-index:0; pointer-events:none; }
-.dl17-art > * { display:none; }
-.dl17-copy {
+.dl17-art:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.dl17-art > *:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:none; }
+.dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center;
   padding:96px 24px 120px; max-width:640px;
 }
-.dl17 .ls-heading-b { color:var(--dl17-ink); }
-.dl17-word { background:linear-gradient(112deg,var(--brand-sky-10) 0%,var(--brand-sky-16) 50%,var(--brand-sky-17) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.dl17-copy > p { margin:22px 0 0; color:var(--dl17-body); font-size:17px; line-height:1.5; max-width:30em; }
-.dl17-copy > p > span { display:block; width:fit-content; max-width:100%; margin-inline:auto; text-wrap:balance; }
-.dl17-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
-.dl17 .dl-btn { gap:10px; min-width:212px; padding-inline:22px 26px; }
-.dl17 .dl-btn svg { width:17px; height:17px; flex:none; }
-.dl17 .dl-login { margin-top:14px; }
-/* L1 live state: the one-time open-anyway line, quieter than the lead line */
-.dl17-copy > p.dl17-once { margin-top:10px; font-size:14px; line-height:1.45; opacity:.86; }
-.dl17-phone { font-size:14px !important; margin-top:18px !important; }
+.dl17 .ls-heading-b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color:var(--dl17-ink); }
+.dl17-word:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:linear-gradient(112deg,var(--brand-sky-10) 0%,var(--brand-sky-16) 50%,var(--brand-sky-17) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.dl17-copy > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin:22px 0 0; color:var(--dl17-body); font-size:17px; line-height:1.5; max-width:30em; }
+.dl17-copy > p > span:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:block; width:fit-content; max-width:100%; margin-inline:auto; text-wrap:balance; }
+.dl17-row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
+.dl17 .dl-btn:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap:10px; min-width:212px; padding-inline:22px 26px; }
+.dl17 .dl-btn svg:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:17px; height:17px; flex:none; }
+.dl17 .dl-login:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top:14px; }
 
-/* ---------- A · our arch in V1 ---------- */
-.dl17[data-dl="a"] .dl17-stage {
+.dl17-copy > p.dl17-once:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top:10px; font-size:14px; line-height:1.45; opacity:.86; }
+.dl17-phone:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size:14px !important; margin-top:18px !important; }
+
+
+.dl17[data-dl="a"] .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   background:linear-gradient(180deg, #EFF9FF 0%, #E5F4FE 34%, var(--brand-sky-52) 58%, var(--brand-sky-3) 100%);
   box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.10);
 }
-.dl17[data-dl="a"] .dl17-arch, .dl17[data-dl="a"] .dl17-dots, .dl17[data-dl="a"] .dl17-edge { display:block; position:absolute; }
-.dl17-arch {
+.dl17[data-dl="a"] .dl17-arch:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),.dl17[data-dl="a"] .dl17-dots:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),.dl17[data-dl="a"] .dl17-edge:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:block; position:absolute; }
+.dl17-arch:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   inset:0;
   background:
     radial-gradient(ellipse 34% 52% at 50% 104%, var(--v1-10) 0%, rgba(var(--brand-sky-4-rgb),.86) 30%, rgba(var(--brand-sky-4-rgb),0) 100%),
     radial-gradient(ellipse 52% 78% at 50% 108%, var(--v1-20) 0%, rgba(var(--brand-sky-9-rgb),.78) 40%, rgba(var(--brand-sky-9-rgb),0) 100%),
     radial-gradient(ellipse 72% 96% at 50% 112%, var(--v1-30) 0%, rgba(var(--brand-sky-5-rgb),.70) 50%, rgba(var(--brand-sky-5-rgb),0) 100%);
 }
-/* "the arched colourway with the white on the edges": two white sweeps rise from the lower corners */
-/* each sweep is the corner of a big white ellipse; a 5 px feather keeps the edge soft but drawn, as in our original */
-.dl17-edge { inset:-14px; filter:blur(5px); }
-.dl17-edge--l { background:radial-gradient(ellipse 37% 60% at -3% 112%, #fff 0 96%, rgba(255,255,255,0) 100%); }
-.dl17-edge--r { background:radial-gradient(ellipse 37% 60% at 103% 112%, #fff 0 96%, rgba(255,255,255,0) 100%); }
-.dl17-dots {
+
+
+.dl17-edge:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ inset:-14px; filter:blur(5px); }
+.dl17-edge--l:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:radial-gradient(ellipse 37% 60% at -3% 112%, #fff 0 96%, rgba(255,255,255,0) 100%); }
+.dl17-edge--r:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:radial-gradient(ellipse 37% 60% at 103% 112%, #fff 0 96%, rgba(255,255,255,0) 100%); }
+.dl17-dots:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   inset:0;
   background-image:radial-gradient(circle, rgba(255,255,255,.95) 1.3px, transparent 1.6px);
   background-size:16px 16px; background-position:8px 8px;
@@ -54,27 +53,27 @@
           mask-image:radial-gradient(ellipse 46% 64% at 50% 100%, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%);
   opacity:.75;
 }
-.dl17[data-dl="a"] .dl17-word { background:none; color:inherit; }
-/* the splats sit outside the panel, bleeding off the page edges as in our original */
-.dl17-side { display:none; position:absolute; z-index:0; pointer-events:none; }
-.dl17[data-dl="a"] .dl17-side { display:block; }
-.dl17-side--l { width:132px; left:-58px; top:calc(60px + 34%); fill:var(--brand-rose-1); }
-.dl17-side--r { width:118px; right:-50px; bottom:20px; fill:var(--brand-blue-1); }
+.dl17[data-dl="a"] .dl17-word:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:none; color:inherit; }
 
-/* ---------- B · Mojo's white field, our splats bleeding off it ---------- */
-.dl17[data-dl="b"] .dl17-stage { background:#F5FAFD; }
-.dl17[data-dl="b"] .dl17-blot { display:block; position:absolute; }
-/* L1 4 Nov (row 34, owner 14:28 sky for all): one sky blot only (--3, right); the other two splats are off. */
-.dl17[data-dl="b"] .dl17-blot--1, .dl17[data-dl="b"] .dl17-blot--2 { display:none; }
-.dl17-blot--1 { width:400px; left:-150px; top:96px; fill:var(--v1-10); transform:rotate(-14deg); }
-.dl17-blot--2 { width:330px; left:calc(50% + 60px); bottom:-206px; fill:var(--v1-10); transform:rotate(8deg); }
-.dl17-blot--3 { width:380px; right:-170px; top:236px; fill:var(--v1-10); transform:rotate(22deg); }
-.dl17[data-dl="b"] .dl17-copy { padding-top:118px; }
+.dl17-side:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:none; position:absolute; z-index:0; pointer-events:none; }
+.dl17[data-dl="a"] .dl17-side:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:block; }
+.dl17-side--l:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:132px; left:-58px; top:calc(60px + 34%); fill:var(--brand-rose-1); }
+.dl17-side--r:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:118px; right:-50px; bottom:20px; fill:var(--brand-blue-1); }
 
-/* ---------- C · the disc, kept light ---------- */
-.dl17[data-dl="c"] .dl17-stage { background:linear-gradient(180deg,#F8FCFF 0%,#F1F9FE 55%,#E8F5FE 100%); min-height:840px; }
-.dl17[data-dl="c"] .dl17-disc { display:block; }
-.dl17-disc {
+
+.dl17[data-dl="b"] .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:#F5FAFD; }
+.dl17[data-dl="b"] .dl17-blot:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:block; position:absolute; }
+
+.dl17[data-dl="b"] .dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),.dl17[data-dl="b"] .dl17-blot--2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:none; }
+.dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:400px; left:-150px; top:96px; fill:var(--v1-10); transform:rotate(-14deg); }
+.dl17-blot--2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:330px; left:calc(50% + 60px); bottom:-206px; fill:var(--v1-10); transform:rotate(8deg); }
+.dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:380px; right:-170px; top:236px; fill:var(--v1-10); transform:rotate(22deg); }
+.dl17[data-dl="b"] .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-top:118px; }
+
+
+.dl17[data-dl="c"] .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:linear-gradient(180deg,#F8FCFF 0%,#F1F9FE 55%,#E8F5FE 100%); min-height:840px; }
+.dl17[data-dl="c"] .dl17-disc:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:block; }
+.dl17-disc:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   position:absolute; width:640px; aspect-ratio:1; left:50%; bottom:-300px; transform:translateX(-50%); border-radius:50%;
   background:
     repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0 3px, rgba(255,255,255,.16) 3px 4px),
@@ -82,58 +81,58 @@
     conic-gradient(from 210deg at 50% 50%, var(--brand-sky-1) 0deg, var(--brand-sky-5) 40deg, var(--brand-rose-11) 78deg, var(--brand-sky-3) 112deg, var(--brand-sky-9) 150deg, var(--brand-blue-2) 196deg, var(--brand-green-9) 236deg, var(--brand-sky-5) 276deg, var(--brand-warm-10) 310deg, var(--brand-sky-1) 360deg);
   box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.28), 0 -1px 0 rgba(255,255,255,.9);
 }
-.dl17-hub {
+.dl17-hub:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   position:absolute; inset:36%; border-radius:50%;
   background:radial-gradient(circle, #fff 0 22%, var(--brand-sky-53) 22% 25%, #fff 25% 58%, rgba(255,255,255,.55) 58% 100%);
   box-shadow:inset 0 0 0 1px rgba(var(--brand-sky-4-rgb),.30), 0 0 0 6px rgba(255,255,255,.35);
 }
 
 @media (min-width:701px) and (max-width:1180px) {
-  .dl17-blot--1 { width:260px; left:-150px; top:110px; }
-  .dl17-blot--2 { width:240px; left:calc(50% + 70px); bottom:-160px; }
-  .dl17-blot--3 { width:260px; right:-150px; top:300px; }
+  .dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:260px; left:-150px; top:110px; }
+  .dl17-blot--2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:240px; left:calc(50% + 70px); bottom:-160px; }
+  .dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:260px; right:-150px; top:300px; }
 }
 
 @media (min-width:701px) and (max-width:900px) {
-  .dl17-blot--1 { width:200px; left:-124px; top:36px; }
-  .dl17-blot--3 { width:210px; right:-124px; top:auto; bottom:30px; }
+  .dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:200px; left:-124px; top:36px; }
+  .dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:210px; right:-124px; top:auto; bottom:30px; }
 }
 
 @media (max-width:700px) {
-  .dl17 { padding-block:30px; }
-  .dl17-stage { width:calc(100% - 32px); min-height:0; border-radius:22px; }
-  .dl17-copy { padding:64px 20px 96px; }
-  .dl17-copy > p { font-size:16px; margin-top:16px; }
-  .dl17-row { flex-direction:column; align-items:stretch; width:100%; max-width:320px; gap:10px; margin-top:26px; }
-  .dl17-row { align-items:center; }
-  .dl17 .dl-btn { width:100%; max-width:280px; min-width:0; }
-  .dl17-arch { background:
+  .dl17:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-block:30px; }
+  .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:calc(100% - 32px); min-height:0; border-radius:22px; }
+  .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding:64px 20px 96px; }
+  .dl17-copy > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size:16px; margin-top:16px; }
+  .dl17-row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ flex-direction:column; align-items:stretch; width:100%; max-width:320px; gap:10px; margin-top:26px; }
+  .dl17-row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ align-items:center; }
+  .dl17 .dl-btn:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:100%; max-width:280px; min-width:0; }
+  .dl17-arch:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:
     radial-gradient(ellipse 70% 30% at 50% 104%, var(--v1-10) 0%, rgba(var(--brand-sky-4-rgb),.86) 30%, rgba(var(--brand-sky-4-rgb),0) 100%),
     radial-gradient(ellipse 95% 46% at 50% 106%, var(--v1-20) 0%, rgba(var(--brand-sky-9-rgb),.78) 40%, rgba(var(--brand-sky-9-rgb),0) 100%),
     radial-gradient(ellipse 130% 62% at 50% 110%, var(--v1-30) 0%, rgba(var(--brand-sky-5-rgb),.7) 50%, rgba(var(--brand-sky-5-rgb),0) 100%); }
-  .dl17-edge { filter:blur(3px); }
-  .dl17-edge--l { background:radial-gradient(ellipse 40% 34% at -6% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }
-  .dl17-edge--r { background:radial-gradient(ellipse 40% 34% at 106% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }
-  .dl17-dots { -webkit-mask-image:radial-gradient(ellipse 80% 40% at 50% 100%, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%); mask-image:radial-gradient(ellipse 80% 40% at 50% 100%, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%); }
-  /* phone: no outer margin to bleed into, so one splat rests on the left white sweep inside the panel */
-  .dl17-side--l { width:58px; left:30px; top:auto; bottom:46px; z-index:2; }
-  .dl17-side--r { display:none !important; }
-  .dl17-blot--1 { width:150px; left:-92px; top:2px; }
-  .dl17-blot--2 { width:140px; left:-58px; bottom:-74px; }
-  .dl17-blot--3 { width:170px; right:-86px; top:auto; bottom:-58px; }
-  .dl17[data-dl="b"] .dl17-copy { padding-top:96px; padding-bottom:120px; }
-  .dl17[data-dl="c"] .dl17-stage { min-height:0; }
-  .dl17[data-dl="c"] .dl17-copy { padding-bottom:250px; }
-  .dl17-disc { width:420px; bottom:-232px; }
+  .dl17-edge:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ filter:blur(3px); }
+  .dl17-edge--l:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:radial-gradient(ellipse 40% 34% at -6% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }
+  .dl17-edge--r:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background:radial-gradient(ellipse 40% 34% at 106% 104%, #fff 0 95%, rgba(255,255,255,0) 100%); }
+  .dl17-dots:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ -webkit-mask-image:radial-gradient(ellipse 80% 40% at 50% 100%, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%); mask-image:radial-gradient(ellipse 80% 40% at 50% 100%, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%); }
+  
+  .dl17-side--l:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:58px; left:30px; top:auto; bottom:46px; z-index:2; }
+  .dl17-side--r:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:none !important; }
+  .dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:150px; left:-92px; top:2px; }
+  .dl17-blot--2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:140px; left:-58px; bottom:-74px; }
+  .dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:170px; right:-86px; top:auto; bottom:-58px; }
+  .dl17[data-dl="b"] .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-top:96px; padding-bottom:120px; }
+  .dl17[data-dl="c"] .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ min-height:0; }
+  .dl17[data-dl="c"] .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-bottom:250px; }
+  .dl17-disc:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:420px; bottom:-232px; }
 }
 
 @media (max-width:359px) {
-  .dl17-blot--1 { width:132px; left:-96px; top:10px; }
-  .dl17-blot--3 { width:150px; right:-92px; }
+  .dl17-blot--1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:132px; left:-96px; top:10px; }
+  .dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width:150px; right:-92px; }
 }
 
-@media (forced-colors:active) { .dl17-art, .dl17-side { display:none !important; } .dl17-word { color:CanvasText; background:none; } }
-@media (prefers-contrast:more) { .dl17-copy > p { color:var(--dl17-ink); } }
+@media (forced-colors:active) { .dl17-art:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),.dl17-side:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display:none !important; } .dl17-word:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color:CanvasText; background:none; } }
+@media (prefers-contrast:more) { .dl17-copy > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color:var(--dl17-ink); } }
 
-/* Native unavailable controls keep the selected pill geometry. */
-.dl17 .dl-btn:disabled { cursor:not-allowed; transform:none; }
+
+.dl17 .dl-btn:disabled:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ cursor:not-allowed; transform:none; }

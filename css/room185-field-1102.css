@@ -1,61 +1,25 @@
-/* Room185: source-led hold-segment adaptation; see SOURCE-CONTEXT.json.
-   Existing frame, glyph geometry, five-vessel layout and title stay intact. */
-#features.main-value .f-room .rest-field {
-  background: var(--brand-sky-1);
-  overflow: hidden;
-}
-#features.main-value .f-room .room185-field {
-  position: absolute; left: -50%; top: -50%; width: 100%; height: 100%;
-  pointer-events: none;
-  overflow: visible;
-  background: none;
-}
-/* Keep the animated element's original 100% geometry: its measured translate
-   percentages must not change. Only the paint surface grows to 200%.
-   Half-sized percentage radii preserve the original absolute colour footprint.
-   The widest/tallest ellipse reaches zero alpha 33%W / 24%H before these bounds. */
-#features.main-value .f-room .room185-field::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: var(--room185-paint);
-  pointer-events: none;
-}
-#features.main-value .f-room .room185-field[data-field="mint"] {
-  --room185-paint: radial-gradient(ellipse 12% 15.5% at center, var(--brand-green-2-a85) 0%, var(--brand-green-2-a00) 100%);
-  transform: translate(13.38%, 16.94%);
-}
-#features.main-value .f-room .room185-field[data-field="warm"] {
-  --room185-paint: radial-gradient(ellipse 18.5% 33% at center, var(--brand-warm-6-acc) 0%, var(--brand-warm-2-a45) 52%, var(--brand-warm-2-a00) 100%);
-  transform: translate(36.38%, 30.27%);
-}
-#features.main-value .f-room .room185-field[data-field="pink"] {
-  --room185-paint: radial-gradient(ellipse 18.5% 32.5% at center, var(--brand-rose-1-a7a) 0%, var(--brand-rose-1-a00) 100%);
-  transform: translate(39.39%, 53.32%);
-}
-#features.main-value .f-room .room185-field[data-field="blue"] {
-  --room185-paint: radial-gradient(ellipse 33.5% 38% at center, var(--brand-blue-1-a78) 0%, var(--brand-sky-4-a35) 55%, var(--brand-sky-4-a00) 100%);
-  transform: translate(53.69%, 38.98%);
-}
-/* Source: one stronger blue anchor, followed by blue/mint/lilac/warm vessels.
-   059/V1 substitutions are deliberate; source brand icons are never imported. */
-#features.main-value .f-room .liquid-five > span { position: relative; background: var(--brand-sky-4); }
-#features.main-value .f-room .liquid-five > span:nth-child(2) { background: var(--brand-sky-5); }
-#features.main-value .f-room .liquid-five > span:nth-child(3) { background: var(--brand-green-2); }
-#features.main-value .f-room .liquid-five > span:nth-child(4) { background: var(--brand-blue-2); }
-#features.main-value .f-room .liquid-five > span:nth-child(5) { background: var(--brand-warm-2); }
-/* Original owned SVGs used as masks, preserving pixel geometry. Source185's
-   light-vessel/dark-symbol relationship maps to existing 059 ink #090909. */
-#features.main-value .f-room .liquid-five > span:not(:first-child) > img { opacity: 0; }
-#features.main-value .f-room .liquid-five > span:not(:first-child)::after {
-  content: ''; position: absolute; inset: 23.5%; background: var(--brand-navy-1);
-  mask: var(--room185-glyph) center / contain no-repeat;
-  -webkit-mask: var(--room185-glyph) center / contain no-repeat;
-}
-#features.main-value .f-room .liquid-five > span:nth-child(2) { --room185-glyph: url('../assets/features-r2/pixel-0.svg'); }
-#features.main-value .f-room .liquid-five > span:nth-child(3) { --room185-glyph: url('../assets/features-r2/pixel-4.svg'); }
-#features.main-value .f-room .liquid-five > span:nth-child(4) { --room185-glyph: url('../assets/features-r2/pixel-3.svg'); }
-#features.main-value .f-room .liquid-five > span:nth-child(5) { --room185-glyph: url('../assets/features-r2/pixel-2.svg'); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (forced-colors: active) {
-  #features.main-value .f-room .rest-field { display: none; }
+  
 }

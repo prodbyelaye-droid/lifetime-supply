@@ -1,0 +1,162 @@
+/* L5 · landing section 6 · why i built it. + heard on. + artists i've produced for.
+   Option B (row 259 uilayout "who i am", 1:1 construction), pending his pick. Agent D3, Thu 12 Nov 2026.
+   F1 fix pass 12 nov (audit 2 + ai-signs 2): the letter set to row 190 (h2 "why i built it.", one 533 px column, credits under the story, no font signature),
+   covers one size on the grid, one head size in the artist rows, the caption photo out. See ../FIXED.md.
+   Grid and type: L1's (out/L1-hero/STATUS.md, first post 13:21). Colour c. Type D (Albert Sans) through tokens.
+   Load AFTER css/trusted-1104.css and css/founder-signature-1102.css (it restyles their hooks, it keeps their motion). */
+
+:root{
+  /* L1 tokens with fallbacks, so this file works before L1's token file is in the build */
+  --ls6-font: var(--font-brand, "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif);
+  --ls6-margin: var(--grid-margin, 64px);
+  --ls6-gutter: var(--grid-gutter, 24px);
+  --ls6-max: var(--grid-max, 1312px);
+  --ls6-pad: var(--section-pad, 128px);
+  --ls6-ink: #090909;      /* colour c ink (298) */
+  --ls6-meta: #6F6F6F;     /* colour c meta: the muso.ai date only */
+  --ls6-hair: #E4E4E6;     /* hairline: the run's rule colour (L1 window.css), rows 250, 291 */
+  --ls6-paper: #FFFFFF;
+}
+
+/* ---------- the section ---------- */
+#founder.ls6{box-sizing:border-box;width:100%;max-width:calc(var(--ls6-max) + 2 * var(--ls6-margin));margin:0 auto;
+  padding:var(--ls6-pad) var(--ls6-margin) 0;background:var(--ls6-paper);color:var(--ls6-ink);font-family:var(--ls6-font)}
+#founder.ls6 *{box-sizing:border-box}
+#founder .ls6-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--ls6-gutter)}
+
+/* ---------- the letter: picture cols 1-5 with the streams figure in a cut-out corner (row 259) ---------- */
+#founder .ls6-letter{align-items:start}
+#founder .ls6-photo{grid-column:1 / span 5;position:relative;margin:0;aspect-ratio:533 / 720;border-radius:8px 8px 0 8px;overflow:hidden;background:#111}
+#founder .ls6-photo > img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+/* the cut: a paper box in the bottom-right corner; its 24 px top-left radius is the picture's inner corner (259) */
+#founder .ls6-cut{position:absolute;right:0;bottom:0;width:calc(50.5% - 0px);height:168px;margin:0;padding:24px 0 0 24px;
+  background:var(--ls6-paper);border-top-left-radius:24px}
+/* the picture's two outer corners at the cut, drawn as paper quarter-rounds (16 px above, 8 px to the left) */
+#founder .ls6-cut::before{content:"";position:absolute;right:0;top:-16px;width:16px;height:16px;
+  background:radial-gradient(circle at 0 0, transparent 15.5px, var(--ls6-paper) 16px)}
+#founder .ls6-cut::after{content:"";position:absolute;left:-8px;bottom:0;width:8px;height:8px;
+  background:radial-gradient(circle at 0 0, transparent 7.5px, var(--ls6-paper) 8px)}
+#founder .ls6-fig{margin:0}
+#founder .ls6-fig b{display:block;font:500 36px/40px var(--ls6-font);letter-spacing:-.02em}   /* L1 h3 */
+#founder .ls6-fig span{display:block;margin-top:8px;font:400 15px/22px var(--ls6-font)}       /* L1 small */
+#founder .ls6-date{margin:6px 0 0;font:400 15px/22px var(--ls6-font);color:var(--ls6-meta)}
+#founder .ls6-date a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+#founder .ls6-date a:hover{color:var(--ls6-ink)}
+#founder .ls6-date a:focus-visible{outline:2px solid var(--ls6-ink);outline-offset:2px;border-radius:2px}
+
+/* words: one column, cols 7-11 (x 732 to 1264.67 at 1440, 533 px), column 6 and 12 left empty (row 190: half the frame is air) */
+#founder .ls6-words{grid-column:7 / span 5}
+#founder .ls6-h2{margin:0;font:500 56px/58px var(--ls6-font);letter-spacing:-.02em;color:var(--ls6-ink)}  /* L1 h2: "why i built it." is the heading (T1 cleared) */
+#founder .ls6-lead{margin:24px 0 0;font:500 36px/40px var(--ls6-font);letter-spacing:-.02em;color:var(--ls6-ink)}  /* L1 h3: his second line, under the heading */
+#founder .ls6-story{margin-top:48px;font:400 18px/27px var(--ls6-font)}  /* L1 body, one column */
+#founder .ls6-story p{margin:0 0 16px}
+#founder .ls6-story p:last-child{margin-bottom:0}
+#founder .ls6-plaques{margin:40px 0 0;font:400 15px/22px var(--ls6-font);color:var(--ls6-ink)}  /* row 190: the credit line under the letter, 15/22 ink */
+#founder .ls6-plaques span{white-space:nowrap}
+
+/* ---------- the figures row and the covers (A1 13:27: numbers as one ruled row, covers in one straight row) ---------- */
+#founder .ls6-figures{margin-top:96px;padding-top:40px;border-top:1px solid var(--ls6-hair);align-items:center}
+#founder .ls6-row{grid-column:1 / span 5;display:flex;gap:40px;margin:0;padding:0;list-style:none}
+#founder .ls6-row b{display:block;font:500 36px/40px var(--ls6-font);letter-spacing:-.02em}
+#founder .ls6-row span{display:block;margin-top:8px;font:400 15px/22px var(--ls6-font)}
+/* covers: one size, 64 px, from the text column's edge (col 7, x 732) to the right margin (x 1376) */
+#founder .ls6-covers{grid-column:7 / span 6;display:flex;justify-content:space-between;margin:0;padding:0;list-style:none}
+#founder .ls6-covers li{width:64px;height:64px;border-radius:4px;overflow:hidden;flex:none}
+#founder .ls6-covers img{display:block;width:100%;height:100%;object-fit:cover}
+/* cover-03 is a photo on a white sleeve: shown at the photo's edge so it reads the same size as the other seven */
+#founder .ls6-covers img[src$="cover-03.jpg"]{transform:scale(1.7);transform-origin:50% 38.6%}
+
+/* ---------- heard on. (row 250 Logo Cloud 3: one row between hairlines; still; one ink, one optical height: A1 13:27) ---------- */
+#founder .ls6-heard{margin-top:128px}
+#founder .ls6-h3{margin:0;font:500 36px/40px var(--ls6-font);letter-spacing:-.02em}   /* L1 h3 */
+#founder .ls6-logos{display:flex;align-items:center;justify-content:space-between;height:128px;margin:32px 0 0;padding:0 32px;list-style:none;
+  border-top:1px solid var(--ls6-hair);border-bottom:1px solid var(--ls6-hair)}
+#founder .ls6-logos li{display:flex;align-items:center}
+#founder .ls6-logo{display:block;background:var(--ls6-ink);height:calc(var(--h) * 1px);width:calc(var(--h) * var(--r) * 1px);
+  -webkit-mask:var(--src) center / contain no-repeat;mask:var(--src) center / contain no-repeat}
+#founder [data-ls6-logo="fortnite"]   {--src:url("../assets/founder-selected-1101/heard-on/fortnite.png");   --r:3.585;--h:24}
+#founder [data-ls6-logo="adidas"]     {--src:url("../assets/founder-selected-1101/heard-on/adidas.svg");     --r:1.48; --h:34}
+#founder [data-ls6-logo="netflix"]    {--src:url("../assets/founder-selected-1101/heard-on/netflix.svg");    --r:3.7;  --h:23}
+#founder [data-ls6-logo="prime-video"]{--src:url("../assets/founder-selected-1101/heard-on/prime-video.svg");--r:3.18; --h:30}
+#founder [data-ls6-logo="coca-cola"]  {--src:url("../assets/founder-selected-1101/heard-on/coca-cola.svg");  --r:3.188;--h:29}
+#founder [data-ls6-logo="riaa"]       {--src:url("../assets/founder-selected-1101/heard-on/riaa.png");       --r:1;    --h:38}
+@media (forced-colors:active){#founder .ls6-logo{background:CanvasText;forced-color-adjust:none}}
+
+/* ---------- artists i've produced for. (live #trusted markup and motion kept; row 281 left, right, left) ---------- */
+#trusted.tr1104{box-sizing:border-box;width:100%;max-width:none;margin:0;padding:160px 0 var(--ls6-pad);background:var(--ls6-paper);color:var(--ls6-ink);font-family:var(--ls6-font)}
+#trusted .tr1104__head{display:block;max-width:calc(var(--ls6-max) + 2 * var(--ls6-margin));margin:0 auto 56px;padding:0 var(--ls6-margin)}
+body #main #trusted .ls-heading-b,#trusted .tr1104__head h2{margin:0;font:500 56px/58px var(--ls6-font);letter-spacing:-.02em;color:var(--ls6-ink);text-align:left}
+#trusted .tr1104__more{display:flex;align-items:center;gap:16px;margin:24px 0 0;max-width:none;font:400 15px/22px var(--ls6-font);color:var(--ls6-ink)}
+#trusted .tr1104__meme{display:none}   /* audit 2 L5 #6: the caption photo out (also removed from the markup) */
+#trusted .tr1104__rows{gap:28px;-webkit-mask:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+#trusted .tr1104__row{padding-left:0}
+#trusted .tr1104__set{gap:16px;padding-right:16px}
+#trusted .tr1104__tile{width:136px}
+#trusted .tr1104__slot{border-radius:6px}
+#trusted .tr1104__name{margin-top:10px;font:500 15px/20px var(--ls6-font);color:var(--ls6-ink)}
+#trusted .tr1104__slot{position:relative}
+#trusted .tr1104__slot img{transform-origin:0 0}
+/* one head size: each photo framed so the face is about 30 % of the square, its centre at 46 % down (zoom capped at 1.7x; onefour is a group photo, left as is) */
+#trusted [data-artist="ann-marie"] .tr1104__slot img{transform:scale(1.253) translate(-0.00%,0.00%)}
+#trusted [data-artist="cj"] .tr1104__slot img{transform:scale(1.327) translate(-6.74%,0.00%)}
+#trusted [data-artist="d-savage"] .tr1104__slot img{transform:scale(1.376) translate(-27.30%,0.00%)}
+#trusted [data-artist="derez-deshon"] .tr1104__slot img{transform:scale(1.524) translate(-15.07%,0.00%)}
+#trusted [data-artist="fcg-heem"] .tr1104__slot img{transform:scale(1.410) translate(-20.39%,-7.27%)}
+#trusted [data-artist="foolio"] .tr1104__slot img{transform:scale(1.267) translate(-8.95%,0.00%)}
+#trusted [data-artist="glokknine"] .tr1104__slot img{transform:scale(1.410) translate(-6.03%,-15.25%)}
+#trusted [data-artist="jai-waetford"] .tr1104__slot img{transform:scale(1.700) translate(-1.44%,-2.99%)}
+#trusted [data-artist="jim-jones"] .tr1104__slot img{transform:scale(1.007) translate(-0.71%,0.00%)}
+#trusted [data-artist="k-trap"] .tr1104__slot img{transform:scale(1.095) translate(0.00%,-3.21%)}
+#trusted [data-artist="kcamp"] .tr1104__slot img{transform:scale(1.611) translate(-22.16%,-2.30%)}
+#trusted [data-artist="kidszn"] .tr1104__slot img{transform:scale(1.297) translate(-10.64%,-12.39%)}
+#trusted [data-artist="lil-durk"] .tr1104__slot img{transform:scale(1.267) translate(-10.82%,0.00%)}
+#trusted [data-artist="lil-poppa"] .tr1104__slot img{transform:scale(1.700) translate(-21.12%,0.00%)}
+#trusted [data-artist="nasty-c"] .tr1104__slot img{transform:scale(1.410) translate(-10.82%,0.00%)}
+#trusted [data-artist="omb-peezy"] .tr1104__slot img{transform:scale(1.187) translate(-9.22%,0.00%)}
+#trusted [data-artist="omeretta"] .tr1104__slot img{transform:scale(1.095) translate(-8.69%,0.00%)}
+#trusted [data-artist="slatt-zy"] .tr1104__slot img{transform:scale(1.240) translate(-16.84%,0.00%)}
+#trusted [data-artist="smiley"] .tr1104__slot img{transform:scale(1.175) translate(-1.33%,0.00%)}
+#trusted [data-artist="ssg-splurge"] .tr1104__slot img{transform:scale(1.700) translate(-10.48%,0.00%)}
+#trusted [data-artist="too-short"] .tr1104__slot img{transform:scale(1.410) translate(-17.20%,0.00%)}
+#trusted [data-artist="tory-lanez"] .tr1104__slot img{transform:scale(1.025) translate(0.00%,0.00%)}
+#trusted [data-artist="yfn-lucci"] .tr1104__slot img{transform:scale(1.376) translate(-3.81%,0.00%)}
+#trusted [data-artist="yk-osiris"] .tr1104__slot img{transform:scale(1.128) translate(0.00%,0.00%)}
+#trusted [data-artist="yung-bleu"] .tr1104__slot img{transform:scale(1.253) translate(-0.00%,-8.51%)}
+
+
+/* ---------- 390 (L1: 24 px margins, 72 px section padding, h2 34/36, h3 26/30, body 17/26) ---------- */
+@media (max-width:700px){
+  #founder.ls6{padding:72px 24px 0}
+  #founder .ls6-grid{display:block}
+  #founder .ls6-letter{display:flex;flex-direction:column}
+  #founder .ls6-words{display:contents}
+  #founder .ls6-h2{order:1}
+  #founder .ls6-lead{order:2}
+  #founder .ls6-photo{order:3}
+  #founder .ls6-story{order:4}
+  #founder .ls6-plaques{order:5}
+  #founder .ls6-h2{font-size:34px;line-height:36px}
+  #founder .ls6-lead{margin-top:16px;font-size:26px;line-height:30px}
+  #founder .ls6-plaques{margin-top:32px}
+  #founder .ls6-photo{margin-top:36px;aspect-ratio:342 / 470}
+  #founder .ls6-cut{width:61.5%;height:132px;padding:18px 0 0 18px;border-top-left-radius:18px}
+  #founder .ls6-cut::before{top:-12px;width:12px;height:12px;background:radial-gradient(circle at 0 0, transparent 11.5px, var(--ls6-paper) 12px)}
+  #founder .ls6-fig b{font-size:26px;line-height:30px}
+  #founder .ls6-row{margin-top:40px;gap:24px}
+  #founder .ls6-row b{font-size:24px;line-height:28px;letter-spacing:-.01em}
+  #founder .ls6-row span{margin-top:4px}
+  #founder .ls6-story{margin-top:40px;font-size:17px;line-height:26px}
+  #founder .ls6-figures{margin-top:0;padding-top:0;border-top:0}
+  #founder .ls6-covers{margin-top:40px;display:grid;grid-template-columns:repeat(4,64px);justify-content:space-between;row-gap:16px}
+  #founder .ls6-heard{margin-top:96px}
+  #founder .ls6-h3{font-size:26px;line-height:30px}
+  #founder .ls6-logos{height:auto;flex-wrap:wrap;justify-content:center;gap:28px 40px;padding:32px 8px;margin-top:24px}
+  #founder .ls6-logo{height:calc(var(--h) * .72px);width:calc(var(--h) * var(--r) * .72px)}
+  #trusted.tr1104{padding:88px 0 72px}
+  #trusted .tr1104__head{padding:0 24px;margin-bottom:36px}
+  body #main #trusted .ls-heading-b,#trusted .tr1104__head h2{font-size:34px;line-height:36px}
+  #trusted .tr1104__rows{gap:20px}
+  #trusted .tr1104__set{gap:12px;padding-right:12px}
+  #trusted .tr1104__tile{width:96px}
+  #trusted .tr1104__name{font-size:13px;line-height:18px;margin-top:8px}
+}

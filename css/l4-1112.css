@@ -1,0 +1,85 @@
+/* L4 · 4 and so much more. + 5 hear the kits. · option B · PENDING HIS PICK
+   Redesign run, agent D2, Thu 12 Nov 2026. Load AFTER L1's base.css (out/L1-hero/work/base.css): every token not defined here
+   (--grid-*, --section-pad, --t-*, --ink, --paper, --meta, --hairline, --font-brand) is L1's. Every value names its source. */
+
+:root{
+  --l4-chip-h:34px;            /* 172: chips about 32 tall on a 40 pitch at 1366, scaled to 1440 */
+  --l4-chip-gap:16px;          /* 172: about 18 to 20 between chips at 1366; 16 on the 8 grid */
+  --l4-row-gap:10px;           /* 172: 40 pitch minus the chip */
+  --l4-cover:88px;             /* el-E14 row cover, scaled up for the landing (E14 row 56) */
+  --ls-mark:url("../assets/r2-1112/L4/mark.svg");   /* the build: url('../brand/current/mark/mark.svg') */
+  --ls-pill-ink:linear-gradient(180deg,#363636 0%,#181818 100%);   /* components A ink pill (291) */
+}
+@media (max-width:700px){:root{ --l4-chip-h:30px; --l4-chip-gap:10px; --l4-row-gap:8px; --l4-cover:64px; }}
+
+.l4{position:relative;padding:var(--section-pad) 0;overflow:hidden}
+.l4 + .l4{padding-top:0}                                                     /* more and hear read as one block: no doubled gap */
+.l4-wrap{max-width:calc(var(--grid-max) + 2 * var(--grid-margin));margin:0 auto;padding:0 var(--grid-margin)}
+.l4 .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gutter)}
+.l4 h2,.l4 p{margin:0}
+.l4 h2{grid-column:1 / span 8;font:var(--t-h2);letter-spacing:var(--t-h2-track)}   /* one ink line (ai-signs T2: live "much more." was grey) */
+.l4 .lead{grid-column:1 / span 6;margin-top:32px;font:var(--t-lead)}              /* L1: headline to intro 32 */
+
+/* 4 · 172 1:1: a dense field of small ruled chips, edge to edge; 275: rows drift, speed answers the scroll */
+.l4-field{display:flex;flex-direction:column;gap:var(--l4-row-gap);margin-top:72px}
+.l4-row{overflow:hidden}
+.l4-track{display:flex;width:max-content;will-change:transform}
+.l4-set{display:flex;gap:var(--l4-chip-gap);padding:0 var(--l4-chip-gap) 0 0;margin:0;list-style:none}
+.l4-set li{flex:none;display:flex;align-items:center;height:var(--l4-chip-h);padding:0 14px;border-radius:5px;white-space:nowrap;
+  background:#fff;border:1px solid #E6E6E6;box-shadow:0 1px 0 #DCDCDC;                 /* 172: white chip, hairline, a darker foot */
+  font:400 16px/1 var(--font-brand);letter-spacing:-0.005em;color:var(--ink)}         /* ink, not 172's grey (ai-signs T3) */
+.l4-set li i{font-style:normal;color:var(--meta);margin-right:7px}                    /* the kit or class name before the item, grey as live */
+
+/* 5 · hear the kits: el-E14 rows with real covers; the kit playing becomes the el-E13 capsule */
+.l4-kits{margin-top:64px;border-top:1px solid var(--hairline)}
+.l4-kit{display:grid;grid-template-columns:var(--l4-cover) minmax(0,1fr) auto;align-items:center;column-gap:28px;padding:20px 0;border-bottom:1px solid var(--hairline)}
+.l4-kit.is-playing{background:linear-gradient(90deg,#fff 0%,#F5F8FF 100%)}           /* el-E13 playing row (291 selected row, colour c tint) */
+.l4-cv{position:relative;display:block;width:var(--l4-cover);aspect-ratio:1;border-radius:3px;overflow:hidden}   /* el-E14 sleeve */
+.l4-cv img{display:block;width:100%;height:100%;object-fit:cover}
+.l4-cv::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(0,0,0,.10)}
+.l4-cv--mo{container-type:inline-size}                                                 /* members only v1: its sky, the mark and the words re-set in Albert Sans */
+.l4-cv--mo .mo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding-top:19%;color:#fff;text-align:center}
+.l4-cv--mo .mk{display:block;width:24cqi;height:15.8cqi;background:#fff;-webkit-mask:var(--ls-mark) center/contain no-repeat;mask:var(--ls-mark) center/contain no-repeat}
+.l4-cv--mo b{display:block;margin-top:5.5cqi;font:500 8.4cqi/1.18 var(--font-brand);letter-spacing:-0.02em}
+.l4-name{font:var(--t-h4);letter-spacing:var(--t-h4-track)}
+.l4-name span{margin-left:8px;font:var(--t-small);letter-spacing:0}
+.l4-line{margin-top:6px;font:var(--t-small)}
+.l4-line b{font-weight:600}
+.l4-play{display:inline-grid;place-items:center;width:48px;height:48px;padding:0;border-radius:999px;cursor:pointer;
+  border:1px solid #252628;background:var(--ls-pill-ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10)} /* components A */
+.l4-play:active{background:#181818;transform:scale(.97)}
+.l4-play svg{width:16px;height:16px;margin-left:2px;fill:#fff}
+.l4-play:focus-visible,.l4-cap .art:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.l4-kit.is-playing .l4-play{display:none}
+.l4-cap{display:none}
+.l4-kit.is-playing .l4-cap{display:flex}
+/* el-E13 capsule, 64 tall (291 dark pill measured at 4x) */
+.l4-cap{align-items:center;height:64px;width:560px;max-width:100%;padding:0 8px;border-radius:32px;color:#fff;
+  background:#222;border:1px solid #28292B;box-shadow:inset 0 2px 0 rgba(255,255,255,.07),inset 0 0 0 2px rgba(255,255,255,.05),0 1px 2px rgba(0,0,0,.22)}
+.l4-cap .art{position:relative;flex:none;width:48px;height:48px;padding:0;border:0;border-radius:999px;overflow:hidden;background:none;cursor:pointer}
+.l4-cap .art img{display:block;width:100%;height:100%;object-fit:cover}
+.l4-cap .art::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.34)}  /* E13 scrim on real covers */
+.l4-cap .art svg{position:absolute;z-index:1;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;fill:#fff}
+.l4-cap .tt{flex:0 1 auto;min-width:0;max-width:200px;margin-left:12px;font:500 14px/18px var(--font-brand);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l4-cap .trk{position:relative;flex:1;min-width:48px;height:64px;margin:0 16px;cursor:pointer}
+.l4-cap .trk::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;border-radius:1px;background:rgba(255,255,255,.30)}
+.l4-cap .trk i{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;width:var(--p,0%);border-radius:1px;background:#fff}
+.l4-cap .trk u{position:absolute;left:var(--p,0%);top:0;bottom:0;width:2px;border-radius:1px;background:#6BB9EF}   /* E13 playhead, colour c sky 80 % */
+.l4-cap .tm{flex:none;width:80px;padding-right:12px;text-align:right;white-space:nowrap;font:500 12px/16px var(--font-brand);font-variant-numeric:tabular-nums;color:rgba(255,255,255,.55)}
+.l4-sc{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);border:0}   /* the live soundcloud players, kept, off screen */
+
+@media (max-width:700px){
+  .l4 .g{display:block}
+  .l4-field{margin-top:40px}
+  .l4-set li{font-size:14px;padding:0 11px}
+  .l4-kits{margin-top:40px}
+  .l4-kit{column-gap:16px;padding:16px 0}
+  .l4-name span{display:block;margin:4px 0 0}
+  .l4-kit.is-playing{grid-template-columns:var(--l4-cover) minmax(0,1fr)}
+  .l4-kit.is-playing .l4-cap{grid-column:1 / -1;width:100%;margin-top:16px}
+  .l4-cap .tt{max-width:none}
+  .l4-cap .trk{margin-right:20px}
+  .l4-cap .tm{display:none}            /* E13 compact keeps the time off; the playhead carries it */
+}
+@media (prefers-reduced-motion:reduce){.l4-play:active{transform:none}}

@@ -1,81 +1,47 @@
-/* footer-1105: the close, the contact and the footer. Loaded after price-1105.
-   One edge for all three panels on the page: 12 px, 6 px on a phone (audit S3). The footer's content sits on the page's 1120 column,
-   so its links end where the buy box above them ends. */
-/* ---------- the close: left as it is (his call), sized into the system ---------- */
-html body #main #close.close-call.bv-dark { min-height: 0; margin-inline: var(--edge); }
-html body #main #close .close-inner { gap: 0; padding: 36px 24px; max-width: none; }
-html body #main #close .close-inner > h2 { margin: 0; }
-html body #main #close .close-inner .close-cta { margin: 16px 0 0; white-space: nowrap; }
-html body #main #close .close-inner .close-note { margin: 10px 0 0; font-size: var(--sys-small); line-height: 1.4; }
+
+
+
+
+
+
+
 @media (max-width: 700px) {
-  html body #main #close .close-inner { padding: 15px 16px; }
-  html body #main #close .close-inner .close-cta { margin-top: 12px; }
-  html body #main #close .close-inner .close-note { margin-top: 8px; }
+  
+  
+  
 }
 
-/* ---------- tell me what you're stuck on: smaller, same system, opens straight into the footer ---------- */
-html body #main #contact { padding-bottom: 28px !important; padding-inline: var(--sys-gutter); }
-html body #main #contact .contact-stage { width: 100%; max-width: 720px; padding: 0; gap: 0; }
-html body #main #contact .contact-stage > h2 { margin: 0; }
-html body #main #contact .contact-stage > p { max-width: 62ch; margin: 10px auto 18px; font-size: 15px; line-height: 1.45; text-wrap: balance; }
-html body #main #contact .contact-stage > #contact-help { margin: 12px auto 0; font-size: var(--sys-micro); line-height: 1.45; }
-html body #main #contact .contact-stage > #contact-status { margin: 8px auto 0; font-size: var(--sys-micro); }
-html body #main #contact .contact-stage .ask { width: min(620px, 100%); }
-@media (min-width: 701px) { html body #main #contact .contact-stage > h2 .ls-heading-b__line { display: inline; } }
-@media (min-width: 701px) { /* the shorter section: the ribbon's clear space grows with it, so no line runs behind the small text */
-  html body #main #contact .contact-ribbon {
-    -webkit-mask-image: radial-gradient(ellipse 34% 74% at 50% 48%, transparent 0 72%, #000 100%);
-            mask-image: radial-gradient(ellipse 34% 74% at 50% 48%, transparent 0 72%, #000 100%);
-  }
+
+
+
+
+
+
+
+
+@media (min-width: 701px) {  }
+@media (min-width: 701px) { 
+  
 }
 
-/* ---------- the footer: calm, half the height, the wordmark at most 165 px type (about 155 px of ink) ---------- */
-html body #footer.ls-footer {
-  position: relative;
-  margin: 0 var(--edge) var(--edge);
-  padding: 20px max(36px, calc((100% - var(--sys-max)) / 2 - var(--edge))) 14px; /* % here is the body's width, so the panel's own edge comes off */
-  border-radius: 24px;
-}
-html body #footer.ls-footer .footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0 24px;
-  min-height: 44px;
-}
-html body #footer.ls-footer .footer-line { font-size: 20px; line-height: 1.2; letter-spacing: -.02em; }
-html body #footer.ls-footer .footer-info { display: block; margin: 0; }
-html body #footer.ls-footer .footer-links { margin: 0; gap: 0 24px; }
-html body #footer.ls-footer .footer-scene {
-  margin-top: 4px !important;
-  padding: 0 !important;
-  aspect-ratio: auto !important;
-}
-html body #footer.ls-footer .footer-word.l2-word {
-  margin-inline-start: -.05em !important; /* the l's side bearing, so its stem sits on the column's edge */
-  padding: 0 !important;
-  font-size: clamp(64px, 11.46vw, 165px) !important;
-  line-height: 1 !important;
-}
-html body #footer.ls-footer .footer-bottom { /* sits on the wordmark's baseline, at the column's right edge */
-  position: absolute;
-  inset-inline-end: max(36px, calc((100% - var(--sys-max)) / 2));
-  bottom: 22px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-}
-html body #footer.ls-footer .copyright { padding: 0; font-size: var(--sys-micro); line-height: 1.4; }
 
-@media (max-width: 700px) { /* same order, stacked */
-  html body #footer.ls-footer { margin-top: 0; padding: 16px 18px 12px; border-radius: 20px; }
-  html body #footer.ls-footer .footer-top { display: block; min-height: 0; }
-  html body #footer.ls-footer .footer-line { font-size: 18px; line-height: 1.3; }
-  html body #footer.ls-footer .footer-links { gap: 0 18px; margin-top: 2px; }
-  html body #footer.ls-footer .footer-links a { font-size: 14px; }
-  html body #footer.ls-footer .footer-scene { margin-top: 2px !important; }
-  html body #footer.ls-footer .footer-word.l2-word { font-size: clamp(40px, 13.4vw, 64px) !important; }
-  html body #footer.ls-footer .footer-bottom { position: static; margin-top: 2px; }
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) { 
+  
+  
+  
+  
+  
+  
+  
+  
 }

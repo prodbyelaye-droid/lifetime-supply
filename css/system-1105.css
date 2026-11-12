@@ -1,7 +1,4 @@
-/* page-system-1105: one size system for the whole page. Loaded last.
-   Tokens from the 5 Nov plan: h1 72/44, h2 48/32, h3 24/20, body 17/16 at 62ch, small 13-14, section gap 96/56,
-   content 1120, media about half. Colours, cards and components stay as signed off; only size and rhythm change here.
-   The window block (#portal, .computer-device, l4 files) is not sized or styled here at all: it belongs to css/l4-portal.css. */
+
 :root {
   --sys-h1: clamp(44px, calc(33.597px + 2.667vw), 72px);
   --sys-h2: clamp(32px, calc(26.055px + 1.524vw), 48px);
@@ -21,423 +18,384 @@
 @media (max-width: 1000px) { :root { --sys-gutter: 32px; } }
 @media (max-width: 700px) { :root { --sys-body: 16px; --sys-gutter: 20px; } }
 
-/* ---------- type ---------- */
-html body #main section:not(#portal) h2 {
+
+html body #main section:not(#portal) h2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   font-size: var(--sys-h2) !important;
   line-height: 1.06 !important;
   letter-spacing: -.035em !important;
   max-width: none;
 }
-html body #main section:not(#portal) h3 {
+html body #main section:not(#portal) h3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   font-size: var(--sys-h3) !important;
   line-height: 1.2 !important;
   letter-spacing: -.02em !important;
 }
-html body #main :is(.board-legend > p, .split-copy p, .day96-head > p, .day96-what > p, .l2-stats__lead, .dl17-copy > p:not(.dl17-once), .producer-wall__intro > p, .fs1101-line) {
+html body #main :is(.board-legend > p, .split-copy p, .day96-head > p, .day96-what > p, .l2-stats__lead, .dl17-copy > p:not(.dl17-once), .producer-wall__intro > p, .fs1101-line):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   font-size: var(--sys-body) !important;
   line-height: 1.5 !important;
   max-width: var(--sys-measure);
 }
 
-/* ---------- rhythm: one gap between every section (half above, half below) ---------- */
-html body #main :is(#inside, #flow, #stats, #features, #more, #founder, #trusted, #why-producers-choose, #download, #steps, #price, #questions, #contact) {
-  padding-block: var(--sys-half) !important;
-}
-html body #main #close { margin-block: var(--sys-half) !important; }
-/* the outer edges of the blocks the price build owns, so the gaps hold until it lands */
-html body #main #questions .questions { padding-block: 0; }
-html body #main #contact .contact-stage { padding-block: 0; }
-html body #main #contact { padding-bottom: calc(var(--sys-gap) - 12px) !important; } /* #footer keeps its own 12 px margin */
-html body #main .wrap, html body #main .dl17-stage, html body #main .flow-copy.day96 {
+
+
+
+
+
+
+ 
+html body #main .wrap:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .flow-copy.day96:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   max-width: var(--sys-max);
   width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter)));
 }
-html body #main #features.main-value { width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); }
 
-/* ---------- hero ---------- */
-html body .opening .hero { min-height: 0; }
-html body .opening .hero .hero-copy { max-width: var(--sys-max); padding: 8px 24px var(--sys-half); }
-/* the header script shortens this button on a narrow phone; it takes that width from the start, so the row never shifts */
-@media (max-width: 429px) { html body .opening .site-nav .motion-toggle { width: 77px; white-space: nowrap; overflow: hidden; } }
-html body .opening .hero h1 {
+
+
+html body .opening .hero:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ min-height: 0; }
+html body .opening .hero .hero-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-width: var(--sys-max); padding: 8px 24px var(--sys-half); }
+
+@media (max-width: 429px) { html body .opening .site-nav .motion-toggle:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 77px; white-space: nowrap; overflow: hidden; } }
+html body .opening .hero h1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   margin-top: 0;
   font-size: var(--sys-h1) !important;
   line-height: 1.02;
   letter-spacing: -.045em;
   text-wrap: balance;
 }
-html body .opening .hero-copy > p { max-width: var(--sys-measure); font-size: var(--sys-body); line-height: 1.5; margin-top: 16px; }
-html body .opening .hero .actions { margin-top: 20px; }
+html body .opening .hero-copy > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-width: var(--sys-measure); font-size: var(--sys-body); line-height: 1.5; margin-top: 16px; }
+html body .opening .hero .actions:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 20px; }
 @media (max-width: 700px) {
-  /* the character sits between the nav and the headline (js/opening.js places it from the headline's top) */
-  html body .opening .hero .hero-copy { padding: 56px 20px var(--sys-half); }
-  html body .opening .hero h1 { line-height: 1.03; letter-spacing: -.055em; }
+  
+  html body .opening .hero .hero-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 56px 20px var(--sys-half); }
+  html body .opening .hero h1:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ line-height: 1.03; letter-spacing: -.055em; }
 }
-html body .opening .hero-copy > .price-line { font-size: var(--sys-small); line-height: 1.4; margin-top: 14px; }
+html body .opening .hero-copy > .price-line:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: var(--sys-small); line-height: 1.4; margin-top: 14px; }
 
-/* ---------- the film: out for now (his call, 15:18). The hidden attribute on #demo is all that holds it back; these keep its size for when it returns ---------- */
-html body #main #demo[hidden] { display: none; }
-html body .opening #demo { padding: var(--sys-half) var(--sys-gutter); background: none; }
-html body .opening #demo .demo-film { width: min(var(--sys-film), 100%); aspect-ratio: 16 / 9; margin-inline: auto; border-radius: 16px; }
-html body #demo .film-player, html body #demo .film-cover { object-fit: cover; }
-/* js/opening.js pushes the film up to 110 px with the scroll, over the price line; it stays put now, whatever that script writes */
-html:not(.r1105) body #demo .demo-film, html.r1105 body #demo .demo-film.r1105-in { transform: none !important; }
-html body #demo .film-caption { margin: 14px auto 0; font-size: var(--sys-small); line-height: 1.4; }
-html body .opening #demo .demo-links { margin: 8px auto 0; }
 
-/* ---------- the cue above the window ---------- */
-html body .portal-cue { padding: var(--sys-half) 24px 0; font-size: var(--sys-body); }
+html body #main #demo[hidden]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: none; }
+html body .opening #demo:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: var(--sys-half) var(--sys-gutter); background: none; }
+html body .opening #demo .demo-film:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: min(var(--sys-film), 100%); aspect-ratio: 16 / 9; margin-inline: auto; border-radius: 16px; }
+html body #demo .film-player:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #demo .film-cover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ object-fit: cover; }
 
-/* ---------- how the board works: #portal keeps its own bottom padding (80, phone 48), the legend takes up the difference ---------- */
-html body #main #how-the-board-works {
-  max-width: calc(var(--sys-measure) + 48px);
-  margin-top: calc(var(--sys-gap) - 80px);
-  padding: 0 24px var(--sys-half);
-  font-size: var(--sys-body);
-}
-html body #main #how-the-board-works > p { margin: 16px 0 0; }
-html body #main #how-the-board-works .board-legend__list { margin-top: 16px; font-size: var(--sys-small); }
-html body #main #how-the-board-works .board-legend__list li { padding: 10px 0; }
-@media (max-width: 700px) { html body #main #how-the-board-works { margin-top: calc(var(--sys-gap) - 48px); } }
+html:not(.r1105) body #demo .demo-film:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html.r1105 body #demo .demo-film.r1105-in:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transform: none !important; }
+html body #demo .film-caption:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 14px auto 0; font-size: var(--sys-small); line-height: 1.4; }
+html body .opening #demo .demo-links:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 8px auto 0; }
 
-/* ---------- everything. day one.: small and centred ---------- */
-html body #main #inside.band { display: block; min-height: 0; padding-inline: var(--sys-gutter); }
-html body #main #inside .split {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  grid-template-areas: "text text" "covers blend";
-  gap: 20px;
-  align-items: center;
-  justify-items: center;
-  width: min(720px, 100%);
-  min-height: 0;
-  margin-inline: auto;
-  padding: 32px;
-  text-align: center;
-}
-html body #main #inside .split-copy { display: contents; }
-html body #main #inside .split-copy > div:first-child { grid-area: text; }
-html body #main #inside .split .ls-heading-b { text-align: center; }
-html body #main #inside .split-copy > div > p { margin: 12px auto 0; max-width: 52ch; }
-html body #main #inside .inside-kits { grid-area: covers; flex-wrap: nowrap; margin: 0; gap: 8px; }
-html body #main #inside .inside-kits img { width: 64px; height: 64px; }
-html body #main #inside .blend { grid-area: blend; width: 100%; min-height: 112px; border-radius: 12px; }
-html body #main #inside .ten-card { width: min(320px, 88%); padding: 0; text-align: left; }
-html body #main #inside .ten-row { padding: 8px 14px; }
-html body #main #inside .ten-row p { font-size: var(--sys-small); }
-html body #main #inside .ten-row small { font-size: var(--sys-micro); }
-html body #main #inside:not(.in-view) .blend10 { animation-play-state: paused; } /* its drift kept running off screen */
+
+html body .portal-cue:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: var(--sys-half) 24px 0; font-size: var(--sys-body); }
+
+
+
+
+
+
+@media (max-width: 700px) {  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 @media (max-width: 560px) {
-  html body #main #inside .split { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "covers" "blend"; padding: 24px 20px; gap: 16px; }
+  
 }
 
-/* ---------- a day in my workflow: text left and narrower, images right at 520, the end line small and to the right ---------- */
-html body .flow:has(.day96) { --d96-col: 140px; --d96-dy: 30px; --d96-anchor: 96px; --d96-line-x: 16px; }
-html body .day96-head { padding-left: calc(var(--d96-line-x) + 28px); }
-html body .day96-when { padding-left: calc(var(--d96-line-x) + 28px); }
-html body .flow:has(.day96) .curves {
+
+html body .flow:has(.day96):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --d96-col: 140px; --d96-dy: 30px; --d96-anchor: 96px; --d96-line-x: 16px; }
+html body .day96-head:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-left: calc(var(--d96-line-x) + 28px); }
+html body .day96-when:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-left: calc(var(--d96-line-x) + 28px); }
+html body .flow:has(.day96) .curves:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   -webkit-mask-image: linear-gradient(#000, transparent 240px), linear-gradient(90deg, transparent 58%, #000 78%);
   mask-image: linear-gradient(#000, transparent 240px), linear-gradient(90deg, transparent 58%, #000 78%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
-html body .flow-copy.day96 .day96-head > p { margin-top: 10px; }
-html body .day96-body { margin-top: 32px; }
-html body .day96-step, html body .day96-step:last-child { grid-template-columns: var(--d96-col) minmax(0, 1fr); column-gap: 16px; padding-bottom: 32px; }
-html body .day96-step:last-child { padding-bottom: 0; }
-html body .day96-num { font-size: var(--sys-micro); }
-html body .flow-copy.day96 .day96-label { gap: 6px; }
-html body .day96-time { font-size: 20px; letter-spacing: -.02em; }
-html body .day96-what { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, var(--sys-day)); column-gap: 40px; align-content: start; max-width: none; padding-top: 0; }
-html body .day96-what > h3, html body .day96-what > p { grid-column: 1; }
-html body #main .flow-copy.day96 .day96-what > p { margin: 8px 0 0; font-size: 16px !important; max-width: 44ch; }
-html body .day96-still { grid-column: 2; grid-row: 1 / span 4; margin: 0; padding: 5px; border-radius: 14px; }
-html body .day96-still .day96-shot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; border-radius: 10px; box-shadow: 0 0 0 1px #e1e7ed; background: #fff; }
-html body .flow-copy.day96 .day96-step .day96-tomorrow { grid-column: 2; justify-self: end; align-self: start; margin: 12px 0 0; max-width: none; font-size: var(--sys-small); line-height: 1.4; text-align: right; }
-html body .day96-when .bv-box { max-width: 112px; }
+html body .flow-copy.day96 .day96-head > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 10px; }
+html body .day96-body:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 32px; }
+html body .day96-step:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body .day96-step:last-child:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ grid-template-columns: var(--d96-col) minmax(0, 1fr); column-gap: 16px; padding-bottom: 32px; }
+html body .day96-step:last-child:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-bottom: 0; }
+html body .day96-num:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: var(--sys-micro); }
+html body .flow-copy.day96 .day96-label:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap: 6px; }
+html body .day96-time:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: 20px; letter-spacing: -.02em; }
+html body .day96-what:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, var(--sys-day)); column-gap: 40px; align-content: start; max-width: none; padding-top: 0; }
+html body .day96-what > h3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body .day96-what > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ grid-column: 1; }
+html body #main .flow-copy.day96 .day96-what > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 8px 0 0; font-size: 16px !important; max-width: 44ch; }
+html body .day96-still:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ grid-column: 2; grid-row: 1 / span 4; margin: 0; padding: 5px; border-radius: 14px; }
+html body .day96-still .day96-shot:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; border-radius: 10px; box-shadow: 0 0 0 1px #e1e7ed; background: #fff; }
+html body .flow-copy.day96 .day96-step .day96-tomorrow:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ grid-column: 2; justify-self: end; align-self: start; margin: 12px 0 0; max-width: none; font-size: var(--sys-small); line-height: 1.4; text-align: right; }
+html body .day96-when .bv-box:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-width: 112px; }
 @media (max-width: 1230px) {
-  html body .day96-what { display: block; }
-  html body .day96-still { margin-top: 12px; max-width: var(--sys-day); }
+  html body .day96-what:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; }
+  html body .day96-still:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 12px; max-width: var(--sys-day); }
 }
 @media (max-width: 760px) {
-  html body .day96-step, html body .day96-step:last-child { display: block; padding: 0 0 28px 32px; }
-  html body .flow:has(.day96) { --d96-col: 0px; --d96-dy: 12px; --d96-line-x: 11px; }
-  html body .day96-head, html body .day96-when { padding-left: 0; }
-  html body .day96-step:last-child { padding-bottom: 0; }
-  html body .day96-when { margin-bottom: 6px; }
-  html body #flow .day96-when:has(.bv-box) { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
-  html body #flow .day96-when .bv-box { width: 96px; max-width: 96px; border-radius: 10px; }
-  html body #main .flow-copy.day96 .day96-what > p { font-size: var(--sys-small) !important; max-width: none; }
-  html body .flow-copy.day96 .day96-step .day96-tomorrow { margin: 10px 0 0; }
+  html body .day96-step:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body .day96-step:last-child:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; padding: 0 0 28px 32px; }
+  html body .flow:has(.day96):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --d96-col: 0px; --d96-dy: 12px; --d96-line-x: 11px; }
+  html body .day96-head:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body .day96-when:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-left: 0; }
+  html body .day96-step:last-child:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-bottom: 0; }
+  html body .day96-when:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom: 6px; }
+  
+  
+  html body #main .flow-copy.day96 .day96-what > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: var(--sys-small) !important; max-width: none; }
+  html body .flow-copy.day96 .day96-step .day96-tomorrow:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 10px 0 0; }
 }
 
-/* ---------- 6,000+ files: the counter. No wrap at any width (audit M1) ---------- */
-html body #main .stats-section .stats-shell { max-width: var(--sys-max); }
-html body #main .stats-section .stats-shell > .ls-heading-b { margin-bottom: 0; }
-html body #main #stats-title .ls-heading-b__line { display: inline-block; white-space: nowrap; }
-html body #main #stats .l2-stats__lead { margin-top: 12px; }
-html body #main #stats .stats-chips { margin-top: 14px; gap: 6px; }
-html body #main #stats .stats-chips li { padding: 4px 10px; font-size: var(--sys-micro); }
-[data-counter-1105] { position: relative; display: inline-block; font-variant-numeric: tabular-nums; }
-[data-counter-1105] .c1105-reel { position: absolute; inset: 0; display: flex; overflow: hidden; justify-content: flex-end; }
-[data-counter-1105] .c1105-col { display: block; white-space: pre; text-align: center; }
-[data-counter-1105] .c1105-col::before { content: attr(data-strip); display: block; }
-[data-counter-1105] .c1105-sign { position: absolute; right: 0; top: 0; opacity: 0; }
-[data-counter-1105] .c1105-sign::before { content: "\221E"; }
-[data-counter-1105][data-state="rest"] .c1105-number,
-[data-counter-1105][data-state="rolling"] .c1105-number,
-[data-counter-1105][data-state="landed"] .c1105-number { color: transparent; -webkit-text-fill-color: transparent; }
-[data-counter-1105][data-state="landed"] .c1105-reel { visibility: hidden; }
-[data-counter-1105][data-state="landed"] .c1105-sign { opacity: 1; }
-[data-counter-1105][data-state="still"] { display: inline-flex; flex-direction: row-reverse; gap: .2em; }
-[data-counter-1105][data-state="still"] .c1105-reel { display: none; }
-[data-counter-1105][data-state="still"] .c1105-sign { position: static; opacity: 1; }
 
-/* ---------- the eight boxes: four across, two on a phone; a zoomed-in shot, one line and its real depth ---------- */
-html body #main #features.main-value .mv-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; }
-html body #main #features.main-value .mv-art { aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 10px; background: var(--brand-sky-1); }
-html body #main #features.main-value .mv-art .board-window { position: absolute; inset: 9px 9px 0; border: 0; border-radius: 7px 7px 0 0; background: #fff; box-shadow: 0 8px 18px var(--brand-sky-2-a18); }
-html body #main #features.main-value .mv-shot { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-html body #main #features.main-value .mv-copy { padding: 10px 1px 0; }
-html body #main #features.main-value .mv-title { margin: 0 0 4px; }
-html body #main #features.main-value .mv-copy p { font-size: var(--sys-small); line-height: 1.45; }
-html body #main #features.main-value .mv-depth { margin: 8px 0 0; padding: 0; list-style: none; font-size: var(--sys-micro); line-height: 1.35; color: #58616d; }
-html body #main #features.main-value .mv-depth li { padding: 5px 0; border-top: 1px solid var(--brand-ink-a1a); }
-html body #main #features.main-value .mv-depth b { font-weight: 600; color: var(--brand-ink); font-variant-numeric: tabular-nums; }
-@media (max-width: 1000px) { html body #main #features.main-value .mv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+html body #main .stats-section .stats-shell:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-width: var(--sys-max); }
+html body #main .stats-section .stats-shell > .ls-heading-b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom: 0; }
+
+
+
+
+[data-counter-1105]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position: relative; display: inline-block; font-variant-numeric: tabular-nums; }
+[data-counter-1105] .c1105-reel:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position: absolute; inset: 0; display: flex; overflow: hidden; justify-content: flex-end; }
+[data-counter-1105] .c1105-col:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; white-space: pre; text-align: center; }
+[data-counter-1105] .c1105-col:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::before{ content: attr(data-strip); display: block; }
+[data-counter-1105] .c1105-sign:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position: absolute; right: 0; top: 0; opacity: 0; }
+[data-counter-1105] .c1105-sign:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::before{ content: "∞"; }
+[data-counter-1105][data-state="rest"] .c1105-number:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),[data-counter-1105][data-state="rolling"] .c1105-number:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),[data-counter-1105][data-state="landed"] .c1105-number:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color: transparent; -webkit-text-fill-color: transparent; }
+[data-counter-1105][data-state="landed"] .c1105-reel:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ visibility: hidden; }
+[data-counter-1105][data-state="landed"] .c1105-sign:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ opacity: 1; }
+[data-counter-1105][data-state="still"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: inline-flex; flex-direction: row-reverse; gap: .2em; }
+[data-counter-1105][data-state="still"] .c1105-reel:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: none; }
+[data-counter-1105][data-state="still"] .c1105-sign:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position: static; opacity: 1; }
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px) {  }
 @media (max-width: 700px) {
-  html body #main #features.main-value .mv-grid { gap: 20px 12px; }
-  html body #main #features.main-value .mv-art .board-window { inset: 6px 6px 0; }
-  html body #main #features.main-value .mv-copy p { font-size: var(--sys-micro); }
+  
+  
+  
 }
 
-/* ---------- and so much more: three thin rows, left, right, left, ends faded, pause on hover ---------- */
-html body #main #more .config-more__header { padding: 0 0 16px; max-width: none; }
-html body #main #more h2 > span { display: inline; }
-html body #main #more .config-more__rows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); margin-inline: auto; }
-html body #main #more .config-more__row { height: 34px; padding: 3px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); }
-html body #main #more .config-more__set { gap: 8px; padding-inline-end: 8px; }
-html body #main #more .config-more__chip { height: 26px; padding: 4px 12px; font-size: var(--sys-micro); line-height: 18px; }
-@media (prefers-reduced-motion: no-preference) { html body #main #more.config-more--ready .config-more__row[data-dir="left"] .config-more__track { animation-name: more1105-left; } }
+
+
+
+
+
+
+
+@media (prefers-reduced-motion: no-preference) {  }
 @keyframes more1105-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 700px) {
-  html body #main #more .config-more__rows { width: 100%; }
-  html body #main #more .config-more__row { -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
+  
+  
 }
 
-/* ---------- why i built it: a small off-white card, one step darker than the page, covers drifting around it ---------- */
-html body #main #founder.founder-selected { display: block; --cw: 820px; --ck: 1; --band: 0px; }
-html body #main #founder .fs1105-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 186px;
-  grid-template-areas: "story photo" "proof proof";
-  gap: 16px 28px;
-  width: min(var(--cw), 100%);
-  margin-inline: auto;
-  padding: 28px 32px;
-  border: 1px solid #ebebe6;
-  border-radius: 24px;
-  background: #f7f7f4;
-}
-html body #main #founder .fs1101-story { grid-area: story; }
-html body #main #founder .fs1101-label { margin-bottom: 8px; }
-html body #main #founder .fs1101-plaques { margin-top: 12px; font-size: var(--sys-small); }
-html body #main #founder .fs1101-line { margin-top: 8px; }
-html body #main #founder .fs1102-signature { margin-top: 6px; font-size: 40px; }
-html body #main #founder .fs1101-photo { grid-area: photo; grid-row: 1; align-self: start; justify-content: flex-end; }
-html body #main #founder .fs1101-photo img { max-height: 290px; border-radius: 12px; }
-html body #main #founder .fs1101-proof { grid-area: proof; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 2px 28px; padding-top: 14px; border-top: 1px solid #e6e6e0; }
-html body #main #founder .fs1101-streams { gap: 0 8px; }
-html body #main #founder .fs1101-streams b { font-size: var(--sys-h2); line-height: 1.1; }
-html body #main #founder .fs1101-streams span { font-size: var(--sys-body); }
-html body #main #founder .fs1101-date { grid-column: 1; grid-row: 2; margin: 0; font-size: var(--sys-micro); }
-html body #main #founder .fs1101-row { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-content: flex-end; flex-wrap: nowrap; margin: 0; font-size: var(--sys-micro); }
-html body #main #founder .fs1101-row li { white-space: nowrap; gap: 5px; }
-html body #main #founder .fs1101-row b { font-size: var(--sys-small); }
-html body #main #founder .fs1101-row li + li { margin-inline-start: 10px; padding-inline-start: 10px; border-color: #dfdfd9; }
-/* heard on: the brands' own coloured marks, auto-scrolling, ends faded */
-html body #main #founder .fs1101-heard { margin-top: 24px; text-align: center; }
-html body #main #founder .fs1101-heard .ls-heading-b { text-align: center; }
-html body #main #founder .fs1101-marquee { width: min(var(--sys-max), 100%); margin: 8px auto 0; overflow: hidden; }
-html body #main #founder .fs1101-marquee.mq-ready { -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); }
-html body #main #founder .fs1101-track { display: flex; justify-content: center; }
-html body #main #founder .fs1101-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 56px; }
-html body #main #founder .fs1101-logos li { width: auto; height: 48px; }
-html body #main #founder .fs1101-logo { height: calc(24px * var(--fs1101-scale)); background: var(--fs1101-src) center / contain no-repeat; -webkit-mask: none; mask: none; }
-html body #main #founder .mq-ready .fs1101-track { width: max-content; justify-content: flex-start; animation: logos1105 var(--mq-duration, 30s) linear infinite; animation-play-state: paused; }
-html body #main #founder .mq-ready .fs1101-logos { flex-wrap: nowrap; justify-content: flex-start; flex: none; padding-inline-end: 56px; }
-html body #main #founder.in-view .mq-ready .fs1101-track { animation-play-state: running; }
-html.motion-paused body #main #founder .mq-ready .fs1101-track { animation-play-state: paused; }
-@media (hover: hover) { html body #main #founder .mq-ready:hover .fs1101-track { animation-play-state: paused; } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (hover: hover) {  }
 @keyframes logos1105 { to { transform: translateX(calc(-100% / var(--mq-sets, 2))); } }
-/* the covers: full colour now they sit clear of the text. They stay in the card's band, in the side margins (phone: above and below) */
-html body #main #founder { --heard-h: 112px; }
-html body #main #founder > .mf1104 { top: var(--sys-half); bottom: calc(var(--sys-half) + var(--heard-h)); height: auto; z-index: 0; overflow: visible; }
-html body #main #founder .fs1105-card, html body #main #founder .fs1101-heard { position: relative; z-index: 1; }
-#founder .mf1104__item {
-  --size: calc(var(--s) * var(--ck) * 1px);
-  opacity: 1;
-  width: var(--size);
-  top: calc((100% - var(--size)) * var(--yf));
-  animation: mf1105-x var(--tx, 7s) cubic-bezier(.37, 0, .63, 1) infinite alternate;
-  animation-play-state: paused;
-}
-#founder .mf1104__item img { filter: none; border-radius: 8px; box-shadow: 0 10px 24px var(--brand-navy-8-a22); animation: mf1105-y var(--ty, 6s) cubic-bezier(.37, 0, .63, 1) infinite alternate; animation-play-state: paused; }
-#founder.in-view .mf1104__item, #founder.in-view .mf1104__item img { animation-play-state: running; }
-html.motion-paused #founder .mf1104__item, html.motion-paused #founder .mf1104__item img { animation-play-state: paused; }
-/* sine, 10-16 s per cover there and back, 10 px either way and 2 degrees */
+
+
+
+
+
+
+
+
+
 @keyframes mf1105-x { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
 @keyframes mf1105-y { from { transform: translateY(-10px) rotate(-2deg); } to { transform: translateY(10px) rotate(2deg); } }
-#founder .mf1104__item:is([data-slot="1"], [data-slot="3"], [data-slot="5"], [data-slot="7"]) { left: max(14px, calc(50% - var(--cw) / 2 - var(--gap) - var(--size))); }
-#founder .mf1104__item:is([data-slot="2"], [data-slot="4"], [data-slot="6"], [data-slot="8"]) { left: min(calc(100% - var(--size) - 14px), calc(50% + var(--cw) / 2 + var(--gap))); }
-#founder .mf1104__item[data-slot="1"] { --yf: 0; --s: 112; --gap: 132px; --tx: 6.5s; --ty: 5.2s; }
-#founder .mf1104__item[data-slot="2"] { --yf: .03; --s: 104; --gap: 40px; --tx: 7.5s; --ty: 6.1s; }
-#founder .mf1104__item[data-slot="3"] { --yf: .36; --s: 92; --gap: 36px; --tx: 5.6s; --ty: 7.2s; }
-#founder .mf1104__item[data-slot="4"] { --yf: .36; --s: 124; --gap: 118px; --tx: 8s; --ty: 6.6s; }
-#founder .mf1104__item[data-slot="5"] { --yf: .64; --s: 120; --gap: 112px; --tx: 7.1s; --ty: 5.5s; }
-#founder .mf1104__item[data-slot="6"] { --yf: .74; --s: 92; --gap: 28px; --tx: 6.2s; --ty: 7.8s; }
-#founder .mf1104__item[data-slot="7"] { --yf: 1; --s: 84; --gap: 28px; --tx: 7.8s; --ty: 6.4s; }
-#founder .mf1104__item[data-slot="8"] { --yf: 1; --s: 100; --gap: 150px; --tx: 5.2s; --ty: 7s; }
-@media (max-width: 1320px) { html body #main #founder.founder-selected { --ck: .84; } }
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1320px) {  }
 @media (max-width: 1160px) {
-  html body #main #founder.founder-selected { --cw: 700px; --ck: .72; }
-  html body #main #founder .fs1105-card { grid-template-columns: minmax(0, 1fr) 150px; padding: 24px; }
-  html body #main #founder .fs1101-photo img { max-height: 240px; }
-  html body #main #founder .fs1101-proof { grid-template-columns: minmax(0, 1fr); }
-  html body #main #founder .fs1101-date { grid-row: auto; }
-  html body #main #founder .fs1101-row { grid-column: 1; grid-row: auto; justify-content: flex-start; }
+  
+  
+  
+  
+  
+  
 }
 @media (max-width: 960px) {
-  html body #main #founder.founder-selected { --cw: 540px; --ck: .5; }
-  html body #main #founder .fs1105-card { grid-template-columns: minmax(0, 1fr) 118px; padding: 22px; gap: 14px 18px; }
-  html body #main #founder .fs1101-photo img { max-height: 190px; }
-  #founder .mf1104__item:is([data-slot="3"], [data-slot="6"]) { display: none; }
+  
+  
+  
+  
 }
 @media (max-width: 767px) {
-  html body #main #founder.founder-selected { --cw: 500px; --ck: .42; }
-  #founder .mf1104__item:is([data-slot="5"], [data-slot="7"], [data-slot="8"]) { display: block; } /* css/muso-float-1104.css hides these on a phone */
+  
+   
 }
 @media (max-width: 700px) {
-  html body #main #founder.founder-selected { --cw: 100%; --ck: 1; --band: 76px; --heard-h: 93px; }
-  html body #main #founder > .mf1104 { left: 0; width: 100%; transform: none; }
-  html body #main #founder .fs1105-card { width: 100%; margin-block: var(--band); grid-template-columns: minmax(0, 1fr) 92px; grid-template-areas: "label label" "title title" "plaques photo" "line photo" "sig photo" "proof proof"; grid-template-rows: auto auto min-content min-content 1fr auto; padding: 20px; gap: 0 14px; border-radius: 20px; }
-  html body #main #founder .fs1101-story { display: contents; }
-  html body #main #founder .fs1101-label { grid-area: label; }
-  html body #main #founder #founder-title { grid-area: title; margin-bottom: 10px; }
-  html body #main #founder .fs1101-plaques { grid-area: plaques; align-content: flex-start; margin-top: 0; gap: 2px 10px; font-size: var(--sys-micro); }
-  html body #main #founder .fs1101-line { grid-area: line; margin-top: 8px; }
-  html body #main #founder .fs1102-signature { grid-area: sig; }
-  html body #main #founder .fs1101-photo { grid-area: auto; grid-column: 2; grid-row: 3 / span 3; max-width: none; }
-  html body #main #founder .fs1101-photo img { max-height: 150px; }
-  html body #main #founder .fs1101-proof { margin-top: 12px; }
-  html body #main #founder .fs1101-streams { flex-wrap: wrap; }
-  html body #main #founder .fs1101-row { display: grid; }
-  html body #main #founder .fs1101-heard { margin-top: 0; }
-  html body #main #founder .fs1101-logos { gap: 8px 28px; }
-  html body #main #founder .mq-ready .fs1101-logos { padding-inline-end: 28px; }
-  #founder .mf1104__item { --s: 50 !important; }
-  #founder .mf1104__item:is([data-slot="1"], [data-slot="2"], [data-slot="3"], [data-slot="4"]) { --yf: 0 !important; }
-  #founder .mf1104__item:is([data-slot="5"], [data-slot="6"], [data-slot="7"], [data-slot="8"]) { --yf: 1 !important; }
-  #founder .mf1104__item:is([data-slot="3"], [data-slot="6"]) { display: block; }
-  #founder .mf1104__item:is([data-slot="1"], [data-slot="5"]) { left: 8%; }
-  #founder .mf1104__item:is([data-slot="3"], [data-slot="7"]) { left: 32%; }
-  #founder .mf1104__item:is([data-slot="2"], [data-slot="6"]) { left: 56%; }
-  #founder .mf1104__item:is([data-slot="4"], [data-slot="8"]) { left: 79%; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
-@media (prefers-reduced-motion: reduce) { #founder .mf1104__item, #founder .mf1104__item img { animation: none; } }
+@media (prefers-reduced-motion: reduce) {  }
 
-/* ---------- artists: three rows, left, right, left, much smaller, ends faded ---------- */
-html body #main #trusted .tr1104__head { margin-bottom: 20px; }
-html body #main #trusted .tr1104__rows { gap: 10px; width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); margin-inline: auto; }
-html body #main #trusted .tr1104__row { padding-left: 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); }
-html body #main #trusted .tr1104__set { gap: 12px; padding-right: 12px; }
-html body #main #trusted .tr1104__tile { width: 96px; }
-html body #main #trusted .tr1104__name { margin-top: 4px; font-size: var(--sys-micro); line-height: 1.3; }
+
+html body #main #trusted .tr1104__head:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom: 20px; }
+html body #main #trusted .tr1104__rows:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap: 10px; width: min(var(--sys-max), calc(100% - 2 * var(--sys-gutter))); margin-inline: auto; }
+html body #main #trusted .tr1104__row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-left: 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent); }
+html body #main #trusted .tr1104__set:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap: 12px; padding-right: 12px; }
+html body #main #trusted .tr1104__tile:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 96px; }
+html body #main #trusted .tr1104__name:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 4px; font-size: var(--sys-micro); line-height: 1.3; }
 @media (max-width: 700px) {
-  html body #main #trusted .tr1104__rows { width: 100%; gap: 8px; }
-  html body #main #trusted .tr1104__row { -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
-  html body #main #trusted .tr1104__set { gap: 10px; padding-right: 10px; }
-  html body #main #trusted .tr1104__tile { width: 80px; }
-  html body #main #trusted .tr1104__name { font-size: 12px; letter-spacing: -.01em; overflow: visible; text-overflow: clip; }
+  html body #main #trusted .tr1104__rows:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 100%; gap: 8px; }
+  html body #main #trusted .tr1104__row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ -webkit-mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
+  html body #main #trusted .tr1104__set:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap: 10px; padding-right: 10px; }
+  html body #main #trusted .tr1104__tile:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 80px; }
+  html body #main #trusted .tr1104__name:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: 12px; letter-spacing: -.01em; overflow: visible; text-overflow: clip; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html body #main #more .config-more__row, html body #main #trusted .tr1104__row { -webkit-mask-image: none; mask-image: none; }
+  html body #main #trusted .tr1104__row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ -webkit-mask-image: none; mask-image: none; }
 }
 
-/* ---------- why producers choose: the real quotes in vertical columns that scroll by themselves, ends faded ---------- */
-html body #main .producer-wall__intro { margin-bottom: 16px; }
-html body #main .producer-wall__intro > p { margin-top: 10px; }
-html body #main .producer-wall__grid { width: min(100%, var(--sys-max)); gap: 12px; }
-html body #main .producer-wall__column { gap: 12px; }
-html body #main .producer-quote { padding: 16px 18px; }
-html body #main .producer-quote__byline { margin-bottom: 10px; gap: 10px; }
-html body #main .producer-quote__mark, html body #main .producer-quote__mark img { flex-basis: 32px; width: 32px; height: 32px; }
-html body #main .producer-quote blockquote p { font-size: var(--sys-small); line-height: 1.45; }
-html body #main .producer-wall__grid.pw-live { height: 250px; overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 44px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(transparent, #000 44px, #000 calc(100% - 44px), transparent); }
-html body #main .pw-live .producer-wall__column { animation: wall1105 var(--pw-duration, 30s) linear infinite; animation-play-state: paused; will-change: transform; }
-html body #main #why-producers-choose.in-view .pw-live .producer-wall__column { animation-play-state: running; }
-html.motion-paused body #main #why-producers-choose .pw-live .producer-wall__column { animation-play-state: paused; }
-html.motion-paused body #main .producer-wall__grid.pw-live { overflow-y: auto; }
+
+html body #main .producer-wall__intro:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom: 16px; }
+html body #main .producer-wall__intro > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 10px; }
+html body #main .producer-wall__grid:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: min(100%, var(--sys-max)); gap: 12px; }
+html body #main .producer-wall__column:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ gap: 12px; }
+html body #main .producer-quote:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 16px 18px; }
+html body #main .producer-quote__byline:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom: 10px; gap: 10px; }
+html body #main .producer-quote__mark:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .producer-quote__mark img:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ flex-basis: 32px; width: 32px; height: 32px; }
+html body #main .producer-quote blockquote p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: var(--sys-small); line-height: 1.45; }
+html body #main .producer-wall__grid.pw-live:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ height: 250px; overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 44px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(transparent, #000 44px, #000 calc(100% - 44px), transparent); }
+html body #main .pw-live .producer-wall__column:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation: wall1105 var(--pw-duration, 30s) linear infinite; animation-play-state: paused; will-change: transform; }
+
+
+html.motion-paused body #main .producer-wall__grid.pw-live:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ overflow-y: auto; }
 @keyframes wall1105 { to { transform: translateY(calc(-100% / var(--pw-sets, 2) - 12px / var(--pw-sets, 2))); } }
 @media (max-width: 700px) {
-  html body #main .producer-wall__grid { max-width: none; }
-  html body #main .producer-wall__grid.pw-live { height: 320px; grid-template-columns: minmax(0, 1fr); }
+  html body #main .producer-wall__grid:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-width: none; }
+  html body #main .producer-wall__grid.pw-live:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ height: 320px; grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ---------- the app: half the panel, one heading line on a wide screen, room for the descenders under the gradient text ---------- */
-html body #main .dl17-stage { min-height: 0; }
-html body #main .dl17-copy { padding: 28px 24px; max-width: none; width: 100%; }
-html body #main .dl17-copy > p { margin-top: 10px; max-width: var(--sys-measure); }
-html body #main .dl17-copy > p.dl17-once { margin-top: 4px; max-width: none; }
-html body #main .dl17-copy > p > span { display: inline; }
-html body #main .dl17-row { margin-top: 14px; }
-html body #main .dl17 .dl-login { margin-top: 2px; }
-html body #main .dl17-art .dl17-blot--3 { width: 240px; height: 240px; left: auto; right: -64px; top: auto; bottom: -96px; }
-html body #main #download-title .dl17-word { display: inline-block; padding-bottom: .16em; margin-bottom: -.16em; }
-@media (min-width: 900px) { html body #main #download-title .ls-heading-b__line { display: inline; } html body #main #download-title .ls-heading-b__line + .ls-heading-b__line::before { content: " "; } }
+
+html body #main .dl17-stage:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ min-height: 0; }
+html body #main .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 28px 24px; max-width: none; width: 100%; }
+html body #main .dl17-copy > p:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 10px; max-width: var(--sys-measure); }
+html body #main .dl17-copy > p.dl17-once:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 4px; max-width: none; }
+html body #main .dl17-copy > p > span:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: inline; }
+html body #main .dl17-row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 14px; }
+html body #main .dl17 .dl-login:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 2px; }
+html body #main .dl17-art .dl17-blot--3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 240px; height: 240px; left: auto; right: -64px; top: auto; bottom: -96px; }
+
+@media (min-width: 900px) {   }
 @media (max-width: 700px) {
-  html body #main .dl17-copy { padding: 24px 16px; }
-  html body #main .dl17-row { flex-direction: column; align-items: stretch; width: 100%; gap: 8px; }
-  html body #main .dl17 .dl-btn { min-width: 0; flex: none; justify-content: center; }
-  html body #main .dl17-copy > p.dl17-once > span { display: block; }
+  html body #main .dl17-copy:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 24px 16px; }
+  html body #main .dl17-row:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ flex-direction: column; align-items: stretch; width: 100%; gap: 8px; }
+  html body #main .dl17 .dl-btn:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ min-width: 0; flex: none; justify-content: center; }
+  html body #main .dl17-copy > p.dl17-once > span:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; }
 }
 
-/* ---------- in three steps ---------- */
-html body #main #steps header { margin-bottom: 20px; }
-html body #main #steps .step-copy { padding: 16px 18px; }
-html body #main #steps .step-copy p { margin-top: 6px; }
-html body #main #steps .step-copy h3 { margin-bottom: 0; }
-html body #main #steps .step-art { height: 88px; padding: 8px; }
-html body #main #steps .mini { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 12px; width: auto; min-height: 0; height: auto; padding: 8px 12px; }
-html body #main #steps .mini > * { margin: 0; }
-html body #main #steps .mini-price { font-size: 20px; line-height: 1; white-space: nowrap; }
-html body #main #steps .mini-word { font-size: var(--sys-small); white-space: nowrap; }
-html body #main #steps .step-kit { width: 56px; height: 56px; }
-html body #main #steps .mini-kit { padding: 0; background: none; box-shadow: none; }
-body .step-art .mini-pay .step-cta { white-space: nowrap; padding-inline: 16px; }
+
+
+
+
+
+
+
+
+
+
+
+
+body .step-art .mini-pay .step-cta:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ white-space: nowrap; padding-inline: 16px; }
 @media (max-width: 700px) {
-  html body #main #steps .step-art { height: 80px; padding: 4px; }
+  
 }
 
-/* ---------- audit fixes that are only tokens ---------- */
-@media (min-width: 701px) and (max-width: 1000px) { body .price-stage .price-grid { grid-template-columns: minmax(0, 1fr); } } /* M2 */
-#price .price-list .vs-text { max-width: 62ch; } /* N2 */
-@media (min-width: 701px) and (max-width: 1023px) { /* S5 */
-  #founder .fs1101-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  #founder .fs1101-row li { flex-direction: column; align-items: flex-start; gap: 2px; }
-  #founder .fs1101-row li + li { margin-left: 0; padding-left: 14px; }
+
+@media (min-width: 701px) and (max-width: 1000px) { body .price-stage .price-grid:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ grid-template-columns: minmax(0, 1fr); } } 
+ 
+@media (min-width: 701px) and (max-width: 1023px) { 
+  
+  
+  
 }
 
-/* ---------- motion: js/reveal-1105.js sets html.r1105 before first paint, never under reduced motion ---------- */
+
 @keyframes r1105-load { from { opacity: 0; transform: translateY(14px); filter: blur(10px); } }
 @keyframes r1105-load-blot { from { opacity: 0; filter: blur(10px); } }
 @media screen {
-  html.r1105 .hero-copy > * { animation: r1105-load 650ms var(--sys-ease) backwards; }
-  html.r1105 .hero-copy > :nth-child(2) { animation-delay: 83ms; }
-  html.r1105 .hero-copy > :nth-child(3) { animation-delay: 166ms; }
-  html.r1105 .hero-copy > :nth-child(4) { animation-delay: 250ms; }
-  html.r1105 .opening-blots .ob:first-child { animation: r1105-load-blot 900ms var(--sys-ease) backwards; }
-  html.r1105 .r1105-in:not(.r1105-done) {
+  html.r1105 .hero-copy > *:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation: r1105-load 650ms var(--sys-ease) backwards; }
+  html.r1105 .hero-copy > :nth-child(2):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation-delay: 83ms; }
+  html.r1105 .hero-copy > :nth-child(3):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation-delay: 166ms; }
+  html.r1105 .hero-copy > :nth-child(4):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation-delay: 250ms; }
+  html.r1105 .opening-blots .ob:first-child:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ animation: r1105-load-blot 900ms var(--sys-ease) backwards; }
+  html.r1105 .r1105-in:not(.r1105-done):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     transition: opacity 650ms var(--sys-ease), transform 650ms var(--sys-ease), filter 650ms var(--sys-ease) !important;
     transition-delay: var(--r1105-d, 0ms) !important;
   }

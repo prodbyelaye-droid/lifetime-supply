@@ -1,90 +1,84 @@
-/* copy-1106: Elaye 6 Nov 18:08, the copy-and-links pass. The hero's hear link, hear the kits, the update board,
-   the price notes and legal links, and the folded download help. Ink only: no blue and no grey text. */
-html body #main .hero .hero-hear { margin: 10px 0 0; font-size: var(--sys-small, 14px); line-height: 1.4; }
-html body #main .hero .hero-hear a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
-html body #main #price .price-note { margin: 8px 0 0; font-size: var(--sys-small, 14px); line-height: 1.45; color: inherit; }
-html body #main #price .price-legal { margin: 14px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
-html body #main #price .price-legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+html body #main .hero .hero-hear:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 10px 0 0; font-size: var(--sys-small, 14px); line-height: 1.4; }
+html body #main .hero .hero-hear a:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
-html body #main #hear.hear-kits,
-html body #main #updates.updates-1106 { width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 72px var(--sys-gutter, 20px) 24px; box-sizing: border-box; text-align: center; color: var(--brand-ink); }
-html body #main #updates.updates-1106 { padding-bottom: 56px; }
-html body #main #hear .hk-lede,
-html body #main #updates .up-lede { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
-html body #main #hear .hk-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; text-align: left; }
-html body #main #hear .hk-card { display: flex; flex-direction: column; gap: 14px; min-height: 124px; padding: 18px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--brand-ink-a1a); }
-html body #main #hear .hk-name { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 600; letter-spacing: -.01em; }
-html body #main #hear .hk-play { align-self: flex-start; margin-top: auto; padding: 10px 16px; border: 0; border-radius: 999px; background: var(--brand-ink); color: #fff; font: inherit; font-size: 14px; line-height: 1; cursor: pointer; }
-html body #main #hear .hk-play:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
-html body #main #hear .hk-frame { display: block; width: 100%; height: 300px; border: 0; border-radius: 10px; }
-html body #main #hear .hk-tag { font-weight: 400; }
-/* Elaye 6 Nov 18:23: the members only kit sits fourth, blurred out. A drawn stand-in player, no audio: it is never public. */
-html body #main #hear .hk-locked { position: relative; }
-html body #main #hear .hk-fake { display: flex; flex-direction: column; gap: 14px; height: 300px; padding: 16px; box-sizing: border-box; border-radius: 10px; background: #f3f3f4; filter: blur(5px); user-select: none; pointer-events: none; }
-html body #main #hear .hk-fake-top { display: flex; align-items: center; gap: 12px; }
-html body #main #hear .hk-fake-play { width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--brand-ink); }
-html body #main #hear .hk-fake-lines { display: grid; gap: 7px; flex: 1; }
-html body #main #hear .hk-fake-lines b, html body #main #hear .hk-fake-row b { display: block; height: 9px; border-radius: 5px; background: var(--brand-ink-a40); }
-html body #main #hear .hk-fake-wave { height: 64px; background: repeating-linear-gradient(90deg, var(--brand-ink) 0 3px, transparent 3px 5px); -webkit-mask-image: linear-gradient(180deg, #000, #0006); mask-image: linear-gradient(180deg, #000, #0006); clip-path: polygon(0 40%, 6% 20%, 12% 45%, 18% 10%, 26% 35%, 34% 15%, 42% 50%, 50% 5%, 58% 30%, 66% 20%, 74% 45%, 82% 15%, 90% 35%, 100% 25%, 100% 100%, 0 100%); }
-html body #main #hear .hk-fake-row { display: flex; align-items: center; gap: 10px; }
-html body #main #hear .hk-fake-row i { width: 26px; height: 26px; flex: none; border-radius: 4px; background: var(--brand-ink-a33); }
-html body #main #hear .hk-fake-row b { flex: none; }
-html body #main #hear .hk-lock { position: absolute; left: 50%; top: calc(50% + 18px); transform: translate(-50%, -50%); margin: 0; padding: 10px 16px; border-radius: 999px; background: var(--brand-ink); color: #fff; font-size: 14px; line-height: 1.3; text-align: center; width: max-content; max-width: calc(100% - 40px); }
-html body #main #hear .hk-lock span { font-weight: 600; }
 
-html body #main #updates .up-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; text-align: left; }
-html body #main #updates .up-col { padding: 28px 30px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--brand-ink-a1a); }
-html body #main #updates .up-col h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; font-size: 13px; line-height: 1; font-weight: 600; letter-spacing: .02em; }
-html body #main #updates .up-col h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--brand-ink); }
-html body #main #updates .up-col + .up-col h3::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--brand-ink); }
-html body #main #updates .up-col ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-html body #main #updates .up-col li { font-size: 14.5px; line-height: 1.45; }
-html body #main #updates .up-col li b { font-weight: 600; }
 
-html body #main .dl17 .dl17-help { margin-top: 18px; font-size: var(--sys-micro, 12px); line-height: 1.45; }
-html body #main .dl17 .dl17-help summary { display: inline; list-style: none; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
-html body #main .dl17 .dl17-help summary::-webkit-details-marker { display: none; }
-html body #main .dl17 .dl17-help .dl17-once { margin: 8px 0 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html body #main .dl17 .dl17-help:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 18px; font-size: var(--sys-micro, 12px); line-height: 1.45; }
+html body #main .dl17 .dl17-help summary:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: inline; list-style: none; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+html body #main .dl17 .dl17-help summary:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::-webkit-details-marker{ display: none; }
+html body #main .dl17 .dl17-help .dl17-once:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 8px 0 0; }
 
 @media (max-width: 700px) {
-  html body #main #hear.hear-kits, html body #main #updates.updates-1106 { padding-top: 48px; }
-  html body #main #hear .hk-row, html body #main #updates .up-cols { grid-template-columns: 1fr; }
-  html body #main #updates .up-col { padding: 22px 20px; }
+  
+  
+  
 }
 
 
-/* Elaye 6 Nov 19:04: the members' own screenshots, names and faces blurred. "what our members say" and "we got one". */
-html body #main .ms1106 { width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 56px var(--sys-gutter, 20px) 24px; box-sizing: border-box; text-align: center; color: var(--brand-ink); }
-html body #main .ms1106 .ms-lede { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
-html body #main .ms1106 .ms-grid { columns: 3 260px; column-gap: 12px; margin-top: 28px; text-align: left; }
-html body #main .ms1106 .ms-grid--got { columns: 3 260px; }
-html body #main .ms1106 .ms-shot { break-inside: avoid; margin: 0 0 12px; border-radius: 14px; overflow: hidden; background: #0b0b0c; box-shadow: 0 0 0 1px var(--brand-ink-a1a); }
-html body #main .ms1106 .ms-shot img { display: block; width: 100%; height: auto; }
-html body #main .ms1106 .ms-grid.is-collapsed { max-height: 1180px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
-html body #main .ms1106 .ms-more { margin-top: 18px; padding: 12px 20px; border: 0; border-radius: 999px; background: var(--brand-ink); color: #fff; font: inherit; font-size: 14px; line-height: 1; cursor: pointer; }
-html body #main .ms1106 .ms-more:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+
+html body #main .ms1106:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 100%; max-width: var(--sys-max, 1120px); margin: 0 auto; padding: 56px var(--sys-gutter, 20px) 24px; box-sizing: border-box; text-align: center; color: var(--brand-ink); }
+html body #main .ms1106 .ms-lede:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.45; text-wrap: balance; }
+html body #main .ms1106 .ms-grid:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ columns: 3 260px; column-gap: 12px; margin-top: 28px; text-align: left; }
+html body #main .ms1106 .ms-grid--got:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ columns: 3 260px; }
+html body #main .ms1106 .ms-shot:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ break-inside: avoid; margin: 0 0 12px; border-radius: 14px; overflow: hidden; background: #0b0b0c; box-shadow: 0 0 0 1px var(--brand-ink-a1a); }
+html body #main .ms1106 .ms-shot img:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: block; width: 100%; height: auto; }
+html body #main .ms1106 .ms-grid.is-collapsed:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-height: 1180px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+html body #main .ms1106 .ms-more:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-top: 18px; padding: 12px 20px; border: 0; border-radius: 999px; background: var(--brand-ink); color: #fff; font: inherit; font-size: 14px; line-height: 1; cursor: pointer; }
+html body #main .ms1106 .ms-more:focus-visible:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ outline: 2px solid var(--brand-ink); outline-offset: 3px; }
 @media (max-width: 700px) {
-  html body #main .ms1106 { padding-top: 40px; }
-  html body #main .ms1106 .ms-grid { columns: 1; }
-  html body #main .ms1106 .ms-grid.is-collapsed { max-height: 1500px; }
+  html body #main .ms1106:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-top: 40px; }
+  html body #main .ms1106 .ms-grid:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ columns: 1; }
+  html body #main .ms1106 .ms-grid.is-collapsed:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ max-height: 1500px; }
 }
 
-/* Elaye 6 Nov 19:44: "we got one" with his sticker beside the heading; 19:46 mobile app coming soon under the download buttons */
-html body #main .ms1106 .ms-head { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
-html body #main .ms1106 .ms-head h2 { margin: 0; }
-html body #main .ms1106 .ms-sticker { width: auto; height: 40px; }
-html body #main .dl17 .dl17-copy > p.dl17-soon { margin: 12px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
-@media (max-width: 700px) { html body #main .ms1106 .ms-sticker { height: 36px; } }
 
-/* Elaye 6 Nov 20:32: the add-on link in the price card; on a phone the hero blob sits clear of the nav */
-html body #main #price .price-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-@media (max-width: 700px) { html body .opening-blots .ob.b2-box { scale: .6; translate: 0 34px; } }
+html body #main .ms1106 .ms-head:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+html body #main .ms1106 .ms-head h2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 0; }
+html body #main .ms1106 .ms-sticker:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: auto; height: 40px; }
+html body #main .dl17 .dl17-copy > p.dl17-soon:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin: 12px 0 0; font-size: var(--sys-micro, 12px); line-height: 1.4; color: inherit; }
+@media (max-width: 700px) { html body #main .ms1106 .ms-sticker:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ height: 36px; } }
 
-/* 11 Nov, owner-approved F1: the phone story spans both columns below the photo. */
+
+
+@media (max-width: 700px) { html body .opening-blots .ob.b2-box:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ scale: .6; translate: 0 34px; } }
+
+
 @media (max-width: 700px) {
-  html body #main #founder .fs1105-card {
-    grid-template-areas: "label label" "title title" "plaques photo" ". photo" ". photo" "line line" "sig sig" "proof proof";
-    grid-template-rows: repeat(8, auto);
-  }
+  
 }

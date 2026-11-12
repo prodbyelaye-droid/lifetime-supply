@@ -1,0 +1,120 @@
+/* L6 · landing sections 7 (why producers choose. with what our members say.) and 9 (we got one.)
+   Option A (row 173 Mintlify "wall of love", 1:1 on one left edge). Agent D3, Thu 12 Nov 2026; fix pass F2 14:30 (audit 2 rows 1 to 5, ai-signs 2 rows 2 and 5).
+   Grid and type: L1's (out/L1-hero/STATUS.md, first post 13:21). Colour c. Type D (Albert Sans) through tokens.
+   Load AFTER the live members-1106 CSS and the heading system (css/headings-078/heading-system.css): it restyles their hooks
+   with id selectors and keeps js/members-1106.js (the "see all 79" collapse). */
+
+:root{
+  --ls7-font: var(--font-brand, "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif);
+  --ls7-margin: var(--grid-margin, 64px);
+  --ls7-gutter: var(--grid-gutter, 24px);
+  --ls7-max: var(--grid-max, 1312px);
+  --ls7-pad: var(--section-pad, 128px);
+  --ls7-ink: #090909; --ls7-meta: #6F6F6F; --ls7-hair: #E4E4E6; --ls7-paper: #FFFFFF;   /* hairline: colour c (ai-signs 2 row 5) */
+}
+
+/* ---------- shared section frame: one left edge, one content width (A1 rules 1 and 2) ---------- */
+#why-producers-choose.ls7,#members-say.ms1106,#we-got-one.ms1106{box-sizing:border-box;width:100%;max-width:calc(var(--ls7-max) + 2 * var(--ls7-margin));
+  margin:0 auto;padding:var(--ls7-pad) var(--ls7-margin);background:var(--ls7-paper);color:var(--ls7-ink);font-family:var(--ls7-font);text-align:left}
+#why-producers-choose.ls7{padding-bottom:0}                 /* 7 is one section: the members wall follows 160 px under the quotes */
+#members-say.ms1106{padding-top:160px}
+#why-producers-choose *,#members-say *,#we-got-one *{box-sizing:border-box}
+
+/* headings: L1 h2 56/58 Medium -0.02em, left; lead L1 20/29 (rows 173 + L1) */
+#why-producers-choose .ls7-h2,
+body #main #members-say .ls-heading-b,#members-say h2,
+body #main #we-got-one .ls-heading-b,#we-got-one h2{margin:0;max-width:none;font:500 56px/58px var(--ls7-font);letter-spacing:-.02em;color:var(--ls7-ink);text-align:left}
+#why-producers-choose .ls7-lead,#members-say .ms-lede,#we-got-one .ms-lede{max-width:533px;margin:32px 0 0;font:400 20px/29px var(--ls7-font);color:var(--ls7-ink);text-align:left}
+
+/* ---------- 7 · the quotes: whole cards, still (row 173; A1 13:27 "show whole cards in a still row on the grid").
+   173's card is about 300 px wide: four columns of 310 px (3 grid columns each), the same columns as the members wall under it ---------- */
+#why-producers-choose .ls7-quotes{margin-top:64px;column-count:4;column-gap:var(--ls7-gutter)}
+#why-producers-choose .ls7-q{break-inside:avoid;margin:0 0 var(--ls7-gutter);padding:24px;background:var(--ls7-paper);
+  border:1px solid var(--ls7-hair);border-radius:12px}      /* 173's card without the face: no avatar, no name, no stars (P4) */
+/* audit 2 L6 #2: 173's text, 15/24 throughout */
+#why-producers-choose .ls7-q blockquote{margin:0;font:400 15px/24px var(--ls7-font);color:var(--ls7-ink)}
+#why-producers-choose .ls7-q blockquote p{margin:0}
+#why-producers-choose .ls7-q blockquote p+p{margin-top:8px}
+/* audit 2 L6 #1: no "producer" line on every card; only the subject, small grey, under the quote (173's role line) */
+#why-producers-choose .ls7-q figcaption{margin-top:12px;font:400 13px/18px var(--ls7-font);color:var(--ls7-meta)}
+
+/* ---------- 7 · what our members say: one screenshot scale (A1 13:27): 4 columns of 310 px at 1440 ---------- */
+#members-say .ms-grid,#we-got-one .ms-grid{display:block;margin:64px 0 0;padding:0;column-count:4;column-gap:var(--ls7-gutter);max-width:none}
+#members-say .ms-shot,#we-got-one .ms-shot{display:block;break-inside:avoid;margin:0 0 var(--ls7-gutter);padding:0;border:0;background:none;box-shadow:none;transform:none;
+  border-radius:14px;overflow:hidden}
+#members-say .ms-shot:last-child,#we-got-one .ms-shot:last-child{margin-bottom:0}   /* the section ends on the grid's padding (seam note, 390) */
+#members-say .ms-shot img,#we-got-one .ms-shot img{display:block;width:100%;height:auto;max-width:none;box-sizing:content-box;background:#000}
+/* collapsed by js/members-1106.js until "see all 79": whole tiles only, cut on a row, no fade (audit 2 L6 #5: a fade on photographs is X6) */
+#members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+11){display:none}   /* ten whole tiles: 1 + 3 + 3 + 3, columns end within 7 px of each other */
+/* audit 2 L6 #4 (row 289: one size, one text size): every screenshot shown so its message text reads at about 15 px in the 310 px tile.
+   Files whose text is bigger are drawn narrower, the rest of the tile filled with the file's own flat edge colour (files with a photo edge are left whole at full width); files a little small are
+   drawn up to 16 % larger, cropping only empty background. Measured per file (line pitch, or by eye against a 15 px sample). */
+#members-say .ms-shot img[src$="/say-member-2026-11-11.jpg"]{width:85.21%;padding:0 14.79% 0 0.00%;background:#000002}
+#members-say .ms-shot img[src$="/say-t003.webp"]{width:68.18%;padding:0 31.82% 0 0.00%;background:#0D1116}
+#members-say .ms-shot img[src$="/say-t031.webp"]{width:92.18%;padding:0 7.82% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t073.webp"]{width:86.76%;padding:0 13.24% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t041.webp"]{width:86.76%;padding:0 13.24% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t066.webp"]{width:94.14%;padding:0 5.86% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t008.webp"]{width:93.75%;padding:0 6.25% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t002.webp"]{width:90.30%;padding:0 9.70% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t074.webp"]{width:93.76%;padding:0 6.24% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t036.webp"]{width:88.24%;padding:0 11.76% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t004.webp"]{width:90.30%;padding:0 9.70% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t065.webp"]{width:85.71%;padding:0 14.29% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t012.webp"]{width:83.33%;padding:0 16.67% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t007.webp"]{width:88.49%;padding:0 11.51% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t049.webp"]{width:116.00%;max-width:none;margin-left:-1.45%}
+#members-say .ms-shot img[src$="/say-t056.webp"]{width:75.00%;padding:0 25.00% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t043.webp"]{width:116.00%;max-width:none;margin-left:-1.29%}
+#members-say .ms-shot img[src$="/say-t016.webp"]{width:88.24%;padding:0 11.76% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t029.webp"]{width:112.32%;max-width:none;margin-left:-0.00%}
+#members-say .ms-shot img[src$="/say-t062.webp"]{width:68.18%;padding:0 31.82% 0 0.00%;background:#EDEAED}
+#members-say .ms-shot img[src$="/say-t060.webp"]{width:85.24%;padding:0 14.76% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t042.webp"]{width:102.13%;max-width:none;margin-left:-1.13%}
+#members-say .ms-shot img[src$="/say-t068.webp"]{width:94.14%;padding:0 5.86% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t027.webp"]{width:116.00%;max-width:none;margin-left:-0.48%}
+#members-say .ms-shot img[src$="/say-t035.webp"]{width:102.42%;max-width:none;margin-left:-0.14%}
+#members-say .ms-shot img[src$="/say-t076.webp"]{width:115.57%;max-width:none;margin-left:-0.48%}
+#members-say .ms-shot img[src$="/say-t010.webp"]{width:78.95%;padding:0 21.05% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t028.webp"]{width:60.00%;padding:0 40.00% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t017.webp"]{width:60.00%;padding:0 40.00% 0 0.00%;background:#0C1015}
+#members-say .ms-shot img[src$="/say-t018.webp"]{width:53.57%;padding:0 46.43% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-t047.webp"]{width:51.72%;padding:0 48.28% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-sdf15-0.webp"]{width:96.65%;padding:0 3.35% 0 0.00%;background:#0C0E14}
+#members-say .ms-shot img[src$="/say-s6919-1.webp"]{width:88.24%;padding:0 11.76% 0 0.00%;background:#070D14}
+#members-say .ms-shot img[src$="/say-s95b5-0.webp"]{width:90.13%;padding:0 9.87% 0 0.00%;background:#0C0E14}
+#members-say .ms-shot img[src$="/say-sf963-1.webp"]{width:88.24%;padding:0 11.76% 0 0.00%;background:#000000}
+#members-say .ms-shot img[src$="/say-se427-4.webp"]{width:91.90%;padding:0 8.10% 0 0.00%;background:#070D14}
+#we-got-one .ms-shot img[src$="/got-a1.webp"]{width:78.95%;padding:0 21.05% 0 0.00%;background:#000000}
+#we-got-one .ms-shot img[src$="/got-a6.webp"]{width:102.27%;max-width:none;margin-left:-1.14%}
+#we-got-one .ms-shot img[src$="/got-a7.webp"]{width:96.77%;padding:0 3.23% 0 0.00%;background:#000000}
+/* "see all 79": his live words, kept until he answers (COPY-NEEDED 1); the ink pill (components A, row 291) */
+#members-say .ms-more{display:inline-flex;align-items:center;justify-content:center;height:50px;margin:32px 0 0;padding:0 24px;border-radius:999px;
+  font:500 15px/1 var(--ls7-font);letter-spacing:-.01em;color:#fff;cursor:pointer;
+  background:linear-gradient(180deg,#363636 0%,#181818 100%);border:1px solid #252628;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10)}
+#members-say .ms-more:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.12),0 2px 5px -1px rgba(0,0,0,.12)}
+#members-say .ms-more:active{background:#181818;box-shadow:inset 0 1px 2px rgba(0,0,0,.40),0 .5px 1px rgba(0,0,0,.14);transform:scale(.97)}
+#members-say .ms-more:focus-visible{outline:2px solid var(--ls7-ink);outline-offset:3px}
+#members-say .ms-more[hidden]{display:none}
+
+/* ---------- 9 · we got one.: the bubble beside the headline (live, A1 "keep the bubble"), same wall scale as 7 ---------- */
+#we-got-one .ms-head{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:flex-start;margin:0}
+#we-got-one .ms-sticker{display:block;height:46px;width:auto;margin:0}
+
+/* ---------- 390 (L1: 24 px margins, 72 px section padding, h2 34/36, lead 18/27, body 17/26) ---------- */
+@media (max-width:700px){
+  #why-producers-choose.ls7,#members-say.ms1106,#we-got-one.ms1106{padding:72px 24px}
+  #why-producers-choose.ls7{padding-bottom:0}
+  #members-say.ms1106{padding-top:96px}
+  #why-producers-choose .ls7-h2,body #main #members-say .ls-heading-b,#members-say h2,body #main #we-got-one .ls-heading-b,#we-got-one h2{font-size:34px;line-height:36px}
+  #why-producers-choose .ls7-lead,#members-say .ms-lede,#we-got-one .ms-lede{margin-top:24px;font-size:18px;line-height:27px}
+  #why-producers-choose .ls7-quotes{column-count:1;margin-top:40px}
+  #why-producers-choose .ls7-q{margin-bottom:12px}
+    /* one column at 390: the same bubble-text scale as desktop (720 px files at 342 px, about 15 to 17 px text; A1 13:27) */
+  #members-say .ms-grid,#we-got-one .ms-grid{column-count:1;margin-top:40px}
+  #members-say .ms-shot,#we-got-one .ms-shot{margin-bottom:12px}
+  #members-say .ms-shot,#we-got-one .ms-shot{border-radius:12px}
+  #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+5){display:none}   /* four whole tiles in one column, then see all 79 */
+  #we-got-one .ms-sticker{height:36px}
+}

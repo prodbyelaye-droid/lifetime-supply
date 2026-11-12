@@ -1,25 +1,13 @@
-/* colour c · remap for the live landing (Thu 12 Nov, colour chat, final). Light only.
-   ai-signs N9 (03:03) and his words with c: every headline line is one ink colour; no grey second line, no blue or gradient word.
-   His 03:02 words: "same as any colouring really". Load it LAST, after colour-tokens.css and every css/ file.
-   Selectors carry two id steps (html body #main) over the rules they replace (css/l2-1104.css lines 3 to 17,
-   css/downloads-017.css lines 19 and 20), which use !important, so these use it too. */
-:root:root { --l2-ink: #090909; --l2-quiet: #6F6F6F; --l2-muted: #6F6F6F; --l2-line: rgba(9, 9, 9, .08); }
 
-/* the grey second headline lines (#8e9299, and #price's 46 % ink) take their heading's colour, so every line of a heading is
-   the same ink (the heading's own #151517 becomes #090909 with the hand-typed ink swap, SPEC section 8 step 3 and 9 step 2) */
-html body #main .ls-heading-b .l2-quiet,
-html body #main .ls-heading-b[data-heading="price"] .ls-heading-b__line + .ls-heading-b__line,
-html body #main .ls-heading-b[data-heading="flow-briefs"] .ls-heading-b__line + .ls-heading-b__line,
-html body #main .ls-heading-b[data-heading="flow-room"] .ls-heading-b__line + .ls-heading-b__line,
-html body #main #founder-title .ls-heading-b__line + .ls-heading-b__line,
-html body #main #price .ls-heading-b[data-heading="price"] .ls-heading-b__line + .ls-heading-b__line {
+:root:root:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --l2-ink: #090909; --l2-quiet: #6F6F6F; --l2-muted: #6F6F6F; --l2-line: rgba(9, 9, 9, .08); }
+
+
+html body #main .ls-heading-b .l2-quiet:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .ls-heading-b[data-heading="price"] .ls-heading-b__line + .ls-heading-b__line:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .ls-heading-b[data-heading="flow-briefs"] .ls-heading-b__line + .ls-heading-b__line:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html body #main .ls-heading-b[data-heading="flow-room"] .ls-heading-b__line + .ls-heading-b__line:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   color: inherit !important; -webkit-text-fill-color: currentColor;
 }
 
-/* "the whole setup. now an app.": the word "app" loses its blue gradient fill and takes its line's ink */
-html body #main .dl17 .ls-heading-b { color: var(--ink, #090909); }
-html body #main #download-title .dl17-word {
-  background: none !important; color: inherit !important; -webkit-text-fill-color: currentColor;
-}
 
-/* the stats key line (13 px meta) is meta grey: #6F6F6F is 5.0:1 on paper (the old #8e9299 was 3.2:1) */
+html body #main .dl17 .ls-heading-b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color: var(--ink, #090909); }
+
+
+

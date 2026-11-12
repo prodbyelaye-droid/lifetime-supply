@@ -1,0 +1,86 @@
+/* L3 · 3 everything. day one. · option B (row 191's features tab, 1:1) · PENDING HIS PICK
+   Redesign run, agent D2, Thu 12 Nov 2026. Load AFTER L1's base.css (out/L1-hero/work/base.css): every token below that is not
+   defined here (--grid-*, --section-pad, --t-*, --ink, --paper, --meta, --hairline, --font-brand) is L1's.
+   Every value names its source. "no reference" = none of his rows shows it. */
+
+:root{
+  --t-figure:500 104px/104px var(--font-brand);        /* L1 STATUS type scale (not in base.css yet); type-exact figure */
+  --l3-cover:160px;                                     /* 02:12 round 3:2 covers; el-E14 sleeve */
+  --l3-list-row:64px;                                   /* 191: 57 px rows at 1366, scaled to 1440 and the 8 grid */
+  --l3-window-inset:48px;                               /* 191: the window starts about 9 % into its cell; 48 = 6 units */
+  --l3-window-h:600px;                                  /* the open cell's height floor (191's cell is 0.94 of its width); no reference for the exact value */
+  --ls-mark:url("../assets/r2-1112/L3/mark.svg");                     /* the build: url('../brand/current/mark/mark.svg'), as live counter-1105 uses */
+}
+@media (max-width:700px){:root{ --t-figure:500 64px/64px var(--font-brand); --l3-list-row:56px; --l3-window-h:320px; --l3-window-inset:24px; }}
+
+.l3{padding:var(--section-pad) var(--grid-margin);max-width:calc(var(--grid-max) + 2 * var(--grid-margin));margin:0 auto;overflow:hidden}
+.l3 .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gutter)}
+.l3 h2,.l3 h3,.l3 p{margin:0}
+
+/* head: headline and lead on the one left edge (L1), the flagship kits beside the headline (live #inside order) */
+.l3-head{align-items:start}
+.l3-head h2{grid-column:1 / span 6;grid-row:1;font:var(--t-h2);letter-spacing:var(--t-h2-track)}          /* one ink line (ai-signs T2) */
+.l3-head .lead{grid-column:1 / span 5;grid-row:2;margin-top:32px;font:var(--t-lead)}                        /* L1: headline to intro 32 */
+.l3-kit{grid-column:8 / span 5;grid-row:1 / span 2;padding-top:10px}                                        /* L1 split: surface from col 7/8 */
+.l3-covers{display:flex;gap:24px}                                                                             /* 02:12 round 3:2 */
+.l3-cv{position:relative;display:block;width:var(--l3-cover);aspect-ratio:1;border-radius:3px;overflow:hidden;flex:none} /* el-E14 sleeve 3 px (295 squares its art) */
+.l3-cv img{display:block;width:100%;height:100%;object-fit:cover}
+.l3-cv::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(0,0,0,.10)} /* el-E14 cover edge */
+.l3-kit p{margin-top:18px;font:var(--t-small)}
+.l3-kit b{font-weight:600}
+
+/* the figure: live's counter (js/counter-1105.js) rolls 6,000+ and lands on the mark; the words stay for readers */
+.l3-stat{margin-top:96px;align-items:end}                                                                     /* 02:12 round, rounded to the 8 grid */
+.l3-stat .fig{grid-column:1 / span 8;font:var(--t-figure);letter-spacing:-0.02em;font-variant-numeric:lining-nums}
+.l3-stat .say{grid-column:9 / span 4;padding-bottom:6px;font:var(--t-body)}
+.l3-facts{margin-top:40px}
+.l3-facts p{grid-column:span 3;padding-top:16px;border-top:1px solid var(--hairline);font:400 18px/26px var(--font-brand)} /* 02:12 round facts row */
+/* landed state on the left edge: the number's box closes up to the mark (see HANDOFF: the live script re-centres; here it must not) */
+.l3 [data-counter-1105][data-state="landed"]{display:inline-flex;align-items:baseline}
+.l3 [data-counter-1105][data-state="landed"] .c1105-number{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.l3 [data-counter-1105][data-state="landed"] .c1105-reel{display:none}
+.l3 [data-counter-1105] .c1105-sign::before{content:"";display:inline-block;width:1.06em;height:.7em;vertical-align:-.02em;background:currentColor;
+  -webkit-mask:var(--ls-mark) center/contain no-repeat;mask:var(--ls-mark) center/contain no-repeat}          /* live system-1105.css, unchanged */
+.l3 [data-counter-1105][data-state="landed"] .c1105-sign{position:static;opacity:1}
+
+/* 191: one ruled table; the list left, the area's real portal screen right on the plain page, cut by the page edge.
+   No sky in this section (manager 13:35: the hero, the price band and the close hold it). */
+.l3-table{margin-top:64px;margin-right:calc(-1 * var(--grid-margin));display:grid;
+  grid-template-columns:calc(5 * (100% - var(--grid-margin) - 11 * var(--grid-gutter)) / 12 + 4 * var(--grid-gutter)) minmax(0,1fr); /* cols 1 to 5 (L1 split) */
+  border:1px solid var(--hairline);border-right:0}                                                           /* open to the page edge */
+.l3-list{border-right:1px solid var(--hairline);display:flex;flex-direction:column}
+.l3-row{display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--hairline);background:var(--paper);color:var(--ink);cursor:pointer;
+  padding:0 24px;font:400 20px/var(--l3-list-row) var(--font-brand);letter-spacing:-0.01em;transition:background-color 160ms cubic-bezier(.22,1,.36,1)} /* 191 row label, ink not grey (T3) */
+.l3-row:first-child{border-top:0}
+.l3-row:hover{background:#FAFAFA}                                                                              /* no reference: the lightest step */
+.l3-row:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}                                       /* his 26 Oct focus ring */
+.l3-row .more{display:none}
+.l3-row[aria-selected="true"]{background:var(--ink);color:#fff;padding:20px 24px 22px;line-height:28px;font-weight:500} /* 191: the open row is black */
+.l3-row[aria-selected="true"] .more{display:block;margin-top:8px;font:400 15px/23px var(--font-brand);letter-spacing:0}
+.l3-row .fl{display:block;padding:9px 0;border-top:1px solid rgba(255,255,255,.16);font:400 15px/22px var(--font-brand)}
+.l3-row .fl:first-of-type{margin-top:14px}
+.l3-row .fl b{font-weight:600}
+.l3-stage{position:relative;min-height:var(--l3-window-h);overflow:hidden}
+.l3-pane{position:absolute;inset:0;overflow:hidden;background:var(--paper)}
+.l3-pane[hidden]{display:none}
+.l3-win{position:absolute;left:var(--l3-window-inset);top:var(--l3-window-inset);width:1210px;height:900px;overflow:hidden;
+  border:1px solid rgba(0,0,0,.10);border-right:0;border-bottom:0;border-radius:12px 0 0 0;background:#fff}    /* 291 crisp 1 px edge; cut by the page edge and the table's foot (298) */
+.l3-win img{display:block;width:1210px;max-width:none;height:auto}                                           /* the capture at 1:1 (1x) */
+
+@media (max-width:700px){
+  .l3 .g{display:block}
+  .l3-kit{margin-top:40px;padding:0}
+  .l3-covers{gap:12px} .l3-cv{width:calc((100% - 24px) / 3)}
+  .l3-stat{margin-top:64px}
+  .l3-stat .say{margin-top:16px}
+  .l3-facts{margin-top:24px}
+  .l3-facts p{padding:12px 0;font-size:17px}
+  .l3-table{margin:56px calc(-1 * var(--grid-margin)) 0;display:flex;flex-direction:column;border-left:0}
+  .l3-list{display:contents}
+  .l3-row{border-top:1px solid var(--hairline);font-size:18px}
+  .l3-row[aria-selected="true"]{padding:18px 24px 20px}
+  .l3-stage{order:2;border-top:1px solid var(--hairline)}                                                      /* the screen sits under the open row (l3.js sets the rows' order) */
+  .l3-win{width:820px}
+  .l3-win img{width:820px}
+}
+@media (prefers-reduced-motion:reduce){.l3-row{transition:none}}

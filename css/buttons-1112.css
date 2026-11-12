@@ -1,42 +1,37 @@
-/* components A "ink and sheen" · landing mapping · Thu 12 Nov 2026 · chat 5 (components)
-   For the landing builder: copy to css/buttons-1112.css and link it LAST in index.html (after css/system-1105.css and the 1106 files).
-   The live landing stacks about 50 CSS files with selectors up to `html body #main .dl17 .dl-btn` (one id); these rules carry two
-   ids through :not() so they win without !important. Sizes stay as built (48 tall CTAs, 44 log in); only the surfaces change.
-   Class names read from the production checkout (Worktrees/landing-copy-2026-11-11, index.html lines 96 to 198), read only.
-   The hero's "get lifetime access" (.hero-cta) is gone in hero B (his 01:52 pick); if it survives anywhere else it takes the ink pill. */
 
-/* the ink pill (291): download buttons, "see all 79", any remaining get lifetime access */
-html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more) {
+
+
+html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   box-sizing: border-box; border-radius: 999px;
   color: #FFFFFF; background: linear-gradient(180deg, #363636 0%, #181818 100%); border: 1px solid #252628;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 1px 1px rgba(0, 0, 0, .10), 0 1px 3px rgba(0, 0, 0, .10);
   transition: box-shadow .16s cubic-bezier(.22, 1, .36, 1), transform .2s cubic-bezier(.28, 1.4, .36, 1);
 }
-html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):hover {
+html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):hover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   background: linear-gradient(180deg, #363636 0%, #181818 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .26), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 1px 1px rgba(0, 0, 0, .12), 0 2px 5px -1px rgba(0, 0, 0, .12);
 }
-html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):active {
+html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):active:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   background: #181818; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .40), 0 .5px 1px rgba(0, 0, 0, .14); transform: scale(.97);
 }
 
-/* the white pill (16) with 291's hairline: every log in (header, download row, mini bar, steps) */
-html:not(#ls-a):not(#ls-b) body :is(.header-login, .dl-login, .mini-login, .step-login) {
+
+html:not(#ls-a):not(#ls-b) body :is(.header-login, .dl-login, .mini-login, .step-login):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   box-sizing: border-box; border-radius: 999px;
   color: #141414; background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%);
   border: 1px solid rgba(0, 0, 0, .08); box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
 }
-html:not(#ls-a):not(#ls-b) body :is(.header-login, .dl-login, .mini-login, .step-login):hover {
+html:not(#ls-a):not(#ls-b) body :is(.header-login, .dl-login, .mini-login, .step-login):hover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 50%, #FAFAFA 91%, #FFFFFF 100%);
   box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 2px 6px -2px rgba(0, 0, 0, .08);
 }
 
-/* focus: his 26 Oct call, 2 px ink ring, offset 3 */
-html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more, .header-login, .dl-login, .mini-login, .step-login):focus-visible {
+
+html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more, .header-login, .dl-login, .mini-login, .step-login):focus-visible:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   outline: 2px solid #111111; outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more) { transition: none; }
-  html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):active { transform: none; }
+  html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transition: none; }
+  html:not(#ls-a):not(#ls-b) body :is(.hero-cta, .dl-btn, .ms-more):active:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transform: none; }
 }

@@ -1,146 +1,61 @@
-/* Selected founder photo, 1 November. Type and proof sizes from the exact 156
-   snapshot (091/130/156); static historical proof, no counter or carousel. */
-#founder.founder-selected {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 290px;
-  column-gap:56px;
-  row-gap:28px;
-  align-items:start;
-  max-width:1120px;
-  padding-block:96px 88px;
-  color:var(--brand-ink);
-  text-align:left;
-}
-#founder .fs1101-story { grid-column:1; grid-row:1; min-width:0; }
-#founder .fs1101-label {
-  margin:0 0 18px;
-  font-size:14px;
-  line-height:1.4;
-  font-weight:500;
-  letter-spacing:.01em;
-  color:#58616d;
-}
-body #main #founder .ls-heading-b { margin:0; text-align:left; }
-#founder .fs1101-line {
-  margin:20px 0 0;
-  max-width:520px;
-  font-size:18px;
-  line-height:1.55;
-  color:#40464d;
-  text-wrap:pretty;
-}
-#founder .fs1101-photo {
-  grid-column:2;
-  grid-row:1/3;
-  display:flex;
-  justify-content:center;
-  margin:0;
-  min-width:0;
-}
-#founder .fs1101-photo img {
-  display:block;
-  width:auto;
-  height:auto;
-  max-width:100%;
-  max-height:480px;
-  object-fit:contain;
-  image-orientation:from-image;
-}
-#founder .fs1101-proof { grid-column:1; grid-row:2; min-width:0; }
-#founder .fs1101-streams {
-  display:flex;
-  align-items:baseline;
-  flex-wrap:wrap;
-  gap:0 14px;
-  margin:0;
-}
-#founder .fs1101-streams b {
-  font-size:clamp(48px,5vw,72px);
-  font-weight:500;
-  line-height:1.12;
-  letter-spacing:-.035em;
-  font-variant-numeric:tabular-nums;
-  white-space:nowrap;
-}
-#founder .fs1101-streams span { font-size:22px; font-weight:500; letter-spacing:-.01em; }
-#founder .fs1101-date { margin:14px 0 0; font-size:14px; line-height:1.4; color:#58616d; }
-#founder .fs1101-date a { text-decoration:underline; text-underline-offset:3px; }
-#founder .fs1101-row {
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px 0;
-  margin:22px 0 0;
-  padding:0;
-  list-style:none;
-  font-size:15px;
-  line-height:1.4;
-  color:#58616d;
-}
-#founder .fs1101-row li { display:flex; align-items:baseline; gap:7px; min-width:0; }
-#founder .fs1101-row li+li { margin-left:18px; padding-left:18px; border-left:1px solid #e3e7ec; }
-#founder .fs1101-row b { font-size:17px; font-weight:600; color:var(--brand-ink); font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
-#founder .fs1101-heard { grid-column:1/-1; min-width:0; margin-top:28px; }
-#founder .fs1101-rule {
-  height:1px;
-  max-width:280px;
-  margin:24px 0;
-  background:linear-gradient(90deg,rgba(var(--brand-ink-rgb),.16),rgba(var(--brand-ink-rgb),0));
-}
-#founder .fs1101-logos {
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  align-items:center;
-  justify-items:center;
-  gap:24px;
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-#founder .fs1101-logos li { display:flex; align-items:center; justify-content:center; min-width:0; width:100%; height:56px; }
-#founder .fs1101-logo {
-  display:block;
-  max-width:100%;
-  height:calc(28px * var(--fs1101-scale));
-  aspect-ratio:var(--fs1101-ratio);
-  background:#737375;
-  -webkit-mask:var(--fs1101-src) center/contain no-repeat;
-  mask:var(--fs1101-src) center/contain no-repeat;
-}
-#founder [data-fs1101-logo="fortnite"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/fortnite.png'); --fs1101-ratio:3.585; --fs1101-scale:.9; }
-#founder [data-fs1101-logo="adidas"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/adidas.svg'); --fs1101-ratio:1.48; --fs1101-scale:1.42; }
-#founder [data-fs1101-logo="netflix"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/netflix.svg'); --fs1101-ratio:3.7; --fs1101-scale:.8; }
-#founder [data-fs1101-logo="prime-video"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/prime-video.svg'); --fs1101-ratio:3.18; --fs1101-scale:1.12; }
-#founder [data-fs1101-logo="coca-cola"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/coca-cola.svg'); --fs1101-ratio:3.188; --fs1101-scale:1.2; }
-#founder [data-fs1101-logo="riaa"] { --fs1101-src:url('../assets/founder-selected-1101/heard-on/riaa.png'); --fs1101-ratio:1; --fs1101-scale:1.42; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width:701px) and (max-width:1000px) {
-  #founder.founder-selected { grid-template-columns:minmax(0,1fr) 230px; column-gap:32px; }
+  
 }
 @media (max-width:700px) {
-  #founder.founder-selected { display:flex; flex-direction:column; gap:24px; padding-block:64px; }
-  #founder .fs1101-story, #founder .fs1101-proof, #founder .fs1101-heard { width:100%; }
-  #founder .fs1101-label { font-size:13px; margin-bottom:14px; }
-  #founder .fs1101-line { font-size:16px; margin-top:16px; }
-  #founder .fs1101-photo { align-self:center; max-width:100%; }
-  #founder .fs1101-photo img { max-height:260px; }
-  #founder .fs1101-streams { gap:8px; flex-wrap:nowrap; }
-  #founder .fs1101-streams b { font-size:clamp(34px,10.4vw,44px); }
-  #founder .fs1101-streams span { font-size:15px; font-weight:400; letter-spacing:0; color:#58616d; }
-  #founder .fs1101-date { margin-top:8px; font-size:12.5px; }
-  #founder .fs1101-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:18px; }
-  #founder .fs1101-row li { flex-direction:column; align-items:flex-start; gap:2px; font-size:13px; }
-  #founder .fs1101-row li+li { margin-left:0; padding-left:14px; }
-  #founder .fs1101-row b { font-size:16px; }
-  #founder .fs1101-heard { margin-top:12px; }
-  #founder .fs1101-rule { max-width:180px; margin:18px 0; }
-  #founder .fs1101-logos { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 20px; }
-  #founder .fs1101-logos li { height:42px; }
-  #founder .fs1101-logo { height:calc(21px * var(--fs1101-scale)); }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
 @media (max-width:374px) {
-  #founder .fs1101-row li+li { padding-left:10px; }
-  #founder .fs1101-row b { font-size:14px; }
-  #founder .fs1101-row li { font-size:12.5px; }
+  
+  
+  
 }
 @media (forced-colors:active) {
-  #founder .fs1101-logo { background:CanvasText; forced-color-adjust:none; }
+  
 }

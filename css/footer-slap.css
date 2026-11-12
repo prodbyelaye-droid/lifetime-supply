@@ -1,112 +1,111 @@
-/* Exact L08 repair2 component port. All selectors stay inside the existing footer. */
-#footer.ls-footer{color-scheme:light;--ink:var(--brand-navy-2);--cream:#f5f3ed;--blue:var(--brand-sky-50);--focus:var(--brand-sky-51);font-family:var(--brand-font-text);color:var(--ink);font-size:16px;font-weight:400;line-height:normal;letter-spacing:normal;text-align:left}
-#footer.ls-footer *,#footer.ls-footer *::before,#footer.ls-footer *::after{box-sizing:border-box}
-#footer.ls-footer button,#footer.ls-footer a{-webkit-tap-highlight-color:transparent}
-#footer.ls-footer button{font:inherit}
-#footer.ls-footer a{color:inherit;text-decoration:underline;text-underline-offset:4px}
-#footer.ls-footer a:focus-visible,#footer.ls-footer button:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
-#footer.ls-footer p,#footer.ls-footer h2{margin:0}
-#footer.ls-footer{margin:0 12px 12px;border-radius:28px;background:var(--blue);padding:52px 36px 26px;isolation:isolate}
-#footer.ls-footer .footer-top{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:48px;align-items:start}
-#footer.ls-footer .footer-line{font-size:clamp(24px,2.4vw,34px);font-weight:500;line-height:1.06;letter-spacing:-.045em}
-#footer.ls-footer .profile-nav{position:relative;display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:100%}
-#footer.ls-footer .tab{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;gap:10px;border:1px solid var(--brand-navy-2-a45);border-radius:999px;background:transparent;color:inherit;text-decoration:none;font-size:15px;cursor:pointer}
-#footer.ls-footer .tab:hover{background:#f5f3ed80}
-#footer.ls-footer .tab-ig{width:18px;height:18px;flex:none}
-#footer.ls-footer .tab-toggle{gap:8px}
-#footer.ls-footer .tab-toggle>span:first-child{font-size:22px;line-height:20px}
-#footer.ls-footer .tab-toggle[aria-expanded=true]>span:first-child{transform:rotate(45deg)}
-#footer.ls-footer #profile-links{flex-basis:100%;padding-top:8px}
-#footer.ls-footer #profile-links[hidden]{display:none}
-#footer.ls-footer #profile-links a{display:flex;align-items:center;min-height:44px;font-size:15px}
-#footer.ls-footer .footer-info{min-width:0}
-#footer.ls-footer .footer-links{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:-10px;margin-bottom:14px}
-#footer.ls-footer .footer-links a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;font-size:15px;text-decoration:none}
-#footer.ls-footer .footer-links a:hover{text-decoration:underline}
-#footer.ls-footer .newsletter{font-size:14px;line-height:1.5;max-width:380px}
-#footer.ls-footer .newsletter a{display:inline-block;min-height:44px;margin-block:-12px;padding-block:12px}
-#footer.ls-footer .footer-scene{position:relative;margin-top:32px;padding:88px 0 10px;overflow:clip;contain:layout;isolation:isolate}
-#footer.ls-footer .footer-word{position:relative;width:max-content;max-width:100%;font-size:clamp(100px,20.5vw,310px);font-weight:500;line-height:.81;letter-spacing:-.075em;color:var(--ink);pointer-events:none}
-#footer.ls-footer .word{display:block;width:max-content;max-width:100%;padding-right:.1em;padding-bottom:.15em;margin-bottom:-.15em}
-#footer.ls-footer .word-2{margin-top:var(--row-gap,.055em)}
-#footer.ls-footer .baseline-probe{display:inline-block;width:0;height:0;vertical-align:baseline;letter-spacing:0}
-#footer.ls-footer .blob{position:absolute;top:0;left:0;width:var(--size);height:var(--size);padding:0;border:0;border-radius:24%;background:transparent;cursor:grab;touch-action:none;user-select:none;z-index:2;transform:translate3d(var(--rest-x,0px),var(--rest-y,0px),0);visibility:hidden}
-#footer.ls-footer .blob[data-ready]{visibility:visible}
-#footer.ls-footer .blob.is-dragging{cursor:grabbing;z-index:4}
-#footer.ls-footer .blob:focus-visible{z-index:5;outline-offset:0}
-#footer.ls-footer .blob-one{--size:clamp(78px,12vw,164px)}
-#footer.ls-footer .blob-two{--size:clamp(70px,9.5vw,132px)}
-#footer.ls-footer .blob-three{--size:clamp(82px,13vw,178px)}
-#footer.ls-footer .blob-art{display:block;width:100%;height:100%;pointer-events:none;transform-origin:50% 85%;filter:grayscale(1) brightness(1.2) drop-shadow(0 4px 2px var(--brand-navy-2-a15))}
-#footer.ls-footer .blob-two .blob-art{filter:drop-shadow(0 2px 1px var(--brand-navy-2-a10))}
-#footer.ls-footer .blob-three .blob-art{filter:grayscale(1) brightness(1.3) drop-shadow(0 4px 2px var(--brand-navy-2-a15))}
-#footer.ls-footer .footer-scene.is-settling .blob-art{animation:footer-slap-settle 500ms cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--delay)}
-#footer.ls-footer .footer-scene.is-settling .blob.is-touched .blob-art{animation:none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes footer-slap-settle{from{transform:translateY(-12px) rotate(-5deg)}to{transform:translateY(0) rotate(0)}}
-#footer.ls-footer .footer-bottom{border-top:1px solid var(--brand-navy-2-a32);padding-top:20px;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-#footer.ls-footer .copyright{font-size:13px}
-#footer.ls-footer .footer-signature{display:flex;align-items:center;gap:28px}
-#footer.ls-footer .locked-logo{display:block;width:142px;height:auto}
-#footer.ls-footer .elaye{font-size:12px;font-weight:600;letter-spacing:-.04em}
-#footer.ls-footer .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:700px){#footer.ls-footer{margin:0 6px 6px;padding:30px 18px 22px;border-radius:18px}
-#footer.ls-footer .footer-top{grid-template-columns:1fr;gap:24px}
-#footer.ls-footer .footer-line{font-size:25px}
-#footer.ls-footer .profile-nav{gap:6px}
-#footer.ls-footer .footer-info{display:flex;flex-direction:column;gap:10px}
-#footer.ls-footer .footer-links{gap:0 18px;margin:0}
-#footer.ls-footer .footer-links a{font-size:14px}
-#footer.ls-footer .newsletter{font-size:14px;line-height:1.5;max-width:340px}
-#footer.ls-footer .footer-scene{margin-top:16px;padding-top:62px;padding-bottom:10px}
-#footer.ls-footer .footer-word{font-size:24vw;line-height:.83;letter-spacing:-.075em}
-#footer.ls-footer .footer-bottom{margin-top:20px;padding-top:18px;align-items:start;gap:18px}
-#footer.ls-footer .footer-signature{gap:16px;flex-direction:column;align-items:flex-end}
-#footer.ls-footer .locked-logo{width:104px}
-#footer.ls-footer .copyright{font-size:12px;padding-top:4px}
-#footer.ls-footer .blob-one{--size:clamp(70px,20vw,100px)}
-#footer.ls-footer .blob-two{--size:clamp(62px,17vw,84px)}
-#footer.ls-footer .blob-three{--size:clamp(74px,22vw,110px)}}
-@media(prefers-reduced-motion:reduce){#footer.ls-footer *,#footer.ls-footer *::before,#footer.ls-footer *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media(forced-colors:active){#footer.ls-footer{border:1px solid CanvasText}
-#footer.ls-footer .blob:focus-visible{outline-color:Highlight}
-#footer.ls-footer .footer-word{color:CanvasText}}
 
-/* Restore selected component values where the legacy assembly addresses these same classes. */
-#footer.ls-footer .profile-nav{font:inherit;letter-spacing:normal;justify-content:flex-start}
-#footer.ls-footer .tab{font-family:inherit;font-weight:400;line-height:normal;letter-spacing:normal;width:auto;height:auto;box-shadow:none;transform:none;transition:none}
-#footer.ls-footer .tab:hover{transform:none}
-#footer.ls-footer .tab-toggle span{transition:none}
-#footer.ls-footer .tab-toggle .profile-label{transform:none}
-#footer.ls-footer #profile-links{position:static;right:auto;top:auto;width:auto;display:block;padding:8px 0 0;background:none;border:0;border-radius:0;box-shadow:none}
-#footer.ls-footer #profile-links[hidden]{display:none}
-#footer.ls-footer #profile-links a{display:flex;padding:0;min-height:44px;background:transparent;color:inherit;border:0;border-radius:0;font-family:inherit;font-weight:400;letter-spacing:normal;line-height:normal;text-decoration:underline}
-#footer.ls-footer .footer-word{padding:0;min-height:0;margin:0}
-#footer.ls-footer .footer-bottom{background:transparent;font-size:16px;line-height:normal}
 
-/* Owner-approved Footer F revision2: SF outline lettering, two original characters,
-   and the existing accessible links, profile menu and movable character controls. */
-#footer.ls-footer{--blue:#edf2f5;margin-top:12px;padding-bottom:6px}
-#footer.ls-footer .footer-top,#footer.ls-footer .footer-top p,#footer.ls-footer .footer-top a,#footer.ls-footer .footer-bottom,#footer.ls-footer .footer-bottom a{color:var(--ink)}
-#footer.ls-footer .footer-top{min-height:112px}
-#footer.ls-footer .tab{border-color:#b5bfc8}
-#footer.ls-footer .footer-scene{margin-top:44px;padding:0;aspect-ratio:1344/652}
-#footer.ls-footer .footer-word{position:absolute;inset:0;width:100%;height:100%;max-width:none}
-#footer.ls-footer .footer-lettering{display:block;width:100%;height:100%;overflow:visible;fill:currentColor}
-#footer.ls-footer .footer-lettering-phone{display:none}
-#footer.ls-footer .blob-art{filter:none;transform:rotate(var(--rotation));transform-origin:center}
-#footer.ls-footer .blob-two .blob-art{filter:none}
-#footer.ls-footer .footer-bottom{margin-top:0;padding-top:24px}
+
+
+
+
+@media(max-width:700px){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+@media(prefers-reduced-motion:reduce){}
+@media(forced-colors:active){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes footer-slap-settle{from{transform:translateY(-12px) rotate(calc(var(--rotation) - 5deg))}to{transform:translateY(0) rotate(var(--rotation))}}
 @media(max-width:700px){
- #footer.ls-footer{margin:12px 6px 12px;padding-bottom:56px}
- #footer.ls-footer .footer-top{gap:0;min-height:0}
- #footer.ls-footer .footer-line{line-height:27px}
- #footer.ls-footer .profile-nav{margin-top:20px}
- #footer.ls-footer .footer-info{gap:0;margin-top:22px}
- #footer.ls-footer .newsletter{line-height:21px;margin-top:7px}
- #footer.ls-footer .footer-scene{margin-top:32px;padding:0;aspect-ratio:342/302}
- #footer.ls-footer .footer-lettering-desktop{display:none}
- #footer.ls-footer .footer-lettering-phone{display:block}
- #footer.ls-footer .footer-bottom{margin-top:0;padding-top:18px}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 }
-html.motion-paused #footer.ls-footer .blob-art,html[data-motion-paused] #footer.ls-footer .blob-art{animation:none!important}
+

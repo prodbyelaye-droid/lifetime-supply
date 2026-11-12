@@ -1,0 +1,75 @@
+/* L1 · landing grid and type tokens (final) · Thu 12 Nov 2026 · redesign run, agent D1
+   Every landing section uses these. Values and their references: out/L1-hero/STATUS.md ("grid:" and "type scale:"). */
+:root{
+  --font-brand:"Albert Sans",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;  /* type D (picked); a swap is this one line */
+  --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Albert Sans",sans-serif;  /* render box has no SF Pro: Albert Sans stands in, never Inter (ai-signs T4) */                    /* portal interface text stays in the system face (CONTEXT) */
+
+  /* grid: 302 and 298 measured; see STATUS */
+  --grid-margin:64px; --grid-gutter:24px; --grid-max:1312px; --unit:8px;
+  --section-pad:128px; --nav-h:72px;
+  --edge:max(var(--grid-margin), calc((100vw - var(--grid-max)) / 2));   /* the one left edge; grows above 1440 */
+
+  /* type scale */
+  --t-display:500 64px/64px var(--font-brand); --t-display-track:-0.02em;
+  --t-h2:500 56px/58px var(--font-brand);      --t-h2-track:-0.02em;
+  --t-h3:500 36px/40px var(--font-brand);      --t-h3-track:-0.02em;
+  --t-h4:500 22px/28px var(--font-brand);      --t-h4-track:-0.01em;
+  --t-lead:400 20px/29px var(--font-brand);
+  --t-body:400 18px/27px var(--font-brand);
+  --t-small:400 15px/22px var(--font-brand);
+  --t-nav:400 15px/20px var(--font-brand);
+  --t-label:500 13px/18px var(--font-brand);
+
+  /* colour c (SPRINT/out/colour/final), components A, el-E1 */
+  --ink:#090909;            /* colour c --ls-ink: 298 headline ink */
+  --paper:#FFFFFF;
+  --meta:#6F6F6F;           /* colour c: dates, counts, captions only */
+  --hairline:rgba(9,9,9,.10);
+  --sky-1:#112E84; --sky-2:#1D46AE; --sky-3:#2F6CCF; --sky-4:#50A0E7;
+  --sky-deep-solid:#0E3290; /* the plate's top row, under the sky while it loads */
+}
+@media (max-width:700px){:root{
+  --grid-margin:24px; --grid-gutter:16px; --section-pad:72px; --nav-h:64px;
+  --t-display:500 36px/38px var(--font-brand); --t-h2:500 34px/36px var(--font-brand); --t-h3:500 26px/30px var(--font-brand);
+  --t-h4:500 20px/26px var(--font-brand); --t-lead:400 18px/27px var(--font-brand); --t-body:400 17px/26px var(--font-brand);
+}}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font:var(--t-body);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* the lockup: mark C + the name (mark chat final; type D) */
+.lockup{display:inline-flex;align-items:center;gap:10px;font:500 20px/1 var(--font-brand);letter-spacing:-.01em;color:var(--ink)}
+.lockup svg{width:30px;height:20px;flex:none}
+
+/* el-E1 primary, ink (components A). lg = 50 px, his 26 Oct call */
+.btn{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:50px;padding:0 28px;border-radius:999px;
+  font:500 16px/1 var(--font-brand);letter-spacing:-.01em;white-space:nowrap;color:#fff;
+  background:linear-gradient(180deg,#2E2E2E 0%,#111111 100%);border:1px solid #1B1C1F;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.14),0 1px 2px rgba(0,0,0,.06)}
+.btn svg{width:16px;height:16px;flex:none;margin-right:-4px}
+.btn:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 1px 1px rgba(0,0,0,.22),0 2px 5px -1px rgba(0,0,0,.14)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* log in: 302's outlined pill (sm 38 on paper) and el-E1 white on the sky */
+.login{display:inline-flex;align-items:center;height:38px;padding:0 18px;border-radius:999px;border:1px solid rgba(9,9,9,.18);font:500 15px/1 var(--font-brand);letter-spacing:-.01em;color:var(--ink);background:#fff}
+.login--sky{border-color:rgba(8,26,74,.40);background:linear-gradient(180deg,#FFFFFF 0%,#F9F9F9 10%,#F9F9F9 87%,#F7F7F7 91%,#FFFFFF 100%);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #fff,0 1px 2px rgba(8,26,74,.40),0 2px 6px -1px rgba(8,26,74,.25)}
+.pause{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;font:var(--t-nav);color:var(--ink)}
+.pause svg{width:10px;height:12px}
+.pause--sky{width:38px;height:38px;justify-content:center;border-radius:999px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28)}
+
+/* the sky strip: the set 2 warm stipple plate, tiles left to right with no seam (film sky chat D, README).
+   His 12:57 words: "the background clouds on the hero should be moving right to left aswell". 290: "sky drifts, very slowly".
+   Two strips with the same plate, same timing: the back one (sky and clouds), and the front one (clouds only, alpha from the plate)
+   so the portal window sits between them and sinks into the cloud bank as it passes. */
+.sky{position:absolute;inset:0;overflow:hidden;background:var(--sky-deep-solid);--plate-h:calc(var(--sky-h) * var(--sky-zoom,1.3));--plate-w:calc(var(--plate-h) * 3.5556)}
+.sky__strip{position:absolute;top:var(--sky-shift,70px);left:0;height:var(--plate-h);width:calc(var(--plate-w) * 2);
+  background-repeat:repeat-x;background-position:0 0;background-size:var(--plate-w) 100%;
+  animation:drift var(--drift-dur,360s) linear infinite;will-change:transform}
+.sky__strip--back{background-image:url(../assets/r2-1112/L1/hero-sky-plate-4224x1188.webp)}
+.sky__strip--front{background-image:url(../assets/r2-1112/L1/hero-clouds-front-4224x1188.webp);pointer-events:none}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-1 * var(--plate-w)),0,0)}}
+.is-paused .sky__strip,.ls-hero.is-paused .sky__strip{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.sky__strip{animation:none}}

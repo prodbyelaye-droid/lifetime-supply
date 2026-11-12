@@ -1,59 +1,57 @@
-/* Section 05: restore the existing authored gap, which the ID-specific shared margin reset overrides. */
-body #main .stats-section .stats-shell > .ls-heading-b { margin-bottom:48px; }
+
+body #main .stats-section .stats-shell > .ls-heading-b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom:48px; }
 @media (max-width:700px) {
-  body #main .stats-section .stats-shell > .ls-heading-b { margin-bottom:32px; }
+  body #main .stats-section .stats-shell > .ls-heading-b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ margin-bottom:32px; }
 }
 
-/* Existing guide inventory, compact by default; original full blurbs stay available. */
-#features.main-value .f-guides .guide-count{font-size:14px;margin:-4px 0 12px;color:#5f676f;line-height:1.4}
-#features.main-value .guide-inventory{margin-top:22px;border-top:1px solid var(--brand-ink-a20)}
-#features.main-value .guide-item{border-bottom:1px solid var(--brand-ink-a20)}
-#features.main-value .guide-item summary{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:52px;padding:12px 0;cursor:pointer;list-style:none;color:var(--brand-ink);font-size:16px;font-weight:500;line-height:1.35}
-#features.main-value .guide-item summary::-webkit-details-marker{display:none}
-#features.main-value .guide-item summary small{font-size:11px;font-weight:400;letter-spacing:.02em;color:#5f676f;white-space:nowrap;display:flex;align-items:center;gap:12px}
-#features.main-value .guide-item summary small::after{content:'+';font-size:20px;line-height:1;color:var(--brand-ink)}
-#features.main-value .guide-item[open] summary small::after{content:'−'}
-#features.main-value .guide-item>p{padding:0 28px 18px 0;font-size:15px;line-height:1.55}
-#features.main-value .guide-item summary:focus-visible{outline:2px solid var(--brand-sky-2);outline-offset:3px}
-@media(max-width:700px){#features.main-value .guide-item summary{font-size:15px;min-height:52px;gap:12px}#features.main-value .guide-item summary small{gap:9px}#features.main-value .guide-item>p{font-size:14px;padding-right:0}}
 
-/* Owner correction: plain existing page ground; no bright closing gradient. */
-body #main #close.close-call{background:#fff;color:var(--flow-ink,var(--brand-ink))}
-body #main #close.close-call::before,body #main #close.close-call::after{content:none;display:none}
-body #main #close.close-call>.close-a-art,body #main #close.close-call>.close-b-art,body #main #close.close-call .close192,body #main #close.close-call .close-blot{display:none}
-body #main #close.close-call .close-inner,body #main #close.close-call .ls-heading-b{color:var(--flow-ink,var(--brand-ink))}
-body #main #close.close-call .close-cta{background:var(--flow-ink,var(--brand-ink));color:#fff}
 
-/* Magic UI Bento demo cover components, ported to the existing vanilla page.
-   Layout remains VALUEGRID. Card labels describe existing inventory, not activity. */
-#features.main-value .mv-reference-art{background:#f7f8fa;border:1px solid var(--brand-ink-a0d)}
-#features.main-value .mv-file-marquee{position:absolute;inset:40px 0 0;display:flex;gap:16px;overflow:hidden;padding:8px;mask-image:linear-gradient(to top,transparent 8%,#000 75%)}
-#features.main-value .mv-file-track{display:flex;flex-shrink:0;gap:16px;align-items:flex-start;animation:mv-files 20s linear infinite}
-#features.main-value .mv-file-card{position:relative;flex:0 0 128px;width:128px;min-height:210px;margin:0;overflow:hidden;border:1px solid #0307121a;border-radius:12px;padding:16px;background:#03071203;color:#17191d;filter:blur(1px);transition:filter .3s ease-out,background .3s ease-out}
-#features.main-value .mv-file-card:hover{filter:blur(0);background:#0307120d}
-#features.main-value .mv-file-card svg{display:block;width:28px;height:28px;margin-bottom:20px;color:#69717f}
-#features.main-value .mv-file-card figcaption{font-size:14px;font-weight:500;line-height:1.4}
-#features.main-value .mv-file-card blockquote{font-size:12px;line-height:1.5;margin:8px 0 0;color:#626973}
-#features.main-value .mv-file-marquee:hover .mv-file-track{animation-play-state:paused}
+
+
+
+
+
+
+
+
+
+@media(max-width:700px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes mv-files{to{transform:translateX(calc(-100% - 16px))}}
-#features.main-value .mv-notification-list{position:absolute;top:24px;left:6%;width:88%;display:flex;flex-direction:column;gap:16px;mask-image:linear-gradient(to top,transparent 0%,#000 28%);padding:8px 4px 26px}
-#features.main-value .mv-notification{display:flex;align-items:center;gap:12px;flex-shrink:0;max-width:400px;width:100%;margin:0 auto;padding:16px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px #00000008,0 2px 4px #0000000d,0 12px 24px #0000000d;transform-origin:top center}
-#features.main-value .mv-notification-icon{display:flex;align-items:center;justify-content:center;flex:0 0 40px;height:40px;border-radius:16px;background:var(--notification-colour);color:#fff}
-#features.main-value .mv-notification-icon svg{width:22px;height:22px}
-#features.main-value .mv-notification figcaption{font-size:16px;font-weight:500;letter-spacing:-.02em;line-height:1.25;color:var(--brand-ink)}
-#features.main-value .mv-notification p{margin:4px 0 0;font-size:13px;line-height:1.35;color:#6b717e}
-html[data-motion-paused] #features.main-value .mv-file-track,.motion-paused #features.main-value .mv-file-track{animation-play-state:paused}
-@media(max-width:700px){#features.main-value .mv-file-marquee{top:28px}#features.main-value .mv-file-card{min-height:190px}#features.main-value .mv-notification-list{top:16px;left:5%;width:90%;gap:12px}#features.main-value .mv-notification{padding:12px;gap:10px}#features.main-value .mv-notification figcaption{font-size:14px}#features.main-value .mv-notification p{font-size:11px}#features.main-value .mv-notification-icon{flex-basis:34px;height:34px;border-radius:12px}}
-@media(prefers-reduced-motion:reduce){#features.main-value .mv-file-track{animation:none}#features.main-value .mv-file-card{filter:none;transition:none}}
 
-/* Guide preview: existing portal paper/blue-field composition, enlarged actual
-   first-guide title + source metadata. Omits catalogue microcopy, no invented cover. */
-#features.main-value .mv-reader-preview{position:absolute;inset:12% 13%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:9%;background:#fff;border:1px solid var(--brand-ink-a0c);border-radius:8px;box-shadow:0 10px 30px var(--brand-sky-54-a14)}
-#features.main-value .mv-reader-author{font-size:12px;color:#626b78;margin-bottom:22px}
-#features.main-value .mv-reader-preview strong{font-size:clamp(26px,3.1vw,45px);font-weight:500;letter-spacing:-.045em;line-height:1.02;color:var(--brand-ink)}
-#features.main-value .mv-reader-rule{display:block;width:40px;height:1px;background:var(--brand-ink-a30);margin:24px 0 14px}
-#features.main-value .mv-reader-meta{font-size:12px;color:#626b78;letter-spacing:-.01em}
-#features.main-value .guide-item summary>span{text-transform:lowercase}
-@media(max-width:700px){#features.main-value .mv-reader-preview{inset:10% 12%;padding:8%}#features.main-value .mv-reader-author{font-size:10px;margin-bottom:14px}#features.main-value .mv-reader-preview strong{font-size:30px}#features.main-value .mv-reader-rule{margin:16px 0 10px}#features.main-value .mv-reader-meta{font-size:10px}#features.main-value .mv-file-card{filter:none}}
-/* critic 18 (4 Nov, worker B): the brand name keeps its caps inside the lowercased guide list (U03) */
-#features.main-value .guide-item summary .keep-case{text-transform:none}
+
+
+
+
+
+
+@media(max-width:700px){}
+@media(prefers-reduced-motion:reduce){}
+
+
+
+
+
+
+
+
+@media(max-width:700px){}
+
+

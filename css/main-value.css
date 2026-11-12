@@ -1,169 +1,67 @@
-/* One ref174 composition: two columns, existing artwork above visible copy.
-   Every rule is confined to the isolated #features replacement. */
-#features.main-value {
-  color: var(--brand-ink);
-  font-family: var(--brand-font-text);
-  padding-block: 32px 60px;
-}
-#features.main-value .mv-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas: none;
-  gap: 56px 24px;
-  align-items: start;
-  background: #fff;
-}
-#features.main-value .mv-group {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #fff;
-}
-#features.main-value .mv-art {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  isolation: isolate;
-  border-radius: 12px;
-  background: var(--brand-sky-1);
-}
-#features.main-value .mv-art .rest-field {
-  background-image: url('../assets/flow-v1/V1-field.webp');
-}
-#features.main-value .mv-art .mv-character-art {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-#features.main-value .mv-copy { padding: 20px 2px 0; }
-#features.main-value .mv-title {
-  margin: 0 0 14px;
-  color: var(--brand-ink);
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: -.03em;
-  line-height: 1.12;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-#features.main-value .mv-copy p {
-  max-width: 60ch;
-  margin: 0;
-  color: #40464d;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.55;
-  overflow-wrap: anywhere;
-}
-#features.main-value .mv-entry { margin-top: 20px; }
-#features.main-value .mv-entry h4 {
-  margin: 0 0 5px;
-  color: var(--brand-ink);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -.02em;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-#features.main-value .text-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-top: 12px;
-  padding-block: 10px;
-  font-size: 16px;
-  border-color: #dedfe2;
-}
-#features.main-value .text-link:focus-visible {
-  outline: 2px solid var(--brand-sky-2);
-  outline-offset: 4px;
-}
-#features.main-value .split-white { padding-left: 28px; }
-#features.main-value .split-white strong { font-size: clamp(40px, 5vw, 72px); }
-#features.main-value .split-white span { font-size: 14px; }
-#features.main-value .lesson-stack i { font-size: 13px; padding-inline: 12px; }
-#features.main-value .board-cols { gap: 8px; padding: 14px; }
-#features.main-value .board-cols i { padding: 12px 10px; }
-#features.main-value .board-cols b,
-#features.main-value .board-cols span { font-size: 14px; }
-#features.main-value .window-dots.hw-mini-crumbs { height: 32px; font-size: 13px; }
-#features.main-value .mv-guide-preview {
-  position: absolute;
-  inset: 11% 8%;
-  width: 84%;
-  height: 78%;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 8px;
-}
-#features.main-value .mv-day-crop {
-  position: absolute;
-  inset: 20% 7% auto;
-  aspect-ratio: 864 / 320;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #fff;
-}
-#features.main-value .mv-day-crop img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transform: translateY(-38%);
-}
-/* Static art only. Existing pointer-effect and reveal selectors have no hosts
-   in this section: the preserved scripts find the grid but no .feature boxes. */
-#features.main-value .mv-art,
-#features.main-value .mv-art * { animation: none; transition: none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 700px) {
-  #features.main-value { width: calc(100% - 40px); padding-block: 16px 30px; }
-  #features.main-value .mv-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  #features.main-value .mv-copy { padding-top: 18px; }
-  #features.main-value .mv-title { font-size: 28px; }
-  #features.main-value .mv-copy p { font-size: 16px; }
-  #features.main-value .mv-entry h4 { font-size: 17px; }
-  #features.main-value .split-white { padding-left: 16px; }
-  #features.main-value .split-white span { font-size: 12px; }
-  #features.main-value .lesson-stack i { font-size: 10px; padding-inline: 7px; }
-  #features.main-value .board-cols { gap: 4px; padding: 8px; }
-  #features.main-value .board-cols i { padding: 6px; }
-  #features.main-value .board-cols b,
-  #features.main-value .board-cols span { font-size: 10px; }
-  #features.main-value .window-dots.hw-mini-crumbs { height: 25px; font-size: 10px; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
 @media (forced-colors: active) {
-  #features.main-value .mv-art { border: 1px solid CanvasText; }
+  
 }
 
-/* 1102 current native Board photo. Existing168 window/174 frame retained.
-   Exact image2880x1722; desktop crop starts at source(540,160), width2280.
-   Phone isolates the complete first real card, source(550,1110,450,420). */
-#features.main-value .f-board .mv-native-briefs-viewport{position:absolute;inset:0;overflow:hidden;background:#fff}
-#features.main-value .f-board .mv-native-briefs-viewport img{position:absolute;left:0;top:0;display:block;max-width:none;width:126.315789473684%;height:auto;transform:translate(-18.75%,-9.291521486643%)}
+
+
+
 @media(max-width:700px){
-  #features.main-value .f-board .mv-native-briefs-viewport{inset:0 auto 0 50%;height:100%;width:auto;aspect-ratio:450/420;transform:translateX(-50%)}
-  #features.main-value .f-board .mv-native-briefs-viewport img{width:640%;transform:translate(-19.097222222222%,-64.459930313589%)}
+  
+  
 }
 
-/* 1102 current native active Read photo. Uses the same existing168 window.
-   Desktop source(520,80), width2320: outline, lesson and on-this-page.
-   Phone source(1070,100), width1260: actual Read/title/body detail, not a phone screenshot. */
-#features.main-value .f-how .mv-native-reader-viewport{position:absolute;inset:0;overflow:hidden;background:#fff}
-#features.main-value .f-how .mv-native-reader-viewport img{position:absolute;left:0;top:0;display:block;max-width:none;width:124.137931034483%;height:auto;transform:translate(-18.055555555556%,-4.645760743322%)}
+
+
+
 @media(max-width:700px){
-  #features.main-value .f-how .mv-native-reader-viewport img{width:228.571428571429%;transform:translate(-37.152777777778%,-5.807200929152%)}
+  
 }
 
-/* 1102: actual current Today checklist in the existing168 window/174 frame.
-   Desktop source crop starts(600,760), width920. Actual390 phone crop starts(22,432), width334.
-   The former864px-wide historical strip is replaced; no task UI is reconstructed. */
-#features.main-value .f-day .mv-native-day-viewport{position:absolute;inset:0;display:block;overflow:hidden;background:#fff}
-#features.main-value .f-day .mv-native-day-viewport img{position:absolute;left:0;top:0;display:block;max-width:none;width:313.043478260870%;height:auto;aspect-ratio:auto;transform:translate(-20.833333333333%,-44.134727061556%)}
+
+
+
 @media(max-width:700px){
-  #features.main-value .f-day .mv-native-day-viewport img{width:116.766467065868%;transform:translate(-5.641025641026%,-51.184834123223%)}
+  
 }

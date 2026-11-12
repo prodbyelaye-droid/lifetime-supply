@@ -1,13 +1,6 @@
-/* element finals on the landing · Thu 12 Nov 2026
-   One section per element final (out/el-E1 to E18, final/), each in its own commit. Loaded last, after colour-c-remap-landing.css.
-   Selectors carry three ids through :not() so they win over the stacked landing files; !important only where the rule it
-   replaces already uses it. Face: type D, Albert Sans (PICKS 04:17), through --brand-font-text. */
 
-/* ---------- el-E1 · primary button (out/el-E1/final/primary-button.css) ----------
-   ink on white: the ramp #2E2E2E to #111111, rim #1B1C1F, the 1 px light line under the rim (291).
-   white on the sky (the price band): 16's white pill with the sky's deep blue ring and shadow.
-   sizes: lg 48 (50 from 1024 wide) with 26 / 28 sides, label 16; md 40 with 22 sides, label 15.
-   label 500, -0.02em (type D: "Medium 500 at -0.02em for headlines, the name and buttons"). */
+
+
 :root {
   --e1-ink-top: #2E2E2E; --e1-ink: #111111; --e1-rim: #1B1C1F;
   --e1-light: rgba(255, 255, 255, .15); --e1-light-hover: rgba(255, 255, 255, .26);
@@ -16,249 +9,173 @@
   --e1-white-hover: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 50%, #FAFAFA 91%, #FFFFFF 100%);
   --e1-ease: cubic-bezier(.28, 1.4, .36, 1); --e1-ease-out: cubic-bezier(.22, 1, .36, 1);
 }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.ms-more, .step-cta, .hero-cta), html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask button { --h: 40px; --px: 22px; --fs: 15px; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button) {
-  box-sizing: border-box !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: .45em !important;
-  height: var(--h) !important; min-height: var(--h) !important; padding: 0 var(--px) !important; border-radius: 999px !important;
-  font: 500 var(--fs)/1 var(--brand-font-text) !important; letter-spacing: -.02em !important; white-space: nowrap; text-decoration: none !important;
-  color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF;
-  background: linear-gradient(180deg, var(--e1-ink-top) 0%, var(--e1-ink) 100%) !important;
-  border: 1px solid var(--e1-rim) !important;
-  box-shadow: inset 0 1px 0 var(--e1-light), var(--e1-shadow) !important;
-  transition: box-shadow .16s var(--e1-ease-out), background-color .16s var(--e1-ease-out), transform .2s var(--e1-ease) !important;
-}
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta) { --h: 48px; --px: 26px; --fs: 16px; }
-@media (min-width: 1024px) { html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta) { --h: 50px; --px: 28px; } }
-html:not(#e-a):not(#e-b):not(#e-c) body .dl-btn > svg { width: 1.07em !important; height: 1.07em !important; flex: none; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):hover {
-  background: linear-gradient(180deg, var(--e1-ink-top) 0%, var(--e1-ink) 100%) !important;
-  box-shadow: inset 0 1px 0 var(--e1-light-hover), 0 1px 1px rgba(0, 0, 0, .22), 0 2px 5px -1px rgba(0, 0, 0, .14) !important;
-}
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):active {
-  background: var(--e1-ink) !important; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .45), 0 .5px 1px rgba(0, 0, 0, .14) !important; transform: scale(.97);
-}
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button):focus-visible { outline: 2px solid #111111 !important; outline-offset: 3px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.ms-more, .step-cta, .hero-cta):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --h: 40px; --px: 22px; --fs: 15px; }
 
-/* white on the sky: the price band's "get lifetime access" (el-E16 A) */
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy {
-  box-sizing: border-box !important; height: 48px !important; min-height: 48px !important; padding: 0 26px !important; border-radius: 999px !important;
-  display: inline-flex !important; align-items: center !important; justify-content: center !important;
-  font: 500 16px/1 var(--brand-font-text) !important; letter-spacing: -.02em !important;
-  color: #111111 !important; -webkit-text-fill-color: #111111;
-  background: var(--e1-white) padding-box !important;
-  border: 1px solid rgba(8, 26, 74, .40) !important;
-  box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF, 0 1px 2px rgba(8, 26, 74, .40), 0 2px 6px -1px rgba(8, 26, 74, .25) !important;
-  transition: box-shadow .16s var(--e1-ease-out), transform .2s var(--e1-ease) !important;
-}
-@media (min-width: 1024px) { html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy { height: 50px !important; min-height: 50px !important; padding: 0 28px !important; } }
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:hover {
-  background: var(--e1-white-hover) padding-box !important;
-  box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #FFFFFF, 0 2px 4px rgba(8, 26, 74, .40), 0 3px 8px -2px rgba(8, 26, 74, .30) !important;
-}
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:active { background: #EFEFEF padding-box !important; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .12) !important; transform: scale(.97); }
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outline: 2px solid #FFFFFF !important; outline-offset: 3px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --h: 48px; --px: 26px; --fs: 16px; }
+@media (min-width: 1024px) { html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .close-cta):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ --h: 50px; --px: 28px; } }
+html:not(#e-a):not(#e-b):not(#e-c) body .dl-btn > svg:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 1.07em !important; height: 1.07em !important; flex: none; }
+
+
+
+
+
+
+@media (min-width: 1024px) {  }
+
+
+
 
 @media (prefers-reduced-motion: reduce) {
-  html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy) { transition: none !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body :is(.dl-btn, .ms-more, .close-cta, .step-cta, .hero-cta, #contact .ask button, #price .price-buy):active { transform: none; }
+  
+  
 }
 
-/* ---------- el-E2 · secondary, quiet and plain buttons, links (out/el-E2/final/SPEC.md) ----------
-   t20 nav: log in is the outline md (302: 36 tall, 20 sides, 1 px ink ring on the page); pause motion is plain md with the
-   pause icon at 16 in the icon grey, the quiet fill on hover. Nav words are .ls-nav-link (500 15/22 ink, underline on hover).
-   t21 download: log in is the outline lg (48); "opening it the first time" is a link. steps: the mock bar's log in, outline md.
-   links (t22, t24): ink, never blue, a 1 px underline 3 px under, the line at 35 % until hover; on the sky, white at 60 %.
-   t23 footer: .ls-nav-link on the sky, white 500 15/22, no underline until hover, 24 apart. Focus: one ink ring for the page, as E1 (critic slice fix 4): 2 px #111, offset 3 on buttons, 2 on words; white on the sky.
-   The pause control is in the page as the script draws it (icon, "pause", " motion" from 430 px up), so nothing swaps after load (fix 5). */
+
 :root { --e2-ink: #141414; --e2-icon: #6E6E73; --e2-quiet: #F0F0F0; --e2-quiet-hover: #E8E8E8; --e2-outline-hover: #F3F3F3; --e2-outline-pressed: #E8E8E8;
   --e2-focus: #111111; --e2-line: rgba(20, 20, 20, .35); --e2-ease-out: cubic-bezier(.22, 1, .36, 1); --e2-ease: cubic-bezier(.28, 1.4, .36, 1);
   --e2-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='4' width='4' height='16' rx='1'/%3E%3Crect x='6' y='4' width='4' height='16' rx='1'/%3E%3C/svg%3E");
   --e2-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 20 12 6 21 6 3'/%3E%3C/svg%3E"); }
 
-/* nav words */
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a { font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: var(--e2-ink) !important; text-decoration: none !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:hover { text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:focus-visible { outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
-/* polish (critic 09:41): the ring hugged the letters (the "h" of "how it works" nearly touched it). 4 px more room left and
-   right, given as padding the margin takes back, so the words do not move; the ring keeps its 2 px above and below */
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a { padding-inline: 4px; margin-inline: -4px; }
 
-/* outline: log in (nav md 36, download lg 48, the steps mock md 36) */
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login) {
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: var(--e2-ink) !important; text-decoration: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:hover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:focus-visible:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
+
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-inline: 4px; margin-inline: -4px; }
+
+
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   box-sizing: border-box !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
   height: 36px !important; min-height: 36px !important; padding: 0 20px !important; border-radius: 999px !important;
   font: 500 15px/1 var(--brand-font-text) !important; letter-spacing: -.02em !important; color: var(--e2-ink) !important; -webkit-text-fill-color: var(--e2-ink);
   text-decoration: none !important; background: #FFFFFF !important; border: 1px solid var(--e2-ink) !important; box-shadow: none !important;
   transition: background-color .16s var(--e2-ease-out), transform .2s var(--e2-ease) !important;
 }
-html:not(#e-a):not(#e-b):not(#e-c) body #download .dl17-copy .dl-login { height: 48px !important; min-height: 48px !important; padding: 0 22px !important; font-size: 16px !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):hover { background: var(--e2-outline-hover) !important; border-color: var(--e2-ink) !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):active { background: var(--e2-outline-pressed) !important; transform: scale(.98); }
 
-/* plain: pause motion, the pause icon (16, 1.5 stroke) in the icon grey */
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle {
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):hover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background: var(--e2-outline-hover) !important; border-color: var(--e2-ink) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login):active:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background: var(--e2-outline-pressed) !important; transform: scale(.98); }
+
+
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   box-sizing: border-box; height: 36px !important; min-height: 36px !important; padding: 0 20px 0 16px !important; margin-right: 8px !important; gap: 8px !important;
   border-radius: 999px !important; font: 500 15px/1 var(--brand-font-text) !important; letter-spacing: -.02em; color: var(--e2-ink) !important;
   background: transparent !important; transition: background-color .16s var(--e2-ease-out), transform .2s var(--e2-ease);
 }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle span { font: inherit !important; color: inherit !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle::before { content: none !important; display: none !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle svg { width: 16px !important; height: 16px !important; flex: none; color: var(--e2-icon); transition: color .16s var(--e2-ease-out); }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover svg { color: var(--e2-ink); }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover { background: var(--e2-quiet) !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:active { background: var(--e2-quiet-hover) !important; transform: scale(.98); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle span:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font: inherit !important; color: inherit !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::before{ content: none !important; display: none !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle svg:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ width: 16px !important; height: 16px !important; flex: none; color: var(--e2-icon); transition: color .16s var(--e2-ease-out); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover svg:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color: var(--e2-ink); }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:hover:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background: var(--e2-quiet) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:active:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ background: var(--e2-quiet-hover) !important; transform: scale(.98); }
 
-/* focus for the outline and plain buttons */
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):focus-visible {
+
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):focus-visible:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   outline: 2px solid var(--e2-focus) !important; outline-offset: 3px !important; box-shadow: none !important;
 }
 @media (max-width: 700px) {
-  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle { padding: 0 12px 0 10px !important; margin-right: 4px !important; font-size: 14px !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .header-login { padding: 0 16px !important; font-size: 14px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .motion-toggle:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 0 12px 0 10px !important; margin-right: 4px !important; font-size: 14px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .header-login:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding: 0 16px !important; font-size: 14px !important; }
 }
 
-/* links: ink, a 1 px line 3 px under, at 35 % until hover */
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])) {
-  text-decoration-line: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important;
-  text-decoration-color: var(--e2-line) !important; transition: text-decoration-color .16s var(--e2-ease-out);
-}
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])):hover { text-decoration-color: currentColor !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.prose-link, .dl17-help > summary, #founder a:not([class]), #questions a:not([class])):focus-visible { outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
-/* on the sky: the price band's licence, terms, privacy, refund policy */
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a {
-  color: #FFFFFF !important; text-decoration-line: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important;
-  text-decoration-color: rgba(255, 255, 255, .60) !important; transition: text-decoration-color .16s var(--e2-ease-out);
-}
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a:hover { text-decoration-color: #FFFFFF !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #price .price-legal a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; border-radius: 4px; }
 
-/* footer on the sky: nav links, white, no underline until hover */
-html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links { column-gap: 24px !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a { min-width: 0 !important; font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: #FFFFFF !important; text-decoration: none !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:hover { text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; text-decoration-color: #FFFFFF !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #footer .footer-links a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; border-radius: 4px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (prefers-reduced-motion: reduce) {
-  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login) { transition: none !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):active { transform: none; }
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transition: none !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .hero.hero-b .motion-toggle, .dl-login, .step-login):active:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transform: none; }
 }
 
-/* ---------- el-E4 · the composer with an action (out/el-E4/final/SPEC.md, e4-fields.css) ----------
-   landing contact: the field family's box (corner 20, white, a 1 px ring at 25 % black, 42 % on hover, 1.5 px ink while
-   typing), padding 5 5 5 24, words 16/24 with 8 px above and below so the empty box is 50 tall, growing to six lines.
-   The form's label "tell me what you're stuck on." stays for screen readers only (critic slice fix 1: drawn, it repeated the
-   headline); the box rests empty, as the live page does. "open email app" is E1's md pill (40) inside on the right, on the
-   bottom line. Error: the ring 1.5 px in E4's error red and the script's own line (#contact-status) in the error red, 13/18.
-   Phones under 560: the pill goes full width under the words, inside the same box (E1: full width on phone). */
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask {
-  position: relative !important; box-sizing: border-box !important; display: flex !important; flex-direction: row !important; align-items: flex-end !important; gap: 8px !important;
-  min-height: 50px !important; padding: 5px 5px 5px 24px !important; border-radius: 20px !important;
-  background: #FFFFFF !important; border: 0 !important; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25) !important;
-  transition: box-shadow .22s cubic-bezier(.22, 1, .36, 1);
-}
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .42) !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:focus-within { box-shadow: inset 0 0 0 1.5px #141414 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask:has(textarea[aria-invalid="true"]) { box-shadow: inset 0 0 0 1.5px #A3122A !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea {
-  flex: 1 1 auto !important; min-width: 0 !important; box-sizing: border-box !important; min-height: 40px !important; max-height: 160px !important;
-  padding: 8px 0 !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important;
-  font: 400 16px/24px var(--brand-font-text) !important; letter-spacing: 0; color: #141414 !important; caret-color: #141414;
-  outline: none !important; box-shadow: none !important; resize: none !important; field-sizing: content; overflow-y: auto;
-}
-/* the label is read, not drawn (production's visually hidden rule); pinned to the box's top left so it sits over the white field */
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask .ask-label { left: 0; top: 0; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { flex: none !important; align-self: flex-end !important; margin: 0 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .ask:has(textarea[aria-invalid="true"]) ~ #contact-status { color: #A3122A !important; font: 400 13px/18px var(--brand-font-text) !important; }
-/* the error line sits directly under the box, lined up with the words (24 px in, as the words sit in the box); the note
-   follows it. The handoff line keeps its place under the note. (critic 09:41: the form's own error line, no browser bubble) */
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > #contact-help { order: 2; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > #contact-status { order: 3; }
-html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage > .ask:has(textarea[aria-invalid="true"]) ~ #contact-status {
-  order: 1; box-sizing: border-box; width: min(620px, 100%) !important; max-width: none !important; margin: 8px auto 0 !important; padding: 0 24px !important; text-align: left !important;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 559px) {
-  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { flex-wrap: wrap !important; padding: 5px !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask textarea { flex-basis: 100% !important; padding: 8px 19px !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask button { width: 100% !important; }
+  
+  
+  
 }
-@media (prefers-reduced-motion: reduce) { html:not(#e-a):not(#e-b):not(#e-c) body #contact .contact-stage .ask { transition: none; } }
+@media (prefers-reduced-motion: reduce) {  }
 
-/* ---------- el-E6 · tooltips: the portal demo's cues (out/el-E6/final/SPEC.md, tooltip) ----------
-   one tooltip: #1C1C1C, white 500 13/18, padding 6 10, corner 8, 291's top light and a short soft shadow; in 4 px and
-   fade over .16 s on the house ease, out over .12 s, no scale. Dark keeps a dark tooltip (#262626, a 12 % white edge)
-   instead of flipping to near white. The demo cues keep their arrows: 10 x 5 with a rounded tip, overlapping the body by
-   .5 px (left of "check out the briefs." and the log in cue, under "try dark mode.", above "click a brief to open it..."). */
-html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip {
+
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   padding: 6px 10px !important; border-radius: 8px !important; background: #1C1C1C !important; color: #FFFFFF !important;
   font-size: 13px !important; line-height: 18px !important; font-weight: 500 !important; letter-spacing: -.003em;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 1px 2px rgba(0, 0, 0, .12), 0 4px 12px -2px rgba(0, 0, 0, .16) !important;
   transform: translateY(4px); transition: opacity .12s ease, transform .12s ease, visibility 0s linear .12s !important;
 }
-html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on] { transform: none; transition: opacity .16s cubic-bezier(.22, 1, .36, 1), transform .16s cubic-bezier(.22, 1, .36, 1) !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-stage[data-theme="dark"] .l4-tip, .portal-preview[data-l4-theme="dark"] .l4-hint) {
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transform: none; transition: opacity .16s cubic-bezier(.22, 1, .36, 1), transform .16s cubic-bezier(.22, 1, .36, 1) !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-stage[data-theme="dark"] .l4-tip, .portal-preview[data-l4-theme="dark"] .l4-hint):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   background: #262626 !important; color: #FFFFFF !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), inset 0 0 0 .5px rgba(255, 255, 255, .12), 0 1px 2px rgba(0, 0, 0, .12), 0 4px 12px -2px rgba(0, 0, 0, .16) !important;
 }
-html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip::after { transform: none !important; border-radius: 0 !important; background: inherit !important; margin: 0 !important; }
-/* pointing left, centred on the line */
-html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-cue, .l4-cue2)::after {
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{ transform: none !important; border-radius: 0 !important; background: inherit !important; margin: 0 !important; }
+
+html:not(#e-a):not(#e-b):not(#e-c) body :is(.l4-cue, .l4-cue2):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
   width: 5px !important; height: 10px !important; left: -4.5px !important; top: 50% !important; bottom: auto !important; right: auto !important; margin-top: -5px !important;
-  clip-path: path('M5 0 L0.8 4.2 Q0 5 0.8 5.8 L5 10 Z');
+  clip-path: path("M5 0 L0.8 4.2 Q0 5 0.8 5.8 L5 10 Z");
 }
-/* pointing up: "try dark mode." (15 px from its right) */
-html:not(#e-a):not(#e-b):not(#e-c) body .l4-hint::after {
+
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-hint:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
   width: 10px !important; height: 5px !important; top: -4.5px !important; right: 15px !important; left: auto !important; bottom: auto !important;
-  clip-path: path('M0 5 L4.2 0.8 Q5 0 5.8 0.8 L10 5 Z');
+  clip-path: path("M0 5 L4.2 0.8 Q5 0 5.8 0.8 L10 5 Z");
 }
-/* pointing down: "click a brief to open it..." (18 px from its left) */
-html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3::after {
+
+html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue3:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
   width: 10px !important; height: 5px !important; bottom: -4.5px !important; left: 18px !important; top: auto !important; right: auto !important;
-  clip-path: path('M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z');
+  clip-path: path("M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z");
 }
 @media (max-width: 700px) {
-  /* phones keep the demo's own cue size (12 px, the 188 px cue width), so each cue holds its two lines and sits whole
-     inside the demo screen (critic slice fix 3: at 13/18 the first cue wrapped to three lines and the screen's edge cut it) */
-  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip { font-size: 12px !important; line-height: 16px !important; padding: 6px 10px !important; }
-  /* demo recapture: the demo's sign-in is the portal's own sign-in B, its form at the foot of the screen. On phones the
-     log in cue sat under the form and the screen's edge cut it; it sits just above the form instead, its arrow pointing
-     down from the middle (--pyt: the form's top, set by js/l4-portal.js) */
-  html:not(#e-a):not(#e-b):not(#e-c) body .l4-stage .l4-cue { top: var(--pyt, var(--py)); translate: -50% -100%; }
-  html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue::after {
+  
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-size: 12px !important; line-height: 16px !important; padding: 6px 10px !important; }
+  
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-stage .l4-cue:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ top: var(--pyt, var(--py)); translate: -50% -100%; }
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-cue:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
     width: 10px !important; height: 5px !important; bottom: -4.5px !important; top: auto !important; left: 50% !important; margin: 0 0 0 -5px !important;
-    clip-path: path('M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z');
+    clip-path: path("M0 0 L4.2 4.2 Q5 5 5.8 4.2 L10 0 Z");
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip, html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on] { transform: none; transition: opacity .16s ease, visibility 0s linear .16s !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),html:not(#e-a):not(#e-b):not(#e-c) body .l4-tip[data-on]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ transform: none; transition: opacity .16s ease, visibility 0s linear .16s !important; }
 }
 
-/* ---------- el-E17 · member identity on the landing (out/el-E17/final/SPEC.md, "who shows as what") ----------
-   "landing quotes: no avatar, the words and his source line only" (why producers choose). The mark that stood in each
-   quote's avatar spot goes; the byline keeps "producer" and his source line ("on the portal", "on the sounds"...).
-   Members on public surfaces stay blurred as they are (the texts and dms, the hero window, the demo). */
-html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__mark { display: none !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #why-producers-choose .producer-quote__byline { gap: 0 !important; margin-bottom: 8px !important; }
 
-/* ---------- el-E8 · figures (out/el-finish/el-E8/final/SPEC.md, el-E8-figures.css; critic 05:58: yes) ----------
-   row 304's "275 kWh": every figure regular (400), the ink of its line (white on the sky), never blue, never bold;
-   tabular where figures sit in a column. Albert Sans on the landing (critic 04:17), the same ratios.
-   In place, CSS only: the founder card's streams figure and its three counts, the price, the steps mock's price,
-   and the day-in-my-workflow step numbers (cobalt 600 before: ink, regular). Headlines that hold a figure
-   ("6,000+ files today.") keep the headline weight; the bold lead-ins of the feature lists are list structure. */
-html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > b { font-weight: 400 !important; letter-spacing: -.045em !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row b { font-weight: 400 !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #price .pixel[data-price] { font-weight: 400 !important; letter-spacing: -.045em !important; font-variant-numeric: lining-nums tabular-nums; }
-html:not(#e-a):not(#e-b):not(#e-c) body .mini-pay .mini-price { font-weight: 400 !important; letter-spacing: -.03em; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body #flow .day96-num { font-weight: 400 !important; color: #090909 !important; -webkit-text-fill-color: #090909; font-variant-numeric: lining-nums tabular-nums; }
-/* the unit is part of the figure, in the same ink and weight (304): "streams", "video views", "shazams", "credits" */
-html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > span { font-weight: 400 !important; color: #090909 !important; }
-html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row li { color: #090909 !important; font-weight: 400 !important; }
 
-/* ---------- polish · "see all 79" at phone width (critic 09:41 and 10:23) ----------
-   Under 700 the collapsed wall fades out over its last 270 px, so the button sat about 130 px under the last card you can
-   read and only about 30 px above the next section's kicker. It moves up into the faded band and the section gets the
-   room below instead: the button, the fade and the next heading read as one step. Wider screens are unchanged. */
+
+
+
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-weight: 400 !important; letter-spacing: -.045em !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row b:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-weight: 400 !important; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+
+html:not(#e-a):not(#e-b):not(#e-c) body .mini-pay .mini-price:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-weight: 400 !important; letter-spacing: -.03em; font-variant-numeric: lining-nums tabular-nums; color: #090909 !important; }
+
+
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > span:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ font-weight: 400 !important; color: #090909 !important; }
+html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row li:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ color: #090909 !important; font-weight: 400 !important; }
+
+
 @media (max-width: 700px) {
-  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106 .ms-grid.is-collapsed + .ms-more { position: relative; z-index: 1; display: flex !important; width: max-content; margin: -64px auto 0 !important; }
-  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106:has(.ms-grid.is-collapsed) { padding-bottom: 64px !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106 .ms-grid.is-collapsed + .ms-more:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ position: relative; z-index: 1; display: flex !important; width: max-content; margin: -64px auto 0 !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106:has(.ms-grid.is-collapsed):not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){ padding-bottom: 64px !important; }
 }

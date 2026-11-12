@@ -1,4 +1,4 @@
-/* 059 A · manager pick 20:45; owner may override. sRGB tokens only. */
+
 :root {
   --ls-ink: var(--brand-navy-1);
   --ls-on-ink: #FFFFFF;
@@ -76,7 +76,7 @@
   --ls-mint-text: var(--brand-green-3);
   --ls-mint-text-on-v1: var(--brand-green-8);
 }
-[data-ls-room="briefs"] {
+[data-ls-room="briefs"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-petal-08);
   --room-20: var(--ls-petal-20);
   --room-45: var(--ls-petal-45);
@@ -86,7 +86,7 @@
   --room-text-on-v1: var(--ls-petal-text-on-v1);
   --room-on-base: var(--ls-petal-on-base);
 }
-[data-ls-room="vault"] {
+[data-ls-room="vault"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-periwinkle-08);
   --room-20: var(--ls-periwinkle-20);
   --room-45: var(--ls-periwinkle-45);
@@ -96,7 +96,7 @@
   --room-text-on-v1: var(--ls-periwinkle-text-on-v1);
   --room-on-base: var(--ls-periwinkle-on-base);
 }
-[data-ls-room="kits"] {
+[data-ls-room="kits"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-saffron-08);
   --room-20: var(--ls-saffron-20);
   --room-45: var(--ls-saffron-45);
@@ -106,7 +106,7 @@
   --room-text-on-v1: var(--ls-saffron-text-on-v1);
   --room-on-base: var(--ls-saffron-on-base);
 }
-[data-ls-room="community"] {
+[data-ls-room="community"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-mint-08);
   --room-20: var(--ls-mint-20);
   --room-45: var(--ls-mint-45);
@@ -116,7 +116,7 @@
   --room-text-on-v1: var(--ls-mint-text-on-v1);
   --room-on-base: var(--ls-mint-on-base);
 }
-[data-ls-room="mentorship"] {
+[data-ls-room="mentorship"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-orchid-08);
   --room-20: var(--ls-orchid-20);
   --room-45: var(--ls-orchid-45);
@@ -126,7 +126,7 @@
   --room-text-on-v1: var(--ls-orchid-text-on-v1);
   --room-on-base: var(--ls-orchid-on-base);
 }
-[data-ls-room="guides"] {
+[data-ls-room="guides"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-coral-08);
   --room-20: var(--ls-coral-20);
   --room-45: var(--ls-coral-45);
@@ -136,7 +136,7 @@
   --room-text-on-v1: var(--ls-coral-text-on-v1);
   --room-on-base: var(--ls-coral-on-base);
 }
-[data-ls-room="today"] {
+[data-ls-room="today"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-petal-08);
   --room-20: var(--ls-petal-20);
   --room-45: var(--ls-petal-45);
@@ -146,7 +146,7 @@
   --room-text-on-v1: var(--ls-petal-text-on-v1);
   --room-on-base: var(--ls-petal-on-base);
 }
-[data-ls-room="submissions"] {
+[data-ls-room="submissions"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-periwinkle-08);
   --room-20: var(--ls-periwinkle-20);
   --room-45: var(--ls-periwinkle-45);
@@ -156,7 +156,7 @@
   --room-text-on-v1: var(--ls-periwinkle-text-on-v1);
   --room-on-base: var(--ls-periwinkle-on-base);
 }
-[data-ls-section="hero"] {
+[data-ls-section="hero"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-periwinkle-08);
   --room-20: var(--ls-periwinkle-20);
   --room-45: var(--ls-periwinkle-45);
@@ -166,7 +166,7 @@
   --room-text-on-v1: var(--ls-periwinkle-text-on-v1);
   --room-on-base: var(--ls-periwinkle-on-base);
 }
-[data-ls-section="demo"] {
+[data-ls-section="demo"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-orchid-08);
   --room-20: var(--ls-orchid-20);
   --room-45: var(--ls-orchid-45);
@@ -176,7 +176,7 @@
   --room-text-on-v1: var(--ls-orchid-text-on-v1);
   --room-on-base: var(--ls-orchid-on-base);
 }
-[data-ls-section="inside"] {
+[data-ls-section="inside"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-saffron-08);
   --room-20: var(--ls-saffron-20);
   --room-45: var(--ls-saffron-45);
@@ -186,7 +186,7 @@
   --room-text-on-v1: var(--ls-saffron-text-on-v1);
   --room-on-base: var(--ls-saffron-on-base);
 }
-[data-ls-section="flow"] {
+[data-ls-section="flow"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-mint-08);
   --room-20: var(--ls-mint-20);
   --room-45: var(--ls-mint-45);
@@ -196,7 +196,7 @@
   --room-text-on-v1: var(--ls-mint-text-on-v1);
   --room-on-base: var(--ls-mint-on-base);
 }
-[data-ls-section="deep"] {
+[data-ls-section="deep"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-petal-08);
   --room-20: var(--ls-petal-20);
   --room-45: var(--ls-petal-45);
@@ -206,7 +206,7 @@
   --room-text-on-v1: var(--ls-petal-text-on-v1);
   --room-on-base: var(--ls-petal-on-base);
 }
-[data-ls-section="stats"] {
+[data-ls-section="stats"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-periwinkle-08);
   --room-20: var(--ls-periwinkle-20);
   --room-45: var(--ls-periwinkle-45);
@@ -216,7 +216,7 @@
   --room-text-on-v1: var(--ls-periwinkle-text-on-v1);
   --room-on-base: var(--ls-periwinkle-on-base);
 }
-[data-ls-section="features"] {
+[data-ls-section="features"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-coral-08);
   --room-20: var(--ls-coral-20);
   --room-45: var(--ls-coral-45);
@@ -226,7 +226,7 @@
   --room-text-on-v1: var(--ls-coral-text-on-v1);
   --room-on-base: var(--ls-coral-on-base);
 }
-[data-ls-section="more"] {
+[data-ls-section="more"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-saffron-08);
   --room-20: var(--ls-saffron-20);
   --room-45: var(--ls-saffron-45);
@@ -236,7 +236,7 @@
   --room-text-on-v1: var(--ls-saffron-text-on-v1);
   --room-on-base: var(--ls-saffron-on-base);
 }
-[data-ls-section="portal"] {
+[data-ls-section="portal"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-mint-08);
   --room-20: var(--ls-mint-20);
   --room-45: var(--ls-mint-45);
@@ -246,7 +246,7 @@
   --room-text-on-v1: var(--ls-mint-text-on-v1);
   --room-on-base: var(--ls-mint-on-base);
 }
-[data-ls-section="steps"] {
+[data-ls-section="steps"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-orchid-08);
   --room-20: var(--ls-orchid-20);
   --room-45: var(--ls-orchid-45);
@@ -256,7 +256,7 @@
   --room-text-on-v1: var(--ls-orchid-text-on-v1);
   --room-on-base: var(--ls-orchid-on-base);
 }
-[data-ls-section="closing"] {
+[data-ls-section="closing"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-saffron-08);
   --room-20: var(--ls-saffron-20);
   --room-45: var(--ls-saffron-45);
@@ -266,7 +266,7 @@
   --room-text-on-v1: var(--ls-saffron-text-on-v1);
   --room-on-base: var(--ls-saffron-on-base);
 }
-[data-ls-section="questions"] {
+[data-ls-section="questions"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-periwinkle-08);
   --room-20: var(--ls-periwinkle-20);
   --room-45: var(--ls-periwinkle-45);
@@ -276,7 +276,7 @@
   --room-text-on-v1: var(--ls-periwinkle-text-on-v1);
   --room-on-base: var(--ls-periwinkle-on-base);
 }
-[data-ls-section="contact"] {
+[data-ls-section="contact"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-petal-08);
   --room-20: var(--ls-petal-20);
   --room-45: var(--ls-petal-45);
@@ -286,7 +286,7 @@
   --room-text-on-v1: var(--ls-petal-text-on-v1);
   --room-on-base: var(--ls-petal-on-base);
 }
-[data-ls-section="close"] {
+[data-ls-section="close"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-mint-08);
   --room-20: var(--ls-mint-20);
   --room-45: var(--ls-mint-45);
@@ -296,7 +296,7 @@
   --room-text-on-v1: var(--ls-mint-text-on-v1);
   --room-on-base: var(--ls-mint-on-base);
 }
-[data-ls-section="footer"] {
+[data-ls-section="footer"]:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
   --room-08: var(--ls-orchid-08);
   --room-20: var(--ls-orchid-20);
   --room-45: var(--ls-orchid-45);
@@ -306,4 +306,4 @@
   --room-text-on-v1: var(--ls-orchid-text-on-v1);
   --room-on-base: var(--ls-orchid-on-base);
 }
-/* Apply --room-text only on white/pale surfaces; --room-text-on-v1 on V1. Full-strength fills are decorative. Buttons use --ls-ink, nav --ls-nav. */
+

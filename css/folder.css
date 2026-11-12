@@ -1,32 +1,8 @@
-/* ══ THE FOLDER ═══════════════════════════════════════════════════════════════
-   The White Room folder object, CSS only (design/white-room/folder-object.html).
-   Base 400 × 330; every length below is base × --s, so one component draws the
-   login object (0.78), the home doors (0.20), a card (0.22) and a kit cover
-   (0.42). Parts in paint order: ground shadow → back panel → tab → fillet →
-   sheet(s) → front panel (sheen inside) → badge. No image, no SVG, no three.js.
 
-   Markup, parts in this order:
-     <div class="folder" style="--s: .22">
-       <i class="folder-ground"></i>
-       <i class="folder-back"></i>
-       <i class="folder-tab"></i>
-       <i class="folder-fillet"></i>
-       <i class="folder-sheet-2"></i>   (only paints in .is-open)
-       <i class="folder-sheet"></i>
-       <i class="folder-front"></i>
-       <i class="folder-lock"></i>      (only paints in .has-lock)
-       <i class="folder-new">NEW</i>    (only paints in .has-new)
-     </div>
-     <div class="folder-caption">the vault</div>
 
-   States: .is-open (two sheets rise, the front tips back), .has-lock (the ink
-   lock badge, bottom right), .has-new (the gold NEW pill, top right).
-   Variant: .folder-gold (The Room door and kit drops only). */
-
-  .folder {
+  .folder:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     --s: 1;
-    /* Blue, the default. The shadow tone is a triplet so one alpha ramp
-       serves every shadow on the object. */
+    
     --folder-shadow: 11, 45, 64;
     --folder-back-top: #4371b0;
     --folder-back-bottom: var(--blue-700);
@@ -43,14 +19,14 @@
     width: calc(400px * var(--s));
     height: calc(330px * var(--s));
   }
-  .folder > * {
+  .folder > *:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     position: absolute;
     display: block;
     box-sizing: border-box;
   }
 
-  /* 1 · ground shadow */
-  .folder-ground {
+  
+  .folder-ground:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(46px * var(--s));
     top: calc(288px * var(--s));
     width: calc(308px * var(--s));
@@ -63,8 +39,8 @@
     );
   }
 
-  /* 2 · back panel: square top-left corner, the tab sits on it */
-  .folder-back {
+  
+  .folder-back:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(40px * var(--s));
     top: calc(84px * var(--s));
     width: calc(320px * var(--s));
@@ -74,8 +50,8 @@
     box-shadow: 0 calc(10px * var(--s)) calc(24px * var(--s)) rgba(var(--folder-shadow), 0.14);
   }
 
-  /* 3 · tab: overlaps the body top by 6 */
-  .folder-tab {
+  
+  .folder-tab:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(40px * var(--s));
     top: calc(56px * var(--s));
     width: calc(150px * var(--s));
@@ -84,8 +60,8 @@
     background: var(--folder-back-top);
   }
 
-  /* 4 · fillet: the concave curve where the tab meets the body */
-  .folder-fillet {
+  
+  .folder-fillet:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(190px * var(--s));
     top: calc(72px * var(--s));
     width: calc(14px * var(--s));
@@ -97,8 +73,8 @@
     );
   }
 
-  /* 5 · the sheet (closed: one, tucked behind the front) */
-  .folder-sheet {
+  
+  .folder-sheet:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(64px * var(--s));
     top: calc(96px * var(--s));
     width: calc(272px * var(--s));
@@ -111,12 +87,12 @@
       var(--folder-sheet-tint) 100%
     );
   }
-  .folder-sheet-2 {
+  .folder-sheet-2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     display: none;
   }
 
-  /* 6 · front panel, sheen inside */
-  .folder-front {
+  
+  .folder-front:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(40px * var(--s));
     top: calc(122px * var(--s));
     width: calc(320px * var(--s));
@@ -134,7 +110,7 @@
       inset 0 calc(-2px * var(--s)) 0 rgba(0, 0, 0, 0.1),
       0 calc(18px * var(--s)) calc(30px * var(--s)) rgba(var(--folder-shadow), 0.27);
   }
-  .folder-front::after {
+  .folder-front:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
     content: "";
     position: absolute;
     left: 0;
@@ -144,14 +120,13 @@
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%);
   }
 
-  /* 7 · badges, off until a state asks for them */
-  .folder-lock,
-  .folder-new {
+  
+  .folder-lock:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)),.folder-new:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     display: none;
   }
 
-  /* ── .is-open: two sheets rise, the front tips back ────────────────────── */
-  .folder.is-open .folder-sheet-2 {
+  
+  .folder.is-open .folder-sheet-2:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     display: block;
     left: calc(98px * var(--s));
     top: calc(78px * var(--s));
@@ -162,7 +137,7 @@
     transform: rotate(3.5deg);
     transform-origin: 100% 100%;
   }
-  .folder.is-open .folder-sheet {
+  .folder.is-open .folder-sheet:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     left: calc(58px * var(--s));
     top: calc(64px * var(--s));
     width: calc(262px * var(--s));
@@ -177,13 +152,13 @@
     transform-origin: 0% 100%;
     box-shadow: 0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(var(--folder-shadow), 0.11);
   }
-  .folder.is-open .folder-front {
+  .folder.is-open .folder-front:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     transform: perspective(calc(900px * var(--s))) rotateX(-18deg);
     transform-origin: 50% 100%;
   }
 
-  /* ── .has-lock: the ink lock badge, bottom right ───────────────────────── */
-  .folder.has-lock .folder-lock {
+  
+  .folder.has-lock .folder-lock:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -197,8 +172,8 @@
     border: calc(3px * var(--s)) solid var(--bone-50);
     box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.35);
   }
-  /* shackle */
-  .folder-lock::before {
+  
+  .folder-lock:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::before{
     content: "";
     display: block;
     width: calc(22px * var(--s));
@@ -208,8 +183,8 @@
     border-radius: calc(11px * var(--s)) calc(11px * var(--s)) 0 0;
     box-sizing: border-box;
   }
-  /* body */
-  .folder-lock::after {
+  
+  .folder-lock:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
     content: "";
     display: block;
     width: calc(36px * var(--s));
@@ -219,8 +194,8 @@
     margin-top: calc(-1px * var(--s));
   }
 
-  /* ── .has-new: the gold NEW pill, top right ────────────────────────────── */
-  .folder.has-new .folder-new {
+  
+  .folder.has-new .folder-new:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     display: flex;
     align-items: center;
     left: calc(292px * var(--s));
@@ -239,8 +214,8 @@
     box-shadow: 0 calc(6px * var(--s)) calc(14px * var(--s)) rgba(0, 0, 0, 0.25);
   }
 
-  /* ── .folder-gold: The Room door and kit drops only ────────────────────── */
-  .folder-gold {
+  
+  .folder-gold:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     --folder-shadow: 46, 39, 23;
     --folder-back-top: #8a6a1e;
     --folder-back-bottom: #5e4a16;
@@ -252,8 +227,8 @@
     --folder-front-edge: rgba(255, 246, 210, 0.7);
   }
 
-  /* ── caption under the object, like a desktop label ────────────────────── */
-  .folder-caption {
+  
+  .folder-caption:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     font-size: var(--text-base);
     font-weight: 500;
     line-height: 1.3;
@@ -261,22 +236,22 @@
     text-align: center;
   }
 
-/* Current signature-kit variant from the members portal. */
-  .folder-glass .folder-ground {
+
+  .folder-glass .folder-ground:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     background: radial-gradient(
       ellipse at center,
       rgba(var(--folder-shadow), 0.18) 0%,
       rgba(var(--folder-shadow), 0) 66%
     );
   }
-  .folder-glass .folder-back {
+  .folder-glass .folder-back:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     box-shadow: 0 calc(8px * var(--s)) calc(20px * var(--s)) rgba(var(--folder-shadow), 0.08);
   }
-  .folder-glass .folder-sheet {
+  .folder-glass .folder-sheet:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     height: calc(84px * var(--s));
     border-radius: calc(10px * var(--s));
   }
-  .folder-glass .folder-front {
+  .folder-glass .folder-front:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *)){
     background: linear-gradient(
       180deg,
       rgba(150, 210, 240, 0.66) 0%,
@@ -291,7 +266,7 @@
       inset 0 calc(-2px * var(--s)) 0 rgba(0, 0, 0, 0.06),
       0 calc(14px * var(--s)) calc(28px * var(--s)) rgba(var(--folder-shadow), 0.16);
   }
-  .folder-glass .folder-front::after {
+  .folder-glass .folder-front:not(:where(#top.ls-hero, #how-the-board-works, #flow, #inside, #more, #hear, #founder, #why-producers-choose, #giveaways, #download, #price, #updates, #questions, #close, #contact, #footer, #top.ls-hero *, #how-the-board-works *, #flow *, #inside *, #more *, #hear *, #founder *, #why-producers-choose *, #giveaways *, #download *, #price *, #updates *, #questions *, #close *, #contact *, #footer *))::after{
     height: calc(84px * var(--s));
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0) 100%);
   }
