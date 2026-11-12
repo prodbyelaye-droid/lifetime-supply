@@ -87,3 +87,21 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
   #price .l8-band{height:auto;min-height:840px}
   #price .l8-incl,#price .l8-worth{margin-top:72px}
 }
+
+/* row 5 · the ending: #close, the footer. The buy button sits about 340 px under the headline with the clouds still between them;
+   the footer keeps its name and mark, cut by the bottom edge as before, with less empty black above them */
+@media (min-width:701px){
+  #close.ls-close{height:800px}
+  #close.ls-close .lsc-sky{height:700px}
+  #close.ls-close .lsc-floor{top:660px}
+}
+@media (min-width:1440px){
+  #footer.ls-foot{height:640px}
+  #footer.ls-foot .lsf-mark{top:516px}
+}
+@media (max-width:700px){
+  #close.ls-close{height:700px}
+  #close.ls-close .lsc-sky{height:580px}
+  #close.ls-close .lsc-floor{top:540px}
+  #footer.ls-foot .lsf-name{margin-top:72px}
+}
