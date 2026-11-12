@@ -105,3 +105,21 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
   #close.ls-close .lsc-floor{top:540px}
   #footer.ls-foot .lsf-name{margin-top:72px}
 }
+
+/* row 6 · "what our members say." and "we got one." back on the grid: the older sheets (copy-1106, system-1105, l2-1104) stop
+   winning here, so the final's rules (sections-7-9.css, L6) apply: the 64 px edge and 1312 width, the h2 at 56/58 weight 500,
+   the lede at 20/29 under the headline, the wall in the grid's columns (four at 1200 and up, three below, two at 701 to 900). */
+@media (min-width:701px){
+  html body #main #members-say.ms1106,html body #main #we-got-one.ms1106{max-width:none;padding-left:var(--edge);padding-right:var(--edge);text-align:left}
+  html body #main #members-say.ms1106 h2.ls-heading-b,html body #main #we-got-one.ms1106 h2.ls-heading-b{
+    margin:0;max-width:none;font:var(--t-h2)!important;font-weight:500!important;letter-spacing:var(--t-h2-track)!important;text-align:left}
+  html body #main #we-got-one.ms1106 .ms-head{justify-content:flex-start}
+  html body #main #members-say.ms1106 .ms-lede,html body #main #we-got-one.ms1106 .ms-lede{margin:32px 0 0;max-width:533px;font:var(--t-lead);text-align:left;text-wrap:pretty}
+  html body #main #members-say.ms1106 .ms-grid,html body #main #we-got-one.ms1106 .ms-grid{columns:auto;column-count:4;column-gap:var(--grid-gutter);margin-top:64px}
+}
+@media (min-width:901px) and (max-width:1199px){
+  html body #main #members-say.ms1106 .ms-grid,html body #main #we-got-one.ms1106 .ms-grid{column-count:3}
+}
+@media (min-width:701px) and (max-width:900px){
+  html body #main #members-say.ms1106 .ms-grid,html body #main #we-got-one.ms1106 .ms-grid{column-count:2}
+}
