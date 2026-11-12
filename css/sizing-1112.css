@@ -1,0 +1,63 @@
+/* sizing and spacing fixes · Thu 12 Nov 2026 · landing/AUDIT-SIZING-1112.md, one block per row.
+   Loads last. Copy, colours and the mark are untouched: only sizes, spacing and layout. */
+
+/* row 1 · the missing 701 to 1439 tier (shared rule). 901 to 1439: the two-column sections as fractions of the grid.
+   At 1440 every value below lands on the 1440 numbers (panel-x 732, copy 533). */
+@media (min-width:901px) and (max-width:1439px){
+  .ls-hero{--panel-x:calc(var(--edge) + (100vw - 2 * var(--edge)) * .509)}
+  .ls-hero .copy{width:calc((100vw - 2 * var(--edge)) * .406)}
+  .ls-hero h1{width:auto}
+  /* the copy column is narrower here, so the hero grows with its copy instead of pinning it to a fixed height (it overran at 1024 and at 768 tall) */
+  .ls-hero{height:auto;min-height:clamp(760px,100vh,960px)}
+  .ls-hero .copy{position:relative;top:auto;bottom:auto;padding-bottom:var(--panel-in)}
+  .ls-hero .foot{margin-top:56px}
+  .ls-hero .nav{gap:24px}.ls-hero .nav .lockup{margin-right:18px;white-space:nowrap}.ls-hero .nav a.l{white-space:nowrap}
+  .ls-board,.ls-dayg{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(48px,9.4vw,135px)}
+  .ls-dayg{padding-right:var(--edge)}
+  .ls-lane .r{height:auto;min-height:56px;padding-top:8px;padding-bottom:8px}   /* a meaning that wraps to three lines grows its row */
+}
+/* 701 to 900: the phone's one-column layout for the hero, the board, the day and #inside, on a 40 px margin */
+@media (min-width:701px) and (max-width:900px){
+  #top.ls-hero,#how-the-board-works,#flow,#inside{--grid-margin:40px;--edge:40px}
+  .ls-hero{height:auto}
+  .ls-hero .nav{position:relative;left:auto;right:auto;padding:0 var(--grid-margin);gap:0}
+  .ls-hero .nav .lockup{margin-right:auto}.ls-hero .nav a.l{display:none}.ls-hero .login--nav{display:inline-flex}.ls-hero .panel .ctl .login{display:none}
+  .ls-hero .copy{position:relative;left:auto;width:auto;padding:0 var(--grid-margin);top:auto;bottom:auto}
+  .ls-hero h1{margin:28px 0 24px;width:auto}
+  .ls-hero .copy p:last-of-type{margin-bottom:24px}
+  .ls-hero .panel{position:relative;left:auto;right:auto;top:auto;bottom:auto;margin:40px var(--grid-margin) 0;height:560px;border-radius:16px;--sky-h:560px;--sky-shift:40px;--drift-dur:266s}
+  .ls-hero .panel .win{left:40px;top:80px;width:1060px;height:1000px}
+  .ls-hero .panel .ctl{right:14px;top:14px}
+
+  #how-the-board-works{padding-bottom:var(--section-pad)}
+  .ls-board{display:block;padding-right:0}
+  .ls-board .txt{padding:0 var(--grid-margin) 0 0}
+  .ls-sheetwrap{margin-top:40px;overflow:visible;height:auto}
+  .ls-lane{position:static;border-bottom:1px solid #E4E4E6;border-radius:16px 0 0 16px}
+  .ls-dayg{display:block;margin-top:40px;padding-right:var(--grid-margin)}
+  .ls-field{margin:24px calc(-1 * var(--grid-margin)) 0 0;height:480px;border-radius:12px 0 0 12px}
+  .ls-day .close{margin-top:72px}
+
+  .l3 .g{display:block}
+  .l3-kit{margin-top:40px;padding:0}
+  .l3-stat{margin-top:64px}
+  .l3-stat .say{margin-top:16px}
+  .l3-facts{margin-top:24px}
+  .l3-facts p{padding:12px 0}
+  .l3-table{margin:56px calc(-1 * var(--grid-margin)) 0;display:flex;flex-direction:column;border-left:0}
+  .l3-list{display:contents}
+  .l3-stage{order:2;border-top:1px solid var(--hairline)}
+}
+/* the same tier, the two rows that still ran past the window at 1024 and 768: the heard-on logo row and the cover row wrap, the three kit covers share their column, the board's lane sheet goes under its text (beside it, its last column was 50 px at 1024), the price steps stack */
+@media (min-width:701px) and (max-width:1199px){
+  #founder .ls6-logos{height:auto;min-height:128px;flex-wrap:wrap;justify-content:center;gap:28px 56px;padding:32px}
+  #founder .ls6-covers{display:grid;grid-template-columns:repeat(4,64px);justify-content:space-between;row-gap:16px}
+  .l3-covers .l3-cv{width:min(var(--l3-cover),calc((100% - 48px) / 3))}
+  .ls-board{display:block}.ls-board .txt{padding:0 var(--edge) 0 0}.ls-sheetwrap{margin-top:40px}
+}
+@media (min-width:701px) and (max-width:900px){
+  .l8-steps__in{grid-template-columns:1fr}
+  .l8-step{border-left:0;border-top:1px solid var(--ls-hair)}
+  .l8-step:first-child{border-top:0}
+  .l8-price__n{font-size:104px}
+}
