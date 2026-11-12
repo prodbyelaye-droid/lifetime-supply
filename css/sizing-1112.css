@@ -136,3 +136,9 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
 @media (min-width:901px) and (max-width:1439px){
   .ls-hero{height:auto;min-height:clamp(680px,100vh,840px)}
 }
+
+/* row 8 · a type tier for laptops and tablets (shared rule): the same hierarchy, one step down, 701 to 1199. 1200 and up unchanged. */
+@media (min-width:701px) and (max-width:1199px){:root{
+  --t-display:500 52px/54px var(--font-brand); --t-h2:500 44px/46px var(--font-brand); --t-h3:500 30px/34px var(--font-brand);
+  --t-figure:500 80px/80px var(--font-brand); --t-lead:400 18px/27px var(--font-brand); --t-body:400 17px/26px var(--font-brand);
+}}
