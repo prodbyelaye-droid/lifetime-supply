@@ -142,3 +142,9 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
   --t-display:500 52px/54px var(--font-brand); --t-h2:500 44px/46px var(--font-brand); --t-h3:500 30px/34px var(--font-brand);
   --t-figure:500 80px/80px var(--font-brand); --t-lead:400 18px/27px var(--font-brand); --t-body:400 17px/26px var(--font-brand);
 }}
+
+/* row 9 · #giveaways: the two photo cards at 4:3, so they read as two objects, not two posters (all widths) */
+#giveaways .l7-gb-pic,#giveaways .l7-gb-row .l7-gb-pic{height:auto;aspect-ratio:4 / 3}
+/* the strat keeps its headstock in frame at 4:3 (the same top edge as before; the shorter card trims the bottom) */
+#giveaways .l7-gb-pic img[src$="fender-strat.webp"]{object-position:50% 23%}
+@media (max-width:700px){#giveaways .l7-gb-pic img[src$="fender-strat.webp"]{object-position:50% 17%}}
