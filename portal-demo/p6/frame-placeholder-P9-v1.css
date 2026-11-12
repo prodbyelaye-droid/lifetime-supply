@@ -1,0 +1,131 @@
+/* D8 · P5 + P6 · shared tokens and the app frame.
+   The frame is P9's "frame: v1" (out/P9-shell/STATUS.md, 13:19), matched value for value. P9 owns it; when P9 posts v2 this block is the only thing that changes.
+   Colours: colour c (SPRINT/out/colour/final/colour-tokens.css). Controls: components A (SPRINT/out/components/final/tokens.css).
+   Type: D, Albert Sans, as a token (--font-brand). Interface text stays the system face (--font-ui, SF Pro); the renders load SF Pro locally only to show it as it ships. */
+
+@font-face { font-family: "Albert Sans Local"; src: url(fonts/AlbertSans-Regular.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: "Albert Sans Local"; src: url(fonts/AlbertSans-Medium.woff2) format("woff2"); font-weight: 500; }
+@font-face { font-family: "Albert Sans Local"; src: url(fonts/AlbertSans-MediumItalic.woff2) format("woff2"); font-weight: 500; font-style: italic; }
+@font-face { font-family: "Albert Sans Local"; src: url(fonts/AlbertSans-SemiBold.woff2) format("woff2"); font-weight: 600; }
+
+:root {
+  --font-ui: "SF Pro Local", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;  /* his 29 Oct call: the portal's interface face */
+  --font-brand: "Albert Sans Local", "Albert Sans", sans-serif;  /* type D (critic 04:17; his pick pending, 12:18 "Show me"): headlines and the name */
+  --head-track: -0.02em;                                          /* type D: Medium 500 at -0.02em */
+
+  /* P9 frame v1, light */
+  --ground: #F2F2F4;      /* 303 window ground */
+  --panel: #F9F9FB;       /* 303 panel */
+  --panel-line: #E4E4E6;  /* 303 */
+  --card: #FFFFFF;        /* 303 cards, his "sleek white cards" */
+  --card-line: #EBEBED;   /* 303 */
+  --r-panel: 16px; --r-card: 14px;
+
+  /* colour c */
+  --ink: #090909; --text: #141414; --meta: #6E6E73; --quiet: #F0F0F0; --hair: #EDEDED;
+  --sky-1: #112E84; --sky-2: #1D46AE; --sky-3: #2F6CCF; --sky-4: #50A0E7; --sky-5: #6BB9EF; --sky-6: #96CFF5;
+  --selected-a: #FFFFFF; --selected-b: #F1F8FF; --selected-rim: #CFE5FA;   /* el-E13 playing row, from 291 */
+
+  /* the horizon (the live coming-soon panel, horizon-glow-hero + vault-2130.css), in colour c */
+  --hz-field: var(--panel);
+  --hz-line: rgba(9, 9, 9, .035);      /* live: text-primary at 3.5 %, 1 px every 8 px */
+  --hz-disk: var(--panel);            /* his 4 Nov 22:41: no white background cards; the live disk is the page colour */
+  --hz-rim-top: #090909;               /* live: text-primary at the crown (dimmed to 40 % by the mask) */
+  --hz-rim-a: #6BB9EF;                 /* live #74BDF3 near the top -> colour c sky-5 */
+  --hz-rim-b: #50A0E7;                 /* live #11B1F8 on the sides -> colour c sky-4 */
+  --hz-halo: rgba(9, 9, 9, .07);
+
+  /* components A */
+  --pill-ink: linear-gradient(180deg, #363636 0%, #181818 100%);
+  --pill-ink-rim: #252628;
+  --pill-ink-light: rgba(255,255,255,.13);
+  --pill-ink-shadow: 0 1px 1px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.10);
+  --pill-white: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%);
+  --pill-white-ring: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #000000; --panel: #000000; --panel-line: #1F2023; --card: #0B0B0C; --card-line: #1F2023;
+    --ink: #FFFFFF; --text: #FFFFFF; --meta: #8E9094; --quiet: #1F2023; --hair: #1F2023;
+    --selected-a: #121212; --selected-b: #121212; --selected-rim: rgba(255,255,255,.10);
+    --hz-field: #000000; --hz-line: rgba(255,255,255,.045); --hz-disk: #000000;
+    --hz-rim-top: #FFFFFF; --hz-rim-a: #FFFFFF; --hz-rim-b: #D4D4D4;   /* live dark: white and grey (his 4 Nov rule) */
+    --hz-halo: rgba(255,255,255,.08);
+    --pill-ink: linear-gradient(180deg, #FFFFFF 0%, #F4F4F4 100%);   /* components A dark: the white pill is the primary */
+    --pill-ink-rim: rgba(0,0,0,.55); --pill-ink-light: rgba(255,255,255,1); --pill-ink-shadow: 0 1px 2px rgba(0,0,0,.45);
+    --pill-white: #1A1A1B; --pill-white-ring: 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.07);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ground); color: var(--text); font: 400 14px/20px var(--font-ui); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.blur { filter: blur(4px); user-select: none; }
+
+/* ---------- the frame (P9 v1) ---------- */
+.app { display: grid; grid-template-columns: 228px 1fr; min-height: 100vh; }
+.side { padding: 12px 24px 16px 28px; display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0; }
+.side-head { height: 68px; display: flex; align-items: center; gap: 8px; margin: 0 -12px 8px -4px; }
+.tile { width: 28px; height: 28px; border-radius: 8px; background: #111; display: grid; place-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.tile img { width: 19px; }
+.side-name { white-space: nowrap; font: 500 15px/20px var(--font-brand); letter-spacing: var(--head-track); color: var(--ink); }
+.side-head .chev { color: var(--meta); }
+.side-head .tuck { margin-left: auto; color: var(--meta); }
+.nav-group { margin-top: 14px; }
+.nav-label { font-size: 13px; line-height: 18px; color: var(--meta); padding: 0 0 4px 10px; }
+.nav a { display: flex; align-items: center; gap: 10px; height: 34px; margin-bottom: 5px; padding: 0 10px; border-radius: 8px; font-size: 14px; color: var(--text); }
+.nav a.on { background: var(--pill-ink); color: #FFF; box-shadow: inset 0 1px 0 var(--pill-ink-light), 0 0 0 1px var(--pill-ink-rim), var(--pill-ink-shadow); }
+.side-foot { margin-top: auto; }
+.notice { background: var(--card); border: 1px solid var(--card-line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
+.notice b { display: block; font: 500 13px/18px var(--font-ui); color: var(--ink); }
+.notice span { font-size: 13px; line-height: 18px; color: var(--meta); }
+.acct { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 6px; }
+.avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--quiet); display: grid; place-items: center; font-size: 12px; color: var(--meta); }
+.main { padding: 12px 12px 12px 0; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--r-panel); min-height: calc(100vh - 24px); position: relative; overflow: hidden; }
+.top { height: 68px; display: flex; align-items: center; gap: 12px; padding: 0 16px 0 20px; border-bottom: 1px solid var(--panel-line); }
+.crumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--meta); }
+.crumb b { font-weight: 500; color: var(--ink); }
+.top-r { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.search { width: 220px; height: 32px; border-radius: 10px; background: var(--card); border: 1px solid var(--card-line); display: flex; align-items: center; gap: 8px; padding: 0 8px 0 10px; color: var(--meta); font-size: 13px; }
+.kbd { margin-left: auto; font-size: 11px; line-height: 18px; padding: 0 5px; border-radius: 6px; border: 1px solid var(--card-line); color: var(--meta); }
+.iconbtn { width: 32px; height: 32px; display: grid; place-items: center; color: var(--text); border-radius: 10px; }
+.help { height: 32px; padding: 0 14px; border-radius: 999px; background: var(--pill-ink); color: #FFF; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; box-shadow: inset 0 1px 0 var(--pill-ink-light), 0 0 0 1px var(--pill-ink-rim), var(--pill-ink-shadow); }
+.content { padding: 16px; max-width: 1200px; margin: 0 auto; }
+
+/* ---------- components A ---------- */
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px; border-radius: 999px; font: 500 15px/1 var(--font-ui); letter-spacing: -.01em; white-space: nowrap; }
+.btn.sm { height: 32px; padding: 0 14px; font-size: 14px; gap: 6px; }
+.btn.lg { height: 48px; padding: 0 24px; font-size: 16px; }
+.btn-ink { background: var(--pill-ink); color: #FFF; box-shadow: inset 0 1px 0 var(--pill-ink-light), 0 0 0 1px var(--pill-ink-rim), var(--pill-ink-shadow); }
+.btn-white { background: var(--pill-white); color: var(--ink); box-shadow: var(--pill-white-ring); }
+.btn svg.i { width: 14px; height: 14px; }
+.card { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); }
+.tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #E8F2FC; color: var(--ink); font-size: 12px; font-weight: 500; }  /* E7 C: colour c shade, ink words */
+.h-brand { font-family: var(--font-brand); font-weight: 500; letter-spacing: var(--head-track); color: var(--ink); margin: 0; }
+
+@media (prefers-color-scheme: dark) {
+  .tile { background: #FFF; } .tile img { filter: invert(1); }
+  .nav a.on, .help, .btn-ink { color: #090909; }
+  .tag { background: #1F2023; color: #FFF; }
+}
+
+/* ---------- 390, P9 v1: no sidebar, no inset panel, cards on the ground ---------- */
+@media (max-width: 640px) {
+  :root { --panel: var(--ground); }   /* P9 phone: the page is the ground, so the horizon field and disk take it too */
+  .app { display: block; }
+  .side { display: none; }
+  .main { padding: 0; }
+  .panel { background: var(--ground); border: 0; border-radius: 0; min-height: 100vh; }
+  .top { height: 56px; padding: 0 16px; border-bottom: 0; }
+  .crumb .hide-s, .top > .hide-s, .search, .top .iconbtn.theme { display: none; }
+  .mtile { display: grid !important; }
+  .content { padding: 4px 16px 16px; }
+  .card { border-radius: 18px; }
+}
+.mtile { display: none; }

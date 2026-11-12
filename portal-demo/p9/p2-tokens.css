@@ -1,0 +1,18 @@
+:root {
+  --ls-face-brand: "Albert Sans", -apple-system, sans-serif;               /* type D (critic 04:17, his 13:03 "we will keep d") */
+  --ls-face-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "TeX Gyre Heros", system-ui, sans-serif; /* his 29 Oct: SF Pro */
+  --ground: #F2F2F4;        /* P9: 303 sidebar surface */
+  --panel: #F9F9FB;         /* P9: 303 panel */
+  --panel-line: #E4E4E6;    /* P9: 303 */
+  --card: #FFFFFF;          /* P9 */
+  --card-line: #EBEBED;     /* P9 */
+  --ink: #090909;           /* colour c ink (298) */
+  --meta: #6F6F6F;          /* colour c meta: small print only */
+  --hair: #EDEDED;          /* components A divider (291) */
+  --quiet: #F0F0F0;         /* components A quiet (291 hover row) */
+  --cobalt: #1D46AE;        /* colour c sky-2: el-E9 ring, el-E12 deadline */
+  --pill-ink: linear-gradient(180deg, #363636 0%, #181818 100%); /* components A (291) */
+  --pill-ink-rim: #252628;
+  --pill-white: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); /* row 16 */
+  --blur: blur(5px);        /* recording mode: names blurred the way he blurs his stories */
+}

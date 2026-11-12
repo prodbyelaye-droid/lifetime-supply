@@ -1,0 +1,85 @@
+/* P6 · kits and a kit page; guides and the reader. Every value names its source or says "no reference". */
+
+/* ---------- /vault/kits ---------- */
+.k-head { padding: 20px 4px 22px; }
+.k-head h1 { font-size: 44px; line-height: 46px; }                               /* type D; 289 scale contrast */
+.k-head p { margin: 12px 0 0; max-width: 640px; font-size: 15px; line-height: 22px; color: var(--text); }   /* ai-signs T3: ink, not grey */
+
+/* lead: 295's split card (words left, the art right, square art) */
+.k-lead { display: grid; grid-template-columns: 1fr 360px; overflow: hidden; margin-bottom: 18px; }
+.k-lead-text { padding: 28px 32px 28px 28px; display: flex; flex-direction: column; }
+.k-lead h2 { font-size: 40px; line-height: 44px; }
+.k-lead .line { margin: 12px 0 0; font-size: 16px; line-height: 24px; max-width: 460px; }
+.k-meta { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; color: var(--meta); font-variant-numeric: tabular-nums; }
+.k-contents { display: grid; width: max-content; grid-template-columns: repeat(2, 190px); column-gap: 32px; margin-top: 22px; border-top: 1px solid var(--hair); }   /* el-E14 kc-contents, two columns */
+.k-contents span { display: flex; justify-content: space-between; height: 32px; align-items: center; border-bottom: 1px solid var(--hair); font-size: 14px; color: var(--text); }
+.k-contents i { font-style: normal; color: var(--meta); font-variant-numeric: tabular-nums; }
+.k-btns { display: flex; gap: 10px; margin-top: auto; padding-top: 24px; }
+.k-cover { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+/* the rest: 295's art card (art on top, edge to edge; words on the card below) */
+.k-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.k-card { overflow: hidden; display: flex; flex-direction: column; }
+.k-card .k-cover { border-bottom: 1px solid var(--card-line); }
+.k-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.k-card h3 { font-size: 22px; line-height: 26px; }
+.k-card .line { margin: 8px 0 0; font-size: 14px; line-height: 21px; }
+.k-foot { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 13px; color: var(--meta); font-variant-numeric: tabular-nums; }
+.k-foot .btn { margin-right: auto; }
+
+/* ---------- a kit page (row 254 wavs construction, light; "just cant be 1:1") ---------- */
+.kp-top { display: grid; grid-template-columns: 1fr 340px; gap: 18px; margin-top: 4px; }
+.kp-top.one { grid-template-columns: 1fr; }   /* A: his 4 Nov 22:41 "it just needs the description": no files card */
+.kp-hero { display: grid; grid-template-columns: 380px 1fr; gap: 32px; padding: 20px; }
+.kp-hero .k-cover { border-radius: 6px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
+.kp-info { display: flex; flex-direction: column; padding: 8px 0 4px; }
+.kp-info h1 { font-size: 44px; line-height: 48px; }
+.kp-info .line { margin: 14px 0 0; font-size: 16px; line-height: 24px; max-width: 420px; }
+.kp-info .k-btns { margin-top: auto; }
+.kp-small { margin: 14px 0 0; font-size: 13px; color: var(--text); }   /* ai-signs T3: a sales line, not metadata, so ink */
+.kp-files { padding: 20px; }
+.kp-files h2 { font-size: 26px; line-height: 30px; }
+.kp-files .k-contents { width: auto; grid-template-columns: 1fr; margin-top: 16px; }
+.kp-files .k-contents span { height: 44px; }
+.kp-more { margin: 30px 4px 14px; font-size: 22px; line-height: 26px; }
+
+/* ---------- the reader (row 248: Shape Up's chapter rail, starred; Stripe Press's thin header) ---------- */
+.rd { display: grid; grid-template-columns: 330px 1fr; height: calc(100vh - 24px - 69px - 32px); position: relative; overflow: hidden; }
+.rd-bar { white-space: nowrap; position: absolute; left: 0; right: 0; top: 0; height: 46px; display: flex; align-items: center; gap: 18px; padding: 0 24px; border-bottom: 1px solid var(--hair); font-size: 13px; color: var(--meta); }
+.rd-bar b { font-weight: 500; color: var(--ink); }
+.rd-bar .sp { margin-left: auto; }
+.rd-bar::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: var(--read, 0%); background: var(--sky-4); }   /* colour in a small place: the read mark (colour c accent fill) */
+.rd-rail { padding: 96px 40px 40px 24px; text-align: right; }
+.rd-rail .part { font-size: 13px; color: var(--meta); }
+.rd-rail h1 { margin-top: 0; font-size: 40px; line-height: 44px; }
+.rd-facts { margin-top: 14px; font-size: 13px; line-height: 20px; color: var(--meta); }
+.rd-toc { margin-top: 26px; display: flex; flex-direction: column; gap: 2px; font: 400 15px/26px var(--font-brand); }
+.rd-toc a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--text) 35%, transparent); }
+.rd-toc a.on { font-weight: 500; text-decoration-color: var(--text); }
+.rd-next { margin-top: 22px; display: inline-block; font: 500 15px/24px var(--font-brand); text-decoration: underline; text-underline-offset: 4px; color: var(--ink); }
+.rd-body { padding: 96px 56px 120px 56px; max-width: 760px; font: 400 18px/30px var(--font-brand); color: var(--text); }   /* type D Regular for reading text; Shape Up 20/33 at its serif */
+.rd-body p { margin: 0 0 18px; }
+.rd-body b { font-weight: 600; }
+.rd-body h2 { margin: 40px 0 12px; font: 500 24px/30px var(--font-brand); letter-spacing: var(--head-track); color: var(--ink); }
+.rd-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; gap: 8px; padding: 0 16px 0 24px; border-top: 1px solid var(--hair); background: var(--card); font-size: 13px; color: var(--meta); font-variant-numeric: tabular-nums; }
+.rd-foot .mid { margin: 0 auto; display: flex; gap: 8px; }
+.rd-foot .iconbtn { color: var(--text); }
+
+/* ---------- 390 ---------- */
+@media (max-width: 640px) {
+  .k-head { padding: 8px 0 16px; } .k-head h1 { font-size: 32px; line-height: 36px; } .k-head p { font-size: 14px; line-height: 21px; }
+  .k-lead { grid-template-columns: 1fr; } .k-lead > img { order: -1; }
+  .k-lead-text { padding: 20px; } .k-lead h2 { font-size: 30px; line-height: 34px; }
+  .k-contents { grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .k-btns { flex-wrap: wrap; }
+  .k-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .k-body { padding: 12px 12px 14px; } .k-card h3 { font-size: 16px; line-height: 20px; } .k-card .line { display: none; }
+  .k-foot { flex-wrap: wrap; margin-top: 10px; } .k-foot .btn { display: none; }
+  .kp-top { grid-template-columns: 1fr; gap: 8px; } .kp-hero { grid-template-columns: 1fr; gap: 18px; padding: 16px; }
+  .kp-info h1 { font-size: 32px; line-height: 36px; }
+  .rd { grid-template-columns: 1fr; height: calc(100vh - 76px); }
+  .rd-rail { padding: 70px 20px 0; text-align: left; } .rd-toc, .rd-next { display: none; }
+  .rd-rail h1 { font-size: 32px; line-height: 36px; }
+  .rd-bar .hide-s, .rd-bar .sp { display: none; } .rd-bar span:last-child { margin-left: auto; }
+  .rd-body { padding: 24px 20px 90px; font-size: 17px; line-height: 28px; }
+}

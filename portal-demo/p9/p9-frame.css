@@ -1,0 +1,122 @@
+/* P9 frame v1.2 (agent D10, out/P9-shell/final/shell.css 13:47 AEDT: nav rows 32, pitch 38), copied for P7/P8 renders: the shell rules only (cards, menus, dialogs left out). P9 owns these values. */
+/* P9 · the shell · Lifetime Supply portal · redesign run Thu 12 Nov 2026
+   Values are on-screen px at a 1440 window. The live portal shell renders at zoom .8 above 760 px, so the build writes
+   these values / 0.8 there (el-E6 convention). Every value names its reference; "no ref" where none of his shows it.
+   Refs: 303 zahragr8r (frame, rows, panel, cards), 291 heyrico (sidebar header, fold-down, glossy pill, menu), 289 studiobakers (phone),
+   168 Attio + his 29 Oct 17:36 words (tuck by the logo, account fold-down), el-E6 (menus), el-E15 (dialog, toast), components A, colour c. */
+:root{
+  --ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Helvetica,sans-serif;  /* interface: system face (CONTEXT). renders: no SF Pro in the cloud, Helvetica (Heros) stands in; never Inter (T4) */
+  --brand:"Albert Sans",var(--ui);                                               /* type D: the name and headlines (a token) */
+  --ink:#090909; --meta:#6F6F6F; --paper:#FFFFFF;                                /* colour c */
+  --ground:#F2F2F4;   /* 303 window / sidebar surface 242,242,244 */
+  --panel:#F9F9FB;    /* 303 content panel 249,249,251 */
+  --card:#FFFFFF;     /* 303 cards */
+  --line:#E4E4E6;     /* 303 panel edge and top bar rule 228..230 */
+  --card-line:#EBEBED;/* 303 card edge 235..237 */
+  --hover:#EAEAEC;    /* no ref: one step under the ground for a row hover */
+  --pill:linear-gradient(180deg,#363636 0%,#181818 100%); --pill-rim:#252628; /* components A (291) */
+  --pill-sheen:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10);
+  --on-pill:#FFFFFF;
+  --menu-bg:#FFFFFF; --menu-line:#E5E5E5; --menu-hover:#F0F0F0;                  /* el-E6 (291) */
+  --menu-shadow:0 0 0 .5px #FFFFFF,0 0 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);
+  --float:0 0 0 1px rgba(255,255,255,.9),0 2px 6px rgba(0,0,0,.04),0 12px 32px -8px rgba(0,0,0,.12); /* el-E15 */
+  --dialog:0 0 0 1px rgba(255,255,255,.9),0 2px 6px rgba(0,0,0,.04),0 24px 48px -12px rgba(0,0,0,.16);
+  --scrim:rgba(12,12,13,.32);                                                    /* el-E15 */
+  --tile:linear-gradient(#2E2E2E,#111111);                                       /* el-E15 notice tile, 291 workspace tile */
+}
+.dark{
+  --ink:#FFFFFF; --meta:#8E9094; --paper:#000000;
+  --ground:#000000; --panel:#000000; --card:#0B0B0C; --line:#1F2023; --card-line:#1F2023; --hover:#141416;
+  --pill:linear-gradient(180deg,#FFFFFF 0%,#F9F9F9 10%,#F9F9F9 87%,#F7F7F7 91%,#FFFFFF 100%); --pill-rim:rgba(0,0,0,.55);
+  --pill-sheen:inset 0 1px 0 #FFFFFF,inset 0 -1px 0 #FFFFFF,0 1px 2px rgba(0,0,0,.45); --on-pill:#111111;
+  --menu-bg:#181818; --menu-line:rgba(255,255,255,.10); --menu-hover:#262626;
+  --menu-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 12px 32px -8px rgba(0,0,0,.6);
+  --float:inset 0 1px 0 rgba(255,255,255,.06),0 12px 32px -8px rgba(0,0,0,.7);
+  --dialog:inset 0 1px 0 rgba(255,255,255,.06),0 24px 48px -12px rgba(0,0,0,.7);
+  --scrim:rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ground);color:var(--ink);font:400 14px/20px var(--ui);-webkit-font-smoothing:antialiased;overflow:hidden}
+.phone body{overflow:visible}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+svg.i{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.blur{filter:blur(4.5px);user-select:none}  /* recording mode: demo member and artist names */
+
+/* ---------- frame A: 303 inset panel ---------- */
+.app{display:grid;grid-template-columns:228px 1fr;height:100vh}               /* 303: sidebar 264 ref px = 228 */
+.sb{display:flex;flex-direction:column;min-height:0;padding:12px 24px 16px 28px} /* 303: nav 28 from the window edge, 24 from the panel */
+.sb-head{height:68px;flex:none;display:flex;align-items:center;justify-content:space-between;margin:0 -6px 0 -4px} /* 303 header, on the top bar's line */
+.acct{display:flex;align-items:center;gap:9px;height:40px;padding:0 6px 0 4px;border-radius:10px;min-width:0}
+.acct:hover{background:var(--hover)}
+.p9tile{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--tile);border:1px solid rgba(0,0,0,.9);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 1px 2px rgba(0,0,0,.18)}       /* 291 workspace tile (el-E15 notice tile), 28 = 303 logo height */
+.dark .p9tile{border-color:rgba(255,255,255,.12)}
+.p9tile svg{width:18px;height:12px;fill:#FFFFFF}
+.name{font:500 15px/1 var(--brand);letter-spacing:-.02em;white-space:nowrap}      /* type D: the name */
+.acct .chev{width:14px;height:14px;color:var(--meta);margin-left:-2px}           /* 291 fold-down chevron */
+.tuck{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--meta)} /* 291 sidebar control, by the logo (his 29 Oct) */
+.tuck:hover{background:var(--hover);color:var(--ink)}
+.nav{display:flex;flex-direction:column;gap:6px;margin-top:8px}                  /* v1.2: pitch 38 (303 measures 39; A1 asked for ~32 px rows) */
+.row{height:32px;display:flex;align-items:center;gap:10px;padding:0 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14px;letter-spacing:-.006em} /* 303 pill 38 ref px; radius 8 */
+.row svg.i{color:var(--meta)}
+.row:hover{background:var(--hover)}
+.row.on{background:var(--pill);color:var(--on-pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen);padding:0 9px} /* 303 black pill, components A sheen */
+.row.on svg.i{color:var(--on-pill)}
+.row .n{margin-left:auto;font-size:12px;color:var(--meta)}
+.row.on .n{color:inherit;opacity:.7}
+.grp{font-size:13px;line-height:16px;color:var(--meta);padding:0 10px;margin:14px 0 2px}  /* 291 "Favorites": sentence case, grey; lowercase (X5: no spaced capitals) */
+.sep{height:10px}
+.sb-foot{margin-top:auto;padding-top:16px}
+.news{background:var(--card);border:1px solid var(--card-line);border-radius:12px;padding:12px 12px 10px} /* 303 upgrade card; 267 Dub news */
+.news b{display:block;font-weight:500;font-size:13px;line-height:18px;letter-spacing:-.005em}
+.news p{margin:2px 0 0;font-size:13px;line-height:18px;color:var(--meta)}
+.news .acts{display:flex;gap:14px;margin-top:8px;font-size:13px;font-weight:500}
+.news .acts span+span{color:var(--meta);font-weight:400}
+
+.panel{margin:12px 12px 12px 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-width:0;overflow:hidden} /* 303 inset 15 ref px, radius 18 ref px */
+.tb{height:68px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:relative} /* 303: 80 ref px */
+.tb::after{content:"";position:absolute;left:16px;right:0;bottom:0;height:1px;background:var(--line)} /* 303: rule from the panel padding to the edge */
+.crumbs{display:flex;align-items:center;gap:6px;color:var(--meta);font-size:14px}
+.crumbs .nav-b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.crumbs .nav-b:hover{background:var(--hover)}
+.crumbs .nav-b.off{opacity:.4}
+.crumbs .here{color:var(--ink)}
+.crumbs .slash{color:var(--line);margin:0 2px}                                   /* 303 "Contacts / Contact Details" */
+.tb-r{display:flex;align-items:center;gap:8px}
+.search{height:36px;width:240px;display:flex;align-items:center;gap:8px;padding:0 6px 0 12px;border-radius:10px;background:var(--card);border:1px solid var(--card-line);color:var(--meta)} /* 291 field, 303 card edge */
+.search kbd{margin-left:auto;font:500 11px/18px var(--ui);padding:0 6px;border-radius:6px;border:1px solid var(--card-line);color:var(--meta)}
+.ib{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--ink)}
+.ib:hover{background:var(--hover)}
+.help{height:36px;padding:0 16px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:-.005em;color:var(--on-pill);background:var(--pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen)} /* the black help pill (29 Oct), components A */
+.content{flex:1;overflow:hidden;padding:16px}                                     /* 303 panel padding 17..19 ref px */
+.inner{max-width:1168px;margin:0 auto}
+
+/* placeholder page content: P1 owns home; cards only to show the grid */
+
+/* ---------- tucked ---------- */
+
+/* ---------- frame B: 291 flat ---------- */
+
+/* ---------- menus, palette, dialogs, toast (el-E6, el-E15) ---------- */
+.mark-s{width:48px;height:32px;fill:var(--ink)}
+.state{display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 24px}   /* empty and not found: the mark alone (his call) */
+.state .code{margin-top:22px;font-size:13px;color:var(--meta)}
+.state h2{margin:6px 0 0;font:500 28px/32px var(--brand);letter-spacing:-.02em}
+.state p{margin:8px 0 0;font-size:15px;line-height:22px;max-width:420px}
+.state .pill{margin-top:22px;height:40px;padding:0 20px;border-radius:999px;font-weight:600;color:var(--on-pill);background:var(--pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen);display:grid;place-items:center}
+.state .lnk{margin-top:12px;font-weight:500;text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- 390 ---------- */
+.phone .app{display:block;height:auto}
+.phone .sb{display:none}
+.phone .panel{margin:0;border:0;border-radius:0;background:var(--ground)}
+.phone .tb{height:56px;padding:0 8px 0 4px}                                       /* live 60; 289 header row */
+.phone .tb::after{left:0}
+.phone .content{padding:16px}                                                     /* 289: 23 ref px = 16 */
+.phone .crumbs{gap:2px}
+
+/* placeholder page: 303's three columns (356 / 595 / 354 ref px), P1 to P8 own what goes in them */
+.brow{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:14px 0;border-bottom:1px solid var(--card-line)}
+.brow b{font-weight:500;font-size:14px} .brow small{font-size:13px;color:var(--meta)} .brow span{font-size:13px;text-align:right}
+.phone .cols{grid-template-columns:1fr;gap:8px} .phone .stack{gap:8px}

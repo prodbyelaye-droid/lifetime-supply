@@ -1,0 +1,156 @@
+/* D6 · P1 home · shared parts for options A and B. Every value names its reference; "no reference" where none. */
+.card { background: var(--card); border: 1px solid var(--card-line); border-radius: 14px; padding: 20px; }   /* P9 cards (303) */
+.card-h { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; }
+.card-t { flex: 1; margin: 0; font: 500 17px/22px var(--ls-face-ui); letter-spacing: -.01em; }   /* 303 "Contact information" 20 ref = 17 css */
+.go { width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; color: var(--meta); border: 1px solid var(--card-line); background: var(--card); } /* 303 ↗, E2 icon button 28 */
+.go svg { width: 14px; height: 14px; }
+.line { margin: 0; font-size: 14px; line-height: 20px; color: var(--ink); }                    /* his lines in ink (ai-signs T3) */
+.rows { list-style: none; margin: 12px 0 0; padding: 0; }
+.rows li { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 9px 0; border-top: 1px solid var(--hair); } /* 303 pitch 46 ref = 40 css */
+.rows li:first-child { border-top: 0; }
+.rows li > span:first-child { flex: 1; }
+.v { color: var(--meta); font-variant-numeric: tabular-nums; }                                  /* el-E8: a row's end value is meta (291 "Company", 303 "4 Total") */
+.sec { font-size: 13px; line-height: 16px; color: var(--meta); margin: 18px 0 2px; }            /* 303 "Email" field label, sentence case (X5 respected) */
+.tag { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 5px; font: 500 11.5px/1 var(--ls-face-ui); } /* el-E7 sm */
+.tag.quiet { background: #F0F0F0; box-shadow: inset 0 0 0 1px rgba(0,0,0,.09), 0 1px 0 rgba(0,0,0,.04); }   /* el-E7 quiet (303) */
+.tag.urgent { background: #1C47AE; color: #fff; }                                                /* el-E7 C urgent; keeps colour c in dark too (critic 13:35, manager 13:55) */
+:root[data-theme="dark"] .tag.quiet { background: #202020; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+
+/* greeting: 303 header card construction (avatar 74 ref = 64, name 30 ref = 26, sub 16 ref = 14) */
+.hello { display: flex; align-items: center; gap: 16px; }
+.av { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center; background: var(--quiet); font: 500 20px/1 var(--ls-face-brand); }
+.hello h1 { margin: 0; font: 500 26px/32px var(--ls-face-brand); letter-spacing: -.02em; }        /* type D Medium -0.02em */
+.hello p { margin: 2px 0 0; font-size: 14px; line-height: 20px; }
+/* the "this week" row (his 5 Nov 21:15 Q4 yes; M44's four items), as 303's label/value pairs: no boxes (X29) */
+.week { display: flex; align-items: stretch; margin-left: auto; }
+.week > div { padding: 2px 22px; border-left: 1px solid var(--hair); min-width: 120px; }
+.week > div:first-child { border-left: 0; }
+.week small { display: block; font-size: 13px; line-height: 18px; color: var(--meta); }
+.week b { display: block; margin-top: 3px; font-weight: 400; font-size: 15px; line-height: 20px; white-space: nowrap; }
+
+/* the room tile: el-E5 room, its painted sky crop with the room's real window cut by the edge (298, 291) */
+.room { display: grid; gap: 12px; align-content: start; color: var(--ink); text-decoration: none; }
+.tile { position: relative; border-radius: 14px; overflow: hidden; background: var(--pic) 0 50% / cover no-repeat; }
+.edge { position: absolute; left: 12%; top: 18%; padding: 4px; border-radius: 14px; background: rgba(255,255,255,.22); } /* el-E5: 298 window edge 22 % */
+:root[data-theme="dark"] .edge { background: rgba(255,255,255,.14); }
+.win { width: 360px; border-radius: 10px; background: #FFFFFF; color: #090909; padding: 10px 14px; font-size: 13px; line-height: 16px; }   /* windows stay white on night tiles (el-E8) */
+.win .r { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid #EDEDED; }
+.win .r:first-child { border-top: 0; }
+.win .r > span:first-child { flex: 1; }
+.win .wv { color: #6F6F6F; font-variant-numeric: tabular-nums; }
+.win .stack { display: grid; gap: 2px; }
+.win .stack small { color: #6F6F6F; font-size: 12px; }
+.win .go-t { font-weight: 500; }
+.win .search { width: auto; height: 30px; background: #fff; border-color: #DADADA; color: #6F6F6F; margin-bottom: 4px; }
+/* dark: the windows take the dark card (P9 frame: #0B0B0C, 1 px #1F2023), never a white sheet on real black (critic 13:35) */
+:root[data-theme="dark"] .win { background: #0B0B0C; color: #FFFFFF; box-shadow: inset 0 0 0 1px #1F2023; }
+:root[data-theme="dark"] .win .r { border-top-color: #1F2023; }
+:root[data-theme="dark"] .win .wv, :root[data-theme="dark"] .win .stack small { color: #8E9094; }
+:root[data-theme="dark"] .win .search { background: #000; border-color: #2F3136; color: #8E9094; }
+:root[data-theme="dark"] .discord { border-color: #2F3136; }
+.room-t { margin: 0; font: 500 17px/22px var(--ls-face-ui); letter-spacing: -.01em; }
+.room-l { margin: 3px 0 0; font-size: 14px; line-height: 20px; }
+.discord { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid #DADADA; font-weight: 500; }
+
+/* el-E9 ring: cobalt on a 12 % track, 14 % stroke, round caps (291) */
+.ring { width: 22px; height: 22px; flex: none; }
+.ring circle { fill: none; stroke-width: 3.1; }
+.ring .tr { stroke: color-mix(in srgb, var(--cobalt) 12%, transparent); }
+.ring .ar { stroke: var(--cobalt); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
+/* D6 · P2 your day · shared parts for options A and B (on top of frame.css and p1.css). */
+/* page head: 303 header card scale (name 26, sub 14 meta for the date) */
+.ph h1 { margin: 0; font: 500 26px/32px var(--ls-face-brand); letter-spacing: -.02em; }
+.ph .date { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--meta); }
+/* components A pills (291 ink, row 16 white) at 303's action height 36 */
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-radius: 999px; font-weight: 500; white-space: nowrap; }
+.pill svg { width: 15px; height: 15px; }
+.pill.ink { color: #fff; background: var(--pill-ink); border: 1px solid var(--pill-ink-rim); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 1px 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1); }
+.pill.white { color: var(--ink); background: var(--pill-white); border: 1px solid rgba(0,0,0,.08); box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.06); }
+:root[data-theme="dark"] .pill.ink { color: #111; background: var(--pill-white); border-color: #fff; box-shadow: none; }
+:root[data-theme="dark"] .pill.white { color: #fff; background: #1F2023; border-color: rgba(255,255,255,.08); box-shadow: none; }
+.pill.sm { height: 28px; padding: 0 12px; font-size: 13px; }
+/* el-E3 tabs (303): flush track, white selected tab with a 1 px ring, counts in badges */
+.tabs { display: inline-flex; border-radius: 8px; background: #F7F7F7; }
+.tab { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px; border-radius: 8px; color: #6E6E6E; font-weight: 500; white-space: nowrap; }
+.tab + .tab::before { content: ""; position: absolute; left: 0; top: 50%; width: 1px; height: 12px; margin-top: -6px; background: rgba(0,0,0,.12); }
+.tab.on, .tab.on + .tab::before { }
+.tab.on { color: var(--ink); background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06); }
+.tab.on::before, .tab.on + .tab::before { display: none; }
+.tab i { font-style: normal; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 6px; display: inline-grid; place-items: center; background: #E4E4E4; color: #424242; font-size: 13px; }
+.tab.on i { background: #F0F0F0; color: var(--ink); }
+:root[data-theme="dark"] .tabs { background: #0F0F0F; }
+:root[data-theme="dark"] .tab { color: #8A8A8A; }
+:root[data-theme="dark"] .tab + .tab::before { background: rgba(255,255,255,.12); }
+:root[data-theme="dark"] .tab.on { color: #fff; background: #202020; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+:root[data-theme="dark"] .tab i { background: #202020; color: #B5B5B5; }
+:root[data-theme="dark"] .tab.on i { background: #2E2E2E; color: #fff; }
+/* el-E3 chips (303 shape): the templates */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border: 1px solid rgba(0,0,0,.12); border-radius: 6px; background: var(--card); font-weight: 500; font-size: 14px; white-space: nowrap; }
+:root[data-theme="dark"] .chip { border-color: rgba(255,255,255,.14); }
+/* el-E12 calendar: square days 40 r8, today in A's ink sheen, a brief deadline the one cobalt square with a white numeral */
+.cal-h { display: flex; align-items: center; justify-content: space-between; height: 36px; }
+.cal-h b { font-weight: 500; font-size: 16px; }
+.cal-h .ar { width: 28px; height: 28px; display: grid; place-items: center; color: var(--ink); }
+.cal-h .ar svg { width: 16px; height: 16px; }
+.cal { display: grid; grid-template-columns: repeat(7, 40px); justify-content: space-between; row-gap: 6px; margin-top: 8px; text-align: center; }
+.cal .dn { font-size: 13px; color: var(--meta); height: 24px; line-height: 24px; }
+.cal .d { position: relative; width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; font-size: 15px; font-variant-numeric: tabular-nums; }
+.cal .d.today { color: #fff; background: var(--pill-ink); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 1px 2px rgba(0,0,0,.12); }
+.cal .d.dl { color: #fff; background: #1D46AE; }
+.cal .d.dot::after { content: ""; position: absolute; bottom: 5px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--meta); }
+.cal .d.past { color: var(--meta); }
+:root[data-theme="dark"] .cal .d.today { color: #111; background: var(--pill-white); box-shadow: none; }
+:root[data-theme="dark"] .cal .d.dl { color: #000; background: #C4C6C9; }
+/* the today list (el-E9 ring and checks; 291's checked step; 303 task rows with a date line) */
+.task { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid var(--hair); }
+.task:first-of-type { border-top: 0; }
+.chk { width: 18px; height: 18px; flex: none; border-radius: 50%; border: 1.5px solid #C9C9CE; }
+:root[data-theme="dark"] .chk { border-color: #55585E; }
+.task .tt { flex: 1; display: grid; gap: 2px; min-width: 0; }
+.task .tt small { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--meta); }
+.task .tt small svg { width: 12px; height: 12px; }
+.addrow { display: flex; align-items: center; gap: 10px; padding: 11px 0 0; color: var(--ink); }
+.addrow svg { width: 16px; height: 16px; }
+.foot2 { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--hair); font-variant-numeric: tabular-nums; }
+/* habits row: 303 keyword tags shape for the seven days */
+.days { display: flex; gap: 4px; }
+.days span { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10.5px; color: var(--meta); box-shadow: inset 0 0 0 1px var(--card-line); }
+.days span.t { color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+/* recap pairs (303 label over value) */
+.pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+.pairs small { display: block; font-size: 13px; color: var(--meta); }
+.pairs b { display: block; margin-top: 2px; font: 400 26px/30px var(--ls-face-ui); letter-spacing: -.02em; font-variant-numeric: tabular-nums; } /* el-E8 N2: regular, one ink, size doing the work */
+.wtag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12.5px; font-weight: 500; background: #F0F0F0; box-shadow: inset 0 0 0 1px rgba(0,0,0,.09); }
+:root[data-theme="dark"] .wtag { background: #202020; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.door { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-top: 1px solid var(--hair); }
+.door:first-of-type { border-top: 0; padding-top: 6px; }
+.door > div { flex: 1; }
+.door b { display: block; font-weight: 500; }
+.door p { margin: 3px 0 0; font-size: 14px; line-height: 20px; }
+
+/* ---- the page (option B) ---- */
+/* option B · "303 overview": the 303 construction (header card, 303 tabs on the centre card, three columns 355/590/355 ref px) */
+.hdr { display: flex; align-items: center; gap: 16px; padding: 20px 20px 20px 22px; }
+.hdr .acts { margin-left: auto; display: flex; gap: 10px; }
+.cols { display: grid; grid-template-columns: 307px minmax(0, 1fr) 307px; gap: 18px; margin-top: 18px; align-items: start; }
+.stack { display: grid; gap: 18px; }
+.daycard .dline { display: flex; align-items: baseline; gap: 8px; margin-top: 22px; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
+.daycard .dline b { font-weight: 500; font-size: 17px; }
+.daycard .dline span { color: var(--meta); font-size: 15px; }
+.empty { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0 6px; }
+.tpl { margin-top: 14px; }
+.tpl small { display: block; font-size: 13px; color: var(--meta); margin-bottom: 8px; }
+.habit { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--hair); }
+.habit:first-of-type { border-top: 0; }
+.habit .nm { flex: 1; min-width: 0; }
+.wins { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--hair); }
+.wins span.n { flex: 1; }
+@media (max-width: 760px) {
+  .hdr { flex-wrap: wrap; padding: 16px; border-radius: 18px; } .hdr .acts { margin-left: 0; width: 100%; }
+  .cols { grid-template-columns: 1fr; gap: 8px; margin-top: 8px; } .stack { gap: 8px; }
+  .card { border-radius: 18px; padding: 16px; }
+  .tabs { max-width: 100%; } .tab { padding: 0 9px; gap: 6px; font-size: 14px; }
+  .cal { grid-template-columns: repeat(7, 36px); } .cal .d { width: 36px; height: 36px; }
+  .colC { order: 1; } .colL { order: 2; } .colR { order: 3; }
+}

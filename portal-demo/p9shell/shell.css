@@ -1,0 +1,204 @@
+/* P9 · the shell · Lifetime Supply portal · redesign run Thu 12 Nov 2026
+   Values are on-screen px at a 1440 window. The live portal shell renders at zoom .8 above 760 px, so the build writes
+   these values / 0.8 there (el-E6 convention). Every value names its reference; "no ref" where none of his shows it.
+   Refs: 303 zahragr8r (frame, rows, panel, cards), 291 heyrico (sidebar header, fold-down, glossy pill, menu), 289 studiobakers (phone),
+   168 Attio + his 29 Oct 17:36 words (tuck by the logo, account fold-down), el-E6 (menus), el-E15 (dialog, toast), components A, colour c. */
+@font-face{font-family:"Albert Sans";src:url(AlbertSans-Medium.woff2) format("woff2");font-weight:500}
+@font-face{font-family:"Albert Sans";src:url(AlbertSans-Regular.woff2) format("woff2");font-weight:400}
+:root{
+  --ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Helvetica,sans-serif;  /* interface: system face (CONTEXT). renders: no SF Pro in the cloud, Helvetica (Heros) stands in; never Inter (T4) */
+  --brand:"Albert Sans",var(--ui);                                               /* type D: the name and headlines (a token) */
+  --ink:#090909; --meta:#6F6F6F; --paper:#FFFFFF;                                /* colour c */
+  --ground:#F2F2F4;   /* 303 window / sidebar surface 242,242,244 */
+  --panel:#F9F9FB;    /* 303 content panel 249,249,251 */
+  --card:#FFFFFF;     /* 303 cards */
+  --line:#E4E4E6;     /* 303 panel edge and top bar rule 228..230 */
+  --card-line:#EBEBED;/* 303 card edge 235..237 */
+  --hover:#EAEAEC;    /* no ref: one step under the ground for a row hover */
+  --pill:linear-gradient(180deg,#363636 0%,#181818 100%); --pill-rim:#252628; /* components A (291) */
+  --pill-sheen:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10);
+  --on-pill:#FFFFFF;
+  --menu-bg:#FFFFFF; --menu-line:#E5E5E5; --menu-hover:#F0F0F0;                  /* el-E6 (291) */
+  --menu-shadow:0 0 0 .5px #FFFFFF,0 0 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);
+  --float:0 0 0 1px rgba(255,255,255,.9),0 2px 6px rgba(0,0,0,.04),0 12px 32px -8px rgba(0,0,0,.12); /* el-E15 */
+  --dialog:0 0 0 1px rgba(255,255,255,.9),0 2px 6px rgba(0,0,0,.04),0 24px 48px -12px rgba(0,0,0,.16);
+  --scrim:rgba(12,12,13,.32);                                                    /* el-E15 */
+  --tile:linear-gradient(#2E2E2E,#111111);                                       /* el-E15 notice tile, 291 workspace tile */
+}
+.dark{
+  --ink:#FFFFFF; --meta:#8E9094; --paper:#000000;
+  --ground:#000000; --panel:#000000; --card:#0B0B0C; --line:#1F2023; --card-line:#1F2023; --hover:#141416;
+  --pill:linear-gradient(180deg,#FFFFFF 0%,#F9F9F9 10%,#F9F9F9 87%,#F7F7F7 91%,#FFFFFF 100%); --pill-rim:rgba(0,0,0,.55);
+  --pill-sheen:inset 0 1px 0 #FFFFFF,inset 0 -1px 0 #FFFFFF,0 1px 2px rgba(0,0,0,.45); --on-pill:#111111;
+  --menu-bg:#181818; --menu-line:rgba(255,255,255,.10); --menu-hover:#262626;
+  --menu-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 12px 32px -8px rgba(0,0,0,.6);
+  --float:inset 0 1px 0 rgba(255,255,255,.06),0 12px 32px -8px rgba(0,0,0,.7);
+  --dialog:inset 0 1px 0 rgba(255,255,255,.06),0 24px 48px -12px rgba(0,0,0,.7);
+  --scrim:rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ground);color:var(--ink);font:400 14px/20px var(--ui);-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+svg.i{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.blur{filter:blur(4.5px);user-select:none}  /* recording mode: demo member and artist names */
+
+/* ---------- frame A: 303 inset panel ---------- */
+.app{display:grid;grid-template-columns:228px 1fr;height:100vh}               /* 303: sidebar 264 ref px = 228 */
+.sb{display:flex;flex-direction:column;min-height:0;padding:12px 24px 16px 28px} /* 303: nav 28 from the window edge, 24 from the panel */
+.sb-head{height:68px;flex:none;display:flex;align-items:center;justify-content:space-between;margin:0 -6px 0 -4px} /* 303 header, on the top bar's line */
+.acct{display:flex;align-items:center;gap:9px;height:40px;padding:0 6px 0 4px;border-radius:10px;min-width:0}
+.acct:hover{background:var(--hover)}
+.tile{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--tile);border:1px solid rgba(0,0,0,.9);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 1px 2px rgba(0,0,0,.18)}       /* 291 workspace tile (el-E15 notice tile), 28 = 303 logo height */
+.dark .tile{border-color:rgba(255,255,255,.12)}
+.tile svg{width:18px;height:12px;fill:#FFFFFF}
+.name{font:500 15px/1 var(--brand);letter-spacing:-.02em;white-space:nowrap}      /* type D: the name */
+.acct .chev{width:14px;height:14px;color:var(--meta);margin-left:-2px}           /* 291 fold-down chevron */
+.tuck{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--meta)} /* 291 sidebar control, by the logo (his 29 Oct) */
+.tuck:hover{background:var(--hover);color:var(--ink)}
+.nav{display:flex;flex-direction:column;gap:6px;margin-top:8px}                  /* v1.2: pitch 38 (303 measures 39; A1 asked for ~32 px rows) */
+.row{height:32px;display:flex;align-items:center;gap:10px;padding:0 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14px;letter-spacing:-.006em} /* v1.2: 32 (303 pill 38 ref px = 33; A1 13:5x: 'tighten nav to about 32 px rows with 14 px text'); radius 8 */
+.row svg.i{color:var(--meta)}
+.row:hover{background:var(--hover)}
+.row.on{background:var(--pill);color:var(--on-pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen);padding:0 9px} /* 303 black pill, components A sheen */
+.row.on svg.i{color:var(--on-pill)}
+.row .n{margin-left:auto;font-size:12px;color:var(--meta)}
+.row.on .n{color:inherit;opacity:.7}
+.grp{font-size:13px;line-height:16px;color:var(--meta);padding:0 10px;margin:14px 0 2px}  /* 291 "Favorites": sentence case, grey; lowercase (X5: no spaced capitals) */
+.sep{height:10px}
+.sb-foot{margin-top:auto;padding-top:16px}
+.news{background:var(--card);border:1px solid var(--card-line);border-radius:12px;padding:12px 12px 10px} /* 303 upgrade card; 267 Dub news */
+.news b{display:block;font-weight:500;font-size:13px;line-height:18px;letter-spacing:-.005em}
+.news p{margin:2px 0 0;font-size:13px;line-height:18px;color:var(--meta)}
+.news .acts{display:flex;gap:14px;margin-top:8px;font-size:13px;font-weight:500}
+.news .acts span+span{color:var(--meta);font-weight:400}
+
+.panel{margin:12px 12px 12px 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-width:0;overflow:hidden} /* 303 inset 15 ref px, radius 18 ref px */
+.tb{height:68px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:relative} /* 303: 80 ref px */
+.tb::after{content:"";position:absolute;left:16px;right:0;bottom:0;height:1px;background:var(--line)} /* 303: rule from the panel padding to the edge */
+.crumbs{display:flex;align-items:center;gap:6px;color:var(--meta);font-size:14px}
+.crumbs .nav-b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.crumbs .nav-b:hover{background:var(--hover)}
+.crumbs .nav-b.off{opacity:.4}
+.crumbs .here{color:var(--ink)}
+.crumbs .slash{color:var(--line);margin:0 2px}                                   /* 303 "Contacts / Contact Details" */
+.tb-r{display:flex;align-items:center;gap:8px}
+.search{height:36px;width:240px;display:flex;align-items:center;gap:8px;padding:0 6px 0 12px;border-radius:10px;background:var(--card);border:1px solid var(--card-line);color:var(--meta)} /* 291 field, 303 card edge */
+.search kbd{margin-left:auto;font:500 11px/18px var(--ui);padding:0 6px;border-radius:6px;border:1px solid var(--card-line);color:var(--meta)}
+.ib{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--ink)}
+.ib:hover{background:var(--hover)}
+.help{height:36px;padding:0 16px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:-.005em;color:var(--on-pill);background:var(--pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen)} /* the black help pill (29 Oct), components A */
+.content{flex:1;overflow:hidden;padding:16px}                                     /* 303 panel padding 17..19 ref px */
+.inner{max-width:1168px;margin:0 auto}
+
+/* placeholder page content: P1 owns home; cards only to show the grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}                /* 303 gutters 20..22 ref px */
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:20px} /* 303 card radius 16 ref px, padding 24 ref px */
+.card h3{margin:0;font:500 15px/20px var(--ui);letter-spacing:-.01em}
+.card p{margin:4px 0 0;font-size:14px;line-height:20px;color:var(--ink)}
+.card .lst{margin-top:16px;border-top:1px solid var(--card-line)}
+.card .lst div{display:flex;justify-content:space-between;gap:8px;height:36px;align-items:center;border-bottom:1px solid var(--card-line);font-size:13px}
+.card .lst div span:last-child{color:var(--meta)}
+.ph{margin:0 0 14px;font:500 22px/28px var(--brand);letter-spacing:-.02em}      /* page title: type D headline */
+
+/* ---------- tucked ---------- */
+.tucked .app{grid-template-columns:68px 1fr}                                      /* no ref: the mark tile keeps x 20 */
+.tucked .sb{padding:12px 12px 16px 12px}
+.tucked .sb-head{flex-direction:column;justify-content:center;gap:6px;height:auto;padding-top:20px;margin:0 0 6px}
+.tucked .acct .name,.tucked .acct .chev,.tucked .grp,.tucked .row span,.tucked .row .n,.tucked .news{display:none}
+.tucked .acct{padding:0 6px}
+.tucked .row{justify-content:center;padding:0}
+.tucked .grp+.row{margin-top:10px}
+
+/* ---------- frame B: 291 flat ---------- */
+.optb body,.optb{background:var(--paper)}
+.optb .app{grid-template-columns:278px 1fr}                                       /* 291: sidebar 278 */
+.optb .sb{background:#FAFAFA;border-right:1px solid #EDEDED;padding:0 14px 16px}  /* 291 sidebar 250,250,250 and its rule */
+.optb.dark .sb{background:#000;border-right-color:var(--line)}
+.optb .sb-head{height:56px;margin:0 -2px 6px;border-bottom:1px solid #EDEDED}     /* 291 header with the rule under it */
+.optb.dark .sb-head{border-bottom-color:var(--line)}
+.optb .row{height:32px;font-size:15px;border-radius:10px}                         /* 291 row 32.7, radius 9.7 */
+.optb .nav{gap:2px}
+.optb .panel{margin:0;border:0;border-radius:0;background:var(--paper)}
+.optb .tb{height:56px}
+.optb .tb::after{left:0}
+.optb .content{padding:24px 32px}
+.optb .search{background:#F5F5F5;border-color:transparent}
+.optb.dark .search{background:#141416}
+.optb .card{border-color:#EFEFEF}                                                  /* 291 card edge */
+.optb.dark .card{border-color:var(--line)}
+
+/* ---------- menus, palette, dialogs, toast (el-E6, el-E15) ---------- */
+.menu{position:fixed;background:var(--menu-bg);border:.5px solid var(--menu-line);border-radius:13px;box-shadow:var(--menu-shadow);z-index:20}
+.menu .g{padding:6px;display:grid;gap:2px}
+.menu .hr{height:1px;background:var(--menu-line)}
+.mi{height:32px;display:flex;align-items:center;gap:8px;padding:0 8px;border-radius:10px;font:500 14px/20px var(--ui);letter-spacing:-.006em}
+.mi svg.i{width:18px;height:18px;color:var(--meta)}
+.mi.hov{background:var(--menu-hover)}
+.mh{display:flex;gap:12px;align-items:center;padding:14px 14px 8px}
+.av{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--tile);color:#fff;font:500 15px/1 var(--brand)}
+.mh b{display:block;font:500 15px/20px var(--ui)} .mh small{display:block;font-size:13px;line-height:16px;color:var(--meta)}
+.seg{margin-left:auto;display:flex;padding:2px;border-radius:999px;background:var(--menu-hover)}  /* 291 light / dark switch */
+.seg span{height:24px;padding:0 10px;border-radius:999px;font:400 13px/24px var(--ui);color:var(--meta)}
+.seg span.on{background:var(--menu-bg);color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.10),0 0 0 .5px rgba(0,0,0,.04)}
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:15}
+.pal{left:50%;top:96px;width:640px;translate:-50% 0;border-radius:16px}          /* 262 command palette, el-E6 panel */
+.pal .in{height:52px;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:15px;border-bottom:1px solid var(--menu-line)}
+.pal .lab{padding:10px 14px 4px;font-size:13px;color:var(--meta)}
+.pal .mi{height:36px;font-weight:400}
+.pal .mi .p{color:var(--meta)} .pal .mi .v{margin-left:auto;font-size:13px;color:var(--meta)}
+.pal .foot{display:flex;align-items:center;gap:14px;height:40px;padding:0 14px;border-top:1px solid var(--menu-line);font-size:12px;color:var(--meta)}
+.pal kbd{font:500 11px/18px var(--ui);min-width:20px;text-align:center;padding:0 5px;border-radius:5px;border:1px solid var(--menu-line);margin-right:4px}
+.dlg{position:fixed;left:50%;top:50%;translate:-50% -50%;width:520px;padding:24px;border-radius:16px;background:var(--menu-bg);border:1px solid var(--menu-line);box-shadow:var(--dialog);z-index:20}
+.dlg h2{margin:0;font:500 28px/32px var(--brand);letter-spacing:-.02em}
+.dlg .x{position:absolute;right:16px;top:16px;width:32px;height:32px;border-radius:999px;display:grid;place-items:center;color:var(--meta)}
+.dlg p{margin:6px 0 0;font-size:15px;line-height:22px}
+.dlg .u{text-decoration:underline;text-underline-offset:2px}
+.dlg .lbl{font-size:13px;color:var(--meta);margin:18px 0 6px;display:flex;justify-content:space-between}
+.dlg .fld{height:40px;border-radius:10px;border:1px solid var(--card-line);background:var(--card);padding:0 12px;display:flex;align-items:center;font-size:14px}
+.dlg .ta{height:88px;align-items:flex-start;padding-top:10px;color:var(--meta)}
+.dlg .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dlg .chips{display:flex;flex-wrap:wrap;gap:8px}
+.dlg .chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--card-line);display:flex;align-items:center;font-size:13px}
+.dlg .send{margin-top:18px;width:100%;height:44px;border-radius:999px;font-weight:600;color:var(--on-pill);background:var(--pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen)}
+.dlg .soc{display:flex;gap:8px;margin-top:10px}
+.dlg .soc span{width:36px;height:36px;border-radius:10px;border:1px solid var(--card-line);display:grid;place-items:center}
+.dlg .hr2{height:1px;background:var(--menu-line);margin:18px 0 0}
+.toast{position:fixed;right:32px;bottom:32px;width:380px;padding:14px 12px 14px 14px;display:flex;gap:12px;border-radius:14px;background:var(--menu-bg);border:1px solid var(--menu-line);box-shadow:var(--float);z-index:20} /* el-E15 toast */
+.toast b{display:block;font:600 15px/20px var(--ui)} .toast small{display:block;font-size:14px;line-height:20px;color:var(--meta)}
+.toast .x{margin-left:auto;color:var(--meta)}
+.mark-s{width:48px;height:32px;fill:var(--ink)}
+.state{display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 24px}   /* empty and not found: the mark alone (his call) */
+.state .code{margin-top:22px;font-size:13px;color:var(--meta)}
+.state h2{margin:6px 0 0;font:500 28px/32px var(--brand);letter-spacing:-.02em}
+.state p{margin:8px 0 0;font-size:15px;line-height:22px;max-width:420px}
+.state .pill{margin-top:22px;height:40px;padding:0 20px;border-radius:999px;font-weight:600;color:var(--on-pill);background:var(--pill);border:1px solid var(--pill-rim);box-shadow:var(--pill-sheen);display:grid;place-items:center}
+.state .lnk{margin-top:12px;font-weight:500;text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- 390 ---------- */
+.phone .app{display:block;height:auto}
+.phone .sb{display:none}
+.phone .panel{margin:0;border:0;border-radius:0;background:var(--ground)}
+.phone .tb{height:56px;padding:0 8px 0 4px}                                       /* live 60; 289 header row */
+.phone .tb::after{left:0}
+.phone .content{padding:16px}                                                     /* 289: 23 ref px = 16 */
+.phone .grid{grid-template-columns:1fr;gap:8px}                                   /* 289 tiles 4 apart; 8 for a stack, no ref */
+.phone .card{border-radius:18px}                                                  /* 289: 26 ref px */
+.phone .crumbs{gap:2px}
+.sheet{position:fixed;left:0;top:0;bottom:0;width:304px;background:var(--ground);z-index:20;padding:8px 16px 16px;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--line)} /* no ref */
+.sheet .sb-head{height:56px;margin:0 -6px 4px -4px}
+.card .lst div span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .lst div span:last-child{white-space:nowrap;flex:none}
+
+/* placeholder page: 303's three columns (356 / 595 / 354 ref px), P1 to P8 own what goes in them */
+.cols{display:grid;grid-template-columns:1fr 1.67fr 1fr;gap:18px;align-items:start}
+.stack{display:grid;gap:18px}
+.tabs{display:flex;gap:4px;padding:4px;margin:-6px -6px 0;border-bottom:1px solid var(--card-line)}  /* 303 tabs strip; el-E3 owns the tabs */
+.tab{height:30px;padding:0 10px;border-radius:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--meta)}
+.tab.on{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--card-line),0 1px 2px rgba(0,0,0,.05)}
+.tab i{font-style:normal;font-size:12px;min-width:20px;height:18px;border-radius:6px;display:grid;place-items:center;background:var(--hover);color:var(--ink)}
+.brow{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:14px 0;border-bottom:1px solid var(--card-line)}
+.brow b{font-weight:500;font-size:14px} .brow small{font-size:13px;color:var(--meta)} .brow span{font-size:13px;text-align:right}
+.card.wide{padding:20px 20px 6px}
+.phone .cols{grid-template-columns:1fr;gap:8px} .phone .stack{gap:8px}

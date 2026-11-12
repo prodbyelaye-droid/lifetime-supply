@@ -1,0 +1,345 @@
+/* D9 · P7 (mentorship, module, the room) and P8 (submissions, profile, referrals, business) · Thu 12 Nov 2026
+   Every value names its source: a ledger row, an element final (SPRINT/out/el-*/final), colour c, components A, or "no reference".
+   Type is a token: --f-brand (D, Albert Sans: headlines and the name) and --f-ui (the system face for interface text).
+   Renders use P9's stand-in for SF Pro (Helvetica / TeX Gyre Heros; never Inter, ai-signs T4); on a Mac the stack resolves to SF Pro first. */
+
+@font-face { font-family: "Albert Sans"; font-weight: 400; src: url(a/AlbertSans-Regular.woff2) format("woff2"); }
+@font-face { font-family: "Albert Sans"; font-weight: 500; src: url(a/AlbertSans-Medium.woff2) format("woff2"); }
+@font-face { font-family: "Albert Sans"; font-weight: 500; font-style: italic; src: url(a/AlbertSans-MediumItalic.woff2) format("woff2"); }
+@font-face { font-family: "Albert Sans"; font-weight: 600; src: url(a/AlbertSans-SemiBold.woff2) format("woff2"); }
+
+:root {
+  --f-brand: "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; /* type D, CONTEXT "What is picked" */
+  --f-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, sans-serif;  /* = P9 --ui; renders: Helvetica (Heros) stands in, as P9 */                        /* portal interface stays in the system face */
+  --f-display-heavy: var(--f-brand); --w-display-heavy: 600;  /* referral headline: Albert Sans has 800/900 (OFL); only 400-600 are on disk tonight */
+  --ink: #090909;        /* colour c ink (298) */
+  --text: #141414;       /* components A text */
+  --meta: #6E6E73;       /* components A meta */
+  --page: #F9F9FB;   /* --page = P9 v1 content panel (303); --panel is P9's token, not redefined here */ --quiet: #F0F0F0; --quiet-hover: #E8E8E8;
+  --hair: #E4E4E6;       /* P9 v1 panel rule (303) */
+  --rim: #EBEBED;        /* P9 v1 card edge (303) */
+  --cardbg: #FFFFFF;     /* P9 v1 card (303) */
+  --rule: #F1F1F1;       /* el-E11 row rules (298, 303) */
+  --row-hover: #F7F7F7;  /* el-E11 */
+  --current: #F6F7FA; --current-edge: #E7EAF3;     /* el-E11 current row: 291 selected step in colour c */
+  --selected: #F5F8FF; --selected-rim: #CFDCF5;    /* components A / el-E5: 291 selected row in colour c */
+  --fog: #EFEFF1;        /* colour c fog (290 second pill); the Wise ground (new-1433) in our grey */
+  --tint: #F6F9FD;       /* colour c sky-08: the notice row (new-1425 dribbble notice) */
+  --cobalt: #1D46AE;     /* colour c sky-2: ticks and the deepest heat cell (el-E9 ring is this cobalt) */
+  --heat-1: #96CFF5; --heat-2: #50A0E7; --heat-3: #2F6CCF; --heat-4: #1D46AE; /* colour c sky-6, 4, 3, 2 (257 heatmap through the remap) */
+  --tab-track: #F7F7F7; --tab-on: #FFFFFF; --tab-ring: rgba(0,0,0,.10); --tab-off: #646464; /* el-E3 (303) */
+  --field-ring: rgba(0,0,0,.25); --field-label: #6B6B6B; --field-fill: #FFFFFF;   /* el-E4: the field is white on the grey panel */ /* el-E4 (row 24) */
+  --shadow-card: none;   /* P9 v1: cards have no shadow (303) */
+  --pill-ink: linear-gradient(180deg, #363636 0%, #181818 100%); --pill-ink-rim: #252628;   /* components A (291) */
+  --pill-ink-sheen: inset 0 1px 0 rgba(255,255,255,.13), inset 0 -1px 0 rgba(255,255,255,.04), 0 1px 1px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.10);
+  --pill-white: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); /* components A (row 16) */
+  --pill-white-ring: inset 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --pill-ink-text: #FFFFFF;
+  --ease: cubic-bezier(.22, 1, .36, 1);  /* row 54 */
+}
+[data-theme="dark"] {
+  --ink: #FFFFFF; --text: #FFFFFF; --meta: #8E8E93;
+  --page: #000000; --quiet: #202020; --quiet-hover: #262626;
+  --hair: #1F2023; --rim: #1F2023; --cardbg: #0B0B0C; --rule: #1C1C1C; --row-hover: #141414;
+  --current: #141414; --current-edge: #2A2A2A; --selected: #16181F; --selected-rim: #2B3550;
+  --fog: #0F0F0F; --tint: #0F0F0F;
+  --cobalt: #F2F2F0;  /* colour c: in dark every sky blue turns grey and white (his 4 Nov call) */
+  --heat-1: #55585E; --heat-2: #8E9094; --heat-3: #C4C6C9; --heat-4: #F2F2F0;  /* colour c night greys */
+  --tab-track: #0F0F0F; --tab-on: #202020; --tab-ring: rgba(255,255,255,.08); --tab-off: #8A8A8A;
+  --field-ring: rgba(255,255,255,.22); --field-label: #A1A1A6; --field-fill: transparent;
+  --shadow-card: none;
+  --pill-ink: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); --pill-ink-rim: rgba(0,0,0,.55);
+  --pill-ink-sheen: inset 0 1px 0 #FFFFFF, 0 1px 2px rgba(0,0,0,.45); --pill-ink-text: #111111;
+  --pill-white: linear-gradient(180deg, #2A2A2A 0%, #171717 100%);
+  --pill-white-ring: inset 0 0 0 1px rgba(255,255,255,.08), inset 0 1px 0 rgba(255,255,255,.10), 0 1px 2px rgba(0,0,0,.6);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--page); color: var(--text); font: 400 15px/22px var(--f-ui); letter-spacing: -.01em; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+.ic { flex: none; display: block; }
+.blur { filter: blur(4.5px); user-select: none; }   /* the demo member and artist names, the way recording mode blurs (11 Nov) */
+
+/* the frame is P9's v1 (p9-frame.css, loaded first); nothing frame-related lives here */
+.pg { padding: 8px 0 48px; }
+
+/* ---------------- shared parts ---------------- */
+.pg-head { padding-bottom: 24px; border-bottom: 1px solid var(--hair); margin-bottom: 28px; }                 /* standing 236: H1 + dek + hairline */
+.h1 { margin: 0; font: 500 34px/40px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }             /* type D: Medium 500, -0.02em */
+.dek { margin-top: 8px; font: 400 16px/24px var(--f-ui); color: var(--text);   /* ai-signs T3: ink, not grey */ max-width: 720px; }
+.card { background: var(--cardbg); border: 1px solid var(--rim); border-radius: 14px; box-shadow: var(--shadow-card); }  /* P9 v1 card (303): white, 1 px, radius 14, no shadow */
+.card-pad { padding: 18px; }
+.card-title { margin: 0; font: 600 17px/22px var(--f-ui); letter-spacing: -.01em; color: var(--ink); }      /* el-E5 card title */
+.meta { font: 400 13px/18px var(--f-ui); color: var(--meta); }
+.link { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 22px; border-radius: 999px; font: 500 15px/1 var(--f-ui); white-space: nowrap; } /* components A md */
+.pill-ink { background: var(--pill-ink); color: var(--pill-ink-text); border: 1px solid var(--pill-ink-rim); box-shadow: var(--pill-ink-sheen); }
+.pill-white { background: var(--pill-white); color: var(--text); box-shadow: var(--pill-white-ring); }
+.pill-off { background: #ECECEC; color: #A1A1A1; }  /* components A disabled */
+[data-theme="dark"] .pill-off { background: #1F1F1F; color: #666; }
+.tick { width: 18px; height: 18px; flex: none; border-radius: 50%; background: var(--cobalt); display: grid; place-items: center; color: #fff; }
+[data-theme="dark"] .tick { color: #000; }
+
+/* ================= P7 · a module (row 247 Compass + WWDC, new-1340 Magnific, 291, el-E11) ================= */
+.mod { display: grid; grid-template-columns: 296px minmax(0, 1fr); margin: -16px -16px 0; }   /* the module page uses the whole panel: nav flush to its left edge (247) */
+.mod-nav { border-right: 1px solid var(--hair); padding: 18px 16px 40px 12px; min-height: calc(100vh - 92px); } /* 247 Compass: 288 nav, flush, hairline right; no card, no grey wash */
+.mod-class { display: flex; align-items: center; gap: 10px; padding: 6px 10px 2px; }
+.mod-class b { flex: 1; font: 500 15px/20px var(--f-ui); color: var(--ink); }   /* el-E11 group label: structure in ink */
+.mod-class .ic { color: var(--meta); }
+.mod-class-meta { padding: 0 10px 10px; font: 400 13px/18px var(--f-ui); color: var(--meta); }   /* "class one, 18 modules" (repo /mentorship) */
+.mod-class + .mod-class-meta + .mod-list { margin-bottom: 18px; }
+.mod-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; }
+.row-c { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 12px 0 8px; border-radius: 8px; }   /* el-E11 contents row (291 pitch) */
+.row-c .n { flex: none; width: 20px; text-align: right; font: 400 13px/18px var(--f-ui); color: var(--meta); font-variant-numeric: tabular-nums; } /* the real number, never "01." (ai-signs T6) */
+.row-c .t { flex: 1; min-width: 0; font: 400 14.5px/20px var(--f-ui); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row-c[aria-current] { background: var(--current); box-shadow: inset 0 0 0 1px var(--current-edge); }   /* 291 selected step */
+.row-c[aria-current] .t { font-weight: 500; color: var(--ink); }
+.row-c .bar { flex: none; width: 34px; height: 3px; border-radius: 2px; background: var(--current-edge); overflow: hidden; }
+.row-c .bar i { display: block; width: 12%; height: 100%; background: var(--ink); }   /* new-1340: the current lesson's progress line, in ink */
+.mod-sep { height: 1px; background: var(--hair); margin: 6px 10px 14px; }
+
+.mod-main { padding: 24px 32px 80px; min-width: 0; }
+.mod-wrap { max-width: 900px; }
+/* the poster: row 247 WWDC title card (brand field, big title low-left, small line under), on colour c's painted sky */
+.poster { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #1D46AE url(a/portal-bg-2880x1800-warm@1x.webp) center 100% / cover no-repeat; color: #fff; }
+[data-theme="dark"] .poster { background-image: url(a/portal-bg-2880x1800-night@1x.webp); background-color: #000; box-shadow: inset 0 0 0 1px #1C1C1C; }
+.poster-mark { position: absolute; left: 6.2%; top: 9%; width: 52px; }     /* 247: WWDC lockup sits top-left at 5 % / 9 % */
+.poster-copy { position: absolute; left: 6.2%; top: 31%; right: 8%; }        /* 247: title block from about a third down; white words stay in the sky's top half (colour c rule) */
+.poster-title { margin: 0; font: 500 60px/1 var(--f-brand); letter-spacing: -.03em; }   /* 247: title cap height about 1/10 of the card */
+.poster-line { margin-top: 14px; font: 400 20px/26px var(--f-brand); opacity: .92; }
+.status { display: flex; align-items: center; gap: 16px; padding: 18px 2px 0; }   /* new-1340: the row under the player (prev / next) */
+.status-copy { flex: 1; min-width: 0; }
+.status-copy b { display: block; font: 500 15px/20px var(--f-ui); color: var(--ink); }
+.status-copy span { font: 400 14px/21px var(--f-ui); color: var(--text); }
+.status-copy .link { display: block; width: max-content; margin-top: 2px; font-weight: 400; color: var(--text); }
+.next { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/20px var(--f-ui); color: var(--ink); white-space: nowrap; }
+.lesson { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 56px; margin-top: 36px; padding-top: 36px; border-top: 1px solid var(--hair); }  /* 247 Compass: lesson column + on-this-page */
+.lesson h1 { margin: 0 0 20px; font: 500 36px/42px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }
+.lesson h2 { margin: 30px 0 10px; font: 500 22px/30px var(--f-brand); letter-spacing: -.015em; color: var(--ink); }
+.lesson p { font: 400 16.5px/28px var(--f-ui); color: var(--text); max-width: 640px; margin-bottom: 16px; }  /* 247 Compass body: 28 px leading, about 70 characters */
+.otp { align-self: start; }
+.otp b { display: block; font: 500 14px/20px var(--f-ui); color: var(--ink); }
+.otp .meta { display: block; margin-bottom: 14px; }
+.otp ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--hair); }      /* 247 Compass: the rail */
+.otp li { position: relative; padding: 6px 0 6px 14px; font: 400 13.5px/19px var(--f-ui); color: var(--meta); }
+.otp li[aria-current] { color: var(--ink); font-weight: 500; }
+.otp li[aria-current]::before { content: ""; position: absolute; left: -1px; top: 6px; bottom: 6px; width: 1px; background: var(--ink); }  /* 247: the current item marks the rail in ink */
+/* option B: no poster until the videos land; the written module leads (247 Compass has no video). The status is a quiet row (el-E5 quiet). */
+.vnote { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 12px; background: var(--fog); }
+.vnote img { width: 26px; }
+.lesson-b { margin-top: 28px; padding-top: 0; border-top: 0; }
+.mod-phone-bar { display: none; }
+
+/* ================= P7 · the room (291 list, 303 card, el-E5 door) ================= */
+
+.door { border-radius: 14px; overflow: hidden; background: var(--cardbg); border: 1px solid var(--rim); box-shadow: var(--shadow-card); }   /* el-E5 door: picture on top, words under */
+.door-pic { height: 132px; background: url(a/door-help-light@2x.webp) 0 50% / auto 100% no-repeat; animation: drift 34s ease-in-out infinite alternate; }  /* el-E5: row 26's drifting tile, 34 s */
+[data-theme="dark"] .door-pic { background-image: url(a/door-help-dark@2x.webp); }
+@keyframes drift { from { background-position-x: 0; } to { background-position-x: -60px; } }
+.door-body { padding: 18px 20px 20px; display: grid; gap: 12px; }
+.door-body p { font: 400 15px/22px var(--f-ui); color: var(--text); }
+.door-body p.meta2 { color: var(--text); }
+.disc { width: 18px; height: 18px; }
+.chan-head { display: flex; align-items: baseline; justify-content: space-between; padding: 18px 20px 8px; }
+.chan { list-style: none; margin: 0; padding: 0 8px 8px; }
+.chan li { position: relative; display: flex; align-items: center; height: 48px; padding: 0 12px; border-radius: 8px; }     /* 291 favourites: name left, type right in grey */
+.chan li + li::before { content: ""; position: absolute; left: 12px; right: 12px; top: 0; height: 1px; background: var(--rule); }   /* el-E11 row rule */
+.chan li:hover { background: var(--row-hover); }
+.chan .nm { flex: 1; font: 400 16px/22px var(--f-ui); color: var(--text); }
+.chan .tg { font: 400 14px/20px var(--f-ui); color: var(--meta); }
+.room-foot { margin-top: 18px; font: 400 15px/22px var(--f-ui); color: var(--text); }
+.room-foot a { color: var(--ink); font-weight: 500; }
+
+/* ================= P8 · submissions (303 list + detail, 253 stepper, 257 heatmap) ================= */
+.sub-top { padding-bottom: 24px; border-bottom: 1px solid var(--hair); margin-bottom: 28px; }   /* standing 236 head */
+.heat { padding: 18px 20px 16px; }
+.heat .meta b { font-weight: 600; color: var(--ink); }
+.heat-grid { display: grid; grid-template-columns: 28px repeat(13, 1fr); gap: 3px; margin-top: 14px; }
+.heat-grid i { aspect-ratio: 1; border-radius: 3px; background: var(--quiet); }
+.heat-grid i.l1 { background: var(--heat-1); } .heat-grid i.l2 { background: var(--heat-2); } .heat-grid i.l3 { background: var(--heat-3); } .heat-grid i.l4 { background: var(--heat-4); }
+.heat-grid i.today { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.heat-grid span { font: 400 11px/1 var(--f-ui); color: var(--meta); align-self: center; }
+.heat-months { display: grid; grid-template-columns: 28px repeat(13, 1fr); gap: 3px; font: 400 11px/1 var(--f-ui); color: var(--meta); margin-top: 12px; }
+.heat-legend { display: flex; align-items: center; justify-content: flex-end; gap: 3px; margin-top: 10px; font: 400 11px/1 var(--f-ui); color: var(--meta); }
+.heat-legend i { width: 10px; height: 10px; border-radius: 2px; background: var(--quiet); }
+.sub-split { display: grid; grid-template-columns: 300px minmax(0, 1fr) 328px; gap: 24px; align-items: start; }   /* 303: list | detail | info column */
+.sub-list { padding: 8px; }
+.sub-row { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; }   /* 303 activity row */
+.sub-row[aria-current] { background: var(--selected); box-shadow: inset 0 0 0 1px var(--selected-rim); }   /* 291 selected */
+.sub-ic { width: 36px; height: 36px; flex: none; border-radius: 10px; display: grid; place-items: center; background: var(--quiet); color: var(--ink); }  /* 303 icon tile */
+.sub-row .t { font: 500 15px/20px var(--f-ui); color: var(--ink); }
+.sub-row .mt { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+.tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font: 500 12.5px/1 var(--f-ui); color: var(--text); background: var(--quiet); box-shadow: inset 0 0 0 1px rgba(0,0,0,.09), 0 1px 0 rgba(0,0,0,.04); } /* el-E7 quiet tag (303) */
+[data-theme="dark"] .tag { box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); }
+.seg4 { display: flex; gap: 3px; margin-left: auto; }
+.seg4 i { width: 14px; height: 4px; border-radius: 2px; background: var(--rule); }
+.seg4 i.on { background: var(--ink); }
+.det { padding: 24px 28px 28px; }
+.det-title { margin: 6px 0 12px; font: 500 26px/32px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }
+.det-line { display: flex; align-items: center; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid var(--hair); }
+.det-h { margin: 20px 0 14px; font: 500 14px/20px var(--f-ui); color: var(--ink); }
+.step { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 14px; }   /* 253 Origin comp-528: vertical stepper, inline titles */
+.step .dot { position: relative; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 500 12px/1 var(--f-ui); background: var(--quiet); color: var(--meta); }
+.step .dot::after { content: ""; position: absolute; left: 11.5px; top: 28px; width: 1px; height: calc(100% + var(--gap, 18px)); background: var(--hair); }
+.step:last-child .dot::after { display: none; }
+.step.now .dot { background: var(--page); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink), 0 0 0 4px var(--current); }   /* 253: current numbered in ink, V1 ring */
+.step .body { padding: 2px 0 22px; }
+.step .body b { display: block; font: 500 15px/20px var(--f-ui); color: var(--meta); }
+.step.now .body b { color: var(--ink); }
+.step .note { margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: var(--fog); font: 400 14px/20px var(--f-ui); color: var(--text); }
+.sub-foot { margin-top: 22px; font: 400 14px/20px var(--f-ui); color: var(--meta); }
+
+/* ================= P8 · profile (260 shadcn-admin settings, new-1425 dribbble, el-E4, el-E17) ================= */
+.prof { display: grid; grid-template-columns: 208px minmax(0, 640px); gap: 56px; }
+.subnav { display: grid; gap: 2px; align-content: start; }
+.subnav a { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px; border-radius: 8px; font: 400 15px/20px var(--f-ui); color: var(--text); }   /* 260 settings sub-nav, 291 menu rows */
+.subnav a.on { background: var(--selected); box-shadow: inset 0 0 0 1px var(--selected-rim); font-weight: 500; color: var(--ink); }   /* 291 selected, colour c */
+.subnav a .ic { color: var(--meta); } .subnav a.on .ic { color: var(--ink); }
+.sec-title { margin: 0 0 4px; font: 500 22px/28px var(--f-brand); letter-spacing: -.015em; color: var(--ink); }
+.notice { display: flex; gap: 12px; align-items: center; margin: 18px 0 26px; padding: 14px 16px; border-radius: 12px; background: var(--tint); font: 400 14px/20px var(--f-ui); color: var(--text); }  /* new-1425: tinted notice row */
+.notice .ic { color: var(--ink); }
+.photo { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }   /* el-E17 profile photo: 96, gap 20 */
+.photo-av { width: 96px; height: 96px; border-radius: 12px; background: #ECECEE; display: grid; place-items: center; font: 500 34px/1 var(--f-ui); color: var(--ink); }
+.photo b { display: block; font: 500 15px/20px var(--f-ui); color: var(--ink); }
+.photo .meta { display: block; margin: 2px 0 6px; }
+.photo a { font: 500 13px/18px var(--f-ui); color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+.f { display: grid; gap: 8px; }
+.f.wide { grid-column: 1 / -1; }
+.f label { font: 500 14px/18px var(--f-ui); color: var(--ink); }     /* new-1425: labels above, ink, 500 */
+.inp { display: flex; align-items: center; height: 44px; padding: 0 14px; border-radius: 12px; background: var(--field-fill); box-shadow: inset 0 0 0 1px var(--field-ring); font: 400 15px/20px var(--f-ui); color: var(--text); }  /* el-E4 field (row 24) */
+.inp.ph { color: var(--meta); }
+.inp.area { height: 96px; align-items: flex-start; padding-top: 12px; }
+.inp .at { margin: 0 12px 0 -2px; padding-right: 12px; height: 100%; display: grid; place-items: center; color: var(--meta); box-shadow: 1px 0 0 var(--field-ring); }
+.save-row { grid-column: 1 / -1; display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 8px; padding-top: 20px; border-top: 1px solid var(--hair); }
+.save-row .meta { margin-right: auto; }
+
+/* ================= P8 · referrals (new-1433 Wise invite flow; his 4 Nov calls) ================= */
+.ref { max-width: none; }
+.ref-hero { border-radius: 20px; background: var(--fog); padding: 64px 48px 56px; text-align: center; }   /* new-1433: big hero card on a soft grey ground ("fill the background", 4 Nov 21:08) */
+.ref-h { margin: 0; font: var(--w-display-heavy) 88px/.9 var(--f-display-heavy); letter-spacing: -.035em; text-transform: uppercase; color: var(--ink); }   /* new-1433: heavy uppercase display; his capitals kept (4 Nov) */
+.ref-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }   /* P9 v1 gutter 18 */
+.ref-card { padding: 24px 26px 26px; border-radius: 20px; border: 1px solid var(--rim); background: var(--cardbg); }        /* new-1433: two plain cards, hairline, no shadow */
+.ref-card h3 { margin: 0 0 16px; font: 500 24px/30px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }
+.ref-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ref-card li { display: flex; gap: 12px; align-items: flex-start; font: 400 16px/23px var(--f-ui); color: var(--text); }
+.ref-card li .tick { margin-top: 2.5px; }
+.ref-card li b { font-weight: 600; color: var(--ink); }
+.ref-who { margin-top: 18px; padding: 20px 26px; border-radius: 20px; border: 1px solid var(--rim); background: var(--cardbg); }
+.ref-who b { display: block; padding-bottom: 14px; border-bottom: 1px solid var(--hair); font: 500 15px/20px var(--f-ui); color: var(--ink); }   /* new-1433: "Invited friends" label + rule */
+.ref-who p { padding-top: 16px; font: 400 15px/20px var(--f-ui); color: var(--meta); }
+
+/* ================= P8 · business, coming soon (P9 empty state: the mark alone) ================= */
+.soon { display: grid; place-items: center; text-align: center; min-height: 520px; }
+.soon img { width: 56px; margin: 0 auto 22px; }
+.soon b { display: block; font: 500 24px/30px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }
+.soon p { margin-top: 8px; font: 400 15px/22px var(--f-ui); color: var(--meta); max-width: 380px; }
+
+/* ================= 390 (web) ================= */
+@media (max-width: 700px) {
+  .pg { padding: 4px 0 40px; }
+  .h1 { font-size: 30px; line-height: 36px; }
+  .mod { display: block; margin: 0; }
+  .mod-nav { display: none; }
+  .mod-main { padding: 0 0 48px; }
+  .mod-phone-bar { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; margin-bottom: 14px; border-radius: 12px; border: 1px solid var(--rim); background: var(--cardbg); font: 500 15px/20px var(--f-ui); color: var(--ink); }
+  .mod-phone-bar span { flex: 1; min-width: 0; font-weight: 400; font-size: 13px; color: var(--meta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .poster-mark { width: 30px; } .poster-title { font-size: 34px; } .poster-line { font-size: 14px; line-height: 18px; margin-top: 8px; }
+  .status { flex-wrap: wrap; } .status-copy { flex-basis: 100%; }
+  .lesson { display: block; margin-top: 24px; padding-top: 24px; } .otp { display: none; }
+  .lesson h1 { font-size: 28px; line-height: 34px; } .lesson p { font-size: 16px; line-height: 27px; }
+  .room-grid { grid-template-columns: 1fr; } .room-grid .door { order: -1; }
+  .sub-top, .sub-split { grid-template-columns: 1fr; }
+  .det { padding: 20px; }
+  .prof { grid-template-columns: 1fr; gap: 20px; }
+  .subnav { display: flex; overflow: auto; gap: 2px; margin: 0 -16px; padding: 0 16px; } .subnav a { flex: none; padding: 0 10px; gap: 7px; font-size: 14.5px; }
+  .fields { grid-template-columns: 1fr; }
+  .ref-hero { padding: 40px 20px 36px; } .ref-h { font-size: 44px; }
+  .ref-cards { grid-template-columns: 1fr; gap: 12px; }
+}
+.heat-grid b { display: block; }
+
+/* ================= redo after A1 pass 1 (14:24 manager note) ================= */
+/* room: one card at the content width, the discord action in its head (303 card head + action), 291 rows; no sky strip (A1) */
+.rcard { padding: 0; }
+.rcard-h { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 20px 20px 12px; }   /* P9 v1 card padding 20 */
+.rline { margin-top: 4px; font: 400 14px/20px var(--f-ui); color: var(--text); }
+.rcard .chan { padding: 0 8px 4px; }
+.rfoot { padding: 14px 20px 18px; border-top: 1px solid var(--rule); font: 400 14px/20px var(--f-ui); color: var(--text); }
+
+/* shared: a head with the title left and one fact right (298 "Projects overview"), and 303 tabs with counts (el-E3) */
+.head2 { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 20px; }
+.head2-r b { font-weight: 600; color: var(--ink); }
+.tabs2 { display: inline-flex; align-items: center; gap: 0; padding: 0; border-radius: 8px; background: var(--tab-track); margin-bottom: 18px; }   /* el-E3 tabs (303): flush track */
+.tab2 { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px; border-radius: 8px; font: 500 14px/1 var(--f-ui); color: var(--tab-off); white-space: nowrap; }
+.tab2.on { background: var(--tab-on); color: var(--ink); box-shadow: inset 0 0 0 1px var(--tab-ring), 0 1px 3px rgba(0,0,0,.06); }
+.tab2 + .tab2::before { content: ""; position: absolute; left: 0; top: 50%; width: 1px; height: 12px; margin-top: -6px; background: #DCDCDC; }
+.tab2.on::before, .tab2.on + .tab2::before { display: none; }
+[data-theme="dark"] .tab2 + .tab2::before { background: rgba(255,255,255,.12); }
+.tab2 i { font-style: normal; display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 6px; background: #E4E4E6; color: #424242; font: 500 13px/1 var(--f-ui); font-variant-numeric: tabular-nums; }
+.tab2.on i { background: #F0F0F0; color: var(--ink); }
+[data-theme="dark"] .tab2 i { background: #202020; color: #B5B5B5; } [data-theme="dark"] .tab2.on i { background: #2E2E2E; color: #fff; }
+
+/* submissions: 298's table card (title + count pill, header band, ruled rows) beside 303's detail card with the 253 stepper */
+.sub2 { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 18px; align-items: start; }
+.tcard { padding: 0; overflow: hidden; }
+.tcard-h { display: flex; align-items: center; gap: 10px; padding: 18px 20px 14px; }
+.cnt { display: inline-grid; place-items: center; height: 22px; padding: 0 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--rim); font: 500 12.5px/1 var(--f-ui); color: var(--text); }   /* 298 "44 projects" outline pill, in ink */
+.thead, .trow { display: grid; grid-template-columns: minmax(0, 1fr) 128px 120px 96px; align-items: center; gap: 16px; padding: 0 20px; }
+.thead { height: 34px; background: var(--row-hover); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font: 500 12.5px/1 var(--f-ui); color: var(--meta); }   /* 298 header band */
+.thead .c-brief { display: inline-flex; align-items: center; gap: 4px; } .sortic svg { transform: rotate(90deg); }
+.trow { height: 56px; border-bottom: 1px solid var(--rule); font: 400 14px/20px var(--f-ui); color: var(--text); }   /* 298 rows */
+.trow b { font-weight: 500; color: var(--ink); } .trow .c-date { color: var(--meta); }
+.trow[aria-current] { background: var(--selected); box-shadow: inset 2px 0 0 var(--ink); }
+.trow .seg4 { margin-left: 0; }
+.sub2 .det { padding: 22px 24px 24px; }
+
+/* profile: 303's contact header (photo, name, one line, actions right), tabs, then label and value pairs in cards (A1: "label and value pairs, as 303") */
+.phead { display: flex; align-items: center; gap: 18px; padding: 18px 20px; margin-bottom: 18px; }
+.pav { width: 64px; height: 64px; flex: none; border-radius: 10px; background: #ECECEE; display: grid; place-items: center; font: 500 22px/1 var(--f-ui); color: var(--ink); }   /* el-E17 rounded square (0.13 x radius rule... 303 photo 75 ref px = 64) */
+[data-theme="dark"] .pav { background: #202020; }
+.phead-t { flex: 1; min-width: 0; }
+.pname { margin: 0; font: 500 26px/32px var(--f-brand); letter-spacing: -.02em; color: var(--ink); }
+.phead-t p { margin-top: 2px; font: 400 14px/20px var(--f-ui); color: var(--text); }
+.phead-a { display: flex; gap: 10px; }
+.phead-a .pill { height: 36px; padding: 0 16px; font-size: 14px; }   /* 303 header buttons 36 */
+.pgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.pcard { padding: 20px; }
+.pairs { margin: 14px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+.pairs.one { grid-template-columns: 1fr; margin-top: 0; }
+.pairs dt { font: 400 13px/18px var(--f-ui); color: var(--meta); }   /* 303 label: grey, small */
+.pairs dd { margin: 4px 0 0; min-height: 21px; font: 400 15px/21px var(--f-ui); color: var(--ink); }   /* 303 value: ink */
+.pairs dd.empty { box-shadow: inset 0 -1px 0 var(--rule); width: 60%; }
+.hint { color: var(--meta) !important; font: 400 15px/21px var(--f-ui); }
+.phr { height: 1px; background: var(--rule); margin: 20px 0 18px; }
+
+/* referrals: Wise (new-1433) finished: the one thing to do (message him) where Wise puts its link */
+.ref-hero { display: grid; justify-items: center; gap: 28px; padding: 64px 48px 56px; }
+.ref-act { display: grid; justify-items: center; gap: 12px; }
+.ref-line { margin: 0; font: 400 15px/22px var(--f-ui); color: var(--text); }   /* Wise "Share your link" label position */
+.ref-row { display: flex; gap: 10px; align-items: center; }
+.ref-field { display: inline-flex; align-items: center; gap: 24px; height: 48px; padding: 0 6px 0 18px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); font: 500 16px/1 var(--f-ui); color: var(--ink); min-width: 300px; justify-content: space-between; }   /* Wise link field: white, 1 px edge (el-E4) */
+.ref-copy { display: inline-grid; place-items: center; height: 34px; padding: 0 14px; border-radius: 9px; background: var(--quiet); font: 500 14px/1 var(--f-ui); color: var(--ink); }   /* Wise "Copy" chip, in our quiet grey */
+.ref-share { height: 48px; padding: 0 26px; }
+[data-theme="dark"] .ref-field { background: #000; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); }
+[data-o="b"] .ref-hero { grid-template-columns: minmax(0, 1fr) auto; justify-items: start; align-items: end; padding: 72px 56px 64px; text-align: left; }   /* Wise 1:1: headline left, the action where Wise sets its link */
+[data-o="b"] .ref-act { justify-items: start; }
+@media (max-width: 700px) {
+  .head2 { display: block; } .head2-r { margin-top: 8px; }
+  .tabs2 { display: flex; overflow: auto; max-width: 100%; }
+  .sub2, .pgrid { grid-template-columns: 1fr; }
+  .thead, .trow { grid-template-columns: minmax(0, 1fr) 70px 80px; } .c-pr { display: none; }
+  .thead .c-date, .trow .c-date { display: none; } .thead, .trow { grid-template-columns: minmax(0, 1fr) 70px; }
+  .phead { flex-wrap: wrap; } .phead-a { width: 100%; }
+  .pairs { grid-template-columns: 1fr; }
+  .rcard-h { flex-direction: column; }
+  .ref-row { flex-direction: column; width: 100%; } .ref-field { min-width: 0; width: 100%; } .ref-share { width: 100%; }
+  .ref-hero { gap: 22px; }
+  .vnote { flex-wrap: wrap; align-items: flex-start; } .vnote .status-copy { flex: 1 1 200px; } .vnote .next { margin-left: 40px; }
+}
+
+.pnote { margin-top: 4px; font: 400 14px/20px var(--f-ui); color: var(--text); }   /* the live note as plain text (A1) */
+.ref-act { gap: 0; }
+[data-o="b"] .ref-act { align-self: end; padding-bottom: 10px; }

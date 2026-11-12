@@ -1,0 +1,167 @@
+/* P5 · the vault and its player. Every value names its source: a ledger row, an element final, the live panel or "no reference". */
+
+/* ---------- /vault: three cards (his 4 Nov call: untitled, dropbox, and a player card that opens coming soon) ---------- */
+.v-head { padding: 20px 4px 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.v-head h1 { font-size: 44px; line-height: 46px; max-width: 760px; }          /* 289 scale contrast: headline about 3x the body; type D */
+.v-count { margin: 0 0 6px; font-size: 14px; color: var(--meta); white-space: nowrap; }
+.v-count b { font-weight: 500; color: var(--ink); }                           /* 304: the number in ink, the unit beside it */
+.v-grid { display: grid; grid-template-columns: 7fr 5fr; grid-template-rows: 236px 236px; gap: 18px; }   /* P9 gutters 18 */
+.v-card { position: relative; overflow: hidden; padding: 20px; }              /* P9 card: radius 14, padding 20 */
+.v-card h2 { font-size: 26px; line-height: 30px; }
+.v-card p { margin: 10px 0 0; font-size: 14px; line-height: 21px; color: var(--text); }
+.v-untitled { grid-row: 1 / 3; display: flex; flex-direction: column; }
+.v-prints { position: relative; height: 262px; margin: -20px -20px 0; overflow: hidden; border-bottom: 1px solid var(--card-line); background: var(--quiet); }
+.v-prints img { position: absolute; top: 24px; width: 214px; height: 214px; object-fit: cover; border-radius: 3px;   /* the real kit sleeves, el-E14 corner 3 (295 square art); the last runs off the card (291 close crop) */
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.14), 0 8px 18px -8px rgba(0,0,0,.25); }          /* 291 tight shadow */
+.v-untitled .v-text { margin-top: auto; }
+.v-untitled p { max-width: 560px; }
+.v-untitled .btn { margin-top: 18px; }
+.v-dropbox { display: flex; flex-direction: column; }
+.v-dropbox .v-text { display: flex; flex-direction: column; flex: 1; }
+.v-dropbox p { max-width: 400px; }
+.v-dropbox .btn { margin-top: auto; align-self: flex-start; }
+.v-sleeves { position: relative; margin: -20px -20px -20px 0; }
+.v-sleeves img { position: absolute; width: 150px; height: 150px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.18), 0 10px 22px -10px rgba(0,0,0,.35); }
+.v-solos { grid-column: 1 / 3; display: grid; grid-template-columns: 220px 1fr auto; align-items: center; gap: 32px; padding: 18px 20px; }
+.v-solos h2 { font-size: 22px; line-height: 26px; }
+.v-solos p { margin: 0; max-width: 660px; }
+
+/* ---------- the horizon: the live coming-soon panel (horizon-glow-hero, vault-2130.css) carried as a reusable piece ---------- */
+.hz { position: relative; overflow: hidden; background: var(--hz-field); }
+.hz-lines { position: absolute; inset: 0; background-image: repeating-linear-gradient(to right, var(--hz-line) 0 1px, transparent 1px 8px); }   /* live: 1 px every 8 px at 3.5 % */
+.hz-orb { position: absolute; left: 50%; border-radius: 50%; width: calc(var(--R) * 2); height: calc(var(--R) * 2); margin-left: calc(var(--R) * -1); top: var(--crown); }
+.hz-halo { box-shadow: 0 0 0 1px var(--hz-halo), 0 -3px 10px var(--hz-halo), 0 -14px 40px -6px var(--hz-halo); }   /* live HALO rings, kept tight */
+.hz-rim { top: calc(var(--crown) - 1.5px); width: calc(var(--R) * 2 + 3px); height: calc(var(--R) * 2 + 3px); margin-left: calc(var(--R) * -1 - 1.5px);
+  background: conic-gradient(from 0deg, var(--hz-rim-top) 0deg, var(--hz-rim-a) 3deg, var(--hz-rim-b) 14deg, var(--hz-rim-b) 346deg, var(--hz-rim-a) 357deg, var(--hz-rim-top) 360deg);
+  -webkit-mask: conic-gradient(from 0deg, rgba(0,0,0,.4) 0deg, #000 6deg, #000 354deg, rgba(0,0,0,.4) 360deg); }   /* live RIM and RIM_MASK; angles scaled to our flatter disk */
+.hz-spill { top: calc(var(--crown) - 2.5px); width: calc(var(--R) * 2 + 5px); height: calc(var(--R) * 2 + 5px); margin-left: calc(var(--R) * -1 - 2.5px);
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 5deg, var(--hz-rim-b) 16deg, var(--hz-rim-b) 344deg, transparent 355deg); filter: blur(1.5px); opacity: .55; }  /* the live rim's colour spill, cut to 2 px (ai-signs C4: no bloom) */
+.hz-disk { background: var(--hz-disk); }
+.hz-in { position: relative; }
+
+/* ---------- the player screen ---------- */
+.pl { --R: 1700px; --crown: 178px; height: calc(100vh - 24px - 69px); }      /* no reference for the radius: chosen so the arc falls 88 px across the list (the live disk falls 196 at this width) */
+.pl-head { position: relative; text-align: center; padding-top: 44px; }
+.pl-head h1, .pl-head h2 { font-size: 40px; line-height: 44px; }
+.pl-head p { margin: 10px 0 0; font-size: 15px; line-height: 22px; color: var(--text); }
+.pl-tools { position: absolute; top: calc(var(--crown) + 26px); left: 0; right: 0; display: flex; justify-content: center; gap: 10px; align-items: center; }
+.pl-search { width: 420px; height: 36px; border-radius: 10px; background: var(--quiet); display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--meta); font-size: 14px; }
+.seg { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--quiet); gap: 2px; }      /* 291 appearance switch: white thumb on #F0F0F0 */
+.seg span { height: 30px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 13px; color: var(--meta); }
+.seg span.on { background: var(--card); color: var(--ink); font-weight: 500; box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.08); }
+.pl-list { position: absolute; top: calc(var(--crown) + 98px); left: 50%; width: 1080px; margin-left: -540px; }
+
+/* el-E13 row, as specified (48 tall; columns, colours and type from its SPEC.md) */
+.row { display: grid; grid-template-columns: 28px 196px 256px 40px 52px 76px 1fr 32px 32px; column-gap: 16px; align-items: center; height: 48px; padding: 0 8px 0 10px; border-radius: 14px; border: 1px solid transparent; margin-bottom: 2px; }
+.row .play { width: 28px; height: 28px; border-radius: 50%; background: #F0F0F0; display: grid; place-items: center; color: var(--ink); }
+.row .play svg { width: 12px; height: 12px; fill: currentColor; stroke: none; }
+.row .nm { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: -.005em; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .len { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; color: var(--ink); }
+.row .mt { font-size: 13px; color: var(--meta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .act { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; color: var(--meta); }
+.row .act svg { width: 18px; height: 18px; }
+.row.playing { background: linear-gradient(90deg, var(--selected-a), var(--selected-b)); border-color: var(--selected-rim); }
+.row.playing .play, .row.hover .play { background: #222; color: #FFF; box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 1px 2px rgba(0,0,0,.22); }
+.row.hover { background: var(--quiet); }
+.row .saved { color: var(--ink); }
+.row .saved svg { fill: currentColor; }
+.wave { display: block; }
+
+/* el-E13 capsule (now playing), 64 tall */
+.cap { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; align-items: center; }
+.cap-body { height: 64px; border-radius: 32px; padding: 0 8px; display: flex; align-items: center; background: #222; position: relative;
+  box-shadow: 0 0 0 1px #28292B, inset 0 2px 0 rgba(255,255,255,.07), inset 0 0 0 2px rgba(255,255,255,.05), 0 1px 2px rgba(0,0,0,.22), 0 12px 28px -12px rgba(0,0,0,.28); }
+.cap-art { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; position: relative; flex: none; }
+.cap-art img { width: 100%; height: 100%; object-fit: cover; }
+.cap-art::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.34); }
+.cap-art svg { position: absolute; left: 15px; top: 15px; width: 18px; height: 18px; fill: #FFF; stroke: none; z-index: 1; }
+.cap-t { margin-left: 12px; width: 180px; min-width: 0; }
+.cap-t b { display: block; font-size: 14px; line-height: 18px; font-weight: 500; color: #FFF; }
+.cap-t span { font-size: 12px; line-height: 16px; color: rgba(255,255,255,.55); }
+.cap-track { position: relative; height: 64px; display: flex; align-items: center; padding: 0 16px; }
+.cap-head { position: absolute; top: 0; width: 2px; height: 64px; background: #6BB9EF; border-radius: 1px; }     /* el-E13: colour c sky-5 */
+.cap-tag { position: absolute; top: -30px; height: 30px; padding: 0 12px; border-radius: 9px 9px 0 0; background: #6BB9EF; color: #0B0B0B; font-size: 13px; line-height: 30px; font-weight: 500; font-variant-numeric: tabular-nums; transform: translateX(-50%); white-space: nowrap; }
+.cap-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: rgba(255,255,255,.55); }
+.cap-btn svg { width: 18px; height: 18px; }
+.cap-round { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: #222; color: #FFF;
+  box-shadow: 0 0 0 1px #28292B, inset 0 2px 0 rgba(255,255,255,.07), inset 0 0 0 2px rgba(255,255,255,.05), 0 1px 2px rgba(0,0,0,.22), 0 12px 28px -12px rgba(0,0,0,.28); }
+.cap-round svg { width: 22px; height: 22px; }
+
+@media (prefers-color-scheme: dark) {
+  .row .play { background: #1F2023; color: #FFF; }
+  .row.playing .play, .row.hover .play { background: #FFF; color: #090909; }
+  .row.hover { background: #0F0F0F; }
+  .cap-body, .cap-round { background: #1A1A1A; box-shadow: 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.12), 0 1px 2px rgba(0,0,0,.7); }
+  .cap-head { background: #FFF; } .cap-tag { background: #FFF; }
+  .v-prints { background: #141415; }
+}
+
+/* ---------- player B: the horizon flattened onto one white sheet ---------- */
+.plb-head { position: relative; padding: 26px 8px 22px; display: flex; align-items: flex-end; justify-content: space-between; }
+.plb-head h1 { font-size: 40px; line-height: 44px; }
+.plb-head p { margin: 8px 0 0; font-size: 15px; line-height: 22px; }
+.plb-sheet { position: relative; padding: 14px 16px 120px; }
+/* ai-signs L5: no coloured strip along the card's top. B is the plain sheet; the rim stays A's alone. */
+.plb-tools { display: flex; align-items: center; gap: 10px; padding: 0 2px 12px; border-bottom: 1px solid var(--hair); margin-bottom: 8px; }
+.plb-tools .pl-search { width: 320px; }
+.plb-tools .count { margin-left: auto; font-size: 13px; color: var(--meta); }
+.plb-tools .count b { color: var(--ink); font-weight: 500; }
+.plb .row { grid-template-columns: 28px 220px 300px 40px 56px 84px 1fr 32px 32px; }
+
+/* ---------- 390 ---------- */
+@media (max-width: 640px) {
+  .v-head { display: block; padding: 8px 0 16px; }
+  .v-head h1 { font-size: 30px; line-height: 33px; }
+  .v-count { margin-top: 10px; }
+  .v-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 8px; }
+  .v-untitled { grid-row: auto; }
+  .v-prints { height: 180px; }
+  .v-prints img:nth-child(2) { left: 162px !important; } .v-prints img:nth-child(3) { left: 304px !important; } .v-prints img:nth-child(4) { left: 446px !important; }
+  .v-untitled .v-text { margin-top: 18px; }
+  .pl { height: calc(100vh - 56px); }
+  .cap-t span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .v-prints img { width: 132px; height: 132px; }
+  .v-dropbox { min-height: 180px; }
+  .v-sleeves img { width: 110px; height: 110px; }
+  .v-player { height: 230px; }
+  .v-solos { grid-column: auto; grid-template-columns: 1fr; gap: 10px; }
+  .pl { --R: 900px; --crown: 150px; }
+  .pl-head { padding-top: 26px; } .pl-head h1 { font-size: 32px; line-height: 36px; } .pl-head p { padding: 0 24px; font-size: 14px; }
+  .pl-tools { top: calc(var(--crown) + 18px); padding: 0 16px; }
+  .pl-search { width: 100%; }
+  .pl-tools .seg { display: none; }
+  .pl-list { width: auto; left: 8px; right: 8px; margin-left: 0; top: calc(var(--crown) + 66px); }
+  .row { grid-template-columns: 28px 1fr 40px 32px; }
+  .row .wave, .row .mt, .row .act.sv { display: none; }
+  .cap { bottom: 16px; }
+  .cap-t { width: 120px; } .cap-track, .cap-btn.sv { display: none; }
+  .cap-body { padding-right: 16px; } .cap-round { width: 56px; height: 56px; }
+}
+
+/* ---------- /vault A: his 4 Nov 22:41 words (recommended) ----------
+   no cards, no white card backgrounds, no gradient; the top text centred like the home header; the player at the foot.
+   Column 1024 and the 48 under the top bar are the live VAULT-3 values (vault-2130.css .vt2-col). */
+.va-head { text-align: center; padding: 48px 0 0; }
+.va-head h1 { font-size: 44px; line-height: 46px; max-width: 760px; margin: 0 auto; }             /* type D; 289 scale contrast */
+.va-count { margin: 12px 0 0; font-size: 14px; color: var(--meta); }
+.va-count b { font-weight: 500; color: var(--ink); }                                              /* 304: the number in ink */
+.va-row { max-width: 1024px; margin: 56px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hair); }   /* 303's ruled columns on the page ground: no card, no fill */
+.va-col { display: flex; flex-direction: column; padding: 24px 28px 0; }
+.va-col:first-child { padding-left: 0; } .va-col:last-child { padding-right: 0; }
+.va-col + .va-col { border-left: 1px solid var(--hair); }
+.va-col h2 { font-size: 26px; line-height: 30px; }
+.va-col p { margin: 10px 0 0; font-size: 14px; line-height: 21px; color: var(--text); }
+.va-btn { margin-top: auto; padding-top: 20px; }
+.va-player { margin-top: 72px; }
+.va-hz { height: 560px; }                                                                          /* live: clamp(26rem, 56svh, 36rem) */
+.va-hz .pl-head h2 { font-size: 40px; line-height: 44px; }
+.va-soon { position: absolute; left: 0; right: 0; top: 250px; text-align: center; }
+.va-soon p { font-size: 32px; line-height: 36px; margin: 0; }
+@media (max-width: 640px) {
+  .va-head { padding-top: 16px; } .va-head h1 { font-size: 30px; line-height: 33px; }
+  .va-row { grid-template-columns: 1fr; margin-top: 32px; }
+  .va-col, .va-col:first-child, .va-col:last-child { padding: 20px 0; }
+  .va-col + .va-col { border-left: 0; border-top: 1px solid var(--hair); }
+  .va-player { margin-top: 24px; } .va-hz { height: 420px; } .va-hz .pl-head h2 { font-size: 30px; line-height: 34px; }
+  .va-soon { top: 200px; } .va-soon p { font-size: 26px; line-height: 30px; }
+}

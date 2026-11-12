@@ -1,6 +1,6 @@
 /* redesign 1112: the old #features evervault cards are gone; #inside, #stats and #features are one L3 section.
  * This checks that section: the three ids land inside it, the eight areas are tabs with one open, the counter keeps
- * "6,000+ files today." for readers, and nothing scrolls sideways at 1440, 390 and 360. Serves the worktree itself. */
+ * "6,000+ files today." for readers, and nothing scrolls sideways at 1440, 390 and 320. Serves the worktree itself. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const http = require('node:http');
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
   const base = process.env.TEST_URL || `http://127.0.0.1:${server.address().port}`;
   const browser = await chromium.launch({headless: true, channel: process.env.PW_CHANNEL || undefined});
   try {
-    for (const width of [1440, 390, 360]) { // 320 overflows by 14 px in #founder and #price (noted in RELEASED.md)
+    for (const width of [1440, 390, 320]) {
       const context = await browser.newContext({viewport: {width, height: width < 700 ? 844 : 900}, reducedMotion: 'reduce'});
       const page = await context.newPage(), errors = [];
       page.on('pageerror', (e) => errors.push(e.message));

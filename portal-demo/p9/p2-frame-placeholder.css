@@ -1,0 +1,87 @@
+/* PLACEHOLDER: P9 owns the frame (out/P9-shell/STATUS.md v1.1). Ship P9's, not this. */
+/* D6 · P1 / P2 · the app frame, PLACEHOLDER built to P9's "frame:" block v1.2 (13:47 AEDT, out/P9-shell/STATUS.md).
+   P9 owns the frame; every value below is P9's, quoted from its block (303 measured, 1 ref px = 0.864 css px).
+   Type is a token: --ls-face-brand (Albert Sans, pick D) for the name and headlines only; --ls-face-ui (SF Pro on his Mac;
+   these renders use TeX Gyre Heros as a Helvetica-metric stand-in because the cloud has no SF Pro). */
+
+@font-face { font-family: "Albert Sans"; font-weight: 400; src: url(fonts/AlbertSans-Regular.woff2) format("woff2"); }
+@font-face { font-family: "Albert Sans"; font-weight: 500; src: url(fonts/AlbertSans-Medium.woff2) format("woff2"); }
+@font-face { font-family: "Albert Sans"; font-weight: 500; font-style: italic; src: url(fonts/AlbertSans-MediumItalic.woff2) format("woff2"); }
+
+:root {
+  --ls-face-brand: "Albert Sans", -apple-system, sans-serif;               /* type D (critic 04:17, his 13:03 "we will keep d") */
+  --ls-face-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "TeX Gyre Heros", system-ui, sans-serif; /* his 29 Oct: SF Pro */
+  --ground: #F2F2F4;        /* P9: 303 sidebar surface */
+  --panel: #F9F9FB;         /* P9: 303 panel */
+  --panel-line: #E4E4E6;    /* P9: 303 */
+  --card: #FFFFFF;          /* P9 */
+  --card-line: #EBEBED;     /* P9 */
+  --ink: #090909;           /* colour c ink (298) */
+  --meta: #6F6F6F;          /* colour c meta: small print only */
+  --hair: #EDEDED;          /* components A divider (291) */
+  --quiet: #F0F0F0;         /* components A quiet (291 hover row) */
+  --cobalt: #1D46AE;        /* colour c sky-2: el-E9 ring, el-E12 deadline */
+  --pill-ink: linear-gradient(180deg, #363636 0%, #181818 100%); /* components A (291) */
+  --pill-ink-rim: #252628;
+  --pill-white: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 10%, #F9F9F9 87%, #F7F7F7 91%, #FFFFFF 100%); /* row 16 */
+  --blur: blur(5px);        /* recording mode: names blurred the way he blurs his stories */
+}
+:root[data-theme="dark"] {
+  --ground: #000000; --panel: #000000; --panel-line: #1F2023; --card: #0B0B0C; --card-line: #1F2023;
+  --ink: #FFFFFF; --meta: #8E9094; --hair: #1F2023; --quiet: #1F2023; --cobalt: #F2F2F0;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--ground); color: var(--ink); font: 400 14px/20px var(--ls-face-ui); -webkit-font-smoothing: antialiased; }
+.num { font-variant-numeric: tabular-nums; }
+.blur { filter: var(--blur); user-select: none; }
+
+/* ---------- sidebar (P9: 228 wide, padding 0 24 0 28) ---------- */
+.sb { position: fixed; inset: 0 auto 0 0; width: 228px; padding: 0 16px 16px 20px; display: flex; flex-direction: column; }
+.sb-head { height: 68px; display: flex; align-items: center; gap: 10px; padding-left: 4px; }
+.sb-tile { width: 28px; height: 28px; border-radius: 8px; background: var(--pill-ink); display: grid; place-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.13); }
+:root[data-theme="dark"] .sb-tile { background: #FFFFFF; }
+.sb-tile svg { width: 19px; height: 13px; }
+.sb-name { font: 500 15px/20px var(--ls-face-brand); letter-spacing: -.02em; }
+.sb-chev { width: 12px; height: 12px; color: var(--meta); }
+.sb-tuck { margin-left: auto; width: 16px; height: 16px; color: var(--meta); }
+.sb-nav { margin-top: 6px; display: grid; gap: 6px; }           /* P9 v1.2: 32 tall, 38 pitch */
+.sb-group { margin: 14px 0 2px 12px; font-size: 13px; line-height: 16px; color: var(--meta); }
+.sb-row { height: 32px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: var(--ink); text-decoration: none; }
+.sb-row svg { width: 16px; height: 16px; flex: none; }
+.sb-row.on { color: #FFFFFF; background: var(--pill-ink); border: 1px solid var(--pill-ink-rim); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 1px 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1); }
+:root[data-theme="dark"] .sb-row.on { color: #111; background: var(--pill-white); border-color: #FFFFFF; box-shadow: none; }
+.sb-foot { margin-top: auto; display: grid; gap: 10px; }
+.sb-note { background: var(--card); border: 1px solid var(--card-line); border-radius: 12px; padding: 12px 14px; }
+.sb-note b { display: block; font-weight: 500; }
+.sb-note small { color: var(--meta); font-size: 13px; }
+.sb-acct { display: flex; align-items: center; gap: 10px; padding: 4px; }
+.sb-av { width: 28px; height: 28px; border-radius: 50%; background: var(--quiet); display: grid; place-items: center; font-size: 12px; }
+
+/* ---------- panel (P9: inset 12, radius 16, 1 px line, no shadow) ---------- */
+.panel { margin: 12px 12px 12px 228px; min-height: calc(100vh - 24px); background: var(--panel); border: 1px solid var(--panel-line); border-radius: 16px; }
+.top { height: 68px; display: flex; align-items: center; gap: 12px; padding: 0 16px 0 20px; border-bottom: 1px solid var(--panel-line); }
+.crumb { display: flex; align-items: center; gap: 8px; color: var(--meta); }
+.crumb svg { width: 16px; height: 16px; }
+.crumb b { color: var(--ink); font-weight: 400; }
+.top-r { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.search { width: 232px; height: 34px; border-radius: 9px; background: var(--card); border: 1px solid var(--card-line); display: flex; align-items: center; gap: 8px; padding: 0 8px 0 10px; color: var(--meta); }
+.search svg { width: 14px; height: 14px; }
+.search kbd { margin-left: auto; font: 12px/18px var(--ls-face-ui); padding: 0 6px; border-radius: 5px; background: var(--quiet); color: var(--meta); }
+.icon-btn { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 9px; color: var(--ink); }
+.icon-btn svg { width: 17px; height: 17px; }
+.help { height: 34px; padding: 0 16px; border-radius: 999px; display: inline-flex; align-items: center; color: #fff; background: var(--pill-ink); border: 1px solid var(--pill-ink-rim); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 1px 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1); }
+:root[data-theme="dark"] .help { color: #111; background: var(--pill-white); border-color: #fff; box-shadow: none; }
+.content { padding: 16px; max-width: 1200px; }
+
+/* ---------- 390 (P9: no sidebar, no inset panel, ground page, top bar 56, margins 16) ---------- */
+.phone-top { display: none; }
+@media (max-width: 760px) {
+  .sb { display: none; }
+  .panel { margin: 0; border: 0; border-radius: 0; background: var(--ground); min-height: 100vh; }
+  .top { display: none; }
+  .phone-top { display: flex; height: 56px; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid var(--panel-line); }
+  .phone-top .grow { flex: 1; }
+  .content { padding: 16px; }
+}
