@@ -70,3 +70,10 @@ html body #main #trusted.tr1104{padding-top:var(--section-pad)}
 html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
 @media (max-width:700px){html body #main #how-the-board-works{padding-bottom:0}}
 @media (min-width:701px) and (max-width:1439px){:root{--section-pad:clamp(88px,8.9vw,128px)}}
+
+/* row 3 · the opening: the #portal tile and its cue sit on the one 64 px edge, the tile hugs its window, the window is 960 wide */
+@media (min-width:701px){
+  html body #portal.hero-computer{height:auto!important;padding:64px 0!important;margin:24px var(--edge) 32px!important}
+  html body #portal .computer-device{width:min(960px,calc(100% - 96px))!important}
+  html body .opening>.portal-cue{padding:72px 0 0 var(--edge)!important}
+}
