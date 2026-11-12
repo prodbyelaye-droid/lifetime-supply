@@ -61,3 +61,12 @@
   .l8-step:first-child{border-top:0}
   .l8-price__n{font-size:104px}
 }
+
+/* row 2 · one section seam (shared rule): 128 between sections on paper at 1440, 72 on phones.
+   A section pads its top only, unless the next block is a coloured field (#we-got-one before #download, #questions before #close,
+   #contact before the footer keep their bottom padding). The quotes-to-wall pair inside "why producers choose." stays tight on purpose. */
+html body #main #hear.l4,html body #main #price.l8-sec,html body #main #updates.l8-sec,html body #main #giveaways.l7-sec{padding-bottom:0}
+html body #main #trusted.tr1104{padding-top:var(--section-pad)}
+html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
+@media (max-width:700px){html body #main #how-the-board-works{padding-bottom:0}}
+@media (min-width:701px) and (max-width:1439px){:root{--section-pad:clamp(88px,8.9vw,128px)}}
