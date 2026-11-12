@@ -123,3 +123,16 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
 @media (min-width:701px) and (max-width:900px){
   html body #main #members-say.ms1106 .ms-grid,html body #main #we-got-one.ms1106 .ms-grid{column-count:2}
 }
+
+/* row 7 · the hero copy reads as one block: the headline sits a little higher, the paragraphs follow it at 48 to 96 px
+   instead of being pinned to the bottom, and the hero is 840 at most (the sky plate follows the new height).
+   901 and up; 701 to 900 keeps row 1's one-column hero. Ref 302 not opened (as the audit says). */
+@media (min-width:901px){
+  .ls-hero{height:clamp(680px,100vh,840px)}
+  .ls-hero .panel{--sky-h:calc(clamp(680px,100vh,840px) - 72px)}
+  .ls-hero h1{margin-top:clamp(136px,18vh,184px)}
+  .ls-hero .foot{margin-top:clamp(48px,8vh,96px)}
+}
+@media (min-width:901px) and (max-width:1439px){
+  .ls-hero{height:auto;min-height:clamp(680px,100vh,840px)}
+}
