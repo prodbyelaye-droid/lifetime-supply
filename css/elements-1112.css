@@ -79,6 +79,9 @@ html:not(#e-a):not(#e-b):not(#e-c) body #price .price-buy:focus-visible { outlin
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a { font: 500 15px/22px var(--brand-font-text) !important; letter-spacing: -.005em; color: var(--e2-ink) !important; text-decoration: none !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:hover { text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a:focus-visible { outline: 2px solid var(--e2-focus); outline-offset: 2px; border-radius: 4px; }
+/* polish (critic 09:41): the ring hugged the letters (the "h" of "how it works" nearly touched it). 4 px more room left and
+   right, given as padding the margin takes back, so the words do not move; the ring keeps its 2 px above and below */
+html:not(#e-a):not(#e-b):not(#e-c) body .hero.hero-b .site-nav nav a { padding-inline: 4px; margin-inline: -4px; }
 
 /* outline: log in (nav md 36, download lg 48, the steps mock md 36) */
 html:not(#e-a):not(#e-b):not(#e-c) body :is(.hero.hero-b .header-login, .dl-login, .step-login) {
@@ -250,3 +253,12 @@ html:not(#e-a):not(#e-b):not(#e-c) body #flow .day96-num { font-weight: 400 !imp
 /* the unit is part of the figure, in the same ink and weight (304): "streams", "video views", "shazams", "credits" */
 html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-streams > span { font-weight: 400 !important; color: #090909 !important; }
 html:not(#e-a):not(#e-b):not(#e-c) body .fs1101-proof .fs1101-row li { color: #090909 !important; font-weight: 400 !important; }
+
+/* ---------- polish · "see all 79" at phone width (critic 09:41 and 10:23) ----------
+   Under 700 the collapsed wall fades out over its last 270 px, so the button sat about 130 px under the last card you can
+   read and only about 30 px above the next section's kicker. It moves up into the faded band and the section gets the
+   room below instead: the button, the fade and the next heading read as one step. Wider screens are unchanged. */
+@media (max-width: 700px) {
+  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106 .ms-grid.is-collapsed + .ms-more { position: relative; z-index: 1; display: flex !important; width: max-content; margin: -64px auto 0 !important; }
+  html:not(#e-a):not(#e-b):not(#e-c) body #main .ms1106:has(.ms-grid.is-collapsed) { padding-bottom: 64px !important; }
+}
