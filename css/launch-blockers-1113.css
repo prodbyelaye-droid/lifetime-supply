@@ -9,3 +9,8 @@
   #portal .l4-scroll-note{display:block;margin:10px 4px 0;color:var(--brand-ink);font-size:13px;line-height:1.4}
   #portal .l4-scroll-note[hidden]{display:none}
 }
+
+/* Cues sit below the demo so they cannot cover its controls or leave its edge. */
+#portal .l4-demo-tips .l4-tip{display:none;position:static;width:auto;max-width:none;margin:10px 4px 0;translate:none;transform:none;white-space:normal;text-align:left;visibility:visible;opacity:1;transition:none}
+#portal .l4-demo-tips .l4-tip[data-on]{display:block}
+#portal .l4-demo-tips .l4-tip::after{display:none}

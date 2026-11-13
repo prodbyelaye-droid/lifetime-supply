@@ -254,7 +254,10 @@
     sub = document.createElement('div'); sub.className = 'l4-pills l4-subpills'; sub.setAttribute('role', 'group'); sub.setAttribute('aria-label', 'in this page'); sub.hidden = true; pills.after(sub);
   }
   // ---- one cue at a time: log in, then the briefs, then dark mode
-  const tip = (cls, text, host) => { const p = document.createElement('p'); p.className = `l4-tip ${cls}`; p.textContent = text; host.append(p); return p; };
+  const tips = div('l4-demo-tips');
+  tips.setAttribute('aria-live', 'polite');
+  preview.after(tips);
+  const tip = (cls, text, host) => { const p = document.createElement('p'); p.className = `l4-tip ${cls}`; p.textContent = text; tips.append(p); return p; };
   const cue = tip('l4-cue', "click log in to look around. it's a demo, so nothing is sent.", stage); cue.id = 'l4-cue';
   const LOG = (D.pages.login.hots || [])[0], CARD = D.pages.login.card;
   if (LOG) { cue.style.setProperty('--cx', pct(LOG.r[0] + LOG.r[2] + 12, D.W)); cue.style.setProperty('--cy', pct(LOG.r[1] + LOG.r[3] / 2, D.H)); }
