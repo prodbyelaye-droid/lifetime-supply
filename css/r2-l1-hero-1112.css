@@ -210,3 +210,14 @@ a{color:inherit;text-decoration:none}
   .ls-hero .panel .ctl{right:14px;top:14px}
   .ls-hero .lp-sb{display:none}                       /* the portal at phone width has no sidebar column (P9 frame, 390) */
 }
+
+/* Keep the price reachable in the compact header without pinning it. */
+.ls-hero .nav-price-phone{display:none}
+@media (max-width:900px){
+  .ls-hero .nav-price-phone{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 8px;font:var(--t-nav);color:var(--ink)}
+}
+@media (max-width:359px){
+  .ls-hero .nav .lockup{font-size:18px;white-space:nowrap;flex-shrink:0}
+  .ls-hero .login--nav{padding-inline:12px;white-space:nowrap;flex-shrink:0}
+  .ls-hero .nav-price-phone{padding-inline:5px}
+}
