@@ -83,3 +83,16 @@
   .l4-cap .tm{display:none}            /* E13 compact keeps the time off; the playhead carries it */
 }
 @media (prefers-reduced-motion:reduce){.l4-play:active{transform:none}}
+
+/* L4 audit followthrough, 13 Nov: row 172 plain labels and soft-ended hairlines.
+   Keep the nine existing rows, their grouping and the row 275 motion unchanged. */
+#more .l4-field{row-gap:8px} /* 34px label + 8px gap = 42px static row pitch */
+#more .l4-set li{
+  position:relative;height:34px;border:0;border-radius:0;background:transparent;box-shadow:none;
+  font-size:16px;font-weight:400;color:#090909;
+}
+#more .l4-set li::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
+  background:linear-gradient(to right,#E4E4E6 calc(100% - 24px),transparent);
+}
+#more .l4-set li i{color:inherit}
