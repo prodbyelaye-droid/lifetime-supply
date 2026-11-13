@@ -35,15 +35,18 @@
   if (!kits.length) return;
   function fmt(ms) { var s = Math.round(ms / 1000); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
   function boot() {
+    var widgets = new Map();
     kits.forEach(function (k) {
       var frame = k.querySelector('iframe.l4-sc'); if (!frame || !window.SC) return;
       var w = SC.Widget(frame), dur = 0, cap = k.querySelector('.l4-cap'), tm = cap.querySelector('.tm'), trk = cap.querySelector('.trk');
       var play = k.querySelector('.l4-play'), art = cap.querySelector('.art');
-      function stopOthers() { kits.forEach(function (o) { if (o !== k && o.classList.contains('is-playing')) o.querySelector('.l4-cap .art').click(); }); }
+      widgets.set(k, w);
+      function stopOthers() { widgets.forEach(function (other, row) { if (row !== k) other.pause(); }); }
       play.addEventListener('click', function () { stopOthers(); k.classList.add('is-playing'); w.play(); art.focus(); });
-      art.addEventListener('click', function () { w.isPaused(function (p) { p ? w.play() : w.pause(); }); });
+      art.addEventListener('click', function () { w.isPaused(function (p) { if (p) { stopOthers(); w.play(); } else w.pause(); }); });
       trk.addEventListener('click', function (e) { var r = trk.getBoundingClientRect(); if (dur) w.seekTo(dur * (e.clientX - r.left) / r.width); });
       w.bind(SC.Widget.Events.PLAY, function () {
+        stopOthers();
         k.classList.add('is-playing'); art.setAttribute('aria-label', 'pause');
         w.getDuration(function (d) { dur = d; });
       });
