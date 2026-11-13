@@ -6,7 +6,7 @@
 
 #questions.ls-q, #close.ls-close {
   --lsq-ink: var(--text-primary, #090909);                 /* colour c ink */
-  --lsq-hair: #E6E6E6;                                     /* 02:12 round hairline #E8E8E8, one step firmer for 1 px rows */
+  --lsq-hair: #E4E4E6;                                     /* colour c hairline; AI-SIGNS-2 L9 finding 6 */
   --lsq-font: var(--font-brand, "Albert Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif);
   --lsq-margin: var(--grid-margin, 64px);
   --lsq-gutter: var(--grid-gutter, 24px);
@@ -20,12 +20,12 @@
 /* ───────── 13 questions. (B: two lists on the 12 columns) ───────── */
 #questions.ls-q { padding: var(--lsq-pad) var(--lsq-margin); background: #FFFFFF; }
 #questions.ls-q .lsq-in { max-width: 1312px; margin: 0 auto; }                       /* L1: content stays 1312 above 1440 */
-#questions.ls-q .lsq-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--lsq-gutter); align-items: end; margin: 0 0 40px; }
+#questions.ls-q .lsq-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--lsq-gutter); row-gap: 16px; align-items: end; margin: 0 0 40px; }
 #questions.ls-q .lsq-head h2 {
   grid-column: 1 / span 6; margin: 0;
   font: var(--t-h2, 500 56px/58px var(--lsq-font)); letter-spacing: -0.02em;          /* L1 --t-h2 */
 }
-#questions.ls-q .lsq-dm { grid-column: 9 / span 4; margin: 0; padding-bottom: 6px; font: var(--t-small, 400 15px/22px var(--lsq-font)); }  /* on the heading's baseline; ink (ai-signs T3) */
+#questions.ls-q .lsq-dm { grid-column: 1 / span 6; margin: 0; padding: 0; font: var(--t-small, 400 15px/22px var(--lsq-font)); }  /* AUDIT-2 L9 finding 5: under the heading, on its grid edge */
 #questions.ls-q .lsq-dm a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 #questions.ls-q .lsq-line {                                                            /* spans all 12 columns; row 235: "faq with colour of top line matching site gradient" (30 Oct), in colour c */
   display: block; grid-column: 1 / -1; height: 2px; margin: 0 0 4px; border: 0;
@@ -38,11 +38,11 @@
 #questions.ls-q details { border-bottom: 1px solid var(--lsq-hair); }
 #questions.ls-q summary {
   list-style: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
-  padding: 19px 0; cursor: pointer; font: 500 18px/26px var(--lsq-font); letter-spacing: -0.01em;   /* size = L1 --t-body; weight 500 (type D) */
+  padding: 13px 0 14px; cursor: pointer; font: 500 17px/24px var(--lsq-font); letter-spacing: -0.01em;   /* AUDIT-2 L9 finding 3: 24 + 13 + 14 + 1 px rule = 52 px row pitch; wrapped text grows */
 }
 #questions.ls-q summary::-webkit-details-marker { display: none; }
-#questions.ls-q summary:focus-visible { outline: 2px solid #111111; outline-offset: 3px; border-radius: 4px; }  /* his 26 Oct focus call */
-#questions.ls-q .faq-chevron { flex: none; width: 18px; height: 18px; margin-top: 4px; transition: transform .3s cubic-bezier(.22, 1, .36, 1); }  /* the live chevron */
+#questions.ls-q summary:focus-visible { outline: 2px solid #090909; outline-offset: 3px; border-radius: 4px; }  /* his 26 Oct focus call; colour c ink */
+#questions.ls-q .faq-chevron { flex: none; width: 18px; height: 18px; margin-top: 3px; transition: transform .3s cubic-bezier(.22, 1, .36, 1); }  /* centred on the 24 px first line; live motion unchanged */
 #questions.ls-q details[open] .faq-chevron,
 #questions.ls-q details[data-expanded="true"] .faq-chevron { transform: rotate(180deg); }
 #questions.ls-q details[data-expanded="false"] .faq-chevron { transform: none; }
@@ -57,7 +57,7 @@
 #close.ls-close { position: relative; height: 960px; overflow: hidden; background: #FFFFFF; text-align: center; }
 #close.ls-close .lsc-sky {
   position: absolute; left: 0; right: 0; top: 0; height: 860px;
-  background-color: #1F4BB3;                                                           /* sky SPEC: the file's own median where the words sit */
+  background-color: #1D46AE;                                                           /* colour c sky-2 fallback; chosen cloud image unchanged (AI-SIGNS-2 L9 finding 6) */
   background-image: image-set(url("/brand/sky/close-2880x1800-warm@1x.webp") 1x, url("/brand/sky/close-2880x1800-warm.webp") 2x);
   background-position: center top; background-size: max(1440px, 100%) auto; background-repeat: no-repeat;
   -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 72%, transparent 100%);
@@ -80,7 +80,7 @@
 }
 #close.ls-close .close-cta:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.26), inset 0 -1px 0 rgba(255,255,255,.04), 0 1px 1px rgba(0,0,0,.12), 0 2px 5px -1px rgba(0,0,0,.12); }
 #close.ls-close .close-cta:active { background: #181818; box-shadow: inset 0 1px 2px rgba(0,0,0,.40), 0 .5px 1px rgba(0,0,0,.14); transform: scale(.97); }
-#close.ls-close .close-cta:focus-visible { outline: 2px solid #111111; outline-offset: 3px; }
+#close.ls-close .close-cta:focus-visible { outline: 2px solid #090909; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   #questions.ls-q .faq-chevron, #close.ls-close .close-cta { transition: none; }
@@ -94,7 +94,6 @@
   #questions.ls-q .lsq-head h2 { font: var(--t-h2, 500 34px/36px var(--lsq-font)); letter-spacing: -0.02em; }
   #questions.ls-q .lsq-dm { margin-top: 16px; padding: 0; }
   #questions.ls-q .lsq-lists > .lsq-l, #questions.ls-q .lsq-lists > .lsq-r { padding: 0; }
-  #questions.ls-q summary { font-size: 17px; line-height: 24px; padding: 17px 0; }
   #questions.ls-q .faq-answer { padding-right: 0; }
   #close.ls-close { height: 820px; }
   #close.ls-close .lsc-sky { height: 700px; background-size: cover; background-position: 42% top; }
