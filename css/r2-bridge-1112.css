@@ -15,3 +15,6 @@
   #price .l8-step { min-width: 0; }
   #price .l8-mini-pay { width: auto; max-width: calc(100% - 16px); flex-wrap: wrap; justify-content: center; row-gap: 10px; }
 }
+
+/* Fit the existing submissions state into the workflow window. */
+#flow .ls-surf.subs > .r2-surf{left:0;width:100%}
