@@ -221,3 +221,29 @@ a{color:inherit;text-decoration:none}
   .ls-hero .login--nav{padding-inline:12px;white-space:nowrap;flex-shrink:0}
   .ls-hero .nav-price-phone{padding-inline:5px}
 }
+
+/* L1 audit followthrough, 13 Nov: E1 md geometry (AUDIT-2 L1 #3),
+   components A / E0's row 291 finish, and type D tracking (AI-SIGNS-2 #4–5).
+   Keep the released sizing, chosen composition and existing font faces. */
+#top.ls-hero .lockup,
+#top.ls-hero .login,
+#top.ls-hero .btn{letter-spacing:-.02em}
+
+#top.ls-hero .btn{
+  height:40px;
+  padding-inline:22px;
+  font-size:15px;
+  line-height:1;
+  background:linear-gradient(180deg,#363636 0%,#181818 100%);
+  border-color:#252628;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.10);
+}
+/* Preserve E1's existing hover response after the locally scoped rest finish. */
+#top.ls-hero .btn:hover{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 1px 1px rgba(0,0,0,.22),0 2px 5px -1px rgba(0,0,0,.14);
+}
+/* Keep the original dark pressed finish above the local rest and hover rules. */
+#top.ls-hero .btn:active{
+  background:#181818;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.40),0 .5px 1px rgba(0,0,0,.14);
+}
