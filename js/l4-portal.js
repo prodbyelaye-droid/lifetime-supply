@@ -14,6 +14,14 @@
   const stage = root.querySelector('.l4-stage'), view = root.querySelector('.l4-view'), hots = root.querySelector('.l4-hots'), say = root.querySelector('.l4-live');
   const preview = root.closest('.portal-preview'), bar = preview.querySelector('.computer-titlebar'), tgl = bar.querySelector('.l4-theme'), crumb = preview.querySelector('.hw-now');
   const pills = document.querySelector('.l4-pills'), macbar = preview.querySelector('.l4-macbar');
+  const scrollNote = document.createElement('p');
+  scrollNote.className = 'l4-scroll-note';
+  scrollNote.textContent = 'scroll sideways to explore. choose a page below.';
+  scrollNote.hidden = true;
+  preview.after(scrollNote);
+  root.tabIndex = 0;
+  root.setAttribute('role', 'region');
+  root.setAttribute('aria-label', 'portal demo. scroll sideways to explore the page.');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const held = () => reduce.matches || document.documentElement.hasAttribute('data-motion-paused');
   const st = { page: 'login', theme: 'light', menu: false, busy: false, queued: null, touched: false, timer: 0, hello: null, greeted: false, fade: null, flow: null, flowT: 0, darkTried: false };
@@ -122,7 +130,7 @@
     const sc = s.querySelector('.l4-scroll'); if (sc && keep) sc.scrollTop = keep * sc.clientWidth;
     st.fade = how === 'first' && !held() ? firstHome(s, t) : null;
     if (old) old.classList.remove('is-on'); s.classList.add('is-on');
-    st.page = p; st.theme = t; stage.dataset.page = p; stage.dataset.theme = t; paint(true); arrive(p);
+    st.page = p; st.theme = t; stage.dataset.page = p; stage.dataset.theme = t; scrollNote.hidden = p === 'login'; if (!old || old.dataset.page !== p) root.scrollLeft = 0; paint(true); arrive(p);
     let a = null, ghost = null;
     if (old && !held()) {
       if (how === 'reveal') {

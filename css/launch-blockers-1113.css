@@ -1,0 +1,11 @@
+/* Keep the demo content readable on phones. The page stays within its viewport. */
+.l4-scroll-note{display:none}
+@media (max-width:700px){
+  #portal .l4-panels{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+  #portal .l4-stage:not([data-page="login"]){width:1024px;margin-left:-182.4px;aspect-ratio:1280/800}
+  #portal .l4-stage:not([data-page="login"]) .l4-part{visibility:hidden}
+  #portal .l4-stage:not(.is-full) .l4-hots > [data-k^="go-"]{display:none}
+  #portal .l4-stage:not([data-page="login"]) .l4-scroll{overflow-y:auto;overscroll-behavior:contain}
+  #portal .l4-scroll-note{display:block;margin:10px 4px 0;color:var(--brand-ink);font-size:13px;line-height:1.4}
+  #portal .l4-scroll-note[hidden]{display:none}
+}
