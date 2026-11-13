@@ -52,13 +52,13 @@
 .l3-row{display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--hairline);background:var(--paper);color:var(--ink);cursor:pointer;
   padding:0 24px;font:400 20px/var(--l3-list-row) var(--font-brand);letter-spacing:-0.01em;transition:background-color 160ms cubic-bezier(.22,1,.36,1)} /* 191 row label, ink not grey (T3) */
 .l3-row:first-child{border-top:0}
-.l3-row:hover{background:#FAFAFA}                                                                              /* no reference: the lightest step */
+#inside .l3-row[aria-selected="false"]:hover{background:#F3F3F3}                                           /* AI-SIGNS-2 L3.3: colour c fog, closed rows only */
 .l3-row:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}                                       /* his 26 Oct focus ring */
 .l3-row .more{display:none}
-.l3-row[aria-selected="true"]{background:var(--ink);color:#fff;padding:20px 24px 22px;line-height:28px;font-weight:500} /* 191: the open row is black */
-.l3-row[aria-selected="true"] .more{display:block;margin-top:8px;font:400 15px/23px var(--font-brand);letter-spacing:0}
-.l3-row .fl{display:block;padding:9px 0;border-top:1px solid rgba(255,255,255,.16);font:400 15px/22px var(--font-brand)}
-.l3-row .fl:first-of-type{margin-top:14px}
+#inside .l3-row[aria-selected="true"]{background:var(--ink);color:#fff;padding:16px 24px;line-height:28px;font-weight:500} /* AUDIT-2 L3.3: tighten space, keep natural height and every line */
+#inside .l3-row[aria-selected="true"] .more{display:block;margin-top:6px;font:400 15px/23px var(--font-brand);letter-spacing:0}
+#inside .l3-row .fl{display:block;padding:4px 0;border-top:1px solid rgba(255,255,255,.16);font:400 15px/22px var(--font-brand)}
+#inside .l3-row .fl:first-of-type{margin-top:10px}
 .l3-row .fl b{font-weight:600}
 .l3-stage{position:relative;min-height:var(--l3-window-h);overflow:hidden}
 .l3-pane{position:absolute;inset:0;overflow:hidden;background:var(--paper)}
@@ -78,9 +78,15 @@
   .l3-table{margin:56px calc(-1 * var(--grid-margin)) 0;display:flex;flex-direction:column;border-left:0}
   .l3-list{display:contents}
   .l3-row{border-top:1px solid var(--hairline);font-size:18px}
-  .l3-row[aria-selected="true"]{padding:18px 24px 20px}
   .l3-stage{order:2;border-top:1px solid var(--hairline)}                                                      /* the screen sits under the open row (l3.js sets the rows' order) */
   .l3-win{width:820px}
   .l3-win img{width:820px}
 }
 @media (prefers-reduced-motion:reduce){.l3-row{transition:none}}
+
+/* 13 Nov audit followthrough: row 191's 60 px desktop pitch and 22 px field inset.
+   Phone rows retain their 56 px line box and 24 px frame inset; captures stay at their existing scale. */
+@media (min-width:701px){
+  #inside{--l3-window-inset:22px}
+  #inside .l3-row[aria-selected="false"]{min-height:60px;font-size:19px;line-height:59px} /* 59 + the 1 px rule = 60; the first row also keeps a 60 px floor */
+}
