@@ -5,8 +5,8 @@ const vm = require('node:vm');
 const {read, sourceFor, gate, server, dynamic} = require('./contact-download-fixtures.cjs');
 const {PRICE_CHANGE, CHECKOUT_599} = require('../lib/offer');
 const expected = [
-  'https://github.com/prodbyelaye-droid/lifetime-supply-desktop/releases/download/v1.0.2/Lifetime-Supply-mac.dmg',
-  'https://github.com/prodbyelaye-droid/lifetime-supply-desktop/releases/download/v1.0.2/Lifetime-Supply-windows.exe',
+  'https://github.com/prodbyelaye-droid/lifetime-supply-desktop/releases/download/v1.0.3/Lifetime-Supply-mac.dmg',
+  'https://github.com/prodbyelaye-droid/lifetime-supply-desktop/releases/download/v1.0.3/Lifetime-Supply-windows.exe',
 ];
 const block = /<!-- desktop-downloads:start -->([\s\S]*?)<!-- desktop-downloads:end -->/;
 function check(html, enabled) {
@@ -15,7 +15,7 @@ function check(html, enabled) {
   // redesign 1112 (L7): the live block sets 'download for' small over the platform name
   for (const label of ['mac', 'windows']) assert(html.includes(enabled ? '<small>download for</small><b>' + label + '</b>' : 'download for ' + label));
   assert(!html.includes('v1.0.0/'));
-  assert(!html.includes('v1.0.1/'), 'L1 4 Nov: v1.0.2 only');
+  assert(!/releases\/download\/v1\.0\.[12]\//.test(html), 'published downloads use v1.0.3');
   assert(!html.includes('/releases/latest/'));
   if (!enabled) {
     assert(html.includes('href="https://portal.elaye.store/login"'));

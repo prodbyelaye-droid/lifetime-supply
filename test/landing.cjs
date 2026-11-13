@@ -1,5 +1,5 @@
 /* Landing page contract (task 016: the old-layout checks for the retired bundle links, portal demo tabs, quotes and
- * folder hero are replaced by checks of the current page). Every payment and fallback check is kept: four CTAs on
+ * folder hero are replaced by checks of the current page). Every payment and fallback check is kept: two existing CTAs on
  * the live checkout, the price card and its inclusions, the CTA focus ring, no video beyond the launch film and the
  * whitelisted blot clips (owner decision 4 Nov 14:53/15:09: his blot clips play on the page), and the page with no
  * script, with the page script blocked and with the launch media blocked.
