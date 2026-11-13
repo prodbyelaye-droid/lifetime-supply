@@ -26,7 +26,7 @@ for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE, Date.now()]) {
   assert.equal(Number(schema.offers.price), 699);
   assert.equal(schema.offers.url, liveCheckout);
   const checkouts = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map(x => x[1]);
-  assert.equal(checkouts.length, 1);
+  assert.equal(checkouts.length, 2);
   assert(checkouts.every(url => url === liveCheckout));
   assert(html.includes('<div class="l8-price" data-price=""><span class="l8-price__n">$699</span><span class="l8-price__u">usd</span></div>'), 'redesign 1112: the price band');
   assert(html.includes('https://instagram.com/elxyee'));
@@ -43,4 +43,4 @@ for (const method of ['GET', 'HEAD', 'POST']) {
   if(method==='HEAD')assert.equal(result.body,'');
   if(method==='POST')assert.equal(result.headers.Allow,'GET, HEAD');
 }
-console.log('Legacy helper boundaries, assembled live offer, schema, one checkout CTA and HTTP methods: passed.');
+console.log('Legacy helper boundaries, assembled live offer, schema, two checkout CTAs and HTTP methods: passed.');

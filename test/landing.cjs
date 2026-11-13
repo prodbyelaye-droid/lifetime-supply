@@ -56,9 +56,9 @@ const server = http.createServer((req, res) => {
         page.on('pageerror', (e) => errors.push(e.message));
         await page.goto(base, {waitUntil: 'load'});
         await page.waitForTimeout(400);
-        // one checkout, the live link, opening in a new tab
+        // price and closing buttons use the same checkout, opening in a new tab
         const checkouts = await page.locator('a[href*="buy.stripe.com"]').evaluateAll((as) => as.map((a) => [a.href, a.target, a.hasAttribute('data-checkout'), a.textContent.trim()]));
-        assert.deepEqual(checkouts, [[LIVE, '_blank', true, 'get lifetime access']]);
+        assert.deepEqual(checkouts, Array(2).fill([LIVE, '_blank', true, 'get lifetime access']));
         assert.equal((await page.locator('[data-price] .l8-price__n').textContent()).trim(), '$699');
         // no video but the launch film; no blot clips, no blot images
         assert.equal(await page.locator('video.bv-video, .bv-box').count(), 0, 'no blot clips (his 14:39 call)');
@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
     // without scripts the checkout and the contact fallback still work
     const context = await browser.newContext({viewport: {width: 390, height: 844}, javaScriptEnabled: false}), page = await context.newPage();
     await page.goto(base, {waitUntil: 'load'});
-    assert.equal(await page.locator('a[data-checkout]').getAttribute('href'), LIVE);
+    assert.deepEqual(await page.locator('a[data-checkout]').evaluateAll(as => as.map(a => a.href)), [LIVE, LIVE]);
     assert.equal(await page.locator('form[data-contact-mailto]').getAttribute('action'), 'mailto:hi@elaye.store');
     console.log('PASS no-js'); await context.close();
   } finally {

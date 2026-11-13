@@ -9,9 +9,9 @@ const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
 const template = fs.readFileSync('index.html', 'utf8');
 function pinned(html) {
   const ctas = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map((m) => m[1]);
-  assert.deepEqual(ctas, [LIVE], 'one checkout CTA, the buy card (Elaye 6 Nov 18:08: the hero and step 1 go to #price first)');
+  assert.deepEqual(ctas, [LIVE, LIVE], 'the price and closing buttons use the same checkout (brief 01, 13 Nov)');
   // hero B (Elaye 12 Nov 01:52): "No get lifetime access button on the hero too, something to point it down towards the interactive
-  // portal section". The hero's one control goes to the demo; the checkout stays the one buy card.
+  // portal section". The hero's one control goes to the demo; the price and closing buttons share the checkout.
   assert(!html.includes('class="hero-cta"'), 'no get lifetime access in the hero');
   assert(html.includes('<a class="btn" href="#portal">click around the portal'), 'redesign 1112: the hero sends people to the portal demo');
   assert(html.includes('<a class="l8-btn" href="#price-band">get lifetime access'), 'redesign 1112: step 1 goes to the price band');
@@ -30,4 +30,4 @@ assert.equal(res.code, 200);
 assert.equal(res.body, template, 'the served page is the template');
 pinned(res.body);
 assert(!res.body.includes('EnvOverrideMustNotApply'), 'the env var does not reach the page');
-console.log('Offer contract: the template pins the one checkout CTA and the JSON-LD price; LIFETIME_CHECKOUT_699_URL does not apply.');
+console.log('Offer contract: the template pins the two checkout CTAs and the JSON-LD price; LIFETIME_CHECKOUT_699_URL does not apply.');
