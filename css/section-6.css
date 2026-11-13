@@ -43,6 +43,9 @@
 #founder .ls6-date a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 #founder .ls6-date a:hover{color:var(--ls6-ink)}
 #founder .ls6-date a:focus-visible{outline:2px solid var(--ls6-ink);outline-offset:2px;border-radius:2px}
+@media (min-width:701px){
+  #founder .ls6-cut{width:max-content;min-width:50.5%;max-width:100%}
+}
 
 /* words: one column, cols 7-11 (x 732 to 1264.67 at 1440, 533 px), column 6 and 12 left empty (row 190: half the frame is air) */
 #founder .ls6-words{grid-column:7 / span 5}
@@ -65,6 +68,11 @@
 #founder .ls6-covers img{display:block;width:100%;height:100%;object-fit:cover}
 /* cover-03 is a photo on a white sleeve: shown at the photo's edge so it reads the same size as the other seven */
 #founder .ls6-covers img[src$="cover-03.jpg"]{transform:scale(1.7);transform-origin:50% 38.6%}
+/* Below 1038 px the fixed statistics leave less than one 24 px gutter before the covers. */
+@media (min-width:701px) and (max-width:1037px){
+  #founder .ls6-row,#founder .ls6-covers{grid-column:1 / -1}
+  #founder .ls6-covers{margin-top:40px}
+}
 
 /* ---------- heard on. (row 250 Logo Cloud 3: one row between hairlines; still; one ink, one optical height: A1 13:27) ---------- */
 #founder .ls6-heard{margin-top:128px}
