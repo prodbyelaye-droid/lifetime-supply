@@ -97,7 +97,6 @@ html body #main #we-got-one.ms1106{padding-top:var(--section-pad)}
 }
 @media (min-width:1440px){
   #footer.ls-foot{height:640px}
-  #footer.ls-foot .lsf-mark{top:516px}
 }
 @media (max-width:700px){
   #close.ls-close{height:700px}

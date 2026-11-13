@@ -10,7 +10,7 @@
   --lsk-margin: var(--grid-margin, 64px);
   --lsk-gutter: var(--grid-gutter, 24px);
   --lsk-pad: var(--section-pad, 128px);
-  --lsk-label: #6B6B6B;      /* el-E4 --ls-field-label (row 24) */
+  --lsk-label: #6F6F6F;      /* E0 colour c meta; AI-SIGNS-2 L10 #2 */
   --lsk-error: #A3122A;      /* the live #contact-status red (el-E4 --ls-error, 303) */
   box-sizing: border-box; font-family: var(--lsk-font); -webkit-font-smoothing: antialiased;
 }
@@ -30,7 +30,7 @@
   transition: box-shadow .22s cubic-bezier(.22, 1, .36, 1);
 }
 @media (hover: hover) { #contact.ls-contact .ask:not(:focus-within):hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .42); } }   /* E4 hover ring */
-#contact.ls-contact .ask:focus-within { box-shadow: inset 0 0 0 1.5px #141414; }                                                /* E4 focus: no glow (C4) */
+#contact.ls-contact .ask:focus-within { box-shadow: inset 0 0 0 1.5px #090909; }                                                /* E4 focus: no glow (C4) */
 #contact.ls-contact .ask:has(textarea[aria-invalid="true"]) { box-shadow: inset 0 0 0 1.5px var(--lsk-error); }                /* live: the ring in the error red */
 #contact.ls-contact .ask textarea {
   flex: 1; min-width: 0; min-height: 40px; max-height: 156px; margin: 0; padding: 8px 0; border: 0; outline: none; resize: none;
@@ -47,10 +47,10 @@
   transition: box-shadow .16s cubic-bezier(.22, 1, .36, 1), transform .2s cubic-bezier(.28, 1.4, .36, 1);
 }
 #contact.ls-contact .ask button:active { background: #181818; box-shadow: inset 0 1px 2px rgba(0,0,0,.40), 0 .5px 1px rgba(0,0,0,.14); transform: scale(.97); }
-#contact.ls-contact .ask button:focus-visible { outline: 2px solid #111111; outline-offset: 3px; }
+#contact.ls-contact .ask button:focus-visible { outline: 2px solid #090909; outline-offset: 3px; }
 /* the note, then the script's own status line (handoff message) under it; on an error the status line moves directly under
    the box in the red (as live: elements-1112.css, the critic's 09:41 call) */
-#contact.ls-contact #contact-help { order: 2; margin: 12px 0 0; padding: 0 0 0 24px; font: 400 13px/18px var(--lsk-font); color: var(--lsk-label); }
+#contact.ls-contact #contact-help { order: 2; margin: 12px 0 0; padding: 0 0 0 24px; font: 400 15px/22px var(--lsk-font); color: var(--lsk-label); }
 #contact.ls-contact #contact-help a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 #contact.ls-contact #contact-status { order: 3; margin: 8px 0 0; padding: 0 0 0 24px; font: 400 13px/18px var(--lsk-font); color: var(--lsk-label); }
 #contact.ls-contact #contact-status[hidden] { display: none; }
@@ -73,23 +73,25 @@
 #footer.ls-foot .lsf-line { grid-column: 9 / span 4; margin: -6px 0 0; font: 400 30px/32px var(--lsk-font); letter-spacing: -0.01em; color: #FFFFFF; }
   /* 305: 30/32 Regular, pure white, two lines, cap tops level with the small row, at 66 % of the width (our column 9, x 954) */
 #footer.ls-foot .lsf-name {
-  position: absolute; left: var(--lsk-margin); bottom: 130px; margin: 0 0 0 -0.072em;
+  position: absolute; left: var(--lsk-margin); bottom: 206px; margin: 0 0 0 -0.072em;
   font: 500 205px/1 var(--lsk-font); letter-spacing: -0.02em; white-space: nowrap; color: #FFFFFF;
 }
-  /* 305: the name sits low, baseline at 640/792 of the height (675 at 1440; the box runs 31 px under the baseline, so bottom 130).
-     Clash, said plainly: 305's name is 4 letters at cap 260; "lifetime supply" is 15, so at that cap it would run off the page.
-     It fills the 1312 content width at 205 px instead. -0.072em puts the l's stem on the 64 edge (Albert Sans l, left bearing 72/1000). */
-#footer.ls-foot .lsf-mark { position: absolute; left: var(--lsk-margin); top: 712px; width: 376px; height: auto; }          /* 305: their mark under the name, cut by the bottom edge, 357 wide at 1366; top 36 under the baseline */
+  /* Chosen L10 SPEC: fit the complete longer name at 205 px, as 305 keeps its complete wordmark.
+     The picked 64 px ink edge stays: -0.072em compensates Albert Sans l's side bearing.
+     Raise the original bottom 130 by 76 px with the mark, preserving their optical gap in the 640 px field. */
+#footer.ls-foot .lsf-mark { position: absolute; left: var(--lsk-margin); top: auto; bottom: -47px; width: 376px; height: auto; }
+  /* AUDIT-2 #5 / AI-SIGNS-2 #1: 200 of the existing 247 px mark stays visible, with both counters above the cut.
+     Integrator must remove sizing-1112.css's later top:516px override; retain its 640 px footer height. */
 
 /* above 1440 the name keeps its size and the content stays 1312 wide (L1); the field stays full width */
 @media (min-width: 1441px) {
   #footer.ls-foot .lsf-name, #footer.ls-foot .lsf-mark { left: calc((100% - 1312px) / 2); }
 }
-/* 1024 to 1440: the name scales with the width so it never runs off (no reference) */
+/* 701 to 1439: keep the chosen full-name fit and raise it by the mark's matching 5.236111vw offset. */
 @media (max-width: 1439px) and (min-width: 701px) {
   #footer.ls-foot { height: 58vw; min-height: 560px; }
-  #footer.ls-foot .lsf-name { font-size: calc((100vw - 2 * var(--lsk-margin)) / 6.4); bottom: 9vw; }
-  #footer.ls-foot .lsf-mark { top: auto; bottom: -8.5vw; width: 26vw; }
+  #footer.ls-foot .lsf-name { font-size: calc((100vw - 2 * var(--lsk-margin)) / 6.4); bottom: 14.236111vw; }
+  #footer.ls-foot .lsf-mark { top: auto; bottom: -3.263889vw; width: 26vw; }
   #footer.ls-foot .lsf-line { font-size: 26px; line-height: 28px; }
 }
 
@@ -106,8 +108,8 @@
   #footer.ls-foot .lsf-top { position: static; display: block; }
   #footer.ls-foot .lsf-meta { margin-top: 10px; }
   #footer.ls-foot .lsf-line { margin-top: 28px; font-size: 22px; line-height: 24px; }
-  #footer.ls-foot .lsf-name { position: static; margin: 150px 0 0 -0.072em; font-size: 53px; }                              /* fits 342 */
-  #footer.ls-foot .lsf-mark { position: relative; left: 0; top: auto; display: block; width: 150px; margin: 10px 0 -52px; }
+  #footer.ls-foot .lsf-name { position: static; margin: 150px 0 0 -0.072em; font-size: clamp(40px, calc((100vw - 48px) / 6.44), 53px); } /* keep the full name readable down to 320 */
+  #footer.ls-foot .lsf-mark { position: relative; left: 0; top: auto; bottom: auto; display: block; width: 150px; margin: 10px 0 -18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #contact.ls-contact .ask, #contact.ls-contact .ask button { transition: none; }
