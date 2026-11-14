@@ -110,3 +110,17 @@
 .l7-win { margin: 48px -24px 0 0; width: auto; max-width: none; height: 260px; border-radius: 12px 0 0 0; }
 .l7-win img { width: 760px; max-width: none; } /* cut by the right edge too at 390 */
 }
+
+/* 14 Nov: reviewed native Figma capture fit, integrated into the public landing.
+   Matches private Figma dNMz7cezadj6DKQLBy3Vx4 frames 2:14, 2:52, 2:90.
+   The actual captured image is unchanged; this is viewport framing only. */
+#download .l7-win { height: 576px; }
+#download .l7-win__capture { height: calc(100% - 38px); overflow: hidden; }
+@media (max-width: 700px) {
+  #download .l7-win { height: 340px; }
+  #download .l7-win__capture img {
+    width: 760px;
+    max-width: none;
+    transform: translate(-129.305556px, -372.083333px);
+  }
+}

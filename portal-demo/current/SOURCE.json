@@ -1,0 +1,24 @@
+{
+  "releasedCommit": "75b4a15cd199a3646f0723a40047d6cadae84351",
+  "sources": {
+    "app/globals.css": "d4a37b5b503d9bd0e4e8249c511803cf90d76fd0d5d78d17cbb5765bbe62b464",
+    "components/assembly/room-accents-059.css": "796545845e6f9cdbcc6361089073f9eb6658fe48c30d31388716b86e7cabeec1",
+    "app/buttons-1104.css": "acdf23e89cbc43f5ea8722fd4ae858bb85282ce42cedd369a2574af4bc0ddb68",
+    "app/buttons-1112.css": "2dba54ddd123f14b3cbeffabaffa230042643ec889d6c35e4f3e3ea0c6e1f820",
+    "components/guides/reader.css": "f225372a185b4f4c79e4fb9ed11ef30c8015158fd91588034296dd338829ca77",
+    "components/member-plan.css": "995ac1f5f17e0282c6de37f2cbedfaa11b6ac16fe6ee0c5987099610a3a33320",
+    "lib/content.ts": "5ccd057a994d4c437d72d745bc34e1e0a9e4845833e537d1d582ed0f21a2297e",
+    "data/guides/de/manifest.json": "814fce3264523027a67371fa0f9da73a37e18ae0d3b6bbb352b1bee6fd9b93d4",
+    "data/guides/pages.json": "943c0f7ddb3d05d9f4e568c28d8a21f2f971f7b493aed1a2341a161383471434",
+    "data/producer-workflows/templates.json": "d4ac95bb6d46348051b2fcc3884e380d61559b8d8af58ee792b768a11e430adc",
+    "data/producer-workflows/session-routing.json": "24e03798a3f3b83e5e55789895b0a4f84f239388c419b37469604bd47073d5b2",
+    "lib/producer-session.ts": "aba018beb08a59d27f0c80e9eb3c3532209c310fddcac408b34e27f93f6052ad",
+    "lib/producer-session-catalog.ts": "d2c7f5f1335676097f022bae029b29527d574d57c2bad5db1d2c9fcf34b24f29",
+    "lib/producer-workflows.ts": "a2abc70655fe3c389957b47bb5c409daa6f91e8dca0e5f4124aedf00acede28a",
+    "components/guides/producer-session.tsx": "0eceb205d47a96a73e236a02d821a83b25ad6010a996bfb791269a2248cbedf7",
+    "components/guides/workflow-worksheet.tsx": "329faf4fd0cc94f50df65f4e1935d8f725b09d1696ffcab609c23ca4ee555411",
+    "app/(portal)/guides/library/page.tsx": "b95d1427b8196b14ad8a14836dda9bb464d9b039e436477a9e901653e9c960ae",
+    "app/(portal)/guides/session/page.tsx": "2fae53a7bec40d7ba6cf1cbb26e583f22f849ac6a37f3c6223e43ccce88952d5"
+  },
+  "scope": "Guide library catalogue and language filter; one authored making-day session sample; no member data, downloads, account writes or Composer. CSS copied from release with imports removed and Tailwind theme tokens exposed as :root. Markup and behavior adapted from named released components."
+}

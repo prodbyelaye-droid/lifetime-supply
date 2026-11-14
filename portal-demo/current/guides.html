@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>guide library · portal demo</title>
+<link rel="stylesheet" href="released-guide.css"><link rel="stylesheet" href="preview.css">
+<script src="guide-data.js" defer></script><script src="guides.js" defer></script></head>
+<body><main class="accent-ui p75"><section class="gr" aria-labelledby="guide-library-title">
+<nav class="gr-language" aria-label="preview pages"><a class="gr-bar-btn" href="#library">guide library</a><a class="gr-bar-btn" href="#session">find your next session</a></nav>
+<p class="mp-meta">public demo. the library filter works here; full guides and PDFs are for members. the session finder below includes one sample outcome.</p>
+<div id="library">
+<h1 class="gr-title" id="guide-library-title">guide library</h1>
+<p>producer workflows: day templates, process guides and editable working sheets in English.</p>
+<form class="gr-language" id="language-form"><label class="gr-pick"><span class="gr-pick-label">language:</span><select aria-label="filter guides by language" name="lang"><option value="all">all languages</option><option value="en">English</option><option value="de">Deutsch</option></select></label><button class="gr-bar-btn" type="submit">filter guides</button></form>
+<p role="status" id="guide-count"></p><ul class="gr-sections" id="guide-list"></ul><p id="reading-note" role="status" aria-live="polite"></p>
+</div>
+<div id="session" hidden>
+<h1 class="gr-title">find your next session</h1>
+<p>choose what you want to move forward and the time you have. get a complete set of next actions and a working sheet you can edit and copy.</p>
+<p>this matches your choices to the producer workflows. it does not use AI, read your projects or schedule your day. your answers and sheet stay in this tab; copy anything you want to keep before leaving.</p>
+<form class="mp-card" id="session-form"><fieldset class="mp-draft-fields"><legend>what do you want to move forward?</legend>
+<label class="mp-label" for="goal">your outcome</label><select class="field" id="goal" required><option value="">choose an outcome</option><option value="making-day">Make and finish music</option></select><p class="mp-meta" id="goal-help"></p>
+<label class="mp-label" for="minutes">how many minutes are actually free?</label><p class="mp-meta" id="time-help">use one available window, after fixed commitments. include room for the breaks and checks in your session. you choose when to start.</p><input class="field" id="minutes" type="number" min="1" max="1440" step="1" required aria-describedby="time-help">
+<label class="mp-label" for="scope">how much do you want to take on?</label><select class="field" id="scope"><option value="small">keep it small: the smallest complete session</option><option value="deeper">go deeper: the fullest version that fits</option></select>
+<div class="mp-actions"><button class="btn btn-secondary" type="submit">find my next session</button></div></fieldset><p id="session-error" role="alert"></p>
+<div id="replace" hidden role="status"><p>replace the current session and its working sheet? copy any edits you want to keep first.</p><div class="mp-actions"><button class="btn btn-secondary" type="button" id="replace-yes">replace session</button><button class="btn-link" type="button" id="replace-no">keep current session</button></div></div></form>
+<section class="gr-article gr-section" id="result" tabindex="-1" hidden aria-label="your session"></section>
+</div></section></main></body></html>

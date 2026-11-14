@@ -179,14 +179,15 @@ a{color:inherit;text-decoration:none}
 .ls-step{border-bottom:1px solid #D9D9D9}
 .ls-step h3{margin:0;font:inherit}
 .ls-step button{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:16px;width:100%;padding:17px 20px;cursor:pointer;font:500 19px/26px var(--font-brand);letter-spacing:-.01em;color:var(--ink)}
-.ls-step button:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+/* Focus surrounds the complete row so the open panel stays one solid field. */
+.ls-step:has(button:focus-visible){outline:2px solid var(--ink);outline-offset:3px}
+.ls-step button:focus-visible{outline:none}
 .ls-step .h{flex:1}
 .ls-step .w{font:400 15px/22px var(--font-brand);letter-spacing:0;color:var(--meta)}   /* the time on the title's line (303 activity rows; ai-signs 2 L2 H1) */
 .ls-step .sq{width:12px;height:12px;flex:none;align-self:center}
 .ls-step .b{display:none;margin:0;padding:0 48px 22px 20px;font:400 15px/22px var(--font-brand)}
 .ls-step.is-open{background:var(--ink);border-bottom-color:var(--ink)}
 .ls-step.is-open button{color:#fff;padding-bottom:8px;cursor:default}
-.ls-step.is-open button:focus-visible{outline-color:#fff}
 .ls-step.is-open .w{color:rgba(255,255,255,.64)}
 .ls-step.is-open .sq{background:#fff}
 .ls-step.is-open .b{display:block;color:rgba(255,255,255,.82)}

@@ -1,0 +1,6 @@
+/* Frame adaptation only. Content classes and tokens come from released75b4;
+   the portal shell renders at .8 on desktop (home2.css:226). */
+@font-face{font-family:"Albert Sans Reader";src:url("../p6/a/AlbertSans-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+:root{--brand-font-stack:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:var(--font);font-size:15px;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--text-primary);outline-offset:3px}
+.p75{zoom:.8;padding-block:24px 64px;min-height:125vh}.gr>div>p{margin-block:16px}.gr-sections h2{font-size:20px;line-height:1.4;margin:24px 0 8px}.gr-sections nav{display:flex;gap:12px}.gr-sections .gr-bar-btn{font:inherit}.gr-article{margin-top:32px}.mp-card{margin-block:24px}.mp-card p{margin-block:12px}.mp-card textarea{resize:vertical}.gr [hidden]{display:none!important}

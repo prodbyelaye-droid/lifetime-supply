@@ -43,7 +43,7 @@
     }
     return cache.get(u);
   };
-  const parts = (p, t) => { const P = D.pages[p]; if (!P) return []; return P.full ? [`${p}-${t}-full`] : [`${p}-${t}-body`, `${P.nav}-${t}-side`].concat(P.top > 0 ? [`${p}-${t}-top`] : []); };
+  const parts = (p, t) => { const P = D.pages[p]; if (!P) return []; if (P.document) return [`${P.nav}-${t}-side`]; return P.full ? [`${p}-${t}-full`] : [`${p}-${t}-body`, `${P.nav}-${t}-side`].concat(P.top > 0 ? [`${p}-${t}-top`] : []); };
   const ready = (p, t) => Promise.all(parts(p, t).map(fetchImg));
   const pic = (n, cls, alt) => { const i = new Image(); i.className = cls; i.alt = alt || ''; i.decoding = 'async'; i.draggable = false; i.src = url(n); return i; };
   // ---- the sidebar blob: the same flat blot, drawn over its own picture so its eyes can follow the pointer (brand-blot.tsx: 1.5 px at most, easing to 0 within 48 px)
@@ -72,6 +72,15 @@
     s.dataset.page = p; s.dataset.theme = t;
     if (P.full) { s.append(pic(`${p}-${t}-full`, 'l4-full', alt)); return s; }
     const bw = D.W - P.x0, sc = box(div('l4-scroll'), [P.x0, P.top, bw, D.H - P.top]);
+    if (P.document) {
+      const frame = document.createElement('iframe'); frame.className = 'l4-document';
+      frame.title = `${label(p)}: public interactive sample`;
+      frame.src = `${P.document}?t=${t}${P.fragment || ''}`;
+      frame.allow = 'clipboard-write';
+      frame.style.width = `${bw}px`; frame.style.height = `${D.H - P.top}px`;
+      sc.append(frame); s.append(sc, box(pic(`${P.nav}-${t}-side`, 'l4-part'), [0, 0, P.x0, D.H]));
+      return s;
+    }
     const b = pic(`${p}-${t}-body`, 'l4-body', alt); b.width = bw; b.height = P.bh[t]; sc.append(b);
     const layer = div('l4-bodyhots'); layer.style.aspectRatio = `${bw} / ${P.bh[t]}`; sc.append(layer);
     s.append(sc, box(pic(`${P.nav}-${t}-side`, 'l4-part'), [0, 0, P.x0, D.H]));
@@ -122,6 +131,16 @@
   const show = async (p, t, how, from) => {
     if (!D.pages[p]) return;
     if (st.busy) { st.queued = [p, t, how, from]; return; }
+    // A theme switch must not discard an edited sample worksheet.
+    const documentFrame = p === st.page && D.pages[p].document && view.querySelector('.l4-screen.is-on .l4-document');
+    if (documentFrame) {
+      documentFrame.contentWindow.postMessage({ type: 'l4-demo-theme', theme: t }, location.origin);
+      st.theme = t; stage.dataset.theme = t;
+      const currentScreen = view.querySelector('.l4-screen.is-on'); currentScreen.dataset.theme = t;
+      currentScreen.querySelector('.l4-part').src = url(`${D.pages[p].nav}-${t}-side`);
+      preview.dataset.l4Theme = t; bar.dataset.l4Bar = t; if (macbar) macbar.dataset.l4Bar = t;
+      icon(t); paint(true); return;
+    }
     st.busy = true; st.flipping = how === 'reveal'; if (st.menu) { st.menu = false; menuLayer.hidden = true; menuLayer.textContent = ''; }
     const old = view.querySelector('.l4-screen.is-on'), osc = old && old.querySelector('.l4-scroll');
     const keep = how === 'reveal' && old && old.dataset.page === p && osc ? osc.scrollTop / osc.clientWidth : 0;
@@ -157,6 +176,8 @@
     if (st.queued) { const q = st.queued; st.queued = null; show(...q); }
   };
   const flip = (r) => show(st.page, other(), 'reveal', mid(r));
+  const sizeDocuments = () => stage.style.setProperty('--l4-document-scale', stage.clientWidth / D.W);
+  new ResizeObserver(sizeDocuments).observe(stage); sizeDocuments();
   // the switch's icon, as his ref animates it: the old one fades out (.33 s), then the new one comes in from 55% and 25 degrees (.33 s). Framer Motion's default ease-in-out
   const ics = { light: tgl.querySelector('.l4-moon'), dark: tgl.querySelector('.l4-sun') }; let shown = 'light', iconRun = 0;
   const icon = (t) => {
