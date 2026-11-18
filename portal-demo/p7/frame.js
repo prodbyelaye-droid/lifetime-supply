@@ -59,7 +59,7 @@
     row('home', 'home', 'home') + row('clock', 'your day', 'day') +
     '<div class="grp">the board</div>' + row('file', 'briefs', 'briefs', '161') + row('arrow', 'submissions', 'submissions') +
     '<div class="grp">your library</div>' + row('vault', 'vault', 'vault') + row('box', 'kits', 'kits') +
-    '<div class="grp">your membership</div>' + row('cap', 'mentorship', 'mentorship') + row('book', 'guides', 'guides') + row('users', 'the room', 'room') +
+    '<div class="grp">your membership</div>' + row('cap', 'mentorship', 'mentorship') + row('users', 'the room', 'room') +
     '<div class="sep"></div>' + row('brief', 'business', 'business') + '</nav>' +
     '<div class="sb-foot"><div class="news"><b>a whole new lifetime supply.</b><p>the new portal is live.</p><div class="acts"><span>dismiss</span></div></div></div>';
   var desk = !H.classList.contains('phone');
