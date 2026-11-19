@@ -17,18 +17,18 @@ assert.equal(getOffer(PRICE_CHANGE, next).checkoutUrl, next);
 // above remain tested, but cannot replace the assembled template's live links.
 const fs = require('node:fs');
 const template = fs.readFileSync('index.html', 'utf8');
-const liveCheckout = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
+const liveCheckout = 'https://buy.stripe.com/7sY8wQfZi7cg72f9i29AA0d';
 for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE, Date.now()]) {
   const html = render(now, next);
   assert.equal(html, template, 'snapshot must survive historical transition logic');
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.offers.priceCurrency, 'USD');
-  assert.equal(Number(schema.offers.price), 699);
+  assert.equal(Number(schema.offers.price), 999);
   assert.equal(schema.offers.url, liveCheckout);
   const checkouts = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map(x => x[1]);
   assert.equal(checkouts.length, 2);
   assert(checkouts.every(url => url === liveCheckout));
-  assert(html.includes('<div class="l8-price" data-price=""><span class="l8-price__n">$699</span><span class="l8-price__u">usd</span></div>'), 'redesign 1112: the price band');
+  assert(html.includes('<div class="l8-price" data-price=""><span class="l8-price__n">$999</span><span class="l8-price__u">usd</span></div>'), 'redesign 1112: the price band');
   assert(html.includes('https://instagram.com/elxyee'));
   assert(!html.includes('$599'));
   assert(!html.includes('offer-refresh-at'));

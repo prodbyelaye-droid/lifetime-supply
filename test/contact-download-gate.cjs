@@ -74,7 +74,7 @@ test('server corrects stale markup before the current-offer early return', () =>
   }
 });
 test('legacy offer path also renders the publication gate', () => {
-  const legacy = read('index.html').replaceAll('https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04', CHECKOUT_599);
+  const legacy = read('index.html').replaceAll('https://buy.stripe.com/7sY8wQfZi7cg72f9i29AA0d', CHECKOUT_599);
   for (const value of ['false', 'true']) for (const now of [PRICE_CHANGE - 1, PRICE_CHANGE]) {
     check(server(gate(value), legacy).render(now), value === 'true');
   }

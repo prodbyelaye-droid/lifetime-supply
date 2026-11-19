@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 process.chdir(path.join(__dirname, '..'));
-const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
+const LIVE = 'https://buy.stripe.com/7sY8wQfZi7cg72f9i29AA0d';
 const template = fs.readFileSync('index.html', 'utf8');
 function pinned(html) {
   const ctas = [...html.matchAll(/href="([^"]+)" data-checkout/g)].map((m) => m[1]);
@@ -17,7 +17,7 @@ function pinned(html) {
   assert(html.includes('<a class="l8-btn" href="#price-band">get lifetime access'), 'redesign 1112: step 1 goes to the price band');
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.offers.url, LIVE);
-  assert.equal(Number(schema.offers.price), 699);
+  assert.equal(Number(schema.offers.price), 999);
   assert.equal(schema.offers.priceCurrency, 'USD');
 }
 pinned(template);

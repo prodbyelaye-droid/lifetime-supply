@@ -30,7 +30,7 @@ const cards=[
  card('mentorship','videos land as they’re filmed. every module is written out today.',L('the producer blueprint','18 modules')+L('the psychology of the close','16 modules')+L('introduction','')),
  card('guides','the written playbooks behind my career.',L('the 2026 producer guide','')+L('how to get placements as a music producer','')+L('the inner game of selling beats','')),
  card('your day','your day, planned around the briefs. today, habits, wins and the week.',L('today','6 to do')+L('the week','6 tasks')+L('every day','2 habits')),
- card('submissions','every status moved by hand, and my feedback on each one.',L('new','1')+L('in review','0')+L('sent to artist','0')+L('placed','0')),
+ card('submissions','',L('new','1')+L('in review','0')+L('sent to artist','0')+L('placed','0')),
 ];
 let body;
 if(page==='business') body=`<div class="state"><svg class="mark-s"><use href="#mk"/></svg><h2>coming soon.</h2><p>invoices, clients, splits and placements in one place. we’re finishing it now.</p></div>`;

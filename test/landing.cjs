@@ -14,7 +14,7 @@ const path = require('node:path');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 process.chdir(path.join(__dirname, '..'));
 const {render} = require('../api/landing');
-const LIVE = 'https://buy.stripe.com/00w8wQdRa0NS5Ybbqa9AA04';
+const LIVE = 'https://buy.stripe.com/7sY8wQfZi7cg72f9i29AA0d';
 // the trusted-by strip (Elaye, 4 Nov 15:50-16:03, photos 17:17): his exact heading and his 33 artists in his order, each
 // with his photo. Never YSN Fab.
 const TRUSTED_HEADING = "artists i've produced for.";
@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
         // price and closing buttons use the same checkout, opening in a new tab
         const checkouts = await page.locator('a[href*="buy.stripe.com"]').evaluateAll((as) => as.map((a) => [a.href, a.target, a.hasAttribute('data-checkout'), a.textContent.trim()]));
         assert.deepEqual(checkouts, Array(2).fill([LIVE, '_blank', true, 'get lifetime access']));
-        assert.equal((await page.locator('[data-price] .l8-price__n').textContent()).trim(), '$699');
+        assert.equal((await page.locator('[data-price] .l8-price__n').textContent()).trim(), '$999');
         // no video but the launch film; no blot clips, no blot images
         assert.equal(await page.locator('video.bv-video, .bv-box').count(), 0, 'no blot clips (his 14:39 call)');
         assert.equal(await page.locator('img[src*="blot"]').count(), 0, 'no blob anywhere');
