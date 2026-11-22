@@ -1,0 +1,47 @@
+/* JOB7 · Sun 22 Nov 2026 · "120+ new features. all built in."
+   The new update as one map, straight after the portal window, with the dated drop band (drop-1122.css) under it.
+   Page tokens only, on the same grid as .ls-drop (533px + 135px gap at 1440). Names are the 120 changelog names.
+   1440: 4 columns, first four names per card, "+ N more" opens the rest. 390: 2 columns, title and line, "see all N". */
+.ls-new{border-top:1px solid var(--hairline)}
+.ls-new__g{display:grid;grid-template-columns:533px minmax(0,1fr);column-gap:135px;padding-left:var(--edge);padding-right:var(--edge);align-items:end}
+.ls-new__lead{margin:0;font:var(--t-body);color:var(--ink);max-width:600px;text-wrap:pretty}
+.ls-new__map{list-style:none;margin:56px 0 0;padding:0 var(--edge);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px}
+.ls-new__c{padding:24px 0 30px;border-top:1px solid var(--ink)}
+.ls-new__t{margin:0;font:var(--t-h4);letter-spacing:var(--t-h4-track);color:var(--ink)}
+.ls-new__l{margin:8px 0 0;font:var(--t-body);color:var(--ink);text-wrap:pretty}
+.ls-new__f{list-style:none;margin:14px 0 0;padding:0;font:var(--t-small);color:var(--meta)}
+.ls-new__f li{display:inline}
+.ls-new__f li+li::before{content:" · "}
+.ls-new__f .ls-new__dup{display:none}
+.ls-new__d .ls-new__f li:nth-child(5)::before{content:none}
+.ls-new__d{margin:4px 0 0;font:var(--t-small);color:var(--meta)}
+.ls-new__d .ls-new__f{margin-top:0}
+.ls-new__d summary{display:inline-block;padding-block:2px;cursor:pointer;color:var(--ink);text-decoration:underline;text-underline-offset:3px;list-style:none}
+.ls-new__d summary::-webkit-details-marker{display:none}
+.ls-new__d[open] summary{display:none}
+.ls-new__d summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.ls-new__sm{display:none}
+/* the drop band reads as the dated half of this section */
+.ls-new + .ls-drop{border-top:0;padding-top:0}
+@media (max-width:1180px){
+  .ls-new__g{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(48px,9.4vw,135px)}
+  .ls-new__map{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .ls-new__g{display:block}
+  .ls-new__lead{margin-top:24px}
+  .ls-new__map{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:40px}
+}
+@media (max-width:700px){
+  .ls-new__g,.ls-new__map{padding-left:var(--grid-margin);padding-right:var(--grid-margin)}
+  .ls-new__map{column-gap:16px;margin-top:32px}
+  .ls-new__c{padding:16px 0 20px}
+  .ls-new__t{font-size:18px;line-height:24px}
+  .ls-new__l{margin-top:6px;font-size:15px;line-height:22px}
+  .ls-new__c:not(.ls-new__c--all) .ls-new__top{display:none}
+  .ls-new__d{margin-top:10px}
+  .ls-new__f .ls-new__dup{display:inline}
+  .ls-new__d .ls-new__f li:nth-child(5)::before{content:" · "}
+  .ls-new__sd{display:none}
+  .ls-new__sm{display:inline}
+}

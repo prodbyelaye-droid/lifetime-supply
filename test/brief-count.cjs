@@ -41,6 +41,10 @@ test('Failures, outdated reads, invalid figures and a previous Board day use cou
 test('Raw HTML and search metadata carry no dated numeric brief claim', () => {
   const html = fs.readFileSync(path.join(__dirname, '../index.html'),'utf8');
   assert.doesNotMatch(html,/\d+\+ live (?:artist )?briefs/);
-  assert.equal((html.match(/data-open-briefs/g) || []).length,7);
+  // 22 Nov (fix-landing-drop): the board tab's figure line was the one fixed "160+" left; it now follows the count too.
+  // WORDS-PROPOSED (22 Nov): with the "and so much more." marquee cut, its two copies of the board chip go too.
+  // JOB7 (22 Nov): the new update map adds two, on the board card's line and its first name.
+  assert.equal((html.match(/data-open-briefs/g) || []).length,8);
+  assert.doesNotMatch(html.replace(/<[^>]+>/g,''),/\d+\+\s*live (?:artist )?briefs/);
   assert.match(html,/href="https:\/\/portal\.elaye\.store\/briefs" data-open-briefs/);
 });

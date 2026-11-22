@@ -1,0 +1,48 @@
+/* fix-landing-drop · Sun 22 Nov 2026
+   1. #drop: what shipped, dated, straight after "a day in my workflow." (js/drop.js keeps it current from the public changelog).
+   2. .ls-deal: the deal, in his live FAQ words, under the lead of "how the board works." in the column that stood empty.
+   3. the update board's "live now" head holds the two newest shipped rows.
+   Grid, type and colour are the page's own tokens (L1 grid, type D, colour c); nothing new is introduced. */
+
+/* ---------- 1 · the drop band ---------- */
+.ls-drop{border-top:1px solid var(--hairline)}
+.ls-drop__g{display:grid;grid-template-columns:533px minmax(0,1fr);column-gap:135px;padding-left:var(--edge);padding-right:var(--edge);align-items:start}
+.ls-drop__head .ls-lead{margin-top:24px}
+.ls-drop__link{display:inline-block;margin-top:20px;padding-block:2px;font:var(--t-small);color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.ls-drop__link:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.ls-drop__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.ls-drop__row{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:24px;padding:24px 0 26px;border-bottom:1px solid #E4E4E6}
+.ls-drop__date{font:var(--t-small);color:var(--meta);font-variant-numeric:tabular-nums;padding-top:3px}
+.ls-drop__t{margin:0;font:var(--t-h4);letter-spacing:var(--t-h4-track);color:var(--ink)}
+.ls-drop__l{margin:8px 0 0;font:var(--t-body);color:var(--ink);max-width:600px}
+
+/* ---------- 2 · the deal beside the board ---------- */
+.ls-deal{margin:40px 0 0;padding:0;border-top:1px solid #D9D9D9;max-width:533px}
+.ls-deal__r{padding:16px 0 18px;border-bottom:1px solid #D9D9D9}
+.ls-deal dt{font:500 15px/22px var(--font-brand);color:var(--ink)}
+.ls-deal dd{margin:4px 0 0;font:400 15px/22px var(--font-brand);color:var(--ink)}
+/* the sheet runs the full height of the text column, so it is still cut by the section foot (row 298) */
+.ls-board{align-items:stretch}
+.ls-sheetwrap{height:auto;min-height:512px}
+
+/* ---------- 3 · update board head ---------- */
+.l8-shipped-list .l8-shipped + .l8-shipped{border-top:0}
+
+/* ---------- widths ---------- */
+@media (max-width:1180px){
+  .ls-drop__g{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(48px,9.4vw,135px)}
+}
+@media (max-width:900px){
+  .ls-drop__g{display:block}
+  .ls-drop__list{margin-top:40px}
+}
+@media (max-width:700px){
+  .ls-drop__g{padding-left:var(--grid-margin);padding-right:var(--grid-margin)}
+  .ls-drop__head .ls-lead{margin-top:16px}
+  .ls-drop__row{grid-template-columns:1fr;row-gap:6px;padding:20px 0 22px}
+  .ls-drop__date{padding-top:0}
+  .ls-drop__t{font-size:20px;line-height:26px}
+  .ls-drop__l{font-size:17px;line-height:26px}
+  .ls-deal{margin-top:32px}
+  .ls-sheetwrap{min-height:0}
+}

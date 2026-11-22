@@ -64,7 +64,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await page.locator('video.bv-video, .bv-box').count(), 0, 'no blot clips (his 14:39 call)');
         assert.equal(await page.locator('img[src*="blot"]').count(), 0, 'no blob anywhere');
         // the sections in page order, every nav anchor lands
-        const order = await page.evaluate(() => ['top', 'portal', 'how-the-board-works', 'flow', 'inside', 'more', 'hear', 'founder', 'trusted', 'why-producers-choose', 'members-say', 'giveaways', 'we-got-one', 'download', 'steps', 'price', 'updates', 'questions', 'close', 'contact', 'footer'].map((id) => { const e = document.getElementById(id); return e ? e.getBoundingClientRect().top + scrollY : null; }));
+        const order = await page.evaluate(() => ['top', 'portal', 'new', 'drop', 'how-the-board-works', 'flow', 'inside', 'hear', 'founder', 'trusted', 'why-producers-choose', 'members-say', 'giveaways', 'we-got-one', 'download', 'steps', 'price', 'updates', 'questions', 'close', 'contact', 'footer'].map((id) => { const e = document.getElementById(id); return e ? e.getBoundingClientRect().top + scrollY : null; }));
         assert(order.every((y) => y !== null), 'every section id is on the page');
         for (const href of await page.locator('a[href^="#"]').evaluateAll((as) => [...new Set(as.map((a) => a.getAttribute('href')))])) assert(href === '#' || await page.locator(href).count() === 1, href + ' lands');
         // the trusted strip keeps his heading, his 33 names in order and the unreleased line; never YSN Fab
