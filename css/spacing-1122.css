@@ -91,3 +91,11 @@ h1,h2,h3,h4{text-wrap:balance}
 #price .l8-fine a.l8-dm{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 /* BUYER-OUT 7 · the window's "see all of it" */
 .ltw-all{color:var(--ltw-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+
+/* NIGHT-RUN 23 Nov · BUYER-OUT 1 · a DM line under every $999: step 1 mock, the worth answer, the FAQ price answer */
+#steps .l8-step:nth-child(1) .l8-step__art{flex-direction:column;gap:14px}
+#steps .l8-step__dm{margin:0;font:var(--t-small,400 15px/22px inherit);color:var(--ls-ink,#090909);text-align:center}
+#steps .l8-step__art .l8-step__dm a{pointer-events:auto;cursor:pointer;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+#price .l8-worth__p p.l8-worth__dm{font:var(--t-small,400 15px/22px inherit);margin-top:24px}
+.l8-worth__dm a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+#questions.ls-q .faq-answer p.lsq-price-dm{margin-top:12px}
