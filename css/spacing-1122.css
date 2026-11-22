@@ -72,3 +72,22 @@ h1,h2,h3,h4{text-wrap:balance}
 
 /* copy fix 22 Nov (COPY-OUT hold 1): hide "what just went in" until the changelog carries the update; take this out that day */
 #drop{display:none}
+
+/* UI-OUT F1 · 390: the founder photo holds its 470px before it loads, so jump links stop landing 470px short */
+@media (max-width:700px){#founder .ls6-photo{width:100%;align-self:stretch}}
+/* UI-OUT F2 · price band, 1220 and up: the left cloud bank starts under the paragraph, and the paragraph is one column wider */
+@media (min-width:1220px){
+  #price .l8-band{background-position:50% min(0px, calc(361px - 30.78vw))}
+  #price .l8-band__intro{grid-column:1 / span 6}
+  #price .l8-band__intro p{max-width:none;margin-top:20px}
+}
+/* UI-OUT F9 · the "$999 · get lifetime access" pill in step 1 jumps to the price band again; "log in" stays inert */
+#steps .l8-step__art a[href="#price-band"]{pointer-events:auto;cursor:pointer}
+/* BUYER-OUT 1 · the DM line under the price band button and the closing button, and the small-print handle as a link */
+.l8-band__dm{margin:16px 0 0;font:var(--t-small,400 15px/22px inherit);color:#fff}
+.l8-band__dm a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+#close.ls-close .lsc-dm{margin:16px 0 0;font:var(--t-small,400 15px/22px var(--lsq-font));color:var(--lsq-ink)}
+#close.ls-close .lsc-dm a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+#price .l8-fine a.l8-dm{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+/* BUYER-OUT 7 · the window's "see all of it" */
+.ltw-all{color:var(--ltw-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}

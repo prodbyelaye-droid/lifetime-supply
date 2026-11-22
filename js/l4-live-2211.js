@@ -74,6 +74,7 @@
     mentorTitle: 'mentorship', guidesTitle: 'guides', businessTitle: 'business',
     guidesHeld: 'every guide is in the new update.',
     businessHeld: 'invoices, quotes and your rate card are in the new update.',
+    seeAll: 'see all of it',
     nothingFound: 'nothing matches that.',
     pages: 'pages', briefsLabel: 'briefs', soundsLabel: 'sounds', modulesLabel: 'modules'
   };
@@ -355,7 +356,7 @@
   function pRoom() {
     return '<h2 class="ltw-big">' + esc(W.roomTitle) + '</h2><p class="ltw-sub">' + esc(W.roomCardSub) + '</p><div class="ltw-list"><p class="ltw-row ltw-row-pill"><span>' + esc(W.roomDiscord) + ' ›</span></p>' + W.roomChannels.map(function (c) { return '<p class="ltw-row"><span># ' + esc(c) + '</span></p>'; }).join('') + '</div>';
   }
-  function pHeld(t, b) { return '<h2 class="ltw-big">' + esc(W[t]) + '</h2><p><span class="ltw-tag ltw-tag-soon">' + esc(W.soon) + '</span></p><p class="ltw-sub">' + esc(W[b]) + '</p>'; }
+  function pHeld(t, b) { return '<h2 class="ltw-big">' + esc(W[t]) + '</h2><p><span class="ltw-tag ltw-tag-soon">' + esc(W.soon) + '</span></p><p class="ltw-sub">' + esc(W[b]) + '</p><p><a class="ltw-all" href="#new">' + esc(W.seeAll) + '</a></p>'; }
 
   /* ---------- bottom player ---------- */
   function cur() { for (var i = 0; i < SOUNDS.length; i++) if (SOUNDS[i].id === S.playing) return SOUNDS[i]; return null; }
