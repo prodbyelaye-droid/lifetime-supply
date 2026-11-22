@@ -45,3 +45,16 @@
   .ls-new__sd{display:none}
   .ls-new__sm{display:inline}
 }
+
+/* copy fix 22 Nov: each name now carries its line, so names stack instead of running on with dots; the route under the cards */
+#new .ls-new__f li{display:block;margin-top:8px}
+#new .ls-new__f li:first-child{margin-top:0}
+#new .ls-new__f li::before{content:none}
+#new .ls-new__f .ls-new__dup{display:none}
+#new .ls-new__f b{display:block;font-weight:inherit;color:var(--ink)}
+#new .ls-new__d{margin-top:10px}
+.ls-new__out{padding:40px var(--edge) 0;text-align:center}
+.ls-new__out .ltw-out{margin:0}
+.ls-new__dm{margin:14px auto 0;max-width:520px;font:var(--t-small);color:var(--meta);text-wrap:pretty}
+.ls-new__dm a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:700px){#new .ls-new__f .ls-new__dup{display:block}.ls-new__out{padding:32px var(--grid-margin) 0}}

@@ -40,11 +40,17 @@ test('Failures, outdated reads, invalid figures and a previous Board day use cou
 });
 test('Raw HTML and search metadata carry no dated numeric brief claim', () => {
   const html = fs.readFileSync(path.join(__dirname, '../index.html'),'utf8');
-  assert.doesNotMatch(html,/\d+\+ live (?:artist )?briefs/);
+  // COPYFIX (22 Nov, his 21:09 words): "200+ live briefs by the end of the week" is his dated goal and sits only in
+  // "what i'm building". It is the one figure allowed; the live count stays the number shown for today everywhere else.
+  const goal = '<li><b>200+ live briefs.</b> on the board by the end of the week.</li>';
+  assert.equal(html.split(goal).length - 1, 1);
+  const rest = html.replace(goal, '');
+  assert.doesNotMatch(rest,/\d+\+ live (?:artist )?briefs/);
   // 22 Nov (fix-landing-drop): the board tab's figure line was the one fixed "160+" left; it now follows the count too.
   // WORDS-PROPOSED (22 Nov): with the "and so much more." marquee cut, its two copies of the board chip go too.
   // JOB7 (22 Nov): the new update map adds two, on the board card's line and its first name.
-  assert.equal((html.match(/data-open-briefs/g) || []).length,8);
-  assert.doesNotMatch(html.replace(/<[^>]+>/g,''),/\d+\+\s*live (?:artist )?briefs/);
+  // COPYFIX (22 Nov, COPY-OUT fix 8): the first name goes back to plain words, so the count shows once on that card.
+  assert.equal((html.match(/data-open-briefs/g) || []).length,7);
+  assert.doesNotMatch(rest.replace(/<[^>]+>/g,''),/\d+\+\s*live (?:artist )?briefs/);
   assert.match(html,/href="https:\/\/portal\.elaye\.store\/briefs" data-open-briefs/);
 });

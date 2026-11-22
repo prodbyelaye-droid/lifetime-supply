@@ -69,3 +69,6 @@ h1,h2,h3,h4{text-wrap:balance}
 
 /* 15 · "a week of that: real briefs to make for." cut */
 #flow > .close{display:none}
+
+/* copy fix 22 Nov (COPY-OUT hold 1): hide "what just went in" until the changelog carries the update; take this out that day */
+#drop{display:none}
