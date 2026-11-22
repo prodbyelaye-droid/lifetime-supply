@@ -106,6 +106,38 @@
 .l8-up-list { list-style: none; columns: 2; column-gap: var(--grid-gutter); margin-top: 0; }
 .l8-up-list li { break-inside: avoid; border-bottom: 1px solid var(--ls-hair); padding: 14px 0 16px; font: var(--t-small); }
 .l8-up-list b { font-weight: 500; }
+/* Published changelog row, using the portal's date column and the landing type scale. */
+.l8-shipped {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 4px var(--grid-gutter);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ls-hair);
+  font: var(--t-small);
+}
+.l8-shipped time {
+  color: var(--ls-meta);
+  font-variant-numeric: tabular-nums;
+}
+.l8-shipped__title { font-weight: 500; }
+.l8-shipped__title + p { margin-top: 4px; }
+.l8-update-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.l8-band__note .l8-update-link { white-space: nowrap; }
+.l8-shipped .l8-update-link {
+  display: inline-block;
+  margin-top: 4px;
+  padding-block: 2px;
+}
+#updates-title:focus-visible { width: fit-content; }
+#updates-title:focus-visible,
+.l8-update-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
 /* ---------- option B: the update board as two sheets (el-E10 B, "one white sheet per lane", his 03:02 pick for the board) ---------- */
 .l8-sheets { margin-top: 72px; align-items: start; }
 .l8-sheet { grid-column: span 6; background: #fff; border: 1px solid #E8E8EA; border-radius: 16px; overflow: hidden; } /* E10 B: rim #E8E8EA, radius 16 (303 panel) */
@@ -165,6 +197,7 @@
 .l8-up-cols { margin-top: 48px; }
 .l8-up-col + .l8-up-col { margin-top: 48px; }
 .l8-up-list { columns: 1; }
+.l8-shipped { grid-template-columns: 1fr; gap: 2px; }
 .l8-sheets { margin-top: 40px; }
 .l8-sheet + .l8-sheet { margin-top: 20px; }
 .l8-sheet li { grid-template-columns: 1fr; row-gap: 2px; padding: 12px 16px 13px; }
