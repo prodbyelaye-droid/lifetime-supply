@@ -1,5 +1,5 @@
-/* counter-1105: "6,000+" rolls its digits upward with a blur and lands on the infinity sign, once, when it comes on screen.
-   The real text stays in the element, so readers and copy still get "6,000+ files today."; the reel and the sign are drawn in CSS.
+/* counter-1105: the displayed count rolls its digits upward with a blur and lands on the infinity sign, once, when it comes on screen.
+   The real text stays in the element, so readers and copy still get the displayed count; the reel and the sign are drawn in CSS.
    Reduced motion or "pause motion": no roll, the sign sits beside the number. */
 (() => {
   'use strict';

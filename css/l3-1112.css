@@ -29,7 +29,7 @@
 .l3-kit p{margin-top:18px;font:var(--t-small)}
 .l3-kit b{font-weight:600}
 
-/* the figure: live's counter (js/counter-1105.js) rolls 6,000+ and lands on the mark; the words stay for readers */
+/* the figure: live's counter (js/counter-1105.js) rolls the count and lands on the mark; the words stay for readers */
 .l3-stat{margin-top:96px;align-items:end}                                                                     /* 02:12 round, rounded to the 8 grid */
 .l3-stat .fig{grid-column:1 / span 8;font:var(--t-figure);letter-spacing:-0.02em;font-variant-numeric:lining-nums}
 .l3-stat .say{grid-column:9 / span 4;padding-bottom:6px;font:var(--t-body)}
@@ -89,4 +89,16 @@
 @media (min-width:701px){
   #inside{--l3-window-inset:22px}
   #inside .l3-row[aria-selected="false"]{min-height:60px;font-size:19px;line-height:59px} /* 59 + the 1 px rule = 60; the first row also keeps a 60 px floor */
+}
+
+/* Keep the board preview open to the page edge. Its initial crop ends between
+   card columns in the original capture. The rest is available by scrolling. */
+#l3-p-board .l3-win {
+  width: calc(100% - var(--l3-window-inset));
+  max-height: calc(100% - var(--l3-window-inset));
+  overflow: auto;
+}
+#l3-p-board img { width: 169.5%; }
+@media (max-width: 700px) {
+  #l3-p-board img { width: 251.6%; }
 }

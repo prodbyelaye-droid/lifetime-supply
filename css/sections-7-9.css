@@ -119,3 +119,14 @@ body #main #we-got-one .ls-heading-b,#we-got-one h2{margin:0;max-width:none;font
   #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+5){display:none}   /* four whole tiles in one column, then see all 79 */
   #we-got-one .ms-sticker{height:36px}
 }
+
+/* Use the four reference columns in reading order, so incomplete rows end at the right. */
+@media (min-width: 701px) {
+  #why-producers-choose .ls7-quotes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--ls7-gutter);
+    align-items: start;
+  }
+  #why-producers-choose .ls7-q { margin: 0; }
+}

@@ -253,3 +253,5 @@
 #price .l8-band__intro p,
 #price .l8-worth__p p,
 #updates .l8-lede { letter-spacing: 0; }
+
+#worth-h { text-wrap: balance; }

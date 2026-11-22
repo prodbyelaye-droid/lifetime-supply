@@ -9,8 +9,10 @@ const expected = [
   'https://github.com/prodbyelaye-droid/lifetime-supply-desktop/releases/download/v1.0.3/Lifetime-Supply-windows.exe',
 ];
 const block = /<!-- desktop-downloads:start -->([\s\S]*?)<!-- desktop-downloads:end -->/;
-function check(html, enabled) {
-  const links = [...html.matchAll(/href="([^"]*lifetime-supply-desktop[^"]*)"/g)].map(m => m[1]);
+function check(pageOrSection, enabled) {
+  // Check installer links page-wide. Availability messages belong to the marked download section.
+  const html = pageOrSection.includes('<!-- desktop-downloads:start -->') ? pageOrSection.match(block)[1] : pageOrSection;
+  const links = [...pageOrSection.matchAll(/href="([^"]*lifetime-supply-desktop[^"]*)"/g)].map(m => m[1]);
   assert.deepEqual(links, enabled ? expected : []);
   // redesign 1112 (L7): the live block sets 'download for' small over the platform name
   for (const label of ['mac', 'windows']) assert(html.includes(enabled ? '<small>download for</small><b>' + label + '</b>' : 'download for ' + label));

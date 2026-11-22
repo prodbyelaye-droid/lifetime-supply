@@ -115,3 +115,15 @@
   #contact.ls-contact .ask, #contact.ls-contact .ask button { transition: none; }
   #contact.ls-contact .ask button:active { transform: none; }
 }
+
+#footer.ls-foot .lsf-small { font-size: 12px; line-height: 16px; }
+#footer.ls-foot .lsf-meta { align-items: baseline; }
+#footer.ls-foot .lsf-small a {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  #footer.ls-foot .lsf-small a { min-height: 44px; }
+  #footer.ls-foot .lsf-links { column-gap: 14px; row-gap: 0; }
+}

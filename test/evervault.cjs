@@ -1,6 +1,6 @@
 /* redesign 1112: the old #features evervault cards are gone; #inside, #stats and #features are one L3 section.
- * This checks that section: the three ids land inside it, the eight areas are tabs with one open, the counter keeps
- * "6,000+ files today." for readers, and nothing scrolls sideways at 1440, 390 and 320. Serves the worktree itself. */
+ * This checks that section: the three ids land inside it, the published areas are tabs with one open, the counter keeps
+ * "3,500+ sounds." for readers, and nothing scrolls sideways at 1440, 390 and 320. Serves the worktree itself. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const http = require('node:http');
@@ -29,8 +29,17 @@ const server = http.createServer((req, res) => {
       await page.goto(base, {waitUntil: 'load'});
       const ids = await page.evaluate(() => ['stats', 'features'].map((id) => !!document.querySelector('section#inside #' + id) || document.getElementById(id)?.closest('section')?.id === 'inside'));
       assert.deepEqual(ids, [true, true], '#stats and #features sit in the L3 section');
-      assert.equal((await page.locator('#stats-title').textContent()).replace(/\s+/g, ' ').includes('files today.'), true);
-      assert.equal(await page.locator('#inside [role="tab"]').count() >= 8 || await page.locator('#inside [id^="l3-t-"]').count() === 8, true, 'the eight areas');
+      assert.equal((await page.locator('#stats-title').textContent()).trim(), '3,500+ sounds.');
+      assert.match(await page.locator('#stats .say').textContent(), /across the vault and four downloadable kits/);
+      const tabs = page.locator('#inside [role="tab"]');
+      assert.deepEqual(await tabs.evaluateAll(els => els.map(el => el.id)),
+        ['board', 'vault', 'kits', 'mentorship', 'day', 'room', 'drops'].map(name => 'l3-t-' + name));
+      for (const tab of await tabs.all()) {
+        await tab.click();
+        const panel = page.locator('#' + await tab.getAttribute('aria-controls'));
+        assert.equal(await panel.isVisible(), true);
+        assert.equal(await page.locator('#inside [role="tab"][aria-selected="true"]').count(), 1);
+      }
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, 'no sideways scroll at ' + width);
       assert.deepEqual(errors, []);
       console.log(`PASS L3 ${width}`); await context.close();
