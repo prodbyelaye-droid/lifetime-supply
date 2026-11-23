@@ -102,3 +102,25 @@ h1,h2,h3,h4{text-wrap:balance}
 
 /* 23 Nov · the board tab and its picture stay hidden until there is a new capture of the board */
 .l3-row[hidden]{display:none!important}
+
+/* ui-2 · 23 Nov 2026 · OUT-LANDING-UI-2.md. CSS only, no new words. */
+/* 1 hero button */
+@media (max-width:700px){#top.ls-hero .btn{height:50px}}
+/* 2 portal note on the 24px text line */
+@media (max-width:700px){html body .opening > .portal-cue{padding-left:var(--grid-margin)!important;padding-right:var(--grid-margin)!important}}
+/* 3 one section gap around the new section */
+#new.ls-new{padding-bottom:0}
+#building.l8-sec{padding-bottom:0}
+/* 4 same h2 as every other section */
+html body #main section#building h2#building-title,html body #main section#new h2#new-title{font:var(--t-h2)!important;letter-spacing:var(--t-h2-track)!important}
+/* 6 two more double gaps */
+@media (max-width:700px){#members-say.ms1106{padding-bottom:0}}
+#we-got-one.ms1106{padding-bottom:0}
+/* 7 giving back label */
+#giveaways .l7-gb-for{font:var(--t-small);margin-bottom:8px}
+/* 8 first buy button */
+@media (max-width:700px){#price .l8-mini-pay .l8-btn{height:50px}}
+/* 9 desktop rows in an aligned 3-column grid */
+@media (min-width:701px){#building .l8-up-list{columns:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--grid-gutter)}}
+/* lane D fix 13: #new one column on phones, 44px "see all" */
+@media (max-width:700px){#new .ls-new__map{grid-template-columns:minmax(0,1fr)}#new .ls-new__d summary{display:inline-flex;align-items:center;min-height:44px}}
