@@ -124,3 +124,71 @@ html body #main section#building h2#building-title,html body #main section#new h
 @media (min-width:701px){#building .l8-up-list{columns:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--grid-gutter)}}
 /* lane D fix 13: #new one column on phones, 44px "see all" */
 @media (max-width:700px){#new .ls-new__map{grid-template-columns:minmax(0,1fr)}#new .ls-new__d summary{display:inline-flex;align-items:center;min-height:44px}}
+
+/* night batch · 24 Nov 2026 · LANE-LANDING-BUILD step 3, from night-shots/before at 390, 430 and 1440 and
+   PASTE-LANDING-FIX (layout fixes A, B, G, H here; F section order and J row order are in the markup).
+   No 500, sale, deadline or clock. */
+/* A · first screen: proof, the price and a DM button under the hero copy (strings and links the page already has) */
+#top.ls-hero .hero-proof{margin:0 0 4px;font:var(--t-small);color:rgba(9,9,9,.6)}
+#top.ls-hero .hero-proof b{font-weight:500;color:var(--ink,#090909)}
+#top.ls-hero .hero-proof a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+#top.ls-hero .hero-price{margin:0 0 20px;font:var(--t-h4);letter-spacing:var(--t-h4-track);color:var(--ink,#090909)}
+#top.ls-hero .hero-price small{font:var(--t-small);margin-left:2px}
+#top.ls-hero .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+#top.ls-hero .btn.hero-dm{background:#fff;color:var(--ink,#090909);border:1px solid rgba(9,9,9,.18);box-shadow:none}
+@media (hover:hover){#top.ls-hero .btn.hero-dm:hover{background:#f3f3f3;color:var(--ink,#090909)}}
+/* the second paragraph sits under the buttons (moved in the markup) */
+#top.ls-hero .hero-ctas + p{margin:24px 0 0}
+@media (max-width:700px){
+  /* the buttons run full width */
+  #top.ls-hero .hero-ctas{flex-direction:column}
+  #top.ls-hero .hero-ctas .btn{width:100%;justify-content:center}
+  /* G · one portal on phones: the moving picture goes, the window you can tap stays */
+  #top.ls-hero .panel{display:none}
+}
+/* B · DM lines, legal links and small links: a 44px tap area on phones, same look */
+@media (max-width:700px){
+  .l8-worth__dm a,#questions .lsq-price-dm a,
+  #price .l8-legal a,#updates .l8-update-link{display:inline-flex;align-items:center;min-height:44px}
+  #price .l8-legal{row-gap:0}
+  #download .l7-dl__help > summary{min-height:44px;display:flex;align-items:center}
+  .login--nav{min-height:44px}
+  #contact button[type="submit"]{min-height:44px}
+  /* links inside a sentence: a taller hit area without moving the lines */
+  .ls-new__dm a,#founder .ls6-date a,#inside p a,#price .l8-fine a,#questions .lsq-dm a,#questions .faq-answer a,#contact-help a,#top.ls-hero .hero-proof a{padding-block:13px}
+  #top .nav .lockup{min-height:44px}
+  /* the demo window's 30px header buttons get a 44px hit area */
+  #portal .ltw-ib,#portal .ltw-find{position:relative}
+  #portal .ltw-ib::after,#portal .ltw-find::after{content:"";position:absolute;inset:-7px}
+}
+/* H · the "what's inside" pictures fit the frame, so no headline is cut mid word */
+#inside .l3-win{overflow:hidden;height:auto}
+#inside .l3-win img{width:100%;max-width:100%;height:auto}
+/* H · "a day in my workflow" on phones: the vault page has its own phone layout, so it fits the frame like the
+   submissions window (the board and your-day pages have no phone layout; they stay the desktop crop) */
+@media (max-width:700px){#flow .ls-surf.vault > .r2-surf{left:0;width:100%}}
+/* B · the DM line under each buy button is a second button: in the price band and the close band it takes the
+   buy button's width and height (the pair sits in one column); in the step 1 picture it is 48px under the card */
+#price .l8-band__ctas{display:inline-grid;gap:12px;margin-top:32px}
+#price .l8-band__ctas .l8-btn{margin-top:0}
+#close.ls-close .lsc-ctas{display:inline-grid;gap:12px}
+#price .l8-band__ctas .l8-band__dm,#close.ls-close .lsc-ctas .lsc-dm{margin:0}
+.l8-band__dm a,#close.ls-close .lsc-dm a,#steps .l8-step__art .l8-step__dm a{display:flex;align-items:center;justify-content:center;
+  padding:0 28px;border-radius:999px;font-weight:500;font-size:16px;line-height:20px;text-align:center;text-decoration:none}
+.l8-band__dm a,#close.ls-close .lsc-dm a{min-height:50px}
+#steps .l8-step__art .l8-step__dm a{display:inline-flex;min-height:48px;padding:0 22px;font-size:15px;line-height:20px}
+.l8-band__dm a{color:#fff;border:1px solid rgba(255,255,255,.75)}
+#close.ls-close .lsc-dm a,#steps .l8-step__art .l8-step__dm a{color:var(--ls-ink,#090909);border:1px solid var(--ls-ink,#090909)}
+@media (hover:hover){
+  .l8-band__dm a:hover{background:rgba(255,255,255,.12)}
+  #close.ls-close .lsc-dm a:hover,#steps .l8-step__art .l8-step__dm a:hover{background:rgba(9,9,9,.05)}
+}
+@media (max-width:700px){#price .l8-band__ctas{display:grid}}
+
+/* critic fix 9 · show the top rows of "new" on phones, as on desktop */
+@media (max-width: 700px){
+  #new .ls-new__top{display:block !important}
+  #new .ls-new__d .ls-new__sd{display:inline !important}
+  #new .ls-new__d .ls-new__sm{display:none !important}
+  #new .ls-new__d .ls-new__dup{display:none !important}
+}
