@@ -2,7 +2,7 @@
    On a phone the open row and the rows above it come before the screen (flex order), so the screen sits under the open row. */
 (function () {
   var list = document.querySelector('.l3-list[role=tablist]'); if (!list) return;
-  var tabs = [].slice.call(list.querySelectorAll('[role=tab]'));
+  var tabs = [].slice.call(list.querySelectorAll('[role=tab]')).filter(function (t) { return !t.hidden; }); /* a hidden tab (the board, 23 Nov) is skipped */
   function pick(t, focus) {
     var idx = tabs.indexOf(t);
     tabs.forEach(function (x, j) {
@@ -22,5 +22,5 @@
       if (n) { e.preventDefault(); pick(n, true); }
     });
   });
-  pick(list.querySelector('[aria-selected=true]') || tabs[0]);
+  pick(list.querySelector('[aria-selected=true]:not([hidden])') || tabs[0]);
 })();

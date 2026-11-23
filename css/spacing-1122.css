@@ -99,3 +99,6 @@ h1,h2,h3,h4{text-wrap:balance}
 #price .l8-worth__p p.l8-worth__dm{font:var(--t-small,400 15px/22px inherit);margin-top:24px}
 .l8-worth__dm a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 #questions.ls-q .faq-answer p.lsq-price-dm{margin-top:12px}
+
+/* 23 Nov · the board tab and its picture stay hidden until there is a new capture of the board */
+.l3-row[hidden]{display:none!important}

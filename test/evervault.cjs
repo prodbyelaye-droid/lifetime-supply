@@ -31,9 +31,15 @@ const server = http.createServer((req, res) => {
       assert.deepEqual(ids, [true, true], '#stats and #features sit in the L3 section');
       assert.equal((await page.locator('#stats-title').textContent()).trim(), '3,500+ sounds.');
       assert.match(await page.locator('#stats .say').textContent(), /across the vault and four downloadable kits/);
-      const tabs = page.locator('#inside [role="tab"]');
-      assert.deepEqual(await tabs.evaluateAll(els => els.map(el => el.id)),
+      assert.deepEqual(await page.locator('#inside [role="tab"]').evaluateAll(els => els.map(el => el.id)),
         ['board', 'vault', 'kits', 'mentorship', 'day', 'room', 'drops'].map(name => 'l3-t-' + name));
+      // 23 Nov: the board tab and its picture ("closes nov 13", "161 live briefs") stay hidden until a new capture; the vault opens first
+      assert.equal(await page.locator('#l3-t-board').isVisible(), false, 'board tab hidden');
+      assert.equal(await page.locator('#l3-p-board').isVisible(), false, 'board picture hidden');
+      assert.equal(await page.locator('#l3-t-vault').getAttribute('aria-selected'), 'true', 'vault opens first');
+      assert.equal(await page.locator('#l3-p-vault').isVisible(), true, 'vault pane shows first');
+      const tabs = page.locator('#inside [role="tab"]:not([hidden])');
+      assert.equal(await tabs.count(), 6);
       for (const tab of await tabs.all()) {
         await tab.click();
         const panel = page.locator('#' + await tab.getAttribute('aria-controls'));
