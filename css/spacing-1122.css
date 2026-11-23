@@ -135,8 +135,11 @@ html body #main section#building h2#building-title,html body #main section#new h
 #top.ls-hero .hero-price{margin:0 0 20px;font:var(--t-h4);letter-spacing:var(--t-h4-track);color:var(--ink,#090909)}
 #top.ls-hero .hero-price small{font:var(--t-small);margin-left:2px}
 #top.ls-hero .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
-#top.ls-hero .btn.hero-dm{background:#fff;color:var(--ink,#090909);border:1px solid rgba(9,9,9,.18);box-shadow:none}
-@media (hover:hover){#top.ls-hero .btn.hero-dm:hover{background:#f3f3f3;color:var(--ink,#090909)}}
+/* sales audit C8, 24 Nov: the end-of-week line sits under the price, not on the buttons */
+#top.ls-hero .hero-price + .hero-proof{margin:-14px 0 20px}
+/* sales audit C7, 24 Nov: the DM leads filled, the portal demo is the outlined second button */
+#top.ls-hero .hero-ctas .btn[href="#portal"]{background:#fff;color:var(--ink,#090909);border:1px solid rgba(9,9,9,.18);box-shadow:none}
+@media (hover:hover){#top.ls-hero .hero-ctas .btn[href="#portal"]:hover{background:#f3f3f3;color:var(--ink,#090909)}}
 /* the second paragraph sits under the buttons (moved in the markup) */
 #top.ls-hero .hero-ctas + p{margin:24px 0 0}
 @media (max-width:700px){
