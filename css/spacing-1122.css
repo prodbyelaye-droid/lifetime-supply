@@ -192,3 +192,10 @@ html body #main section#building h2#building-title,html body #main section#new h
   #new .ls-new__d .ls-new__sm{display:none !important}
   #new .ls-new__d .ls-new__dup{display:none !important}
 }
+
+/* critic fix 13 · cover the "a members-only kit lands every month" lines in the #download kits capture
+   (701px and up, where the image fills the capture from its top; at 700 and under the crop already leaves them out) */
+@media (min-width:701px){
+  #download .l7-win__capture{position:relative}
+  #download .l7-win__capture::after{content:"";position:absolute;left:16.95%;top:0;width:44.6%;height:0;margin-top:10.2%;padding-top:3.6%;background:#fff;pointer-events:none}
+}
