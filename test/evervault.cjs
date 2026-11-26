@@ -1,6 +1,6 @@
 /* redesign 1112: the old #features evervault cards are gone; #inside, #stats and #features are one L3 section.
  * This checks that section: the three ids land inside it, the published areas are tabs with one open, the counter keeps
- * "3,500+ sounds." for readers, and nothing scrolls sideways at 1440, 390 and 320. Serves the worktree itself. */
+ * "sounds." for readers with no vault total (Elaye 26 Nov 20:44: no total until he has cross-checked the count), and nothing scrolls sideways at 1440, 390 and 320. Serves the worktree itself. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const http = require('node:http');
@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
       await page.goto(base, {waitUntil: 'load'});
       const ids = await page.evaluate(() => ['stats', 'features'].map((id) => !!document.querySelector('section#inside #' + id) || document.getElementById(id)?.closest('section')?.id === 'inside'));
       assert.deepEqual(ids, [true, true], '#stats and #features sit in the L3 section');
-      assert.equal((await page.locator('#stats-title').textContent()).trim(), '3,500+ sounds.');
+      assert.equal((await page.locator('#stats-title').textContent()).trim(), 'sounds.');
       assert.match(await page.locator('#stats .say').textContent(), /across the vault and four downloadable kits/);
       assert.deepEqual(await page.locator('#inside [role="tab"]').evaluateAll(els => els.map(el => el.id)),
         ['board', 'vault', 'kits', 'mentorship', 'day', 'room', 'drops'].map(name => 'l3-t-' + name));
