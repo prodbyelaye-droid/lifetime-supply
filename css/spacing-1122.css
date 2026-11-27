@@ -47,10 +47,10 @@ html body .l3-stat .fig{font:var(--t-h2);letter-spacing:var(--t-h2-track);font-v
   #download .l7-win__capture img{width:677px;transform:translate(-115.6px,-331.2px)}
 }
 
-/* 10 · "why producers choose": equal card heights; the seventh card spans the hole (8 or 6 cards is his call) */
+/* 10 · "why producers choose": equal card heights; the seventh card is one column wide like the rest (310 px at
+   1440, in column 3) and column 4 stays empty (Q3 L05, critic LB1 fix 1; 8 or 6 cards is his call) */
 @media (min-width:701px){
   #why-producers-choose .ls7-quotes{align-items:stretch;grid-auto-rows:1fr}
-  #why-producers-choose .ls7-quotes > .ls7-q:last-child:nth-child(4n+3){grid-column:span 2}
 }
 
 /* 11 · the dead white under "see all" before "giving back." comes back to the page's section gap */
