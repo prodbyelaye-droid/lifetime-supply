@@ -43,7 +43,7 @@
 /* ---------- QC22 · L13 "what our members say" (critic LB3 L13 fixes 1 to 3; checker K5) ----------
    1 · one text size: every screenshot (assets/members-q3) is cropped to its group of bubbles, with the screenshot's
        own ground as a margin that shows as 16 px on every side, and drawn at the width where its message text is
-       15 px. Ten of the 79 (all behind "see all") have lines longer than a column at 15 px: they fill the column.
+       15 px. Twelve of the 79 (all behind "see all") have lines longer than a column at 15 px: they fill the column.
    2 · a file that sliced a bubble at its top or bottom is cut at the gap between bubbles; the app's scrollbar and the
        blurred avatars are left out.
    3 · 173's ending: collapsed, each column fills to one height, so the columns end at different heights, and the wall
@@ -109,7 +109,7 @@
 #members-say .ms-shot img[src$="/say-sf963-m1-q3.webp"]{width:281.2px}
 #members-say .ms-shot img[src$="/say-se427-3-q3.webp"]{width:288.3px}
 #members-say .ms-shot img[src$="/say-s6001-4-q3.webp"]{width:279.6px}
-#members-say .ms-shot img[src$="/say-sdf15-1-q3.webp"]{width:211.2px}
+#members-say .ms-shot img[src$="/say-sdf15-1-q3.webp"]{width:343.7px}
 #members-say .ms-shot img[src$="/say-s6919-1-q3.webp"]{width:250px}
 #members-say .ms-shot img[src$="/say-se427-2-q3.webp"]{width:396px}
 #members-say .ms-shot img[src$="/say-s6001-6-q3.webp"]{width:305.7px}
