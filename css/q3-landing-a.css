@@ -1,0 +1,21 @@
+/* q3-landing-a.css · Q4 LANDING A, Fri 27 Nov 2026: the Q3 build cards QC17 (L08), QC21 (L12) and QC22 (L13).
+   CSS only. No word changes. Loads last. */
+
+/* ---------- QC17 · L08 "a day in my workflow" (critic LB2 L08 fixes 1 to 3; checker clipped line, L3, C5) ----------
+   1 · the morning window is cropped to the urgent lane. The lane sheet's own rounded rim is the window's only rim, so
+       there is no white strip and no second top edge. It sits 22 px in from the field's top and left (191), and the
+       field's right and bottom edges cut it. At 1440 the lane is at 88 %: its header and 2.7 rows of cards are in frame,
+       three cards whole, and the right edge cuts the fourth card inside its padding, so no line meets the frame. The
+       page header, the filter row and its blue chip are out of frame.
+   2 · at 390 the lane is 1:1 at card rows 3 and 4, with the first card whole. The window keeps its own rim and the
+       right edge cuts the second card. No readable line meets the edge; only the blurred placeholder lines run off.
+   3 · the other portal windows lose the 13 px strip above the portal's own panel, so each window has one top edge. */
+@media (min-width:701px){
+  #flow .ls-surf.board{border:0;background:none;border-radius:12.32px 0 0 0}
+  #flow .ls-surf.board > .r2-surf{left:0;top:0;height:1300px;transform-origin:0 0;transform:scale(.88) translate(-245px,-337px)}
+  #flow .ls-surf.vault > .r2-surf{top:-13px}
+}
+@media (max-width:700px){
+  #flow .ls-surf.board > .r2-surf{left:-246px;top:-768px;height:1300px}
+}
+#flow .ls-surf.today > .r2-surf,#flow .ls-surf.room > .r2-surf{top:-13px}
