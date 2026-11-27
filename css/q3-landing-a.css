@@ -19,3 +19,23 @@
   #flow .ls-surf.board > .r2-surf{left:-246px;top:-768px;height:1300px}
 }
 #flow .ls-surf.today > .r2-surf,#flow .ls-surf.room > .r2-surf{top:-13px}
+
+/* ---------- QC21 · L12 "artists i've produced for." (critic LB2 L12 fix 1; checker clipped and faded names) ----------
+   1 · one photo standard: every file in assets/trusted-1104 is now a head-and-shoulders square at 272 px, cut from a
+       source area of 272 px or more, in one black-and-white grade. The per-artist zoom from section-6.css is off.
+   2 · the edge fade is on the photo band only and runs over the page margin (64 px at 1440, 24 px at 390): names
+       are never faded.
+   3 · a name shows only while it is whole inside the page grid (js/trusted-1104.js reads --tr-fade-w), so no name
+       is cut at either edge or sits in the fade.
+   4 · the line under the heading at 17/26, like the body under the other headlines. */
+#trusted .tr1104__tile[data-artist] .tr1104__slot img{transform:none}
+#trusted .tr1104__rows{-webkit-mask:none;mask:none}
+#trusted .tr1104__row{--tr-photo:136px;--tr-fade-w:64px;
+  --tr-fade:linear-gradient(90deg,transparent 0,#000 var(--tr-fade-w),#000 calc(100% - var(--tr-fade-w)),transparent 100%);
+  -webkit-mask:var(--tr-fade) 0 0/100% var(--tr-photo) no-repeat,linear-gradient(#000,#000) 0 var(--tr-photo)/100% 100% no-repeat;
+  mask:var(--tr-fade) 0 0/100% var(--tr-photo) no-repeat,linear-gradient(#000,#000) 0 var(--tr-photo)/100% 100% no-repeat}
+#trusted .tr1104__name{width:fit-content;max-width:100%;transition:opacity .15s linear}
+#trusted .tr1104__name.is-out{opacity:0}
+#trusted .tr1104__more{font:400 17px/26px var(--ls6-font)}
+@media (max-width:700px){#trusted .tr1104__row{--tr-photo:96px;--tr-fade-w:24px}}
+@media (prefers-reduced-motion:reduce){#trusted .tr1104__name{transition:none}}
