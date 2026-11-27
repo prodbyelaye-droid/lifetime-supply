@@ -1,0 +1,74 @@
+/* Q3 · QC24 · L15 price (#price: in three steps, the price band, everything included, is it worth it).
+   CRITIC LB3 L15 1-3 and checker T6. Nothing here touches the band's sky, a price or a word.
+   1 · one grid for the whole section: the 12 columns of .l8-g on 24 px gutters. Spans of 4 are the three 421 px columns
+       (64, 509, 954 at 1440, ending at 485, 930, 1376); spans of 6 are the halves at 64 and 732 that the band, the fine
+       print and "is it worth it" already use.
+   2 · one composed card in each step field, 195 px tall: step 1's DM pill and $999 row in one white card with a tight
+       shadow (blur 4 px or less); step 2 the portal's real sign-in card (the lockup, the email field, the filled log in).
+   3 · 181's frame: the vertical hairlines run up through the headline block to a top rule, with a small ring node
+       wherever a hairline crosses a rule. The three field tints stay (181 uses three).
+   T6 · the black 1, 2, 3 discs go from the picture; the numerals stay for screen readers. */
+
+/* ---------- 2 · the cards (every width) ---------- */
+#steps .l8-step__art { height: 195px; }
+#steps .l8-mini { box-shadow: 0 1px 2px rgba(9, 9, 9, .07), 0 2px 4px rgba(9, 9, 9, .05); } /* tight: blur 4 px at most */
+/* step 1: one card, the DM pill over the $999 row */
+#steps .l8-mini-one { display: grid; row-gap: 12px; padding: 16px; }
+#steps .l8-mini-one .l8-step__dm a { display: flex; width: 100%; }
+#steps .l8-mini-one .l8-mini-pay { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 0 0 6px; }
+/* step 2: the portal's sign-in card (assets/l4-portal/login-light-full): the lockup, then the email field and the filled log in */
+#steps .l8-mini-login { display: grid; row-gap: 10px; width: 264px; padding: 18px 16px 16px; }
+#steps .l8-mini-login .l8-lockup { margin: 0 0 6px 2px; }
+#steps .l8-mini-field { position: relative; display: block; height: 36px; border: 1px solid var(--ls-hair); border-radius: 999px; background: #fff; }
+#steps .l8-mini-field::before { content: ""; position: absolute; left: 16px; top: 10px; width: 1px; height: 14px; background: var(--ls-ink); } /* the text caret, still */
+#steps .l8-mini-login .l8-btn { width: 100%; height: 36px; }
+
+#steps .l8-frame { display: none; } /* shown from 1200 px, below */
+
+/* ---------- T6 · no step discs; the numeral is kept for screen readers ---------- */
+#steps .l8-step__copy { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+#steps .l8-step__p { grid-column: 1; }
+#steps .l8-step__n { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* ---------- 1 · one grid ---------- */
+@media (min-width: 701px) {
+  #price .l8-incl .l8-lede { grid-column: 7 / span 6; } /* the intro starts at 732, on the band's half */
+  #price .l8-incl__list li { max-width: none; }         /* each list column fills its 421 px (they stopped at 400) */
+  #steps .l8-mini-one .l8-step__dm a { min-height: 40px; } /* the same 40 px as the get lifetime access pill under it */
+}
+
+/* ---------- 1 and 3 · the three step columns and 181's frame, from 1200 px (each column then holds its card) ---------- */
+/* 701 to 1199: the steps stack as they already did to 900 (a 421 px card does not fit a third of a narrower page) */
+@media (min-width: 701px) and (max-width: 1199px) {
+  #steps .l8-steps__in { grid-template-columns: minmax(0, 1fr); }
+  #steps .l8-step { border-left: 0; border-top: 1px solid var(--ls-hair); }
+  #steps .l8-step:first-child { border-top: 0; }
+}
+@media (min-width: 1200px) {
+  #steps { position: relative; --l8-node: 7px; }
+  #steps .l8-steps-h { padding-left: 32px; }                     /* the headline sits inside the frame, on the step titles' 32 px inset */
+  /* under about 1340 px the headline is wider than its column: the hairlines pass behind its words, on a white plate that
+     runs from the words' left edge to 6 px past their end (the frame's left line at 64 stays in view) */
+  #steps .l8-steps-h { position: relative; z-index: 2; width: fit-content; padding-right: 6px;
+    background: linear-gradient(#fff, #fff) no-repeat; background-origin: content-box; background-clip: padding-box; background-size: calc(100% + 6px) 100%; }
+  #steps .l8-steps__in { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--grid-gutter); border-left: 0; border-right: 0; }
+  #steps .l8-step { position: relative; border-left: 0; }
+  #steps .l8-step__art { position: relative; }
+  /* the frame: one hairline down each side of each column, from the top rule 48 px over the headline to the bottom rule */
+  #steps .l8-frame { position: absolute; z-index: 1; left: 0; right: 0; top: -48px; bottom: 0; display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--grid-gutter); pointer-events: none; }
+  #steps .l8-frame::before { content: ""; position: absolute; top: 0; height: 1px; left: calc(-1 * var(--grid-margin)); right: calc(-1 * var(--grid-margin)); background: var(--ls-hair); }
+  #steps .l8-frame i { position: relative; border-left: 1px solid var(--ls-hair); border-right: 1px solid var(--ls-hair); }
+  /* ring nodes where the hairlines cross the three rules: top (the frame), middle (each step's top), bottom (each field's foot) */
+  #steps .l8-frame i::before, #steps .l8-frame i::after,
+  #steps .l8-step::before, #steps .l8-step::after,
+  #steps .l8-step__art::before, #steps .l8-step__art::after {
+    content: ""; position: absolute; z-index: 2; box-sizing: border-box; width: var(--l8-node); height: var(--l8-node);
+    border: 1px solid #C4C4C8; border-radius: 50%; background: #fff; pointer-events: none; }
+  #steps .l8-frame i::before { left: -4px; top: -3px; }
+  #steps .l8-frame i::after { right: -4px; top: -3px; }
+  #steps .l8-step::before { left: -3px; top: -4px; }
+  #steps .l8-step::after { right: -3px; top: -4px; }
+  #steps .l8-step__art::before { left: -3px; bottom: -4px; }
+  #steps .l8-step__art::after { right: -3px; bottom: -4px; }
+}
