@@ -49,7 +49,7 @@
    3 · 173's ending: collapsed, each column fills to one height, so the columns end at different heights, and the wall
        fades to white over the 120 px above the end of its longest column (js/members-1106.js measures it); "see all
        79" sits right under the fade.
-       At 390 the first card stops at 480 px with the same fade. */
+       At 390 the first card stops at 480 px with the same fade while the wall is collapsed. */
 #members-say .ms-shot{width:fit-content;max-width:100%}
 #members-say .ms-shot img{max-width:100%;padding:0;margin-left:0;background:none}
 #members-say .ms-shot img[src$="/say-member-2026-11-11-q3.webp"]{width:264.2px}
@@ -142,6 +142,5 @@
   #members-say .ms-grid.is-collapsed{--ms-h:1100px}
   #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+5){display:block}
   #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+11){display:none}
-  #members-say .ms-shot:first-child{max-height:480px}
-  #members-say .ms-shot:first-child img{object-fit:cover;object-position:top}
+  #members-say .ms-grid.is-collapsed .ms-shot:first-child{max-height:480px}   /* only collapsed: "see all" shows it whole */
 }
