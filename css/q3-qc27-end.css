@@ -1,0 +1,71 @@
+/* Q3 · QC27 · L18 to L21, the end of the page (questions, close, contact, footer).
+   CRITIC LB3 L18 1-3, L19 3, L20 2, L21 1-2; checker L5, T3 and the unreadable "forever." line.
+   Not here, as Q4-LANDING-B says: the close's sky and field (L19 1-2) and every mark wait on Figma; the rest of L20
+   (moving it above the close) waits on his call. No word changes. */
+
+/* ───────── L18 questions ───────── */
+/* 1 · a plain hairline under the header, not the light-to-deep blue strip (checker L5) */
+#questions.ls-q .lsq-line { height: 1px; margin: 0; background: #D9D9D9; }
+/* 2 · the lists on the page halves: 64 to 708 and 732 to 1376 (was 64 to 683 and 756 to 1375, a 72 px gutter) */
+#questions.ls-q .lsq-lists > .lsq-l { padding-right: 0; }
+#questions.ls-q .lsq-lists > .lsq-r { padding-left: 0; }
+/* 3 · 191's 57 px rows with 18 px questions: 26 + 15 + 15 + the 1 px rule (was 16-17 px text on 52 px rows).
+   The split is 17 and 16 in the markup (was 15 and 18). */
+#questions.ls-q summary { padding: 15px 0; font-size: 18px; line-height: 26px; }
+#questions.ls-q .faq-chevron { margin-top: 4px; } /* centred on the 26 px first line */
+
+/* ───────── L19 close ───────── */
+/* 3 · at phone widths "forever." sat over a small cloud and "ver." went white on white: the words sit 40 px higher, in
+   open sky. No change to the sky. Under 360 the headline takes three lines and "forever." is already clear. */
+@media (min-width: 360px) and (max-width: 700px) {
+  #close.ls-close .lsc-in { padding-top: 80px; }
+}
+
+/* ───────── L20 contact ───────── */
+/* 2 · the note starts on the input's left edge (732, was 756); set in ink and smaller (checker T3) */
+#contact.ls-contact #contact-help { padding-left: 0; font: var(--t-fine, 400 14px/20px var(--lsk-font)); color: var(--lsk-ink); }
+/* 2 · the input: one 1 px rim at 48 px tall. The button no longer draws a second rim inside it: it sits flush in the
+   rim's right end (same 24 px radius), with no border or drop shadow of its own. */
+#contact.ls-contact .ask { min-height: 48px; padding: 0 0 0 24px; border-radius: 24px; gap: 12px; }
+#contact.ls-contact .ask textarea { min-height: 48px; padding: 12px 0; }
+#contact.ls-contact .ask button { height: 48px; padding: 0 22px; border: 0; border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), inset 0 -1px 0 rgba(255, 255, 255, .04); }
+#contact.ls-contact .ask button:active { box-shadow: inset 0 1px 2px rgba(0, 0, 0, .40); }
+@media (max-width: 700px) {
+  /* the words over a full-width button, as live; the button sits flush in the rim's foot (same 22 px radius), so the
+     one rim runs round both */
+  #contact.ls-contact .ask { padding: 0; border-radius: 22px; gap: 0; }
+  #contact.ls-contact .ask textarea { min-height: 48px; padding: 12px 20px; }
+  #contact.ls-contact .ask button { height: 44px; border-radius: 22px; }
+}
+
+/* ───────── L21 footer ───────── */
+/* 2 · the top row at 305's 11 px, every item 20 px from the next (it was 12 px, links 8 px apart after a 143 px jump
+   from the email); "one payment. yours forever." keeps its place on column 9 (954 at 1440) */
+#footer.ls-foot .lsf-small { font-size: 11px; line-height: 14px; }
+@media (min-width: 701px) {
+  #footer.ls-foot .lsf-top { display: flex; align-items: flex-start; column-gap: 20px; }
+  #footer.ls-foot .lsf-mail { flex: none; }
+  #footer.ls-foot .lsf-meta { flex: 1 1 auto; min-width: 0; column-gap: 20px; row-gap: 0; }
+  #footer.ls-foot .lsf-links { column-gap: 20px; row-gap: 0; }
+  #footer.ls-foot .lsf-line { flex: none; width: calc((100% - 11 * var(--lsk-gutter)) / 3 + 3 * var(--lsk-gutter)); margin-left: auto; }
+}
+/* 1 · 305's cut: about 120 px of the mark above the bottom edge (was 200), and the wordmark's baseline 163 px above it
+   (was 238). The mark keeps its size and drawing. */
+@media (min-width: 701px) {
+  #footer.ls-foot .lsf-name { bottom: 131px; }
+  #footer.ls-foot .lsf-mark { bottom: -127px; }
+}
+@media (max-width: 1439px) and (min-width: 701px) {
+  #footer.ls-foot .lsf-name { bottom: 9.097222vw; }   /* 131 at 1440 */
+  #footer.ls-foot .lsf-mark { bottom: -8.819444vw; }  /* -127 at 1440 */
+}
+@media (max-width: 700px) {
+  /* the links in two rows of three, every link 20 px from the next, so "privacy" no longer sits alone on a second row */
+  #footer.ls-foot .lsf-links { flex-basis: 100%; column-gap: 20px; row-gap: 0; }
+  #footer.ls-foot .lsf-links a { order: 1; }
+  #footer.ls-foot .lsf-links a:nth-child(n+4) { order: 3; }
+  #footer.ls-foot .lsf-links::after { content: ""; order: 2; flex-basis: 100%; height: 0; }
+  /* the same cut as 1440: about half the mark above the bottom edge (49 of its 99 px; was 81) */
+  #footer.ls-foot .lsf-mark { margin-bottom: -50px; }
+}
