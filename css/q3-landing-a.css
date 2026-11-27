@@ -39,3 +39,109 @@
 #trusted .tr1104__more{font:400 17px/26px var(--ls6-font)}
 @media (max-width:700px){#trusted .tr1104__row{--tr-photo:96px;--tr-fade-w:24px}}
 @media (prefers-reduced-motion:reduce){#trusted .tr1104__name{transition:none}}
+
+/* ---------- QC22 · L13 "what our members say" (critic LB3 L13 fixes 1 to 3; checker K5) ----------
+   1 · one text size: every screenshot (assets/members-q3) is cropped to its group of bubbles, with the screenshot's
+       own ground as a margin that shows as 16 px on every side, and drawn at the width where its message text is
+       15 px. Ten of the 79 (all behind "see all") have lines longer than a column at 15 px: they fill the column.
+   2 · a file that sliced a bubble at its top or bottom is cut at the gap between bubbles; the app's scrollbar and the
+       blurred avatars are left out.
+   3 · 173's ending: collapsed, each column fills to one height, so the columns end at different heights, and the wall
+       fades to white over the 120 px above the end of its longest column (js/members-1106.js measures it); "see all
+       79" sits right under the fade.
+       At 390 the first card stops at 480 px with the same fade. */
+#members-say .ms-shot{width:fit-content;max-width:100%}
+#members-say .ms-shot img{max-width:100%;padding:0;margin-left:0;background:none}
+#members-say .ms-shot img[src$="/say-member-2026-11-11-q3.webp"]{width:264.2px}
+#members-say .ms-shot img[src$="/say-t006-q3.webp"]{width:297.3px}
+#members-say .ms-shot img[src$="/say-t053-q3.webp"]{width:279.7px}
+#members-say .ms-shot img[src$="/say-t004-q3.webp"]{width:266.3px}
+#members-say .ms-shot img[src$="/say-t003-q3.webp"]{width:188.5px}
+#members-say .ms-shot img[src$="/say-t073-q3.webp"]{width:290.2px}
+#members-say .ms-shot img[src$="/say-t039-q3.webp"]{width:272.4px}
+#members-say .ms-shot img[src$="/say-t031-q3.webp"]{width:288.5px}
+#members-say .ms-shot img[src$="/say-t066-q3.webp"]{width:289.5px}
+#members-say .ms-shot img[src$="/say-t034-q3.webp"]{width:283.8px}
+#members-say .ms-shot img[src$="/say-t041-q3.webp"]{width:255.4px}
+#members-say .ms-shot img[src$="/say-t021-q3.webp"]{width:257.4px}
+#members-say .ms-shot img[src$="/say-t008-q3.webp"]{width:280.4px}
+#members-say .ms-shot img[src$="/say-t002-q3.webp"]{width:273.7px}
+#members-say .ms-shot img[src$="/say-t074-q3.webp"]{width:295.9px}
+#members-say .ms-shot img[src$="/say-t001-q3.webp"]{width:273.3px}
+#members-say .ms-shot img[src$="/say-t036-q3.webp"]{width:266.1px}
+#members-say .ms-shot img[src$="/say-t065-q3.webp"]{width:266.1px}
+#members-say .ms-shot img[src$="/say-t012-q3.webp"]{width:255.2px}
+#members-say .ms-shot img[src$="/say-t007-q3.webp"]{width:270.4px}
+#members-say .ms-shot img[src$="/say-t049-q3.webp"]{width:276.4px}
+#members-say .ms-shot img[src$="/say-t061-q3.webp"]{width:290.6px}
+#members-say .ms-shot img[src$="/say-t056-q3.webp"]{width:248.3px}
+#members-say .ms-shot img[src$="/say-t043-q3.webp"]{width:249.8px}
+#members-say .ms-shot img[src$="/say-t016-q3.webp"]{width:264.5px}
+#members-say .ms-shot img[src$="/say-t024-q3.webp"]{width:284.6px}
+#members-say .ms-shot img[src$="/say-t029-q3.webp"]{width:333.8px}
+#members-say .ms-shot img[src$="/say-t062-q3.webp"]{width:202.9px}
+#members-say .ms-shot img[src$="/say-t060-q3.webp"]{width:263.5px}
+#members-say .ms-shot img[src$="/say-t019-q3.webp"]{width:320px}
+#members-say .ms-shot img[src$="/say-t040-q3.webp"]{width:258.5px}
+#members-say .ms-shot img[src$="/say-t042-q3.webp"]{width:336.8px}
+#members-say .ms-shot img[src$="/say-t044-q3.webp"]{width:356.5px}
+#members-say .ms-shot img[src$="/say-t068-q3.webp"]{width:272.9px}
+#members-say .ms-shot img[src$="/say-t064-q3.webp"]{width:251.8px}
+#members-say .ms-shot img[src$="/say-t009-q3.webp"]{width:370.5px}
+#members-say .ms-shot img[src$="/say-t020-q3.webp"]{width:280.6px}
+#members-say .ms-shot img[src$="/say-t027-q3.webp"]{width:222.9px}
+#members-say .ms-shot img[src$="/say-t035-q3.webp"]{width:311.7px}
+#members-say .ms-shot img[src$="/say-t063-q3.webp"]{width:269.7px}
+#members-say .ms-shot img[src$="/say-t076-q3.webp"]{width:277px}
+#members-say .ms-shot img[src$="/say-t010-q3.webp"]{width:266.7px}
+#members-say .ms-shot img[src$="/say-t026-q3.webp"]{width:167.9px}
+#members-say .ms-shot img[src$="/say-t028-q3.webp"]{width:179.6px}
+#members-say .ms-shot img[src$="/say-t017-q3.webp"]{width:177.9px}
+#members-say .ms-shot img[src$="/say-t018-q3.webp"]{width:139.3px}
+#members-say .ms-shot img[src$="/say-t047-q3.webp"]{width:150.2px}
+#members-say .ms-shot img[src$="/say-se427-0-q3.webp"]{width:274.6px}
+#members-say .ms-shot img[src$="/say-sdf15-0-q3.webp"]{width:306.3px}
+#members-say .ms-shot img[src$="/say-s6919-0-q3.webp"]{width:252.5px}
+#members-say .ms-shot img[src$="/say-sf963-6-q3.webp"]{width:199.5px}
+#members-say .ms-shot img[src$="/say-s6001-3-q3.webp"]{width:287.4px}
+#members-say .ms-shot img[src$="/say-squadron-q3.webp"]{width:100%}
+#members-say .ms-shot img[src$="/say-s5071-m0-q3.webp"]{width:319.5px}
+#members-say .ms-shot img[src$="/say-sf963-m1-q3.webp"]{width:281.2px}
+#members-say .ms-shot img[src$="/say-se427-3-q3.webp"]{width:288.3px}
+#members-say .ms-shot img[src$="/say-s6001-4-q3.webp"]{width:279.6px}
+#members-say .ms-shot img[src$="/say-sdf15-1-q3.webp"]{width:211.2px}
+#members-say .ms-shot img[src$="/say-s6919-1-q3.webp"]{width:250px}
+#members-say .ms-shot img[src$="/say-se427-2-q3.webp"]{width:396px}
+#members-say .ms-shot img[src$="/say-s6001-6-q3.webp"]{width:305.7px}
+#members-say .ms-shot img[src$="/say-sf963-0-q3.webp"]{width:202.9px}
+#members-say .ms-shot img[src$="/say-s6001-5-q3.webp"]{width:331.1px}
+#members-say .ms-shot img[src$="/say-s6919-4-q3.webp"]{width:321.5px}
+#members-say .ms-shot img[src$="/say-se427-5-q3.webp"]{width:264px}
+#members-say .ms-shot img[src$="/say-sf963-2-q3.webp"]{width:251.1px}
+#members-say .ms-shot img[src$="/say-s6001-2-q3.webp"]{width:283.4px}
+#members-say .ms-shot img[src$="/say-sf963-7-q3.webp"]{width:234px}
+#members-say .ms-shot img[src$="/say-s95b5-0-q3.webp"]{width:287.7px}
+#members-say .ms-shot img[src$="/say-se427-1-q3.webp"]{width:277.7px}
+#members-say .ms-shot img[src$="/say-s6919-5-q3.webp"]{width:266.7px}
+#members-say .ms-shot img[src$="/say-sf963-1-q3.webp"]{width:244.5px}
+#members-say .ms-shot img[src$="/say-s6001-m0-q3.webp"]{width:291.5px}
+#members-say .ms-shot img[src$="/say-sf963-3-q3.webp"]{width:240px}
+#members-say .ms-shot img[src$="/say-s6919-m0-q3.webp"]{width:271.5px}
+#members-say .ms-shot img[src$="/say-s6919-m1-q3.webp"]{width:310.4px}
+#members-say .ms-shot img[src$="/say-se427-4-q3.webp"]{width:295.8px}
+#members-say .ms-shot img[src$="/say-sf963-m0-q3.webp"]{width:188.4px}
+#members-say .ms-shot img[src$="/say-s6001-m1-q3.webp"]{width:259.1px}
+#members-say .ms-grid.is-collapsed{height:var(--ms-h,720px);column-fill:auto;overflow:hidden;
+  -webkit-mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - 120px),transparent var(--ms-low,100%));
+  mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - 120px),transparent var(--ms-low,100%))}
+#members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+11){display:block}
+#members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+25){display:none}
+#members-say .ms-shot:first-child.is-capped{
+  -webkit-mask-image:linear-gradient(#000 max(30%,calc(100% - 120px)),transparent);mask-image:linear-gradient(#000 max(30%,calc(100% - 120px)),transparent)}
+@media (max-width:700px){
+  #members-say .ms-grid.is-collapsed{--ms-h:1100px}
+  #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+5){display:block}
+  #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+11){display:none}
+  #members-say .ms-shot:first-child{max-height:480px}
+  #members-say .ms-shot:first-child img{object-fit:cover;object-position:top}
+}
