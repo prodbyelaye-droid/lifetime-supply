@@ -32,11 +32,19 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), inset 0 -1px 0 rgba(255, 255, 255, .04); }
 #contact.ls-contact .ask button:active { box-shadow: inset 0 1px 2px rgba(0, 0, 0, .40); }
 @media (max-width: 700px) {
-  /* the words over a full-width button, as live; the button sits flush in the rim's foot (same 22 px radius), so the
-     one rim runs round both */
-  #contact.ls-contact .ask { padding: 0; border-radius: 22px; gap: 0; }
-  #contact.ls-contact .ask textarea { min-height: 48px; padding: 12px 20px; }
-  #contact.ls-contact .ask button { height: 44px; border-radius: 22px; }
+  /* Q5 L20 390: the words and the button stacked, each its own 48 px pill with a 12 px gap; the rim, the hover ring,
+     the focus ring and the error ring move from the form onto the field, so nothing overlaps the button */
+  #contact.ls-contact .ask,
+  #contact.ls-contact .ask:focus-within,
+  #contact.ls-contact .ask:not(:focus-within):hover,
+  #contact.ls-contact .ask:has(textarea[aria-invalid="true"]) {
+    flex-direction: column; align-items: stretch; gap: 12px; padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  #contact.ls-contact .ask textarea { flex: 0 0 auto; box-sizing: border-box; width: 100%; min-height: 48px; padding: 12px 20px; border-radius: 24px;
+    background: #fff; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25); }
+  #contact.ls-contact .ask textarea:focus { box-shadow: inset 0 0 0 1.5px #090909; }
+  #contact.ls-contact .ask textarea[aria-invalid="true"] { box-shadow: inset 0 0 0 1.5px var(--lsk-error); }
+  #contact.ls-contact .ask button { flex: 0 0 auto; width: 100%; height: 48px; border-radius: 24px; border: 1px solid #252628;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 1px 1px rgba(0, 0, 0, .10), 0 1px 3px rgba(0, 0, 0, .10); }
 }
 
 /* ───────── L21 footer ───────── */

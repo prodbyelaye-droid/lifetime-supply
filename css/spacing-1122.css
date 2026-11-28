@@ -12,8 +12,8 @@ html body .l3-stat .fig{font:var(--t-h2);letter-spacing:var(--t-h2-track);font-v
    button and only the bottom of the art is cut: before, cover over (width x 620) at 50% 100%; at 390, auto 640px from 200px. */
 @media (min-width:701px){#price .l8-band{min-height:0;padding-bottom:var(--section-pad);
   background-size:max(100%, 1219.33px) auto;background-position:50% min(0px, calc(620px - 50.847vw))}}
-@media (max-width:700px){#price .l8-band{min-height:0;padding-bottom:calc(var(--section-pad) + 2*var(--grid-margin));
-  background-position:40% 200px}}
+@media (max-width:700px){#price .l8-band{min-height:0;padding-bottom:calc(var(--section-pad) + 2*var(--grid-margin) + 32px);
+  background-position:40% 232px}} /* Q5 L15 390: 32 px more foot, the art 32 px lower with it, so the clouds clear the pill */
 
 /* 5 · "is it worth it?" at the h2 size like the other left-column heads */
 #worth-h{font:var(--t-h2);letter-spacing:var(--t-h2-track)}
