@@ -7,7 +7,8 @@
        shadow (blur 4 px or less); step 2 the portal's real sign-in card (the lockup, the email field, the filled log in).
    3 · 181's frame: the vertical hairlines run up through the headline block to a top rule, with a small ring node
        wherever a hairline crosses a rule. The three field tints stay (181 uses three).
-   T6 · the black 1, 2, 3 discs go from the picture; the numerals stay for screen readers. */
+   T6 (overruled, Q5): the critic (Fable 5.2 high, 28 Nov) keeps row 181's numbered steps, so the 1, 2, 3 discs are back
+   as css/l8-1112.css builds them: a 28 px disc in the page ink with a white numeral, 14 px before each step title. */
 
 /* ---------- 2 · the cards (every width) ---------- */
 #steps .l8-step__art { height: 195px; }
@@ -25,10 +26,7 @@
 
 #steps .l8-frame { display: none; } /* shown from 1200 px, below */
 
-/* ---------- T6 · no step discs; the numeral is kept for screen readers ---------- */
-#steps .l8-step__copy { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
-#steps .l8-step__p { grid-column: 1; }
-#steps .l8-step__n { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* ---------- Q5 · the step discs (row 181): l8-1112.css's disc column, title and paragraph in column 2 ---------- */
 
 /* ---------- 1 · one grid ---------- */
 @media (min-width: 701px) {

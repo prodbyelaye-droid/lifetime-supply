@@ -132,8 +132,11 @@
 #members-say .ms-shot img[src$="/say-sf963-m0-q3.webp"]{width:188.4px}
 #members-say .ms-shot img[src$="/say-s6001-m1-q3.webp"]{width:259.1px}
 #members-say .ms-grid.is-collapsed{height:var(--ms-h,720px);column-fill:auto;overflow:hidden;
-  -webkit-mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - 120px),transparent var(--ms-low,100%));
-  mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - 120px),transparent var(--ms-low,100%))}
+  -webkit-mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - var(--ms-fade,120px)),transparent var(--ms-low,100%));
+  mask-image:linear-gradient(#000 calc(var(--ms-low,100%) - var(--ms-fade,120px)),transparent var(--ms-low,100%))}
+/* Q5 L13: the cut pulls the wall's box down over "see all" (negative margin), and the mask lifts the wall into its own
+   layer, so the button is raised above it to keep its whole face clickable */
+#members-say .ms-grid.is-collapsed + .ms-more{position:relative;z-index:1}
 #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+11){display:block}
 #members-say .ms-grid.is-collapsed .ms-shot:nth-child(n+25){display:none}
 #members-say .ms-shot:first-child.is-capped{

@@ -78,6 +78,29 @@ const server = http.createServer((req, res) => {
         await context.close();
       }
     }
+    // Q5 L13: the collapsed wall's cut pulls its box over "see all"; the whole face of the button stays clickable and a
+    // real click opens the wall (the independent check found it blocked from 701 px up before the button was raised)
+    for (const width of [1440, 1200, 960, 390]) {
+      const context = await browser.newContext({viewport: {width, height: width < 700 ? 844 : 900}});
+      await context.route('**/*', (r) => ['127.0.0.1', 'localhost'].includes(new URL(r.request().url()).hostname) ? r.continue() : r.abort());
+      const page = await context.newPage();
+      await page.goto(base, {waitUntil: 'load'});
+      const more = page.locator('#members-say .ms-more');
+      await more.scrollIntoViewIfNeeded();
+      const blocked = await more.evaluate((b) => {
+        const r = b.getBoundingClientRect(), miss = [];
+        for (const fy of [.25, .5, .75]) for (const fx of [.3, .4, .5, .6, .7]) {
+          const x = r.left + r.width * fx, y = r.top + r.height * fy, hit = document.elementFromPoint(x, y);
+          if (!hit || !(hit === b || b.contains(hit))) miss.push(`${Math.round(x)},${Math.round(y)} ${hit ? hit.className || hit.tagName : 'none'}`);
+        }
+        return miss;
+      });
+      assert.deepEqual(blocked, [], '"see all" face clickable at ' + width);
+      await more.click({timeout: 3000});
+      assert.equal(await page.locator('#members-say [data-ms]').evaluate((g) => g.classList.contains('is-collapsed')), false, 'a click opens the wall at ' + width);
+      console.log(`PASS see-all ${width}`);
+      await context.close();
+    }
     // without scripts the checkout and the contact fallback still work
     const context = await browser.newContext({viewport: {width: 390, height: 844}, javaScriptEnabled: false}), page = await context.newPage();
     await page.goto(base, {waitUntil: 'load'});
